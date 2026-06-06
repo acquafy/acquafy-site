@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Next.js build output
+.next/
+out/
+
+# TypeScript build info
+tsconfig.tsbuildinfo
+
+# Environment variables (never commit secrets)
+.env
+.env.local
+.env.*.local
+.env.production
+
+# OS files
+.DS_Store
+Thumbs.db
+*.log
+
+# Claude AI session data
+.claude/
+
+# Misc
+*.tmp
