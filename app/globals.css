@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Avenir LT Pro — via CDNFonts ────────────────────────────────── */
+/* Nomes mapeados exatamente ao que o Tailwind gera de cada classe      */
+/* font-['Avenir_LT_Pro:XX_YY'] → font-family: "Avenir LT Pro:XX YY"  */
+
+@font-face {
+  font-family: 'Avenir LT Pro:55 Roman';
+  src: url('https://fonts.cdnfonts.com/s/36611/AvenirLTProRoman.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Avenir LT Pro:65 Medium';
+  src: url('https://fonts.cdnfonts.com/s/36611/AvenirLTProMedium.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Avenir LT Pro:85 Heavy';
+  src: url('https://fonts.cdnfonts.com/s/36611/AvenirLTProHeavy.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Avenir LT Pro:95 Black';
+  src: url('https://fonts.cdnfonts.com/s/36611/AvenirLTProBlack.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── Articulat CF → Avenir LT Pro (exportação incorreta de outro projeto) */
+/* Ambas as variantes apontam para os arquivos Avenir LT Pro equivalentes  */
+
+@font-face {
+  font-family: 'Articulat CF:Regular';
+  src: url('https://fonts.cdnfonts.com/s/36611/AvenirLTProRoman.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Articulat CF:Bold';
+  src: url('https://fonts.cdnfonts.com/s/36611/AvenirLTProHeavy.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── Reset & Base ─────────────────────────────────────────────────── */
+:root {
+  --azul: #0233c3;
+  --azul-neon: #0569ff;
+  --azul-escuro: #1f2e91;
+  --lilas: #9f3df5;
+  --lilas-plus: #6e0cc3;
+  --verde: #36ae5c;
+  --gold: #dfa727;
+  --texto: #333333;
+  --texto-dark: #2a2a2b;
+  --bg-cinza: #f6f9fe;
+  --border: #cbd0d4;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background-color: #ffffff;
+  font-family: 'Avenir LT Pro:55 Roman', sans-serif;
+  color: var(--texto);
+}
+
+/* ─── Utilitários globais ──────────────────────────────────────────── */
+.container-site {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.gradient-title {
+  background: linear-gradient(103.83deg, #0233c3 6.19%, #9f3df5 93.35%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-essentials {
+  background: linear-gradient(to right, #0233c3, #0569ff);
+}
+
+.gradient-premium {
+  background: linear-gradient(172.84deg, #0233c3 0%, #9f3df5 36.37%);
+}
