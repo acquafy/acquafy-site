@@ -67,11 +67,11 @@ export default function Parceria() {
     <section className="bg-white flex flex-col gap-[20px] items-center justify-center px-[20px] py-[40px] w-full">
       {/* Header */}
       <div className="flex flex-col gap-[5px] items-center max-w-[1400px] overflow-hidden w-full">
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] min-w-[240px] w-full">
+        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] min-w-[240px] w-full text-center lg:text-left">
           <span className="text-[#2a2a2b]">Programa de</span>
           <span className="text-[#0233c3]">{" Parceria Global Acquafy"}</span>
         </h2>
-        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[24px] text-[#333] w-full">
+        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] w-full text-center lg:text-left">
           Cresça conosco e conquiste o mundo com a Acquafy.
         </p>
       </div>

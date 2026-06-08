@@ -1,4 +1,4 @@
-import FigmaIcon from "./FigmaIcon";
+﻿import FigmaIcon from "./FigmaIcon";
 
 // ── Assets ────────────────────────────────────────────────────────────────────
 const imgProduct       = "/figma-assets/22acfcd2-3786-49e8-81ce-f9f470567201.png"; // Neo UP c/ laço, aspect 1191/1456
@@ -58,7 +58,7 @@ function CampaignText({ centered }: { centered?: boolean }) {
       <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-white w-full">
         CAMPANHA ACQUAFY TRANSFORMA VIDAS
       </p>
-      <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[24px] text-white w-full">
+      <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-white w-full">
         De julho a dezembro, 1 purificador por mês.
         <br />
         {"Participe e concorra a um "}

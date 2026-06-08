@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+﻿import type { ReactNode } from "react";
 import FigmaIcon from "./FigmaIcon";
 import PremiumSlideshow from "./ui/PremiumSlideshow";
 
@@ -78,13 +78,13 @@ const rowPrime: Product[] = [
 
 // ─── Card sub-components ────────────────────────────────────────────────────
 
-/** Slot de imagem compartilhado: max-w-[170px] na img, sem clipping no slot */
-function ProductImage({ src, aspectW, aspectH }: { src: string; aspectW: number; aspectH: number }) {
+/** Slot de imagem: w-full h-[220px] fixo — object-contain preserva ratio dentro do bloco */
+function ProductImage({ src }: { src: string }) {
   return (
-    <div className="flex items-center justify-center shrink-0 w-full max-h-[220px]">
+    <div className="w-full h-[220px] shrink-0">
       <img
         alt=""
-        className="max-w-[170px] max-h-[220px] w-full object-contain pointer-events-none"
+        className="w-full h-full object-contain pointer-events-none"
         src={src}
       />
     </div>
@@ -94,7 +94,7 @@ function ProductImage({ src, aspectW, aspectH }: { src: string; aspectW: number;
 function InfinityCard({ product }: { product: Product }) {
   return (
     <div className="bg-white flex flex-[1_0_0] flex-col gap-[10px] items-center min-h-[290px] min-w-0 overflow-hidden p-[20px] rounded-[12px]">
-      <ProductImage src={product.img} aspectW={837} aspectH={1526} />
+      <ProductImage src={product.img} />
       <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#6e0cc3] text-center w-full min-h-[55px] flex items-center justify-center">
         {product.name}
       </p>
@@ -108,7 +108,7 @@ function InfinityCard({ product }: { product: Product }) {
 function PrestigeCard({ product }: { product: Product }) {
   return (
     <div className="bg-white flex flex-[1_0_0] flex-col gap-[10px] items-center min-h-[290px] min-w-0 overflow-hidden p-[20px] rounded-[12px]">
-      <ProductImage src={product.img} aspectW={113.75} aspectH={99.76} />
+      <ProductImage src={product.img} />
       <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#6e0cc3] text-center w-full min-h-[55px] flex items-center justify-center">
         {product.name}
       </p>
@@ -122,7 +122,7 @@ function PrestigeCard({ product }: { product: Product }) {
 function PrimeCard({ product }: { product: Product }) {
   return (
     <div className="bg-white flex flex-[1_0_0] flex-col gap-[10px] items-center min-h-[290px] min-w-0 overflow-hidden p-[20px] rounded-[12px]">
-      <ProductImage src={product.img} aspectW={3288} aspectH={3245} />
+      <ProductImage src={product.img} />
       <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#6e0cc3] text-center w-full min-h-[55px] flex items-center justify-center">
         {product.name}
       </p>
@@ -144,20 +144,20 @@ export default function LinhaPremium() {
         <div className="flex flex-col gap-[20px] items-start w-full">
           <div className="flex flex-wrap gap-y-[20px] items-center justify-center w-full">
             <h2
-              className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] bg-clip-text text-transparent flex-1 min-w-[240px]"
+              className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] bg-clip-text text-transparent flex-1 min-w-[240px] text-center lg:text-left"
               style={{ backgroundImage: "linear-gradient(170.17deg, #0233c3 6.19%, #9f3df5 93.35%)" }}
             >
               Neo Premium
             </h2>
           </div>
 
-          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[24px] text-[#333] w-full">
+          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] w-full text-center lg:text-left">
             Modelos sofisticados em aço inox com Painel LCD IPS Touch 15.6, RO/Osmose Reversa, App, UV LED, Wi-Fi 5, Bluetooth 5.3 e experiência premium integrada.
           </p>
 
           {/* Water types */}
           <div className="bg-white flex flex-col gap-[20px] items-center justify-center overflow-hidden p-[20px] rounded-[12px] w-full">
-            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[24px] text-[#1f2e91] w-full">
+            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#1f2e91] w-full">
               {"Tipos de água dos produtos "}
               <span className="font-['Avenir_LT_Pro:85_Heavy']">Neo Premium</span>
               {", a água perfeita para cada momento"}
@@ -167,7 +167,7 @@ export default function LinhaPremium() {
                 <div key={w.label} className="flex flex-1 gap-[10px] items-center min-w-[180px]">
                   <FigmaIcon src={imgCheckin} size={20} />
                   <div className="flex flex-1 flex-col gap-[10px] items-start min-w-0">
-                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[21px] text-[#1f2e91] w-full">
+                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] w-full">
                       {w.label}
                     </p>
                     <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] leading-[14px] text-[#2a2a2b] w-full">

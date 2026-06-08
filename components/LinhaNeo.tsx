@@ -1,4 +1,4 @@
-import FigmaIcon from "./FigmaIcon";
+﻿import FigmaIcon from "./FigmaIcon";
 
 // ── Checkin icon ───────────────────────────────────────────────────────────────
 const imgCheckin = "/figma-assets/a8739a99-bced-4cff-8957-d1230dbbb560.svg"; // 30×30 sq
@@ -56,36 +56,17 @@ const row2: Product[] = [
   { img: imgNeoMaxSparkH2,   imgW: 1515, imgH: 4012, name: <span>Neo MAX SPARK H<sup>2</sup></span>, sub: "7 em 1", tank: "Tanque de 3L" },
 ];
 
-/**
- * ProductCard — padrão exato do Figma (node 3092:5293):
- *
- * Bloco de imagem = aspect-square (1:1) + flex-col items-center justify-center
- *   → altura IGUAL em todos os cards
- *
- * Div interna = flex-[1_0_0] min-h-px + aspectRatio REAL do produto
- *   → preenche a altura do quadrado; largura calculada pelo ratio
- *   → sem overflow, sem cortes, proporção perfeita
- *
- * NUNCA usar "w-full" no inner div — quebra o cálculo ao forçar largura total
- * antes do ratio, fazendo produtos altos (ex: Neo MAX 1515/4012) transbordarem.
- */
 function ProductCard({ product }: { product: Product }) {
   return (
     <div className="bg-white flex flex-[1_0_0] flex-col gap-[10px] items-center min-h-[335px] min-w-[150px] overflow-hidden p-[20px] rounded-[12px]">
 
-      {/* Bloco de imagem: sempre quadrado, mesma altura em todos os cards */}
-      <div className="aspect-square flex flex-col items-center justify-center relative shrink-0 w-full max-h-[220px]">
-        {/* Inner com ratio REAL: preenche a altura do quadrado, ajusta a largura */}
-        <div
-          className="flex-[1_0_0] min-h-px relative"
-          style={{ aspectRatio: `${product.imgW} / ${product.imgH}` }}
-        >
-          <img
-            alt=""
-            className="absolute inset-0 max-w-none object-cover pointer-events-none size-full"
-            src={product.img}
-          />
-        </div>
+      {/* Bloco de imagem: w-full h-[220px] fixo — object-contain preserva ratio dentro do bloco */}
+      <div className="w-full h-[220px] shrink-0">
+        <img
+          alt=""
+          className="w-full h-full object-contain pointer-events-none"
+          src={product.img}
+        />
       </div>
 
       {/* Nome — min-h-[55px] alinha nomes de 1 e 2 linhas */}
@@ -94,14 +75,14 @@ function ProductCard({ product }: { product: Product }) {
       </p>
 
       {/* Subtipo */}
-      <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[24px] text-[#333] text-center w-full">
+      <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] text-center w-full">
         {product.sub}
       </p>
 
       {/* Tanque (opcional) */}
       {product.tank && (
         <div className="bg-[#f6f9fe] border border-[#0569ff] flex flex-col items-center justify-center px-[5px] py-[10px] rounded-[12px] w-full shrink-0">
-          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[24px] text-[#333] text-center w-full">
+          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] text-center w-full">
             {product.tank}
           </p>
         </div>
@@ -119,20 +100,20 @@ export default function LinhaNeo() {
         <div className="flex flex-col gap-[20px] items-start w-full">
           <div className="flex flex-wrap gap-y-[20px] items-center justify-center w-full">
             <h2
-              className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] flex-1 min-w-[240px] bg-clip-text text-transparent"
+              className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] flex-1 min-w-[240px] bg-clip-text text-transparent text-center lg:text-left"
               style={{ backgroundImage: "linear-gradient(to right, #0233c3, #0569ff)" }}
             >
               Neo Essentials
             </h2>
           </div>
-          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[24px] text-[#333] w-full">
+          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] w-full text-center lg:text-left">
             Linha acessível e inteligente com Painel LED Touch 10.1, App, UV LED, Wi-Fi 5, Bluetooth 5.3 e filtros de
             alta performance UF.
           </p>
 
           {/* Water types card */}
           <div className="bg-white flex flex-col gap-[20px] items-center justify-center overflow-hidden p-[20px] rounded-[12px] w-full">
-            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[24px] text-[#1f2e91] w-full">
+            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#1f2e91] w-full">
               {"Tipos de água dos produtos "}
               <span className="font-['Avenir_LT_Pro:85_Heavy']">Neo Essentials</span>
               {", a água perfeita para cada momento"}
@@ -142,7 +123,7 @@ export default function LinhaNeo() {
                 <div key={w.label} className="flex flex-[1_0_0] gap-[10px] items-center min-w-[180px]">
                   <FigmaIcon src={imgCheckin} size={20} />
                   <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-0">
-                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[21px] text-[#1f2e91] w-full">
+                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] w-full">
                       {w.label}
                     </p>
                     <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] leading-[14px] text-[#2a2a2b] w-full">

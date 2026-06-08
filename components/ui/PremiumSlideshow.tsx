@@ -35,8 +35,15 @@ export default function PremiumSlideshow() {
 
   return (
     <div className="flex flex-col gap-[20px] h-[412px] items-center justify-center shrink-0 w-full">
-      {/* Slide image */}
-      <div className="flex-[1_0_0] min-h-px relative rounded-[16px] w-full">
+      {/* Slide image — clicável para avançar slide */}
+      <div
+        className="flex-[1_0_0] min-h-px relative rounded-[16px] w-full cursor-pointer"
+        onClick={() => setActive((active + 1) % slides.length)}
+        aria-label="Próximo slide"
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => e.key === "Enter" && setActive((active + 1) % slides.length)}
+      >
         <img
           alt="Ambientes Acquafy Premium"
           className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[16px] size-full"

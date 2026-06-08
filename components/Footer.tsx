@@ -1,4 +1,4 @@
-import FigmaIcon from "./FigmaIcon";
+﻿import FigmaIcon from "./FigmaIcon";
 import { LanguageSelectorFull } from "./ui/LanguageSelector";
 
 // ── Assets (node 3088:5293) ───────────────────────────────────────────────────
@@ -50,15 +50,30 @@ const socialIcons = [
 const navColumns = [
   {
     title: "Plataforma",
-    links: ["Plataforma Acquafy", "App + AI + Iot", "Central de Suporte", "Tecnologia & Sustentabilidade"],
+    links: [
+      { label: "Plataforma Acquafy",            href: "/plataforma"  },
+      { label: "App + AI + IoT",                href: "/app-ai-iot"  },
+      { label: "Central de Suporte",            href: "#"            },
+      { label: "Tecnologia & Sustentabilidade", href: "/tecnologia"  },
+    ],
   },
   {
     title: "Produtos",
-    links: ["Linha Neo", "Acquafy Media", "Filtros & Acessórios", "Compare Produtos"],
+    links: [
+      { label: "Linha Neo",           href: "/linha-neo" },
+      { label: "Acquafy Media",       href: "/neo-media" },
+      { label: "Filtros & Acessórios", href: "/filtros"  },
+      { label: "Compare Produtos",    href: "/compare"   },
+    ],
   },
   {
     title: "Empresa",
-    links: ["Sobre Nós", "Expansão Global", "Programa de Parceria Global", "Contatos"],
+    links: [
+      { label: "Sobre Nós",                   href: "/sobre"           },
+      { label: "Expansão Global",             href: "/expansao-global" },
+      { label: "Programa de Parceria Global", href: "#"                },
+      { label: "Contatos",                    href: "/contato"         },
+    ],
   },
 ];
 
@@ -151,11 +166,14 @@ export default function Footer() {
               {/* Links */}
               <div className="flex flex-col gap-[30px] items-start w-full">
                 {col.links.map((link) => (
-                  <div key={link} className="flex gap-[10px] items-center w-full">
+                  <div key={link.label} className="flex gap-[10px] items-center w-full">
                     <ArrowBullet />
-                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[13px] text-[#2a2a2b] flex-[1_0_0] min-w-px cursor-pointer hover:text-[#0233c3] transition-colors">
-                      {link}
-                    </p>
+                    <a
+                      href={link.href}
+                      className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#2a2a2b] flex-[1_0_0] min-w-px hover:text-[#0233c3] transition-colors"
+                    >
+                      {link.label}
+                    </a>
                   </div>
                 ))}
               </div>
@@ -176,7 +194,7 @@ export default function Footer() {
                 <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#07235c] w-full">
                   {s.sub}
                 </p>
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[21px] text-[#0233c3] w-full">
+                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#0233c3] w-full">
                   {s.main}
                 </p>
               </div>
@@ -200,7 +218,7 @@ export default function Footer() {
             <div className="flex flex-col items-center justify-center shrink-0 size-[40px]">
               <FigmaIcon src={imgFlagUSA} alt="USA" size={40} />
             </div>
-            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[21px] text-[#1f2e91] flex-[1_0_0] min-w-px">
+            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] flex-[1_0_0] min-w-px">
               Fundada nos EUA em 2020
             </p>
           </div>
@@ -210,7 +228,7 @@ export default function Footer() {
             <div className="flex flex-col items-center justify-center shrink-0 size-[40px]">
               <FigmaIcon src={imgGlobeSust} size={40} aspectW={492} aspectH={474.82} />
             </div>
-            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[21px] text-[#1f2e91] flex-[1_0_0] min-w-px">
+            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] flex-[1_0_0] min-w-px">
               Global Smart Water Platform
             </p>
           </div>

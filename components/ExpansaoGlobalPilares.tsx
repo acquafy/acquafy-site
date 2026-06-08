@@ -1,0 +1,67 @@
+import FigmaIcon from "./FigmaIcon";
+
+// Aspect ratios from Figma design
+const imgParceria  = "/figma-assets/ac333b1c-fc52-4306-b447-a81917ac56f4.svg";  // 1125×1078 ≈ sq
+const imgEscala    = "/figma-assets/2f5c0e94-be9e-4e5f-9a6f-b7aca4405c02.svg";  // 30×30 sq
+const imgAdaptacao = "/figma-assets/88be1917-3e2e-4903-9518-af5cce460d6e.svg";  // 38×40 portrait
+const imgEducacao  = "/figma-assets/e24c9f3e-708f-4e6c-93c2-c14367b8112d.svg";  // 30×22 landscape
+const imgSustent   = "/figma-assets/83244c90-68e1-4129-93a3-2964dcfe4a76.svg";  // 492×475 ≈ sq
+
+const pillars = [
+  {
+    icon: imgParceria, iconW: 1125, iconH: 1078,
+    title: "Parcerias estratégicas",
+    desc:  "Trabalhamos com distribuidores, integradores e investidores que compartilham nossa visão de impacto e crescimento.",
+  },
+  {
+    icon: imgEscala, iconW: 30, iconH: 30,
+    title: "Modelo escalável",
+    desc:  "Tecnologia própria, operação padronizada e suporte completo para garantir crescimento consistente e rentável.",
+  },
+  {
+    icon: imgAdaptacao, iconW: 38, iconH: 40,
+    title: "Adaptação local",
+    desc:  "Soluções flexíveis que se adaptam à cultura, necessidades e regulamentações de cada mercado.",
+  },
+  {
+    icon: imgEducacao, iconW: 30, iconH: 22,
+    title: "Capacitação contínua",
+    desc:  "Treinamentos, marketing e suporte técnico para impulsionar nossos parceiros e garantir o sucesso da operação.",
+  },
+  {
+    icon: imgSustent, iconW: 492, iconH: 475,
+    title: "Impacto sustentável",
+    desc:  "Promovemos saúde, inclusão, renda e preservação ambiental por meio do acesso a água pura e consciente.",
+  },
+];
+
+export default function ExpansaoGlobalPilares() {
+  return (
+    <section className="bg-[#f6f9fe] flex flex-col items-center justify-center overflow-hidden px-[20px] py-[40px] w-full">
+      <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
+        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#1f2e91] text-center w-full">
+          Nossos pilares para expansão
+        </h2>
+
+        <div className="flex flex-wrap gap-[20px] items-start justify-center w-full">
+          {pillars.map((p) => (
+            <div
+              key={p.title}
+              className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center min-h-[250px] min-w-[180px] overflow-hidden px-[10px] py-[20px] rounded-[16px]"
+            >
+              <div className="flex flex-col items-center justify-center shrink-0 size-[40px]">
+                <FigmaIcon src={p.icon} size={40} aspectW={p.iconW} aspectH={p.iconH} />
+              </div>
+              <h3 className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[19px] text-[#1f2e91] text-center min-h-[50px]">
+                {p.title}
+              </h3>
+              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-[#333] text-center">
+                {p.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

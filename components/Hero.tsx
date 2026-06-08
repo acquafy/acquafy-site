@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useState } from "react";
 import FigmaIcon from "./FigmaIcon";
 import { DotAtivo, DotInativo } from "./ui/SlideDot";
@@ -7,7 +7,7 @@ import { DotAtivo, DotInativo } from "./ui/SlideDot";
 const imgBg1    = "/figma-assets/36b2eff1-2b33-46c0-8363-af973ac799ec.png";  // slide 1 bg
 const imgBg2    = "/figma-assets/5f4ea0b5-ed23-45a8-bee1-2ec2a8de6512.png";  // slide 2 bg (xl only)
 // Images
-const imgMockup  = "/figma-assets/73037ce5-77a3-4ec8-8557-facfe51f500c.png"; // tablet+phone mockup
+const imgMockup  = "/figma-assets/79b198a1-9b67-4b7a-ab37-b3fc0c922bf7.png"; // tablet+phone mockup
 const imgFrame36 = "/figma-assets/4cb6efdd-3d77-46ca-a4b9-148e9c882ed6.png"; // slide 2 mobile product (water+purifier)
 // Slide 1 feature icons
 const imgPlanetWeb = "/figma-assets/5fb42ebd-d9de-4d78-8bb1-89d82c384f8d.svg";  // 30×30 sq
@@ -64,9 +64,9 @@ function GiftCard() {
       <div className="bg-[rgba(255,255,255,0.4)] border border-white flex flex-col items-center justify-center p-[10px] rounded-full size-[41px] shrink-0 shadow-[0px_0px_4px_0px_rgba(0,0,0,0.1)]">
         <FigmaIcon src={imgGiftCTA} size={20} />
       </div>
-      <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[24px] text-[#333] flex-1 min-w-[100px]">
+      <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] flex-1 min-w-[100px]">
         Ganhe{" "}
-        <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] bg-clip-text text-transparent bg-gradient-to-b from-[#0233c3] to-[#9f3df5]">R$100,00</span>
+        <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] bg-clip-text text-transparent bg-gradient-to-b from-[#0233c3] to-[#9f3df5]">R$100,00</span>
         {" "}no Brasil
       </p>
     </div>
@@ -92,7 +92,7 @@ export default function Hero() {
             {/* Label pill — centered */}
             <div className="bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center max-w-[280px] px-[12px] py-[8px] rounded-full shrink-0">
               <FigmaIcon src={imgPlanetWeb} size={16} />
-              <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] text-[#0233c3]">NOVA FASE GLOBAL</span>
+              <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3]">NOVA FASE GLOBAL</span>
             </div>
 
             {/* H1 — centered */}
@@ -119,8 +119,8 @@ export default function Hero() {
                   <div className="flex items-center justify-center size-[40px] rounded-[12px] p-[10px]" style={{ backgroundColor: f.bg }}>
                     <FigmaIcon src={f.icon} size={20} aspectW={f.aspectW} aspectH={f.aspectH} />
                   </div>
-                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#07235c] text-center w-full">{f.title}</p>
-                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[21px] text-[#333] text-center w-full">{f.desc}</p>
+                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[19px] text-[#07235c] text-center w-full">{f.title}</p>
+                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#333] text-center w-full">{f.desc}</p>
                 </div>
               ))}
             </div>
@@ -132,8 +132,16 @@ export default function Hero() {
             </div>
 
             {/* Mockup image — max-w-800, aspect 3016/1916, aligned to bottom-right */}
-            <div className="flex items-end justify-end w-full max-w-[800px]" style={{ minHeight: "254px" }}>
-              <div className="relative w-full" style={{ aspectRatio: "3016/1916" }}>
+            <div
+              className="flex items-end justify-end w-full max-w-[800px] cursor-pointer"
+              style={{ minHeight: "254px" }}
+              onClick={() => setSlide(1)}
+              aria-label="Próximo slide"
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => e.key === "Enter" && setSlide(1)}
+            >
+              <div className="relative w-full" style={{ aspectRatio: "3160/2300" }}>
                 <img src={imgMockup} alt="Acquafy Platform Mockup" className="absolute inset-0 w-full h-full object-cover" />
               </div>
             </div>
@@ -161,7 +169,7 @@ export default function Hero() {
             {/* Label pill — gradient text */}
             <div className="bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center max-w-[280px] px-[12px] py-[8px] rounded-full shrink-0">
               <FigmaIcon src={imgGiftLabel} size={16} />
-              <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(126deg, #0233c3 6.19%, #9f3df5 93.35%)" }}>
+              <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(126deg, #0233c3 6.19%, #9f3df5 93.35%)" }}>
                 CAMPANHA ACQUAFY
               </span>
             </div>
@@ -193,7 +201,7 @@ export default function Hero() {
               ].map((f) => (
                 <div key={f.label} className="bg-[rgba(255,255,255,0.4)] border border-white flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-h-[60px] min-w-[180px] p-[20px] rounded-[12px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.1)]">
                   <FigmaIcon src={f.icon} size={40} aspectW={f.aspectW} aspectH={f.aspectH} />
-                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#333] text-center w-full">{f.label}</p>
+                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[19px] text-[#333] text-center w-full min-h-[44px]">{f.label}</p>
                 </div>
               ))}
             </div>
@@ -205,7 +213,15 @@ export default function Hero() {
             </div>
 
             {/* Product image — full-width, h-508, rounded, imgFrame36 */}
-            <div className="relative w-full overflow-hidden rounded-[16px]" style={{ height: 508 }}>
+            <div
+              className="relative w-full overflow-hidden rounded-[16px] cursor-pointer"
+              style={{ height: 508 }}
+              onClick={() => setSlide(0)}
+              aria-label="Slide anterior"
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => e.key === "Enter" && setSlide(0)}
+            >
               <img src={imgFrame36} alt="Acquafy Neo UP" className="absolute inset-0 w-full h-full object-cover" />
             </div>
 
@@ -219,7 +235,13 @@ export default function Hero() {
       </div>
 
       {/* ══ DESKTOP LAYOUT (xl+) ══ */}
-      <div className="hidden xl:flex relative flex-1 flex-col gap-[20px] items-center justify-center w-full">
+      <div
+        className="hidden xl:flex relative flex-1 flex-col gap-[20px] items-center justify-center w-full"
+        onClick={(e) => {
+          const t = e.target as HTMLElement;
+          if (!t.closest("button, a")) setSlide((s) => (s + 1) % 2);
+        }}
+      >
 
         {/* Main content area — slide 1: row (content + mockup), slide 2: just content (left-aligned) */}
         <div className={`relative flex xl:flex-row xl:items-center xl:min-h-[660px] gap-[40px] items-center max-w-[1400px] w-full ${slide === 0 ? "justify-center" : "justify-start"}`}>
@@ -231,12 +253,12 @@ export default function Hero() {
             {slide === 0 ? (
               <div className="bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center max-w-[280px] px-[12px] py-[8px] rounded-full shrink-0">
                 <FigmaIcon src={imgPlanetWeb} size={16} />
-                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] text-[#0233c3]">NOVA FASE GLOBAL</span>
+                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3]">NOVA FASE GLOBAL</span>
               </div>
             ) : (
               <div className="bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center max-w-[280px] px-[12px] py-[8px] rounded-full shrink-0">
                 <FigmaIcon src={imgGiftLabel} size={16} />
-                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(126deg, #0233c3 6.19%, #9f3df5 93.35%)" }}>CAMPANHA ACQUAFY</span>
+                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(126deg, #0233c3 6.19%, #9f3df5 93.35%)" }}>CAMPANHA ACQUAFY</span>
               </div>
             )}
 
@@ -280,8 +302,8 @@ export default function Hero() {
                     <div className="flex items-center justify-center size-[40px] rounded-[12px] p-[10px]" style={{ backgroundColor: f.bg }}>
                       <FigmaIcon src={f.icon} size={20} aspectW={f.aspectW} aspectH={f.aspectH} />
                     </div>
-                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#07235c] w-full">{f.title}</p>
-                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[21px] text-[#333] w-full">{f.desc}</p>
+                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[19px] text-[#07235c] w-full">{f.title}</p>
+                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#333] w-full">{f.desc}</p>
                   </div>
                 ))}
               </div>
@@ -294,7 +316,7 @@ export default function Hero() {
                 ].map((f) => (
                   <div key={f.label} className="bg-[rgba(255,255,255,0.4)] border border-white flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-h-[60px] min-w-[180px] p-[20px] rounded-[12px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.1)]">
                     <FigmaIcon src={f.icon} size={40} aspectW={f.aspectW} aspectH={f.aspectH} />
-                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#333] text-center w-full">{f.label}</p>
+                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[19px] text-[#333] text-center w-full min-h-[44px]">{f.label}</p>
                   </div>
                 ))}
               </div>
@@ -323,10 +345,10 @@ export default function Hero() {
             )}
           </div>
 
-          {/* RIGHT COLUMN — slide 1 only */}
+          {/* RIGHT COLUMN — só no slide 0 */}
           {slide === 0 && (
             <div className="flex flex-1 items-end justify-end min-w-px">
-              <div className="relative w-full" style={{ aspectRatio: "3016/1916" }}>
+              <div className="relative w-full" style={{ aspectRatio: "3160/2300" }}>
                 <img src={imgMockup} alt="Acquafy Platform Mockup" className="absolute inset-0 w-full h-full object-cover" />
               </div>
             </div>
@@ -364,10 +386,10 @@ export default function Hero() {
               <FigmaIcon src={s.icon} size={30} aspectW={s.aspectW} aspectH={s.aspectH} />
               <div className="flex flex-col gap-[2px]">
                 {"lines" in s ? s.lines!.map((l, li) => (
-                  <span key={li} className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-white">{l}</span>
+                  <span key={li} className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[19px] text-white">{l}</span>
                 )) : (
                   <>
-                    <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-white">{s.top}</span>
+                    <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[19px] text-white">{s.top}</span>
                     <span className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-white">{s.bottom}</span>
                   </>
                 )}
@@ -379,7 +401,7 @@ export default function Hero() {
         <div className="relative bg-white flex flex-col xl:flex-row gap-[30px] xl:gap-x-[20px] items-center justify-center max-w-[1400px] min-h-[85px] overflow-hidden px-[20px] py-[25px] rounded-[16px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.1)] w-full">
           <div className="flex flex-[1_0_0] gap-[10px] items-center min-w-[240px] max-w-[480px]">
             <FigmaIcon src={imgAguaPura} size={30} />
-            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[22px] text-[#333] flex-1 min-w-px">
+            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] flex-1 min-w-px">
               Tecnologia que transforma.{" "}
               <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(164.34deg, #0233c3 5.42%, #9f3df5 28.68%)" }}>Água que muda vidas.</span>
             </p>
@@ -392,7 +414,7 @@ export default function Hero() {
             ].map((text) => (
               <div key={text} className="drop-shadow-[0px_0px_2px_rgba(0,0,0,0.1)] flex flex-[1_0_0] gap-[10px] items-center min-w-[180px] rounded-[12px]">
                 <FigmaIcon src={imgShield} size={24} aspectW={26.14} aspectH={30} />
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[21px] text-[#333] flex-1 min-w-px">{text}</p>
+                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#333] flex-1 min-w-px">{text}</p>
               </div>
             ))}
           </div>
