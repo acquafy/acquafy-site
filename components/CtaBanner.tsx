@@ -15,7 +15,7 @@ export default function CtaBanner() {
 
         {/* Title */}
         <div className="relative flex flex-1 flex-col items-center justify-center min-w-[240px]">
-          <h2 className="font-['Avenir_LT_Pro:95_Black'] text-[32px] leading-[39px] text-white w-full">
+          <h2 className="font-['Avenir_LT_Pro:95_Black'] text-[32px] leading-[39px] text-white w-full text-center lg:text-left">
             Leve a Acquafy para sua família, sua empresa ou seu país.
           </h2>
         </div>

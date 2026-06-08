@@ -1,0 +1,22 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Vector">
+<path d="M12 0H1.99997C1.00003 0 0 0.799968 0 1.99997V12C0 13.2 1.00003 14 1.99997 14H12C13.0001 14 14 13.2 14 12V1.99997C14 0.799968 13.0001 0 12 0ZM10 10H4.00004V4.00003H10V10Z" fill="var(--fill-0, #0569FF)"/>
+<path d="M12 25.9999H1.99997C1.00003 25.9999 0 26.8 0 28V38C0 39.2 1.00003 40 1.99997 40H12C13.0001 40 14 39.2 14 38V28C14 26.8 13.0001 25.9999 12 25.9999ZM10 36H4.00004V30H10V36Z" fill="var(--fill-0, #0569FF)"/>
+<path d="M38 0H28.0001C27 0 26 0.799968 26 1.99997V12C26 13.2 27 14 28 14H38C39.0001 14 40 13.2 40 12V1.99997C40.0001 0.799968 39.0001 0 38 0ZM36.0001 10H30V4.00003H36.0001V10Z" fill="var(--fill-0, #0569FF)"/>
+<path d="M22.0001 10H18V14.0001H22.0001V10Z" fill="var(--fill-0, #0569FF)"/>
+<path d="M22.0001 18H18V22H22.0001V18Z" fill="var(--fill-0, #0569FF)"/>
+<path d="M22.0001 25.9999H18V30H22.0001V25.9999Z" fill="var(--fill-0, #0569FF)"/>
+<path d="M22.0001 34H18V38H22.0001V34Z" fill="var(--fill-0, #0569FF)"/>
+<path d="M30 34H26V38H30V34Z" fill="var(--fill-0, #0569FF)"/>
+<path d="M38.0001 34H34.0001V38H38.0001V34Z" fill="var(--fill-0, #0569FF)"/>
+<path d="M30 18H26V22H30V18Z" fill="var(--fill-0, #0569FF)"/>
+<path d="M38.0001 18H34.0001V22H38.0001V18Z" fill="var(--fill-0, #0569FF)"/>
+<path d="M14.0001 18H10V22H14.0001V18Z" fill="var(--fill-0, #0569FF)"/>
+<path d="M26.0001 22H22.0001V26H26.0001V22Z" fill="var(--fill-0, #0569FF)"/>
+<path d="M26.0001 30H22.0001V34H26.0001V30Z" fill="var(--fill-0, #0569FF)"/>
+<path d="M34.0001 30H30V34H34.0001V30Z" fill="var(--fill-0, #0569FF)"/>
+<path d="M34.0001 22H30V26H34.0001V22Z" fill="var(--fill-0, #0569FF)"/>
+<path d="M30 25.9999H26V30H30V25.9999Z" fill="var(--fill-0, #0569FF)"/>
+<path d="M38.0001 25.9999H34.0001V30H38.0001V25.9999Z" fill="var(--fill-0, #0569FF)"/>
+</g>
+</svg>

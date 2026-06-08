@@ -1,4 +1,4 @@
-import FigmaIcon from "./FigmaIcon";
+﻿import FigmaIcon from "./FigmaIcon";
 
 // ── Assets (node 3685:13401) ──────────────────────────────────────────────────
 const imgCheckin      = "/figma-assets/8a45d314-4f2b-46a1-a048-15ce133391f9.svg"; // 30×30 sq
@@ -69,11 +69,11 @@ export default function FiltrosNeo() {
         {/* ── Header: título + descrição + 3 checklist items em row ── */}
         <div className="flex flex-col gap-[20px] items-start min-w-[240px] w-full">
 
-          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#1f2e91] w-full">
+          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#1f2e91] w-full text-center lg:text-left">
             4 Filtros Neo de Alta Performance
           </h2>
 
-          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] w-full">
+          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] w-full text-center lg:text-left">
             Tecnologia avançada com 20 componentes e 20 estágios de purificação para entregar água pura, segura e saudável todos o dias.
           </p>
 
@@ -86,7 +86,7 @@ export default function FiltrosNeo() {
             ].map((item) => (
               <div key={item} className="flex gap-[10px] items-center">
                 <FigmaIcon src={imgCheckin} size={20} />
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[21px] text-[#1f2e91]">
+                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91]">
                   {item}
                 </p>
               </div>

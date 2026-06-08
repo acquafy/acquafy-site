@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState, useRef, useEffect } from "react";
 
@@ -77,12 +77,12 @@ function DropdownMenu({ dropUp }: { dropUp: boolean }) {
           <FlagImg flag={lang.flag} aspectW={lang.aspectW} aspectH={lang.aspectH} />
           {lang.active ? (
             /* Active item — Plus Jakarta Sans Bold, leading-normal */
-            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-normal text-[#2a2a2b] whitespace-nowrap shrink-0">
+            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#2a2a2b] whitespace-nowrap shrink-0">
               {lang.label}
             </p>
           ) : (
             /* Regular item — Plus Jakarta Sans Regular, leading-[25px] */
-            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[25px] text-[#2a2a2b] whitespace-nowrap shrink-0">
+            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-[#2a2a2b] whitespace-nowrap shrink-0">
               {lang.label}
             </p>
           )}
@@ -125,7 +125,7 @@ export function LanguageSelectorFull() {
 
         {/* Label — Plus Jakarta Sans Bold 14px */}
         <p
-          className={`font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-normal flex-[1_0_0] min-w-px text-left ${
+          className={`font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] flex-[1_0_0] min-w-px text-left ${
             open ? "text-[#0233c3]" : "text-[#333]"
           }`}
         >
@@ -181,7 +181,7 @@ export function LanguageSelectorCompact() {
 
         {/* "BR" label — Plus Jakarta Sans Bold 14px */}
         <p
-          className={`font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-normal whitespace-nowrap shrink-0 ${
+          className={`font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] whitespace-nowrap shrink-0 ${
             open ? "text-[#0233c3]" : "text-[#333]"
           }`}
         >
