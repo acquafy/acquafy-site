@@ -281,7 +281,7 @@ export default function CompareProductos() {
   const selectedBarRef = useRef<HTMLElement>(null);
 
   // Scroll suave compensando a altura do Header (80px fixo)
-  function scrollTo(ref: React.RefObject<HTMLElement>) {
+  function scrollTo(ref: React.RefObject<HTMLElement | null>) {
     if (!ref.current) return;
     const top = ref.current.getBoundingClientRect().top + window.scrollY - 80;
     window.scrollTo({ top, behavior: "smooth" });
