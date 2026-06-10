@@ -1,8 +1,8 @@
-const imgIconUser     = "/figma-assets/como-icon-user.png";
-const imgIconMobile   = "/figma-assets/como-icon-mobile.png";
-const imgIconLocation = "/figma-assets/como-icon-location.png";
-const imgIconScale    = "/figma-assets/como-icon-scale.png";
-const imgArrow        = "/figma-assets/como-arrow.png";
+const imgIconUser     = "/figma-assets/como-icon-user.svg";
+const imgIconMobile   = "/figma-assets/como-icon-mobile.svg";
+const imgIconLocation = "/figma-assets/como-icon-location.svg";
+const imgIconScale    = "/figma-assets/como-icon-scale.svg";
+const imgArrow        = "/figma-assets/como-arrow.svg";
 
 const steps = [
   {

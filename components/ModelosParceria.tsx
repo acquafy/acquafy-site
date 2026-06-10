@@ -155,7 +155,7 @@ export default function ModelosParceria() {
         </h2>
 
         {/* Cards */}
-        <div className="flex flex-wrap gap-[20px] items-start justify-center w-full">
+        <div className="flex flex-wrap gap-[20px] items-stretch justify-center w-full">
           {tiers.map((t) => (
             <div
               key={t.name}
@@ -178,7 +178,7 @@ export default function ModelosParceria() {
               </div>
 
               {/* Inner card — fixed 500px, items spread via justify-between */}
-              <div className={`flex flex-col h-[500px] items-start justify-between min-h-[500px] p-[20px] rounded-[12px] shrink-0 w-full ${t.innerCls}`}>
+              <div className={`flex flex-1 flex-col gap-[20px] items-start justify-between p-[20px] rounded-[12px] w-full ${t.innerCls}`}>
                 {t.items.map((item) => (
                   <div key={item.label} className="flex flex-wrap gap-[20px] items-center justify-center min-w-[160px] shrink-0 w-full">
                     {/* Icon badge — StrokeIcon renders as <div>, NOT <img> */}
