@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useState } from "react";
 import FigmaIcon from "./FigmaIcon";
 import { DotAtivo, DotInativo } from "./ui/SlideDot";
@@ -119,7 +119,7 @@ export default function Hero() {
                   <div className="flex items-center justify-center size-[40px] rounded-[12px] p-[10px]" style={{ backgroundColor: f.bg }}>
                     <FigmaIcon src={f.icon} size={20} aspectW={f.aspectW} aspectH={f.aspectH} />
                   </div>
-                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[19px] text-[#07235c] text-center w-full">{f.title}</p>
+                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#07235c] text-center w-full">{f.title}</p>
                   <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#333] text-center w-full">{f.desc}</p>
                 </div>
               ))}
@@ -201,7 +201,7 @@ export default function Hero() {
               ].map((f) => (
                 <div key={f.label} className="bg-[rgba(255,255,255,0.4)] border border-white flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-h-[60px] min-w-[180px] p-[20px] rounded-[12px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.1)]">
                   <FigmaIcon src={f.icon} size={40} aspectW={f.aspectW} aspectH={f.aspectH} />
-                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[19px] text-[#333] text-center w-full min-h-[44px]">{f.label}</p>
+                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#333] text-center w-full min-h-[44px]">{f.label}</p>
                 </div>
               ))}
             </div>
@@ -302,7 +302,7 @@ export default function Hero() {
                     <div className="flex items-center justify-center size-[40px] rounded-[12px] p-[10px]" style={{ backgroundColor: f.bg }}>
                       <FigmaIcon src={f.icon} size={20} aspectW={f.aspectW} aspectH={f.aspectH} />
                     </div>
-                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[19px] text-[#07235c] w-full">{f.title}</p>
+                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#07235c] w-full">{f.title}</p>
                     <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#333] w-full">{f.desc}</p>
                   </div>
                 ))}
@@ -316,7 +316,7 @@ export default function Hero() {
                 ].map((f) => (
                   <div key={f.label} className="bg-[rgba(255,255,255,0.4)] border border-white flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-h-[60px] min-w-[180px] p-[20px] rounded-[12px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.1)]">
                     <FigmaIcon src={f.icon} size={40} aspectW={f.aspectW} aspectH={f.aspectH} />
-                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[19px] text-[#333] text-center w-full min-h-[44px]">{f.label}</p>
+                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#333] text-center w-full min-h-[44px]">{f.label}</p>
                   </div>
                 ))}
               </div>
@@ -386,11 +386,11 @@ export default function Hero() {
               <FigmaIcon src={s.icon} size={30} aspectW={s.aspectW} aspectH={s.aspectH} />
               <div className="flex flex-col gap-[2px]">
                 {"lines" in s ? s.lines!.map((l, li) => (
-                  <span key={li} className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[19px] text-white">{l}</span>
+                  <span key={li} className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-white">{l}</span>
                 )) : (
                   <>
-                    <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[19px] text-white">{s.top}</span>
-                    <span className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-white">{s.bottom}</span>
+                    <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-white">{s.top}</span>
+                    <span className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-white">{s.bottom}</span>
                   </>
                 )}
               </div>

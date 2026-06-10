@@ -1,4 +1,4 @@
-﻿import FigmaIcon from "./FigmaIcon";
+import FigmaIcon from "./FigmaIcon";
 
 // ── Assets ────────────────────────────────────────────────────────────────────
 const imgBg          = "/figma-assets/fe4429bc-7d62-427a-a0f3-f9ea1576c252.png"; // background
@@ -73,7 +73,7 @@ export default function NeoMedia() {
             </h2>
             <div className="flex flex-wrap gap-y-[20px] items-center w-full">
               <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start justify-center min-w-[210px]">
-                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-white w-full text-center lg:text-left">
+                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-white w-full text-center lg:text-left">
                   Água inteligente + media digital + receita recorrente.
                   <br />
                   Transforme locais públicos em pontos de hidratação, mídia e negócios. Ganhe com anúncios e venda dos produtos Acquafy Neo.

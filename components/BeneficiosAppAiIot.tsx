@@ -1,101 +1,121 @@
-import FigmaIcon from "./FigmaIcon";
+// ── Ícones dos cartões ────────────────────────────────────────────────────────
+const imgProfile   = "/figma-assets/e8b08e19-549f-46cf-9c7f-8e1bd6b4b256.svg"; // consumidor
+const imgParceria  = "/figma-assets/d9ac404c-0e24-4e3b-8c9c-6bceac8a3557.svg"; // parceiro
+const imgPlanetWeb = "/figma-assets/869c7e21-fb15-4cbd-993e-a635c3668a73.svg"; // operação global
 
-const imgConsumidor1 = "/figma-assets/56776b51-408d-4a0c-9374-2f194eabeb97.png";
-const imgConsumidor2 = "/figma-assets/85cddf8a-416b-4296-91b2-3393d3544b76.png";
-const imgPerfil      = "/figma-assets/2be77672-9559-4963-bcd9-ddfcb844ff0e.png";
-const imgCheckin     = "/figma-assets/6e980cf7-5c09-4a14-8503-ec31deee8e89.svg";
+// ── Fotos dos cartões ─────────────────────────────────────────────────────────
+const imgConsum1   = "/figma-assets/95800f46-e137-4a29-892c-9ade129abbd5.png"; // mulher c/ phone
+const imgConsum2   = "/figma-assets/34988d61-1cf6-42b9-9081-eb60606eece0.png"; // homem
+const imgGlobal    = "/figma-assets/37a95ad4-7a3c-4372-85aa-7444466840a3.png"; // mapa global
 
-const columns = [
+const cards = [
   {
-    img: imgConsumidor1,
-    role: "Clientes",
-    color: "#0233c3",
-    items: [
-      "Controle total do purificador pelo app",
-      "Alertas inteligentes de manutenção",
-      "Qualidade da água monitorada 24/7",
-      "Suporte rápido pelo app",
-      "Recomendações personalizadas por IA",
-    ],
+    icon: imgProfile,
+    borderColor: "#0569ff",
+    titleColor: "#0569ff",
+    title: "Consumidor",
+    subtitle: "Facilidade, controle e tranquilidade",
+    desc: "Tenha o controle total do seu purificador, receba alertas e garanta água pura com mais conforto e segurança.",
+    photo: imgConsum1,
+    photoAspect: "140/227" as const,
+    photoOpacity: undefined as number | undefined,
+    photoBlend: false,
   },
   {
-    img: imgConsumidor2,
-    role: "Parceiros",
-    color: "#7a16d2",
-    items: [
-      "Gestão da carteira de clientes",
-      "Monitoramento remoto de dispositivos",
-      "Alertas para ação preventiva",
-      "Dashboard com dados em tempo real",
-      "Integração com a plataforma Acquafy",
-    ],
+    icon: imgParceria,
+    borderColor: "#6e54ef",
+    titleColor: "#6e54ef",
+    title: "Parceiro",
+    subtitle: "Visibilidade, suporte e operação conectada",
+    desc: "Acompanhe seus clientes, receba insights e ofereça um atendimento mais ágil e eficiente.",
+    photo: imgConsum2,
+    photoAspect: "140/227" as const,
+    photoOpacity: undefined as number | undefined,
+    photoBlend: false,
   },
   {
-    img: imgPerfil,
-    role: "Operadores",
-    color: "#36ae5c",
-    items: [
-      "Visão global das operações",
-      "Telemetria e diagnóstico remoto",
-      "Gestão de múltiplos dispositivos",
-      "Relatórios e métricas de desempenho",
-      "Automação de fluxos operacionais",
-    ],
+    icon: imgPlanetWeb,
+    borderColor: "#06ae4c",
+    titleColor: "#06ae4c",
+    title: "Operação Global",
+    subtitle: "Padronização, escalabilidade e dados centralizados",
+    desc: "Gerencie múltiplas unidades e mercados com dados unificados e processos padronizados.",
+    photo: imgGlobal,
+    photoAspect: "4096/2591" as const,
+    photoOpacity: 0.49 as number | undefined,
+    photoBlend: true,
   },
 ];
 
 export default function BeneficiosAppAiIot() {
   return (
-    <section className="bg-white flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
-      <div className="flex flex-col gap-[40px] items-center justify-center max-w-[1400px] w-full">
+    <section className="bg-[#f6f9fe] flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
+      <div className="flex flex-col gap-[60px] items-start max-w-[1400px] w-full">
 
-        {/* Title */}
-        <div className="flex flex-col gap-[10px] items-center w-full">
-          <h2 className="font-['Avenir_LT_Pro:95_Black'] text-[32px] leading-[39px] text-[#333] text-center w-full">
-            Benefícios para{" "}
-            <span
-              className="bg-clip-text text-transparent"
-              style={{ backgroundImage: "linear-gradient(103.83deg, #0233c3 6.19%, #9f3df5 93.35%)" }}
-            >
-              clientes, parceiros e operadores
-            </span>
-          </h2>
-        </div>
+        {/* Título — alinhado à esquerda */}
+        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#1f2e91] w-full">
+          Benefícios para clientes, parceiros e operadores
+        </h2>
 
-        {/* Columns */}
-        <div className="flex flex-wrap gap-[20px] items-stretch justify-center w-full">
-          {columns.map((col) => (
+        {/* 3 cartões em linha */}
+        <div className="flex flex-wrap gap-[20px] items-start justify-center w-full">
+          {cards.map((card) => (
             <div
-              key={col.role}
-              className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[20px] items-center min-w-[240px] p-[20px] rounded-[16px]"
+              key={card.title}
+              className="bg-white flex flex-[1_0_0] flex-wrap gap-[20px] items-start justify-center min-h-[260px] min-w-[280px] rounded-[16px] overflow-clip"
             >
-              {/* Person image */}
-              <div className="flex items-center justify-center w-full h-[180px] overflow-hidden rounded-[12px]">
-                <img
-                  src={col.img}
-                  alt={col.role}
-                  className="max-h-[180px] max-w-full object-contain"
-                />
+              {/* Conteúdo esquerdo */}
+              <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-[240px] pl-[20px] py-[20px]">
+
+                {/* Ícone com borda colorida */}
+                <div
+                  className="bg-white flex items-center justify-center size-[60px] rounded-[12px] shrink-0"
+                  style={{ border: `2px solid ${card.borderColor}` }}
+                >
+                  <div className="size-[30px] flex items-center justify-center">
+                    <img src={card.icon} alt="" className="w-full h-full object-contain" />
+                  </div>
+                </div>
+
+                {/* Título + subtítulo */}
+                <div className="flex flex-col gap-[10px] w-full">
+                  <p
+                    className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] w-full"
+                    style={{ color: card.titleColor }}
+                  >
+                    {card.title}
+                  </p>
+                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] w-full">
+                    {card.subtitle}
+                  </p>
+                </div>
+
+                {/* Descrição */}
+                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#2a2a2b] w-full">
+                  {card.desc}
+                </p>
               </div>
 
-              {/* Role label */}
-              <p
-                className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-center w-full"
-                style={{ color: col.color }}
+              {/* Foto à direita */}
+              <div
+                className="flex flex-col items-end justify-center overflow-clip pt-[10px]"
+                style={{ minWidth: 160, maxWidth: 160, height: 260 }}
               >
-                {col.role}
-              </p>
-
-              {/* Feature list */}
-              <div className="flex flex-col gap-[10px] items-start w-full">
-                {col.items.map((item) => (
-                  <div key={item} className="flex gap-[10px] items-start w-full">
-                    <FigmaIcon src={imgCheckin} size={14} className="mt-[2px] shrink-0" />
-                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] leading-[18px] text-[#2a2a2b] flex-1 min-w-0">
-                      {item}
-                    </p>
-                  </div>
-                ))}
+                <div
+                  className="relative w-full"
+                  style={{
+                    aspectRatio: card.photoAspect,
+                    maxHeight: 250,
+                    opacity: card.photoOpacity ?? 1,
+                    mixBlendMode: card.photoBlend ? "multiply" : "normal",
+                  }}
+                >
+                  <img
+                    src={card.photo}
+                    alt={card.title}
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
+                </div>
               </div>
             </div>
           ))}

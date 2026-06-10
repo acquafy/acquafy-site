@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useState, useMemo, useRef, useEffect } from "react";
 import FigmaIcon from "./FigmaIcon";
 
@@ -247,7 +247,7 @@ function FeaturePill({ icon, label, aspectW, aspectH }: { icon: string; label: s
       <div className="bg-white border-[0.5px] border-[#cbd0d4] flex items-center justify-center p-[16px] rounded-full shrink-0 size-[60px]">
         <FigmaIcon src={icon} size={28} aspectW={aspectW} aspectH={aspectH} />
       </div>
-      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[19px] text-[#1f2e91] flex-1 min-w-0">
+      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] flex-1 min-w-0">
         {label}
       </p>
     </div>
@@ -566,7 +566,7 @@ export default function CompareProductos() {
             <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#1f2e91]">
               Produtos selecionados ({selectedProducts.length}/4)
             </p>
-            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-[#333]">
+            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#333]">
               Adicione ou remova produtos para comparar
             </p>
           </div>
@@ -926,7 +926,7 @@ export default function CompareProductos() {
             </div>
 
             {/* ── Rodapé: contagem + botão confirmar ── */}
-            <div className="flex items-center justify-between gap-[16px] pt-[4px] border-t border-[#e8eaf0]">
+            <div className="flex items-center justify-between gap-[16px] pt-[4px] border-t border-[#cbd0d4]">
               <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[17px] text-[#8a8f97]">
                 {selectedIds.length === 0
                   ? "Nenhum produto selecionado"

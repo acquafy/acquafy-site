@@ -5,6 +5,7 @@ import BannerFiltros from "@/components/BannerFiltros";
 import LinhasFiltros from "@/components/LinhasFiltros";
 import ReposicaoInteligente from "@/components/ReposicaoInteligente";
 import ColecaoAcessorios from "@/components/ColecaoAcessorios";
+import ColecaoMediaNetwork from "@/components/ColecaoMediaNetwork";
 import ParceirosAcessorios from "@/components/ParceirosAcessorios";
 import CtaBanner from "@/components/CtaBanner";
 
@@ -22,6 +23,7 @@ export default function FiltrosPage() {
         <LinhasFiltros />
         <ReposicaoInteligente />
         <ColecaoAcessorios />
+        <ColecaoMediaNetwork />
         <ParceirosAcessorios />
         <CtaBanner />
       </main>

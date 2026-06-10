@@ -1,19 +1,23 @@
-import FigmaIcon from "./FigmaIcon";
+// ── Imagens de card ───────────────────────────────────────────────────────────
+const imgFrame10    = "/figma-assets/25c396db-adbd-4033-a6c2-730dee33b6af.png"; // bg mix-blend
+const imgCheckin    = "/figma-assets/8ac04097-5015-4f16-b49f-ca64faf46c51.svg"; // bullet 14px
 
-// ── Ícone de checklist ────────────────────────────────────────────────────────
-const imgCheckin  = "/figma-assets/6e980cf7-5c09-4a14-8503-ec31deee8e89.svg";  // 30×30 checkmark
+// ── Ícones dos cards ──────────────────────────────────────────────────────────
+const imgMobile     = "/figma-assets/c949cdb8-5a17-4158-b6b0-8aaef884917e.svg";
+const imgBrain      = "/figma-assets/b541d68d-7cda-4158-8395-6f6eb9330e5a.svg";
+const imgWifi       = "/figma-assets/44a31159-c52e-4424-9868-43766b829a50.svg";
+const imgPessoas    = "/figma-assets/9d80f21c-8d2a-4d4e-90c7-46de9785bd6c.svg";
 
-// ── Imagens de cada card (PNGs — screenshots/mockups reais) ──────────────────
-const imgAppMock  = "/figma-assets/991de71d-f429-413a-8c1f-9e65639775c4.png";  // Frame10 — App mockup
-const imgAiApp    = "/figma-assets/ea9727d9-0f55-41cc-a1f5-2a6fdd27f678.png";  // Acquafy AI app
-const imgIotApp   = "/figma-assets/a8009bb3-a2cf-4241-a8b1-70920ccd0d58.png";  // IoT device
-const imgCloudApp = "/figma-assets/b2f49f74-e9ae-4702-9a58-ec2009ac1cad.png";  // Plataforma Cloud
+// ── Imagens bottom dos cards ──────────────────────────────────────────────────
+const imgAppPhone   = "/figma-assets/47b82084-2a56-48d4-944e-16f89c7dfa57.png";
+const imgAiApp      = "/figma-assets/93031ad9-3e45-43e5-9b96-aece9cb3ae2d.png";
+const imgIotApp     = "/figma-assets/957e36e7-cb9c-4dd0-b61e-186dc792edf7.png";
+const imgCloudApp   = "/figma-assets/f3ca984b-b4cb-4462-8ff0-edce017ec847.png";
 
 const cards = [
   {
+    icon: imgMobile,
     title: "App Acquafy",
-    titleColor: "#0233c3",
-    img: imgAppMock,
     items: [
       "Visualizar equipamento e status",
       "Histórico de consumo e uso",
@@ -22,11 +26,11 @@ const cards = [
       "Notificações e alertas",
       "Preferências e configurações",
     ],
+    img: imgAppPhone,
   },
   {
+    icon: imgBrain,
     title: "Acquafy AI",
-    titleColor: "#7a16d2",
-    img: imgAiApp,
     items: [
       "Insights automáticos e preditivos",
       "Recomendações personalizadas",
@@ -34,11 +38,11 @@ const cards = [
       "Resumo inteligente da operação",
       "Assistente de operação com IA",
     ],
+    img: imgAiApp,
   },
   {
+    icon: imgWifi,
     title: "IoT & Dispositivos",
-    titleColor: "#36ae5c",
-    img: imgIotApp,
     items: [
       "Sensores conectados e telemetria",
       "Status online / offline",
@@ -46,11 +50,11 @@ const cards = [
       "Manutenção preventiva",
       "Alertas críticos de operação",
     ],
+    img: imgIotApp,
   },
   {
-    title: "Operação Integrada",
-    titleColor: "#0569ff",
-    img: imgCloudApp,
+    icon: imgPessoas,
+    title: "Operação integrada",
     items: [
       "Integração com a Plataforma Acquafy",
       "Rede de parceiros e instaladores",
@@ -58,59 +62,74 @@ const cards = [
       "Mídia, campanhas e conteúdos",
       "Gestão global e multi-idioma",
     ],
+    img: imgCloudApp,
   },
 ];
 
 export default function FeaturesAppAiIot() {
   return (
-    <section className="bg-[#f6f9fe] flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
-      <div className="flex flex-col gap-[40px] items-center justify-center max-w-[1400px] w-full">
+    <section className="bg-white flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
+      <div className="flex flex-col gap-[40px] items-start max-w-[1400px] w-full">
 
         {/* Título */}
-        <h2 className="font-['Avenir_LT_Pro:95_Black'] text-[32px] leading-[39px] text-[#333] text-center w-full">
-          O que você pode fazer com o{" "}
-          <span
-            className="bg-clip-text text-transparent"
-            style={{ backgroundImage: "linear-gradient(103.83deg, #0233c3 6.19%, #9f3df5 93.35%)" }}
-          >
-            App + AI + IoT?
-          </span>
+        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-center w-full">
+          <span className="text-[#1f2e91]">O que você pode fazer com o </span>
+          <span className="text-[#0569ff]">App + AI + IoT</span>
         </h2>
 
-        {/* Cards */}
-        <div className="flex flex-wrap gap-[20px] items-stretch justify-center w-full">
+        {/* Grid de cards */}
+        <div className="flex flex-wrap gap-[20px] items-start justify-center w-full">
           {cards.map((card) => (
             <div
               key={card.title}
-              className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-[240px] p-[20px] rounded-[16px]"
+              className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col items-center min-h-[540px] min-w-[280px] overflow-clip rounded-[16px]"
             >
-              {/* Título do card */}
-              <p
-                className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] w-full"
-                style={{ color: card.titleColor }}
-              >
-                {card.title}
-              </p>
+              {/* Conteúdo superior */}
+              <div className="flex flex-col gap-[20px] items-start p-[20px] w-full">
 
-              {/* Imagem — mockup/screenshot */}
-              <div className="flex items-center justify-center w-full overflow-hidden rounded-[12px] bg-[#f6f9fe]" style={{ minHeight: 160 }}>
+                {/* Header: ícone + título */}
+                <div className="flex gap-[20px] items-center w-full shrink-0">
+                  <div className="flex items-center justify-center size-[60px] rounded-[12px] bg-[#0569ff] shrink-0">
+                    <div className="size-[30px] flex items-center justify-center">
+                      <img
+                        src={card.icon}
+                        alt=""
+                        className="max-w-full max-h-full object-contain"
+                      />
+                    </div>
+                  </div>
+                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#1f2e91] flex-1">
+                    {card.title}
+                  </p>
+                </div>
+
+                {/* Checklist */}
+                <div className="flex flex-col gap-[20px] items-start w-full">
+                  {card.items.map((text) => (
+                    <div key={text} className="flex gap-[10px] items-center w-full">
+                      <div className="size-[14px] shrink-0 flex items-center justify-center">
+                        <img src={imgCheckin} alt="" className="w-full h-full object-contain" />
+                      </div>
+                      <span className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#2a2a2b] flex-1">
+                        {text}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Imagem inferior com mix-blend-multiply */}
+              <div className="relative flex flex-col items-center justify-center min-h-[220px] overflow-clip w-full flex-1 mix-blend-multiply">
+                <img
+                  src={imgFrame10}
+                  alt=""
+                  className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+                />
                 <img
                   src={card.img}
                   alt={card.title}
-                  className="max-h-[180px] max-w-full object-contain pointer-events-none"
+                  className="relative max-h-[200px] max-w-[195px] object-contain"
                 />
-              </div>
-
-              {/* Lista de bullet points */}
-              <div className="flex flex-col gap-[10px] items-start w-full flex-1">
-                {card.items.map((item) => (
-                  <div key={item} className="flex gap-[10px] items-start w-full">
-                    <FigmaIcon src={imgCheckin} size={14} className="mt-[2px] shrink-0" />
-                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] leading-[18px] text-[#2a2a2b] flex-1 min-w-0">
-                      {item}
-                    </p>
-                  </div>
-                ))}
               </div>
             </div>
           ))}

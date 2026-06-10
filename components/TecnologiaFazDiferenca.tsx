@@ -6,7 +6,8 @@ const imgBrain  = "/figma-assets/ts-icon-brain.svg";        // brain            
 const imgIot    = "/figma-assets/ts-icon-iot.svg";          // wifi IoT          30×20
 const imgTela   = "/figma-assets/ts-icon-tela.svg";         // tela grande vert  21×30
 const imgShield = "/figma-assets/ts-icon-shield-agua.svg";  // shield água       24×30
-const imgScale  = "/figma-assets/ts-icon-scale.svg";        // scale graphic     30×30
+const imgScale    = "/figma-assets/ts-icon-scale.svg";        // scale graphic     30×30
+const imgMagnific = "/figma-assets/ts-hero-right.png";        // water globe decorativo (absolute)
 
 const features = [
   {
@@ -63,24 +64,36 @@ function FeatureCard({ icon, aspectW, aspectH, title, description }: {
 
 export default function TecnologiaFazDiferenca() {
   return (
-    <section className="bg-white flex flex-col gap-[20px] items-center justify-center overflow-hidden px-[20px] py-[40px] w-full">
+    <section className="bg-white flex flex-col gap-[20px] items-center justify-center overflow-hidden px-[20px] py-[40px] relative w-full">
+      {/* Globo de água decorativo — absolute, alinhado ao spacer lateral direito */}
+      <div className="-translate-x-1/2 absolute left-[calc(50%+576px)] pointer-events-none size-[450px] top-0">
+        <img alt="" className="absolute inset-0 block max-w-none object-cover size-full" src={imgMagnific} />
+      </div>
+
       <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
         {/* Header */}
         <div className="flex flex-col gap-[10px] items-center text-center w-full">
-          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] max-w-[800px] w-full">
+          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#1f2e91] max-w-[800px] w-full">
             <span className="text-[#0569ff]">Tecnologia</span>
             {" que faz a diferença"}
           </h2>
-          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] max-w-[800px] w-full">
+          <p
+            className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] max-w-[800px] w-full"
+            style={{ fontFeatureSettings: '"case" 1' }}
+          >
             Desenvolvemos soluções completas que unem hardware avançado, software inteligente e conectividade para oferecer a melhor experiência em purificação de água e gestão de impacto.
           </p>
         </div>
 
-        {/* Cards grid */}
+        {/* Cards grid — inner container (gap-[10px]) + spacer para o globo decorativo */}
         <div className="flex flex-wrap gap-[20px] items-start justify-center w-full">
-          {features.map((f) => (
-            <FeatureCard key={f.title} {...f} />
-          ))}
+          <div className="flex flex-[1_0_0] flex-wrap gap-[10px] items-start justify-center min-w-[180px] overflow-clip">
+            {features.map((f) => (
+              <FeatureCard key={f.title} {...f} />
+            ))}
+          </div>
+          {/* Spacer alinhado à imagem decorativa absoluta */}
+          <div className="flex-[1_0_0] h-[265px] max-w-[260px] min-h-[250px] min-w-[260px]" />
         </div>
       </div>
     </section>

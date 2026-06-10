@@ -62,7 +62,7 @@ export default function NeoMediaHowItWorks() {
                 {s.title}
               </h3>
               {/* Desc */}
-              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-[#333] text-center w-full">
+              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#333] text-center w-full">
                 {s.desc}
               </p>
               {/* Arrow connector (not on last step) */}

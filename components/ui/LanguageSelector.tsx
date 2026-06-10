@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useRef, useEffect } from "react";
 
@@ -82,7 +82,7 @@ function DropdownMenu({ dropUp }: { dropUp: boolean }) {
             </p>
           ) : (
             /* Regular item — Plus Jakarta Sans Regular, leading-[25px] */
-            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-[#2a2a2b] whitespace-nowrap shrink-0">
+            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#2a2a2b] whitespace-nowrap shrink-0">
               {lang.label}
             </p>
           )}

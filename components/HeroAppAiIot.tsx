@@ -1,30 +1,35 @@
-﻿"use client";
+"use client";
 import FigmaIcon from "./FigmaIcon";
 
 // ── Imagens ──────────────────────────────────────────────────────────────────
-const imgBg     = "/figma-assets/427e1a29-4c52-4389-b4ff-172ebd6393d0.png";  // hero background
-const imgMockup = "/figma-assets/60b9a5e2-760a-4d86-a81a-3c1d9ce03754.png";  // tablet + smartphone
+const imgBg     = "/figma-assets/427e1a29-4c52-4389-b4ff-172ebd6393d0.png";
+const imgMockup = "/figma-assets/60b9a5e2-760a-4d86-a81a-3c1d9ce03754.png";
 
-// ── Ícones do label e badges ─────────────────────────────────────────────────
-const imgGlobe  = "/figma-assets/217dfb34-157d-4dc3-ae48-b63e6bc5443e.svg";  // 30×30 globe (label pill)
-const imgMobile = "/figma-assets/c949cdb8-5a17-4158-b6b0-8aaef884917e.svg";  // 18×30 phone (App Acquafy)
-const imgBrain  = "/figma-assets/0b8f0243-2d5a-408a-b20d-efa330a7912b.svg";  // 30×30 brain (AI)
-const imgIoT    = "/figma-assets/4e54c88a-0878-4a32-b7ee-b9be83ec4c9d.svg";  // 30×30 IoT icon
+// ── Ícones dos badge-cards ────────────────────────────────────────────────────
+const imgMobile = "/figma-assets/c949cdb8-5a17-4158-b6b0-8aaef884917e.svg";   // 21×30
+const imgBrain  = "/figma-assets/0b8f0243-2d5a-408a-b20d-efa330a7912b.svg";   // 30×30
+const imgIoT    = "/figma-assets/4e54c88a-0878-4a32-b7ee-b9be83ec4c9d.svg";   // 30×20
 
 // ── Setas dos botões ─────────────────────────────────────────────────────────
-const imgArrowWhite = "/figma-assets/9777bc4a-58de-46e7-8e46-08e99069f337.svg"; // sólido / hover
-const imgArrowBlue  = "/figma-assets/4e468b96-c90e-4821-837b-9780c1f0b21f.svg"; // outline padrão
+const imgArrowWhite = "/figma-assets/9777bc4a-58de-46e7-8e46-08e99069f337.svg";
+const imgArrowBlue  = "/figma-assets/4e468b96-c90e-4821-837b-9780c1f0b21f.svg";
 
-// ── Gradiente do botão primário ───────────────────────────────────────────────
-const gdBase    = { backgroundImage: "linear-gradient(103.83deg, #0233c3 6.19%, #9f3df5 93.35%)" };
-const gdHover   = { backgroundImage: "linear-gradient(103.83deg, #002ba8 6.19%, #6e0cc3 93.35%)" };
-const gdPressed = { backgroundImage: "linear-gradient(103.83deg, #0569ff 6.19%, #b25efb 93.35%)" };
-
-// ── Badges de feature ─────────────────────────────────────────────────────────
 const badges = [
-  { icon: imgMobile, aspectW: 18, aspectH: 30, label: "App Acquafy",        bg: "#0233c3" },
-  { icon: imgBrain,  aspectW: 30, aspectH: 30, label: "Acquafy AI",         bg: "#7a16d2" },
-  { icon: imgIoT,    aspectW: 30, aspectH: 30, label: "IoT & Dispositivos", bg: "#36ae5c" },
+  {
+    icon: imgMobile, aspectW: 21, aspectH: 30, bg: "#0233c3",
+    title: "App Acquafy",
+    desc: "Controle remoto, status do equipamento e suporte na palma da mão.",
+  },
+  {
+    icon: imgBrain, aspectW: 30, aspectH: 30, bg: "#6e54ef",
+    title: "Acquafy AI",
+    desc: "Inteligência artificial para insights, automações e decisões mais rápidas.",
+  },
+  {
+    icon: imgIoT, aspectW: 30, aspectH: 20, bg: "#36ae5c",
+    title: "IoT & Dispositivos",
+    desc: "Sensores, conectividade e monitoramento em tempo real.",
+  },
 ];
 
 export default function HeroAppAiIot() {
@@ -38,29 +43,27 @@ export default function HeroAppAiIot() {
         className="absolute inset-0 w-full h-full object-cover pointer-events-none"
       />
 
-      {/* Área de conteúdo — flex-1 preenche a altura disponível no xl */}
+      {/* Conteúdo — flex-1 preenche altura disponível no xl */}
       <div className="relative flex flex-1 flex-wrap xl:flex-nowrap gap-[40px] items-center justify-center max-w-[1400px] w-full">
 
         {/* ── Coluna esquerda ─────────────────────────────────────────── */}
-        <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start justify-center min-w-[280px] max-w-[580px]">
+        <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start justify-center min-w-[280px] max-w-[660px]">
 
-          {/* Label pill */}
-          <div className="bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center px-[12px] py-[8px] rounded-full shrink-0">
-            <FigmaIcon src={imgGlobe} size={16} />
-            <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] text-[#0233c3] whitespace-nowrap">
+          {/* Label pill — só texto, sem ícone */}
+          <div className="bg-white border border-[#0233c3] flex gap-[10px] items-center justify-center max-w-[290px] px-[12px] py-[8px] rounded-full shrink-0 w-full">
+            <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] whitespace-nowrap">
               ECOSSISTEMA CONECTADO ACQUAFY
             </span>
           </div>
 
-          {/* H1 */}
-          <h1 className="font-['Avenir_LT_Pro:95_Black'] text-[56px] leading-[60px] text-[#333] w-full text-center lg:text-left">
+          {/* H1 — cores individuais por palavra, não gradiente */}
+          <h1 className="font-['Avenir_LT_Pro:95_Black'] text-[56px] leading-[60px] text-[#333] w-full">
             {"App + "}
-            <span
-              className="bg-clip-text text-transparent"
-              style={{ backgroundImage: "linear-gradient(103.83deg, #0233c3 6.19%, #9f3df5 93.35%)" }}
-            >
-              AI + IoT
-            </span>
+            <span style={{ color: "#6e54ef" }}>AI</span>
+            {" "}
+            <span style={{ color: "#1f2e91" }}>+</span>
+            {" "}
+            <span style={{ color: "#0569ff" }}>IoT</span>
           </h1>
 
           {/* Descrição */}
@@ -68,34 +71,35 @@ export default function HeroAppAiIot() {
             Controle seus purificadores, monitore dispositivos, receba alertas inteligentes e gerencie toda a operação em uma experiência integrada.
           </p>
 
-          {/* Badges de feature */}
-          <div className="flex flex-wrap gap-[20px] items-start w-full">
+          {/* Badge cards — 3 cartões brancos em linha */}
+          <div className="flex gap-[10px] items-center justify-center shrink-0 w-full flex-wrap">
             {badges.map((b) => (
-              <div key={b.label} className="flex flex-[1_0_0] flex-col gap-[10px] items-center min-w-[100px]">
+              <div
+                key={b.title}
+                className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-[140px] p-[20px] rounded-[16px]"
+              >
                 <div
-                  className="flex items-center justify-center size-[44px] rounded-[12px] shrink-0"
+                  className="flex items-center justify-center size-[50px] rounded-[12px] shrink-0"
                   style={{ backgroundColor: b.bg }}
                 >
-                  <FigmaIcon src={b.icon} size={24} aspectW={b.aspectW} aspectH={b.aspectH} />
+                  <FigmaIcon src={b.icon} size={26} aspectW={b.aspectW} aspectH={b.aspectH} />
                 </div>
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] leading-[16px] text-[#07235c] text-center w-full">
-                  {b.label}
+                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] w-full">
+                  {b.title}
+                </p>
+                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#2a2a2b] w-full">
+                  {b.desc}
                 </p>
               </div>
             ))}
           </div>
 
-          {/* Botões — mesmo padrão do Hero da Home */}
+          {/* Botões */}
           <div className="flex flex-wrap gap-[20px] items-center justify-start w-full">
 
-            {/* Primário — gradiente azul→lilás */}
+            {/* Primário — azul sólido */}
             <button
-              className="flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer"
-              style={gdBase}
-              onMouseEnter={(e) => Object.assign((e.currentTarget as HTMLButtonElement).style, gdHover)}
-              onMouseLeave={(e) => Object.assign((e.currentTarget as HTMLButtonElement).style, gdBase)}
-              onMouseDown={(e)  => Object.assign((e.currentTarget as HTMLButtonElement).style, gdPressed)}
-              onMouseUp={(e)    => Object.assign((e.currentTarget as HTMLButtonElement).style, gdBase)}
+              className="flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#0569ff] transition-colors"
             >
               <span className="font-['Articulat_CF:Bold'] text-[16px] text-white flex-1 text-center">
                 Baixar o App
@@ -108,7 +112,6 @@ export default function HeroAppAiIot() {
               <span className="font-['Articulat_CF:Bold'] text-[16px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">
                 Explorar recursos
               </span>
-              {/* Arrow toggle: azul → branco no hover */}
               <div className="relative shrink-0" style={{ width: 9, height: 9 }}>
                 <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0 group-active:opacity-0">
                   <FigmaIcon src={imgArrowBlue} size={9} aspectW={11.2} aspectH={8.84} />

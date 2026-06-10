@@ -2,8 +2,6 @@
 
 // ── Assets ───────────────────────────────────────────────────────────────────
 const imgBg         = "/figma-assets/ts-banner-bg.png";
-const imgHeroRight  = "/figma-assets/ts-hero-right.png";
-
 // Badge & mini-stat icons
 const imgGlobe      = "/figma-assets/ts-icon-planet.svg";        // badge globe    30×30
 const imgAguaPura   = "/figma-assets/ts-icon-agua-pura.svg";     // água pura      ~643×631
@@ -24,7 +22,7 @@ function HeroStat({ icon, label, aspectW = 30, aspectH = 30 }: {
   return (
     <div className="flex flex-[1_0_0] flex-col gap-[20px] items-center min-w-px">
       <FigmaIcon src={icon} size={40} aspectW={aspectW} aspectH={aspectH} />
-      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] text-center w-full">
+      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[21px] text-[#1f2e91] text-center w-full">
         {label}
       </p>
     </div>
@@ -56,14 +54,6 @@ export default function TecnologiaBanner() {
         src={imgBg}
       />
 
-      {/* Right decorative image — desktop only */}
-      <img
-        alt=""
-        className="hidden xl:block absolute right-0 top-0 h-full object-cover pointer-events-none"
-        style={{ width: "55%", objectPosition: "right center" }}
-        src={imgHeroRight}
-      />
-
       {/* ── Main content ── */}
       <div className="relative flex flex-[1_0_0] flex-wrap gap-[40px] items-center justify-center max-w-[1400px] w-full min-h-px">
         {/* Left column */}
@@ -77,7 +67,7 @@ export default function TecnologiaBanner() {
           </div>
 
           {/* Title */}
-          <h1 className="font-['Avenir_LT_Pro:95_Black'] text-[56px] leading-[60px] text-[#2a2a2b] w-full text-center lg:text-left">
+          <h1 className="font-['Avenir_LT_Pro:95_Black'] text-[64px] leading-[68px] text-[#2a2a2b] w-full text-center lg:text-left">
             {`Tecnologia & `}
             <span className="text-[#0569ff]">Sustentabilidade</span>
           </h1>
@@ -101,8 +91,6 @@ export default function TecnologiaBanner() {
           </div>
         </div>
 
-        {/* Right spacer — image is absolute-positioned */}
-        <div className="hidden xl:block flex-[1_0_0] min-w-[280px]" />
       </div>
 
       {/* ── Trust bar — pinned to bottom ── */}

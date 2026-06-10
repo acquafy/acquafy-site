@@ -1,4 +1,4 @@
-﻿import FigmaIcon from "./FigmaIcon";
+import FigmaIcon from "./FigmaIcon";
 import { LanguageSelectorFull } from "./ui/LanguageSelector";
 
 // ── Assets (node 3088:5293) ───────────────────────────────────────────────────
@@ -101,11 +101,13 @@ function ArrowBullet() {
   );
 }
 
-// ── Social icon circle (Figma: aspect-[50/50] flex-[1_0_0] max-50 min-40 p-14 rounded-full) ──
+// ── Social icon circle — w-full dentro de grid grid-cols-5, max-w-[50px] mx-auto ──
+// Usa grid no container para garantir sempre 1 linha com 5 colunas iguais,
+// escalando de ~40px (coluna estreita) até 50px (coluna larga) sem quebra de linha.
 function SocialCircle({ src, alt, aspectW, aspectH }: { src: string; alt: string; aspectW: number; aspectH: number }) {
   const isSquare = Math.abs(aspectW - aspectH) < 1;
   return (
-    <div className="aspect-square bg-white border border-[#e6e6e6] flex flex-[1_0_0] flex-col items-center justify-center max-h-[50px] max-w-[50px] min-h-[40px] min-w-[40px] p-[14px] rounded-full cursor-pointer">
+    <div className="aspect-square bg-white border border-[#cbd0d4] flex flex-col items-center justify-center max-w-[50px] w-full mx-auto p-[14px] rounded-full cursor-pointer">
       {isSquare ? (
         <div className="flex-[1_0_0] min-h-px relative w-full" style={{ aspectRatio: "1/1" }}>
           <img alt={alt} className="absolute inset-0 max-w-none size-full" src={src} />
@@ -142,8 +144,8 @@ export default function Footer() {
             <p className="font-['Articulat_CF:Regular'] text-[16px] leading-[25px] text-[#333] flex-[1_0_0] min-h-px w-full">
               Acquafy Platform + App + AI + IoT para gestão global da água inteligente.
             </p>
-            {/* Social icons */}
-            <div className="flex flex-wrap gap-[15px] items-center justify-center w-full">
+            {/* Social icons — grid 5 colunas fixas, sem quebra de linha */}
+            <div className="grid grid-cols-5 gap-[10px] w-full">
               {socialIcons.map((s) => (
                 <SocialCircle key={s.alt} src={s.src} alt={s.alt} aspectW={s.aspectW} aspectH={s.aspectH} />
               ))}
@@ -208,7 +210,7 @@ export default function Footer() {
         <div className="flex flex-wrap gap-[14px_20px] items-center justify-center max-w-[1400px] w-full">
 
           {/* Copyright */}
-          <div className="flex-[1_0_0] font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-[#07235c] min-w-[200px]">
+          <div className="flex-[1_0_0] font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#07235c] min-w-[200px]">
             <p>Acquafy Corporation © 2026.</p>
             <p>Todos os direitos reservados.</p>
           </div>

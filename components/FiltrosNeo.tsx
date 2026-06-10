@@ -1,4 +1,4 @@
-﻿import FigmaIcon from "./FigmaIcon";
+import FigmaIcon from "./FigmaIcon";
 
 // ── Assets (node 3685:13401) ──────────────────────────────────────────────────
 const imgCheckin      = "/figma-assets/8a45d314-4f2b-46a1-a048-15ce133391f9.svg"; // 30×30 sq
@@ -107,7 +107,7 @@ export default function FiltrosNeo() {
               </div>
 
               {/* Title (min-h-50px for alignment) */}
-              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[19px] text-[#1f2e91] text-center w-full min-h-[50px] flex items-center justify-center">
+              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] text-center w-full min-h-[50px] flex items-center justify-center">
                 {f.title}
               </p>
 
@@ -116,7 +116,7 @@ export default function FiltrosNeo() {
                 {f.bullets.map((bullet) => (
                   <div key={bullet} className="flex gap-[10px] items-center w-full">
                     <CheckinStroke />
-                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-[#333] flex-1 min-w-0">
+                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#333] flex-1 min-w-0">
                       {bullet}
                     </p>
                   </div>

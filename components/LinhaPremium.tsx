@@ -1,4 +1,4 @@
-﻿import type { ReactNode } from "react";
+import type { ReactNode } from "react";
 import FigmaIcon from "./FigmaIcon";
 import PremiumSlideshow from "./ui/PremiumSlideshow";
 
@@ -61,19 +61,19 @@ type Product = {
 const rowInfinity: Product[] = [
   { img: imgInfinity,       name: "Neo INFINITY",                                    sub: "5 em 1" },
   { img: imgInfinitySpark,  name: "Neo INFINITY SPARK",                              sub: "6 em 1" },
-  { img: imgInfinitySparkH2,name: <span>Neo INFINITY SPARK H<sup>2</sup></span>,     sub: "7 em 1" },
+  { img: imgInfinitySparkH2,name: <span>Neo INFINITY SPARK H<sub>2</sub></span>,     sub: "7 em 1" },
 ];
 
 const rowPrestige: Product[] = [
   { img: imgPrestige,        name: "Neo PRESTIGE",                                   sub: "5 em 1" },
   { img: imgPrestigeSpark,   name: "Neo PRESTIGE SPARK",                             sub: "6 em 1" },
-  { img: imgPrestigeSparkH2, name: <span>Neo PRESTIGE SPARK H<sup>2</sup></span>,    sub: "7 em 1" },
+  { img: imgPrestigeSparkH2, name: <span>Neo PRESTIGE SPARK H<sub>2</sub></span>,    sub: "7 em 1" },
 ];
 
 const rowPrime: Product[] = [
   { img: imgPrime,        name: "Neo PRIME",                                         sub: "5 em 1" },
   { img: imgPrimeSpark,   name: "Neo PRIME SPARK",                                   sub: "6 em 1" },
-  { img: imgPrimeSparkH2, name: <span>Neo PRIME SPARK H<sup>2</sup></span>,          sub: "7 em 1" },
+  { img: imgPrimeSparkH2, name: <span>Neo PRIME SPARK H<sub>2</sub></span>,          sub: "7 em 1" },
 ];
 
 // ─── Card sub-components ────────────────────────────────────────────────────
@@ -201,7 +201,7 @@ export default function LinhaPremium() {
               {rowPrime.map((p, i) => <PrimeCard key={i} product={p} />)}
             </div>
 
-            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[19px] text-[#333] text-center w-full">
+            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#333] text-center w-full">
               Todos possuem Tanque de Água Gelada com 3000ml.
             </p>
           </div>
@@ -223,7 +223,7 @@ export default function LinhaPremium() {
                     com Tecnologia IPS
                   </span>
                 </p>
-                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-[#2a2a2b] w-full">
+                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#2a2a2b] w-full">
                   Tecnologia avançada para ambientes sofisticados e usuários exigentes.
                 </p>
               </div>

@@ -1,16 +1,17 @@
-﻿"use client";
+"use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import FigmaIcon from "./FigmaIcon";
-import { BtnAzulBaseArrow } from "./ui/Buttons";
+import { BtnAzulOutArrow } from "./ui/Buttons";
 
-// ── Assets ───────────────────────────────────────────────────────────────────
-const imgLocal     = "/figma-assets/7fa577a3-29df-4b04-960c-1ec8b8f0b2bc.svg"; // 31.56×38    portrait
-const imgMail      = "/figma-assets/29530df8-b9ae-4a2a-ad2e-0252d2e21f79.svg"; // 38×30.8     landscape
-const imgPhone     = "/figma-assets/32a6f68d-b20c-4087-9c6d-4b88dd21ab20.svg"; // 37.99×38    sq
-const imgGlobe     = "/figma-assets/9e125b07-e142-4b95-af65-cd8a7cb436d9.svg"; // 19×19       sq
-const imgPessoas   = "/figma-assets/9cb3b0cd-c1de-41f5-a4b3-1272f0c3596b.svg"; // 38×35.24    landscape
-const imgArrowDown = "/figma-assets/72341688-c02a-4f94-98be-fe0e7ea34dc6.svg"; // 10×6        landscape
+// ── Assets ────────────────────────────────────────────────────────────────────
+const imgLocal      = "/figma-assets/7fa577a3-29df-4b04-960c-1ec8b8f0b2bc.svg"; // 31.56×38   portrait
+const imgMail       = "/figma-assets/29530df8-b9ae-4a2a-ad2e-0252d2e21f79.svg"; // 38×30.8    landscape
+const imgPhone      = "/figma-assets/32a6f68d-b20c-4087-9c6d-4b88dd21ab20.svg"; // 37.99×38   ~sq  (WhatsApp)
+const imgGlobe      = "/figma-assets/a3d8d3e1-382f-4155-9bb5-9492c1797329.svg"; // 38×38      sq
+const imgPessoas    = "/figma-assets/9cb3b0cd-c1de-41f5-a4b3-1272f0c3596b.svg"; // 38×35.24   landscape
+const imgArrowDown  = "/figma-assets/72341688-c02a-4f94-98be-fe0e7ea34dc6.svg"; // 10×6       landscape
+const imgArrowWhite = "/figma-assets/93b457af-90d0-4dc6-bb02-fb93fc706899.svg"; // 11.2×8.84  landscape
 
 const ASSUNTOS = [
   "Suporte técnico",
@@ -21,175 +22,223 @@ const ASSUNTOS = [
   "Outro",
 ];
 
-// ── Contact info row ──────────────────────────────────────────────────────────
-function InfoRow({
-  icon, aspectW, aspectH, title, lines,
-}: { icon: string; aspectW: number; aspectH: number; title: string; lines: string[] }) {
+// ── Ícone dentro de círculo ───────────────────────────────────────────────────
+// bg-[#f6f9fe] border-[#f3faff] size-[60px] p-[12px] → espaço interno = 36px
+function IconCircle({ src, aspectW, aspectH }: {
+  src: string; aspectW: number; aspectH: number;
+}) {
   return (
-    <div className="flex gap-[16px] items-start py-[16px] border-b border-[#cbd0d4] last:border-b-0">
-      <div className="shrink-0 mt-[2px]">
-        <FigmaIcon src={icon} size={36} aspectW={aspectW} aspectH={aspectH} />
-      </div>
-      <div className="flex flex-col gap-[4px]">
-        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#0233c3]">
+    <div className="bg-[#f6f9fe] border border-[#f3faff] flex flex-col items-center justify-center p-[12px] rounded-full shrink-0 size-[60px]">
+      <FigmaIcon src={src} size={36} aspectW={aspectW} aspectH={aspectH} />
+    </div>
+  );
+}
+
+// ── Linha de informação de contato ────────────────────────────────────────────
+function InfoRow({
+  src, aspectW, aspectH, title, lines, ctaLabel,
+}: {
+  src: string; aspectW: number; aspectH: number;
+  title: string; lines: string[]; ctaLabel?: string;
+}) {
+  return (
+    <div className="border-t-[0.5px] border-[#cbd0d4] flex gap-[20px] items-center pt-[20px] w-full">
+      <IconCircle src={src} aspectW={aspectW} aspectH={aspectH} />
+      <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-0">
+        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] min-h-[30px] w-full flex flex-col justify-center">
           {title}
         </p>
-        {lines.map((line, i) => (
-          <p key={i} className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#2a2a2b]">
-            {line}
-          </p>
-        ))}
+        <div className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#333] min-h-[30px] w-full flex flex-col justify-center">
+          {lines.map((line, i) => (
+            <p key={i}>{line}</p>
+          ))}
+        </div>
+        {ctaLabel && (
+          <BtnAzulOutArrow className="w-full min-h-[30px] text-[14px]">
+            {ctaLabel}
+          </BtnAzulOutArrow>
+        )}
       </div>
     </div>
   );
 }
 
+// ── Campo do formulário ───────────────────────────────────────────────────────
+function FormField({ label, children }: { label: ReactNode; children: ReactNode }) {
+  return (
+    <div className="flex flex-col gap-[20px] items-start w-full">
+      <div className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#2a2a2b] w-full">
+        {label}
+      </div>
+      {children}
+    </div>
+  );
+}
+
+const inputCls =
+  "bg-white border-[0.5px] border-[#cbd0d4] flex gap-[10px] items-start overflow-clip p-[20px] rounded-[12px] w-full " +
+  "font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#333] placeholder:text-[#c8cfd8] " +
+  "outline-none focus:border-[#0233c3] transition-colors";
+
 export default function ContatoInfoForm() {
-  const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
-  const [assunto, setAssunto] = useState("");
+  const [nome, setNome]         = useState("");
+  const [email, setEmail]       = useState("");
+  const [assunto, setAssunto]   = useState("");
   const [mensagem, setMensagem] = useState("");
-  const [aceito, setAceito] = useState(false);
+  const [aceito, setAceito]     = useState(false);
 
   return (
-    <section className="bg-white flex flex-col items-center justify-center px-[20px] py-[60px] w-full">
-      <div className="flex flex-wrap gap-[30px] items-start max-w-[1400px] w-full">
+    <section className="bg-[#f6f9fe] flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
+      <div className="flex flex-wrap gap-[20px] items-stretch justify-center max-w-[1400px] w-full">
 
-        {/* ── LEFT: Contact info ───────────────────────────────────────────── */}
-        <div className="flex flex-[1_0_0] flex-col min-w-[280px] max-w-[440px] border border-[#cbd0d4] rounded-[16px] overflow-hidden">
-          <div className="bg-[#f6f9fe] px-[28px] py-[20px] border-b border-[#cbd0d4]">
-            <p className="font-['Avenir_LT_Pro:95_Black'] text-[22px] leading-[28px] text-[#0233c3]">
-              Neo Essentials
-            </p>
-          </div>
+        {/* ── LEFT: Informações de contato ──────────────────────────────────── */}
+        <div className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center justify-start max-w-[420px] min-w-[280px] p-[40px] rounded-[16px]">
 
-          <div className="flex flex-col px-[28px] py-[8px]">
-            <InfoRow
-              icon={imgLocal}   aspectW={31.56} aspectH={38}
-              title="Sede Global"
-              lines={["Orlando, Flórida, USA", "Acquafy Headquarters"]}
-            />
-            <InfoRow
-              icon={imgMail}    aspectW={38}    aspectH={30.8}
-              title="Email"
-              lines={["contato@acquafy.com", "parcerias@acquafy.com"]}
-            />
-            <InfoRow
-              icon={imgPhone}   aspectW={37.99} aspectH={38}
-              title="Telefone / WhatsApp"
-              lines={["+1 (407) 203-5669", "Segunda a Sexta, 8h às 18h (EST)"]}
-            />
-            <InfoRow
-              icon={imgGlobe}   aspectW={19}    aspectH={19}
-              title="Sede Global"
-              lines={["Orlando, Flórida, USA", "Acquafy Headquarters"]}
-            />
-            <InfoRow
-              icon={imgPessoas} aspectW={38}    aspectH={35.24}
-              title="Sede Global"
-              lines={["Orlando, Flórida, USA", "Acquafy Headquarters"]}
-            />
-          </div>
+          {/* Título gradiente */}
+          <p
+            className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] bg-clip-text text-transparent w-full"
+            style={{ backgroundImage: "linear-gradient(90deg, #0233c3, #0569ff)" }}
+          >
+            Informações de contato
+          </p>
+
+          {/* Linha 1 — Local */}
+          <InfoRow
+            src={imgLocal} aspectW={31.56} aspectH={38}
+            title="Sede Global"
+            lines={["Orlando, Flórida, USA", "Acquafy Headquarters"]}
+          />
+
+          {/* Linha 2 — Email */}
+          <InfoRow
+            src={imgMail} aspectW={38} aspectH={30.8}
+            title="Email"
+            lines={["contato@acquafy.com", "parcerias@acquafy.com"]}
+          />
+
+          {/* Linha 3 — Telefone / WhatsApp */}
+          <InfoRow
+            src={imgPhone} aspectW={37.99} aspectH={38}
+            title="Telefone / WhatsApp"
+            lines={["+1 (407) 203-5669", "Segunda a Sexta, 8h às 18h (EST)"]}
+          />
+
+          {/* Linha 4 — Global (com botão) */}
+          <InfoRow
+            src={imgGlobe} aspectW={38} aspectH={38}
+            title="Presença global"
+            lines={["16 países em operação ativa"]}
+            ctaLabel="Ver todas as regiões"
+          />
+
+          {/* Linha 5 — Equipe (com botão) */}
+          <InfoRow
+            src={imgPessoas} aspectW={38} aspectH={35.24}
+            title="Seja um parceiro"
+            lines={["Descubra como fazer parte da nossa rede global de parceiros."]}
+            ctaLabel="Quero ser parceiro"
+          />
         </div>
 
-        {/* ── RIGHT: Contact form ──────────────────────────────────────────── */}
-        <div className="flex flex-[2_0_0] flex-col min-w-[300px] border border-[#cbd0d4] rounded-[16px] overflow-hidden">
-          <div className="bg-[#f6f9fe] px-[28px] py-[20px] border-b border-[#cbd0d4]">
-            <p className="font-['Avenir_LT_Pro:95_Black'] text-[22px] leading-[28px] text-[#0233c3]">
-              Envie uma mensagem
-            </p>
-          </div>
+        {/* ── RIGHT: Formulário ─────────────────────────────────────────────── */}
+        <div className="bg-white flex flex-[1_0_0] flex-col gap-[40px] items-start min-w-[280px] p-[40px] rounded-[16px]">
 
-          <div className="flex flex-col gap-[20px] px-[28px] py-[28px]">
-            {/* Nome + Email */}
-            <div className="flex flex-wrap gap-[16px]">
-              <div className="flex flex-[1_0_0] flex-col gap-[6px] min-w-[200px]">
-                <label className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#2a2a2b]">
-                  Nome completo<span className="text-[#0233c3]">*</span>
-                </label>
+          {/* Título gradiente */}
+          <p
+            className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] bg-clip-text text-transparent w-full shrink-0"
+            style={{ backgroundImage: "linear-gradient(90deg, #0233c3, #0569ff)" }}
+          >
+            Envie uma mensagem
+          </p>
+
+          {/* Campos */}
+          <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start w-full">
+
+            {/* Nome + Email lado a lado */}
+            <div className="flex flex-wrap gap-[20px] items-start w-full">
+              <FormField label={<>Nome completo<span className="text-[#d74b4d]">*</span></>}>
                 <input
                   type="text"
                   placeholder="Seu nome"
                   value={nome}
                   onChange={(e) => setNome(e.target.value)}
-                  className="border border-[#cbd0d4] rounded-[8px] px-[14px] py-[12px] font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#333] placeholder:text-[#aab0b8] outline-none focus:border-[#0233c3] transition-colors"
+                  className={`${inputCls} flex-1 min-w-[200px]`}
                 />
-              </div>
-              <div className="flex flex-[1_0_0] flex-col gap-[6px] min-w-[200px]">
-                <label className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#2a2a2b]">
-                  E-mail<span className="text-[#0233c3]">*</span>
-                </label>
+              </FormField>
+              <FormField label={<>E-mail<span className="text-[#d74b4d]">*</span></>}>
                 <input
                   type="email"
                   placeholder="seu@email.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="border border-[#cbd0d4] rounded-[8px] px-[14px] py-[12px] font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#333] placeholder:text-[#aab0b8] outline-none focus:border-[#0233c3] transition-colors"
+                  className={`${inputCls} flex-1 min-w-[200px]`}
                 />
-              </div>
+              </FormField>
             </div>
 
             {/* Assunto */}
-            <div className="flex flex-col gap-[6px]">
-              <label className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#2a2a2b]">
-                Assunto<span className="text-[#0233c3]">*</span>
-              </label>
-              <div className="relative">
+            <FormField label={<>Assunto<span className="text-[#d74b4d]">*</span></>}>
+              <div className="relative w-full">
                 <select
                   value={assunto}
                   onChange={(e) => setAssunto(e.target.value)}
-                  className="w-full appearance-none border border-[#cbd0d4] rounded-[8px] px-[14px] py-[12px] font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#333] outline-none focus:border-[#0233c3] transition-colors bg-white cursor-pointer"
+                  className={`${inputCls} appearance-none cursor-pointer`}
                 >
                   <option value="" disabled>Selecione o assunto</option>
                   {ASSUNTOS.map((a) => (
                     <option key={a} value={a}>{a}</option>
                   ))}
                 </select>
-                <div className="absolute right-[14px] top-1/2 -translate-y-1/2 pointer-events-none">
+                <div className="absolute right-[20px] top-1/2 -translate-y-1/2 pointer-events-none">
                   <FigmaIcon src={imgArrowDown} size={10} aspectW={10} aspectH={6} />
                 </div>
               </div>
-            </div>
+            </FormField>
 
             {/* Mensagem */}
-            <div className="flex flex-col gap-[6px]">
-              <label className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#2a2a2b]">
-                Mensagem<span className="text-[#0233c3]">*</span>
-              </label>
+            <FormField label={<>Mensagem<span className="text-[#d74b4d]">*</span></>}>
               <textarea
-                placeholder="Como podemos ajudar você?"
+                placeholder="Como podemos ajudar você"
                 value={mensagem}
                 onChange={(e) => setMensagem(e.target.value)}
-                rows={5}
-                className="border border-[#cbd0d4] rounded-[8px] px-[14px] py-[12px] font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#333] placeholder:text-[#aab0b8] outline-none focus:border-[#0233c3] transition-colors resize-none"
+                rows={6}
+                className={`${inputCls} resize-none`}
               />
-            </div>
+            </FormField>
 
-            {/* Submit */}
-            <BtnAzulBaseArrow className="w-full min-h-[50px] text-[16px]">
-              Enviar mensagem
-            </BtnAzulBaseArrow>
+            {/* Botão enviar */}
+            <button
+              type="submit"
+              className="bg-[#0233c3] flex gap-[10px] items-center justify-center min-h-[50px] overflow-hidden px-[20px] py-[10px] rounded-[8px] w-full hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors cursor-pointer shrink-0"
+            >
+              <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-white text-center whitespace-nowrap">
+                Enviar mensagem
+              </span>
+              <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
+            </button>
 
-            {/* Privacy */}
-            <div className="flex gap-[10px] items-center">
-              <input
-                type="checkbox"
-                id="privacy"
-                checked={aceito}
-                onChange={(e) => setAceito(e.target.checked)}
-                className="shrink-0 size-[16px] accent-[#0233c3] cursor-pointer"
-              />
-              <label
-                htmlFor="privacy"
-                className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] leading-[18px] text-[#2a2a2b] cursor-pointer"
-              >
+            {/* Checkbox privacidade */}
+            <label className="flex gap-[9px] items-center w-full cursor-pointer shrink-0">
+              <div className="relative shrink-0">
+                <input
+                  type="checkbox"
+                  className="sr-only"
+                  checked={aceito}
+                  onChange={(e) => setAceito(e.target.checked)}
+                />
+                <div className="bg-white border-[0.5px] border-[#cbd0d4] flex flex-col items-center justify-center size-[24px] overflow-hidden p-[6px] rounded-[5px]">
+                  <div
+                    className={`bg-[#0569ff] rounded-full w-full aspect-square transition-opacity ${aceito ? "opacity-100" : "opacity-0"}`}
+                  />
+                </div>
+              </div>
+              <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#2a2a2b]">
                 Li e concordo com a{" "}
-                <span className="text-[#0233c3] underline cursor-pointer">
-                  Política de Privacidade
-                </span>{" "}
-                da Acquafy
-              </label>
-            </div>
+                <span className="text-[#0569ff]">Política de Privacidade</span>
+                {" "}da Acquafy
+              </span>
+            </label>
+
           </div>
         </div>
 

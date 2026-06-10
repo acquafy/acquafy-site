@@ -1,48 +1,64 @@
-﻿"use client";
-import { useState } from "react";
+"use client";
 import FigmaIcon from "./FigmaIcon";
 
-const imgArrowW = "/figma-assets/9777bc4a-58de-46e7-8e46-08e99069f337.svg";
+const imgBg       = "/figma-assets/ead4c0fb-be00-4d8a-8bd6-9f867cc8acab.png"; // banner bg
+const imgArrow    = "/figma-assets/d47c325f-bc34-492f-a1fa-d2f3d15fc9bc.svg"; // seta azul
+const imgChat     = "/figma-assets/c3816d40-2ab4-42bb-9f2a-6d5c07aa763c.svg"; // chat icon
 
 export default function CtaBannerAppAiIot() {
-  const [email, setEmail] = useState("");
-
   return (
     <section className="bg-white flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
       <div
-        className="flex flex-wrap gap-[40px] items-center justify-between max-w-[1400px] overflow-hidden px-[40px] py-[40px] relative rounded-[16px] w-full"
-        style={{ backgroundImage: "linear-gradient(135deg, #1f2e91 0%, #0233c3 50%, #7a16d2 100%)" }}
+        className="border border-[#cbd0d4] flex flex-wrap gap-[20px] items-center justify-center max-w-[1400px] overflow-clip px-[80px] py-[40px] relative rounded-[16px] w-full"
       >
-        {/* Left — title */}
-        <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-[240px] max-w-[500px]">
-          <h2 className="font-['Avenir_LT_Pro:95_Black'] text-[32px] leading-[39px] text-white w-full text-center lg:text-left">
-            Leve o poder do App + AI Acquafy para seu negócio.
+        {/* Background image */}
+        <img
+          src={imgBg}
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none rounded-[16px]"
+        />
+
+        {/* Esquerda — título */}
+        <div className="relative flex flex-[1_0_0] flex-col items-center justify-center min-w-[240px] pb-[40px]">
+          <h2 className="font-['Avenir_LT_Pro:95_Black'] text-[32px] leading-[39px] text-white w-full">
+            Leve o poder do App + AI Acquafy para sua vida ou seu negócio.
           </h2>
-          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-white opacity-90 w-full text-center lg:text-left">
-            Comece agora com uma avaliação gratuita e descubra como transformar sua operação.
-          </p>
         </div>
 
-        {/* Right — form */}
-        <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-[240px] max-w-[440px]">
-          <div className="flex gap-[10px] items-center w-full flex-wrap">
-            <input
-              type="email"
-              placeholder="Seu e-mail comercial"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="bg-white flex-[1_0_0] font-['Avenir_LT_Pro:55_Roman'] text-[16px] min-w-[200px] h-[50px] px-[16px] rounded-[8px] text-[#333] outline-none border-none"
-            />
-            <button className="bg-white hover:bg-[#f0f4ff] active:bg-[#e0e8ff] transition-colors flex gap-[10px] items-center justify-center h-[50px] overflow-hidden px-[20px] rounded-[8px] shrink-0 cursor-pointer">
-              <span className="font-['Articulat_CF:Bold'] text-[15px] text-[#0233c3] whitespace-nowrap">
-                Começar agora
-              </span>
-              <FigmaIcon src={imgArrowW} size={9} aspectW={11.2} aspectH={8.84} className="[filter:invert(1)_sepia(1)_saturate(5)_hue-rotate(200deg)]" />
-            </button>
-          </div>
-          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] leading-[16px] text-white opacity-70 w-full">
-            Sem compromisso. Cancele quando quiser.
-          </p>
+        {/* Direita — botões */}
+        <div className="relative flex flex-[1_0_0] flex-wrap gap-[10px] items-center justify-end min-w-[240px] pb-[20px]">
+
+          {/* Outline — Solicitar demonstração */}
+          <button className="group bg-white border border-[#0233c3] flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[56px] min-w-[200px] overflow-clip px-[20px] py-[10px] rounded-[8px] cursor-pointer hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors">
+            <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors text-center whitespace-nowrap shrink-0">
+              Solicitar demonstração
+            </span>
+            <div className="relative h-0 shrink-0 w-[9px]">
+              <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0">
+                <FigmaIcon src={imgArrow} size={9} aspectW={11.2} aspectH={8.84} />
+              </div>
+              <div className="absolute inset-0 transition-opacity duration-150 opacity-0 group-hover:opacity-100">
+                <FigmaIcon
+                  src={imgArrow}
+                  size={9}
+                  aspectW={11.2}
+                  aspectH={8.84}
+                  className="[filter:brightness(0)_invert(1)]"
+                />
+              </div>
+            </div>
+          </button>
+
+          {/* Gradiente — Falar com especialista */}
+          <button
+            className="border border-white flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[56px] min-w-[200px] overflow-clip p-[20px] rounded-[8px] cursor-pointer hover:opacity-90 active:opacity-80 transition-opacity"
+            style={{ backgroundImage: "linear-gradient(112.26deg, #0233c3 6.19%, #9f3df5 93.35%)" }}
+          >
+            <FigmaIcon src={imgChat} size={16} aspectW={30} aspectH={30} className="[filter:brightness(0)_invert(1)] shrink-0" />
+            <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white text-center whitespace-nowrap shrink-0">
+              Falar com especialista
+            </span>
+          </button>
         </div>
       </div>
     </section>

@@ -3,7 +3,6 @@ import Header from "@/components/Header";
 import TecnologiaBanner from "@/components/TecnologiaBanner";
 import TecnologiaFazDiferenca from "@/components/TecnologiaFazDiferenca";
 import TecnologiaSustentSection from "@/components/TecnologiaSustentSection";
-import TecnologiaCtaBanner from "@/components/TecnologiaCtaBanner";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
@@ -20,7 +19,6 @@ export default function TecnologiaSustentabilidade() {
         <TecnologiaBanner />
         <TecnologiaFazDiferenca />
         <TecnologiaSustentSection />
-        <TecnologiaCtaBanner />
       </main>
       <Footer />
     </>

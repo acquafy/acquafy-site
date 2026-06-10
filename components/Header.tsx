@@ -32,7 +32,7 @@ const navItems: NavItem[] = [
   {
     label: "Plataforma",
     href:  "/plataforma",
-    extra: ["/app-ai-iot", "/tecnologia"],
+    extra: ["/app-ai-iot", "/central-de-suporte", "/tecnologia"],
     dropdown: [
       {
         label: "Plataforma Acquafy",
@@ -50,7 +50,7 @@ const navItems: NavItem[] = [
       },
       {
         label: "Central de Suporte",
-        href:  "#",
+        href:  "/central-de-suporte",
         desc:  "Suporte técnico especializado para manter sua Acquafy sempre operando.",
         cta:   "Acessar Suporte",
         bg:    "#f0f5ff",
@@ -266,7 +266,7 @@ function MobileNavLink({
   const hasDropdown = dropdown.length > 0;
 
   return (
-    <div className="flex flex-col border-b border-[#f0f0f0] last:border-b-0">
+    <div className="flex flex-col border-b border-[#cbd0d4] last:border-b-0">
       {hasDropdown ? (
         /* Com dropdown: só abre/fecha lista — NÃO navega */
         <button
@@ -383,7 +383,7 @@ export default function Header() {
 
       {/* ── Mega-menu panel (desktop only) ─────────────────────────── */}
       {openDropdown && activeNav && activeNav.dropdown.length > 0 && (
-        <div className="hidden lg:flex absolute top-[80px] left-0 right-0 bg-white border-t border-[#e6e6e6] shadow-[0_8px_32px_0_rgba(0,0,0,0.10)] z-50 justify-center px-[20px] py-[20px]">
+        <div className="hidden lg:flex absolute top-[80px] left-0 right-0 bg-white border-t border-[#cbd0d4] shadow-[0_8px_32px_0_rgba(0,0,0,0.10)] z-50 justify-center px-[20px] py-[20px]">
           <div className="flex gap-[12px] max-w-[1400px] w-full">
             {activeNav.dropdown.map((item) => (
               <DropdownCard key={item.label} item={item} />
@@ -394,7 +394,7 @@ export default function Header() {
 
       {/* ── Mobile menu ────────────────────────────────────────────── */}
       {menuOpen && (
-        <div className="lg:hidden absolute top-[80px] left-0 right-0 bg-white border-t border-[#e6e6e6] shadow-lg z-50">
+        <div className="lg:hidden absolute top-[80px] left-0 right-0 bg-white border-t border-[#cbd0d4] shadow-lg z-50">
           <div className="flex flex-col px-[20px] py-[10px] max-w-[1400px] mx-auto">
             {navItems.map((item) => (
               <MobileNavLink

@@ -29,7 +29,7 @@ const stats = [
 export default function ReposicaoInteligente() {
   return (
     <section className="bg-white flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
-      <div className="bg-[#f6f9fe] flex flex-wrap gap-[20px] items-center justify-center max-w-[1400px] px-[20px] py-[40px] rounded-[16px] w-full">
+      <div className="bg-[#f6f9fe] flex flex-col md:flex-row flex-wrap gap-[20px] items-center justify-center max-w-[1400px] px-[20px] py-[40px] rounded-[16px] w-full">
 
         {/* Phone mockup */}
         <div className="flex flex-col items-center justify-center max-w-[180px] min-w-[180px] shrink-0">

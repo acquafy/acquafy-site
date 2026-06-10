@@ -1,4 +1,4 @@
-﻿import FigmaIcon from "./FigmaIcon";
+import FigmaIcon from "./FigmaIcon";
 import { BtnAzulBaseArrow, BtnAzulOutArrow } from "./ui/Buttons";
 
 const imgBg          = "/figma-assets/e8f7c96b-1a0d-4c5e-96f9-4b31d4de3a60.png";
@@ -28,8 +28,8 @@ export default function ExpansaoGlobalBanner() {
         src={imgBg}
       />
 
-      {/* Main content — flex-1 so stats bar stays at the bottom */}
-      <div className="relative flex-1 flex flex-wrap gap-[40px] items-center justify-center max-w-[1400px] w-full">
+      {/* Main content — flex-[1_0_0] so stats bar stays pinned to the bottom */}
+      <div className="relative flex-[1_0_0] min-h-px flex flex-wrap gap-[40px] items-center justify-center max-w-[1400px] w-full">
         {/* Left column */}
         <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start justify-center max-w-[580px] min-w-[280px]">
           {/* Badge */}
@@ -73,12 +73,14 @@ export default function ExpansaoGlobalBanner() {
         </div>
 
         {/* Right column — product image */}
-        <div className="flex flex-[1_0_0] items-end justify-end min-w-[280px] self-end">
-          <img
-            alt="Expansão Global Acquafy"
-            className="w-full max-h-[585px] object-contain object-bottom"
-            src={imgSuporte}
-          />
+        <div className="flex flex-[1_0_0] flex-col h-[585px] items-end justify-end min-w-[280px]">
+          <div className="relative w-full shrink-0" style={{ aspectRatio: "4096/2138" }}>
+            <img
+              alt="Expansão Global Acquafy"
+              className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+              src={imgSuporte}
+            />
+          </div>
         </div>
       </div>
 
@@ -86,10 +88,8 @@ export default function ExpansaoGlobalBanner() {
       <div className="relative bg-[#1f2e91] flex flex-wrap gap-[30px_20px] items-start justify-center max-w-[1400px] overflow-hidden px-[20px] py-[40px] rounded-[16px] w-full">
         {stats.map((s) => (
           <div key={s.label} className="flex flex-[1_0_0] flex-wrap gap-[20px] items-start min-w-[160px]">
-            <div className="flex flex-col items-center justify-center shrink-0 size-[60px]">
-              <FigmaIcon src={s.icon} size={40} aspectW={s.iconW} aspectH={s.iconH} />
-            </div>
-            <div className="flex flex-[1_0_0] flex-col gap-[15px] items-start min-w-[180px]">
+            <FigmaIcon src={s.icon} size={60} aspectW={s.iconW} aspectH={s.iconH} />
+            <div className="flex flex-[1_0_0] flex-col gap-[15px] items-start min-w-[200px]">
               <p className="font-['Avenir_LT_Pro:95_Black'] text-[32px] leading-[39px] text-white">{s.number}</p>
               <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-white">{s.label}</p>
               <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-white">{s.sub}</p>

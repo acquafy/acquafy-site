@@ -1,4 +1,4 @@
-﻿import FigmaIcon from "./FigmaIcon";
+import FigmaIcon from "./FigmaIcon";
 
 // ── Assets ───────────────────────────────────────────────────────────────────
 const imgBg        = "/figma-assets/876d7726-5006-4cc7-97bc-45a60e67a3b6.png"; // section bg
@@ -44,7 +44,7 @@ const stats = [
 export default function SobreImpacto() {
   return (
     <section className="flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
-      <div className="flex flex-wrap gap-[30px] items-center justify-center max-w-[1400px] overflow-hidden px-[20px] py-[25px] relative rounded-[16px] w-full">
+      <div className="flex flex-col lg:flex-row lg:flex-wrap gap-[30px] items-center justify-center max-w-[1400px] overflow-hidden px-[20px] py-[25px] relative rounded-[16px] w-full">
         {/* Dark background */}
         <div className="absolute inset-0 rounded-[16px] pointer-events-none" aria-hidden>
           <div className="absolute bg-[#1f2e91] inset-0 rounded-[16px]" />
@@ -56,7 +56,7 @@ export default function SobreImpacto() {
         </div>
 
         {/* Title column */}
-        <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start max-w-[340px] min-w-[280px] relative">
+        <div className="flex flex-col gap-[20px] items-center w-full relative lg:flex-[1_0_0] lg:items-start lg:max-w-[340px] lg:min-w-[280px]">
           <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-white text-center lg:text-left">
             Nosso impacto
           </p>
@@ -86,7 +86,7 @@ export default function SobreImpacto() {
                 {s.count}
               </p>
               {/* Description */}
-              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-white text-center w-full">
+              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-white text-center w-full">
                 {s.description}
               </p>
             </div>

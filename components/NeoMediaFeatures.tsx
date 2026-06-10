@@ -61,10 +61,10 @@ export default function NeoMediaFeatures() {
               <div className="flex flex-col items-center justify-center size-[40px]">
                 <FigmaIcon src={f.icon} size={32} aspectW={f.aspectW} aspectH={f.aspectH} />
               </div>
-              <h3 className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[19px] text-[#1f2e91] text-center min-h-[50px] w-full">
+              <h3 className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] text-center min-h-[50px] w-full">
                 {f.title}
               </h3>
-              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-[#333] text-center w-full">
+              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#333] text-center w-full">
                 {f.desc}
               </p>
             </div>

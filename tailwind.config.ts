@@ -7,6 +7,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        /* Breakpoint para "tela total" — design nativo Figma (Padrão, 1500px) */
+        "1440": "1440px",
+      },
       colors: {
         azul: "#0233c3",
         "azul-neon": "#0569ff",

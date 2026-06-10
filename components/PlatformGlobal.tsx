@@ -1,6 +1,6 @@
 import FigmaIcon from "./FigmaIcon";
 
-const imgLocation  = "/figma-assets/953ce407-44ff-4042-98de-3fd2411b6e5b.svg";
+const imgLocation  = "/figma-assets/ed8ae636-8ee5-4a08-88bb-e55c039759bf.svg";
 const imgLanguage  = "/figma-assets/8ff7d31e-756e-4544-81be-c75b55d9a2f0.svg";
 const imgEcossist  = "/figma-assets/805d1355-429a-486d-9e4a-2a6e210f9aeb.svg";
 const imgMoney     = "/figma-assets/6f338561-bc46-4182-86d7-72784ed01190.svg";
@@ -8,7 +8,7 @@ const imgCountries = "/figma-assets/ce9cc96f-91f4-4eea-8ded-e2da00d3db3f.svg";
 const imgPerfil    = "/figma-assets/f1dfb3b0-84fd-43f3-971a-3fa7e089b5ef.png";
 
 const stats = [
-  { icon: imgLocation,  iconW: 20, iconH: 18, value: "180+",   desc: "Presente em + de 180 países" },
+  { icon: imgLocation,  iconW: 42, iconH: 42, value: "180+",   desc: "Presente em + de 180 países" },
   { icon: imgLanguage,  iconW: 70, iconH: 70, value: "16",      desc: "Disponível em 16 idiomas" },
   { icon: imgEcossist,  iconW: 38, iconH: 40, value: "100%",   desc: "Operação 100% global" },
   { icon: imgMoney,     iconW: 33, iconH: 30, value: "100%",   desc: "Modelo de receita 100% recorrente" },

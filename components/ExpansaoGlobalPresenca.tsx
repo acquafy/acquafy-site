@@ -45,7 +45,7 @@ export default function ExpansaoGlobalPresenca() {
               </div>
 
               {/* Regions list */}
-              <div className="border-l border-[#cbd0d4] flex flex-[1_0_0] flex-col gap-[40px] items-start max-w-[360px] min-w-[280px] pl-[20px]">
+              <div className="border-l-[0.5px] border-[#cbd0d4] flex flex-[1_0_0] flex-col gap-[40px] items-start max-w-[360px] min-w-[280px] pl-[20px]">
                 <h3 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#1f2e91] w-full">
                   Regiões em expansão
                 </h3>
