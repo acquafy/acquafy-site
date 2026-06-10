@@ -5,7 +5,7 @@ const imgBg = "/figma-assets/6e4c7a5e-74be-4ed7-ab5a-e6572a21db21.png";
 export default function ExpansaoGlobalCta() {
   return (
     <section className="bg-white flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
-      <div className="border border-[#cbd0d4] flex flex-wrap gap-[20px] items-center justify-center max-w-[1400px] overflow-hidden px-[80px] py-[40px] relative rounded-[16px] w-full">
+      <div className="border border-[#cbd0d4] flex flex-col lg:flex-row gap-[20px] items-center justify-center max-w-[1400px] overflow-hidden px-[20px] lg:px-[80px] py-[40px] relative rounded-[16px] w-full">
         {/* Background */}
         <img
           alt=""
@@ -24,7 +24,7 @@ export default function ExpansaoGlobalCta() {
         </div>
 
         {/* Buttons */}
-        <div className="relative flex flex-[1_0_0] flex-wrap gap-[10px] items-center justify-end max-w-[500px] min-w-[240px]">
+        <div className="relative flex flex-[1_0_0] flex-wrap gap-[10px] items-center justify-center lg:justify-end max-w-[500px] min-w-[240px]">
           <BtnAzulOutArrow className="flex-1 min-w-[200px] min-h-[56px]">
             Seja um parceiro
           </BtnAzulOutArrow>

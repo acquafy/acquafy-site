@@ -5,7 +5,7 @@ const imgBg = "/figma-assets/2a2b01fb-7792-406f-b758-08114ebe75c3.png";
 export default function CtaBannerNeo() {
   return (
     <section className="bg-white flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
-      <div className="border border-[#cbd0d4] flex flex-wrap gap-[20px] items-center justify-center max-w-[1400px] overflow-hidden px-[80px] py-[40px] relative rounded-[16px] w-full">
+      <div className="border border-[#cbd0d4] flex flex-col lg:flex-row gap-[20px] items-center justify-center max-w-[1400px] overflow-hidden px-[20px] lg:px-[80px] py-[40px] relative rounded-[16px] w-full">
         <img
           alt=""
           className="absolute inset-0 w-full h-full object-cover pointer-events-none rounded-[16px]"
@@ -21,7 +21,7 @@ export default function CtaBannerNeo() {
           </p>
         </div>
 
-        <div className="relative flex flex-1 flex-wrap gap-[10px] items-center justify-end max-w-[500px] min-w-[240px]">
+        <div className="relative flex flex-1 flex-wrap gap-[10px] items-center justify-center lg:justify-end max-w-[500px] min-w-[240px]">
           <BtnFalaAcquafy className="flex-1 min-w-[200px]" />
           <BtnDistribuidor className="flex-1 min-w-[200px]" />
         </div>
