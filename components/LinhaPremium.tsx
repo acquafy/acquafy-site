@@ -93,7 +93,7 @@ function ProductImage({ src }: { src: string }) {
 
 function InfinityCard({ product }: { product: Product }) {
   return (
-    <div className="bg-white flex flex-[1_0_0] flex-col gap-[10px] items-center min-h-[290px] min-w-0 overflow-hidden p-[20px] rounded-[12px]">
+    <div className="bg-white flex flex-[1_0_0] flex-col gap-[10px] items-center min-h-[290px] min-w-[180px] overflow-hidden p-[20px] rounded-[12px]">
       <ProductImage src={product.img} />
       <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#6e0cc3] text-center w-full min-h-[55px] flex items-center justify-center">
         {product.name}
@@ -107,7 +107,7 @@ function InfinityCard({ product }: { product: Product }) {
 
 function PrestigeCard({ product }: { product: Product }) {
   return (
-    <div className="bg-white flex flex-[1_0_0] flex-col gap-[10px] items-center min-h-[290px] min-w-0 overflow-hidden p-[20px] rounded-[12px]">
+    <div className="bg-white flex flex-[1_0_0] flex-col gap-[10px] items-center min-h-[290px] min-w-[180px] overflow-hidden p-[20px] rounded-[12px]">
       <ProductImage src={product.img} />
       <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#6e0cc3] text-center w-full min-h-[55px] flex items-center justify-center">
         {product.name}
@@ -121,7 +121,7 @@ function PrestigeCard({ product }: { product: Product }) {
 
 function PrimeCard({ product }: { product: Product }) {
   return (
-    <div className="bg-white flex flex-[1_0_0] flex-col gap-[10px] items-center min-h-[290px] min-w-0 overflow-hidden p-[20px] rounded-[12px]">
+    <div className="bg-white flex flex-[1_0_0] flex-col gap-[10px] items-center min-h-[290px] min-w-[180px] overflow-hidden p-[20px] rounded-[12px]">
       <ProductImage src={product.img} />
       <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#6e0cc3] text-center w-full min-h-[55px] flex items-center justify-center">
         {product.name}
