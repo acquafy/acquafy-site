@@ -51,7 +51,7 @@ export default function DiferenciaisSuporte() {
         {diferenciais.map((item) => (
           <div
             key={item.title}
-            className="relative flex flex-[1_0_0] gap-[20px] items-center justify-center min-w-[100px]"
+            className="relative flex flex-[1_0_0] gap-[20px] items-center justify-center min-w-[280px]"
           >
             <div className="flex flex-col items-center justify-center shrink-0 size-[50px]">
               <FigmaIcon src={item.icon} size={40} aspectW={item.aspectW} aspectH={item.aspectH} />

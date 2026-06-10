@@ -42,7 +42,7 @@ function InfoRow({
   title: string; lines: string[]; ctaLabel?: string;
 }) {
   return (
-    <div className="border-l-[0.5px] lg:border-l-0 lg:border-t-[0.5px] border-[#cbd0d4] flex gap-[20px] items-center pl-[20px] lg:pl-0 lg:pt-[20px] flex-[1_0_0] min-w-[240px] lg:min-w-0 min-h-[120px] lg:min-h-0">
+    <div className="flex gap-[20px] items-center w-full">
       <IconCircle src={src} aspectW={aspectW} aspectH={aspectH} />
       <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-0">
         <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] min-h-[30px] w-full flex flex-col justify-center">
@@ -103,7 +103,7 @@ export default function ContatoInfoForm() {
           </p>
 
           {/* Rows — vertical no desktop, grid horizontal abaixo de lg */}
-          <div className="flex flex-wrap lg:flex-col gap-[20px] w-full">
+          <div className="flex flex-col gap-[20px] w-full">
             <InfoRow
               src={imgLocal} aspectW={31.56} aspectH={38}
               title="Sede Global"

@@ -185,7 +185,7 @@ function ProductLineCard({ variant }: { variant: "essentials" | "premium" }) {
   return (
     <div
       className={[
-        "bg-white flex flex-col items-start min-w-[280px] overflow-clip p-[20px] relative rounded-[16px] shrink-0 w-full",
+        "bg-white flex flex-col items-start min-w-[280px] overflow-hidden p-[20px] relative rounded-[16px] shrink-0 w-full",
         isEssentials ? "h-[315px] justify-between" : "gap-[20px]",
       ].join(" ")}
     >
@@ -240,7 +240,7 @@ export default function ProdutosParceria() {
         </h2>
 
         {/* ── cards ── */}
-        <div className="flex flex-wrap gap-[20px] items-start justify-center w-full">
+        <div className="flex flex-col xl:flex-row gap-[20px] items-stretch xl:items-start justify-center w-full">
 
           {/* coluna esquerda: 2 cards empilhados */}
           <div className="flex flex-[1_0_0] flex-col gap-[20px] items-center min-w-[280px]">
@@ -249,10 +249,10 @@ export default function ProdutosParceria() {
           </div>
 
           {/* card direito: Acquafy Media */}
-          <div className="bg-white flex flex-[1_0_0] flex-col gap-[40px] h-[630px] items-center max-w-[310px] min-h-[566px] min-w-[240px] overflow-clip p-[20px] relative rounded-[16px]">
+          <div className="bg-white flex flex-[1_0_0] flex-col gap-[40px] h-[630px] items-center xl:max-w-[310px] min-h-[566px] min-w-[240px] overflow-clip p-[20px] relative rounded-[16px]">
 
-            {/* header alinhado à esquerda */}
-            <div className="flex flex-col gap-[10px] items-start w-full shrink-0">
+            {/* header centralizado */}
+            <div className="flex flex-col gap-[10px] items-center text-center w-full shrink-0">
               <p className="font-['Avenir_LT_Pro:85_Heavy'] not-italic text-[26px] leading-[28px] text-[#0569ff] min-h-[36px] w-full">
                 Acquafy Media
               </p>
