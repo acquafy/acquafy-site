@@ -57,7 +57,7 @@ export default function HeroAppAiIot() {
           </div>
 
           {/* H1 — cores individuais por palavra, não gradiente */}
-          <h1 className="font-['Avenir_LT_Pro:95_Black'] text-[56px] leading-[60px] text-[#333] w-full">
+          <h1 className="font-['Avenir_LT_Pro:95_Black'] text-[56px] leading-[60px] text-[#333] w-full text-center lg:text-left">
             {"App + "}
             <span style={{ color: "#6e54ef" }}>AI</span>
             {" "}

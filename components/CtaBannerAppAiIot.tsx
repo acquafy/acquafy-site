@@ -9,7 +9,7 @@ export default function CtaBannerAppAiIot() {
   return (
     <section className="bg-white flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
       <div
-        className="border border-[#cbd0d4] flex flex-wrap gap-[20px] items-center justify-center max-w-[1400px] overflow-clip px-[80px] py-[40px] relative rounded-[16px] w-full"
+        className="border border-[#cbd0d4] flex flex-col lg:flex-row gap-[20px] items-center justify-center max-w-[1400px] overflow-clip px-[20px] lg:px-[80px] py-[40px] relative rounded-[16px] w-full"
       >
         {/* Background image */}
         <img
@@ -20,13 +20,13 @@ export default function CtaBannerAppAiIot() {
 
         {/* Esquerda — título */}
         <div className="relative flex flex-[1_0_0] flex-col items-center justify-center min-w-[240px] pb-[40px]">
-          <h2 className="font-['Avenir_LT_Pro:95_Black'] text-[32px] leading-[39px] text-white w-full">
+          <h2 className="font-['Avenir_LT_Pro:95_Black'] text-[32px] leading-[39px] text-white w-full text-center lg:text-left">
             Leve o poder do App + AI Acquafy para sua vida ou seu negócio.
           </h2>
         </div>
 
         {/* Direita — botões */}
-        <div className="relative flex flex-[1_0_0] flex-wrap gap-[10px] items-center justify-end min-w-[240px] pb-[20px]">
+        <div className="relative flex flex-[1_0_0] flex-wrap gap-[10px] items-center justify-center lg:justify-end min-w-[240px] pb-[20px]">
 
           {/* Outline — Solicitar demonstração */}
           <button className="group bg-white border border-[#0233c3] flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[56px] min-w-[200px] overflow-clip px-[20px] py-[10px] rounded-[8px] cursor-pointer hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors">
