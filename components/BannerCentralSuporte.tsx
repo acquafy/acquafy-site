@@ -179,8 +179,8 @@ export default function BannerCentralSuporte() {
            * ≥768px: flex flex-[1_0_0] items-end self-stretch (iguala altura da imagem)
            */}
           <div className="order-1 w-full
-            md:order-2 md:flex md:flex-[1_0_0] md:flex-row md:items-end md:self-stretch md:min-w-px
-            xl:relative xl:z-10 xl:max-w-[270px]">
+            md:order-2 md:relative md:z-[1] md:flex md:flex-[1_0_0] md:flex-row md:items-end md:self-stretch md:min-w-px
+            xl:z-10 xl:max-w-[270px]">
 
             {/* ── Cards (inner) ───────────────────────────────── */}
             {/*
