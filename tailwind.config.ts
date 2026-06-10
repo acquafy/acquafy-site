@@ -8,6 +8,8 @@ const config: Config = {
   theme: {
     extend: {
       screens: {
+        /* Breakpoint mobile — telas ≤ 767px (smartphones) */
+        "mob": { max: "767px" },
         /* Breakpoint para "tela total" — design nativo Figma (Padrão, 1500px) */
         "1440": "1440px",
       },

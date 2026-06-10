@@ -82,7 +82,7 @@ export default function BannerCentralSuporte() {
           </div>
 
           {/* H1 */}
-          <h1 className="font-['Avenir_LT_Pro:95_Black'] text-[56px] leading-[60px] text-[#2a2a2b] text-center w-full xl:text-left">
+          <h1 className="font-['Avenir_LT_Pro:95_Black'] text-[56px] leading-[60px] text-[#2a2a2b] text-center w-full lg:text-left">
             Central de{" "}
             <span
               className="bg-clip-text text-transparent"

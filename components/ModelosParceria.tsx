@@ -4,12 +4,12 @@ const imgGold     = "/figma-assets/52cce9b5-c0bf-452a-94fd-8f2ead4a089c.png";
 const imgPlatinum = "/figma-assets/9149cb94-288c-4f50-992b-3fdd6369b4cd.png";
 
 /* ── SVG stroke icons (rendered via CSS mask — NOT <img>) ────── */
-const svgUser      = "/figma-assets/e7505793-af8d-4d80-bfb8-115b7aa49fca.svg";
-const svgScale     = "/figma-assets/5d31941c-3b14-47c9-af5e-4ebe03fa1722.svg";
-const svgCountry   = "/figma-assets/674ba37f-fb16-4d91-ac0b-6375fc97ba8d.svg";
-const svgShield    = "/figma-assets/e8b79a89-d96c-4bc2-aa5d-ca57735dfaba.svg";
-const svgDigital   = "/figma-assets/0a516811-b28e-4026-80e7-597714878028.svg";
-const svgMultiReg  = "/figma-assets/3828bea1-96ec-4ec9-a053-b46db37afc45.svg";
+const svgUser      = "/figma-assets/mp-icon-user.svg";
+const svgScale     = "/figma-assets/mp-icon-scale.svg";
+const svgCountry   = "/figma-assets/mp-icon-country.svg";
+const svgShield    = "/figma-assets/mp-icon-shield.svg";     // 24×30 (portrait)
+const svgDigital   = "/figma-assets/mp-icon-digital.svg";    // 38×40 → 28.5×30
+const svgMultiReg  = "/figma-assets/mp-icon-multireg.svg";
 
 /* ─────────────────────────────────────────────────────────────────
    StrokeIcon
@@ -19,8 +19,11 @@ const svgMultiReg  = "/figma-assets/3828bea1-96ec-4ec9-a053-b46db37afc45.svg";
    transparent/opaque areas (alpha) drive the mask shape.
    Renders as a <div> — never as an <img>.
 ───────────────────────────────────────────────────────────────── */
-function StrokeIcon({ src, color }: { src: string; color: string }) {
+function StrokeIcon({ src, color, aspectW = 30, aspectH = 30 }: { src: string; color: string; aspectW?: number; aspectH?: number }) {
   const isGradient = color.startsWith("linear-gradient");
+  const size = 30;
+  const w = aspectW >= aspectH ? size : size * (aspectW / aspectH);
+  const h = aspectH >= aspectW ? size : size * (aspectH / aspectW);
   const base: React.CSSProperties = {
     WebkitMaskImage:    `url(${src})`,
     maskImage:          `url(${src})`,
@@ -30,8 +33,8 @@ function StrokeIcon({ src, color }: { src: string; color: string }) {
     maskRepeat:         "no-repeat",
     WebkitMaskPosition: "center",
     maskPosition:       "center",
-    width:  30,
-    height: 30,
+    width:  w,
+    height: h,
     flexShrink: 0,
   };
   return (
@@ -46,7 +49,7 @@ function StrokeIcon({ src, color }: { src: string; color: string }) {
 }
 
 /* ── Types ───────────────────────────────────────────────────── */
-type TierItem = { icon: string; label: string; value: string };
+type TierItem = { icon: string; label: string; value: string; aspectW?: number; aspectH?: number };
 
 type TierDef = {
   medal:       string;
@@ -94,7 +97,7 @@ const tiers: TierDef[] = [
       { icon: svgUser,    label: "Perfil",     value: "Afiliado / Indicador" },
       { icon: svgScale,   label: "Como ganha", value: "20% sobre vendas indicadas via link ou QR Code" },
       { icon: svgCountry, label: "Entrada",    value: "Cadastro simples e operação leve" },
-      { icon: svgShield,  label: "Ideal para", value: "Influenciadores, consultores, vendedores e parceiros locais." },
+      { icon: svgShield,  label: "Ideal para", value: "Influenciadores, consultores, vendedores e parceiros locais.", aspectW: 24, aspectH: 30 },
     ],
   },
 
@@ -114,7 +117,7 @@ const tiers: TierDef[] = [
       { icon: svgScale,   label: "Como ganha",    value: "20% sobre vendas Neo via QR Code / link próprio" },
       { icon: svgCountry, label: "Receita extra", value: "Monetização de mídia local e operação do ponto de hidratação" },
       { icon: svgShield,  label: "Entrada",       value: "Compra do Acquafy Media por US$ 2.000" },
-      { icon: svgDigital, label: "Ideal para",    value: "Empreendedores, operadores de mídia e negócios locais" },
+      { icon: svgDigital, label: "Ideal para",    value: "Empreendedores, operadores de mídia e negócios locais", aspectW: 38, aspectH: 40 },
     ],
   },
 
@@ -135,8 +138,8 @@ const tiers: TierDef[] = [
       { icon: svgUser,    label: "Perfil",          value: "Distribuidor regional /master partner" },
       { icon: svgScale,   label: "Como opera",      value: "Compra com 70% de desconto sobre o preço EUA" },
       { icon: svgCountry, label: "Regra comercial", value: "Modalidade FOB. Revenda livre na sua região." },
-      { icon: svgShield,  label: "Observação",      value: "Sem comissão da Acquafy. Assume frete, impostos e taxas." },
-      { icon: svgDigital, label: "Rede Silver",     value: "Pode operar rede própria de parceiros Silver, pagando 20% para essa rede" },
+      { icon: svgShield,  label: "Observação",      value: "Sem comissão da Acquafy. Assume frete, impostos e taxas.", aspectW: 24, aspectH: 30 },
+      { icon: svgDigital, label: "Rede Silver",     value: "Pode operar rede própria de parceiros Silver, pagando 20% para essa rede", aspectW: 38, aspectH: 40 },
       { icon: svgMultiReg,label: "Entrada",         value: "Estrutura regional de distribuição." },
     ],
   },
@@ -186,7 +189,7 @@ export default function ModelosParceria() {
                       className={`flex items-center justify-center rounded-[9999px] shrink-0 size-[60px] ${t.badgeCls}`}
                       style={t.badgeStyle}
                     >
-                      <StrokeIcon src={item.icon} color={t.iconColor} />
+                      <StrokeIcon src={item.icon} color={t.iconColor} aspectW={item.aspectW} aspectH={item.aspectH} />
                     </div>
                     {/* Text block */}
                     <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-px">

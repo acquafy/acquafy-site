@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import FigmaIcon from "./FigmaIcon";
 import { LanguageSelectorFull } from "./ui/LanguageSelector";
 
@@ -25,7 +28,6 @@ const imgMoney    = "/figma-assets/3c40590b-5e78-4445-8884-3d262f0c2bf4.svg"; //
 // Bottom bar
 const imgFlagUSA   = "/figma-assets/e15ad716-a373-43b3-95a4-73688ae29a6d.svg"; // 30×30
 const imgGlobeSust = "/figma-assets/a303f351-9f9e-485f-9a05-f5fb6b27bfdf.svg"; // 492×475
-const imgFlagBR    = "/figma-assets/fb514ce9-72e6-4218-8b2b-2ec94d31b185.svg"; // 512×512 Brazil flag
 const imgArrowDown = "/figma-assets/a9b486b8-daec-4d34-8a76-959211b81449.svg"; // 30×18 landscape
 
 // Certification badges (5 — rendered 50×50 each)
@@ -40,30 +42,30 @@ const certLogos = [
 // ── Data ─────────────────────────────────────────────────────────────────────
 
 const socialIcons = [
-  { src: imgInstagram, alt: "Instagram",  aspectW: 30,      aspectH: 30 },
+  { src: imgInstagram, alt: "Instagram",   aspectW: 30,      aspectH: 30 },
   { src: imgX,         alt: "X (Twitter)", aspectW: 1000.78, aspectH: 936.69 },
-  { src: imgLinkedin,  alt: "LinkedIn",   aspectW: 30,      aspectH: 30 },
-  { src: imgYoutube,   alt: "YouTube",    aspectW: 22,      aspectH: 15.5 },
-  { src: imgFacebook,  alt: "Facebook",   aspectW: 30.16,   aspectH: 30 },
+  { src: imgLinkedin,  alt: "LinkedIn",    aspectW: 30,      aspectH: 30 },
+  { src: imgYoutube,   alt: "YouTube",     aspectW: 22,      aspectH: 15.5 },
+  { src: imgFacebook,  alt: "Facebook",    aspectW: 30.16,   aspectH: 30 },
 ];
 
 const navColumns = [
   {
     title: "Plataforma",
     links: [
-      { label: "Plataforma Acquafy",            href: "/plataforma"  },
-      { label: "App + AI + IoT",                href: "/app-ai-iot"  },
-      { label: "Central de Suporte",            href: "#"            },
-      { label: "Tecnologia & Sustentabilidade", href: "/tecnologia"  },
+      { label: "Plataforma Acquafy",            href: "/plataforma" },
+      { label: "App + AI + IoT",                href: "/app-ai-iot" },
+      { label: "Central de Suporte",            href: "#"           },
+      { label: "Tecnologia & Sustentabilidade", href: "/tecnologia" },
     ],
   },
   {
     title: "Produtos",
     links: [
-      { label: "Linha Neo",           href: "/linha-neo" },
-      { label: "Acquafy Media",       href: "/neo-media" },
-      { label: "Filtros & Acessórios", href: "/filtros"  },
-      { label: "Compare Produtos",    href: "/compare"   },
+      { label: "Linha Neo",            href: "/linha-neo" },
+      { label: "Acquafy Media",        href: "/neo-media" },
+      { label: "Filtros & Acessórios", href: "/filtros"   },
+      { label: "Compare Produtos",     href: "/compare"   },
     ],
   },
   {
@@ -78,11 +80,13 @@ const navColumns = [
 ];
 
 const stats = [
-  { icon: imgGlobe,    aspectW: 30,    aspectH: 30,  sub: "Presente em",      main: "+ de 180 países" },
-  { icon: imgChat,     aspectW: 501.7, aspectH: 419, sub: "Disponível em",    main: "16 idiomas" },
-  { icon: imgLocation, aspectW: 642.7, aspectH: 642.7, sub: "Operação",       main: "100% global" },
-  { icon: imgMoney,    aspectW: 472,   aspectH: 440, sub: "Modelo de receita", main: "100% recorrente" },
+  { icon: imgGlobe,    aspectW: 30,    aspectH: 30,    sub: "Presente em",      main: "+ de 180 países"  },
+  { icon: imgChat,     aspectW: 501.7, aspectH: 419,   sub: "Disponível em",    main: "16 idiomas"       },
+  { icon: imgLocation, aspectW: 642.7, aspectH: 642.7, sub: "Operação",         main: "100% global"      },
+  { icon: imgMoney,    aspectW: 472,   aspectH: 440,   sub: "Modelo de receita", main: "100% recorrente" },
 ];
+
+const gradientLine = { backgroundImage: "linear-gradient(146.8deg, #3447d2 4.03%, #0035c1 124%)" };
 
 // ── Arrow bullet (Figma: -rotate-90, w-[6px] h-[12px] slot) ──────────────────
 function ArrowBullet() {
@@ -101,9 +105,7 @@ function ArrowBullet() {
   );
 }
 
-// ── Social icon circle — w-full dentro de grid grid-cols-5, max-w-[50px] mx-auto ──
-// Usa grid no container para garantir sempre 1 linha com 5 colunas iguais,
-// escalando de ~40px (coluna estreita) até 50px (coluna larga) sem quebra de linha.
+// ── Social icon circle — grid grid-cols-5 no container, escala de 40–50px ────
 function SocialCircle({ src, alt, aspectW, aspectH }: { src: string; alt: string; aspectW: number; aspectH: number }) {
   const isSquare = Math.abs(aspectW - aspectH) < 1;
   return (
@@ -121,51 +123,97 @@ function SocialCircle({ src, alt, aspectW, aspectH }: { src: string; alt: string
   );
 }
 
+// ── Mobile accordion: seção de nav com estado aberto/fechado ─────────────────
+// Figma nodes 3818:14192 (MOB OPEN) e 3819:14489 (MOB CLOSED)
+function MobileNavSection({
+  col,
+  isOpen,
+  onToggle,
+}: {
+  col: { title: string; links: { label: string; href: string }[] };
+  isOpen: boolean;
+  onToggle: () => void;
+}) {
+  return (
+    <div className="flex flex-col w-full border-t border-[#cbd0d4]">
+      {/* Header — clicável */}
+      <button
+        onClick={onToggle}
+        className="flex items-center justify-between w-full py-[16px] cursor-pointer"
+      >
+        <div className="flex flex-col gap-[10px] items-start">
+          <p className="font-['Articulat_CF:Bold'] text-[20px] leading-[22px] text-[#0569ff]">
+            {col.title}
+          </p>
+          <div className="h-[1.5px] rounded-full shrink-0 w-[30px]" style={gradientLine} />
+        </div>
+        {/* Chevron: aponta para baixo (fechado) ou para cima (aberto) */}
+        <div className={`shrink-0 transition-transform duration-200${isOpen ? " rotate-180" : ""}`}>
+          <div className="relative h-[5px] w-[10px]">
+            <img alt="" className="absolute inset-0 max-w-none size-full" src={imgArrowDown} />
+          </div>
+        </div>
+      </button>
+      {/* Links — visíveis somente quando aberto */}
+      {isOpen && (
+        <div className="flex flex-col gap-[30px] items-start pb-[24px]">
+          {col.links.map((link) => (
+            <div key={link.label} className="flex gap-[10px] items-center w-full">
+              <ArrowBullet />
+              <a
+                href={link.href}
+                className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#2a2a2b] flex-[1_0_0] min-w-px hover:text-[#0233c3] transition-colors"
+              >
+                {link.label}
+              </a>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ── Main component ────────────────────────────────────────────────────────────
 export default function Footer() {
+  const [openSection, setOpenSection] = useState<number | null>(null);
+
   return (
     <footer
       className="border-t-[0.5px] border-[#002ba8] flex flex-col gap-[40px] items-center justify-center pt-[50px] w-full"
       style={{ background: "linear-gradient(to bottom, #fafbff, #e8f1f8)" }}
     >
-      {/* ── TOP: logo + nav columns ─────────────────────────────────────── */}
+      {/* ── TOP: logo + nav ──────────────────────────────────────────────── */}
       <div className="flex flex-col items-center px-[20px] w-full">
         <div className="content-start flex flex-wrap gap-[40px_20px] items-start justify-center max-w-[1400px] w-full">
 
           {/* Logo + description + social icons */}
-          <div className="flex flex-[1_0_0] flex-col gap-[20px] h-[210px] items-start min-h-[210px] min-w-[240px]">
-            {/* Logo — link para home */}
+          <div className="flex flex-[1_0_0] flex-col gap-[20px] h-[210px] items-start min-h-[210px] min-w-[240px] mob:h-auto mob:min-h-0 mob:items-center mob:pb-[40px]">
             <a href="/" className="flex flex-col items-center justify-center max-w-[200px] w-full">
               <div className="relative shrink-0 w-full" style={{ aspectRatio: "1133.84/187.34" }}>
                 <img alt="Acquafy" className="absolute block inset-0 max-w-none size-full" src={imgLogo} />
               </div>
             </a>
-            {/* Description */}
-            <p className="font-['Articulat_CF:Regular'] text-[16px] leading-[25px] text-[#333] flex-[1_0_0] min-h-px w-full">
+            <p className="font-['Articulat_CF:Regular'] text-[16px] leading-[25px] text-[#333] flex-[1_0_0] min-h-px w-full mob:text-center mob:flex-none mob:min-h-0">
               Acquafy Platform + App + AI + IoT para gestão global da água inteligente.
             </p>
-            {/* Social icons — grid 5 colunas fixas, sem quebra de linha */}
-            <div className="grid grid-cols-5 gap-[10px] w-full">
+            {/* Social icons — grid 5 colunas fixas */}
+            <div className="grid grid-cols-5 gap-[10px] w-full mob:max-w-[260px] mob:mx-auto">
               {socialIcons.map((s) => (
                 <SocialCircle key={s.alt} src={s.src} alt={s.alt} aspectW={s.aspectW} aspectH={s.aspectH} />
               ))}
             </div>
           </div>
 
-          {/* Nav columns — Plataforma / Produtos / Empresa */}
+          {/* Nav columns — desktop: visíveis / mobile: ocultas */}
           {navColumns.map((col) => (
-            <div key={col.title} className="flex flex-[1_0_0] flex-col gap-[40px] items-start min-h-[215px] min-w-[200px] pl-[20px]">
-              {/* Column header */}
+            <div key={col.title} className="flex flex-[1_0_0] flex-col gap-[40px] items-start min-h-[215px] min-w-[200px] pl-[20px] mob:hidden">
               <div className="flex flex-col gap-[10px] items-start min-h-[30px] w-full">
                 <p className="font-['Articulat_CF:Bold'] text-[20px] leading-[22px] text-[#0569ff] w-full">
                   {col.title}
                 </p>
-                <div
-                  className="h-[1.5px] rounded-full shrink-0 w-[30px]"
-                  style={{ backgroundImage: "linear-gradient(146.8deg, #3447d2 4.03%, #0035c1 124%)" }}
-                />
+                <div className="h-[1.5px] rounded-full shrink-0 w-[30px]" style={gradientLine} />
               </div>
-              {/* Links */}
               <div className="flex flex-col gap-[30px] items-start w-full">
                 {col.links.map((link) => (
                   <div key={link.label} className="flex gap-[10px] items-center w-full">
@@ -181,6 +229,20 @@ export default function Footer() {
               </div>
             </div>
           ))}
+
+          {/* Accordion mobile — desktop: oculto / mobile: visível */}
+          <div className="hidden mob:flex flex-col w-full">
+            {navColumns.map((col, i) => (
+              <MobileNavSection
+                key={col.title}
+                col={col}
+                isOpen={openSection === i}
+                onToggle={() => setOpenSection(openSection === i ? null : i)}
+              />
+            ))}
+            {/* Borda inferior da última seção */}
+            <div className="border-t border-[#cbd0d4]" />
+          </div>
         </div>
       </div>
 
@@ -207,16 +269,16 @@ export default function Footer() {
 
       {/* ── BOTTOM BAR ──────────────────────────────────────────────────── */}
       <div className="bg-[#f6f9fe] flex flex-col items-center justify-center p-[20px] w-full">
-        <div className="flex flex-wrap gap-[14px_20px] items-center justify-center max-w-[1400px] w-full">
+        <div className="flex flex-wrap gap-[14px_20px] items-center justify-center max-w-[1400px] w-full mob:flex-col mob:gap-[20px]">
 
           {/* Copyright */}
-          <div className="flex-[1_0_0] font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#07235c] min-w-[200px]">
+          <div className="flex-[1_0_0] font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#07235c] min-w-[200px] mob:text-center mob:flex-none mob:w-full">
             <p>Acquafy Corporation © 2026.</p>
             <p>Todos os direitos reservados.</p>
           </div>
 
           {/* Founded in USA */}
-          <div className="flex gap-[20px] items-center min-w-[240px] overflow-hidden shrink-0 w-[240px]">
+          <div className="flex gap-[20px] items-center min-w-[240px] overflow-hidden shrink-0 w-[240px] mob:w-full mob:min-w-0 mob:shrink">
             <div className="flex flex-col items-center justify-center shrink-0 size-[40px]">
               <FigmaIcon src={imgFlagUSA} alt="USA" size={40} />
             </div>
@@ -226,7 +288,7 @@ export default function Footer() {
           </div>
 
           {/* Global platform */}
-          <div className="flex gap-[20px] items-center min-w-[240px] overflow-hidden shrink-0 w-[240px]">
+          <div className="flex gap-[20px] items-center min-w-[240px] overflow-hidden shrink-0 w-[240px] mob:w-full mob:min-w-0 mob:shrink">
             <div className="flex flex-col items-center justify-center shrink-0 size-[40px]">
               <FigmaIcon src={imgGlobeSust} size={40} aspectW={492} aspectH={474.82} />
             </div>
@@ -236,7 +298,7 @@ export default function Footer() {
           </div>
 
           {/* Certification badges — 5 logos 50×50 each */}
-          <div className="flex flex-wrap gap-[18px] items-center justify-center min-w-[320px] shrink-0">
+          <div className="flex flex-wrap gap-[18px] items-center justify-center min-w-[320px] shrink-0 mob:min-w-0 mob:w-full">
             {certLogos.map((src, i) => (
               <div key={i} className="relative shrink-0 size-[50px] min-h-[50px] min-w-[50px]">
                 <img alt="" className="absolute inset-0 max-w-none size-full" src={src} />
@@ -244,7 +306,7 @@ export default function Footer() {
             ))}
           </div>
 
-          {/* Language selector — IdiomaFull (node 3095:5902) */}
+          {/* Language selector */}
           <LanguageSelectorFull />
         </div>
       </div>

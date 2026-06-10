@@ -53,7 +53,7 @@ export default function BeneficiosAppAiIot() {
       <div className="flex flex-col gap-[60px] items-start max-w-[1400px] w-full">
 
         {/* Título — alinhado à esquerda */}
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#1f2e91] w-full">
+        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#1f2e91] w-full text-center lg:text-left">
           Benefícios para clientes, parceiros e operadores
         </h2>
 
