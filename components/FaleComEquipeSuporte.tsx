@@ -30,7 +30,7 @@ export default function FaleComEquipeSuporte() {
             </div>
             <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-px">
               <div className="flex gap-[10px] items-center justify-center w-full">
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] flex-1 min-h-[30px]">
+                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] flex flex-1 items-center min-h-[30px]">
                   Chat online
                 </p>
                 <div className="bg-[#e1f3e7] flex flex-col items-center justify-center p-[10px] rounded-full shrink-0">
@@ -56,7 +56,7 @@ export default function FaleComEquipeSuporte() {
               <FigmaIcon src={imgMailIcon} size={30} aspectW={30} aspectH={24} />
             </div>
             <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-px">
-              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] min-h-[30px] w-full">
+              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] flex items-center min-h-[30px] w-full">
                 E-mail
               </p>
               <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#333] min-h-[30px] w-full">
@@ -64,9 +64,11 @@ export default function FaleComEquipeSuporte() {
               </p>
               <a
                 href="mailto:suporte@acquafy.com"
-                className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] min-h-[30px] w-full"
+                className="bg-white border border-[#0233c3] hover:bg-[#0233c3] group transition-colors flex items-center justify-center min-h-[30px] overflow-hidden px-[20px] py-[10px] rounded-[8px] w-full"
               >
-                suporte@acquafy.com
+                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] group-hover:text-white transition-colors text-center w-full">
+                  suporte@acquafy.com
+                </span>
               </a>
             </div>
           </div>
@@ -77,7 +79,7 @@ export default function FaleComEquipeSuporte() {
               <FigmaIcon src={imgWhatsappIcon} size={30} />
             </div>
             <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-px">
-              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] min-h-[30px] w-full">
+              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] flex items-center min-h-[30px] w-full">
                 WhatsApp
               </p>
               <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#333] min-h-[30px] w-full">
@@ -87,9 +89,11 @@ export default function FaleComEquipeSuporte() {
                 href="https://wa.me/14072035669"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] min-h-[30px] w-full"
+                className="bg-white border border-[#0233c3] hover:bg-[#0233c3] group transition-colors flex items-center justify-center min-h-[30px] overflow-hidden px-[20px] py-[10px] rounded-[8px] w-full"
               >
-                +1 (407) 203-5669
+                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] group-hover:text-white transition-colors text-center w-full">
+                  +1 (407) 203-5669
+                </span>
               </a>
             </div>
           </div>
@@ -100,7 +104,7 @@ export default function FaleComEquipeSuporte() {
               <FigmaIcon src={imgTimeIcon} size={30} />
             </div>
             <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-px">
-              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] min-h-[30px] w-full">
+              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] flex items-center min-h-[30px] w-full">
                 Horário de atendimento
               </p>
               <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#333] min-h-[30px] w-full">

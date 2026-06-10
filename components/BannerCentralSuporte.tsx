@@ -198,11 +198,11 @@ export default function BannerCentralSuporte() {
                 <div
                   key={card.title}
                   className="bg-gradient-to-r from-white to-[rgba(255,255,255,0.7)]
-                    flex flex-wrap gap-[20px] items-center justify-center
+                    flex flex-[1_0_0] flex-wrap gap-[20px] items-center justify-center
                     p-[20px] rounded-[16px] shadow-[0px_4px_8px_0px_rgba(0,0,0,0.25)]
-                    w-full shrink-0 min-w-[150px]
-                    md:flex-[1_0_0] md:min-h-[90px] md:min-w-[280px] md:w-auto
-                    xl:flex-[1_0_0] xl:w-full xl:min-w-[160px] xl:min-h-[80px]">
+                    w-full min-w-[150px]
+                    md:min-h-[90px] md:min-w-[280px] md:w-auto
+                    xl:w-full xl:min-w-[160px] xl:min-h-[80px]">
                   <div className="flex flex-col items-center justify-center shrink-0 size-[40px]">
                     <FigmaIcon src={card.icon} size={30} aspectW={card.aspectW} aspectH={card.aspectH} />
                   </div>

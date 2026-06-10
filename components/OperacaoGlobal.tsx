@@ -1,9 +1,9 @@
-const imgCloud  = "/figma-assets/op-cloud.png";
-const imgQR     = "/figma-assets/op-qr.png";
-const imgMoney  = "/figma-assets/op-money.png";
-const imgMobile = "/figma-assets/op-mobile.png";
-const imgMedia  = "/figma-assets/op-media.png";
-const imgPlanet = "/figma-assets/op-planet.png";
+const imgCloud  = "/figma-assets/op-cloud.svg";
+const imgQR     = "/figma-assets/op-qr.svg";
+const imgMoney  = "/figma-assets/op-money.svg";
+const imgMobile = "/figma-assets/op-mobile.svg";
+const imgMedia  = "/figma-assets/op-media.svg";
+const imgPlanet = "/figma-assets/op-planet.svg";
 
 const features = [
   { icon: imgCloud,  title: "Plataforma Cloud",   desc: "Infraestrutura segura, escalável e sempre disponível." },

@@ -5,7 +5,7 @@ const imgBg = "/figma-assets/cta-banner-bg.png";
 export default function CtaBannerParceria() {
   return (
     <section className="bg-white flex items-center justify-center px-[20px] py-[40px] w-full">
-      <div className="border border-[#cbd0d4] flex flex-wrap gap-[20px] items-center justify-center max-w-[1400px] overflow-clip px-[20px] xl:px-[80px] py-[40px] relative rounded-[16px] w-full">
+      <div className="border border-[#cbd0d4] flex flex-col lg:flex-row gap-[20px] items-center justify-center max-w-[1400px] overflow-clip px-[20px] xl:px-[80px] py-[40px] relative rounded-[16px] w-full">
 
         <img
           alt=""
