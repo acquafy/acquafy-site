@@ -278,21 +278,21 @@ export default function Footer() {
           </div>
 
           {/* Founded in USA */}
-          <div className="flex gap-[20px] items-center min-w-[240px] overflow-hidden shrink-0 w-[240px] mob:w-full mob:min-w-0 mob:shrink">
+          <div className="flex gap-[20px] items-center min-w-[240px] overflow-hidden shrink-0 w-[240px] mob:w-full mob:min-w-0 mob:shrink mob:justify-center">
             <div className="flex flex-col items-center justify-center shrink-0 size-[40px]">
               <FigmaIcon src={imgFlagUSA} alt="USA" size={40} />
             </div>
-            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] flex-[1_0_0] min-w-px">
+            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] flex-[1_0_0] min-w-px mob:flex-none">
               Fundada nos EUA em 2020
             </p>
           </div>
 
           {/* Global platform */}
-          <div className="flex gap-[20px] items-center min-w-[240px] overflow-hidden shrink-0 w-[240px] mob:w-full mob:min-w-0 mob:shrink">
+          <div className="flex gap-[20px] items-center min-w-[240px] overflow-hidden shrink-0 w-[240px] mob:w-full mob:min-w-0 mob:shrink mob:justify-center">
             <div className="flex flex-col items-center justify-center shrink-0 size-[40px]">
               <FigmaIcon src={imgGlobeSust} size={40} aspectW={492} aspectH={474.82} />
             </div>
-            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] flex-[1_0_0] min-w-px">
+            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] flex-[1_0_0] min-w-px mob:flex-none">
               Global Smart Water Platform
             </p>
           </div>
