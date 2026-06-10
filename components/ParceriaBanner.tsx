@@ -5,9 +5,6 @@ import { BtnAzulBaseArrow, BtnAzulOutArrow } from "./ui/Buttons";
 // Tela total (1440+ / Padrão Figma, 1500px) — BG image fills the whole section
 const imgBgPadrao = "/figma-assets/ddb7b9ae-5269-49c5-9935-ed285ed394fa.png";
 
-// 1280 (xl / 1280–1439px) — product image on the right column
-const imgFrame36  = "/figma-assets/4fee0b1a-6806-4317-ad49-9e65b5b5fe9d.png";
-
 // 1024 (default / < 1280px) — product image below the content
 const imgFrame1024 = "/figma-assets/405a21e8-227a-4c26-8bcd-c7ad33247447.png";
 
@@ -110,16 +107,6 @@ export default function ParceriaBanner() {
               </div>
             ))}
           </div>
-        </div>
-
-        {/* ══ RIGHT COLUMN — 1280 (xl / 1280–1439px) ══════════ */}
-        {/* Frame36: visível de xl até 1440 (exclusive) */}
-        <div className="hidden xl:flex 1440:hidden flex-[1_0_0] min-w-[280px] h-[795px] rounded-[24px] overflow-hidden shrink-0">
-          <img
-            src={imgFrame36}
-            alt="Produto Acquafy"
-            className="w-full h-full object-cover"
-          />
         </div>
 
         {/* ══ RIGHT PLACEHOLDER — tela total (1440+) ══════════ */}
