@@ -334,7 +334,7 @@ export default function Header() {
     >
 
       {/* ── Top bar ────────────────────────────────────────────────── */}
-      <div className="flex h-[80px] items-center justify-between max-w-[1400px] w-full">
+      <div className="flex h-[80px] items-center justify-between gap-[20px] max-w-[1400px] w-full">
 
         {/* Logo */}
         <a href="/" className="flex flex-col items-start shrink-0">
