@@ -22,37 +22,42 @@ const values: ValueItem[] = [
   {
     icon: imgLamp,
     alt: "Inovação",
-    aspectW: 21, aspectH: 30,
+    aspectW: 29.51, aspectH: 41.50,  // viewBox 29.51×41.50 — portrait
     title: "Inovação",
     description: "Criamos soluções que antecipam o futuro e resolve problemas reais.",
   },
   {
     icon: imgShield,
     alt: "Integridade",
+    aspectW: 33.5, aspectH: 41.71,   // viewBox 33.5×41.71 — portrait
     title: "Integridade",
     description: "Agimos com ética, transparência e responsabilidade.",
   },
   {
     icon: imgPessoas,
     alt: "Foco no cliente",
+    aspectW: 41.5, aspectH: 38.43,   // viewBox 41.5×38.43 — landscape
     title: "Foco no cliente",
     description: "Entendemos necessidades e entregamos experiências excepcionais.",
   },
   {
     icon: imgSustent,
     alt: "Sustentabilidade",
+    // viewBox 41.5×41.5 — square, no aspectW/H needed
     title: "Sustentabilidade",
     description: "Desenvolvemos tecnologias que promovem a água e promovem vida.",
   },
   {
     icon: imgParceria,
     alt: "Parceria",
+    aspectW: 41.5, aspectH: 39.83,   // viewBox 41.5×39.83 — landscape
     title: "Parceria",
     description: "Acreditamos que juntos vamos mais longe e geramos mais impacto.",
   },
   {
     icon: imgGlobeWorld,
     alt: "Expansão global",
+    // viewBox 41.5×41.5 — square, no aspectW/H needed
     title: "Expansão global",
     description: "Levamos soluções inteligentes para o mundo todo.",
   },
@@ -73,10 +78,10 @@ export default function SobreValores() {
             >
               <FigmaIcon src={v.icon} alt={v.alt} size={40} aspectW={v.aspectW} aspectH={v.aspectH} />
               <div className="flex flex-col gap-[20px] items-start text-center w-full">
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[19px] text-[#1f2e91] w-full">
+                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] w-full">
                   {v.title}
                 </p>
-                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-[#333] w-full">
+                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#333] w-full">
                   {v.description}
                 </p>
               </div>

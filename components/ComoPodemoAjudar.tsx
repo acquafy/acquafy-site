@@ -88,7 +88,7 @@ export default function ComoPodemoAjudar() {
 
               {/* Link */}
               <div className="flex gap-[5px] items-center justify-center">
-                <span className="font-['Plus_Jakarta_Sans:Bold'] font-bold text-[14px] text-[#0233c3] text-center whitespace-nowrap">
+                <span className="font-['Articulat_CF:Bold'] text-[14px] text-[#0233c3] text-center whitespace-nowrap">
                   Ver tópicos
                 </span>
                 <FigmaIcon src={imgArrowBlue} size={9} aspectW={11.2} aspectH={8.84} />

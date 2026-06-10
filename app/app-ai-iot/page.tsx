@@ -4,7 +4,8 @@ import HeroAppAiIot from "@/components/HeroAppAiIot";
 import ConectadoAppAiIot from "@/components/ConectadoAppAiIot";
 import FeaturesAppAiIot from "@/components/FeaturesAppAiIot";
 import CompatibilidadeAppAiIot from "@/components/CompatibilidadeAppAiIot";
-import PlanoInteligenteAppAiIot from "@/components/PlanoInteligenteAppAiIot";
+import FluxoInteligenteAppAiIot from "@/components/FluxoInteligenteAppAiIot";
+import RecursosAppAiIot from "@/components/RecursosAppAiIot";
 import BeneficiosAppAiIot from "@/components/BeneficiosAppAiIot";
 import CtaBannerAppAiIot from "@/components/CtaBannerAppAiIot";
 import Footer from "@/components/Footer";
@@ -23,7 +24,8 @@ export default function AppAiIotPage() {
         <ConectadoAppAiIot />
         <FeaturesAppAiIot />
         <CompatibilidadeAppAiIot />
-        <PlanoInteligenteAppAiIot />
+        <FluxoInteligenteAppAiIot />
+        <RecursosAppAiIot />
         <BeneficiosAppAiIot />
         <CtaBannerAppAiIot />
       </main>

@@ -15,7 +15,7 @@ export default function BaseConhecimentoSuporte() {
             <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#0569ff]">
               Base de conhecimento
             </p>
-            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-[#2a2a2b]">
+            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#2a2a2b]">
               Acesse nossa biblioteca completa de artigos, tutoriais e guias para aproveitar ao máximo sua experiência Acquafy.
             </p>
             <button className="bg-white border border-[#0233c3] hover:bg-[#0233c3] group transition-colors flex gap-[10px] items-center justify-center min-h-[30px] overflow-hidden px-[20px] py-[10px] rounded-[8px] shrink-0">
@@ -49,7 +49,7 @@ export default function BaseConhecimentoSuporte() {
             <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#0569ff]">
               Não encontrou o que procura?
             </p>
-            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-[#2a2a2b]">
+            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#2a2a2b]">
               Nossa equipe está pronta para ajudar você com qualquer dúvida ou necessidade específica.
             </p>
             <button className="bg-white border border-[#0233c3] hover:bg-[#0233c3] group transition-colors flex gap-[10px] items-center justify-center min-h-[30px] overflow-hidden px-[20px] py-[10px] rounded-[8px] shrink-0">
@@ -67,11 +67,11 @@ export default function BaseConhecimentoSuporte() {
             </button>
           </div>
           <div className="flex flex-[1_0_0] flex-col items-end justify-center min-w-[160px] overflow-hidden">
-            <div className="relative shrink-0" style={{ aspectRatio: "2956/3158", maxHeight: 200, maxWidth: 187 }}>
+            <div className="relative shrink-0 w-full aspect-[2956/3158] max-h-[200px] max-w-[187px]">
               <img
                 src={imgHeadset}
                 alt="Suporte Acquafy"
-                className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+                className="absolute inset-0 size-full max-w-none object-cover pointer-events-none"
               />
             </div>
           </div>

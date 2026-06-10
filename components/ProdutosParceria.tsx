@@ -1,108 +1,273 @@
-import type { ReactNode } from "react";
+'use client'
+import { useRef } from 'react'
 
-// Linha Essencial (Neo UP → Neo PLUS)
-const imgNeoUp    = "/figma-assets/e23fc740-275e-4c85-84f9-36e147e4c7f6.png";
-const imgNeoFit   = "/figma-assets/44f74064-36a2-4ed8-b19d-c0e125bc3613.png";
-const imgNeoSmart = "/figma-assets/f4783269-9b05-4929-bf94-55ac43a2db0d.png";
-const imgNeoTouch = "/figma-assets/47309acf-e189-4002-8325-6d14513ce62c.png";
-const imgNeoPlus  = "/figma-assets/5a009cbe-c107-4867-a67d-45542361d091.png";
+/* ─────────────────────────────────────────────────────────────────
+   ProdutosParceria
+   Node 3542:11243 — container geral
+   Node 3542:11304 — bloco por linha de produto
+   Node 3542:12322 — lista de produtos (ESSENTIALS / PREMIUM)
+───────────────────────────────────────────────────────────────── */
 
-// Linha Neo Premium
-const imgNeoUltra        = "/figma-assets/a025ff9c-7a77-4fe2-a711-958c47093626.png";
-const imgNeoUltraSpark   = "/figma-assets/e36daeb8-1e75-4c4b-93b8-ca391bf2e8a7.png";
-const imgNeoUltraSparkH2 = "/figma-assets/b42e0357-4339-485b-beb0-42e50b358494.png";
-const imgNeoMax          = "/figma-assets/cc9a0b6d-03ca-4c7c-a920-aa35796f2249.png";
-const imgNeoMaxSpark     = "/figma-assets/d2240635-3424-47d9-a264-6631fb173f63.png";
-const imgNeoMaxSparkH2   = "/figma-assets/74bed368-254c-4522-ba2c-4798b2fb22ab.png";
+/* ── Assets: Linha Essentials (Node 3542:11643) ───────────────── */
+const imgNeoUltraSparkH2 = "/figma-assets/neo-ultra-spark-h2.png";
+const imgNeoMaxSparkH2   = "/figma-assets/neo-max-spark-h2.png";
+const imgNeoUltraSpark   = "/figma-assets/neo-ultra-spark.png";
+const imgNeoMaxSpark     = "/figma-assets/neo-max-spark.png";
+const imgNeoUltra        = "/figma-assets/neo-ultra.png";
+const imgNeoMax          = "/figma-assets/neo-max.png";
+const imgNeoPlus         = "/figma-assets/neo-plus.png";
+const imgNeoTouch        = "/figma-assets/neo-touch.png";
+const imgNeoSmartH2      = "/figma-assets/neo-smart-h2.png";
+const imgNeoFit          = "/figma-assets/neo-fit.png";
+const imgNeoUp           = "/figma-assets/neo-up.png";
 
-// Acquafy Media
-const imgMedia = "/figma-assets/2a11885b-0370-4a5b-8555-d39958426998.png";
+/* ── Assets: Linha Neo Premium (Node 3542:12323) ──────────────── */
+const imgInfinitySparkH2  = "/figma-assets/premium-infinity-spark-h2.png";
+const imgPrestigeSparkH2  = "/figma-assets/premium-prestige-spark-h2.png";
+const imgPrimeSparkH2     = "/figma-assets/premium-prime-spark-h2.png";
+const imgInfinitySpark    = "/figma-assets/premium-infinity-spark.png";
+const imgPrestigeSpark    = "/figma-assets/premium-prestige-spark.png";
+const imgPrimeSpark       = "/figma-assets/premium-prime-spark.png";
+const imgInfinity         = "/figma-assets/premium-infinity.png";
+const imgPrestige         = "/figma-assets/premium-prestige.png";
+const imgPrime            = "/figma-assets/premium-prime.png";
 
-type Product = { img: string; name: ReactNode; imgW: number; imgH: number };
+/* ── Assets: Acquafy Media + cursor ──────────────────────────── */
+const imgMedia   = "/figma-assets/acquafy-media-totem.png";
+const imgBuyCta  = "/figma-assets/buy-cursor-icon.png";
 
-const essencial: Product[] = [
-  { img: imgNeoUp,    name: "Neo UP",                                           imgW: 3275, imgH: 4096 },
-  { img: imgNeoFit,   name: "Neo FIT",                                          imgW: 3275, imgH: 4096 },
-  { img: imgNeoSmart, name: <span>Neo SMART H<sup>2</sup></span>,               imgW: 3275, imgH: 4096 },
-  { img: imgNeoTouch, name: "Neo TOUCH",                                        imgW: 3384, imgH: 4096 },
-  { img: imgNeoPlus,  name: "Neo PLUS",                                         imgW: 3384, imgH: 4096 },
-];
+/* ─────────────────────────────────────────────────────────────────
+   ProductItem — 1 produto da lista horizontal
+   (Node 3542:11163 … 3542:12341)
+   img: 80×80; name: 20px Heavy; subscript: "2" em 12.9px
+───────────────────────────────────────────────────────────────── */
+type ProductItemProps = {
+  src:      string;
+  /** aspect-ratio da imagem, ex: "3275/4096" */
+  aspect:   string;
+  /** false = objeto retrato → h-full; true = objeto paisagem/quadrado → w-full */
+  portrait: boolean;
+  variant:  "essentials" | "premium";
+  name:     string;
+  /** se true, renderiza o último char "2" como subscrito 12.9px */
+  sub2?:    boolean;
+};
 
-const premium: Product[] = [
-  { img: imgNeoUltra,        name: "Neo ULTRA",                                        imgW: 3772, imgH: 4096 },
-  { img: imgNeoUltraSpark,   name: "Neo ULTRA SPARK",                                  imgW: 3772, imgH: 4096 },
-  { img: imgNeoUltraSparkH2, name: <span>Neo ULTRA SPARK H<sup>2</sup></span>,         imgW: 3772, imgH: 4096 },
-  { img: imgNeoMax,          name: "Neo MAX",                                          imgW: 1515, imgH: 4012 },
-  { img: imgNeoMaxSpark,     name: "Neo MAX SPARK",                                    imgW: 1515, imgH: 4012 },
-  { img: imgNeoMaxSparkH2,   name: <span>Neo MAX SPARK H<sup>2</sup></span>,           imgW: 1515, imgH: 4012 },
-];
+function useDragScroll() {
+  const ref       = useRef<HTMLDivElement>(null)
+  const dragging  = useRef(false)
+  const startX    = useRef(0)
+  const scrollLeft = useRef(0)
 
-function ProductItem({ p }: { p: Product }) {
-  const ratio = p.imgW / p.imgH;
+  const onMouseDown = (e: React.MouseEvent) => {
+    dragging.current   = true
+    startX.current     = e.pageX
+    scrollLeft.current = ref.current?.scrollLeft ?? 0
+    e.preventDefault()
+  }
+  const onMouseMove = (e: React.MouseEvent) => {
+    if (!dragging.current || !ref.current) return
+    ref.current.scrollLeft = scrollLeft.current - (e.pageX - startX.current)
+  }
+  const onEnd = () => { dragging.current = false }
+
+  return { ref, onMouseDown, onMouseMove, onMouseUp: onEnd, onMouseLeave: onEnd }
+}
+
+function ProductItem({ src, aspect, portrait, variant, name, sub2 }: ProductItemProps) {
+  /* gradiente de texto para Essentials */
+  const essGrad: React.CSSProperties = {
+    backgroundImage:      "linear-gradient(to right, #0233c3, #0569ff)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor:  "transparent",
+    backgroundClip:       "text",
+  };
+  /* sólido para Premium */
+  const premColor: React.CSSProperties = { color: "#1f2e91" };
+
+  const [w, h] = aspect.split("/").map(Number);
+  const cssRatio = `${w} / ${h}`;
+
   return (
-    <div className="flex flex-col gap-[20px] items-center justify-center shrink-0">
-      <div className="relative shrink-0" style={{ width: 80, height: 80 }}>
-        <div className="relative w-full h-full">
-          <img
-            src={p.img}
-            alt=""
-            className="absolute inset-0 w-full h-full object-contain"
-            style={{ aspectRatio: `${p.imgW}/${p.imgH}` }}
-          />
-        </div>
+    <div className="flex flex-col gap-[20px] items-center justify-center relative rounded-[12px] shrink-0">
+      {/* imagem 80×80 */}
+      <div className="flex items-center justify-center relative shrink-0 size-[80px]">
+        {portrait ? (
+          /* retrato: h-full → largura vem do aspect-ratio */
+          <div className="relative h-full" style={{ aspectRatio: cssRatio }}>
+            <img src={src} alt={name} className="absolute inset-0 w-full h-full object-contain pointer-events-none" />
+          </div>
+        ) : (
+          /* paisagem/quadrado: w-full → altura vem do aspect-ratio */
+          <div className="relative w-full shrink-0" style={{ aspectRatio: cssRatio }}>
+            <img src={src} alt={name} className="absolute inset-0 w-full h-full object-contain pointer-events-none" />
+          </div>
+        )}
       </div>
-      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[19px] text-center bg-clip-text text-transparent max-w-[120px]"
-         style={{ backgroundImage: "linear-gradient(to right, #0233c3, #0569ff)" }}>
-        {p.name}
+
+      {/* nome do produto */}
+      <p
+        className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-center max-w-[140px] min-h-[44px] shrink-0 w-full"
+        style={variant === "essentials" ? essGrad : premColor}
+      >
+        {sub2
+          ? <>{name.slice(0, -1)}<span style={{ fontSize: "12.9px" }}>2</span></>
+          : name}
       </p>
     </div>
   );
 }
 
+/* ─────────────────────────────────────────────────────────────────
+   Listas de produtos — ESSENTIALS e PREMIUM
+   (Node 3542:12322 — prop ESSENTIALS / PREMIUM)
+───────────────────────────────────────────────────────────────── */
+function EssentialsProductRow() {
+  return (
+    <div className="flex gap-[40px] items-start py-[10px] pr-[20px] shrink-0">
+      {/* ordem: do mais completo ao mais simples, da esquerda para direita */}
+      <ProductItem src={imgNeoUltraSparkH2} aspect="3772/4096" portrait name="Neo ULTRA SPARK H2" variant="essentials" sub2 />
+      <ProductItem src={imgNeoMaxSparkH2}   aspect="1515/4012" portrait name="Neo MAX SPARK H2"   variant="essentials" sub2 />
+      <ProductItem src={imgNeoUltraSpark}   aspect="3772/4096" portrait name="Neo ULTRA SPARK"    variant="essentials" />
+      <ProductItem src={imgNeoMaxSpark}     aspect="1515/4012" portrait name="Neo MAX SPARK"       variant="essentials" />
+      <ProductItem src={imgNeoUltra}        aspect="3772/4096" portrait name="Neo ULTRA"           variant="essentials" />
+      <ProductItem src={imgNeoMax}          aspect="1515/4012" portrait name="Neo MAX"             variant="essentials" />
+      <ProductItem src={imgNeoPlus}         aspect="3384/4096" portrait name="Neo PLUS"            variant="essentials" />
+      <ProductItem src={imgNeoTouch}        aspect="3384/4096" portrait name="Neo TOUCH"           variant="essentials" />
+      <ProductItem src={imgNeoSmartH2}      aspect="3275/4096" portrait name="Neo SMART H2"        variant="essentials" sub2 />
+      <ProductItem src={imgNeoFit}          aspect="3275/4096" portrait name="Neo FIT"             variant="essentials" />
+      <ProductItem src={imgNeoUp}           aspect="3275/4096" portrait name="Neo UP"              variant="essentials" />
+    </div>
+  );
+}
+
+function PremiumProductRow() {
+  return (
+    <div className="flex gap-[40px] items-start py-[10px] pr-[20px] shrink-0">
+      <ProductItem src={imgInfinitySparkH2} aspect="837/1526"         portrait name="Neo INFINITY SPARK H2"  variant="premium" sub2 />
+      <ProductItem src={imgPrestigeSparkH2} aspect="113.75/99.76" portrait={false} name="Neo PRESTIGE SPARK H2" variant="premium" sub2 />
+      <ProductItem src={imgPrimeSparkH2}    aspect="3288/3245"    portrait={false} name="Neo PRIME SPARK H2"    variant="premium" sub2 />
+      <ProductItem src={imgInfinitySpark}   aspect="837/1526"         portrait name="Neo INFINITY SPARK"    variant="premium" />
+      <ProductItem src={imgPrestigeSpark}   aspect="113.75/99.76" portrait={false} name="Neo PRESTIGE SPARK"   variant="premium" />
+      <ProductItem src={imgPrimeSpark}      aspect="3288/3245"    portrait={false} name="Neo PRIME SPARK"       variant="premium" />
+      <ProductItem src={imgInfinity}        aspect="837/1526"         portrait name="Neo INFINITY"           variant="premium" />
+      <ProductItem src={imgPrestige}        aspect="113.75/99.76" portrait={false} name="Neo PRESTIGE"          variant="premium" />
+      <ProductItem src={imgPrime}           aspect="3288/3245"    portrait={false} name="Neo PRIME"              variant="premium" />
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   ProductLineCard — bloco de 1 linha de produto
+   (Node 3542:11304 e variante Premium 3542:11305)
+
+   Essentials: h-[315px] justify-between  (header + scroll)
+   Premium:    gap-[20px]                 (itens fluem)
+───────────────────────────────────────────────────────────────── */
+function ProductLineCard({ variant }: { variant: "essentials" | "premium" }) {
+  const drag = useDragScroll()
+  const isEssentials = variant === "essentials";
+
+  const titleStyle: React.CSSProperties = isEssentials
+    ? {
+        backgroundImage:      "linear-gradient(to right, #0041ff, #3f8cff)",
+        WebkitBackgroundClip: "text",
+        WebkitTextFillColor:  "transparent",
+        backgroundClip:       "text",
+      }
+    : {
+        backgroundImage:      "linear-gradient(120.45deg, #0233c3 6.19%, #9f3df5 93.35%)",
+        WebkitBackgroundClip: "text",
+        WebkitTextFillColor:  "transparent",
+        backgroundClip:       "text",
+      };
+
+  return (
+    <div
+      className={[
+        "bg-white flex flex-col items-start min-w-[280px] overflow-clip p-[20px] relative rounded-[16px] shrink-0 w-full",
+        isEssentials ? "h-[315px] justify-between" : "gap-[20px]",
+      ].join(" ")}
+    >
+      {/* header: título + descrição — centralizados */}
+      <div className="flex flex-col gap-[10px] items-center text-center w-full shrink-0">
+        <p
+          className="font-['Avenir_LT_Pro:85_Heavy'] not-italic text-[26px] leading-[28px] min-h-[36px] whitespace-nowrap shrink-0 w-full"
+          style={titleStyle}
+        >
+          {isEssentials ? "Linha Essentials" : "Linha Neo Premium"}
+        </p>
+        <p className="font-['Avenir_LT_Pro:55_Roman'] not-italic text-[18px] leading-[19px] text-[#333] w-full shrink-0">
+          {isEssentials
+            ? "Silver pode indicar e vender toda a linha Neo"
+            : "Silver e Gold vendem. Platinum distribui."}
+        </p>
+      </div>
+
+      {/* scroll horizontal de produtos */}
+      <div
+        ref={drag.ref}
+        className="w-full overflow-x-auto overflow-y-clip py-[10px] shrink-0 [&::-webkit-scrollbar]:hidden [scrollbar-width:none] cursor-grab active:cursor-grabbing select-none"
+        onMouseDown={drag.onMouseDown}
+        onMouseMove={drag.onMouseMove}
+        onMouseUp={drag.onMouseUp}
+        onMouseLeave={drag.onMouseLeave}
+      >
+        {isEssentials ? <EssentialsProductRow /> : <PremiumProductRow />}
+      </div>
+
+      {/* ícone de compra — absoluto, mix-blend-multiply */}
+      <div className="absolute mix-blend-multiply right-[9px] top-[20px] size-[50px] pointer-events-none">
+        <img src={imgBuyCta} alt="" className="absolute inset-0 w-full h-full object-cover" />
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   ProdutosParceria — seção principal
+   (Node 3542:11243)
+───────────────────────────────────────────────────────────────── */
 export default function ProdutosParceria() {
   return (
-    <section className="bg-white flex flex-col gap-[40px] items-center justify-center px-[20px] py-[40px] w-full">
+    <section className="bg-[#f2f6fd] flex items-center justify-center px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
 
-        {/* Header */}
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#1f2e91] text-center min-w-[240px] w-full">
+        {/* título da seção */}
+        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] not-italic text-[26px] leading-[28px] text-[#1f2e91] text-center min-w-[240px] w-full">
           {"Produtos para cada "}
           <span className="text-[#0569ff]">modelo de parceria</span>
         </h2>
 
-        <div className="flex flex-col gap-[40px] w-full">
-          {/* Linha Essencial */}
-          <div className="bg-[#f6f9fe] flex flex-col gap-[20px] items-start p-[20px] rounded-[16px] w-full">
-            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#1f2e91]">
-              Linha Essencial
-            </p>
-            <div className="flex flex-wrap gap-[20px] items-start justify-start w-full overflow-x-auto">
-              {essencial.map((p, i) => <ProductItem key={i} p={p} />)}
-            </div>
+        {/* ── cards ── */}
+        <div className="flex flex-wrap gap-[20px] items-start justify-center w-full">
+
+          {/* coluna esquerda: 2 cards empilhados */}
+          <div className="flex flex-[1_0_0] flex-col gap-[20px] items-center min-w-[280px]">
+            <ProductLineCard variant="essentials" />
+            <ProductLineCard variant="premium" />
           </div>
 
-          {/* Linha Neo Premium + Acquafy Media */}
-          <div className="flex flex-wrap gap-[20px] items-start w-full">
-            {/* Linha Neo Premium */}
-            <div className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-[300px] p-[20px] rounded-[16px]">
-              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#1f2e91]">
-                Linha Neo Premium
-              </p>
-              <div className="flex flex-wrap gap-[20px] items-start justify-start w-full overflow-x-auto">
-                {premium.map((p, i) => <ProductItem key={i} p={p} />)}
-              </div>
-            </div>
+          {/* card direito: Acquafy Media */}
+          <div className="bg-white flex flex-[1_0_0] flex-col gap-[40px] h-[630px] items-center max-w-[310px] min-h-[566px] min-w-[240px] overflow-clip p-[20px] relative rounded-[16px]">
 
-            {/* Acquafy Media */}
-            <div className="bg-[#f6f9fe] flex flex-col gap-[20px] items-start min-w-[240px] p-[20px] rounded-[16px]">
-              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#1f2e91]">
+            {/* header alinhado à esquerda */}
+            <div className="flex flex-col gap-[10px] items-start w-full shrink-0">
+              <p className="font-['Avenir_LT_Pro:85_Heavy'] not-italic text-[26px] leading-[28px] text-[#0569ff] min-h-[36px] w-full">
                 Acquafy Media
               </p>
-              <div className="relative w-full max-w-[260px]" style={{ aspectRatio: "3/4" }}>
+              <p className="font-['Avenir_LT_Pro:55_Roman'] not-italic text-[18px] leading-[19px] text-[#333] w-full">
+                Gold opera e monetiza. Ideal para mídia e hidratação.
+              </p>
+            </div>
+
+            {/* imagem do totem — ocupa o restante da altura */}
+            <div className="flex flex-[1_0_0] flex-col items-center justify-center min-h-0 w-full">
+              <div className="relative h-full" style={{ aspectRatio: "1441 / 4096" }}>
                 <img
                   src={imgMedia}
                   alt="Acquafy Media"
-                  className="absolute inset-0 w-full h-full object-contain"
+                  className="absolute inset-0 w-full h-full object-contain pointer-events-none"
                 />
               </div>
             </div>

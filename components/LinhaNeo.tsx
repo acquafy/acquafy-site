@@ -42,7 +42,7 @@ type Product = {
 const row1: Product[] = [
   { img: imgNeoUp,    imgW: 3275, imgH: 4096, name: "Neo UP",                                       sub: "Apenas Natural" },
   { img: imgNeoFit,   imgW: 3275, imgH: 4096, name: "Neo FIT",                                      sub: "5 em 1", tank: "Tanque de 400 ml" },
-  { img: imgNeoSmart, imgW: 3275, imgH: 4096, name: <span>Neo SMART H<sup>2</sup></span>,            sub: "5 em 1" },
+  { img: imgNeoSmart, imgW: 3275, imgH: 4096, name: <span>Neo SMART H<sub>2</sub></span>,            sub: "5 em 1" },
   { img: imgNeoTouch, imgW: 3384, imgH: 4096, name: "Neo TOUCH",                                    sub: "5 em 1", tank: "Tanque de 800 ml" },
   { img: imgNeoPlus,  imgW: 3384, imgH: 4096, name: "Neo PLUS",                                     sub: "5 em 1", tank: "Tanque de 1500 ml" },
 ];
@@ -50,15 +50,15 @@ const row1: Product[] = [
 const row2: Product[] = [
   { img: imgNeoUltra,        imgW: 3772, imgH: 4096, name: "Neo ULTRA",                              sub: "5 em 1", tank: "Tanque de 3L" },
   { img: imgNeoUltraSpark,   imgW: 3772, imgH: 4096, name: "Neo ULTRA SPARK",                        sub: "6 em 1", tank: "Tanque de 3L" },
-  { img: imgNeoUltraSparkH2, imgW: 3772, imgH: 4096, name: <span>Neo ULTRA SPARK H<sup>2</sup></span>, sub: "7 em 1", tank: "Tanque de 3L" },
+  { img: imgNeoUltraSparkH2, imgW: 3772, imgH: 4096, name: <span>Neo ULTRA SPARK H<sub>2</sub></span>, sub: "7 em 1", tank: "Tanque de 3L" },
   { img: imgNeoMax,          imgW: 1515, imgH: 4012, name: "Neo MAX",                                sub: "5 em 1", tank: "Tanque de 3L" },
   { img: imgNeoMaxSpark,     imgW: 1515, imgH: 4012, name: "Neo MAX SPARK",                          sub: "6 em 1", tank: "Tanque de 3L" },
-  { img: imgNeoMaxSparkH2,   imgW: 1515, imgH: 4012, name: <span>Neo MAX SPARK H<sup>2</sup></span>, sub: "7 em 1", tank: "Tanque de 3L" },
+  { img: imgNeoMaxSparkH2,   imgW: 1515, imgH: 4012, name: <span>Neo MAX SPARK H<sub>2</sub></span>, sub: "7 em 1", tank: "Tanque de 3L" },
 ];
 
 function ProductCard({ product }: { product: Product }) {
   return (
-    <div className="bg-white flex flex-[1_0_0] flex-col gap-[10px] items-center min-h-[335px] min-w-[150px] overflow-hidden p-[20px] rounded-[12px]">
+    <div className="bg-white flex flex-[1_0_0] flex-col gap-[10px] items-center min-h-[335px] min-w-[180px] overflow-hidden p-[20px] rounded-[12px]">
 
       {/* Bloco de imagem: w-full h-[220px] fixo — object-contain preserva ratio dentro do bloco */}
       <div className="w-full h-[220px] shrink-0">

@@ -1,4 +1,4 @@
-﻿import FigmaIcon from "./FigmaIcon";
+import FigmaIcon from "./FigmaIcon";
 
 const imgBg       = "/figma-assets/7ded5ace-e878-4b20-8869-4299cf70ff0d.png";
 const imgArrow    = "/figma-assets/03b65413-2c5b-4058-93a1-d3a60c7614c0.svg";
@@ -87,7 +87,7 @@ export default function PlatformHero() {
                 <div className="flex items-center justify-center p-[12px] rounded-[12px] shrink-0 size-[60px]" style={{ backgroundColor: f.bg }}>
                   <FigmaIcon src={f.icon} size={30} aspectW={f.iconW} aspectH={f.iconH} />
                 </div>
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[19px] text-[#1f2e91] text-center w-full">{f.title}</p>
+                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] text-center w-full">{f.title}</p>
                 <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#2a2a2b] text-center w-full">{f.desc}</p>
               </div>
             ))}

@@ -87,6 +87,34 @@ body {
   color: var(--texto);
 }
 
+/* ─── Corte Vertical — Figma "Vertical Trim" ──────────────────────── */
+/* text-box-trim: trim-both + text-box-edge: text                     */
+/* Remove o half-leading acima do ascent e abaixo do descent,         */
+/* replicando o comportamento de "Corte Vertical" do Figma.           */
+/*                                                                     */
+/* Por que "text" e não "cap alphabetic" ou "cap text":               */
+/*                                                                     */
+/*   "cap alphabetic" → topo=cap-height, base=baseline               */
+/*     descenders (g,p,q,y) ficam fora do box → cortados              */
+/*                                                                     */
+/*   "cap text" → topo=cap-height, base=descent                      */
+/*     descenders ok, mas ACENTOS (á,ã,é,ê,í,ó,ô,ú) acima do        */
+/*     cap-height ficam fora do box → em textos gradient ficam        */
+/*     invisíveis (text-fill:transparent sem background atrás)        */
+/*                                                                     */
+/*   "text" (= "text text") → topo=ascent, base=descent              */
+/*     Cobre ascent completo (inclui zona de acentos) + descent.      */
+/*     Todo o ink da fonte fica dentro do box.                        */
+/*     background-clip:text funciona corretamente em 18 arquivos      */
+/*     que usam gradient text (site em português = muitos acentos).   */
+/*     Corresponde ao comportamento real do Figma "Corte Vertical":   */
+/*     remove apenas o half-leading, não corta os glifos.             */
+p, h1, h2, h3, h4, h5, h6, span, a, li, label, button {
+  text-box-trim: trim-both;
+  text-box-edge: text;
+  overflow: visible;
+}
+
 /* ─── Utilitários globais ──────────────────────────────────────────── */
 .container-site {
   max-width: 1400px;

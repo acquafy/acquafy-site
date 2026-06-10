@@ -57,7 +57,7 @@ export default function DiferenciaisSuporte() {
               <FigmaIcon src={item.icon} size={40} aspectW={item.aspectW} aspectH={item.aspectH} />
             </div>
             <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-px text-white">
-              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[19px] w-full">
+              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] w-full">
                 {item.title}
               </p>
               <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] w-full">

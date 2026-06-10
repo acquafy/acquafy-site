@@ -1,8 +1,10 @@
-﻿import FigmaIcon from "./FigmaIcon";
+import FigmaIcon from "./FigmaIcon";
 import { BtnVerdeOutArrow } from "./ui/Buttons";
 
 // ── Assets ───────────────────────────────────────────────────────────────────
 const imgBg          = "/figma-assets/ts-sustent-bg.png";         // section bg
+const imgCtaBg       = "/figma-assets/ts-cta-bg.png";             // CTA overlay
+const imgCtaIcon     = "/figma-assets/ts-icon-experiencia.svg";   // CTA icon 438×492
 const imgPlastico    = "/figma-assets/ts-icon-plastico.svg";       // plastic bottle  405×643
 const imgEnergia     = "/figma-assets/ts-icon-energia.svg";        // energia         ~492×492
 const imgReciclavel  = "/figma-assets/ts-icon-reciclavel.svg";     // reciclável       30×30
@@ -107,6 +109,36 @@ export default function TecnologiaSustentSection() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* ── CTA Banner — dentro da mesma seção, sobre o fundo nature ── */}
+        <div className="content-center flex flex-wrap gap-[20px] items-center justify-center max-w-[1400px] overflow-hidden p-[40px] relative rounded-[16px] shrink-0 w-full">
+          {/* Fundo: verde-escuro + foto com opacidade */}
+          <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[16px]">
+            <div className="absolute bg-[#0b8650] inset-0 rounded-[16px]" />
+            <img
+              alt=""
+              className="absolute max-w-none object-cover opacity-40 rounded-[16px] size-full"
+              src={imgCtaBg}
+            />
+          </div>
+
+          {/* Ícone */}
+          <FigmaIcon src={imgCtaIcon} size={60} aspectW={438} aspectH={492} />
+
+          {/* Título */}
+          <div className="relative flex flex-[1_0_0] flex-col items-center justify-center min-w-[240px]">
+            <p className="font-['Avenir_LT_Pro:95_Black'] text-[32px] leading-[39px] text-white w-full text-center lg:text-left">
+              Inovação que cuida de pessoas e do planeta ao mesmo tempo.
+            </p>
+          </div>
+
+          {/* Botão */}
+          <div className="relative flex flex-[1_0_0] items-center justify-center max-w-[300px] min-w-[200px]">
+            <BtnVerdeOutArrow className="w-full min-h-[56px]">
+              Faça parte dessa transformação
+            </BtnVerdeOutArrow>
+          </div>
         </div>
       </div>
     </section>

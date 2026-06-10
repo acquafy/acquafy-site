@@ -1,4 +1,4 @@
-﻿import FigmaIcon from "./FigmaIcon";
+import FigmaIcon from "./FigmaIcon";
 
 const imgBg       = "/figma-assets/88a0a16f-0526-4160-9c44-0fb0d69d3f7a.png";
 
@@ -93,7 +93,7 @@ export default function BannerLinhaNeo() {
               <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#1f2e91] w-full">
                 {s.title}
               </p>
-              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-[#2a2a2b] w-full">
+              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#2a2a2b] w-full">
                 {s.desc}
               </p>
             </div>

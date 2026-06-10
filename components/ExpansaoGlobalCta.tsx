@@ -1,4 +1,4 @@
-﻿import { BtnAzulOutArrow, BtnAzulBaseArrow } from "./ui/Buttons";
+import { BtnAzulOutArrow, BtnAzulBaseArrow } from "./ui/Buttons";
 
 const imgBg = "/figma-assets/6e4c7a5e-74be-4ed7-ab5a-e6572a21db21.png";
 
@@ -18,7 +18,7 @@ export default function ExpansaoGlobalCta() {
           <h2 className="font-['Avenir_LT_Pro:95_Black'] text-[32px] leading-[39px] text-white w-full text-center lg:text-left">
             Faça parte da rede global Acquafy
           </h2>
-          <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[19px] text-white w-full mt-[4px] text-center lg:text-left">
+          <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-white w-full mt-[4px] text-center lg:text-left">
             Juntos podemos transformar milhões de vidas, gerar oportunidades e construir um futuro mais saudável e sustentável.
           </p>
         </div>

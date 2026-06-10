@@ -11,7 +11,7 @@ function StatItem({
   icon, iconAlt, title, description,
 }: { icon: string; iconAlt: string; title: string; description: string }) {
   return (
-    <div className="flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-w-px px-[20px] relative">
+    <div className="flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-w-[150px] px-[20px]">
       <FigmaIcon src={icon} alt={iconAlt} size={40} />
       <div className="flex flex-col gap-[15px] items-start text-center w-full">
         <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] w-full min-h-[36px]">
@@ -62,26 +62,36 @@ export default function SobreQuemSomos() {
           </h2>
 
           {/* Logo + description */}
-          <div className="flex gap-[20px] items-center w-full">
-            <div className="flex flex-col items-center justify-center p-[15px] shrink-0">
-              <div className="flex flex-col h-[82px] items-center justify-center max-w-[300px] overflow-hidden relative shrink-0 w-[300px]">
+          <div className="flex flex-wrap gap-[20px] items-center w-full">
+
+            {/* Logo column */}
+            <div className="flex flex-[1_0_0] flex-col items-center justify-center max-w-[330px] min-w-[240px] p-[15px]">
+              <div
+                className="max-h-[82.47px] max-w-[300px] overflow-hidden relative w-full"
+                style={{ aspectRatio: "922.6675 / 253.6643" }}
+              >
                 <img
                   alt="Interfy Group"
-                  className="w-full h-full object-contain"
+                  className="absolute inset-0 w-full h-full"
                   src={imgInterfyGroupLogo}
                 />
               </div>
             </div>
-            <div className="w-px self-stretch bg-[#cbd0d4] shrink-0" />
-            <p className="font-['Avenir_LT_Pro:55_Roman'] flex-[1_0_0] text-[18px] leading-[19px] text-[#333] min-w-px">
-              A Acquafy faz parte do{" "}
-              <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[#0569ff]">Interfy Group</span>
-              , um grupo global de tecnologia com mais de 20 anos de história e experiência em
-              inovação, transformação digital e soluções inteligentes.
-            </p>
+
+            {/* Description column — border-l serves as divider */}
+            <div className="border-l border-solid border-[#cbd0d4] flex flex-[1_0_0] flex-col items-center justify-center min-w-[280px] p-[15px]">
+              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] w-full">
+                A Acquafy faz parte do{" "}
+                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[#0569ff]">Interfy Group</span>
+                ,<br />
+                um grupo global de tecnologia com mais de 20 anos de história e experiência em
+                inovação, transformação digital e soluções inteligentes.
+              </p>
+            </div>
+
           </div>
 
-          {/* Stats */}
+          {/* Stats — sem divisores */}
           <div className="flex flex-wrap gap-[10px] items-center w-full">
             <StatItem
               icon={imgRatingIcon}
@@ -89,21 +99,18 @@ export default function SobreQuemSomos() {
               title="+20 anos"
               description="de história e experiência global."
             />
-            <div className="w-px self-stretch bg-[#cbd0d4] shrink-0" />
             <StatItem
               icon={imgGlobeIcon}
               iconAlt="Presença global"
               title="Presença global"
               description="operações e parceiros em vários continentes."
             />
-            <div className="w-px self-stretch bg-[#cbd0d4] shrink-0" />
             <StatItem
               icon={imgEcosystemIcon}
               iconAlt="Ecossistemas digitais"
               title="Ecossistemas digitais"
               description="plataformas e marcas complementares"
             />
-            <div className="w-px self-stretch bg-[#cbd0d4] shrink-0" />
             <StatItem
               icon={imgScaleIcon}
               iconAlt="Inovação contínua"

@@ -1,4 +1,4 @@
-﻿import { BtnFalaAcquafy, BtnDistribuidor } from "./ui/Buttons";
+import { BtnFalaAcquafy, BtnDistribuidor } from "./ui/Buttons";
 
 const imgBg = "/figma-assets/2a2b01fb-7792-406f-b758-08114ebe75c3.png";
 
@@ -16,7 +16,7 @@ export default function CtaBannerNeo() {
           <h2 className="font-['Avenir_LT_Pro:95_Black'] text-[32px] leading-[39px] text-white w-full text-center lg:text-left">
             Escolha a Neo ideal para sua rotina
           </h2>
-          <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[19px] text-white w-full text-center lg:text-left">
+          <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-white w-full text-center lg:text-left">
             Conheça toda a linha e encontre o purificador perfeito para você.
           </p>
         </div>

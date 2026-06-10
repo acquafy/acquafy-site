@@ -1,4 +1,4 @@
-﻿import FigmaIcon from "./FigmaIcon";
+import FigmaIcon from "./FigmaIcon";
 import { BtnAzulOutArrow, BtnSaibaMais } from "./ui/Buttons";
 
 // Category icons
@@ -134,10 +134,10 @@ function ProductCard({ product }: { product: Product }) {
       {/* Info */}
       <div className="flex flex-1 flex-col h-full items-start justify-between min-w-0 pr-[10px] py-[10px]">
         <div className="flex flex-col gap-[10px] items-start w-full">
-          <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[19px] text-[#1f2e91] min-h-[40px] w-full">
+          <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] min-h-[40px] w-full">
             {product.title}
           </p>
-          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-[#333] w-full">
+          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#333] w-full">
             {product.desc}
           </p>
         </div>
@@ -173,7 +173,7 @@ export default function ColecaoAcessorios() {
                 <div className="flex flex-col items-center justify-center p-[15px] rounded-full shrink-0 size-[60px]" style={{ backgroundColor: cat.iconBg }}>
                   <FigmaIcon src={cat.icon} size={30} aspectW={cat.iconW} aspectH={cat.iconH} />
                 </div>
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[19px] text-[#1f2e91] text-center min-h-[50px] flex items-center w-full justify-center">
+                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] text-center min-h-[50px] flex items-center w-full justify-center">
                   {cat.label}
                 </p>
               </div>

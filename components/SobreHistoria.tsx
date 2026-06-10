@@ -9,7 +9,12 @@ const imgGlobe     = "/figma-assets/57457041-3be7-4286-904b-a50ba0c11b60.svg"; /
 const imgArrow     = "/figma-assets/506c5c8d-0262-45a7-b763-b436a0de2a2b.svg"; // connector arrow (not last)
 const imgArrowEnd  = "/figma-assets/edb31128-b8d1-4b8b-9128-ac0167bd0bfd.svg"; // last item arrow
 
-const timeline = [
+type TimelineItem = {
+  icon: string; year: string; phase: string; description: string;
+  isLast: boolean; aspectW?: number; aspectH?: number;
+};
+
+const timeline: TimelineItem[] = [
   {
     icon: imgWater,
     year: "2020",
@@ -41,6 +46,7 @@ const timeline = [
     description:
       "Expansão da plataforma com App + IA + IoT conectando dispositivos e pessoas.",
     isLast: false,
+    aspectW: 31.5, aspectH: 21.5,  // viewBox 31.5×21.5 — landscape
   },
   {
     icon: imgGlobe,
@@ -69,13 +75,13 @@ export default function SobreHistoria() {
               <div className="flex gap-[10px] items-center justify-center relative w-full">
                 <div className="bg-[#0569ff] flex flex-col items-center justify-center p-[10px] rounded-full shrink-0 size-[50px]">
                   {/* 50px circle – p-10 → 30px content area */}
-                  <FigmaIcon src={item.icon} alt={item.phase} size={30} />
+                  <FigmaIcon src={item.icon} alt={item.phase} size={30} aspectW={item.aspectW} aspectH={item.aspectH} />
                 </div>
                 {/* Connector arrow line */}
-                <div className="flex-[1_0_0] h-[2px] min-w-px relative">
+                <div className="flex-[1_0_0] h-[9px] min-w-px relative">
                   <img
                     alt=""
-                    className="absolute inset-0 w-full h-full object-contain"
+                    className="absolute inset-0 w-full h-full"
                     src={item.isLast ? imgArrowEnd : imgArrow}
                   />
                 </div>

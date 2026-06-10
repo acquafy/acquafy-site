@@ -106,7 +106,7 @@ export default function NeoMediaPlatform() {
               <div className="flex-1 flex items-center justify-center w-full">
                 <CardVisual visual={c.visual} />
               </div>
-              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-[#333] text-center w-full">
+              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#333] text-center w-full">
                 {c.desc}
               </p>
             </div>

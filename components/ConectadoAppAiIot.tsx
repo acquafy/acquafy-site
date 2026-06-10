@@ -1,86 +1,79 @@
-﻿import FigmaIcon from "./FigmaIcon";
-
-// ── Ícones dos items (SVGs, um por item) ──────────────────────────────────────
-const imgMobile   = "/figma-assets/c949cdb8-5a17-4158-b6b0-8aaef884917e.svg";  // 18×30 phone
-const imgBrain1   = "/figma-assets/bddc62fa-abf4-4da1-951e-6be44a675d5e.svg";  // 30×30 brain/AI
-const imgIoT      = "/figma-assets/4e54c88a-0878-4a32-b7ee-b9be83ec4c9d.svg";  // 30×30 IoT/Vector
-const imgGlobe    = "/figma-assets/ef840927-3754-4969-a8f2-8bb31f294c88.svg";  // 30×30 globe (Operação Global)
-
-// ── Seta entre items ──────────────────────────────────────────────────────────
-const imgArrow    = "/figma-assets/dae2ad63-1987-4c1d-aae0-a8e777ead052.svg";  // 20×14 landscape arrow
+import FigmaIcon from "./FigmaIcon";
 
 const items = [
   {
-    icon: imgMobile,
-    aspectW: 18,
-    aspectH: 30,
-    bg: "#0233c3",
-    title: "App Acquafy",
-    desc: "Controle remoto, status do equipamento e suporte na palma da mão.",
+    icon: "/figma-assets/b4436e72-2a16-43ae-b1ca-e743d4b415b5.svg",
+    aspectW: 30, aspectH: 30, bg: "#0569ff",
+    title: "Monitoramento em tempo real",
+    desc: "Acompanhe seus dispositivos 24/7 de qualquer lugar.",
   },
   {
-    icon: imgBrain1,
-    aspectW: 30,
-    aspectH: 30,
-    bg: "#7a16d2",
-    title: "Acquafy AI",
-    desc: "Inteligência artificial para insights, automações e decisões mais rápidas.",
+    icon: "/figma-assets/cda0fdfe-d6fe-4e76-a317-8d9c7f2efa51.svg",
+    aspectW: 23, aspectH: 30, bg: "#6e54ef",
+    title: "Alertas inteligentes",
+    desc: "Notificações automáticas para agir antes de qualquer problema.",
   },
   {
-    icon: imgIoT,
-    aspectW: 30,
-    aspectH: 30,
-    bg: "#36ae5c",
-    title: "IoT & Dispositivos",
-    desc: "Sensores, conectividade e monitoramento em tempo real.",
+    icon: "/figma-assets/2bea5dfa-f637-42ae-a0a1-9c37ae63ac66.svg",
+    aspectW: 30, aspectH: 30, bg: "#36ae5c",
+    title: "Qualidade da água",
+    desc: "Dados precisos para garantir água pura e confiável.",
   },
   {
-    icon: imgGlobe,
-    aspectW: 30,
-    aspectH: 30,
-    bg: "#0569ff",
-    title: "Operação Integrada",
-    desc: "Plataforma unificada para gestão global de dispositivos e operações.",
+    icon: "/figma-assets/515915ba-bee4-479a-9d4b-3e347e3d019e.svg",
+    aspectW: 30, aspectH: 30, bg: "#ffa920",
+    title: "Status dos filtros",
+    desc: "Verifique vida útil, trocas e desempenho dos filtros.",
+  },
+  {
+    icon: "/figma-assets/2a2def0a-3c93-44cd-b762-a1d5c6043c64.svg",
+    aspectW: 21, aspectH: 30, bg: "#6e54ef",
+    title: "Controle remoto",
+    desc: "Gerencie funções e operações direto do seu App.",
+  },
+  {
+    icon: "/figma-assets/95fe6e51-57a0-459d-806d-7b0c277259f5.svg",
+    aspectW: 30, aspectH: 30, bg: "#0569ff",
+    title: "Atualizações e suporte",
+    desc: "Software sempre atualizado e suporte especializado.",
   },
 ];
 
 export default function ConectadoAppAiIot() {
   return (
-    <section className="bg-white flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
+    <section className="bg-[#f6f9fe] flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center justify-center max-w-[1400px] w-full">
 
         {/* Título */}
-        <h2 className="font-['Avenir_LT_Pro:95_Black'] text-[32px] leading-[39px] text-[#333] text-center w-full">
-          Tudo conectado em uma única experiência
+        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-center w-full">
+          <span className="text-[#1f2e91]">Tudo conectado em uma </span>
+          <span className="text-[#0569ff]">única experiência</span>
         </h2>
 
-        {/* Items com seta entre eles */}
-        <div className="flex flex-wrap gap-[10px] items-start justify-center w-full">
-          {items.map((item, i) => (
-            <div key={item.title} className="flex flex-wrap items-center gap-[10px]">
+        {/* 6 cards */}
+        <div className="flex flex-wrap gap-[20px] items-start justify-center w-full">
+          {items.map((item) => (
+            <div
+              key={item.title}
+              className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-w-[200px] p-[20px] rounded-[16px]"
+            >
+              {/* Ícone — círculo colorido */}
+              <div
+                className="flex items-center justify-center size-[60px] rounded-full shrink-0"
+                style={{ backgroundColor: item.bg }}
+              >
+                <FigmaIcon src={item.icon} size={30} aspectW={item.aspectW} aspectH={item.aspectH} />
+              </div>
 
-              {/* Card */}
-              <div className="flex flex-[1_0_0] flex-col gap-[16px] items-center min-w-[160px] max-w-[240px]">
-                <div
-                  className="flex items-center justify-center size-[56px] rounded-[16px] shrink-0"
-                  style={{ backgroundColor: item.bg }}
-                >
-                  <FigmaIcon src={item.icon} size={28} aspectW={item.aspectW} aspectH={item.aspectH} />
-                </div>
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[19px] text-[#1f2e91] text-center w-full">
+              {/* Texto */}
+              <div className="flex flex-col gap-[20px] items-start text-center w-full">
+                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] min-h-[36px] w-full">
                   {item.title}
                 </p>
-                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#333] text-center w-full">
+                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#333] w-full">
                   {item.desc}
                 </p>
               </div>
-
-              {/* Seta separadora — visível só em md+ e entre items (não após o último) */}
-              {i < items.length - 1 && (
-                <div className="hidden md:flex shrink-0 items-center pb-[40px]">
-                  <FigmaIcon src={imgArrow} size={20} aspectW={20} aspectH={14} />
-                </div>
-              )}
             </div>
           ))}
         </div>

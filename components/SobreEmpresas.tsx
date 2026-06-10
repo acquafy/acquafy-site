@@ -10,40 +10,51 @@ const imgVisionfy        = "/figma-assets/36342c57-5273-4e54-92f9-aedc28a06503.s
 const imgMediafy         = "/figma-assets/0e0e8dbe-7491-4978-b806-395894d8be3f.svg";
 const imgDocsystem       = "/figma-assets/f0d16cf6-8b97-4b0e-b30a-84936420f146.svg";
 
+// ── Aspect ratios exatos do Figma (content bounds de cada logo) ───────────────
+// Padrão: container w-full com aspect-ratio fixo + img absolute inset-0
 const brands = [
-  { src: imgInterfyLogo,     alt: "Interfy" },
-  { src: imgEcofy,           alt: "Ecofy" },
-  { src: imgInterfyShopping, alt: "Interfy Shopping" },
-  { src: imgInnovecar,       alt: "Innovecar" },
-  { src: imgNeoai,           alt: "NeoAI" },
-  { src: imgProcessdoc,      alt: "Processdoc" },
-  { src: imgAcquafy,         alt: "Acquafy" },
-  { src: imgVisionfy,        alt: "Visionfy" },
-  { src: imgMediafy,         alt: "Mediafy" },
-  { src: imgDocsystem,       alt: "Docsystem" },
+  { src: imgInterfyLogo,     alt: "Interfy",          aw: 160,      ah: 40.193  },
+  { src: imgEcofy,           alt: "Ecofy",             aw: 208.80,   ah: 54.581  },
+  { src: imgInterfyShopping, alt: "Interfy Shopping",  aw: 215.542,  ah: 51.362  },
+  { src: imgInnovecar,       alt: "Innovecar",         aw: 3040,     ah: 834     },
+  { src: imgNeoai,           alt: "NeoAI",             aw: 180,      ah: 62.586  },
+  { src: imgProcessdoc,      alt: "Processdoc",        aw: 219.673,  ah: 54.188  },
+  { src: imgAcquafy,         alt: "Acquafy",           aw: 1133.861, ah: 237.877 },
+  { src: imgVisionfy,        alt: "Visionfy",          aw: 219.536,  ah: 50.456  },
+  { src: imgMediafy,         alt: "Mediafy",           aw: 206.800,  ah: 54.020  },
+  { src: imgDocsystem,       alt: "Docsystem",         aw: 219.423,  ah: 55.768  },
 ];
 
 export default function SobreEmpresas() {
   return (
     <section className="flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
+
         <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#1f2e91] text-center w-full">
           Nossas Empresas e Marcas
         </h2>
+
         <div className="flex flex-wrap gap-[20px] items-center justify-center w-full">
           {brands.map((brand) => (
             <div
               key={brand.alt}
               className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col items-center justify-center min-h-[130px] min-w-[220px] p-[40px] rounded-[16px]"
             >
-              <img
-                alt={brand.alt}
-                className="w-full h-full max-h-[60px] object-contain"
-                src={brand.src}
-              />
+              {/* Container com aspect-ratio fixo do Figma — preenche a largura total do card */}
+              <div
+                className="relative shrink-0 w-full overflow-hidden"
+                style={{ aspectRatio: `${brand.aw} / ${brand.ah}` }}
+              >
+                <img
+                  alt={brand.alt}
+                  className="absolute inset-0 w-full h-full"
+                  src={brand.src}
+                />
+              </div>
             </div>
           ))}
         </div>
+
       </div>
     </section>
   );

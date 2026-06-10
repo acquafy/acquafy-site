@@ -1,4 +1,4 @@
-﻿import FigmaIcon from "./FigmaIcon";
+import FigmaIcon from "./FigmaIcon";
 
 const imgPanel = "/figma-assets/4e6b8a1f-cde5-4362-bb86-960a54dd56c3.png";
 const imgHomeMob = "/figma-assets/dc018212-75b4-4bfb-8453-a2918a035342.png"; // Acquafy AI app screenshot
@@ -74,7 +74,7 @@ export default function Features() {
             <div className="flex flex-wrap gap-[20px] items-center min-h-[210px] w-full shrink-0">
               <CardImage src={imgHomeMob} outerAspect="1970/3639" innerAspect="271/500" />
               <div className="flex flex-1 flex-col gap-[20px] items-start min-w-[210px]">
-                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-[#1f2e91] w-full">
+                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#1f2e91] w-full">
                   Inteligência artificial que aprende, analisa e cuida da sua água.
                 </p>
                 <div className="flex flex-col h-[134px] items-start justify-between w-full shrink-0">

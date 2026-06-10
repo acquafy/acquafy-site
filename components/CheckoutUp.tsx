@@ -1,4 +1,4 @@
-﻿import FigmaIcon from "./FigmaIcon";
+import FigmaIcon from "./FigmaIcon";
 
 // ── Desktop (≥1024px) assets ──────────────────────────────────────────────────
 const imgBg        = "/figma-assets/cf3e69ac-639d-45d7-9276-975505ea6399.png"; // background card
@@ -102,7 +102,7 @@ export default function CheckoutUp() {
           >
             <FigmaIcon src={imgLock} size={30} aspectW={27} aspectH={30} />
             <div className="flex flex-[1_0_0] flex-col gap-[5px] items-start justify-center min-w-[240px]">
-              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[19px] text-white w-full">
+              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-white w-full">
                 Água de qualidade não deve ser privilégio.
               </p>
               <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-white w-full">

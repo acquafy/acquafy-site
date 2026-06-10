@@ -55,7 +55,7 @@ export default function ComoFuncionaParceria() {
               </p>
 
               {/* Description */}
-              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-[#333] w-full">
+              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#333] w-full">
                 {s.desc}
               </p>
             </div>
