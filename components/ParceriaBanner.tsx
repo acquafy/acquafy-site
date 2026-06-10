@@ -2,10 +2,10 @@ import FigmaIcon from "./FigmaIcon";
 import { BtnAzulBaseArrow, BtnAzulOutArrow } from "./ui/Buttons";
 
 /* ── Assets ───────────────────────────────────────────────────── */
-// Tela total (1440+ / Padrão Figma, 1500px) — BG image fills the whole section
+// Tela total (≥1280px) — BG image fills the whole section
 const imgBgPadrao = "/figma-assets/ddb7b9ae-5269-49c5-9935-ed285ed394fa.png";
 
-// 1024 (default / < 1280px) — product image below the content
+// 1024–1279px right column + mobile bottom — product image
 const imgFrame1024 = "/figma-assets/405a21e8-227a-4c26-8bcd-c7ad33247447.png";
 
 // Badge & tier icons
@@ -47,20 +47,21 @@ const tiers = [
 
 export default function ParceriaBanner() {
   return (
-    <section className="relative bg-white w-full px-[20px] py-[40px] flex items-center justify-center overflow-hidden 1440:bg-transparent 1440:min-h-[875px]">
+    <section className="relative bg-white w-full px-[20px] py-[40px] flex items-center justify-center overflow-hidden xl:bg-transparent xl:min-h-[875px]">
 
-      {/* ── BG image — tela total (1440+) only ────────────────── */}
+      {/* ── BG image — tela total (≥1280px) ──────────────────── */}
       <img
         alt=""
-        className="hidden 1440:block absolute inset-0 w-full h-full object-cover pointer-events-none"
+        className="hidden xl:block absolute inset-0 w-full h-full object-cover pointer-events-none"
         src={imgBgPadrao}
       />
 
       {/* ── Content wrapper ────────────────────────────────────── */}
-      <div className="relative flex flex-col xl:flex-row gap-[40px] items-center justify-center max-w-[1400px] w-full 1440:min-h-[795px]">
+      {/* mobile: flex-col | 1024–1279px: flex-row flex-wrap | ≥1280px: flex-row + BG */}
+      <div className="relative flex flex-col lg:flex-row lg:flex-wrap gap-[40px] items-center justify-center max-w-[1400px] w-full xl:min-h-[795px]">
 
         {/* ══ LEFT COLUMN ══════════════════════════════════════ */}
-        <div className="flex flex-col gap-[20px] xl:gap-[40px] items-center w-full xl:items-start xl:flex-[1_0_0] xl:max-w-[450px] xl:min-w-[280px]">
+        <div className="flex flex-col gap-[20px] lg:gap-[40px] items-center w-full lg:items-start lg:flex-[1_0_0] lg:max-w-[450px] lg:min-w-[280px]">
 
           {/* "Nova fase global" pill */}
           <div className="bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center px-[12px] py-[8px] rounded-full shrink-0">
@@ -72,19 +73,19 @@ export default function ParceriaBanner() {
 
           {/* Title */}
           <h1
-            className="font-['Avenir_LT_Pro:95_Black'] text-[44px] leading-[52px] xl:text-[56px] xl:leading-[60px] bg-clip-text text-transparent w-full text-center xl:text-left"
+            className="font-['Avenir_LT_Pro:95_Black'] text-[44px] leading-[52px] lg:text-[56px] lg:leading-[60px] bg-clip-text text-transparent w-full text-center lg:text-left"
             style={{ backgroundImage: "linear-gradient(110.27deg, #0233c3 6.19%, #9f3df5 93.35%)" }}
           >
             Programa de Parceria Global Acquafy
           </h1>
 
           {/* Subtitle */}
-          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[24px] xl:text-[20px] xl:leading-[26px] text-[#333] text-center xl:text-left">
+          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[24px] lg:text-[20px] lg:leading-[26px] text-[#333] text-center lg:text-left">
             Três níveis para crescer com a marca em escala global: indicar, operar ou distribuir.
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-wrap gap-[20px] items-center justify-center xl:justify-start w-full">
+          <div className="flex flex-wrap gap-[20px] items-center justify-center lg:justify-start w-full">
             <BtnAzulBaseArrow className="flex-[1_0_0] min-h-[50px] min-w-[190px]">
               Seja um parceiro
             </BtnAzulBaseArrow>
@@ -93,8 +94,8 @@ export default function ParceriaBanner() {
             </BtnAzulOutArrow>
           </div>
 
-          {/* ── Tier badges — sempre em linha (flex-row) ── */}
-          <div className="flex flex-row gap-[20px] items-stretch justify-center xl:justify-start w-full">
+          {/* Tier badges */}
+          <div className="flex flex-row gap-[20px] items-stretch justify-center lg:justify-start w-full">
             {tiers.map((t) => (
               <div
                 key={t.key}
@@ -109,19 +110,20 @@ export default function ParceriaBanner() {
           </div>
         </div>
 
-        {/* ══ RIGHT PLACEHOLDER — tela total (1440+) ══════════ */}
-        {/* BG image provê o visual; este div equilibra o flex row */}
-        <div className="hidden 1440:flex flex-[1_0_0] min-w-[280px] h-[795px]" />
-
-        {/* ══ BOTTOM IMAGE — 1024 (< xl / default) ════════════ */}
-        {/* aspect-[750/745] conforme Figma node 3753:16389 */}
-        <div className="xl:hidden relative aspect-[750/745] min-h-[278px] min-w-[280px] rounded-[16px] shrink-0 w-full overflow-hidden">
+        {/* ══ PRODUCT IMAGE ════════════════════════════════════ */}
+        {/* mobile: abaixo do conteúdo (flex-col) | 1024–1279px: coluna direita | ≥1280px: oculto */}
+        <div className="xl:hidden relative aspect-[750/745] min-h-[278px] min-w-[280px] rounded-[16px] shrink-0 w-full lg:flex-[1_0_0] lg:w-auto overflow-hidden">
           <img
             src={imgFrame1024}
             alt="Produto Acquafy"
             className="absolute inset-0 w-full h-full object-cover rounded-[16px]"
           />
         </div>
+
+        {/* ══ RIGHT PLACEHOLDER — tela total (≥1280px) ════════ */}
+        {/* BG image provê o visual; este div equilibra o flex row */}
+        <div className="hidden xl:flex flex-[1_0_0] min-w-[280px] h-[795px]" />
+
       </div>
     </section>
   );
