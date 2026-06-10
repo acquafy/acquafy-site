@@ -10,6 +10,11 @@ const config: Config = {
       screens: {
         /* Breakpoint mobile — telas ≤ 767px (smartphones) */
         "mob": { max: "767px" },
+        /* Breakpoints ajustados -20px para compensar scrollbar Windows (~17px):
+           janela 1024px → CSS viewport ~1007px → win-1024 (1000px) ativa
+           janela 1280px → CSS viewport ~1263px → win-1280 (1260px) ativa */
+        "win-1024": "1000px",
+        "win-1280": "1260px",
         /* Breakpoint para "tela total" — design nativo Figma (Padrão, 1500px) */
         "1440": "1440px",
       },
