@@ -1,4 +1,6 @@
-const imgArrow = "/figma-assets/278398fb-a5aa-4bc3-917a-023459eaff65.svg";
+const imgArrow        = "/figma-assets/278398fb-a5aa-4bc3-917a-023459eaff65.svg";
+const imgLineAcido    = "/figma-assets/c726b58b-72f4-43b4-a062-2ae70a24328c.svg";
+const imgLineAlcalino = "/figma-assets/ccbce556-9901-4353-ab9e-40dbc4d55024.svg";
 
 type FilterCard = {
   num: string;
@@ -78,7 +80,7 @@ export default function LinhasFiltros() {
           <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#0569ff] text-center w-full">
             Linha Essentials - Sistema de Filtração de Alta Performace
           </h2>
-          <div className="flex flex-wrap gap-[20px] items-start justify-center w-full">
+          <div className="flex flex-wrap gap-[20px] items-stretch justify-center w-full">
             {essentials.map((c, i) => <FilterCard key={i} card={c} isLast={i === essentials.length - 1} />)}
           </div>
         </div>
@@ -91,7 +93,7 @@ export default function LinhasFiltros() {
           >
             Linha Premium - Sistema de Filtração de Alta Performace
           </h2>
-          <div className="flex flex-wrap gap-[20px] items-start justify-center w-full">
+          <div className="flex flex-wrap gap-[20px] items-stretch justify-center w-full">
             {premium.map((c, i) => <FilterCard key={i} card={c} isLast={i === premium.length - 1} />)}
           </div>
         </div>
@@ -112,19 +114,27 @@ export default function LinhasFiltros() {
             </div>
             {/* Labels */}
             <div className="grid w-full" style={{ gridTemplateColumns: "repeat(10, minmax(0, 1fr))" }}>
-              {/* Ácido — cols 1-6 */}
+              {/* Ácido — cols 1-6: seta dupla colorida (warm) */}
               <div className="flex flex-col gap-[10px] items-center justify-center" style={{ gridColumn: "1 / span 6" }}>
-                <div className="w-full h-px bg-[#333] opacity-30" />
-                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#333] text-center">Ácido</span>
+                <div className="h-0 relative shrink-0 w-full">
+                  <div className="absolute" style={{ inset: "-7.36px -0.12%" }}>
+                    <img alt="" className="block max-w-none size-full" src={imgLineAcido} />
+                  </div>
+                </div>
+                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[clamp(12px,1.8vw,20px)] leading-[clamp(14px,2.1vw,22px)] text-[#333] text-center">Ácido</span>
               </div>
               {/* Neutro — col 7 */}
               <div className="flex flex-col items-center justify-center">
-                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#333] text-center">Neutro</span>
+                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[clamp(12px,1.8vw,20px)] leading-[clamp(14px,2.1vw,22px)] text-[#333] text-center">Neutro</span>
               </div>
-              {/* Alcalino — cols 8-10 */}
+              {/* Alcalino — cols 8-10: seta dupla colorida (cool) */}
               <div className="flex flex-col gap-[10px] items-center justify-center" style={{ gridColumn: "8 / span 3" }}>
-                <div className="w-full h-px bg-[#333] opacity-30" />
-                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#333] text-center">Alcalino</span>
+                <div className="h-0 relative shrink-0 w-full">
+                  <div className="absolute" style={{ inset: "-7.36px -0.24%" }}>
+                    <img alt="" className="block max-w-none size-full" src={imgLineAlcalino} />
+                  </div>
+                </div>
+                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[clamp(12px,1.8vw,20px)] leading-[clamp(14px,2.1vw,22px)] text-[#333] text-center">Alcalino</span>
               </div>
             </div>
           </div>

@@ -1,5 +1,5 @@
 import FigmaIcon from "./FigmaIcon";
-import { BtnAzulOutArrow, BtnSaibaMais } from "./ui/Buttons";
+import { BtnAzulOutArrow } from "./ui/Buttons";
 
 // Category icons
 const imgIconCamisa  = "/figma-assets/fdacece8-1388-418b-badd-dfd2d5d9a424.svg";
@@ -159,7 +159,6 @@ export default function ColecaoAcessorios() {
             {" "}
             <span className="text-[#0569ff]">Acessórios Acquafy</span>
           </h2>
-          <BtnSaibaMais>Ver todos os acessórios</BtnSaibaMais>
         </div>
 
         {/* Categories row */}
