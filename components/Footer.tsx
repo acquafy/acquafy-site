@@ -147,8 +147,8 @@ function MobileNavSection({
           </p>
           <div className="h-[1.5px] rounded-full shrink-0 w-[30px]" style={gradientLine} />
         </div>
-        {/* Chevron: aponta para baixo (fechado) ou para cima (aberto) */}
-        <div className={`shrink-0 transition-transform duration-200${isOpen ? " rotate-180" : ""}`}>
+        {/* Chevron: fechado = ∨ (rotate-180 no SVG que aponta ^), aberto = ^ (sem rotação) */}
+        <div className={`shrink-0 transition-transform duration-200${isOpen ? "" : " rotate-180"}`}>
           <div className="relative h-[5px] w-[10px]">
             <img alt="" className="absolute inset-0 max-w-none size-full" src={imgArrowDown} />
           </div>
