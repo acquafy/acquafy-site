@@ -45,7 +45,7 @@ export default function ComoFuncionaParceria() {
           {steps.map((s, i) => (
             <div
               key={s.num}
-              className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[20px] items-center min-w-px p-[20px] relative rounded-[16px]"
+              className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[20px] items-center min-w-[280px] p-[20px] relative rounded-[16px]"
             >
               {/* ícone + número do passo */}
               <div className="flex gap-[20px] items-center justify-center relative shrink-0 w-full">

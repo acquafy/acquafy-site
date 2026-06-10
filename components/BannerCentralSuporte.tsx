@@ -191,7 +191,7 @@ export default function BannerCentralSuporte() {
              */}
             <div className="flex flex-col gap-[20px] w-full
               min-[621px]:mb-[-240px]
-              md:flex-[1_0_0] md:flex-wrap md:h-full md:items-center md:justify-end md:pb-[20px] md:mb-0 md:min-w-px
+              md:flex-[1_0_0] md:flex-row md:flex-wrap md:h-full md:items-center md:justify-end md:pb-[20px] md:mb-0 md:min-w-px
               xl:flex-col xl:flex-nowrap xl:items-end xl:justify-center xl:max-w-[270px] xl:min-w-px xl:pb-[20px]">
 
               {floatingCards.map((card) => (
