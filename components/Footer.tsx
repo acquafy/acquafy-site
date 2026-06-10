@@ -250,7 +250,7 @@ export default function Footer() {
       <div className="flex items-center justify-center px-[20px] w-full">
         <div className="bg-white flex flex-[1_0_0] flex-wrap gap-[10px] items-center justify-center max-w-[1400px] min-w-px overflow-hidden pl-[10px] py-[10px] rounded-[20px]">
           {stats.map((s) => (
-            <div key={s.main} className="flex flex-[1_0_0] gap-[20px] items-center min-w-[240px] overflow-hidden p-[20px]">
+            <div key={s.main} className="flex flex-[1_0_0] gap-[20px] items-center min-w-[240px] p-[20px]">
               <div className="flex flex-col items-center justify-center shrink-0 size-[40px]">
                 <FigmaIcon src={s.icon} size={40} aspectW={s.aspectW} aspectH={s.aspectH} />
               </div>
@@ -278,7 +278,7 @@ export default function Footer() {
           </div>
 
           {/* Founded in USA */}
-          <div className="flex gap-[20px] items-center min-w-[240px] overflow-hidden shrink-0 w-[240px] mob:w-full mob:min-w-0 mob:shrink mob:justify-center">
+          <div className="flex gap-[20px] items-center min-w-[240px] shrink-0 w-[240px] mob:w-full mob:min-w-0 mob:shrink mob:justify-center">
             <div className="flex flex-col items-center justify-center shrink-0 size-[40px]">
               <FigmaIcon src={imgFlagUSA} alt="USA" size={40} />
             </div>
@@ -288,7 +288,7 @@ export default function Footer() {
           </div>
 
           {/* Global platform */}
-          <div className="flex gap-[20px] items-center min-w-[240px] overflow-hidden shrink-0 w-[240px] mob:w-full mob:min-w-0 mob:shrink mob:justify-center">
+          <div className="flex gap-[20px] items-center min-w-[240px] shrink-0 w-[240px] mob:w-full mob:min-w-0 mob:shrink mob:justify-center">
             <div className="flex flex-col items-center justify-center shrink-0 size-[40px]">
               <FigmaIcon src={imgGlobeSust} size={40} aspectW={492} aspectH={474.82} />
             </div>
