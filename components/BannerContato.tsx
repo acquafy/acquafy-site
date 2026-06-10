@@ -72,7 +72,7 @@ export default function BannerContato() {
             <Feature
               icon={imgPlanetWeb}
               title="Atuação global"
-              description="Presente em mais de 16 países com suporte local."
+              description="Presente em mais de 16 idiomas com suporte local."
             />
           </div>
         </div>

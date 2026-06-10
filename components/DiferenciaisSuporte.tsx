@@ -29,7 +29,7 @@ const diferenciais = [
     icon: imgPlanet,
     aspectW: 30, aspectH: 30,
     title: "Suporte global",
-    desc: "Atendimento para clientes e parceiros em 16 países.",
+    desc: "Atendimento para clientes e parceiros em 16 idiomas.",
   },
 ];
 
