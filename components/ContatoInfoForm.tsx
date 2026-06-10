@@ -42,7 +42,7 @@ function InfoRow({
   title: string; lines: string[]; ctaLabel?: string;
 }) {
   return (
-    <div className="border-t-[0.5px] border-[#cbd0d4] flex gap-[20px] items-center pt-[20px] w-full">
+    <div className="border-l-[0.5px] lg:border-l-0 lg:border-t-[0.5px] border-[#cbd0d4] flex gap-[20px] items-center pl-[20px] lg:pl-0 lg:pt-[20px] flex-[1_0_0] min-w-[240px] lg:min-w-0 min-h-[120px] lg:min-h-0">
       <IconCircle src={src} aspectW={aspectW} aspectH={aspectH} />
       <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-0">
         <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] min-h-[30px] w-full flex flex-col justify-center">
@@ -89,10 +89,10 @@ export default function ContatoInfoForm() {
 
   return (
     <section className="bg-[#f6f9fe] flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
-      <div className="flex flex-wrap gap-[20px] items-stretch justify-center max-w-[1400px] w-full">
+      <div className="flex flex-col lg:flex-row gap-[20px] items-stretch justify-center max-w-[1400px] w-full">
 
         {/* ── LEFT: Informações de contato ──────────────────────────────────── */}
-        <div className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center justify-start max-w-[420px] min-w-[280px] p-[40px] rounded-[16px]">
+        <div className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center justify-start lg:max-w-[420px] min-w-[280px] px-[20px] py-[40px] lg:p-[40px] rounded-[16px] order-2 lg:order-1">
 
           {/* Título gradiente */}
           <p
@@ -102,46 +102,40 @@ export default function ContatoInfoForm() {
             Informações de contato
           </p>
 
-          {/* Linha 1 — Local */}
-          <InfoRow
-            src={imgLocal} aspectW={31.56} aspectH={38}
-            title="Sede Global"
-            lines={["Orlando, Flórida, USA", "Acquafy Headquarters"]}
-          />
-
-          {/* Linha 2 — Email */}
-          <InfoRow
-            src={imgMail} aspectW={38} aspectH={30.8}
-            title="Email"
-            lines={["contato@acquafy.com", "parcerias@acquafy.com"]}
-          />
-
-          {/* Linha 3 — Telefone / WhatsApp */}
-          <InfoRow
-            src={imgPhone} aspectW={37.99} aspectH={38}
-            title="Telefone / WhatsApp"
-            lines={["+1 (407) 203-5669", "Segunda a Sexta, 8h às 18h (EST)"]}
-          />
-
-          {/* Linha 4 — Global (com botão) */}
-          <InfoRow
-            src={imgGlobe} aspectW={38} aspectH={38}
-            title="Presença global"
-            lines={["16 países em operação ativa"]}
-            ctaLabel="Ver todas as regiões"
-          />
-
-          {/* Linha 5 — Equipe (com botão) */}
-          <InfoRow
-            src={imgPessoas} aspectW={38} aspectH={35.24}
-            title="Seja um parceiro"
-            lines={["Descubra como fazer parte da nossa rede global de parceiros."]}
-            ctaLabel="Quero ser parceiro"
-          />
+          {/* Rows — vertical no desktop, grid horizontal abaixo de lg */}
+          <div className="flex flex-wrap lg:flex-col gap-[20px] w-full">
+            <InfoRow
+              src={imgLocal} aspectW={31.56} aspectH={38}
+              title="Sede Global"
+              lines={["Orlando, Flórida, USA", "Acquafy Headquarters"]}
+            />
+            <InfoRow
+              src={imgMail} aspectW={38} aspectH={30.8}
+              title="Email"
+              lines={["contato@acquafy.com", "parcerias@acquafy.com"]}
+            />
+            <InfoRow
+              src={imgPhone} aspectW={37.99} aspectH={38}
+              title="Telefone / WhatsApp"
+              lines={["+1 (407) 203-5669", "Segunda a Sexta, 8h às 18h (EST)"]}
+            />
+            <InfoRow
+              src={imgGlobe} aspectW={38} aspectH={38}
+              title="Presença global"
+              lines={["16 idiomas em operação ativa"]}
+              ctaLabel="Ver todas as regiões"
+            />
+            <InfoRow
+              src={imgPessoas} aspectW={38} aspectH={35.24}
+              title="Seja um parceiro"
+              lines={["Descubra como fazer parte da nossa rede global de parceiros."]}
+              ctaLabel="Quero ser parceiro"
+            />
+          </div>
         </div>
 
         {/* ── RIGHT: Formulário ─────────────────────────────────────────────── */}
-        <div className="bg-white flex flex-[1_0_0] flex-col gap-[40px] items-start min-w-[280px] p-[40px] rounded-[16px]">
+        <div className="bg-white flex flex-[1_0_0] flex-col gap-[40px] items-start min-w-[280px] px-[20px] py-[40px] lg:p-[40px] rounded-[16px] order-1 lg:order-2">
 
           {/* Título gradiente */}
           <p
