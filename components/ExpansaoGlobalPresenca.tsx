@@ -29,10 +29,10 @@ export default function ExpansaoGlobalPresenca() {
         </div>
 
         {/* Cards row */}
-        <div className="flex flex-wrap gap-[20px] items-start justify-center w-full">
+        <div className="flex flex-col lg:flex-row lg:flex-wrap gap-[20px] items-stretch justify-center w-full">
 
           {/* Map card */}
-          <div className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col items-center justify-center min-h-[375px] min-w-[280px] overflow-hidden px-[10px] py-[20px] rounded-[16px]">
+          <div className="bg-[#f6f9fe] flex w-full lg:flex-[1_0_0] flex-col items-center justify-center overflow-hidden px-[10px] py-[20px] rounded-[16px]">
             <div className="flex flex-wrap gap-[20px] items-center pl-[20px] w-full">
 
               {/* World map */}
@@ -45,7 +45,7 @@ export default function ExpansaoGlobalPresenca() {
               </div>
 
               {/* Regions list */}
-              <div className="border-l-[0.5px] border-[#cbd0d4] flex flex-[1_0_0] flex-col gap-[40px] items-start max-w-[360px] min-w-[280px] pl-[20px]">
+              <div className="flex flex-[1_0_0] flex-col gap-[40px] items-start max-w-[360px] min-w-[280px]">
                 <h3 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#1f2e91] w-full">
                   Regiões em expansão
                 </h3>
@@ -69,7 +69,7 @@ export default function ExpansaoGlobalPresenca() {
           </div>
 
           {/* Opportunities card */}
-          <div className="bg-[#f1f5fe] flex flex-[1_0_0] flex-col gap-[20px] items-center max-w-[370px] min-h-[250px] min-w-[280px] overflow-hidden p-[20px] rounded-[16px]">
+          <div className="bg-[#f1f5fe] flex w-full lg:flex-[1_0_0] flex-col gap-[20px] items-center self-start lg:self-auto lg:max-w-[370px] min-w-[280px] overflow-hidden p-[20px] rounded-[16px]">
             {/* Icon */}
             <div className="bg-[#f6f9fe] border border-[#e2e7fb] flex flex-col items-center justify-center rounded-full shrink-0 size-[100px]">
               <FigmaIcon src={imgPlanetWeb} size={40} />

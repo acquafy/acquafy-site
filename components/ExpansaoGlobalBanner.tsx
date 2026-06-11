@@ -20,18 +20,18 @@ const stats = [
 
 export default function ExpansaoGlobalBanner() {
   return (
-    <section className="relative flex flex-col gap-[20px] items-center px-[20px] py-[40px] w-full overflow-hidden xl:h-[calc(100vh-80px)]">
-      {/* Background */}
+    <section className="bg-[#f6f9fe] lg:bg-transparent relative flex flex-col justify-between gap-[20px] items-center px-[20px] py-[40px] w-full overflow-hidden min-h-[calc(100vh-80px)]">
+      {/* Background — only on lg+ */}
       <img
         alt=""
-        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+        className="hidden lg:block absolute inset-0 w-full h-full object-cover pointer-events-none"
         src={imgBg}
       />
 
-      {/* Main content — flex-[1_0_0] so stats bar stays pinned to the bottom */}
-      <div className="relative flex-[1_0_0] min-h-px flex flex-wrap gap-[40px] items-center justify-center max-w-[1400px] w-full">
+      {/* Main content */}
+      <div className="relative flex flex-col lg:flex-row lg:flex-wrap gap-[40px] items-center justify-center max-w-[1400px] w-full">
         {/* Left column */}
-        <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start justify-center max-w-[580px] min-w-[280px]">
+        <div className="flex flex-[1_0_0] flex-col gap-[20px] items-center lg:items-start justify-center min-w-[280px]">
           {/* Badge */}
           <div className="bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center px-[12px] py-[8px] rounded-full shrink-0 max-w-[280px]">
             <FigmaIcon src={imgPlanetWeb} size={16} />
@@ -73,7 +73,7 @@ export default function ExpansaoGlobalBanner() {
         </div>
 
         {/* Right column — product image */}
-        <div className="flex flex-[1_0_0] flex-col h-[585px] items-end justify-end min-w-[280px]">
+        <div className="flex w-full lg:flex-[1_0_0] flex-col lg:h-[585px] items-center lg:items-end justify-center">
           <div className="relative w-full shrink-0" style={{ aspectRatio: "4096/2138" }}>
             <img
               alt="Expansão Global Acquafy"
@@ -85,14 +85,14 @@ export default function ExpansaoGlobalBanner() {
       </div>
 
       {/* Stats bar — pinned to bottom of section */}
-      <div className="relative bg-[#1f2e91] flex flex-wrap gap-[30px_20px] items-start justify-center max-w-[1400px] overflow-hidden px-[20px] py-[40px] rounded-[16px] w-full">
+      <div className="relative bg-[#1f2e91] flex flex-wrap gap-[30px_20px] items-start justify-center max-w-[1400px] overflow-clip px-[20px] py-[40px] rounded-[16px] shrink-0 w-full">
         {stats.map((s) => (
           <div key={s.label} className="flex flex-[1_0_0] flex-wrap gap-[20px] items-start min-w-[160px]">
             <FigmaIcon src={s.icon} size={60} aspectW={s.iconW} aspectH={s.iconH} />
-            <div className="flex flex-[1_0_0] flex-col gap-[15px] items-start min-w-[200px]">
-              <p className="font-['Avenir_LT_Pro:95_Black'] text-[32px] leading-[39px] text-white">{s.number}</p>
-              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-white">{s.label}</p>
-              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-white">{s.sub}</p>
+            <div className="flex flex-[1_0_0] flex-col gap-[15px] items-start leading-[0] min-w-[200px]">
+              <p className="[text-box-trim:trim-both] [text-box-edge:cap_alphabetic] font-['Avenir_LT_Pro:95_Black'] text-[32px] leading-[39px] text-white w-full">{s.number}</p>
+              <p className="[text-box-trim:trim-both] [text-box-edge:cap_alphabetic] font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-white w-full">{s.label}</p>
+              <p className="[text-box-trim:trim-both] [text-box-edge:cap_alphabetic] font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-white w-full">{s.sub}</p>
             </div>
           </div>
         ))}

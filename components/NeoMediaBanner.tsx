@@ -1,10 +1,4 @@
 "use client";
-// BannerMedia — 3 variantes do Figma (nodes 3258:5155 / 3411:6130 / 3410:13495)
-// Breakpoints customizados no tailwind.config (win-1024 = 1000px, win-1280 = 1260px)
-// compensam o scrollbar do Windows (~17px):
-//   Mobile      : < win-1024  (win-1024:hidden)
-//   Variante 1024: win-1024 a win-1279  (hidden win-1024:flex win-1280:hidden)
-//   1280/Total  : >= win-1280  (hidden win-1280:flex)
 import FigmaIcon from "./FigmaIcon";
 import { BtnAzulBaseArrow, BtnAzulOutArrow } from "./ui/Buttons";
 
@@ -73,16 +67,16 @@ function CardItem({ c, fullWidth }: { c: typeof cards[0]; fullWidth?: boolean })
 
 export default function NeoMediaBanner() {
   return (
-    <section className="relative flex flex-col items-center gap-[20px] px-[20px] py-[40px] w-full overflow-hidden win-1024:bg-[#f6f9fe] win-1280:h-[calc(100vh-80px)] win-1280:bg-transparent">
-      {/* BG foto — apenas >= win-1280 */}
+    <section className="relative flex flex-col items-center gap-[20px] px-[20px] py-[40px] w-full overflow-hidden xl:h-[calc(100vh-80px)]">
+      {/* BG foto — apenas >= lg (1024px) */}
       <img
         alt=""
         src={imgBg}
-        className="hidden win-1280:block absolute inset-0 w-full h-full object-cover pointer-events-none"
+        className="hidden lg:block absolute inset-0 w-full h-full object-cover pointer-events-none"
       />
 
-      {/* ── MOBILE (< win-1024) ── */}
-      <div className="win-1024:hidden relative flex flex-col gap-[20px] items-center w-full">
+      {/* ── MOBILE (< lg / < 1024px) ── */}
+      <div className="lg:hidden relative flex flex-col gap-[20px] items-center w-full">
         <Label />
         <h1
           className="font-['Avenir_LT_Pro:95_Black'] text-[48px] leading-[55px] bg-clip-text text-transparent w-fit text-center"
@@ -99,7 +93,7 @@ export default function NeoMediaBanner() {
         </p>
         <div className="flex flex-wrap gap-[16px] items-center justify-center w-full">
           <BtnAzulBaseArrow className="flex-[1_0_0] min-w-[190px] min-h-[50px] px-[20px]">
-            Quero investir no Media Network
+            Quero o Acquafy Media
           </BtnAzulBaseArrow>
           <BtnAzulOutArrow className="flex-[1_0_0] min-w-[190px] min-h-[50px] px-[20px]">
             Falar com especialista
@@ -116,47 +110,8 @@ export default function NeoMediaBanner() {
             </div>
           ))}
         </div>
-      </div>
-
-      {/* ── VARIANTE 1024 (Figma node 3410:13495) — win-1024 a win-1279 ── */}
-      <div className="hidden win-1024:flex win-1280:hidden relative flex-col gap-[40px] items-center justify-center w-full max-w-[1400px]">
-        <div className="flex flex-col gap-[20px] items-center justify-center shrink-0 w-full">
-          <Label />
-          <h1
-            className="font-['Avenir_LT_Pro:95_Black'] text-[56px] leading-[60px] bg-clip-text text-transparent w-fit text-center"
-            style={{ backgroundImage: titleGradient }}
-          >
-            Acquafy Media
-          </h1>
-          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#1f2e91] text-center w-full">
-            Plataforma de Água Inteligente + Mídia Digital + Receita Recorrente.
-          </h2>
-          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[20px] leading-[26px] text-[#333] text-center w-full">
-            O Acquafy Media transforma locais públicos em pontos de hidratação, visibilidade e negócios.
-            Combine fornecimento de água gratuita e acessível, exibição de anúncios, QR Codes e venda da
-            linha Neo para gerar valor contínuo para sua operação e para as marcas.
-          </p>
-          <div className="flex flex-wrap gap-[20px] items-center justify-center w-full">
-            <BtnAzulBaseArrow className="min-h-[50px] px-[20px]">
-              Quero investir no Media Network
-            </BtnAzulBaseArrow>
-            <BtnAzulOutArrow className="min-h-[50px] px-[20px]">
-              Falar com especialista
-            </BtnAzulOutArrow>
-          </div>
-          <div className="flex flex-wrap gap-[30px_0] items-center justify-center max-w-[680px] min-h-[82px] py-[25px] w-full">
-            {stats.map((s) => (
-              <div key={s.title} className="flex flex-[1_0_0] gap-[10px] items-center min-w-[200px]">
-                <FigmaIcon src={s.icon} size={30} aspectW={s.aspectW} aspectH={s.aspectH} />
-                <div className="flex flex-col gap-[10px] items-start">
-                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91]">{s.title}</p>
-                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#2a2a2b]">{s.sub}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <div className="flex flex-wrap gap-[20px] items-center justify-end shrink-0 w-full">
+        {/* Cards + imagem do dispositivo — node 3411:6044 */}
+        <div className="flex flex-wrap gap-[20px] items-center justify-end w-full">
           <div className="flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-w-[280px]">
             {cards.map((c) => (
               <CardItem key={c.label} c={c} fullWidth />
@@ -164,17 +119,17 @@ export default function NeoMediaBanner() {
           </div>
           <div className="flex-[1_0_0] h-[482px] min-w-[280px] relative rounded-[16px] overflow-hidden">
             <img
-              alt="Acquafy Media device"
+              alt=""
               src={imgFrame}
-              className="absolute inset-0 w-full h-full object-cover pointer-events-none rounded-[16px]"
+              className="absolute inset-0 w-full h-full object-cover pointer-events-none"
             />
           </div>
         </div>
       </div>
 
-      {/* ── VARIANTE 1280/Total (Figma node 3258:5155) — >= win-1280 ── */}
-      <div className="hidden win-1280:flex relative flex-[1_0_0] flex-col items-center justify-center w-full min-h-px">
-        <div className="flex flex-[1_0_0] flex-wrap gap-[40px] items-center justify-center max-w-[1400px] w-full">
+      {/* ── TOTAL (>= lg / >= 1024px) — Figma node 3258:5155 ── */}
+      <div className="hidden lg:flex relative flex-col items-center justify-center w-full xl:flex-[1_0_0] xl:min-h-px">
+        <div className="flex flex-wrap gap-[40px] items-center justify-center max-w-[1400px] w-full xl:flex-[1_0_0]">
           {/* Coluna esquerda — node 3258:5037 */}
           <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start justify-center min-w-[280px]">
             <Label />
@@ -195,17 +150,19 @@ export default function NeoMediaBanner() {
             {/* Botões — node 3258:5041 */}
             <div className="flex flex-wrap gap-[20px] items-center w-full">
               <BtnAzulBaseArrow className="min-h-[50px] px-[20px]">
-                Quero investir no Media Network
+                Quero o Acquafy Media
               </BtnAzulBaseArrow>
               <BtnAzulOutArrow className="min-h-[50px] px-[20px]">
                 Falar com especialista
               </BtnAzulOutArrow>
             </div>
-            {/* Stats — node 3408:10083 */}
-            <div className="flex flex-wrap gap-[30px_0] items-center justify-center max-w-[1400px] min-h-[82px] py-[25px] rounded-[16px] w-full">
+            {/* Stats — node 3410:13509 */}
+            <div className="flex flex-wrap gap-[30px_0] items-center justify-center py-[25px] rounded-[16px] w-full">
               {stats.map((s) => (
                 <div key={s.title} className="flex flex-[1_0_0] flex-wrap gap-[10px] items-center min-w-[200px]">
-                  <FigmaIcon src={s.icon} size={30} aspectW={s.aspectW} aspectH={s.aspectH} />
+                  <div className="flex flex-col items-center justify-center shrink-0 size-[30px]">
+                    <FigmaIcon src={s.icon} size={30} aspectW={s.aspectW} aspectH={s.aspectH} />
+                  </div>
                   <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-[100px]">
                     <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91]">{s.title}</p>
                     <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#2a2a2b]">{s.sub}</p>
