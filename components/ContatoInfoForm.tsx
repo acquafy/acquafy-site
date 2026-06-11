@@ -1,7 +1,7 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import FigmaIcon from "./FigmaIcon";
 import { BtnAzulOutArrow } from "./ui/Buttons";
 
@@ -11,20 +11,27 @@ const imgMail       = "/figma-assets/29530df8-b9ae-4a2a-ad2e-0252d2e21f79.svg"; 
 const imgPhone      = "/figma-assets/32a6f68d-b20c-4087-9c6d-4b88dd21ab20.svg"; // 37.99×38   ~sq  (WhatsApp)
 const imgGlobe      = "/figma-assets/a3d8d3e1-382f-4155-9bb5-9492c1797329.svg"; // 38×38      sq
 const imgPessoas    = "/figma-assets/9cb3b0cd-c1de-41f5-a4b3-1272f0c3596b.svg"; // 38×35.24   landscape
-const imgArrowDown  = "/figma-assets/72341688-c02a-4f94-98be-fe0e7ea34dc6.svg"; // 10×6       landscape
 const imgArrowWhite = "/figma-assets/93b457af-90d0-4dc6-bb02-fb93fc706899.svg"; // 11.2×8.84  landscape
 
 const ASSUNTOS = [
-  "Suporte técnico",
+  "Falar com especialista",
   "Parcerias",
+  "Quero ser Distribuidor",
+  "Solicitar apresentação",
+  "Suporte técnico",
   "Vendas",
+  "Linha Neo",
+  "Acquafy Media",
+  "Filtros & Acessórios",
+  "Plataforma Acquafy",
+  "App + AI + IoT",
+  "Expansão Global",
+  "Agendar reunião",
   "Imprensa",
-  "Distribuidores",
   "Outro",
 ];
 
 // ── Ícone dentro de círculo ───────────────────────────────────────────────────
-// bg-[#f6f9fe] border-[#f3faff] size-[60px] p-[12px] → espaço interno = 36px
 function IconCircle({ src, aspectW, aspectH }: {
   src: string; aspectW: number; aspectH: number;
 }) {
@@ -91,18 +98,31 @@ const inputCls =
 export default function ContatoInfoForm() {
   const [nome, setNome]         = useState("");
   const [email, setEmail]       = useState("");
-  const [assunto, setAssunto]   = useState("");
+  const [assuntos, setAssuntos] = useState<string[]>([]);
   const [mensagem, setMensagem] = useState("");
   const [aceito, setAceito]     = useState(false);
 
+  useEffect(() => {
+    function handler(e: CustomEvent<string>) {
+      setAssuntos((prev) => prev.includes(e.detail) ? prev : [...prev, e.detail]);
+    }
+    window.addEventListener("prefill-assunto", handler as EventListener);
+    return () => window.removeEventListener("prefill-assunto", handler as EventListener);
+  }, []);
+
+  function toggleAssunto(a: string) {
+    setAssuntos((prev) =>
+      prev.includes(a) ? prev.filter((x) => x !== a) : [...prev, a]
+    );
+  }
+
   return (
-    <section className="bg-[#f6f9fe] flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
+    <section id="contato-form" className="scroll-mt-[80px] bg-[#f6f9fe] flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
       <div className="flex flex-col lg:flex-row gap-[20px] items-stretch justify-center max-w-[1400px] w-full">
 
         {/* ── LEFT: Informações de contato ──────────────────────────────────── */}
         <div className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center justify-start lg:max-w-[420px] min-w-[280px] px-[20px] py-[40px] lg:p-[40px] rounded-[16px] order-2 lg:order-1">
 
-          {/* Título gradiente */}
           <p
             className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] bg-clip-text text-transparent w-full"
             style={{ backgroundImage: "linear-gradient(90deg, #0233c3, #0569ff)" }}
@@ -110,7 +130,6 @@ export default function ContatoInfoForm() {
             Informações de contato
           </p>
 
-          {/* Rows — vertical no desktop, grid horizontal abaixo de lg */}
           <div className="flex flex-col gap-[20px] w-full">
             <InfoRow
               src={imgLocal} aspectW={31.56} aspectH={38}
@@ -147,7 +166,6 @@ export default function ContatoInfoForm() {
         {/* ── RIGHT: Formulário ─────────────────────────────────────────────── */}
         <div className="bg-white flex flex-[1_0_0] flex-col gap-[40px] items-start min-w-[280px] px-[20px] py-[40px] lg:p-[40px] rounded-[16px] order-1 lg:order-2">
 
-          {/* Título gradiente */}
           <p
             className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] bg-clip-text text-transparent w-full shrink-0"
             style={{ backgroundImage: "linear-gradient(90deg, #0233c3, #0569ff)" }}
@@ -155,7 +173,6 @@ export default function ContatoInfoForm() {
             Envie uma mensagem
           </p>
 
-          {/* Campos */}
           <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start w-full">
 
             {/* Nome + Email lado a lado */}
@@ -180,22 +197,26 @@ export default function ContatoInfoForm() {
               </FormField>
             </div>
 
-            {/* Assunto */}
+            {/* Assunto — multi-select chips */}
             <FormField label={<>Assunto<span className="text-[#d74b4d]">*</span></>}>
-              <div className="relative w-full">
-                <select
-                  value={assunto}
-                  onChange={(e) => setAssunto(e.target.value)}
-                  className={`${inputCls} appearance-none cursor-pointer`}
-                >
-                  <option value="" disabled>Selecione o assunto</option>
-                  {ASSUNTOS.map((a) => (
-                    <option key={a} value={a}>{a}</option>
-                  ))}
-                </select>
-                <div className="absolute right-[20px] top-1/2 -translate-y-1/2 pointer-events-none">
-                  <FigmaIcon src={imgArrowDown} size={10} aspectW={10} aspectH={6} />
-                </div>
+              <div className="flex flex-wrap gap-[8px] w-full">
+                {ASSUNTOS.map((a) => {
+                  const selected = assuntos.includes(a);
+                  return (
+                    <button
+                      key={a}
+                      type="button"
+                      onClick={() => toggleAssunto(a)}
+                      className={`px-[14px] py-[8px] rounded-[8px] border text-[14px] font-['Avenir_LT_Pro:85_Heavy'] leading-[18px] transition-colors cursor-pointer ${
+                        selected
+                          ? "bg-[#0233c3] border-[#0233c3] text-white"
+                          : "bg-white border-[#cbd0d4] text-[#333] hover:border-[#0233c3] hover:text-[#0233c3]"
+                      }`}
+                    >
+                      {a}
+                    </button>
+                  );
+                })}
               </div>
             </FormField>
 

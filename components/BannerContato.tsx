@@ -42,16 +42,16 @@ export default function BannerContato() {
       />
 
       {/* Content */}
-      <div className="relative flex flex-wrap gap-[40px] items-center max-w-[1400px] w-full">
+      <div className="relative flex flex-col xl:flex-row gap-[40px] items-center max-w-[1400px] w-full">
 
         {/* Left */}
-        <div className="flex flex-[1_0_0] flex-col gap-[40px] items-center lg:items-start min-w-[280px] max-w-[640px]">
-          <h1 className="font-['Avenir_LT_Pro:95_Black'] text-hero text-[#2a2a2b] text-center lg:text-left">
+        <div className="flex flex-[1_0_0] flex-col gap-[40px] items-center xl:items-start min-w-[280px] max-w-[640px]">
+          <h1 className="font-['Avenir_LT_Pro:95_Black'] text-hero text-[#2a2a2b] text-center xl:text-left">
             Fale com a{" "}
             <span className="text-[#0569ff]">Acquafy</span>
           </h1>
 
-          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#333] text-center lg:text-left w-full">
+          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#333] text-center xl:text-left w-full">
             Tem dúvidas, quer saber mais sobre nossas soluções ou se tornar um
             parceiro? Estamos prontos para ouvir você e encontrar a melhor
             solução juntos.

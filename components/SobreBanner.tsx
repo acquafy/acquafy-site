@@ -83,14 +83,14 @@ function BottomFeature({ icon, iconAlt, title, description }: {
 // ── CTA buttons ───────────────────────────────────────────────────────────────
 function CTAButtons({ stretch = false }: { stretch?: boolean }) {
   return (
-    <div className={`flex flex-wrap gap-[20px] items-center ${stretch ? "justify-center max-w-[800px] w-full" : "w-full"}`}>
-      <button className={`flex gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors cursor-pointer ${stretch ? "flex-[1_0_0]" : "shrink-0"}`}>
+    <div className={`flex flex-wrap gap-[20px] items-center ${stretch ? "justify-center max-w-[800px] w-full" : "justify-center xl:justify-start w-full"}`}>
+      <a href="#quem-somos" className={`flex gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors cursor-pointer no-underline ${stretch ? "flex-[1_0_0]" : "shrink-0"}`}>
         <span className="font-['Articulat_CF:Bold'] text-[16px] leading-normal text-white flex-1 text-center">
           Conheça nossa história
         </span>
         <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
-      </button>
-      <button className={`group flex gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors cursor-pointer ${stretch ? "flex-[1_0_0]" : "shrink-0"}`}>
+      </a>
+      <a href="/contato" className={`group flex gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors cursor-pointer no-underline ${stretch ? "flex-[1_0_0]" : "shrink-0"}`}>
         <span className="font-['Articulat_CF:Bold'] text-[16px] leading-normal text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">
           Fale com nossa equipe
         </span>
@@ -102,7 +102,7 @@ function CTAButtons({ stretch = false }: { stretch?: boolean }) {
             <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
           </div>
         </div>
-      </button>
+      </a>
     </div>
   );
 }

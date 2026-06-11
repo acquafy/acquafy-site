@@ -24,7 +24,7 @@ export default function CtaBannerContato() {
         </div>
 
         {/* Botões direito */}
-        <div className="relative flex flex-[1_0_0] flex-wrap gap-[10px] items-center justify-center lg:justify-end max-w-[500px] min-w-[240px]">
+        <div className="relative flex flex-[1_0_0] flex-wrap gap-[10px] items-center justify-center xl:justify-end max-w-[500px] min-w-[240px]">
           {/* Botão outline — bg-white, texto azul */}
           <Link href="/linha-neo" className="flex-1 min-w-[200px]">
             <BtnAzulOutArrow className="w-full min-h-[56px]">

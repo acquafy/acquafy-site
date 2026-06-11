@@ -86,19 +86,16 @@ export default function ParceriaBanner() {
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-wrap gap-[20px] items-center justify-center lg:justify-start w-full">
-            <BtnAzulBaseArrow className="flex-[1_0_0] min-h-[50px] min-w-[190px]">
-              Seja um parceiro
-            </BtnAzulBaseArrow>
-            <Link href="/contato" className="flex-[1_0_0] min-w-[190px]">
-              <BtnAzulOutArrow className="w-full min-h-[50px]">
+          <div className="flex flex-wrap gap-[20px] items-center justify-center xl:justify-start w-full">
+            <Link href="/contato">
+              <BtnAzulOutArrow className="min-h-[50px]">
                 Falar com especialista
               </BtnAzulOutArrow>
             </Link>
           </div>
 
           {/* Tier badges */}
-          <div className="flex flex-row gap-[20px] items-stretch justify-center lg:justify-start w-full">
+          <div className="flex flex-row gap-[20px] items-stretch justify-center xl:justify-start w-full">
             {tiers.map((t) => (
               <div
                 key={t.key}

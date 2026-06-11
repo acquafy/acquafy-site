@@ -157,7 +157,7 @@ export default function HeroAppAiIot() {
               Base     : flex-wrap justify-center, cada botão flex-[1_0_0]
               win-1024 : justify-start, cada botão shrink-0 (tamanho fixo)
           */}
-          <div className="flex flex-wrap gap-[20px] items-center justify-center win-1024:justify-start w-full">
+          <div className="flex flex-wrap gap-[20px] items-center justify-center win-1280:justify-start w-full">
 
             {/* Primário */}
             <button className={[
