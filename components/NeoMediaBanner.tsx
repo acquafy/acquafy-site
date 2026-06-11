@@ -134,7 +134,7 @@ export default function NeoMediaBanner() {
           <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start justify-center min-w-[280px]">
             <Label />
             <h1
-              className="font-['Avenir_LT_Pro:95_Black'] text-[56px] leading-[60px] bg-clip-text text-transparent w-fit"
+              className="font-['Avenir_LT_Pro:95_Black'] text-hero bg-clip-text text-transparent w-fit"
               style={{ backgroundImage: titleGradient }}
             >
               Acquafy Media

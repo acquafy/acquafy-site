@@ -46,7 +46,7 @@ export default function BannerFiltros() {
         <div className="flex flex-col gap-[20px] items-center lg:items-start flex-1 min-w-[280px] lg:max-w-[500px] xl:max-w-[600px]">
 
           {/* Título */}
-          <h1 className="font-['Avenir_LT_Pro:95_Black'] text-[56px] leading-[60px] w-full text-center lg:text-left">
+          <h1 className="font-['Avenir_LT_Pro:95_Black'] text-hero w-full text-center lg:text-left">
             <span className="text-[#2a2a2b]">Filtros &amp; </span>
             <span
               className="bg-clip-text text-transparent"

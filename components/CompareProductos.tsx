@@ -419,7 +419,7 @@ export default function CompareProductos() {
               </div>
 
               {/* Title */}
-              <h1 className="font-['Avenir_LT_Pro:95_Black'] text-[56px] leading-[60px] text-[#333] text-center min-[1024px]:text-left">
+              <h1 className="font-['Avenir_LT_Pro:95_Black'] text-hero text-[#333] text-center min-[1024px]:text-left">
                 Compare os produtos{" "}
                 <span
                   className="bg-clip-text"

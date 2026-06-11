@@ -136,7 +136,7 @@ export default function SobreBanner() {
 
         <Badge />
 
-        <h1 className="font-['Avenir_LT_Pro:95_Black'] text-[56px] leading-[60px] text-[#2a2a2b] text-center w-full">
+        <h1 className="font-['Avenir_LT_Pro:95_Black'] text-hero text-[#2a2a2b] text-center w-full">
           Sobre a <span className="text-[#0569ff]">Acquafy</span>
         </h1>
 
@@ -177,7 +177,7 @@ export default function SobreBanner() {
 
             <Badge />
 
-            <h1 className="font-['Avenir_LT_Pro:95_Black'] text-[56px] leading-[60px] text-[#2a2a2b]">
+            <h1 className="font-['Avenir_LT_Pro:95_Black'] text-hero text-[#2a2a2b]">
               Sobre a <span className="text-[#0569ff]">Acquafy</span>
             </h1>
 
