@@ -105,7 +105,7 @@ const navItems: NavItem[] = [
   {
     label: "Empresa",
     href:  "/sobre",
-    extra: ["/expansao-global", "/contato"],
+    extra: ["/expansao-global", "/contato", "/base-de-conhecimento"],
     dropdown: [
       {
         label: "Sobre Nós",
@@ -120,6 +120,13 @@ const navItems: NavItem[] = [
         desc:  "Operação 100% global com modelo de receita 100% recorrente.",
         cta:   "Ver Expansão",
         bg:    "linear-gradient(135deg, #07235c 0%, #0233c3 100%)",
+      },
+      {
+        label: "Base de Conhecimento",
+        href:  "/base-de-conhecimento",
+        desc:  "Artigos, tutoriais, FAQs e suporte especializado sobre todos os produtos Acquafy.",
+        cta:   "Acessar Base",
+        bg:    "linear-gradient(135deg, #1f2e91 0%, #9f3df5 100%)",
       },
       {
         label: "Contatos",

@@ -51,7 +51,7 @@ export default function RecursosAppAiIot() {
         </h2>
 
         {/* 6 cards */}
-        <div className="flex flex-wrap gap-[20px] items-start justify-center w-full">
+        <div className="flex flex-wrap gap-[20px] items-stretch justify-center w-full">
           {items.map((item) => (
             <div
               key={item.title}

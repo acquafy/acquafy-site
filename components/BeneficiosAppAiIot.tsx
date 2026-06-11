@@ -109,41 +109,41 @@ export default function BeneficiosAppAiIot() {
           Benefícios para clientes, parceiros e operadores
         </h2>
 
-        {/* 3 cartões em linha */}
-        <div className="flex flex-wrap gap-[20px] items-stretch justify-center w-full">
+        {/* 3 cartões — flex-col abaixo de 1220px; flex-row a partir de 1220px
+            Breakpoint: 3×380 + 2×20(gaps) + 2×20(padding) = 1220px */}
+        <div className="flex flex-col gap-[20px] items-stretch w-full 1220:flex-row 1220:flex-wrap 1220:justify-center">
           {cards.map((card) => {
             if (card.layout === "person") {
               return (
                 <div
                   key={card.title}
-                  className="bg-white flex flex-[1_0_0] flex-wrap gap-[20px] items-start justify-center min-h-[260px] min-w-[280px] rounded-[16px] overflow-clip"
+                  className="bg-white flex min-h-[260px] rounded-[16px] relative 1220:flex-[1_0_0] 1220:min-w-[380px]"
                 >
-                  {/* Conteúdo — p-[20px] inclui padding direito; min-w-[200px] para caber ao lado da foto nos cards de ~400px */}
-                  <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-[200px] p-[20px]">
+                  {/* Conteúdo — pr-[180px] reserva espaço para a foto absoluta (160px + 20px gap) */}
+                  <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start pl-[20px] py-[20px] pr-[180px]">
                     <CardContent card={card} />
                   </div>
 
-                  {/* Foto — self-stretch iguala a altura do bloco de conteúdo; image bottom-0 ancora ao fundo */}
+                  {/* Foto — contida no bloco, pt-[10px], imagem alinhada ao rodapé com object-contain */}
                   <div
-                    className="relative overflow-clip self-stretch"
-                    style={{ minWidth: 160, maxWidth: 160, minHeight: 200 }}
+                    className="absolute right-0 inset-y-0 overflow-hidden pt-[10px]"
+                    style={{ width: 160 }}
                   >
                     <img
                       src={card.photo}
                       alt={card.title}
-                      className="absolute inset-x-0 bottom-0 w-full object-cover object-top"
-                      style={{ top: 20 }}
+                      className="w-full h-full object-contain object-bottom"
                     />
                   </div>
                 </div>
               );
             }
 
-            // layout === "map" — Operação Global
+            // layout === "map" — Operação Global (mantém layout original)
             return (
               <div
                 key={card.title}
-                className="bg-white flex flex-[1_0_0] flex-wrap gap-y-0 items-start min-w-[280px] relative rounded-[16px]"
+                className="bg-white flex flex-[1_0_0] flex-wrap gap-y-0 items-start min-w-[280px] relative rounded-[16px] 1220:min-w-[380px]"
               >
                 {/* Conteúdo — mr-[-90px] faz o bloco do mapa iniciar 90px antes do fim do conteúdo */}
                 <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-[240px] pl-[20px] py-[20px] mr-[-90px] relative z-[1]">
