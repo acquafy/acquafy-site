@@ -98,24 +98,18 @@ export default function BeneficiosAppAiIot() {
 
               {/* Foto à direita */}
               <div
-                className="flex flex-col items-end justify-center overflow-clip pt-[10px]"
-                style={{ minWidth: 160, maxWidth: 160, height: 260 }}
+                className="relative overflow-clip self-stretch"
+                style={{ minWidth: 160, maxWidth: 160, minHeight: 200 }}
               >
-                <div
-                  className="relative w-full"
+                <img
+                  src={card.photo}
+                  alt={card.title}
+                  className="absolute inset-0 w-full h-full object-cover object-top"
                   style={{
-                    aspectRatio: card.photoAspect,
-                    maxHeight: 250,
                     opacity: card.photoOpacity ?? 1,
                     mixBlendMode: card.photoBlend ? "multiply" : "normal",
                   }}
-                >
-                  <img
-                    src={card.photo}
-                    alt={card.title}
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                </div>
+                />
               </div>
             </div>
           ))}

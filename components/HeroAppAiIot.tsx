@@ -3,7 +3,6 @@ import FigmaIcon from "./FigmaIcon";
 
 // ── Imagens ──────────────────────────────────────────────────────────────────
 const imgBg     = "/figma-assets/427e1a29-4c52-4389-b4ff-172ebd6393d0.png";
-const imgMockup = "/figma-assets/60b9a5e2-760a-4d86-a81a-3c1d9ce03754.png";
 
 // ── Ícones dos badge-cards ────────────────────────────────────────────────────
 const imgMobile = "/figma-assets/c949cdb8-5a17-4158-b6b0-8aaef884917e.svg";   // 21×30
@@ -44,7 +43,7 @@ export default function HeroAppAiIot() {
       />
 
       {/* Conteúdo — flex-1 preenche altura disponível no xl */}
-      <div className="relative flex flex-1 flex-wrap xl:flex-nowrap gap-[40px] items-center justify-center max-w-[1400px] w-full">
+      <div className="relative flex flex-1 flex-wrap xl:flex-nowrap gap-[40px] items-center justify-start max-w-[1400px] w-full">
 
         {/* ── Coluna esquerda ─────────────────────────────────────────── */}
         <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start justify-center min-w-[280px] max-w-[660px]">
@@ -124,16 +123,7 @@ export default function HeroAppAiIot() {
           </div>
         </div>
 
-        {/* ── Coluna direita — mockup ──────────────────────────────────── */}
-        <div className="flex flex-[1_0_0] items-center justify-center min-w-[280px] max-w-[660px]">
-          <div className="relative w-full" style={{ aspectRatio: "3016/1916" }}>
-            <img
-              src={imgMockup}
-              alt="App Acquafy — tablet e smartphone"
-              className="absolute inset-0 w-full h-full object-contain"
-            />
-          </div>
-        </div>
+
       </div>
     </section>
   );

@@ -47,7 +47,7 @@ export default function NeoMediaHowItWorks() {
         </h2>
         <div className="flex flex-wrap gap-[20px] items-start justify-center w-full">
           {steps.map((s, i) => (
-            <div key={s.num} className="relative bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[20px] items-center min-w-[160px] p-[20px] rounded-[16px]">
+            <div key={s.num} className="relative bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[20px] items-center min-w-[280px] p-[20px] rounded-[16px]">
               {/* Icon circle + step number */}
               <div className="relative flex gap-[20px] items-center justify-center w-full">
                 <div className="border border-[#cbd0d4] flex flex-col items-center justify-center p-[24px] rounded-full size-[100px] shrink-0">
@@ -58,7 +58,7 @@ export default function NeoMediaHowItWorks() {
                 </span>
               </div>
               {/* Title */}
-              <h3 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#1f2e91] text-center min-h-[36px] w-full">
+              <h3 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#1f2e91] text-center flex items-center justify-center min-h-[44px] w-full">
                 {s.title}
               </h3>
               {/* Desc */}
@@ -67,9 +67,14 @@ export default function NeoMediaHowItWorks() {
               </p>
               {/* Arrow connector (not on last step) */}
               {i < steps.length - 1 && (
-                <div className="hidden lg:block absolute -right-[12px] top-1/2 -translate-y-1/2 z-10">
-                  <FigmaIcon src={imgArrow} size={12} aspectW={12} aspectH={14.7} />
-                </div>
+                <>
+                  <div className="hidden sm:block absolute -right-[12px] top-1/2 -translate-y-1/2 z-10">
+                    <FigmaIcon src={imgArrow} size={12} aspectW={12} aspectH={14.7} />
+                  </div>
+                  <div className="sm:hidden absolute -bottom-[12px] left-1/2 -translate-x-1/2 z-10">
+                    <FigmaIcon src={imgArrow} size={12} aspectW={12} aspectH={14.7} className="rotate-90" />
+                  </div>
+                </>
               )}
             </div>
           ))}

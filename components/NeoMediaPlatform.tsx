@@ -100,7 +100,7 @@ export default function NeoMediaPlatform() {
               key={c.title}
               className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center min-h-[320px] min-w-[200px] p-[20px] rounded-[16px]"
             >
-              <h3 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#333] text-center min-h-[36px] w-full">
+              <h3 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#333] text-center flex items-center justify-center min-h-[44px] w-full">
                 {c.title}
               </h3>
               <div className="flex-1 flex items-center justify-center w-full">

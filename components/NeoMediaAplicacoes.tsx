@@ -16,42 +16,12 @@ const imgEdu       = "/figma-assets/1eb44019-8bf6-4957-826f-1414337185c2.svg";
 const imgPeople    = "/figma-assets/4884314c-e1b3-4f0b-8374-afa69452a6c5.svg";
 
 const locations = [
-  {
-    photo: imgAirport,
-    icon: imgPlane,
-    title: "Aeroportos",
-    desc: "Alto fluxo, público qualificado e grande visibilidade para marcas.",
-  },
-  {
-    photo: imgShopping,
-    icon: imgCart,
-    title: "Shoppings e Centros Comerciais",
-    desc: "Presença estratégica nos maiores centros de consumo e entretenimento.",
-  },
-  {
-    photo: imgHospital,
-    icon: imgCross,
-    title: "Hospitais e Clínicas",
-    desc: "Hidratação e informação nos momentos em que as pessoas mais precisam.",
-  },
-  {
-    photo: imgOffice,
-    icon: imgBuilding,
-    title: "Empresas e Escritórios",
-    desc: "Benefício corporativo com receita: água de qualidade e mídia segmentada.",
-  },
-  {
-    photo: imgEducation,
-    icon: imgEdu,
-    title: "Universidades e Escolas",
-    desc: "Alcance estudantes e professores com campanhas relevantes e água pura.",
-  },
-  {
-    photo: imgCrowded,
-    icon: imgPeople,
-    title: "Espaços Públicos",
-    desc: "Visibilidade máxima em estações, praças e locais de alto trânsito.",
-  },
+  { photo: imgAirport,   icon: imgPlane,    aspectW: 32, aspectH: 32,   title: "Aeroportos",                          desc: "Alto fluxo, público qualificado e grande visibilidade para marcas." },
+  { photo: imgShopping,  icon: imgCart,     aspectW: 32, aspectH: 32,   title: "Shoppings",                           desc: "Engajamento constante e oportunidades de compras e conversão." },
+  { photo: imgHospital,  icon: imgCross,    aspectW: 32, aspectH: 32,   title: "Hospitais",                           desc: "Hidratação acessível e bem-estar para pacientes, visitantes e equipes." },
+  { photo: imgOffice,    icon: imgBuilding, aspectW: 32, aspectH: 32,   title: "Empresas",                            desc: "Mais saúde e produtividade para colaboradores e visitantes." },
+  { photo: imgEducation, icon: imgEdu,      aspectW: 32, aspectH: 24,   title: "Universidades",                       desc: "Público jovem e conectado, ideal para mídia e promoções." },
+  { photo: imgCrowded,   icon: imgPeople,   aspectW: 32, aspectH: 31.5, title: "Redes públicas e locais de alto fluxo", desc: "Estações, rodoviárias, praças e espaços urbanos com grande circulação." },
 ];
 
 export default function NeoMediaAplicacoes() {
@@ -62,11 +32,11 @@ export default function NeoMediaAplicacoes() {
           {"Onde o Acquafy Media "}
           <span className="text-[#0569ff]">gera mais impacto</span>
         </h2>
-        <div className="flex flex-wrap gap-[20px] items-start justify-center overflow-hidden w-full">
+        <div className="flex flex-wrap gap-[20px] items-stretch justify-center overflow-hidden w-full">
           {locations.map((loc) => (
             <div
               key={loc.title}
-              className="bg-white flex flex-[1_0_0] flex-col items-center max-h-[300px] max-w-[500px] min-h-[160px] min-w-[200px] overflow-hidden rounded-[16px]"
+              className="bg-white flex flex-[1_0_0] flex-col items-center max-w-[500px] min-h-[160px] min-w-[200px] overflow-hidden rounded-[16px]"
             >
               {/* Photo + floating icon badge */}
               <div className="relative flex flex-col items-center justify-center w-full shrink-0">
@@ -79,14 +49,12 @@ export default function NeoMediaAplicacoes() {
                 </div>
                 {/* White icon badge */}
                 <div className="bg-white flex flex-col items-center justify-center p-[15px] rounded-[8px] z-10 shrink-0">
-                  <div className="flex flex-col items-center justify-center size-[30px]">
-                    <FigmaIcon src={loc.icon} size={30} />
-                  </div>
+                  <FigmaIcon src={loc.icon} size={30} aspectW={loc.aspectW} aspectH={loc.aspectH} />
                 </div>
               </div>
               {/* Text */}
               <div className="flex flex-col gap-[10px] items-center justify-center p-[20px] text-center w-full">
-                <h3 className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] w-full">
+                <h3 className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] flex items-center justify-center min-h-[40px] w-full">
                   {loc.title}
                 </h3>
                 <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#2a2a2b] w-full">
