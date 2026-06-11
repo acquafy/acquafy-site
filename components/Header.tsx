@@ -364,12 +364,12 @@ export default function Header() {
         <div className="flex gap-[10px] items-center justify-end shrink-0">
           <LanguageSelectorCompact />
 
-          <button className="hidden lg:flex bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors gap-[10px] items-center justify-center h-[40px] overflow-hidden px-[20px] rounded-[8px] shrink-0 cursor-pointer">
+          <a href="/parceria" className="hidden lg:flex bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors gap-[10px] items-center justify-center h-[40px] overflow-hidden px-[20px] rounded-[8px] shrink-0 cursor-pointer">
             <FigmaIcon src={imgPartner} size={16} aspectW={41} aspectH={40} />
             <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white whitespace-nowrap">
               Seja um Parceiro
             </span>
-          </button>
+          </a>
 
           <button
             className="lg:hidden flex items-center justify-center w-[40px] h-[40px] rounded-[8px] hover:bg-[#f6f9fe] transition-colors cursor-pointer"
@@ -407,12 +407,12 @@ export default function Header() {
               />
             ))}
             <div className="pt-[16px] pb-[10px]">
-              <button className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex gap-[10px] items-center justify-center h-[48px] overflow-hidden px-[20px] rounded-[8px] w-full cursor-pointer">
+              <a href="/parceria" className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex gap-[10px] items-center justify-center h-[48px] overflow-hidden px-[20px] rounded-[8px] w-full cursor-pointer">
                 <FigmaIcon src={imgPartner} size={16} aspectW={41} aspectH={40} />
                 <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white whitespace-nowrap">
                   Seja um Parceiro
                 </span>
-              </button>
+              </a>
             </div>
           </div>
         </div>

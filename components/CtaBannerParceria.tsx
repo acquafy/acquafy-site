@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { BtnAzulOutArrow, BtnAzulBaseArrow } from "./ui/Buttons";
 
 const imgBg = "/figma-assets/cta-banner-bg.png";
@@ -30,9 +31,11 @@ export default function CtaBannerParceria() {
           <BtnAzulOutArrow className="flex-1 min-w-[200px] min-h-[56px]">
             Solicitar apresentação
           </BtnAzulOutArrow>
-          <BtnAzulBaseArrow className="flex-1 min-w-[200px] min-h-[56px]">
-            Quero ser parceiro
-          </BtnAzulBaseArrow>
+          <Link href="/parceria" className="flex-1 min-w-[200px]">
+            <BtnAzulBaseArrow className="w-full min-h-[56px]">
+              Quero ser parceiro
+            </BtnAzulBaseArrow>
+          </Link>
         </div>
 
       </div>

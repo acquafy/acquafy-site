@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, type ReactNode } from "react";
 import FigmaIcon from "./FigmaIcon";
 import { BtnAzulOutArrow } from "./ui/Buttons";
@@ -36,10 +37,10 @@ function IconCircle({ src, aspectW, aspectH }: {
 
 // ── Linha de informação de contato ────────────────────────────────────────────
 function InfoRow({
-  src, aspectW, aspectH, title, lines, ctaLabel,
+  src, aspectW, aspectH, title, lines, ctaLabel, ctaHref,
 }: {
   src: string; aspectW: number; aspectH: number;
-  title: string; lines: string[]; ctaLabel?: string;
+  title: string; lines: string[]; ctaLabel?: string; ctaHref?: string;
 }) {
   return (
     <div className="flex gap-[20px] items-center w-full">
@@ -53,7 +54,14 @@ function InfoRow({
             <p key={i}>{line}</p>
           ))}
         </div>
-        {ctaLabel && (
+        {ctaLabel && ctaHref && (
+          <Link href={ctaHref} className="w-full">
+            <BtnAzulOutArrow className="w-full min-h-[30px] text-[14px]">
+              {ctaLabel}
+            </BtnAzulOutArrow>
+          </Link>
+        )}
+        {ctaLabel && !ctaHref && (
           <BtnAzulOutArrow className="w-full min-h-[30px] text-[14px]">
             {ctaLabel}
           </BtnAzulOutArrow>
@@ -124,12 +132,14 @@ export default function ContatoInfoForm() {
               title="Presença global"
               lines={["16 idiomas em operação ativa"]}
               ctaLabel="Ver todas as regiões"
+              ctaHref="/expansao-global"
             />
             <InfoRow
               src={imgPessoas} aspectW={38} aspectH={35.24}
               title="Seja um parceiro"
               lines={["Descubra como fazer parte da nossa rede global de parceiros."]}
               ctaLabel="Quero ser parceiro"
+              ctaHref="/parceria"
             />
           </div>
         </div>
