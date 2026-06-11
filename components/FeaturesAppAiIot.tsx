@@ -1,12 +1,14 @@
+import FigmaIcon from "./FigmaIcon";
+
 // ── Imagens de card ───────────────────────────────────────────────────────────
 const imgFrame10    = "/figma-assets/25c396db-adbd-4033-a6c2-730dee33b6af.png"; // bg mix-blend
 const imgCheckin    = "/figma-assets/8ac04097-5015-4f16-b49f-ca64faf46c51.svg"; // bullet 14px
 
-// ── Ícones dos cards ──────────────────────────────────────────────────────────
-const imgMobile     = "/figma-assets/c949cdb8-5a17-4158-b6b0-8aaef884917e.svg";
-const imgBrain      = "/figma-assets/b541d68d-7cda-4158-8395-6f6eb9330e5a.svg";
-const imgWifi       = "/figma-assets/44a31159-c52e-4424-9868-43766b829a50.svg";
-const imgPessoas    = "/figma-assets/9d80f21c-8d2a-4d4e-90c7-46de9785bd6c.svg";
+// ── Ícones dos cards (todos com preserveAspectRatio="none") ───────────────────
+const imgMobile     = "/figma-assets/c949cdb8-5a17-4158-b6b0-8aaef884917e.svg";  // 20.2×28
+const imgBrain      = "/figma-assets/b541d68d-7cda-4158-8395-6f6eb9330e5a.svg";  // 32×32
+const imgWifi       = "/figma-assets/44a31159-c52e-4424-9868-43766b829a50.svg";  // 32×22
+const imgPessoas    = "/figma-assets/9d80f21c-8d2a-4d4e-90c7-46de9785bd6c.svg";  // 32×29.7
 
 // ── Imagens bottom dos cards ──────────────────────────────────────────────────
 const imgAppPhone   = "/figma-assets/47b82084-2a56-48d4-944e-16f89c7dfa57.png";
@@ -16,7 +18,7 @@ const imgCloudApp   = "/figma-assets/f3ca984b-b4cb-4462-8ff0-edce017ec847.png";
 
 const cards = [
   {
-    icon: imgMobile,
+    icon: imgMobile, aspectW: 20.2, aspectH: 28,
     title: "App Acquafy",
     items: [
       "Visualizar equipamento e status",
@@ -29,7 +31,7 @@ const cards = [
     img: imgAppPhone,
   },
   {
-    icon: imgBrain,
+    icon: imgBrain, aspectW: 32, aspectH: 32,
     title: "Acquafy AI",
     items: [
       "Insights automáticos e preditivos",
@@ -41,7 +43,7 @@ const cards = [
     img: imgAiApp,
   },
   {
-    icon: imgWifi,
+    icon: imgWifi, aspectW: 32, aspectH: 22,
     title: "IoT & Dispositivos",
     items: [
       "Sensores conectados e telemetria",
@@ -53,7 +55,7 @@ const cards = [
     img: imgIotApp,
   },
   {
-    icon: imgPessoas,
+    icon: imgPessoas, aspectW: 32, aspectH: 29.7,
     title: "Operação integrada",
     items: [
       "Integração com a Plataforma Acquafy",
@@ -90,15 +92,9 @@ export default function FeaturesAppAiIot() {
                 {/* Header: ícone + título */}
                 <div className="flex gap-[20px] items-center w-full shrink-0">
                   <div className="flex items-center justify-center size-[60px] rounded-[12px] bg-[#0569ff] shrink-0">
-                    <div className="size-[30px] flex items-center justify-center">
-                      <img
-                        src={card.icon}
-                        alt=""
-                        className="max-w-full max-h-full object-contain"
-                      />
-                    </div>
+                    <FigmaIcon src={card.icon} size={30} aspectW={card.aspectW} aspectH={card.aspectH} />
                   </div>
-                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#1f2e91] flex-1">
+                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#1f2e91] flex-1 min-h-[44px] flex items-center">
                     {card.title}
                   </p>
                 </div>

@@ -51,7 +51,9 @@ export default function PlatformExperience() {
                 <FigmaIcon src={c.icon} size={40} aspectW={c.iconW} aspectH={c.iconH} />
               </div>
               <div className="flex flex-col gap-[10px] items-start text-center w-full">
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] w-full">{c.title}</p>
+                <div className="flex items-center min-h-[40px] w-full">
+                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] w-full">{c.title}</p>
+                </div>
                 <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#333] w-full">{c.desc}</p>
               </div>
             </div>

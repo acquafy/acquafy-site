@@ -9,7 +9,10 @@ const imgPlastico    = "/figma-assets/ts-icon-plastico.svg";       // plastic bo
 const imgEnergia     = "/figma-assets/ts-icon-energia.svg";        // energia         ~492×492
 const imgReciclavel  = "/figma-assets/ts-icon-reciclavel.svg";     // reciclável       30×30
 const imgPreservAgua = "/figma-assets/ts-icon-preserv-agua.svg";   // água pura       643×631
-const imgPlanet      = "/figma-assets/ts-icon-planet-stats.svg";   // stats icon       30×30
+const imgStatsPessoas   = "/figma-assets/ts-icon-stats-pessoas.svg";    // 43.86×40.50
+const imgStatsAgua      = "/figma-assets/ts-icon-stats-agua.svg";       // 40×40
+const imgStatsPlanta    = "/figma-assets/ts-icon-stats-planta.svg";     // 335.36×361.50
+const imgStatsPlanetWeb = "/figma-assets/ts-icon-stats-planet-web.svg"; // 30×30
 
 const sustCards = [
   {
@@ -35,10 +38,10 @@ const sustCards = [
 ];
 
 const stats = [
-  { value: "+50M",        label: "pessoas impactadas positivamente" },
-  { value: "+2.000",      label: "toneladas de plástico evitadas por ano" },
-  { value: "+15M",        label: "litros de água economizados por ano" },
-  { value: "+180 países", label: "impactados e em expansão" },
+  { value: "+50M",        label: "pessoas impactadas positivamente",      icon: imgStatsPessoas,   aspectW: 43.86,  aspectH: 40.50  },
+  { value: "+2.000",      label: "toneladas de plástico evitadas por ano", icon: imgStatsAgua,      aspectW: 40,     aspectH: 40     },
+  { value: "+15M",        label: "litros de água economizados por ano",   icon: imgStatsPlanta,    aspectW: 335.36, aspectH: 361.50 },
+  { value: "+180 países", label: "impactados e em expansão",              icon: imgStatsPlanetWeb, aspectW: 30,     aspectH: 30     },
 ];
 
 // ── Sub-component ─────────────────────────────────────────────────────────────
@@ -47,7 +50,7 @@ function SustCard({ icon, aspectW, aspectH, title, description }: {
   icon: string; aspectW: number; aspectH: number; title: string; description: string;
 }) {
   return (
-    <div className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center max-w-[200px] min-h-[235px] min-w-[160px] px-[10px] py-[20px] rounded-[16px]">
+    <div className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center min-h-[235px] min-w-[160px] px-[10px] py-[20px] rounded-[16px]">
       <FigmaIcon src={icon} size={40} aspectW={aspectW} aspectH={aspectH} />
       <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[19px] text-[#0b8650] text-center w-full">
         {title}
@@ -73,9 +76,9 @@ export default function TecnologiaSustentSection() {
 
       <div className="relative flex flex-col gap-[20px] items-center max-w-[1400px] w-full">
         {/* Top row: info card + sust cards */}
-        <div className="flex flex-wrap gap-[20px] items-start justify-center w-full">
+        <div className="flex flex-col gap-[20px] items-start w-full">
           {/* Info card */}
-          <div className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-start min-h-[235px] min-w-[280px] overflow-hidden p-[20px] rounded-[16px]">
+          <div className="bg-white flex flex-col gap-[20px] items-start min-h-[235px] min-w-[280px] overflow-hidden p-[20px] rounded-[16px] w-full">
             <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#0b8650] text-center lg:text-left">
               Sustentabilidade em cada gota
             </h2>
@@ -89,30 +92,32 @@ export default function TecnologiaSustentSection() {
           </div>
 
           {/* Sustainability cards */}
-          {sustCards.map((c) => (
-            <SustCard key={c.title} {...c} />
-          ))}
+          <div className="flex flex-[1_0_0] flex-wrap gap-[20px] justify-center min-w-[280px]">
+            {sustCards.map((c) => (
+              <SustCard key={c.title} {...c} />
+            ))}
+          </div>
         </div>
 
         {/* Stats bar */}
-        <div className="bg-white flex flex-wrap gap-[30px_20px] items-start justify-center max-w-[1400px] w-full overflow-hidden px-[20px] py-[40px] rounded-[16px]">
+        <div className="bg-white content-start flex flex-wrap gap-[30px_20px] items-start justify-center max-w-[1400px] w-full overflow-hidden px-[20px] py-[40px] relative rounded-[16px]">
           {stats.map((s) => (
-            <div key={s.value} className="flex flex-[1_0_0] flex-wrap gap-[20px] items-start min-w-[160px]">
-              <FigmaIcon src={imgPlanet} size={40} />
-              <div className="flex flex-[1_0_0] flex-col gap-[15px] items-start min-w-px">
-                <p className="font-['Avenir_LT_Pro:95_Black'] text-[32px] leading-[39px] text-[#0b8650]">
-                  {s.value}
-                </p>
-                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-[#2a2a2b]">
-                  {s.label}
-                </p>
+            <div key={s.value} className="content-start flex flex-[1_0_0] flex-wrap gap-[20px] items-start min-w-[160px] relative">
+              <FigmaIcon src={s.icon} size={40} aspectW={s.aspectW} aspectH={s.aspectH} />
+              <div className="[word-break:break-word] content-stretch flex flex-[1_0_0] flex-col gap-[15px] items-start leading-[0] min-w-px not-italic relative">
+                <div className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both] flex flex-col font-['Avenir_LT_Pro:95_Black'] justify-center relative shrink-0 text-[32px] text-[#0b8650] w-full">
+                  <p className="leading-[39px]">{s.value}</p>
+                </div>
+                <div className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both] flex flex-col font-['Avenir_LT_Pro:55_Roman'] justify-center relative shrink-0 text-[16px] text-[#2a2a2b] w-full">
+                  <p className="leading-[20px]">{s.label}</p>
+                </div>
               </div>
             </div>
           ))}
         </div>
 
         {/* ── CTA Banner — dentro da mesma seção, sobre o fundo nature ── */}
-        <div className="content-center flex flex-wrap gap-[20px] items-center justify-center max-w-[1400px] overflow-hidden p-[40px] relative rounded-[16px] shrink-0 w-full">
+        <div className="content-center flex flex-col gap-[20px] items-center justify-center max-w-[1400px] overflow-hidden p-[40px] relative rounded-[16px] shrink-0 w-full lg:flex-row lg:flex-wrap">
           {/* Fundo: verde-escuro + foto com opacidade */}
           <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[16px]">
             <div className="absolute bg-[#0b8650] inset-0 rounded-[16px]" />
@@ -127,14 +132,14 @@ export default function TecnologiaSustentSection() {
           <FigmaIcon src={imgCtaIcon} size={60} aspectW={438} aspectH={492} />
 
           {/* Título */}
-          <div className="relative flex flex-[1_0_0] flex-col items-center justify-center min-w-[240px]">
+          <div className="relative flex flex-col items-center justify-center w-full lg:flex-[1_0_0] lg:min-w-[240px]">
             <p className="font-['Avenir_LT_Pro:95_Black'] text-[32px] leading-[39px] text-white w-full text-center lg:text-left">
               Inovação que cuida de pessoas e do planeta ao mesmo tempo.
             </p>
           </div>
 
           {/* Botão */}
-          <div className="relative flex flex-[1_0_0] items-center justify-center max-w-[300px] min-w-[200px]">
+          <div className="relative flex items-center justify-center w-full lg:flex-[1_0_0] lg:max-w-[300px] lg:min-w-[200px]">
             <BtnVerdeOutArrow className="w-full min-h-[56px]">
               Faça parte dessa transformação
             </BtnVerdeOutArrow>

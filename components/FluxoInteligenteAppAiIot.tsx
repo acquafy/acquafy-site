@@ -38,12 +38,12 @@ export default function FluxoInteligenteAppAiIot() {
           <span className="text-[#1f2e91]"> da operação</span>
         </h2>
 
-        {/* Steps — cada item tem largura fixa; setas são irmãs inline */}
+        {/* Steps — itens flex-1; setas preenchem espaço disponível entre eles */}
         <div className="flex flex-wrap gap-y-[30px] items-start justify-center w-full">
           {steps.map((step, i) => (
             <React.Fragment key={step.label}>
               {/* Item */}
-              <div className="flex flex-col gap-[12px] items-center" style={{ width: 150 }}>
+              <div className="flex-[1_0_0] flex flex-col gap-[12px] items-center min-w-[120px]">
 
                 {/* Círculo */}
                 <div
@@ -62,23 +62,21 @@ export default function FluxoInteligenteAppAiIot() {
 
                 {/* Label */}
                 <p
-                  className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[18px] text-[#1f2e91] text-center w-full"
+                  className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[18px] text-[#1f2e91] text-center w-full min-h-[36px] flex items-center justify-center"
                   style={{ whiteSpace: "pre-line" }}
                 >
                   {step.label}
                 </p>
               </div>
 
-              {/* Seta tracejada — visível só em lg+ e não após o último item */}
+              {/* Seta tracejada — wrapper flex-1 preenche espaço entre itens */}
               {i < steps.length - 1 && (
-                <img
-                  className="hidden lg:block shrink-0 self-start"
-                  src={imgArrow}
-                  alt=""
-                  width={41}
-                  height={15}
-                  style={{ marginTop: 52 }}
-                />
+                <div
+                  className="hidden lg:flex flex-1 items-start justify-center shrink-0"
+                  style={{ paddingTop: 52 }}
+                >
+                  <img src={imgArrow} alt="" width={41} height={15} />
+                </div>
               )}
             </React.Fragment>
           ))}
