@@ -53,7 +53,7 @@ export default function BannerLinhaNeo() {
         <div className="flex flex-col gap-[20px] items-center w-full win-1024:flex-[1_0_0] win-1024:gap-[40px] win-1024:items-start win-1024:justify-center win-1024:max-w-[500px] win-1024:min-w-[280px]">
 
           <h1
-            className="font-['Avenir_LT_Pro:95_Black'] text-[56px] leading-[60px] bg-clip-text text-transparent text-center w-full win-1024:text-left"
+            className="font-['Avenir_LT_Pro:95_Black'] text-hero bg-clip-text text-transparent text-center w-full win-1024:text-left"
             style={{ backgroundImage: "linear-gradient(129deg, #0233c3 6.19%, #9f3df5 93.35%)" }}
           >
             Linha Neo

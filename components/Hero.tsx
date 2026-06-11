@@ -96,7 +96,7 @@ export default function Hero() {
             </div>
 
             {/* H1 — centered */}
-            <h1 className="font-['Avenir_LT_Pro:95_Black'] text-[56px] leading-[60px] text-[#333] w-full text-center">
+            <h1 className="font-['Avenir_LT_Pro:95_Black'] text-hero text-[#333] w-full text-center">
               {"Plataforma Inteligente para "}
               <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(103.83deg, #0233c3 6.19%, #9f3df5 93.35%)" }}>
                 Água de Qualidade
@@ -175,7 +175,7 @@ export default function Hero() {
             </div>
 
             {/* H1 — centered, gradient bottom portion */}
-            <h1 className="font-['Avenir_LT_Pro:95_Black'] text-[56px] leading-[60px] text-[#333] w-full text-center">
+            <h1 className="font-['Avenir_LT_Pro:95_Black'] text-hero text-[#333] w-full text-center">
               {"Água de qualidade "}
               <span className="bg-clip-text text-transparent bg-gradient-to-b from-[#0233c3] to-[#9f3df5]">
                 não deve ser privilégio.
@@ -264,12 +264,12 @@ export default function Hero() {
 
             {/* H1 */}
             {slide === 0 ? (
-              <h1 className="font-['Avenir_LT_Pro:95_Black'] text-[56px] leading-[60px] text-[#333] w-full">
+              <h1 className="font-['Avenir_LT_Pro:95_Black'] text-hero text-[#333] w-full">
                 {"Plataforma Inteligente para "}
                 <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(103.83deg, #0233c3 6.19%, #9f3df5 93.35%)" }}>Água de Qualidade</span>
               </h1>
             ) : (
-              <h1 className="font-['Avenir_LT_Pro:95_Black'] text-[56px] leading-[60px] text-[#333] w-full">
+              <h1 className="font-['Avenir_LT_Pro:95_Black'] text-hero text-[#333] w-full">
                 Água de qualidade<br />
                 <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(to bottom, #0233c3, #9f3df5)" }}>não deve ser privilégio.</span>
               </h1>

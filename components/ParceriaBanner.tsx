@@ -73,7 +73,7 @@ export default function ParceriaBanner() {
 
           {/* Title */}
           <h1
-            className="font-['Avenir_LT_Pro:95_Black'] text-[44px] leading-[52px] lg:text-[56px] lg:leading-[60px] bg-clip-text text-transparent w-full text-center lg:text-left"
+            className="font-['Avenir_LT_Pro:95_Black'] text-hero bg-clip-text text-transparent w-full text-center lg:text-left"
             style={{ backgroundImage: "linear-gradient(110.27deg, #0233c3 6.19%, #9f3df5 93.35%)" }}
           >
             Programa de Parceria Global Acquafy

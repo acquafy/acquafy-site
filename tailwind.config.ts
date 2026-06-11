@@ -10,11 +10,13 @@ const config: Config = {
       screens: {
         /* Breakpoint mobile — telas ≤ 767px (smartphones) */
         "mob": { max: "767px" },
-        /* Breakpoints ajustados -20px para compensar scrollbar Windows (~17px):
-           janela 1024px → CSS viewport ~1007px → win-1024 (1000px) ativa
-           janela 1280px → CSS viewport ~1263px → win-1280 (1260px) ativa */
-        "win-1024": "1000px",
-        "win-1280": "1260px",
+        /* Breakpoints canônicos conforme setup do projeto:
+           ≥ 1024px → Breakpoint 2
+           ≥ 1280px → TELA TOTAL */
+        "win-1024": "1024px",
+        "win-1280": "1280px",
+        /* Breakpoint legado — mantido para compatibilidade */
+        "1024": "1024px",
         /* Breakpoint para "tela total" — design nativo Figma (Padrão, 1500px) */
         "1440": "1440px",
       },
@@ -33,6 +35,10 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["Avenir LT Pro:55 Roman", "sans-serif"],
+      },
+      fontSize: {
+        /* Heading hero — 56px ≥1024px, fluid até 32px em 375px */
+        "hero": ["clamp(32px, 3.7vw + 18px, 56px)", { lineHeight: "clamp(36px, 3.7vw + 22px, 60px)" }],
       },
       maxWidth: {
         container: "1400px",

@@ -46,7 +46,7 @@ export default function BannerContato() {
 
         {/* Left */}
         <div className="flex flex-[1_0_0] flex-col gap-[40px] items-center lg:items-start min-w-[280px] max-w-[640px]">
-          <h1 className="font-['Avenir_LT_Pro:95_Black'] text-[56px] leading-[60px] text-[#2a2a2b] text-center lg:text-left">
+          <h1 className="font-['Avenir_LT_Pro:95_Black'] text-hero text-[#2a2a2b] text-center lg:text-left">
             Fale com a{" "}
             <span className="text-[#0569ff]">Acquafy</span>
           </h1>
