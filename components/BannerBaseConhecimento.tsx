@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import FigmaIcon from "./FigmaIcon";
+import { useChatWidget } from "./ChatWidget";
 
 const imgArrowWhite = "/figma-assets/f1bc0ed4-ae05-42d0-9a9b-446afb8aa0de.svg";
 const imgArrowBlue  = "/figma-assets/9fb38b6b-2d2d-4507-a48f-9b970bd17e28.svg";
@@ -18,56 +19,56 @@ type Item = {
 
 const ITEMS: Item[] = [
   // Produtos
-  { titulo: "Qual a diferença entre Linha Neo Essentials e Premium?",  tags: ["Linha Neo","Comparativo"],        categoria: "Produtos",               cor: "#0233c3", href: "#produtos"     },
-  { titulo: "Quais tipos de água o purificador Neo fornece?",           tags: ["Água","Filtração"],               categoria: "Produtos",               cor: "#0233c3", href: "#produtos"     },
-  { titulo: "Como verificar a garantia do meu produto?",               tags: ["Garantia","Registro"],            categoria: "Produtos",               cor: "#0233c3", href: "#produtos"     },
-  { titulo: "O que é a tecnologia UV LED + UF no Neo?",                 tags: ["Tecnologia","Filtração"],         categoria: "Produtos",               cor: "#0233c3", href: "#produtos"     },
-  { titulo: "Especificações técnicas do painel LED 10.1\" e 15.6\"",    tags: ["Especificações","Hardware"],      categoria: "Produtos",               cor: "#0233c3", href: "#produtos"     },
-  { titulo: "Qual modelo escolher: Neo FIT, SMART H₂ ou ULTRA?",       tags: ["Comparativo","Guia"],             categoria: "Produtos",               cor: "#0233c3", href: "#produtos"     },
+  { titulo: "Qual a diferença entre Linha Neo Essentials e Premium?",  tags: ["Linha Neo","Comparativo"],        categoria: "Produtos",               cor: "#0233c3", href: "/artigos/produtos/diferenca-essentials-e-premium"                          },
+  { titulo: "Quais tipos de água o purificador Neo fornece?",           tags: ["Água","Filtração"],               categoria: "Produtos",               cor: "#0233c3", href: "/artigos/produtos/tipos-de-agua-que-o-neo-fornece"                          },
+  { titulo: "Como verificar a garantia do meu produto?",               tags: ["Garantia","Registro"],            categoria: "Produtos",               cor: "#0233c3", href: "/artigos/produtos/como-verificar-garantia-do-produto"                       },
+  { titulo: "O que é a tecnologia UV LED + UF no Neo?",                 tags: ["Tecnologia","Filtração"],         categoria: "Produtos",               cor: "#0233c3", href: "/artigos/produtos/tecnologia-uv-led-uf-no-neo"                              },
+  { titulo: "Especificações técnicas do painel LED 10.1\" e 15.6\"",    tags: ["Especificações","Hardware"],      categoria: "Produtos",               cor: "#0233c3", href: "/artigos/produtos/especificacoes-painel-led-10-e-15"                        },
+  { titulo: "Qual modelo escolher: Neo FIT, SMART H₂ ou ULTRA?",       tags: ["Comparativo","Guia"],             categoria: "Produtos",               cor: "#0233c3", href: "/artigos/produtos/qual-modelo-escolher-fit-smart-ultra"                     },
   // App + AI + IoT
-  { titulo: "Como configurar o Wi-Fi no purificador Neo?",             tags: ["Wi-Fi","Configuração"],           categoria: "App + AI + IoT",         cor: "#0569ff", href: "#app-ai-iot"   },
-  { titulo: "Como usar o aplicativo Acquafy no celular?",              tags: ["App","Tutorial"],                 categoria: "App + AI + IoT",         cor: "#0569ff", href: "#app-ai-iot"   },
-  { titulo: "O que é o suporte por IA 24/7?",                          tags: ["IA","Suporte"],                   categoria: "App + AI + IoT",         cor: "#0569ff", href: "#app-ai-iot"   },
-  { titulo: "Como monitorar a qualidade da água pelo app?",            tags: ["IoT","Monitoramento"],            categoria: "App + AI + IoT",         cor: "#0569ff", href: "#app-ai-iot"   },
-  { titulo: "Compatibilidade com iOS e Android",                       tags: ["App","Compatibilidade"],          categoria: "App + AI + IoT",         cor: "#0569ff", href: "#app-ai-iot"   },
-  { titulo: "Configuração do Bluetooth 5.3 para controle local",       tags: ["Bluetooth","Configuração"],       categoria: "App + AI + IoT",         cor: "#0569ff", href: "#app-ai-iot"   },
+  { titulo: "Como configurar o Wi-Fi no purificador Neo?",             tags: ["Wi-Fi","Configuração"],           categoria: "App + AI + IoT",         cor: "#0569ff", href: "/artigos/app-ai-iot/como-configurar-wifi-no-neo"                            },
+  { titulo: "Como usar o aplicativo Acquafy no celular?",              tags: ["App","Tutorial"],                 categoria: "App + AI + IoT",         cor: "#0569ff", href: "/artigos/app-ai-iot/como-usar-aplicativo-acquafy"                           },
+  { titulo: "O que é o suporte por IA 24/7?",                          tags: ["IA","Suporte"],                   categoria: "App + AI + IoT",         cor: "#0569ff", href: "/artigos/app-ai-iot/o-que-e-suporte-ia-24-7"                               },
+  { titulo: "Como monitorar a qualidade da água pelo app?",            tags: ["IoT","Monitoramento"],            categoria: "App + AI + IoT",         cor: "#0569ff", href: "/artigos/app-ai-iot/como-monitorar-qualidade-da-agua"                       },
+  { titulo: "Compatibilidade com iOS e Android",                       tags: ["App","Compatibilidade"],          categoria: "App + AI + IoT",         cor: "#0569ff", href: "/artigos/app-ai-iot/compatibilidade-ios-android"                           },
+  { titulo: "Configuração do Bluetooth 5.3 para controle local",       tags: ["Bluetooth","Configuração"],       categoria: "App + AI + IoT",         cor: "#0569ff", href: "/artigos/app-ai-iot/configurar-bluetooth-5-3"                              },
   // Media Network
-  { titulo: "Como funciona o sistema de anúncios na tela?",            tags: ["Anúncios","Receita"],             categoria: "Media Network",          cor: "#9f3df5", href: "#media-network" },
-  { titulo: "Como cadastrar uma campanha no Acquafy Media?",           tags: ["Campanha","Tutorial"],            categoria: "Media Network",          cor: "#9f3df5", href: "#media-network" },
-  { titulo: "O que é o QR Code de campanha e como usar?",              tags: ["QR Code","Marketing"],            categoria: "Media Network",          cor: "#9f3df5", href: "#media-network" },
-  { titulo: "Como calcular a receita recorrente com Media?",           tags: ["Receita","Negócio"],              categoria: "Media Network",          cor: "#9f3df5", href: "#media-network" },
-  { titulo: "Formatos e dimensões aceitos para anúncios",              tags: ["Design","Especificações"],        categoria: "Media Network",          cor: "#9f3df5", href: "#media-network" },
-  { titulo: "Relatórios de performance de campanha",                   tags: ["Analytics","Relatório"],          categoria: "Media Network",          cor: "#9f3df5", href: "#media-network" },
+  { titulo: "Como funciona o sistema de anúncios na tela?",            tags: ["Anúncios","Receita"],             categoria: "Media Network",          cor: "#9f3df5", href: "/artigos/media-network/como-funciona-sistema-de-anuncios"                  },
+  { titulo: "Como cadastrar uma campanha no Acquafy Media?",           tags: ["Campanha","Tutorial"],            categoria: "Media Network",          cor: "#9f3df5", href: "/artigos/media-network/como-cadastrar-campanha-acquafy-media"             },
+  { titulo: "O que é o QR Code de campanha e como usar?",              tags: ["QR Code","Marketing"],            categoria: "Media Network",          cor: "#9f3df5", href: "/artigos/media-network/o-que-e-qr-code-de-campanha"                       },
+  { titulo: "Como calcular a receita recorrente com Media?",           tags: ["Receita","Negócio"],              categoria: "Media Network",          cor: "#9f3df5", href: "/artigos/media-network/calcular-receita-recorrente-com-media"             },
+  { titulo: "Formatos e dimensões aceitos para anúncios",              tags: ["Design","Especificações"],        categoria: "Media Network",          cor: "#9f3df5", href: "/artigos/media-network/formatos-e-dimensoes-para-anuncios"                },
+  { titulo: "Relatórios de performance de campanha",                   tags: ["Analytics","Relatório"],          categoria: "Media Network",          cor: "#9f3df5", href: "/artigos/media-network/relatorios-de-performance-campanha"               },
   // Parceiros
-  { titulo: "Como se tornar um parceiro Silver da Acquafy?",           tags: ["Silver","Cadastro"],              categoria: "Parceiros",              cor: "#1f2e91", href: "#parceiros"     },
-  { titulo: "Quais são os benefícios do plano Gold Partner?",          tags: ["Gold","Benefícios"],              categoria: "Parceiros",              cor: "#1f2e91", href: "#parceiros"     },
-  { titulo: "Modelo Platinum: distribuidor regional Acquafy",          tags: ["Platinum","Distribuição"],        categoria: "Parceiros",              cor: "#1f2e91", href: "#parceiros"     },
-  { titulo: "Comissões por nível de parceria (20% a 70%)",             tags: ["Comissão","Financeiro"],          categoria: "Parceiros",              cor: "#1f2e91", href: "#parceiros"     },
-  { titulo: "Materiais de apoio para vendas e treinamentos",           tags: ["Marketing","Treinamento"],        categoria: "Parceiros",              cor: "#1f2e91", href: "#parceiros"     },
-  { titulo: "Como operar a rede Silver sendo um Gold Partner?",        tags: ["Gold","Rede"],                    categoria: "Parceiros",              cor: "#1f2e91", href: "#parceiros"     },
+  { titulo: "Como se tornar um parceiro Silver da Acquafy?",           tags: ["Silver","Cadastro"],              categoria: "Parceiros",              cor: "#1f2e91", href: "/artigos/parceiros/como-se-tornar-parceiro-silver"                         },
+  { titulo: "Quais são os benefícios do plano Gold Partner?",          tags: ["Gold","Benefícios"],              categoria: "Parceiros",              cor: "#1f2e91", href: "/artigos/parceiros/beneficios-plano-gold-partner"                          },
+  { titulo: "Modelo Platinum: distribuidor regional Acquafy",          tags: ["Platinum","Distribuição"],        categoria: "Parceiros",              cor: "#1f2e91", href: "/artigos/parceiros/modelo-platinum-distribuidor-regional"                  },
+  { titulo: "Comissões por nível de parceria (20% a 70%)",             tags: ["Comissão","Financeiro"],          categoria: "Parceiros",              cor: "#1f2e91", href: "/artigos/parceiros/comissoes-por-nivel-de-parceria"                        },
+  { titulo: "Materiais de apoio para vendas e treinamentos",           tags: ["Marketing","Treinamento"],        categoria: "Parceiros",              cor: "#1f2e91", href: "/artigos/parceiros/materiais-de-apoio-vendas-treinamentos"                },
+  { titulo: "Como operar a rede Silver sendo um Gold Partner?",        tags: ["Gold","Rede"],                    categoria: "Parceiros",              cor: "#1f2e91", href: "/artigos/parceiros/operar-rede-silver-sendo-gold-partner"                  },
   // Faturamento
-  { titulo: "Como emitir a segunda via de fatura?",                    tags: ["Fatura","Financeiro"],            categoria: "Faturamento",            cor: "#36ae5c", href: "#faturamento"   },
-  { titulo: "Prazo para recebimento de comissões",                     tags: ["Comissão","Pagamento"],           categoria: "Faturamento",            cor: "#36ae5c", href: "#faturamento"   },
-  { titulo: "Formas de pagamento aceitas pela Acquafy",                tags: ["Pagamento","Métodos"],            categoria: "Faturamento",            cor: "#36ae5c", href: "#faturamento"   },
-  { titulo: "Como acompanhar o status do meu pedido?",                 tags: ["Pedido","Rastreamento"],          categoria: "Faturamento",            cor: "#36ae5c", href: "#faturamento"   },
-  { titulo: "Política de reembolso e cancelamento",                    tags: ["Reembolso","Política"],           categoria: "Faturamento",            cor: "#36ae5c", href: "#faturamento"   },
-  { titulo: "Nota fiscal e documentação fiscal internacional",         tags: ["Fiscal","Internacional"],         categoria: "Faturamento",            cor: "#36ae5c", href: "#faturamento"   },
+  { titulo: "Como emitir a segunda via de fatura?",                    tags: ["Fatura","Financeiro"],            categoria: "Faturamento",            cor: "#36ae5c", href: "/artigos/faturamento/como-emitir-segunda-via-de-fatura"                   },
+  { titulo: "Prazo para recebimento de comissões",                     tags: ["Comissão","Pagamento"],           categoria: "Faturamento",            cor: "#36ae5c", href: "/artigos/faturamento/prazo-recebimento-comissoes"                         },
+  { titulo: "Formas de pagamento aceitas pela Acquafy",                tags: ["Pagamento","Métodos"],            categoria: "Faturamento",            cor: "#36ae5c", href: "/artigos/faturamento/formas-de-pagamento-aceitas"                         },
+  { titulo: "Como acompanhar o status do meu pedido?",                 tags: ["Pedido","Rastreamento"],          categoria: "Faturamento",            cor: "#36ae5c", href: "/artigos/faturamento/acompanhar-status-do-pedido"                         },
+  { titulo: "Política de reembolso e cancelamento",                    tags: ["Reembolso","Política"],           categoria: "Faturamento",            cor: "#36ae5c", href: "/artigos/faturamento/politica-de-reembolso-e-cancelamento"                },
+  { titulo: "Nota fiscal e documentação fiscal internacional",         tags: ["Fiscal","Internacional"],         categoria: "Faturamento",            cor: "#36ae5c", href: "/artigos/faturamento/nota-fiscal-documentacao-fiscal-internacional"       },
   // Instalação e Manutenção
-  { titulo: "Passo a passo: instalação do purificador Neo",            tags: ["Instalação","Tutorial"],          categoria: "Instalação e Manutenção", cor: "#dfa727", href: "#manutencao"   },
-  { titulo: "Com que frequência trocar o filtro? (365 dias)",          tags: ["Filtro","Manutenção"],            categoria: "Instalação e Manutenção", cor: "#dfa727", href: "#manutencao"   },
-  { titulo: "Como realizar a limpeza preventiva?",                     tags: ["Limpeza","Preventiva"],           categoria: "Instalação e Manutenção", cor: "#dfa727", href: "#manutencao"   },
-  { titulo: "Solução de problemas: purificador sem energia",           tags: ["Problema","Elétrico"],            categoria: "Instalação e Manutenção", cor: "#dfa727", href: "#manutencao"   },
-  { titulo: "Troca do filtro: reposição inteligente via app",          tags: ["Filtro","App"],                   categoria: "Instalação e Manutenção", cor: "#dfa727", href: "#manutencao"   },
-  { titulo: "Manutenção do reservatório e componentes internos",       tags: ["Manutenção","Hardware"],          categoria: "Instalação e Manutenção", cor: "#dfa727", href: "#manutencao"   },
+  { titulo: "Passo a passo: instalação do purificador Neo",            tags: ["Instalação","Tutorial"],          categoria: "Instalação e Manutenção", cor: "#dfa727", href: "/artigos/instalacao-e-manutencao/instalacao-passo-a-passo-purificador-neo"      },
+  { titulo: "Com que frequência trocar o filtro? (365 dias)",          tags: ["Filtro","Manutenção"],            categoria: "Instalação e Manutenção", cor: "#dfa727", href: "/artigos/instalacao-e-manutencao/frequencia-troca-filtro-365-dias"              },
+  { titulo: "Como realizar a limpeza preventiva?",                     tags: ["Limpeza","Preventiva"],           categoria: "Instalação e Manutenção", cor: "#dfa727", href: "/artigos/instalacao-e-manutencao/como-realizar-limpeza-preventiva"             },
+  { titulo: "Solução de problemas: purificador sem energia",           tags: ["Problema","Elétrico"],            categoria: "Instalação e Manutenção", cor: "#dfa727", href: "/artigos/instalacao-e-manutencao/solucao-problemas-purificador-sem-energia"     },
+  { titulo: "Troca do filtro: reposição inteligente via app",          tags: ["Filtro","App"],                   categoria: "Instalação e Manutenção", cor: "#dfa727", href: "/artigos/instalacao-e-manutencao/troca-filtro-reposicao-inteligente-via-app"    },
+  { titulo: "Manutenção do reservatório e componentes internos",       tags: ["Manutenção","Hardware"],          categoria: "Instalação e Manutenção", cor: "#dfa727", href: "/artigos/instalacao-e-manutencao/manutencao-reservatorio-componentes-internos" },
   // Perguntas Frequentes
-  { titulo: "Qual a diferença entre Neo Essentials e Neo Premium?",    tags: ["FAQ","Comparativo"],              categoria: "Perguntas Frequentes",   cor: "#6b7280", href: "#faq"          },
-  { titulo: "Como baixar e configurar o aplicativo Acquafy?",          tags: ["FAQ","App"],                      categoria: "Perguntas Frequentes",   cor: "#6b7280", href: "#faq"          },
-  { titulo: "Com que frequência devo trocar o filtro?",                tags: ["FAQ","Filtro","Manutenção"],      categoria: "Perguntas Frequentes",   cor: "#6b7280", href: "#faq"          },
-  { titulo: "Como me tornar um parceiro Acquafy?",                     tags: ["FAQ","Parceiros"],                categoria: "Perguntas Frequentes",   cor: "#6b7280", href: "#faq"          },
-  { titulo: "O que é a Acquafy Media e como gera receita recorrente?", tags: ["FAQ","Media","Receita"],          categoria: "Perguntas Frequentes",   cor: "#6b7280", href: "#faq"          },
-  { titulo: "O purificador Neo funciona com água de poço?",            tags: ["FAQ","Instalação"],               categoria: "Perguntas Frequentes",   cor: "#6b7280", href: "#faq"          },
-  { titulo: "Qual o prazo de garantia dos produtos Acquafy?",          tags: ["FAQ","Garantia"],                 categoria: "Perguntas Frequentes",   cor: "#6b7280", href: "#faq"          },
-  { titulo: "Em quantos países a Acquafy opera?",                      tags: ["FAQ","Global","Expansão"],        categoria: "Perguntas Frequentes",   cor: "#6b7280", href: "#faq"          },
+  { titulo: "Qual a diferença entre Neo Essentials e Neo Premium?",    tags: ["FAQ","Comparativo"],              categoria: "Perguntas Frequentes",   cor: "#6b7280", href: "#faq" },
+  { titulo: "Como baixar e configurar o aplicativo Acquafy?",          tags: ["FAQ","App"],                      categoria: "Perguntas Frequentes",   cor: "#6b7280", href: "#faq" },
+  { titulo: "Com que frequência devo trocar o filtro?",                tags: ["FAQ","Filtro","Manutenção"],      categoria: "Perguntas Frequentes",   cor: "#6b7280", href: "#faq" },
+  { titulo: "Como me tornar um parceiro Acquafy?",                     tags: ["FAQ","Parceiros"],                categoria: "Perguntas Frequentes",   cor: "#6b7280", href: "#faq" },
+  { titulo: "O que é a Acquafy Media e como gera receita recorrente?", tags: ["FAQ","Media","Receita"],          categoria: "Perguntas Frequentes",   cor: "#6b7280", href: "#faq" },
+  { titulo: "O purificador Neo funciona com água de poço?",            tags: ["FAQ","Instalação"],               categoria: "Perguntas Frequentes",   cor: "#6b7280", href: "#faq" },
+  { titulo: "Qual o prazo de garantia dos produtos Acquafy?",          tags: ["FAQ","Garantia"],                 categoria: "Perguntas Frequentes",   cor: "#6b7280", href: "#faq" },
+  { titulo: "Em quantos países a Acquafy opera?",                      tags: ["FAQ","Global","Expansão"],        categoria: "Perguntas Frequentes",   cor: "#6b7280", href: "#faq" },
 ];
 
 const MAX_VISIBLE = 7;
@@ -216,6 +217,7 @@ function Highlight({ text, query }: { text: string; query: string }) {
 // ── Component ────────────────────────────────────────────────────────────────
 
 export default function BannerBaseConhecimento() {
+  const { openChat } = useChatWidget();
   const [query, setQuery]     = useState("");
   const [open, setOpen]       = useState(false);
   const [active, setActive]   = useState(-1);   // keyboard-selected index
@@ -254,7 +256,12 @@ export default function BannerBaseConhecimento() {
       setActive(a => Math.max(a - 1, -1));
     } else if (e.key === "Enter" && active >= 0) {
       e.preventDefault();
-      window.location.hash = visible[active].href;
+      const href = visible[active].href;
+      if (href.startsWith("/")) {
+        window.location.href = href;
+      } else {
+        window.location.hash = href;
+      }
       setOpen(false);
       setActive(-1);
     } else if (e.key === "Escape") {
@@ -266,7 +273,11 @@ export default function BannerBaseConhecimento() {
   const handleSelect = useCallback((href: string) => {
     setOpen(false);
     setActive(-1);
-    // navigate to anchor with header offset respected via native hash navigation
+    if (href.startsWith("/")) {
+      window.location.href = href;
+      return;
+    }
+    // anchor-only: smooth scroll with header offset
     const id = href.replace("#", "");
     const el = document.getElementById(id);
     if (el) {
@@ -422,22 +433,32 @@ export default function BannerBaseConhecimento() {
 
         {/* CTA buttons */}
         <div className="flex flex-wrap gap-[16px] items-center justify-center w-full">
-          <a href="/central-de-suporte" className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#0569ff] transition-colors
-            flex gap-[10px] items-center justify-center
-            min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer shrink-0 no-underline">
+          <button onClick={openChat} className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#0569ff] transition-colors flex gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer shrink-0">
             <span className="font-['Articulat_CF:Bold'] text-[16px] text-white flex-1 text-center leading-normal">
-              Abrir chamado
+              Abrir chat
             </span>
             <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
-          </a>
+          </button>
 
-          <a href="/contato" className="group bg-white border border-white hover:border-[#e2e8f0] hover:bg-[rgba(255,255,255,0.9)] active:bg-white transition-colors
-            flex gap-[10px] items-center justify-center
-            min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer shrink-0">
+          <a href="/contato" className="group bg-white border border-white hover:border-[#e2e8f0] hover:bg-[rgba(255,255,255,0.9)] active:bg-white transition-colors flex gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer shrink-0">
             <span className="font-['Articulat_CF:Bold'] text-[16px] text-[#0233c3] flex-1 text-center leading-normal">
               Fale com um especialista
             </span>
             <FigmaIcon src={imgArrowBlue} size={9} aspectW={11.2} aspectH={8.84} />
+          </a>
+
+          <a href="/artigos" className="group border-2 border-white hover:bg-white active:bg-[rgba(255,255,255,0.9)] transition-colors flex gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer shrink-0">
+            <span className="font-['Articulat_CF:Bold'] text-[16px] text-white group-hover:text-[#0233c3] transition-colors flex-1 text-center leading-normal">
+              Ver artigos
+            </span>
+            <div className="relative shrink-0" style={{ width: 9, height: 9 }}>
+              <div className="absolute inset-0 transition-opacity opacity-100 group-hover:opacity-0">
+                <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
+              </div>
+              <div className="absolute inset-0 transition-opacity opacity-0 group-hover:opacity-100">
+                <FigmaIcon src={imgArrowBlue} size={9} aspectW={11.2} aspectH={8.84} />
+              </div>
+            </div>
           </a>
         </div>
 
