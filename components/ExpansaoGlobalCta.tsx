@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { BtnAzulOutArrow, BtnAzulBaseArrow } from "./ui/Buttons";
 
 const imgBg = "/figma-assets/6e4c7a5e-74be-4ed7-ab5a-e6572a21db21.png";
@@ -25,9 +26,11 @@ export default function ExpansaoGlobalCta() {
 
         {/* Buttons */}
         <div className="relative flex flex-[1_0_0] flex-wrap gap-[10px] items-center justify-center max-w-[500px] min-w-[240px]">
-          <BtnAzulOutArrow className="flex-1 min-w-[200px] min-h-[56px]">
-            Seja um parceiro
-          </BtnAzulOutArrow>
+          <Link href="/parceria" className="flex-1 min-w-[200px]">
+            <BtnAzulOutArrow className="w-full min-h-[56px]">
+              Seja um parceiro
+            </BtnAzulOutArrow>
+          </Link>
           <BtnAzulBaseArrow className="flex-1 min-w-[200px] min-h-[56px]">
             Fale com um especialista
           </BtnAzulBaseArrow>

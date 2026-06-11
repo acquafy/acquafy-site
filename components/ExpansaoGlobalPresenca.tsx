@@ -1,3 +1,4 @@
+import Link from "next/link";
 import FigmaIcon from "./FigmaIcon";
 import { BtnAzulOutArrow } from "./ui/Buttons";
 
@@ -83,9 +84,11 @@ export default function ExpansaoGlobalPresenca() {
               Buscamos parceiros visionários para levar a Plataforma Acquafy a ainda mais cidades e comunidades, oferecendo impacto real e retorno sustentável.
             </p>
 
-            <BtnAzulOutArrow className="w-full min-h-[40px]">
-              Explore oportunidades
-            </BtnAzulOutArrow>
+            <Link href="/parceria" className="w-full">
+              <BtnAzulOutArrow className="w-full min-h-[40px]">
+                Explore oportunidades
+              </BtnAzulOutArrow>
+            </Link>
           </div>
         </div>
       </div>

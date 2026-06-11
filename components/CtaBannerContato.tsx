@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { BtnAzulOutArrow, BtnAzulBaseArrow } from "./ui/Buttons";
 
 // ── Assets ───────────────────────────────────────────────────────────────────
@@ -25,13 +26,17 @@ export default function CtaBannerContato() {
         {/* Botões direito */}
         <div className="relative flex flex-[1_0_0] flex-wrap gap-[10px] items-center justify-center lg:justify-end max-w-[500px] min-w-[240px]">
           {/* Botão outline — bg-white, texto azul */}
-          <BtnAzulOutArrow className="flex-1 min-h-[56px] min-w-[200px]">
-            Conheça Linha NEO
-          </BtnAzulOutArrow>
+          <Link href="/linha-neo" className="flex-1 min-w-[200px]">
+            <BtnAzulOutArrow className="w-full min-h-[56px]">
+              Conheça Linha NEO
+            </BtnAzulOutArrow>
+          </Link>
           {/* Botão sólido — bg azul, texto branco */}
-          <BtnAzulBaseArrow className="flex-1 min-h-[56px] min-w-[200px]">
-            Conheça o Acquafy Media
-          </BtnAzulBaseArrow>
+          <Link href="/neo-media" className="flex-1 min-w-[200px]">
+            <BtnAzulBaseArrow className="w-full min-h-[56px]">
+              Conheça o Acquafy Media
+            </BtnAzulBaseArrow>
+          </Link>
         </div>
 
       </div>

@@ -44,17 +44,18 @@ const gdPressed = { backgroundImage: "linear-gradient(104deg, #0569ff 6.19%, #b2
 
 function GradientCTAButton({ className = "" }: { className?: string }) {
   return (
-    <button
+    <a
+      href="/linha-neo"
       className={`flex gap-[10px] items-center justify-center min-h-[60px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer ${className}`}
       style={gdBase}
-      onMouseEnter={(e) => Object.assign((e.currentTarget as HTMLButtonElement).style, gdHover)}
-      onMouseLeave={(e) => Object.assign((e.currentTarget as HTMLButtonElement).style, gdBase)}
-      onMouseDown={(e)  => Object.assign((e.currentTarget as HTMLButtonElement).style, gdPressed)}
-      onMouseUp={(e)    => Object.assign((e.currentTarget as HTMLButtonElement).style, gdBase)}
+      onMouseEnter={(e) => Object.assign((e.currentTarget as HTMLAnchorElement).style, gdHover)}
+      onMouseLeave={(e) => Object.assign((e.currentTarget as HTMLAnchorElement).style, gdBase)}
+      onMouseDown={(e)  => Object.assign((e.currentTarget as HTMLAnchorElement).style, gdPressed)}
+      onMouseUp={(e)    => Object.assign((e.currentTarget as HTMLAnchorElement).style, gdBase)}
     >
       <span className="font-['Articulat_CF:Bold'] text-[16px] text-white">Conheça o Neo UP</span>
       <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
-    </button>
+    </a>
   );
 }
 
@@ -148,17 +149,17 @@ export default function Hero() {
 
             {/* CTA buttons — centered, max-w-720, full-width each */}
             <div className="flex flex-wrap gap-[20px] items-center justify-center max-w-[720px] w-full">
-              <button className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
+              <a href="/linha-neo" className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
                 <span className="font-['Articulat_CF:Bold'] text-[16px] text-white flex-1 text-center">Conheça a Linha Neo</span>
                 <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
-              </button>
-              <button className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
+              </a>
+              <a href="/parceria" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
                 <span className="font-['Articulat_CF:Bold'] text-[16px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">Seja Parceiro Global</span>
                 <div className="relative shrink-0" style={{ width: 9, height: 9 }}>
                   <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0 group-active:opacity-0"><FigmaIcon src={imgArrowBlue} size={9} aspectW={11.2} aspectH={8.84} /></div>
                   <div className="absolute inset-0 transition-opacity duration-150 opacity-0 group-hover:opacity-100 group-active:opacity-100"><FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} /></div>
                 </div>
-              </button>
+              </a>
             </div>
           </>
         )}

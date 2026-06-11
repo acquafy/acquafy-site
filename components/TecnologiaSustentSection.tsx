@@ -1,3 +1,4 @@
+import Link from "next/link";
 import FigmaIcon from "./FigmaIcon";
 import { BtnVerdeOutArrow } from "./ui/Buttons";
 
@@ -86,9 +87,11 @@ export default function TecnologiaSustentSection() {
             <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-[#333] flex-1">
               Acreditamos que a tecnologia deve caminhar junto com a responsabilidade ambiental. Por isso, nossas soluções são projetadas para reduzir o consumo de recursos, eliminar plásticos descartáveis e gerar impacto positivo real.
             </p>
-            <BtnVerdeOutArrow className="max-w-[320px] w-full">
-              Conheça nossas iniciativas sustentáveis
-            </BtnVerdeOutArrow>
+            <Link href="/tecnologia" className="max-w-[320px] w-full">
+              <BtnVerdeOutArrow className="w-full">
+                Conheça nossas iniciativas sustentáveis
+              </BtnVerdeOutArrow>
+            </Link>
           </div>
 
           {/* Sustainability cards */}

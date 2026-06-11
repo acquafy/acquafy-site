@@ -55,7 +55,7 @@ const navColumns = [
     links: [
       { label: "Plataforma Acquafy",            href: "/plataforma" },
       { label: "App + AI + IoT",                href: "/app-ai-iot" },
-      { label: "Central de Suporte",            href: "#"           },
+      { label: "Central de Suporte",            href: "/central-de-suporte" },
       { label: "Tecnologia & Sustentabilidade", href: "/tecnologia" },
     ],
   },
@@ -73,7 +73,7 @@ const navColumns = [
     links: [
       { label: "Sobre Nós",                   href: "/sobre"           },
       { label: "Expansão Global",             href: "/expansao-global" },
-      { label: "Programa de Parceria Global", href: "#"                },
+      { label: "Programa de Parceria Global", href: "/parceria"          },
       { label: "Contatos",                    href: "/contato"         },
     ],
   },

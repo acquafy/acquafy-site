@@ -70,10 +70,10 @@ export default function BannerFiltros() {
               "1000" (mobile): centralizados | "120"+"Padrão" (lg+): à esquerda       */}
           <div className="flex flex-col md:flex-row flex-wrap gap-[20px] items-center w-full justify-center lg:justify-start">
             {/* BT AZUL BASE ARROW */}
-            <button className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex w-full md:flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] md:min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
+            <a href="/filtros" className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex w-full md:flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] md:min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
               <span className="font-['Articulat_CF:Bold'] text-[16px] text-white flex-1 text-center">Conheça os filtros</span>
               <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
-            </button>
+            </a>
             {/* BT AZUL OUT ARROW */}
             <button className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex w-full md:flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] md:min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
               <span className="font-['Articulat_CF:Bold'] text-[16px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">Falar com um especialista</span>
