@@ -1,32 +1,23 @@
 import FigmaIcon from "./FigmaIcon";
 
-const imgLocation  = "/figma-assets/ed8ae636-8ee5-4a08-88bb-e55c039759bf.svg";
-const imgLanguage  = "/figma-assets/8ff7d31e-756e-4544-81be-c75b55d9a2f0.svg";
-const imgEcossist  = "/figma-assets/805d1355-429a-486d-9e4a-2a6e210f9aeb.svg";
-const imgMoney     = "/figma-assets/6f338561-bc46-4182-86d7-72784ed01190.svg";
-const imgCountries = "/figma-assets/ce9cc96f-91f4-4eea-8ded-e2da00d3db3f.svg";
-const imgPerfil    = "/figma-assets/f1dfb3b0-84fd-43f3-971a-3fa7e089b5ef.png";
+const imgLocation  = "/figma-assets/eb45c21a-ac77-49ab-b09d-c3e4705c0a7f.svg";
+const imgLanguage  = "/figma-assets/ef8de731-e9ed-4538-93d3-75d559af30e2.svg";
+const imgEcossist  = "/figma-assets/d241fe9a-847c-4791-a487-1f8c6ee6e49a.svg";
+const imgMoney     = "/figma-assets/fbc33102-f642-4776-b6a1-9957d52f8078.svg";
+const imgCountries = "/figma-assets/6914eeab-6551-4aa8-8244-19c287326532.svg";
+const imgMap       = "/figma-assets/ab0bb1cc-3028-44d4-a68d-0e1200e87ccf.png";
 
 const stats = [
-  { icon: imgLocation,  iconW: 42, iconH: 42, value: "180+",   desc: "Presente em + de 180 países" },
-  { icon: imgLanguage,  iconW: 70, iconH: 70, value: "16",      desc: "Disponível em 16 idiomas" },
-  { icon: imgEcossist,  iconW: 38, iconH: 40, value: "100%",   desc: "Operação 100% global" },
-  { icon: imgMoney,     iconW: 33, iconH: 30, value: "100%",   desc: "Modelo de receita 100% recorrente" },
-  { icon: imgCountries, iconW: 30, iconH: 30, value: "Multi",  desc: "Gestão multi-região e multi-moeda" },
+  { icon: imgLocation,  iconW: 42,    iconH: 42, value: "180+",  desc: "Presente em + de 180 países" },
+  { icon: imgLanguage,  iconW: 70,    iconH: 70, value: "16",    desc: "Disponível em 16 idiomas" },
+  { icon: imgEcossist,  iconW: 38,    iconH: 40, value: "100%",  desc: "Operação 100% global" },
+  { icon: imgMoney,     iconW: 33.33, iconH: 30, value: "100%",  desc: "Modelo de receita 100% recorrente" },
+  { icon: imgCountries, iconW: 42,    iconH: 42, value: "Multi", desc: "Gestão multi-região e multi-moeda" },
 ];
 
 export default function PlatformGlobal() {
   return (
-    <section className="bg-[#f6f9fe] flex flex-col gap-[20px] items-center justify-center overflow-hidden px-[20px] py-[40px] relative w-full">
-
-      {/* Decorative image */}
-      <img
-        alt=""
-        className="absolute -translate-y-1/2 h-[298px] mix-blend-multiply opacity-70 right-[29px] top-[calc(50%+0.5px)] pointer-events-none object-contain"
-        style={{ width: "471px" }}
-        src={imgPerfil}
-      />
-
+    <section className="bg-[#f6f9fe] flex flex-col items-center justify-center overflow-hidden px-[20px] py-[40px] relative w-full">
       <div className="flex flex-col gap-[60px] items-start max-w-[1400px] relative w-full">
 
         <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-center w-full">
@@ -34,10 +25,12 @@ export default function PlatformGlobal() {
           <span className="text-[#0569ff]">global e escalável</span>
         </h2>
 
-        <div className="flex flex-wrap gap-[20px] items-center w-full">
-          <div className="flex flex-[1_0_0] flex-wrap gap-[20px] items-center min-w-px">
+        <div className="flex flex-col win-1280:flex-row win-1280:flex-wrap gap-[20px] items-center justify-center w-full">
+
+          {/* Cards */}
+          <div className="flex flex-[1_0_0] flex-wrap gap-[20px] items-stretch min-w-px">
             {stats.map((s) => (
-              <div key={s.desc} className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center min-w-px p-[20px] rounded-[16px]">
+              <div key={s.desc} className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center min-h-[170px] min-w-[160px] p-[20px] rounded-[16px]">
                 <div className="flex items-center justify-center shrink-0 size-[40px]">
                   <FigmaIcon src={s.icon} size={40} aspectW={s.iconW} aspectH={s.iconH} />
                 </div>
@@ -50,6 +43,17 @@ export default function PlatformGlobal() {
               </div>
             ))}
           </div>
+
+          {/* Mapa mundial */}
+          <div className="flex flex-[1_0_0] items-center justify-end max-w-[400px] min-w-px">
+            <img
+              alt=""
+              className="h-[253px] mix-blend-multiply opacity-70 object-contain pointer-events-none"
+              style={{ width: "400px" }}
+              src={imgMap}
+            />
+          </div>
+
         </div>
       </div>
     </section>

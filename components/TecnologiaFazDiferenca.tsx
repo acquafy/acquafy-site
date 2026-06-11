@@ -1,13 +1,12 @@
 import FigmaIcon from "./FigmaIcon";
 
-// ── Assets ───────────────────────────────────────────────────────────────────
-const imgPurif  = "/figma-assets/ts-icon-agua-intel.svg";   // água inteligente  40×40
-const imgBrain  = "/figma-assets/ts-icon-brain.svg";        // brain             30×30
-const imgIot    = "/figma-assets/ts-icon-iot.svg";          // wifi IoT          30×20
-const imgTela   = "/figma-assets/ts-icon-tela.svg";         // tela grande vert  21×30
-const imgShield = "/figma-assets/ts-icon-shield-agua.svg";  // shield água       24×30
-const imgScale    = "/figma-assets/ts-icon-scale.svg";        // scale graphic     30×30
-const imgMagnific = "/figma-assets/ts-hero-right.png";        // water globe decorativo (absolute)
+const imgPurif    = "/figma-assets/ts-icon-agua-intel.svg";
+const imgBrain    = "/figma-assets/ts-icon-brain.svg";
+const imgIot      = "/figma-assets/ts-icon-iot.svg";
+const imgTela     = "/figma-assets/ts-icon-tela.svg";
+const imgShield   = "/figma-assets/ts-icon-shield-agua.svg";
+const imgScale    = "/figma-assets/ts-icon-scale.svg";
+const imgMagnific = "/figma-assets/ts-hero-right.png";
 
 const features = [
   {
@@ -42,13 +41,11 @@ const features = [
   },
 ];
 
-// ── Sub-component ─────────────────────────────────────────────────────────────
-
 function FeatureCard({ icon, aspectW, aspectH, title, description }: {
   icon: string; aspectW: number; aspectH: number; title: string; description: string;
 }) {
   return (
-    <div className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[20px] items-center min-h-[265px] min-w-[160px] px-[10px] py-[20px] rounded-[16px]">
+    <div className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[20px] items-center min-h-[265px] min-w-[150px] px-[10px] py-[20px] rounded-[16px]">
       <FigmaIcon src={icon} size={40} aspectW={aspectW} aspectH={aspectH} />
       <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#1f2e91] text-center w-full min-h-[36px]">
         {title}
@@ -60,17 +57,11 @@ function FeatureCard({ icon, aspectW, aspectH, title, description }: {
   );
 }
 
-// ── Main ─────────────────────────────────────────────────────────────────────
-
 export default function TecnologiaFazDiferenca() {
   return (
     <section className="bg-white flex flex-col gap-[20px] items-center justify-center overflow-hidden px-[20px] py-[40px] relative w-full">
-      {/* Globo de água decorativo — absolute, alinhado ao spacer lateral direito */}
-      <div className="-translate-x-1/2 absolute left-[calc(50%+576px)] pointer-events-none size-[450px] top-0">
-        <img alt="" className="absolute inset-0 block max-w-none object-cover size-full" src={imgMagnific} />
-      </div>
-
       <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
+
         {/* Header */}
         <div className="flex flex-col gap-[10px] items-center text-center w-full">
           <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#1f2e91] max-w-[800px] w-full">
@@ -78,22 +69,37 @@ export default function TecnologiaFazDiferenca() {
             {" que faz a diferença"}
           </h2>
           <p
-            className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] max-w-[800px] w-full"
+            className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[22px] text-[#333] max-w-[800px] w-full"
             style={{ fontFeatureSettings: '"case" 1' }}
           >
             Desenvolvemos soluções completas que unem hardware avançado, software inteligente e conectividade para oferecer a melhor experiência em purificação de água e gestão de impacto.
           </p>
         </div>
 
-        {/* Cards grid — inner container (gap-[10px]) + spacer para o globo decorativo */}
-        <div className="flex flex-wrap gap-[20px] items-start justify-center w-full">
-          <div className="flex flex-[1_0_0] flex-wrap gap-[10px] items-start justify-center min-w-[180px] overflow-clip">
+        {/* Cards + Globe — flex-col mobile / flex-row desktop */}
+        <div className="
+          flex flex-col gap-[100px] items-center justify-center min-w-[240px] relative w-full
+          md:content-center md:flex-row md:flex-wrap md:gap-[20px]
+        ">
+
+          {/* Cards grid */}
+          <div className="content-start flex flex-wrap gap-[10px] items-start justify-center min-w-[180px] overflow-clip relative w-full md:flex-[1_0_0]">
             {features.map((f) => (
               <FeatureCard key={f.title} {...f} />
             ))}
           </div>
-          {/* Spacer alinhado à imagem decorativa absoluta */}
-          <div className="flex-[1_0_0] h-[265px] max-w-[260px] min-h-[250px] min-w-[260px]" />
+
+          {/* Globe — inline flex item, overflows 135px upward from h-[265px] container */}
+          <div className="flex flex-col h-[265px] items-center justify-end max-w-[260px] min-h-[250px] min-w-[260px] relative w-full md:flex-[1_0_0]">
+            <div className="mix-blend-multiply relative shrink-0 size-[400px]">
+              <img
+                alt=""
+                className="absolute inset-0 max-w-none object-cover pointer-events-none size-full"
+                src={imgMagnific}
+              />
+            </div>
+          </div>
+
         </div>
       </div>
     </section>

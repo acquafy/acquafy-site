@@ -45,11 +45,9 @@ export default function PlatformEcosystem() {
         <div className="flex flex-wrap gap-[10px] items-center justify-center w-full">
           {steps.map((step, i) => (
             <div key={step.label} className="contents">
-              <div className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[20px] items-center min-h-[135px] min-w-px p-[20px] rounded-[16px]">
-                <div className="bg-[#dae9ff] flex items-center justify-center p-[12px] rounded-full shrink-0">
-                  <div className="flex items-center justify-center size-[40px]">
-                    <FigmaIcon src={step.icon} size={40} aspectW={step.iconW} aspectH={step.iconH} />
-                  </div>
+              <div className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[20px] items-center min-h-[135px] min-w-[200px] p-[20px] rounded-[16px]">
+                <div className="bg-[#dae9ff] flex items-center justify-center p-[16px] rounded-full shrink-0 size-[64px]">
+                  <FigmaIcon src={step.icon} size={32} aspectW={step.iconW} aspectH={step.iconH} />
                 </div>
                 <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] text-center min-h-[32px] w-full flex items-center justify-center">
                   {step.label}
