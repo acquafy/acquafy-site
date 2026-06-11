@@ -19,6 +19,8 @@ const config: Config = {
         "1220": "1220px",
         /* Breakpoint legado — mantido para compatibilidade */
         "1024": "1024px",
+        /* Breakpoint intermediário — layout de 3 colunas full */
+        "1300": "1300px",
         /* Breakpoint para "tela total" — design nativo Figma (Padrão, 1500px) */
         "1440": "1440px",
       },
