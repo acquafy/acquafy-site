@@ -27,7 +27,7 @@ function StatItem({
 
 export default function SobreQuemSomos() {
   return (
-    <section className="flex flex-col items-center justify-center overflow-hidden px-[20px] py-[40px] w-full">
+    <section id="quem-somos" className="scroll-mt-[80px] flex flex-col items-center justify-center overflow-hidden px-[20px] py-[40px] w-full">
       <div className="flex flex-wrap gap-[40px] items-start justify-center max-w-[1400px] w-full">
 
         {/* Left: Quem Somos */}

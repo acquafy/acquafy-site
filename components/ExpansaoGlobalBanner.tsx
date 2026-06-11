@@ -64,9 +64,11 @@ export default function ExpansaoGlobalBanner() {
 
           {/* CTA Buttons */}
           <div className="flex flex-wrap gap-[20px] items-center w-full">
-            <BtnAzulBaseArrow className="flex-[1_0_0] min-h-[50px] min-w-[190px]">
-              Seja um parceiro
-            </BtnAzulBaseArrow>
+            <Link href="/parceria" className="flex-[1_0_0] min-w-[190px]">
+              <BtnAzulBaseArrow className="w-full min-h-[50px]">
+                Seja um parceiro
+              </BtnAzulBaseArrow>
+            </Link>
             <Link href="/contato" className="flex-[1_0_0] min-w-[190px]">
               <BtnAzulOutArrow className="w-full min-h-[50px]">
                 Falar com especialista
