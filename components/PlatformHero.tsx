@@ -18,7 +18,7 @@ const imgTime   = "/figma-assets/15d4df82-fbfc-4fc0-98f5-9052c0340953.svg";
 const featureCards = [
   { bg: "#0233c3", icon: imgCloud,  iconW: 30, iconH: 30, title: "Cloud Platform",     desc: "Infraestrutura segura e escalável." },
   { bg: "#6e54ef", icon: imgAI,     iconW: 30, iconH: 30, title: "App + AI",           desc: "Inteligência artificial para decisões e automação" },
-  { bg: "#36ae5c", icon: imgWifi,   iconW: 30, iconH: 20, title: "IoT & Dispositivos", desc: "monitoramento remoto e sensores conectados" },
+  { bg: "#36ae5c", icon: imgWifi,   iconW: 30, iconH: 20, title: "IoT & Dispositivos", desc: "Monitoramento remoto e sensores conectados" },
   { bg: "#e240ba", icon: imgGlobal, iconW: 30, iconH: 30, title: "Gestão Global",      desc: "Operação em 180+ países e 16 idiomas" },
 ];
 
