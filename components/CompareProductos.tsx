@@ -90,7 +90,7 @@ const PRODUCTS: Product[] = [
     id: "neo-fit", label: "Neo FIT",
     nameParts: [{ text: "Neo " }, { text: "FIT", highlight: true }],
     linha: "Essentials", categories: ["Bancada"],
-    specs: { formato: "Bancada ou Parede", funcoes: "5 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "Eletrônico · 400ml", material: "Acabamento premium", preco: "US$ 497.97" },
+    specs: { formato: "Bancada ou Parede", funcoes: "5 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "400ml", material: "Acabamento premium", preco: "US$ 497.97" },
   },
   {
     id: "neo-smart-h2", label: "Neo SMART H₂",
@@ -102,13 +102,13 @@ const PRODUCTS: Product[] = [
     id: "neo-touch", label: "Neo TOUCH",
     nameParts: [{ text: "Neo " }, { text: "TOUCH", highlight: true }],
     linha: "Essentials", categories: ["Bancada"],
-    specs: { formato: "Bancada ou Parede", funcoes: "5 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "Eletrônico · 800ml", material: "Acabamento premium", preco: "US$ 697.97" },
+    specs: { formato: "Bancada ou Parede", funcoes: "5 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "800ml", material: "Acabamento premium", preco: "US$ 697.97" },
   },
   {
     id: "neo-plus", label: "Neo PLUS",
     nameParts: [{ text: "Neo " }, { text: "PLUS", highlight: true }],
     linha: "Essentials", categories: ["Bancada"],
-    specs: { formato: "Bancada", funcoes: "5 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "Eletrônico · 1500ml", material: "Acabamento premium", preco: "US$ 797.97" },
+    specs: { formato: "Bancada", funcoes: "5 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "1500ml", material: "Acabamento premium", preco: "US$ 797.97" },
   },
   {
     id: "neo-ultra", label: "Neo ULTRA",
@@ -175,13 +175,13 @@ const PRODUCTS: Product[] = [
     id: "neo-prestige-spark", label: "Neo PRESTIGE SPARK",
     nameParts: [{ text: "Neo " }, { text: "PRESTIGE SPARK", highlight: true }],
     linha: "Premium", categories: ["Embutido", "Água com Gás"],
-    specs: { formato: "Embutido", funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: false, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,597.97" },
+    specs: { formato: "Embutido", funcoes: "5 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: false, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,597.97" },
   },
   {
     id: "neo-prestige-spark-h2", label: "Neo PRESTIGE SPARK H₂",
     nameParts: [{ text: "Neo " }, { text: "PRESTIGE SPARK H", highlight: true }, { text: "2", highlight: true }],
     linha: "Premium", categories: ["Embutido", "Água com Gás", "Água Hidrogenada"],
-    specs: { formato: "Embutido", funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: true, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,697.97" },
+    specs: { formato: "Embutido", funcoes: "5 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: true, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,697.97" },
   },
   {
     id: "neo-prime", label: "Neo PRIME",
@@ -193,13 +193,13 @@ const PRODUCTS: Product[] = [
     id: "neo-prime-spark", label: "Neo PRIME SPARK",
     nameParts: [{ text: "Neo " }, { text: "PRIME SPARK", highlight: true }],
     linha: "Premium", categories: ["Bancada", "Água com Gás"],
-    specs: { formato: "Bancada", funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: false, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,597.97" },
+    specs: { formato: "Bancada", funcoes: "5 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: false, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,597.97" },
   },
   {
     id: "neo-prime-spark-h2", label: "Neo PRIME SPARK H₂",
     nameParts: [{ text: "Neo " }, { text: "PRIME SPARK H", highlight: true }, { text: "2", highlight: true }],
     linha: "Premium", categories: ["Bancada", "Água com Gás", "Água Hidrogenada"],
-    specs: { formato: "Bancada", funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: true, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,697.97" },
+    specs: { formato: "Bancada", funcoes: "5 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: true, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,697.97" },
   },
 ];
 
@@ -216,7 +216,7 @@ const SPEC_ROWS: { key: keyof Specs; label: string; type: "text" | "bool" | "pri
   { key: "wifi",        label: "Wi-Fi + Bluetooth 5.3", type: "bool"  },
   { key: "uv",          label: "UV LED",                type: "bool"  },
   { key: "filtragem",   label: "Sistema de Filtragem",  type: "text"  },
-  { key: "tanque",      label: "Resfriamento / Tanque",  type: "text"  },
+  { key: "tanque",      label: "Tanque de água gelada", type: "text"  },
   { key: "material",    label: "Material",              type: "text"  },
   { key: "preco",       label: "Preço EUA",             type: "price" },
 ];
@@ -408,8 +408,8 @@ export default function CompareProductos() {
         />
         <div className="relative flex flex-col gap-[40px] items-center justify-center max-w-[1400px] w-full">
           {/* Hero content */}
-          <div className="flex flex-wrap max-[1023px]:flex-col gap-[40px] items-center w-full">
-            <div className="flex flex-col gap-[20px] items-start max-[1023px]:items-center justify-center flex-1 min-w-[280px] max-w-[600px]">
+          <div className="flex flex-col min-[1024px]:flex-row min-[1024px]:flex-wrap gap-[40px] items-center w-full">
+            <div className="flex flex-col gap-[20px] items-center min-[1024px]:items-start justify-center flex-1 min-w-[280px] max-w-[600px]">
               {/* Label */}
               <div className="bg-white border border-[#0233c3] flex gap-[10px] items-center px-[12px] py-[8px] rounded-full">
                 <FigmaIcon src={imgPlanetWeb} size={16} />
@@ -419,7 +419,7 @@ export default function CompareProductos() {
               </div>
 
               {/* Title */}
-              <h1 className="font-['Avenir_LT_Pro:95_Black'] text-hero text-[#333] text-left max-[1023px]:text-center">
+              <h1 className="font-['Avenir_LT_Pro:95_Black'] text-[56px] leading-[60px] text-[#333] text-center min-[1024px]:text-left">
                 Compare os produtos{" "}
                 <span
                   className="bg-clip-text"
@@ -434,12 +434,12 @@ export default function CompareProductos() {
               </h1>
 
               {/* Subtitle */}
-              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[20px] leading-[26px] text-[#333] text-left max-[1023px]:text-center">
+              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[20px] leading-[26px] text-[#333] text-center min-[1024px]:text-left">
                 Compare as linhas Neo Essentials &amp; Neo Premium e encontre o modelo ideal para você.
               </p>
 
               {/* CTA buttons */}
-              <div className="flex flex-wrap gap-[20px] items-center max-[1023px]:justify-center w-full">
+              <div className="flex flex-wrap gap-[20px] items-center justify-center min-[1024px]:justify-start w-full">
                 <button className="bg-[#0233c3] flex flex-1 gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] px-[20px] py-[10px] rounded-[8px] cursor-pointer hover:bg-[#002ba8] transition-colors">
                   <span className="font-['Articulat_CF:Bold'] text-[16px] leading-normal text-white flex-1 text-center">
                     Comparar agora
@@ -470,15 +470,15 @@ export default function CompareProductos() {
           {/* Product selector card */}
           <div className="bg-white flex flex-col gap-[20px] items-start max-w-[1400px] p-[20px] rounded-[16px] w-full shadow-sm">
             {/* Selector header */}
-            <div className="flex flex-wrap max-[1023px]:flex-col gap-[10px] items-center w-full">
-              <div className="flex gap-[10px] items-center shrink-0 max-[1023px]:w-full max-[1023px]:justify-center">
+            <div className="flex flex-col min-[1024px]:flex-row gap-[10px] items-center w-full">
+              <div className="flex gap-[10px] items-center shrink-0 w-full justify-center min-[1024px]:w-auto min-[1024px]:justify-start">
                 <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#1f2e91] whitespace-nowrap">
                   Selecione os modelos para comparar ({selectedIds.length}/4)
                 </p>
                 <FigmaIcon src={imgBuyCursor} size={30} />
               </div>
               {/* Filter pills */}
-              <div className="flex flex-wrap gap-[10px] items-center justify-end max-[1023px]:justify-center flex-1 min-w-0">
+              <div className="flex flex-wrap gap-[10px] items-center justify-center min-[1024px]:justify-end flex-1 min-w-0">
                 {FILTERS.filter(f => f !== "Todos").map(filter => (
                   <button
                     key={filter}
@@ -614,11 +614,11 @@ export default function CompareProductos() {
       <section ref={selectedBarRef} className="bg-white flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
         <div className="bg-[#f6f9fe] flex flex-wrap gap-[20px] items-center justify-center max-w-[1400px] overflow-hidden p-[20px] rounded-[16px] w-full">
           {/* Info */}
-          <div className="flex flex-col gap-[10px] items-start max-[1023px]:items-center flex-1 min-w-[240px] max-w-[340px]">
-            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#1f2e91] max-[1023px]:text-center">
+          <div className="flex flex-col gap-[10px] items-center min-[1024px]:items-start flex-1 min-w-[240px] max-w-[340px]">
+            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#1f2e91] text-center min-[1024px]:text-left">
               Produtos selecionados ({selectedProducts.length}/4)
             </p>
-            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#333] max-[1023px]:text-center">
+            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#333] text-center min-[1024px]:text-left">
               Adicione ou remova produtos para comparar
             </p>
           </div>
@@ -628,7 +628,7 @@ export default function CompareProductos() {
             {selectedProducts.map(product => (
               <div
                 key={product.id}
-                className="bg-white flex flex-row max-[1023px]:flex-col flex-1 gap-[10px] h-[100px] max-[1023px]:h-auto items-center min-w-[200px] max-[1023px]:min-w-[140px] max-w-[280px] overflow-hidden p-[10px] max-[1023px]:pt-[30px] relative rounded-[12px]"
+                className="bg-white flex flex-col min-[1024px]:flex-row flex-1 gap-[10px] min-[1024px]:h-[100px] items-center min-w-[140px] min-[1024px]:min-w-[200px] max-w-[280px] overflow-hidden p-[10px] pt-[30px] min-[1024px]:pt-[10px] relative rounded-[12px]"
               >
                 <div className="size-[80px] shrink-0 flex items-center justify-center">
                   <img
@@ -637,8 +637,8 @@ export default function CompareProductos() {
                     src={productImages[product.id]}
                   />
                 </div>
-                <div className="flex flex-col gap-[10px] items-start max-[1023px]:items-center flex-1 min-w-0 pt-[20px] max-[1023px]:pt-0 max-[1023px]:pb-[10px]">
-                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#1f2e91] max-[1023px]:text-center">
+                <div className="flex flex-col gap-[10px] items-center min-[1024px]:items-start flex-1 min-w-0 pb-[10px] min-[1024px]:pb-0 min-[1024px]:pt-[20px]">
+                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#1f2e91] text-center min-[1024px]:text-left">
                     <ProductName parts={product.nameParts} />
                   </p>
                   <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] leading-[13px] text-[#8a8f97]">
@@ -660,7 +660,7 @@ export default function CompareProductos() {
               <button
                 key={`empty-${i}`}
                 onClick={() => setShowSelectorModal(true)}
-                className="flex flex-row max-[1023px]:flex-col flex-1 gap-[10px] h-[100px] max-[1023px]:h-auto items-center min-w-[200px] max-[1023px]:min-w-[140px] max-w-[280px] overflow-hidden p-[10px] max-[1023px]:py-[20px] rounded-[12px] border-2 border-dashed border-[#cbd0d4] cursor-pointer hover:border-[#0233c3] hover:bg-[#f0f5ff] transition-all group"
+                className="flex flex-col min-[1024px]:flex-row flex-1 gap-[10px] min-[1024px]:h-[100px] items-center min-w-[140px] min-[1024px]:min-w-[200px] max-w-[280px] overflow-hidden p-[10px] py-[20px] min-[1024px]:py-[10px] rounded-[12px] border-2 border-dashed border-[#cbd0d4] cursor-pointer hover:border-[#0233c3] hover:bg-[#f0f5ff] transition-all group"
               >
                 <div className="size-[80px] shrink-0 flex items-center justify-center">
                   <span className="text-[#cbd0d4] text-[32px] font-light group-hover:text-[#0233c3] transition-colors">+</span>
