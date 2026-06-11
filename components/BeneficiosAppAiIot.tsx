@@ -118,12 +118,12 @@ export default function BeneficiosAppAiIot() {
                   key={card.title}
                   className="bg-white flex flex-[1_0_0] flex-wrap gap-[20px] items-start justify-center min-h-[260px] min-w-[280px] rounded-[16px] overflow-clip"
                 >
-                  {/* Conteúdo esquerdo */}
-                  <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-[240px] pl-[20px] py-[20px]">
+                  {/* Conteúdo — p-[20px] inclui padding direito; min-w-[200px] para caber ao lado da foto nos cards de ~400px */}
+                  <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-[200px] p-[20px]">
                     <CardContent card={card} />
                   </div>
 
-                  {/* Foto à direita — top:20 cria espaço acima da cabeça */}
+                  {/* Foto — self-stretch iguala a altura do bloco de conteúdo; image bottom-0 ancora ao fundo */}
                   <div
                     className="relative overflow-clip self-stretch"
                     style={{ minWidth: 160, maxWidth: 160, minHeight: 200 }}
