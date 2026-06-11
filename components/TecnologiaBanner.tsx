@@ -1,4 +1,4 @@
-import FigmaIcon from "./FigmaIcon";
+﻿import FigmaIcon from "./FigmaIcon";
 
 // ── Assets ───────────────────────────────────────────────────────────────────
 const imgBg         = "/figma-assets/ts-banner-bg.png";           // lg+ photo bg
@@ -33,7 +33,7 @@ function TrustItem({ icon, label, aspectW = 30, aspectH = 30 }: {
   return (
     <div className="content-center flex flex-[1_0_0] flex-wrap gap-[20px] items-center justify-center min-w-[280px] lg:justify-start lg:min-w-[160px]">
       <FigmaIcon src={icon} size={50} aspectW={aspectW} aspectH={aspectH} />
-      <div className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both] [word-break:break-word] flex flex-[1_0_0] flex-col font-['Avenir_LT_Pro:85_Heavy'] justify-center leading-[0] min-w-px not-italic relative text-[20px] text-white">
+      <div className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both] [word-break:break-word] flex flex-[1_0_0] flex-col font-['Avenir_LT_Pro:85_Heavy'] justify-center leading-[0] min-w-px not-italic relative text-[18px] text-white">
         <p className="leading-[22px]">{label}</p>
       </div>
     </div>
@@ -76,18 +76,18 @@ export default function TecnologiaBanner() {
           </div>
 
           {/* Title */}
-          <h1 className="[word-break:break-word] font-['Avenir_LT_Pro:95_Black'] leading-[0] min-w-full not-italic relative shrink-0 text-[64px] text-[#2a2a2b] text-center lg:text-left">
-            <span className="leading-[68px]">Tecnologia & </span>
-            <span className="leading-[68px] text-[#0569ff]">Sustentabilidade</span>
+          <h1 className="[word-break:break-word] font-['Avenir_LT_Pro:95_Black'] leading-[0] min-w-full not-italic relative shrink-0 text-hero-xl text-[#2a2a2b] text-center lg:text-left">
+            <span className="leading-[clamp(36px,12.5vw-92px,68px)]">Tecnologia & </span>
+            <span className="leading-[clamp(36px,12.5vw-92px,68px)] text-[#0569ff]">Sustentabilidade</span>
           </h1>
 
           {/* Subtitle */}
-          <div className="[word-break:break-word] flex flex-col font-['Avenir_LT_Pro:85_Heavy'] justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[26px] text-[#0569ff] text-center lg:text-left">
+          <div className="[word-break:break-word] flex flex-col font-['Avenir_LT_Pro:85_Heavy'] justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[20px] text-[#0569ff] text-center lg:text-left">
             <p className="leading-[28px]">Inovação que transforma água em qualidade de vida e preserva o planeta para as futuras gerações.</p>
           </div>
 
           {/* Description */}
-          <div className="[word-break:break-word] flex flex-col font-['Avenir_LT_Pro:55_Roman'] justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[20px] text-[#333] text-center lg:text-left">
+          <div className="[word-break:break-word] flex flex-col font-['Avenir_LT_Pro:55_Roman'] justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[18px] text-[#333] text-center lg:text-left">
             <p className="leading-[26px]">A Acquafy combina tecnologia de ponta, inteligência artificial e design sustentável para entregar água pura, segura e acessível reduzindo o impacto ambiental e promovendo um futuro mais saudável.</p>
           </div>
 

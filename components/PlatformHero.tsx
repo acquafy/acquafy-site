@@ -1,8 +1,8 @@
-import FigmaIcon from "./FigmaIcon";
+﻿import FigmaIcon from "./FigmaIcon";
 
 const imgBg     = "/figma-assets/7ded5ace-e878-4b20-8869-4299cf70ff0d.png";
 const imgMockup = "/figma-assets/db9b5ee1-5db7-4786-b9a6-a23d2901a59b.png";
-const imgArrow  = "/figma-assets/03b65413-2c5b-4058-93a1-d3a60c7614c0.svg";
+
 const imgChat   = "/figma-assets/7a22b5e9-f087-42d0-9204-5e54a681197f.svg";
 
 const imgCloud  = "/figma-assets/d3216aaf-e208-4968-8536-7fef8798cde2.svg";
@@ -92,29 +92,22 @@ export default function PlatformHero() {
           </h1>
 
           {/* Subtítulo */}
-          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[20px] leading-[26px] text-[#333] w-full text-center 1024:text-left">
+          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#333] w-full text-center 1024:text-left">
             Gestão global, App + AI + IoT em uma experiência integrada para mídia, parceiros, vendas e operação da água inteligente.
           </p>
 
           {/* CTAs */}
           <div className="flex flex-wrap gap-[10px] items-center w-full">
-            <button
-              className="flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[56px] min-w-[200px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer"
+            <a
+              href="/contato"
+              className="flex gap-[10px] items-center justify-center min-h-[56px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer"
               style={{ backgroundImage: "linear-gradient(112deg, #0233c3 6.19%, #9f3df5 93.35%)" }}
             >
               <FigmaIcon src={imgChat} size={16} />
               <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white text-center whitespace-nowrap">
                 Solicitar demonstração
               </span>
-            </button>
-            <button className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[56px] min-w-[200px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
-              <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors text-center whitespace-nowrap">
-                Ver recursos da plataforma
-              </span>
-              <div className="relative shrink-0" style={{ width: 9, height: 9 }}>
-                <img alt="" className="block max-w-none size-full" src={imgArrow} />
-              </div>
-            </button>
+            </a>
           </div>
 
           {/* Feature cards */}

@@ -1,4 +1,4 @@
-import FigmaIcon from "./FigmaIcon";
+﻿import FigmaIcon from "./FigmaIcon";
 
 // Card background images
 const imgBgEssentials = "/figma-assets/5b8b92ca-add2-43d4-b26c-96a6dc29a2a5.png";
@@ -45,7 +45,7 @@ export default function NeoVsPremium() {
       <div className="flex flex-col gap-[40px] items-center justify-center max-w-[1400px] w-full">
 
         {/* Title */}
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-center w-full">
+        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-center w-full">
           <span className="text-[#0569ff]">Neo Essentials</span>
           {" vs "}
           <span
@@ -67,7 +67,7 @@ export default function NeoVsPremium() {
               src={imgBgEssentials}
             />
             <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-[200px] relative">
-              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#0569ff] w-full">
+              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#0569ff] w-full">
                 Neo Essentials
               </p>
               <div className="flex flex-col gap-[10px] items-start w-full">
@@ -93,7 +93,7 @@ export default function NeoVsPremium() {
               src={imgBgPremium}
             />
             <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-[200px] relative">
-              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#9f3df5] w-full">
+              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#9f3df5] w-full">
                 Neo Premium
               </p>
               <div className="flex flex-col gap-[10px] items-start w-full">

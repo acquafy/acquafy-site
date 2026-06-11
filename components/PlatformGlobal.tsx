@@ -1,4 +1,4 @@
-import FigmaIcon from "./FigmaIcon";
+﻿import FigmaIcon from "./FigmaIcon";
 
 const imgLocation  = "/figma-assets/eb45c21a-ac77-49ab-b09d-c3e4705c0a7f.svg";
 const imgLanguage  = "/figma-assets/ef8de731-e9ed-4538-93d3-75d559af30e2.svg";
@@ -20,7 +20,7 @@ export default function PlatformGlobal() {
     <section className="bg-[#f6f9fe] flex flex-col items-center justify-center overflow-hidden px-[20px] py-[40px] relative w-full">
       <div className="flex flex-col gap-[60px] items-start max-w-[1400px] relative w-full">
 
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-center w-full">
+        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-center w-full">
           <span className="text-[#1f2e91]">Operação </span>
           <span className="text-[#0569ff]">global e escalável</span>
         </h2>

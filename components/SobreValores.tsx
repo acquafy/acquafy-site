@@ -1,4 +1,4 @@
-import FigmaIcon from "./FigmaIcon";
+﻿import FigmaIcon from "./FigmaIcon";
 
 // ── Value icon assets ─────────────────────────────────────────────────────────
 // aspectW/H only when clearly non-square; all others treated as square
@@ -67,7 +67,7 @@ export default function SobreValores() {
   return (
     <section className="flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
       <div className="bg-[#f6f9fe] flex flex-col gap-[40px] items-center justify-center max-w-[1400px] overflow-hidden px-[20px] py-[25px] rounded-[16px] w-full">
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#1f2e91] text-center w-full">
+        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] text-center w-full">
           Nossos Valores
         </h2>
         <div className="flex flex-wrap gap-[20px] items-start justify-center w-full">

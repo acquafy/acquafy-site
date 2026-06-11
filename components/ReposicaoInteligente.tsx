@@ -43,7 +43,7 @@ export default function ReposicaoInteligente() {
         {/* Content */}
         <div className="flex flex-col gap-[40px] items-start flex-1 min-w-[240px]">
           <div className="flex flex-col gap-[20px] items-center w-full">
-            <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] w-full text-center lg:text-left">
+            <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] w-full text-center lg:text-left">
               <span className="text-[#1f2e91]">Programação de</span>
               {" "}
               <span className="text-[#0569ff]">Reposição Inteligente</span>
@@ -71,7 +71,7 @@ export default function ReposicaoInteligente() {
             <div className="flex flex-wrap gap-[20px_30px] items-center justify-center w-full">
               {stats.map((s) => (
                 <div key={s.value} className="bg-white flex flex-col gap-[10px] items-start flex-1 min-w-[160px] px-[20px] py-[40px] rounded-[12px] text-center">
-                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#0569ff] w-full">{s.value}</p>
+                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#0569ff] w-full">{s.value}</p>
                   <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] leading-[14px] text-[#2a2a2b] w-full">{s.label}</p>
                 </div>
               ))}

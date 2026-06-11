@@ -3,6 +3,14 @@
 // ── Checkin icon ───────────────────────────────────────────────────────────────
 const imgCheckin = "/figma-assets/a8739a99-bced-4cff-8957-d1230dbbb560.svg"; // 30×30 sq
 
+// ── Feature card assets ────────────────────────────────────────────────────────
+const imgPanel      = "/figma-assets/4e6b8a1f-cde5-4362-bb86-960a54dd56c3.png";
+const imgHomeMob    = "/figma-assets/dc018212-75b4-4bfb-8453-a2918a035342.png";
+const imgAppView    = "/figma-assets/91df8984-0d8f-450d-9282-c33ab6e90584.png";
+const imgFeatCheck  = "/figma-assets/6e980cf7-5c09-4a14-8503-ec31deee8e89.svg";
+const imgFeatWifi   = "/figma-assets/b80097cb-1bf0-4bdb-b383-e091e3b69fcb.svg";
+const imgBluetooth  = "/figma-assets/d37a36f4-919f-4d4c-80c4-66382ea5540f.svg";
+
 // ── Product images (PNG) — row 1 ──────────────────────────────────────────────
 const imgNeoUp            = "/figma-assets/e23fc740-275e-4c85-84f9-36e147e4c7f6.png"; // 3275×4096
 const imgNeoFit           = "/figma-assets/44f74064-36a2-4ed8-b19d-c0e125bc3613.png"; // 3275×4096
@@ -41,10 +49,10 @@ type Product = {
 
 const row1: Product[] = [
   { img: imgNeoUp,    imgW: 3275, imgH: 4096, name: "Neo UP",                                       sub: "Apenas Natural" },
-  { img: imgNeoFit,   imgW: 3275, imgH: 4096, name: "Neo FIT",                                      sub: "5 em 1", tank: "Resfriamento Eletrônico · 400ml" },
+  { img: imgNeoFit,   imgW: 3275, imgH: 4096, name: "Neo FIT",                                      sub: "5 em 1", tank: "Tanque de 400 ml" },
   { img: imgNeoSmart, imgW: 3275, imgH: 4096, name: <span>Neo SMART H<sub>2</sub></span>,            sub: "5 em 1" },
-  { img: imgNeoTouch, imgW: 3384, imgH: 4096, name: "Neo TOUCH",                                    sub: "5 em 1", tank: "Resfriamento Eletrônico · 800ml" },
-  { img: imgNeoPlus,  imgW: 3384, imgH: 4096, name: "Neo PLUS",                                     sub: "5 em 1", tank: "Resfriamento Eletrônico · 1500ml" },
+  { img: imgNeoTouch, imgW: 3384, imgH: 4096, name: "Neo TOUCH",                                    sub: "5 em 1", tank: "Tanque de 800 ml" },
+  { img: imgNeoPlus,  imgW: 3384, imgH: 4096, name: "Neo PLUS",                                     sub: "5 em 1", tank: "Tanque de 1500 ml" },
 ];
 
 const row2: Product[] = [
@@ -55,6 +63,14 @@ const row2: Product[] = [
   { img: imgNeoMaxSpark,     imgW: 1515, imgH: 4012, name: "Neo MAX SPARK",                          sub: "6 em 1", tank: "Tanque de 3L" },
   { img: imgNeoMaxSparkH2,   imgW: 1515, imgH: 4012, name: <span>Neo MAX SPARK H<sub>2</sub></span>, sub: "7 em 1", tank: "Tanque de 3L" },
 ];
+
+function CardImage({ src }: { src: string }) {
+  return (
+    <div className="flex items-center justify-center h-[220px] max-w-[170px] overflow-hidden relative shrink-0">
+      <img alt="" className="max-h-full max-w-full object-contain pointer-events-none" src={src} />
+    </div>
+  );
+}
 
 function ProductCard({ product }: { product: Product }) {
   return (
@@ -70,7 +86,7 @@ function ProductCard({ product }: { product: Product }) {
       </div>
 
       {/* Nome — min-h-[55px] alinha nomes de 1 e 2 linhas */}
-      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#0233c3] text-center w-full min-h-[55px] flex items-center justify-center">
+      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#0233c3] text-center w-full min-h-[55px] flex items-center justify-center">
         {product.name}
       </p>
 
@@ -100,7 +116,7 @@ export default function LinhaNeo() {
         <div className="flex flex-col gap-[20px] items-start w-full">
           <div className="flex flex-wrap gap-y-[20px] items-center justify-center w-full">
             <h2
-              className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] flex-1 min-w-[240px] bg-clip-text text-transparent text-center lg:text-left"
+              className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] flex-1 min-w-[240px] bg-clip-text text-transparent text-center lg:text-left"
               style={{ backgroundImage: "linear-gradient(to right, #0233c3, #0569ff)" }}
             >
               Neo Essentials
@@ -146,6 +162,120 @@ export default function LinhaNeo() {
         {/* Row 2 — Ultra + Max */}
         <div className="flex flex-wrap gap-[15px] items-stretch justify-center w-full">
           {row2.map((p, i) => <ProductCard key={i} product={p} />)}
+        </div>
+
+        {/* Feature cards — Painel LED Touch, Acquafy AI, Controle App */}
+        <div className="flex flex-wrap gap-[10px] items-stretch justify-center w-full overflow-hidden">
+
+          {/* Card 1 – Painel LED Touch */}
+          <div className="bg-white flex flex-1 flex-col gap-[20px] items-start min-h-[310px] min-w-[280px] p-[20px] rounded-[16px]">
+            <div className="flex flex-1 flex-col gap-[20px] items-start min-w-[200px]">
+              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] w-full">
+                <span className="text-[#0569ff]">Painel LED </span>
+                <span className="text-[#1f2e91]">Touch Inteligente</span>
+              </p>
+              <div className="flex flex-wrap gap-[20px] items-center min-h-[210px] w-full shrink-0">
+                <CardImage src={imgPanel} />
+                <div className="flex flex-1 flex-col gap-[20px] items-start min-w-[210px]">
+                  <div className="flex flex-col h-[134px] items-start justify-between w-full shrink-0">
+                    {[
+                      "Contagem regressiva de 365 dias até a troca dos filtros",
+                      "Relógio digital e data",
+                      "Status da água em tempo real",
+                      "Comunicação total com o App + IA",
+                      "Alertas Inteligentes",
+                    ].map((check, i) => (
+                      <div key={i} className="flex gap-[10px] items-center w-full">
+                        <FigmaIcon src={imgFeatCheck} size={14} />
+                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] leading-[13px] text-[#2a2a2b] flex-1 min-w-0">
+                          {check}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 2 – Acquafy AI no App */}
+          <div className="bg-white flex flex-1 flex-col gap-[20px] items-start min-h-[310px] min-w-[280px] p-[20px] rounded-[16px]">
+            <div className="flex flex-1 flex-col gap-[20px] items-start min-w-[200px]">
+              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#0569ff] w-full">
+                Acquafy AI no App
+              </p>
+              <div className="flex flex-wrap gap-[20px] items-center min-h-[210px] w-full shrink-0">
+                <CardImage src={imgHomeMob} />
+                <div className="flex flex-1 flex-col gap-[20px] items-start min-w-[210px]">
+                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#1f2e91] w-full">
+                    Inteligência artificial que aprende, analisa e cuida da sua água.
+                  </p>
+                  <div className="flex flex-col h-[134px] items-start justify-between w-full shrink-0">
+                    {[
+                      "Suporte inteligente 24/7",
+                      "Alertas de filtros",
+                      "Recomendações personalizadas",
+                      "Análise do consumo e hidratação",
+                      "Monitoramento do equipamento",
+                      "Experiência conectada com IA",
+                    ].map((check, i) => (
+                      <div key={i} className="flex gap-[10px] items-center w-full">
+                        <FigmaIcon src={imgFeatCheck} size={14} />
+                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] leading-[13px] text-[#2a2a2b] flex-1 min-w-0">
+                          {check}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 3 – Controle pelo App */}
+          <div className="bg-white flex flex-1 flex-col gap-[20px] items-start min-h-[310px] min-w-[280px] p-[20px] rounded-[16px]">
+            <div className="flex flex-1 flex-col gap-[20px] items-start min-w-[200px]">
+              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#0569ff] w-full">
+                Controle tudo pelo App Acquafy
+              </p>
+              <div className="flex flex-wrap gap-[20px] items-center min-h-[210px] w-full shrink-0">
+                <CardImage src={imgAppView} />
+                <div className="flex flex-1 flex-col gap-[20px] items-start min-w-[210px]">
+                  <div className="flex flex-col h-[134px] items-start justify-between w-full shrink-0">
+                    {[
+                      "Vida útil dos filtros",
+                      "Dispositivos conectados",
+                      "Suporte rápido e direto",
+                      "Operação global",
+                      "Multi Idioma",
+                    ].map((check, i) => (
+                      <div key={i} className="flex gap-[10px] items-center w-full">
+                        <FigmaIcon src={imgFeatCheck} size={14} />
+                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] leading-[13px] text-[#2a2a2b] flex-1 min-w-0">
+                          {check}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="flex gap-[10px] items-center w-full shrink-0">
+                    <div className="bg-[#f6f9fe] border border-[#0233c3] flex flex-wrap gap-[5px] items-center justify-center px-[12px] py-[8px] rounded-full shrink-0">
+                      <FigmaIcon src={imgFeatWifi} size={12} aspectW={13.5} aspectH={9.5} />
+                      <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[9px] leading-[11px] text-[#0233c3] whitespace-nowrap">
+                        WiFi 5
+                      </span>
+                    </div>
+                    <div className="bg-[#f6f9fe] border border-[#0233c3] flex flex-wrap gap-[5px] items-center justify-center px-[12px] py-[8px] rounded-full shrink-0">
+                      <FigmaIcon src={imgBluetooth} size={12} aspectW={10} aspectH={15} />
+                      <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[9px] leading-[11px] text-[#0233c3] whitespace-nowrap">
+                        Bluetooth 5.3
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>

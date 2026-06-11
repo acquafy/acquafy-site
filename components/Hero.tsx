@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { useState } from "react";
 import FigmaIcon from "./FigmaIcon";
 import { DotAtivo, DotInativo } from "./ui/SlideDot";
@@ -67,7 +67,7 @@ function GiftCard() {
       </div>
       <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] flex-1 min-w-[100px]">
         Ganhe{" "}
-        <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] bg-clip-text text-transparent bg-gradient-to-b from-[#0233c3] to-[#9f3df5]">R$100,00</span>
+        <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] bg-clip-text text-transparent bg-gradient-to-b from-[#0233c3] to-[#9f3df5]">R$100,00</span>
         {" "}no Brasil
       </p>
     </div>
@@ -105,7 +105,7 @@ export default function Hero() {
             </h1>
 
             {/* Subtitle — centered */}
-            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[20px] leading-[26px] text-[#333] text-center w-full">
+            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#333] text-center w-full">
               A Acquafy conecta produtos inteligentes, filtros de alta performance, App + AI, parceiros globais e recorrência para transformar a forma como o mundo consome água.
             </p>
 
@@ -184,7 +184,7 @@ export default function Hero() {
             </h1>
 
             {/* Subtitle — DIFFERENT TEXT for mobile (Figma node 3241:4219): longer paragraph */}
-            <div className="font-['Avenir_LT_Pro:55_Roman'] text-[20px] leading-[26px] text-[#333] text-center w-full flex flex-col gap-[26px]">
+            <div className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#333] text-center w-full flex flex-col gap-[26px]">
               <p>A Acquafy combina tecnologia, inteligência artificial, conectividade e sustentabilidade para transformar a forma como pessoas, empresas e comunidades acessam água pura e de qualidade em todo o mundo.</p>
               <p>Faça um upgrade do seu purificador antigo para o novo{" "}
                 <span className="font-['Avenir_LT_Pro:85_Heavy'] bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(116.55deg, #0233c3 6.19%, #9f3df5 93.35%)" }}>
@@ -277,13 +277,13 @@ export default function Hero() {
 
             {/* Subtitle */}
             {slide === 0 ? (
-              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[20px] leading-[26px] text-[#333] w-full">
+              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#333] w-full">
                 A Acquafy conecta produtos inteligentes, filtros de alta performance, App + AI, parceiros globais e recorrência para transformar a forma como o mundo consome água.
               </p>
             ) : (
               <div className="flex flex-col gap-[12px] w-full">
-                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[20px] leading-[26px] text-[#333]">A Acquafy torna a água pura mais acessível, com tecnologia global, design premium e benefícios reais para o seu dia a dia.</p>
-                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[20px] leading-[26px] text-[#333]">
+                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#333]">A Acquafy torna a água pura mais acessível, com tecnologia global, design premium e benefícios reais para o seu dia a dia.</p>
+                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#333]">
                   {"Faça um upgrade do seu purificador antigo para o novo "}
                   <span className="font-['Avenir_LT_Pro:85_Heavy'] bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(116.55deg, #0233c3 6.19%, #9f3df5 93.35%)" }}>Acquafy Neo UP.</span>
                 </p>

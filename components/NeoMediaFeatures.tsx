@@ -1,4 +1,4 @@
-// "Uma plataforma física de hidratação, mídia e conversão" (Figma node 3258:4218)
+﻿// "Uma plataforma física de hidratação, mídia e conversão" (Figma node 3258:4218)
 import FigmaIcon from "./FigmaIcon";
 
 const imgMarketing = "/figma-assets/9b7dece2-0a8e-4cc0-b793-1c7b71987e1c.svg";
@@ -48,7 +48,7 @@ export default function NeoMediaFeatures() {
   return (
     <section className="bg-white flex flex-col items-center justify-center overflow-hidden px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#1f2e91] text-center w-full">
+        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] text-center w-full">
           Uma plataforma física de{" "}
           <span className="text-[#0569ff]">hidratação, mídia e conversão</span>
         </h2>

@@ -67,7 +67,7 @@ export default function Parceria() {
     <section className="bg-white flex flex-col gap-[20px] items-center justify-center px-[20px] py-[40px] w-full">
       {/* Header */}
       <div className="flex flex-col gap-[5px] items-center max-w-[1400px] overflow-hidden w-full">
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] min-w-[240px] w-full text-center lg:text-left">
+        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] min-w-[240px] w-full text-center lg:text-left">
           <span className="text-[#2a2a2b]">Programa de</span>
           <span className="text-[#0233c3]">{" Parceria Global Acquafy"}</span>
         </h2>
@@ -91,7 +91,7 @@ export default function Parceria() {
                 </div>
                 <div className="flex flex-1 flex-col gap-[20px] items-start min-w-0">
                   <p
-                    className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] w-full"
+                    className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] w-full"
                     style={{ color: tier.nameColor }}
                   >
                     {tier.name}
@@ -108,11 +108,11 @@ export default function Parceria() {
                   </div>
                 </div>
               </div>
-              <button className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex items-center justify-center min-h-[30px] overflow-hidden px-[20px] py-[10px] rounded-[8px] w-full cursor-pointer">
+              <a href="/parceria" className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex items-center justify-center min-h-[30px] overflow-hidden px-[20px] py-[10px] rounded-[8px] w-full cursor-pointer">
                 <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white text-center flex-1 min-w-0">
-                  Inscreva-se agora!
+                  Ver mais!
                 </span>
-              </button>
+              </a>
             </div>
           </div>
         ))}

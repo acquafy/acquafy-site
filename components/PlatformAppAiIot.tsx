@@ -1,4 +1,4 @@
-import FigmaIcon from "./FigmaIcon";
+﻿import FigmaIcon from "./FigmaIcon";
 
 const imgMonitor   = "/figma-assets/db4bca54-a2c0-4ca3-89d5-b431285d293a.svg";
 const imgFiltros   = "/figma-assets/b48bb694-178a-4fcd-a1ca-c94ecb1a497e.svg";
@@ -25,7 +25,7 @@ export default function PlatformAppAiIot() {
     <section className="bg-white flex flex-col items-center justify-center overflow-hidden px-[20px] py-[40px] w-full">
       <div className="bg-[#f6f9fe] flex flex-col gap-[40px] items-center justify-center max-w-[1400px] p-[20px] rounded-[16px] w-full">
 
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-center w-full">
+        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-center w-full">
           <span className="text-[#2a2a2b]">App + </span>
           <span className="text-[#6e54ef]">AI</span>
           <span className="text-[#2a2a2b]"> + </span>

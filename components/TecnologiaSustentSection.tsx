@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import FigmaIcon from "./FigmaIcon";
 import { BtnVerdeOutArrow } from "./ui/Buttons";
 
@@ -80,7 +80,7 @@ export default function TecnologiaSustentSection() {
         <div className="flex flex-col gap-[20px] items-start w-full">
           {/* Info card */}
           <div className="bg-white flex flex-col gap-[20px] items-start min-h-[235px] min-w-[280px] overflow-hidden p-[20px] rounded-[16px] w-full">
-            <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#0b8650] text-center lg:text-left">
+            <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#0b8650] text-center lg:text-left">
               Sustentabilidade em cada gota
             </h2>
             <div className="bg-[#36ae5c] h-[2px] w-[80px] shrink-0" />

@@ -1,4 +1,5 @@
-import FigmaIcon from "./FigmaIcon";
+﻿import FigmaIcon from "./FigmaIcon";
+import Link from "next/link";
 import { BtnAzulBaseArrow, BtnAzulOutArrow } from "./ui/Buttons";
 
 /* ── Assets ───────────────────────────────────────────────────── */
@@ -22,7 +23,7 @@ const tiers = [
     alt:       "Silver",
     label:     "Silver",
     imgCls:    "size-[40px] object-contain shrink-0",
-    labelCls:  "font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#3e4650]",
+    labelCls:  "font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#3e4650]",
     labelStyle: undefined as React.CSSProperties | undefined,
   },
   {
@@ -31,7 +32,7 @@ const tiers = [
     alt:       "Gold",
     label:     "Gold",
     imgCls:    "size-[40px] object-contain shrink-0",
-    labelCls:  "font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#dfa727]",
+    labelCls:  "font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#dfa727]",
     labelStyle: undefined as React.CSSProperties | undefined,
   },
   {
@@ -40,7 +41,7 @@ const tiers = [
     alt:       "Platinum",
     label:     "Platinum",
     imgCls:    "size-[40px] object-contain shrink-0",
-    labelCls:  "font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] bg-clip-text text-transparent",
+    labelCls:  "font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] bg-clip-text text-transparent",
     labelStyle: { backgroundImage: "linear-gradient(117.65deg, #0233c3 6.19%, #9f3df5 93.35%)" } as React.CSSProperties,
   },
 ];
@@ -80,7 +81,7 @@ export default function ParceriaBanner() {
           </h1>
 
           {/* Subtitle */}
-          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[24px] lg:text-[20px] lg:leading-[26px] text-[#333] text-center lg:text-left">
+          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[24px] lg:text-[18px] lg:leading-[26px] text-[#333] text-center lg:text-left">
             Três níveis para crescer com a marca em escala global: indicar, operar ou distribuir.
           </p>
 
@@ -89,9 +90,11 @@ export default function ParceriaBanner() {
             <BtnAzulBaseArrow className="flex-[1_0_0] min-h-[50px] min-w-[190px]">
               Seja um parceiro
             </BtnAzulBaseArrow>
-            <BtnAzulOutArrow className="flex-[1_0_0] min-h-[50px] min-w-[190px]">
-              Falar com especialista
-            </BtnAzulOutArrow>
+            <Link href="/contato" className="flex-[1_0_0] min-w-[190px]">
+              <BtnAzulOutArrow className="w-full min-h-[50px]">
+                Falar com especialista
+              </BtnAzulOutArrow>
+            </Link>
           </div>
 
           {/* Tier badges */}

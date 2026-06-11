@@ -30,7 +30,7 @@ export default function ParceirosAcessorios() {
 
         {/* Header */}
         <div className="flex flex-col gap-[20px] items-center text-center w-full">
-          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#1f2e91] min-w-[240px] w-full">
+          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] min-w-[240px] w-full">
             Para parceiros, eventos e ações promocionais
           </h2>
           <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] w-full">
@@ -50,7 +50,7 @@ export default function ParceirosAcessorios() {
                     </div>
                   </div>
                   <div className="flex flex-col gap-[10px] items-start flex-1 min-w-0">
-                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#0569ff]">{tier.name}</p>
+                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#0569ff]">{tier.name}</p>
                     <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#2a2a2b]">{tier.desc}</p>
                   </div>
                 </div>

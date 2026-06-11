@@ -35,7 +35,7 @@ function NeoUPProduct({ size }: { size: number }) {
 /** Botão outline azul com seta toggle hover/pressed */
 function ParticipateButton() {
   return (
-    <button className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex gap-[10px] items-center justify-center min-h-[30px] overflow-hidden px-[20px] py-[10px] rounded-[8px] shrink-0 cursor-pointer">
+    <a href="/contato" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex gap-[10px] items-center justify-center min-h-[30px] overflow-hidden px-[20px] py-[10px] rounded-[8px] shrink-0 cursor-pointer">
       <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors text-center whitespace-nowrap">
         Quero participar
       </span>
@@ -47,7 +47,7 @@ function ParticipateButton() {
           <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
         </div>
       </div>
-    </button>
+    </a>
   );
 }
 
@@ -55,7 +55,7 @@ function ParticipateButton() {
 function CampaignText({ centered }: { centered?: boolean }) {
   return (
     <div className={`flex flex-col gap-[20px] items-start text-white w-full ${centered ? "items-center text-center" : ""}`}>
-      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-white w-full">
+      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-white w-full">
         CAMPANHA ACQUAFY TRANSFORMA VIDAS
       </p>
       <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-white w-full">

@@ -1,4 +1,4 @@
-const imgCloud  = "/figma-assets/op-cloud.svg";
+﻿const imgCloud  = "/figma-assets/op-cloud.svg";
 const imgQR     = "/figma-assets/op-qr.svg";
 const imgMoney  = "/figma-assets/op-money.svg";
 const imgMobile = "/figma-assets/op-mobile.svg";
@@ -19,7 +19,7 @@ export default function OperacaoGlobal() {
     <section className="bg-white flex items-center justify-center px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
 
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] not-italic text-[26px] leading-[28px] text-center min-w-[240px] w-full">
+        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] not-italic text-[20px] leading-[28px] text-center min-w-[240px] w-full">
           <span className="text-[#1f2e91]">{"Uma operação "}</span>
           <span className="text-[#0569ff]">global, simples e inteligente</span>
         </h2>

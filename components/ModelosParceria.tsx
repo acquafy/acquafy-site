@@ -1,4 +1,4 @@
-/* ── Medal icons (55×55) ──────────────────────────────────────── */
+﻿/* ── Medal icons (55×55) ──────────────────────────────────────── */
 const imgSilver   = "/figma-assets/fc77e73a-6af6-4239-a007-70775393e1d8.png";
 const imgGold     = "/figma-assets/52cce9b5-c0bf-452a-94fd-8f2ead4a089c.png";
 const imgPlatinum = "/figma-assets/9149cb94-288c-4f50-992b-3fdd6369b4cd.png";
@@ -152,7 +152,7 @@ export default function ModelosParceria() {
       <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
 
         {/* Header */}
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#1f2e91] text-center min-w-[240px] w-full">
+        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] text-center min-w-[240px] w-full">
           {"Modelos de "}
           <span className="text-[#0569ff]">Parceria</span>
         </h2>

@@ -1,4 +1,4 @@
-// â”€â”€ Product images â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+﻿// â”€â”€ Product images â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 const imgCopo     = "/figma-assets/e48f4053-5164-4c50-9628-8b18c5e4839d.png";
 const imgCamisa1C = "/figma-assets/da733658-e071-4e5b-8c62-c809f890501e.png";
 const imgCamisa1F = "/figma-assets/205829bb-6180-4a2b-968d-aa15c2974799.png";
@@ -75,7 +75,7 @@ export default function ColecaoMediaNetwork() {
 
         {/* Header */}
         <div className="flex gap-[10px] items-center justify-between w-full flex-wrap">
-          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] flex-1 min-w-[240px] text-center lg:text-left">
+          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] flex-1 min-w-[240px] text-center lg:text-left">
             <span className="text-[#1f2e91]">Acessórios para Acquafy</span>
             {" "}
             <span className="text-[#0569ff]">Media Network</span>

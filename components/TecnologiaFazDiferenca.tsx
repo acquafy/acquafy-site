@@ -1,4 +1,4 @@
-import FigmaIcon from "./FigmaIcon";
+﻿import FigmaIcon from "./FigmaIcon";
 
 const imgPurif    = "/figma-assets/ts-icon-agua-intel.svg";
 const imgBrain    = "/figma-assets/ts-icon-brain.svg";
@@ -47,7 +47,7 @@ function FeatureCard({ icon, aspectW, aspectH, title, description }: {
   return (
     <div className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[20px] items-center min-h-[265px] min-w-[150px] px-[10px] py-[20px] rounded-[16px]">
       <FigmaIcon src={icon} size={40} aspectW={aspectW} aspectH={aspectH} />
-      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#1f2e91] text-center w-full min-h-[36px]">
+      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] text-center w-full min-h-[36px]">
         {title}
       </p>
       <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#333] text-center w-full">
@@ -64,7 +64,7 @@ export default function TecnologiaFazDiferenca() {
 
         {/* Header */}
         <div className="flex flex-col gap-[10px] items-center text-center w-full">
-          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#1f2e91] max-w-[800px] w-full">
+          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] max-w-[800px] w-full">
             <span className="text-[#0569ff]">Tecnologia</span>
             {" que faz a diferença"}
           </h2>

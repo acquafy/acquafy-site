@@ -1,131 +1,79 @@
-import FigmaIcon from "./FigmaIcon";
+﻿const imgArrow = "/figma-assets/278398fb-a5aa-4bc3-917a-023459eaff65.svg";
 
-// ── Assets (node 3685:13401) ──────────────────────────────────────────────────
-const imgCheckin      = "/figma-assets/8a45d314-4f2b-46a1-a048-15ce133391f9.svg"; // 30×30 sq
-const imgCheckinStroke = "/figma-assets/c27617dd-67dc-4e70-96b7-b004d35403c5.svg"; // 50×34 landscape
-const imgFilterPP     = "/figma-assets/d31fe2a1-d90e-4d2c-9e55-f9906b146e50.svg"; // 603.5×662.7 portrait
-const imgFilterH      = "/figma-assets/7e463a70-d7a6-41e3-8e88-90bd52ddae03.svg"; // 30×30 sq
-const imgFilterAnti   = "/figma-assets/75c90c1b-6284-4554-87d0-ad273730475d.svg"; // 490.75×492 sq
-const imgFilterUltra  = "/figma-assets/5c732454-6eaa-4861-b7b6-1406ade1799d.svg"; // 426.42×491.96 portrait
+type FilterCard = {
+  num: string;
+  title: string;
+  desc: string;
+  highlight?: boolean;
+};
 
-// ── CheckinStroke helper (50×34 landscape, slot 15×15) ────────────────────────
-function CheckinStroke() {
+const essentials: FilterCard[] = [
+  {
+    num: "01",
+    title: "PPF - Polypropilene Filter",
+    desc: "Remove iodo, sujeira, ferrugem, filtra impurezas, compostos químicos, partículas suspensas, odores e sabores normalmente presentes na água de torneira.",
+  },
+  {
+    num: "02",
+    title: "ACF - Anti-Scale Activated Block Carbon Filter",
+    desc: "Remove o cloro, compostos químicos, partículas suspensas, odores e sabores normalmente presentes na água de torneira.",
+  },
+  {
+    num: "03",
+    title: "UFF - Ultra Filtration Filter",
+    desc: "Com microporos de ultraprecisão, remove organismos, substâncias macromoleculares, verme vermelho, vírus e bactérias.",
+    highlight: true,
+  },
+  {
+    num: "04",
+    title: "AAF - Alkaline Antioxidant Filter",
+    desc: "Ele ajusta a faixa de pH da água, torna a água filtrada alcalina com pH acima de 9, antioxidante e rica em hidrogênio",
+  },
+];
+
+function FilterCard({ card, isLast }: { card: FilterCard; isLast: boolean }) {
   return (
-    <div className="flex flex-col items-center justify-center relative shrink-0" style={{ width: 15, height: 15 }}>
-      <div className="relative shrink-0 w-full" style={{ aspectRatio: "50 / 34" }}>
-        <div className="absolute" style={{ inset: "-7.35% -5%" }}>
-          <img alt="" className="block max-w-none size-full" src={imgCheckinStroke} />
+    <div
+      className={`flex flex-[1_0_0] flex-col gap-[20px] items-start min-h-[210px] min-w-[200px] px-[20px] py-[25px] relative rounded-[16px] bg-[#f6f9fe]${card.highlight ? " border-2 border-[#0233c3]" : ""}`}
+    >
+      <div className="flex gap-[10px] items-center w-full shrink-0">
+        <div
+          className="flex flex-col items-center justify-center rounded-full shrink-0 size-[40px]"
+          style={card.highlight ? { backgroundImage: "linear-gradient(to right, #0041ff, #3f8cff)" } : { backgroundColor: "#1f2e91" }}
+        >
+          <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-white text-center">{card.num}</span>
         </div>
+        <p
+          className={`font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] flex-1 min-w-0${card.highlight ? " bg-clip-text text-transparent" : " text-[#1f2e91]"}`}
+          style={card.highlight ? { backgroundImage: "linear-gradient(to right, #0041ff, #3f8cff)" } : undefined}
+        >
+          {card.title}
+        </p>
       </div>
+      <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#2a2a2b] flex-1 w-full">{card.desc}</p>
+      {!isLast && (
+        <div className="absolute -right-[10px] top-1/2 -translate-y-1/2 w-[10px] h-0 pointer-events-none">
+          <div className="absolute" style={{ inset: "-7.36px -10% -7.36px 0" }}>
+            <img alt="" className="block max-w-none size-full" src={imgArrow} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
 
-// ── Filter card data ───────────────────────────────────────────────────────────
-const filters = [
-  {
-    icon: imgFilterPP,
-    aspectW: 603.5, aspectH: 662.7,
-    title: "Filtro PP / Polipropileno",
-    bullets: [
-      "Retém sedimentos, areia, ferrugem e partículas maiores;",
-      "Protege os filtros seguintes.",
-    ],
-  },
-  {
-    icon: imgFilterH,
-    aspectW: 30, aspectH: 30,
-    title: "Rico em Hidrogênio + Composto Alcalino",
-    bullets: [
-      "Enriquece a água com hidrogênio molecular;",
-      "Aumenta o pH e o poder antioxidante.",
-    ],
-  },
-  {
-    icon: imgFilterAnti,
-    aspectW: 490.75, aspectH: 492,
-    title: "Anti-Escala",
-    bullets: [
-      "Reduz a formação de incrustações;",
-      "Protege o sistema e aumenta a vida útil do equipamento.",
-    ],
-  },
-  {
-    icon: imgFilterUltra,
-    aspectW: 426.42, aspectH: 491.96,
-    title: "Ultrafiltração",
-    bullets: [
-      "Remove bactérias, coloides e impurezas microscópicas;",
-      "Água mais pura e segura.",
-    ],
-  },
-];
-
 export default function FiltrosNeo() {
   return (
     <section className="bg-white flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
-      <div className="bg-[#f6f9fe] flex flex-col gap-[20px] items-center justify-center max-w-[1400px] p-[20px] rounded-[16px] w-full">
-
-        {/* ── Header: título + descrição + 3 checklist items em row ── */}
-        <div className="flex flex-col gap-[20px] items-start min-w-[240px] w-full">
-
-          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#1f2e91] w-full text-center lg:text-left">
-            4 Filtros Neo de Alta Performance
-          </h2>
-
-          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] w-full text-center lg:text-left">
-            Tecnologia avançada com 20 componentes e 20 estágios de purificação para entregar água pura, segura e saudável todos o dias.
-          </p>
-
-          {/* 3 checklist items: flex-wrap gap-40px (horizontal no desktop) */}
-          <div className="flex flex-wrap gap-[40px] items-center w-full">
-            {[
-              "20 componentes",
-              "20 estágio de purificação",
-              "Vida útil de até 1 ano de 20.000 litros",
-            ].map((item) => (
-              <div key={item} className="flex gap-[10px] items-center">
-                <FigmaIcon src={imgCheckin} size={20} />
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91]">
-                  {item}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* ── 4 filter cards em row ── */}
-        <div className="flex flex-wrap gap-[10px] items-stretch w-full">
-          {filters.map((f) => (
-            <div
-              key={f.title}
-              className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center min-h-[285px] min-w-[280px] overflow-hidden p-[20px] rounded-[16px]"
-            >
-              {/* Blue circle icon */}
-              <div className="bg-[#0569ff] flex flex-col items-center justify-center p-[15px] rounded-full shrink-0 size-[60px]">
-                <FigmaIcon src={f.icon} size={30} aspectW={f.aspectW} aspectH={f.aspectH} />
-              </div>
-
-              {/* Title (min-h-50px for alignment) */}
-              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] text-center w-full min-h-[50px] flex items-center justify-center">
-                {f.title}
-              </p>
-
-              {/* Bullet points */}
-              <div className="flex flex-col gap-[20px] items-start w-full">
-                {f.bullets.map((bullet) => (
-                  <div key={bullet} className="flex gap-[10px] items-center w-full">
-                    <CheckinStroke />
-                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#333] flex-1 min-w-0">
-                      {bullet}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
+      <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
+        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#0569ff] text-center w-full">
+          Linha Essentials - Sistema de Filtração de Alta Performance
+        </h2>
+        <div className="flex flex-wrap gap-[20px] items-stretch justify-center w-full">
+          {essentials.map((c, i) => (
+            <FilterCard key={i} card={c} isLast={i === essentials.length - 1} />
           ))}
         </div>
-
       </div>
     </section>
   );

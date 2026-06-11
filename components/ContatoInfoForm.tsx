@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { useState, type ReactNode } from "react";
@@ -104,7 +104,7 @@ export default function ContatoInfoForm() {
 
           {/* Título gradiente */}
           <p
-            className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] bg-clip-text text-transparent w-full"
+            className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] bg-clip-text text-transparent w-full"
             style={{ backgroundImage: "linear-gradient(90deg, #0233c3, #0569ff)" }}
           >
             Informações de contato
@@ -149,7 +149,7 @@ export default function ContatoInfoForm() {
 
           {/* Título gradiente */}
           <p
-            className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] bg-clip-text text-transparent w-full shrink-0"
+            className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] bg-clip-text text-transparent w-full shrink-0"
             style={{ backgroundImage: "linear-gradient(90deg, #0233c3, #0569ff)" }}
           >
             Envie uma mensagem

@@ -1,4 +1,4 @@
-import FigmaIcon from "./FigmaIcon";
+﻿import FigmaIcon from "./FigmaIcon";
 
 // ── Backgrounds ──────────────────────────────────────────────────────────────
 // "Padrão" (xl+): background hero com splash de água + produtos visíveis ao fundo
@@ -57,12 +57,12 @@ export default function BannerFiltros() {
           </h1>
 
           {/* Subtítulo azul */}
-          <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#0233c3] w-full text-center lg:text-left">
+          <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#0233c3] w-full text-center lg:text-left">
             Performance, qualidade e proteção para cada gota
           </p>
 
           {/* Descrição */}
-          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[20px] leading-[26px] text-[#333] w-full text-center lg:text-left">
+          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#333] w-full text-center lg:text-left">
             Os filtros e acessórios Acquafy são projetados para manter a água sempre pura, segura e com o máximo desempenho em todos os equipamentos Acquafy.
           </p>
 
@@ -75,7 +75,7 @@ export default function BannerFiltros() {
               <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
             </a>
             {/* BT AZUL OUT ARROW */}
-            <button className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex w-full md:flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] md:min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
+            <a href="/contato" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex w-full md:flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] md:min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
               <span className="font-['Articulat_CF:Bold'] text-[16px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">Falar com um especialista</span>
               <div className="relative shrink-0" style={{ width: 9, height: 9 }}>
                 <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0 group-active:opacity-0">
@@ -85,7 +85,7 @@ export default function BannerFiltros() {
                   <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
                 </div>
               </div>
-            </button>
+            </a>
           </div>
         </div>
 

@@ -1,4 +1,4 @@
-'use client'
+﻿'use client'
 import { useRef } from 'react'
 
 /* ─────────────────────────────────────────────────────────────────
@@ -107,7 +107,7 @@ function ProductItem({ src, aspect, portrait, variant, name, sub2 }: ProductItem
 
       {/* nome do produto */}
       <p
-        className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-center max-w-[140px] min-h-[44px] shrink-0 w-full"
+        className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-center max-w-[140px] min-h-[44px] shrink-0 w-full"
         style={variant === "essentials" ? essGrad : premColor}
       >
         {sub2
@@ -192,7 +192,7 @@ function ProductLineCard({ variant }: { variant: "essentials" | "premium" }) {
       {/* header: título + descrição — centralizados */}
       <div className="flex flex-col gap-[10px] items-center text-center w-full shrink-0">
         <p
-          className="font-['Avenir_LT_Pro:85_Heavy'] not-italic text-[26px] leading-[28px] min-h-[36px] whitespace-nowrap shrink-0 w-full"
+          className="font-['Avenir_LT_Pro:85_Heavy'] not-italic text-[20px] leading-[28px] min-h-[36px] whitespace-nowrap shrink-0 w-full"
           style={titleStyle}
         >
           {isEssentials ? "Linha Essentials" : "Linha Neo Premium"}
@@ -234,7 +234,7 @@ export default function ProdutosParceria() {
       <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
 
         {/* título da seção */}
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] not-italic text-[26px] leading-[28px] text-[#1f2e91] text-center min-w-[240px] w-full">
+        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] not-italic text-[20px] leading-[28px] text-[#1f2e91] text-center min-w-[240px] w-full">
           {"Produtos para cada "}
           <span className="text-[#0569ff]">modelo de parceria</span>
         </h2>
@@ -253,7 +253,7 @@ export default function ProdutosParceria() {
 
             {/* header centralizado */}
             <div className="flex flex-col gap-[10px] items-center text-center w-full shrink-0">
-              <p className="font-['Avenir_LT_Pro:85_Heavy'] not-italic text-[26px] leading-[28px] text-[#0569ff] min-h-[36px] w-full">
+              <p className="font-['Avenir_LT_Pro:85_Heavy'] not-italic text-[20px] leading-[28px] text-[#0569ff] min-h-[36px] w-full">
                 Acquafy Media
               </p>
               <p className="font-['Avenir_LT_Pro:55_Roman'] not-italic text-[18px] leading-[19px] text-[#333] w-full">

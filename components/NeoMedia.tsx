@@ -1,4 +1,4 @@
-import FigmaIcon from "./FigmaIcon";
+﻿import FigmaIcon from "./FigmaIcon";
 
 // ── Assets ────────────────────────────────────────────────────────────────────
 const imgBg          = "/figma-assets/fe4429bc-7d62-427a-a0f3-f9ea1576c252.png"; // background
@@ -68,7 +68,7 @@ export default function NeoMedia() {
 
           {/* Header */}
           <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start justify-center min-w-[240px] pt-[20px]">
-            <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-white w-full text-center lg:text-left">
+            <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-white w-full text-center lg:text-left">
               Neo Media
             </h2>
             <div className="flex flex-wrap gap-y-[20px] items-center w-full">
@@ -80,7 +80,7 @@ export default function NeoMedia() {
                 </p>
 
                 {/* Botão outline com hover/pressed */}
-                <button className="
+                <a href="/contato" className="
                   group bg-white border border-[#0233c3]
                   hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors
                   flex gap-[10px] items-center justify-center
@@ -102,7 +102,7 @@ export default function NeoMedia() {
                       <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
                     </div>
                   </div>
-                </button>
+                </a>
               </div>
             </div>
           </div>

@@ -1,4 +1,4 @@
-import FigmaIcon from "./FigmaIcon";
+﻿import FigmaIcon from "./FigmaIcon";
 
 // ── Assets ───────────────────────────────────────────────────────────────────
 const imgBg        = "/figma-assets/876d7726-5006-4cc7-97bc-45a60e67a3b6.png"; // section bg
@@ -57,10 +57,10 @@ export default function SobreImpacto() {
 
         {/* Title column */}
         <div className="flex flex-col gap-[20px] items-center w-full relative lg:flex-[1_0_0] lg:items-start lg:max-w-[340px] lg:min-w-[280px]">
-          <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-white text-center lg:text-left">
+          <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-white text-center lg:text-left">
             Nosso impacto
           </p>
-          <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-white text-center lg:text-left">
+          <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-white text-center lg:text-left">
             Transformamos tecnologia em{" "}
             <span className="text-[#0569ff]">impacto positivo</span>{" "}
             para pessoas e para o planeta.

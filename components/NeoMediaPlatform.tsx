@@ -1,4 +1,4 @@
-// "Conectado à Plataforma Acquafy" (Figma node 3265:4714)
+﻿// "Conectado à Plataforma Acquafy" (Figma node 3265:4714)
 import FigmaIcon from "./FigmaIcon";
 
 const imgAppHome     = "/figma-assets/b9b12f04-77fe-4bac-9edc-dac3265689fd.png";
@@ -90,7 +90,7 @@ export default function NeoMediaPlatform() {
   return (
     <section className="bg-[#f2f6fd] flex flex-col items-center justify-center overflow-hidden px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center justify-center max-w-[1400px] w-full">
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#1f2e91] text-center w-full">
+        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] text-center w-full">
           Conectado à{" "}
           <span className="text-[#0569ff]">Plataforma Acquafy</span>
         </h2>
@@ -100,7 +100,7 @@ export default function NeoMediaPlatform() {
               key={c.title}
               className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center min-h-[320px] min-w-[200px] p-[20px] rounded-[16px]"
             >
-              <h3 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#333] text-center flex items-center justify-center min-h-[44px] w-full">
+              <h3 className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#333] text-center flex items-center justify-center min-h-[44px] w-full">
                 {c.title}
               </h3>
               <div className="flex-1 flex items-center justify-center w-full">

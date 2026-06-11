@@ -1,5 +1,6 @@
-"use client";
+﻿"use client";
 import FigmaIcon from "./FigmaIcon";
+import Link from "next/link";
 import { BtnAzulBaseArrow, BtnAzulOutArrow } from "./ui/Buttons";
 
 const imgBg     = "/figma-assets/06a6a2b8-28b7-4f8a-b500-fea6f628ac43.png";
@@ -58,7 +59,7 @@ function CardItem({ c, fullWidth }: { c: typeof cards[0]; fullWidth?: boolean })
       <div className="flex flex-col items-center justify-center size-[40px] shrink-0">
         <FigmaIcon src={c.icon} size={30} aspectW={c.aspectW} aspectH={c.aspectH} />
       </div>
-      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#1f2e91] flex-1">
+      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] flex-1">
         {c.label}
       </p>
     </div>
@@ -79,7 +80,7 @@ export default function NeoMediaBanner() {
       <div className="lg:hidden relative flex flex-col gap-[20px] items-center w-full">
         <Label />
         <h1
-          className="font-['Avenir_LT_Pro:95_Black'] text-[48px] leading-[55px] bg-clip-text text-transparent w-fit text-center"
+          className="font-['Avenir_LT_Pro:95_Black'] text-hero-md bg-clip-text text-transparent w-fit text-center"
           style={{ backgroundImage: titleGradient }}
         >
           Acquafy Media
@@ -95,9 +96,11 @@ export default function NeoMediaBanner() {
           <BtnAzulBaseArrow className="flex-[1_0_0] min-w-[190px] min-h-[50px] px-[20px]">
             Quero o Acquafy Media
           </BtnAzulBaseArrow>
-          <BtnAzulOutArrow className="flex-[1_0_0] min-w-[190px] min-h-[50px] px-[20px]">
-            Falar com especialista
-          </BtnAzulOutArrow>
+          <Link href="/contato" className="flex-[1_0_0] min-w-[190px]">
+            <BtnAzulOutArrow className="w-full min-h-[50px] px-[20px]">
+              Falar com especialista
+            </BtnAzulOutArrow>
+          </Link>
         </div>
         <div className="flex flex-wrap gap-[30px_0] items-center justify-start w-full py-[25px]">
           {stats.map((s) => (
@@ -139,10 +142,10 @@ export default function NeoMediaBanner() {
             >
               Acquafy Media
             </h1>
-            <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#1f2e91]">
+            <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91]">
               Plataforma de Água Inteligente + Mídia Digital + Receita Recorrente.
             </h2>
-            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[20px] leading-[26px] text-[#333]">
+            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#333]">
               O Acquafy Media transforma locais públicos em pontos de hidratação, visibilidade e negócios.
               Combine fornecimento de água gratuita e acessível, exibição de anúncios, QR Codes e venda da
               linha Neo para gerar valor contínuo para sua operação e para as marcas.

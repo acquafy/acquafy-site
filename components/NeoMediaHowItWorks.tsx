@@ -1,4 +1,4 @@
-// "Como funciona na prática" — 4 numbered steps (Figma node 3258:5253)
+﻿// "Como funciona na prática" — 4 numbered steps (Figma node 3258:5253)
 import FigmaIcon from "./FigmaIcon";
 
 const imgWater    = "/figma-assets/37a7ae8a-b232-471a-ade9-74786ac52863.svg";
@@ -41,7 +41,7 @@ export default function NeoMediaHowItWorks() {
   return (
     <section className="bg-white flex flex-col items-center justify-center overflow-hidden px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center justify-center max-w-[1400px] rounded-[16px] w-full">
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#1f2e91] text-center w-full">
+        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] text-center w-full">
           <span className="text-[#0569ff]">Como funciona</span>
           {" na prática"}
         </h2>
@@ -58,7 +58,7 @@ export default function NeoMediaHowItWorks() {
                 </span>
               </div>
               {/* Title */}
-              <h3 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#1f2e91] text-center flex items-center justify-center min-h-[44px] w-full">
+              <h3 className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] text-center flex items-center justify-center min-h-[44px] w-full">
                 {s.title}
               </h3>
               {/* Desc */}

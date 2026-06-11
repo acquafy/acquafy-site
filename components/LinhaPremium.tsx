@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+﻿import type { ReactNode } from "react";
 import FigmaIcon from "./FigmaIcon";
 import PremiumSlideshow from "./ui/PremiumSlideshow";
 
@@ -95,7 +95,7 @@ function InfinityCard({ product }: { product: Product }) {
   return (
     <div className="bg-white flex flex-[1_0_0] flex-col gap-[10px] items-center min-h-[290px] min-w-[180px] overflow-hidden p-[20px] rounded-[12px]">
       <ProductImage src={product.img} />
-      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#6e0cc3] text-center w-full min-h-[55px] flex items-center justify-center">
+      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#6e0cc3] text-center w-full min-h-[55px] flex items-center justify-center">
         {product.name}
       </p>
       <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] text-center w-full">
@@ -109,7 +109,7 @@ function PrestigeCard({ product }: { product: Product }) {
   return (
     <div className="bg-white flex flex-[1_0_0] flex-col gap-[10px] items-center min-h-[290px] min-w-[180px] overflow-hidden p-[20px] rounded-[12px]">
       <ProductImage src={product.img} />
-      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#6e0cc3] text-center w-full min-h-[55px] flex items-center justify-center">
+      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#6e0cc3] text-center w-full min-h-[55px] flex items-center justify-center">
         {product.name}
       </p>
       <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] text-center w-full">
@@ -123,7 +123,7 @@ function PrimeCard({ product }: { product: Product }) {
   return (
     <div className="bg-white flex flex-[1_0_0] flex-col gap-[10px] items-center min-h-[290px] min-w-[180px] overflow-hidden p-[20px] rounded-[12px]">
       <ProductImage src={product.img} />
-      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#6e0cc3] text-center w-full min-h-[55px] flex items-center justify-center">
+      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#6e0cc3] text-center w-full min-h-[55px] flex items-center justify-center">
         {product.name}
       </p>
       <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] text-center w-full">
@@ -144,7 +144,7 @@ export default function LinhaPremium() {
         <div className="flex flex-col gap-[20px] items-start w-full">
           <div className="flex flex-wrap gap-y-[20px] items-center justify-center w-full">
             <h2
-              className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] bg-clip-text text-transparent flex-1 min-w-[240px] text-center lg:text-left"
+              className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] bg-clip-text text-transparent flex-1 min-w-[240px] text-center lg:text-left"
               style={{ backgroundImage: "linear-gradient(170.17deg, #0233c3 6.19%, #9f3df5 93.35%)" }}
             >
               Neo Premium
@@ -214,7 +214,7 @@ export default function LinhaPremium() {
 
               {/* Title block — w-full sem padding lateral extra */}
               <div className="flex flex-col gap-[10px] items-start w-full">
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] w-full">
+                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] w-full">
                   <span className="text-[#1f2e91]">Painel Premium </span>
                   <span
                     className="bg-clip-text text-transparent"

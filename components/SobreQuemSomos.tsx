@@ -32,7 +32,7 @@ export default function SobreQuemSomos() {
 
         {/* Left: Quem Somos */}
         <div className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[40px] items-center max-w-[550px] min-w-[280px] px-[20px] py-[40px] rounded-[16px]">
-          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#1f2e91] w-full text-center lg:text-left">
+          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] w-full text-center lg:text-left">
             Quem Somos
           </h2>
           <div className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] w-full">
@@ -57,7 +57,7 @@ export default function SobreQuemSomos() {
 
         {/* Right: Interfy Group */}
         <div className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[40px] items-center min-w-[280px] px-[20px] py-[40px] rounded-[16px]">
-          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#1f2e91] w-full text-center lg:text-left">
+          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] w-full text-center lg:text-left">
             Acquafy, uma empresa Interfy Group
           </h2>
 

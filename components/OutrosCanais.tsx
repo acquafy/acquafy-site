@@ -1,4 +1,4 @@
-import FigmaIcon from "./FigmaIcon";
+﻿import FigmaIcon from "./FigmaIcon";
 
 // ── Assets ───────────────────────────────────────────────────────────────────
 const imgChat      = "/figma-assets/42ea5353-8843-46d2-9697-63999c787ed4.svg"; // 42×42      sq
@@ -59,7 +59,7 @@ export default function OutrosCanais() {
 
         {/* Cabeçalho */}
         <div className="flex flex-col gap-[10px] items-start text-center w-full">
-          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#1f2e91] w-full">
+          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] w-full">
             Outros canais
           </h2>
           <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] w-full">

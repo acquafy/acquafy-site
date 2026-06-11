@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import FigmaIcon from "./FigmaIcon";
@@ -146,7 +146,7 @@ function MobileNavSection({
         className="flex items-center justify-between w-full py-[16px] cursor-pointer"
       >
         <div className="flex flex-col gap-[10px] items-start">
-          <p className="font-['Articulat_CF:Bold'] text-[20px] leading-[22px] text-[#0569ff]">
+          <p className="font-['Articulat_CF:Bold'] text-[18px] leading-[22px] text-[#0569ff]">
             {col.title}
           </p>
           <div className="h-[1.5px] rounded-full shrink-0 w-[30px]" style={gradientLine} />
@@ -213,7 +213,7 @@ export default function Footer() {
           {navColumns.map((col) => (
             <div key={col.title} className="flex flex-[1_0_0] flex-col gap-[40px] items-start min-h-[215px] min-w-[200px] pl-[20px] mob:hidden">
               <div className="flex flex-col gap-[10px] items-start min-h-[30px] w-full">
-                <p className="font-['Articulat_CF:Bold'] text-[20px] leading-[22px] text-[#0569ff] w-full">
+                <p className="font-['Articulat_CF:Bold'] text-[18px] leading-[22px] text-[#0569ff] w-full">
                   {col.title}
                 </p>
                 <div className="h-[1.5px] rounded-full shrink-0 w-[30px]" style={gradientLine} />

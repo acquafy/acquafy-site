@@ -1,4 +1,4 @@
-import FigmaIcon from "./FigmaIcon";
+﻿import FigmaIcon from "./FigmaIcon";
 
 // ── Assets ────────────────────────────────────────────────────────────────────
 const imgBg       = "/figma-assets/dac94c0b-90ee-420b-ab31-a31ca7b10a14.png";
@@ -51,7 +51,7 @@ export default function BannerContato() {
             <span className="text-[#0569ff]">Acquafy</span>
           </h1>
 
-          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[20px] leading-[26px] text-[#333] text-center lg:text-left w-full">
+          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#333] text-center lg:text-left w-full">
             Tem dúvidas, quer saber mais sobre nossas soluções ou se tornar um
             parceiro? Estamos prontos para ouvir você e encontrar a melhor
             solução juntos.

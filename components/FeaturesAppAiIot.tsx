@@ -1,4 +1,4 @@
-import FigmaIcon from "./FigmaIcon";
+﻿import FigmaIcon from "./FigmaIcon";
 
 // ── Imagens de card ───────────────────────────────────────────────────────────
 const imgFrame10    = "/figma-assets/25c396db-adbd-4033-a6c2-730dee33b6af.png"; // bg mix-blend
@@ -74,7 +74,7 @@ export default function FeaturesAppAiIot() {
       <div className="flex flex-col gap-[40px] items-start max-w-[1400px] w-full">
 
         {/* Título */}
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-center w-full">
+        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-center w-full">
           <span className="text-[#1f2e91]">O que você pode fazer com o </span>
           <span className="text-[#0569ff]">App + AI + IoT</span>
         </h2>
@@ -94,7 +94,7 @@ export default function FeaturesAppAiIot() {
                   <div className="flex items-center justify-center size-[60px] rounded-[12px] bg-[#0569ff] shrink-0">
                     <FigmaIcon src={card.icon} size={30} aspectW={card.aspectW} aspectH={card.aspectH} />
                   </div>
-                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#1f2e91] flex-1 min-h-[44px] flex items-center">
+                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] flex-1 min-h-[44px] flex items-center">
                     {card.title}
                   </p>
                 </div>
