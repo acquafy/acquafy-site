@@ -24,10 +24,10 @@ export default function BaseDeConhecimentoPage() {
         <BannerBaseConhecimento />
         <CategoriasBaseConhecimento />
         <AcessoRapidoBK />
+        <ArtigosBK />
         <DownloadsBK />
         <TutoriaisVideoBK />
         <PoliticasGarantiasBK />
-        <ArtigosBK />
         <FaqBK />
         <CtaBK />
       </main>
