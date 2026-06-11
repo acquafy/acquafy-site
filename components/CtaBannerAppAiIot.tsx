@@ -26,7 +26,7 @@ export default function CtaBannerAppAiIot() {
         </div>
 
         {/* Direita — botões */}
-        <div className="relative flex flex-[1_0_0] flex-wrap gap-[10px] items-center justify-center lg:justify-end min-w-[240px] pb-[20px]">
+        <div className="relative flex flex-[1_0_0] flex-wrap gap-[10px] items-center justify-center xl:justify-end min-w-[240px] pb-[20px]">
 
           {/* Outline — Solicitar demonstração */}
           <a href="/contato" className="group bg-white border border-[#0233c3] flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[56px] min-w-[200px] overflow-clip px-[20px] py-[10px] rounded-[8px] cursor-pointer hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors">

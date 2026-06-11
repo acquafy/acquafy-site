@@ -21,7 +21,7 @@ export default function CtaBanner() {
         </div>
 
         {/* CTA buttons — usando design system com estados hover/pressed completos */}
-        <div className="relative flex flex-1 flex-wrap gap-[10px] items-center justify-center lg:justify-end max-w-[500px] min-w-[240px]">
+        <div className="relative flex flex-1 flex-wrap gap-[10px] items-center justify-center xl:justify-end max-w-[500px] min-w-[240px]">
           <BtnFalaAcquafy className="flex-1 min-w-[200px]" />
           <BtnDistribuidor className="flex-1 min-w-[200px]" />
         </div>

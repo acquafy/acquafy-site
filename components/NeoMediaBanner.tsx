@@ -151,7 +151,7 @@ export default function NeoMediaBanner() {
               linha Neo para gerar valor contínuo para sua operação e para as marcas.
             </p>
             {/* Botões — node 3258:5041 */}
-            <div className="flex flex-wrap gap-[20px] items-center w-full">
+            <div className="flex flex-wrap gap-[20px] items-center justify-center xl:justify-start w-full">
               <BtnAzulBaseArrow className="min-h-[50px] px-[20px]">
                 Quero o Acquafy Media
               </BtnAzulBaseArrow>

@@ -28,10 +28,12 @@ export default function CtaBannerParceria() {
 
         {/* botões direita */}
         <div className="relative flex flex-[1_0_0] flex-wrap gap-[10px] items-center justify-center xl:justify-end max-w-[500px] min-w-[240px]">
-          <BtnAzulOutArrow className="flex-1 min-w-[200px] min-h-[56px]">
-            Solicitar apresentação
-          </BtnAzulOutArrow>
-          <Link href="/parceria" className="flex-1 min-w-[200px]">
+          <Link href="/contato" className="flex-1 min-w-[200px]">
+            <BtnAzulOutArrow className="w-full min-h-[56px]">
+              Solicitar apresentação
+            </BtnAzulOutArrow>
+          </Link>
+          <Link href="/contato" className="flex-1 min-w-[200px]">
             <BtnAzulBaseArrow className="w-full min-h-[56px]">
               Quero ser parceiro
             </BtnAzulBaseArrow>

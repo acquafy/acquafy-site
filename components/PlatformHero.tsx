@@ -97,7 +97,7 @@ export default function PlatformHero() {
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-wrap gap-[10px] items-center w-full">
+          <div className="flex flex-wrap gap-[10px] items-center justify-center xl:justify-start w-full">
             <a
               href="/contato"
               className="flex gap-[10px] items-center justify-center min-h-[56px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer"
