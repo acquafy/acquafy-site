@@ -226,9 +226,8 @@ export default function Hero() {
               <img src={imgFrame36} alt="Acquafy Neo UP" className="absolute inset-0 w-full h-full object-cover" />
             </div>
 
-            {/* CTA row: gradient button cresce para preencher, gift card ao lado */}
+            {/* CTA row */}
             <div className="flex flex-wrap gap-[20px] items-center justify-center max-w-[720px] w-full">
-              <GradientCTAButton className="flex-[1_0_0] min-w-[190px]" />
               <GiftCard />
             </div>
           </>
@@ -330,8 +329,8 @@ export default function Hero() {
                   <span className="font-['Articulat_CF:Bold'] text-[16px] text-white flex-1 text-center">Conheça a Linha Neo</span>
                   <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
                 </a>
-                <a href="/compare" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
-                  <span className="font-['Articulat_CF:Bold'] text-[16px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">Compare os produtos</span>
+                <a href="/parceria" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
+                  <span className="font-['Articulat_CF:Bold'] text-[16px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">Seja Parceiro Global</span>
                   <div className="relative shrink-0" style={{ width: 9, height: 9 }}>
                     <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0 group-active:opacity-0"><FigmaIcon src={imgArrowBlue} size={9} aspectW={11.2} aspectH={8.84} /></div>
                     <div className="absolute inset-0 transition-opacity duration-150 opacity-0 group-hover:opacity-100 group-active:opacity-100"><FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} /></div>
@@ -340,7 +339,6 @@ export default function Hero() {
               </div>
             ) : (
               <div className="flex flex-wrap gap-[20px] items-center justify-center w-full">
-                <GradientCTAButton className="shrink-0" />
                 <GiftCard />
               </div>
             )}
