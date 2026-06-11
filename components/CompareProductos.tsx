@@ -1,9 +1,10 @@
-"use client";
+﻿"use client";
 import { useState, useMemo, useRef, useEffect } from "react";
 import FigmaIcon from "./FigmaIcon";
 
 // ─── Assets ───────────────────────────────────────────────────────────────────
 const imgBannerBg       = "/figma-assets/5bbdc47a-61d4-4460-ad07-ddc4b9d3fe07.png";
+const imgBannerProducts = "/figma-assets/1ae06b42-1c10-4a52-80da-a7e1945c1fde.png";
 const imgBuyCursor      = "/figma-assets/b764ff7a-f4f3-4eb1-98bb-7839fab99ab1.png";
 const imgArrowWhite     = "/figma-assets/35731080-b7d1-499f-b156-d8f75e87501a.svg";
 const imgArrowBlue      = "/figma-assets/42472dab-beee-45e5-9a8b-22eca8103268.svg";
@@ -394,22 +395,27 @@ export default function CompareProductos() {
   }
 
   function removeProduct(id: string) {
+    const barTop = selectedBarRef.current?.getBoundingClientRect().top ?? 0;
     setSelectedIds(prev => prev.filter(s => s !== id));
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      const newBarTop = selectedBarRef.current?.getBoundingClientRect().top ?? 0;
+      window.scrollBy(0, newBarTop - barTop);
+    }));
   }
 
   return (
     <>
       {/* ── 1. BANNER PRINCIPAL ── */}
-      <section className="relative flex flex-col items-center justify-center px-[20px] py-[40px] overflow-hidden min-[1024px]:h-[calc(100vh-80px)]">
+      <section className="relative flex flex-col items-center justify-center px-[20px] py-[40px] overflow-hidden bg-[#f1f5fe] 1300:bg-transparent 1300:h-[calc(100vh-80px)]">
         <img
           alt=""
-          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+          className="hidden 1300:block absolute inset-0 w-full h-full object-cover pointer-events-none"
           src={imgBannerBg}
         />
         <div className="relative flex flex-col gap-[40px] items-center justify-center max-w-[1400px] w-full">
           {/* Hero content */}
-          <div className="flex flex-col min-[1024px]:flex-row min-[1024px]:flex-wrap gap-[40px] items-center w-full">
-            <div className="flex flex-col gap-[20px] items-center min-[1024px]:items-start justify-center flex-1 min-w-[280px] max-w-[600px]">
+          <div className="flex flex-col 1024:flex-row gap-[40px] items-center w-full">
+            <div className="flex flex-col gap-[20px] items-center 1024:items-start justify-center flex-1 min-w-[280px] 1024:max-w-[470px] 1300:max-w-[600px]">
               {/* Label */}
               <div className="bg-white border border-[#0233c3] flex gap-[10px] items-center px-[12px] py-[8px] rounded-full">
                 <FigmaIcon src={imgPlanetWeb} size={16} />
@@ -419,7 +425,7 @@ export default function CompareProductos() {
               </div>
 
               {/* Title */}
-              <h1 className="font-['Avenir_LT_Pro:95_Black'] text-[56px] leading-[60px] text-[#333] text-center min-[1024px]:text-left">
+              <h1 className="font-['Avenir_LT_Pro:95_Black'] text-hero text-[#333] text-center 1024:text-left">
                 Compare os produtos{" "}
                 <span
                   className="bg-clip-text"
@@ -434,51 +440,50 @@ export default function CompareProductos() {
               </h1>
 
               {/* Subtitle */}
-              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[20px] leading-[26px] text-[#333] text-center min-[1024px]:text-left">
+              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#333] text-center 1024:text-left">
                 Compare as linhas Neo Essentials &amp; Neo Premium e encontre o modelo ideal para você.
               </p>
 
               {/* CTA buttons */}
-              <div className="flex flex-wrap gap-[20px] items-center justify-center min-[1024px]:justify-start w-full">
-                <button className="bg-[#0233c3] flex flex-1 gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] px-[20px] py-[10px] rounded-[8px] cursor-pointer hover:bg-[#002ba8] transition-colors">
-                  <span className="font-['Articulat_CF:Bold'] text-[16px] leading-normal text-white flex-1 text-center">
-                    Comparar agora
-                  </span>
-                  <FigmaIcon src={imgArrowWhite} size={10} aspectW={30} aspectH={18} />
-                </button>
-                <button className="bg-white border border-[#0233c3] flex flex-1 gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] px-[20px] py-[10px] rounded-[8px] cursor-pointer hover:bg-[#f0f4ff] transition-colors">
-                  <span className="font-['Articulat_CF:Bold'] text-[16px] leading-normal text-[#0233c3] flex-1 text-center">
+              <div className="flex gap-[20px] items-center w-full">
+                <a href="/contato" className="bg-white border border-[#0233c3] flex gap-[10px] items-center justify-center min-h-[50px] px-[20px] py-[10px] rounded-[8px] cursor-pointer hover:bg-[#f0f4ff] transition-colors no-underline">
+                  <span className="font-['Articulat_CF:Bold'] text-[16px] leading-normal text-[#0233c3]">
                     Falar com um especialista
                   </span>
                   <FigmaIcon src={imgArrowBlue} size={10} aspectW={30} aspectH={18} />
-                </button>
+                </a>
               </div>
 
-              {/* Feature pills */}
-              <div className="flex flex-wrap gap-[20px] items-start w-full">
-                <FeaturePill icon={imgMobile} label="App + AI + IoT" aspectW={211} aspectH={295} />
-                <FeaturePill icon={imgLanguage} label="16 idiomas" />
-                <FeaturePill icon={imgPlanetGlobal} label="Operação global" />
-                <FeaturePill icon={imgWaterVector} label="Água inteligente" aspectW={307} aspectH={295} />
-              </div>
             </div>
 
-            {/* Right spacer (hero image is in BG) */}
-            <div className="hidden min-[1024px]:block flex-1 min-w-[280px] h-[40px]" />
+            {/* Imagem de produto — 1024px até 1299px */}
+            <div className="hidden 1024:block 1300:hidden flex-[1_0_0] min-w-[280px] relative rounded-[16px] overflow-hidden shrink-0 aspect-[780/520]">
+              <img alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none" src={imgBannerProducts} />
+            </div>
+            {/* Spacer vazio — TELA TOTAL (≥1300px) */}
+            <div className="hidden 1300:block flex-1 min-w-[280px]" />
+          </div>
+
+          {/* Feature pills — fora do hero row, todos os breakpoints ≥1024px */}
+          <div className="flex flex-wrap gap-y-[20px] items-center justify-between w-full">
+            <FeaturePill icon={imgMobile} label="App + AI + IoT" aspectW={211} aspectH={295} />
+            <FeaturePill icon={imgLanguage} label="16 idiomas" />
+            <FeaturePill icon={imgPlanetGlobal} label="Operação global" />
+            <FeaturePill icon={imgWaterVector} label="Água inteligente" aspectW={307} aspectH={295} />
           </div>
 
           {/* Product selector card */}
           <div className="bg-white flex flex-col gap-[20px] items-start max-w-[1400px] p-[20px] rounded-[16px] w-full shadow-sm">
             {/* Selector header */}
-            <div className="flex flex-col min-[1024px]:flex-row gap-[10px] items-center w-full">
-              <div className="flex gap-[10px] items-center shrink-0 w-full justify-center min-[1024px]:w-auto min-[1024px]:justify-start">
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#1f2e91] whitespace-nowrap">
+            <div className="flex flex-col 1024:flex-row gap-[10px] items-center w-full">
+              <div className="flex gap-[10px] items-center shrink-0 w-full justify-center 1024:w-auto 1024:justify-start">
+                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] whitespace-nowrap">
                   Selecione os modelos para comparar ({selectedIds.length}/4)
                 </p>
                 <FigmaIcon src={imgBuyCursor} size={30} />
               </div>
               {/* Filter pills */}
-              <div className="flex flex-wrap gap-[10px] items-center justify-center min-[1024px]:justify-end flex-1 min-w-0">
+              <div className="flex flex-wrap gap-[10px] items-center justify-center 1024:justify-end flex-1 min-w-0">
                 {FILTERS.filter(f => f !== "Todos").map(filter => (
                   <button
                     key={filter}
@@ -495,9 +500,9 @@ export default function CompareProductos() {
               </div>
             </div>
 
-            {/* ── Mobile (<1024px): flex-wrap grid ── */}
-            <div className="flex flex-wrap gap-[10px] w-full min-[1024px]:hidden">
-              {filteredProducts.map(product => {
+            {/* ── Mobile (<1300px): flex-wrap grid ── */}
+            <div className="flex flex-wrap gap-[10px] w-full 1024:hidden">
+              {filteredProducts.filter(p => selectedIds.length < 4 || selectedIds.includes(p.id)).map(product => {
                 const isSelected = selectedIds.includes(product.id);
                 const isFull = selectedIds.length >= 4 && !isSelected;
                 return (
@@ -534,8 +539,8 @@ export default function CompareProductos() {
               )}
             </div>
 
-            {/* ── Desktop (≥1024px): pinned selected + scrollable unselected ── */}
-            <div className="hidden min-[1024px]:flex items-center w-full overflow-hidden">
+            {/* ── Desktop (≥1300px): pinned selected + scrollable unselected ── */}
+            <div className="hidden 1024:flex items-center w-full overflow-hidden">
 
               {/* Selected products: pinned left */}
               {selectedIds.length > 0 && (
@@ -615,7 +620,7 @@ export default function CompareProductos() {
         <div className="bg-[#f6f9fe] flex flex-wrap gap-[20px] items-center justify-center max-w-[1400px] overflow-hidden p-[20px] rounded-[16px] w-full">
           {/* Info */}
           <div className="flex flex-col gap-[10px] items-center min-[1024px]:items-start flex-1 min-w-[240px] max-w-[340px]">
-            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#1f2e91] text-center min-[1024px]:text-left">
+            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] text-center min-[1024px]:text-left">
               Produtos selecionados ({selectedProducts.length}/4)
             </p>
             <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#333] text-center min-[1024px]:text-left">
@@ -624,7 +629,7 @@ export default function CompareProductos() {
           </div>
 
           {/* Selected product chips */}
-          <div className="flex flex-wrap gap-[10px] items-start flex-1 min-w-[240px]">
+          <div className="flex flex-wrap gap-[10px] items-stretch flex-1 min-w-[240px]">
             {selectedProducts.map(product => (
               <div
                 key={product.id}
@@ -759,7 +764,7 @@ export default function CompareProductos() {
           <div className="border border-[#cbd0d4] flex flex-wrap gap-[20px] items-center justify-center flex-1 min-w-[280px] p-[40px] relative rounded-[16px] overflow-hidden">
             <img alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none rounded-[16px]" src={imgEssentialsBg} />
             <div className="flex flex-col gap-[20px] items-start flex-1 min-w-[280px] relative">
-              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#0569ff]">
+              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#0569ff]">
                 Neo Essentials
               </p>
               <div className="flex flex-col gap-[10px] items-start w-full">
@@ -787,7 +792,7 @@ export default function CompareProductos() {
           <div className="border border-[#cbd0d4] flex flex-wrap gap-[20px] items-center justify-center flex-1 min-w-[280px] p-[40px] relative rounded-[16px] overflow-hidden">
             <img alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none rounded-[16px]" src={imgPremiumBg} />
             <div className="flex flex-col gap-[20px] items-start flex-1 min-w-[280px] relative">
-              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#9f3df5]">
+              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#9f3df5]">
                 Neo Premium
               </p>
               <div className="flex flex-col gap-[10px] items-start w-full">
@@ -814,7 +819,7 @@ export default function CompareProductos() {
 
         {/* Pricing ranges */}
         <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
-          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#1f2e91] text-center">
+          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] text-center">
             Faixas de preço no mercado americano
           </h2>
           <div className="flex flex-wrap gap-[40px] items-center justify-center w-full">
@@ -829,7 +834,7 @@ export default function CompareProductos() {
                     Essentials
                   </p>
                 </div>
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-center">
+                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-center">
                   <span className="text-[#1f2e91]">de </span>
                   <span className="text-[#0569ff]">US$ 267.97 </span>
                   <span className="text-[#1f2e91]">a </span>
@@ -849,7 +854,7 @@ export default function CompareProductos() {
                     Premium
                   </p>
                 </div>
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-center">
+                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-center">
                   <span className="text-[#1f2e91]">de </span>
                   <span className="text-[#9f3df5]">US$ 1,297.97 </span>
                   <span className="text-[#1f2e91]">a </span>
@@ -903,7 +908,7 @@ export default function CompareProductos() {
             {/* Header */}
             <div className="flex items-center justify-between gap-[10px]">
               <div className="flex gap-[10px] items-center">
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#1f2e91] whitespace-nowrap">
+                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] whitespace-nowrap">
                   Selecione os modelos para comparar ({selectedIds.length}/4)
                 </p>
                 <FigmaIcon src={imgBuyCursor} size={28} />
@@ -933,9 +938,9 @@ export default function CompareProductos() {
               ))}
             </div>
 
-            {/* ── Mobile (<1024px): flex-wrap grid ── */}
-            <div className="flex flex-wrap gap-[10px] min-[1024px]:hidden">
-              {filteredProducts.map(product => {
+            {/* ── Mobile (<1300px): flex-wrap grid ── */}
+            <div className="flex flex-wrap gap-[10px] 1024:hidden">
+              {filteredProducts.filter(p => selectedIds.length < 4 || selectedIds.includes(p.id)).map(product => {
                 const isSelected = selectedIds.includes(product.id);
                 const isFull = selectedIds.length >= 4 && !isSelected;
                 return (
@@ -965,23 +970,15 @@ export default function CompareProductos() {
               })}
             </div>
 
-            {/* ── Desktop (≥1024px): horizontal scroll ── */}
-            <div
-              ref={modalScrollRef}
-              onMouseDown={onModalScrollMouseDown}
-              className="hidden min-[1024px]:flex gap-[10px] items-center overflow-x-auto select-none cursor-grab active:cursor-grabbing [&::-webkit-scrollbar]:hidden [&_img]:pointer-events-none"
-              style={{ scrollbarWidth: "none" }}
-            >
-              {filteredProducts.map(product => {
+            {/* ── Desktop (≥1300px): flex-wrap grid (igual mobile) ── */}
+            <div className="hidden 1024:flex flex-wrap gap-[10px] w-full">
+              {filteredProducts.filter(p => selectedIds.length < 4 || selectedIds.includes(p.id)).map(product => {
                 const isSelected = selectedIds.includes(product.id);
                 const isFull = selectedIds.length >= 4 && !isSelected;
                 return (
                   <button
                     key={product.id}
-                    onClick={() => {
-                      if (!modalDragMoved.current && (isSelected || !isFull))
-                        toggleProductInModal(product.id);
-                    }}
+                    onClick={() => { if (isSelected || !isFull) toggleProductInModal(product.id); }}
                     className={`flex flex-col gap-[16px] items-center justify-center h-[160px] overflow-hidden p-[10px] rounded-[12px] shrink-0 w-[140px] transition-all border-2 ${
                       isSelected
                         ? "bg-[#e8f0ff] border-[#0233c3] cursor-pointer hover:bg-[#dce8ff]"
