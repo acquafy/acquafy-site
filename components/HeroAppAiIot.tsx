@@ -119,7 +119,7 @@ export default function HeroAppAiIot() {
           */}
           <div className={[
             "flex flex-wrap gap-[10px] w-full",
-            "items-start win-1280:items-center",
+            "items-stretch",
             "justify-center",
             "win-1024:flex-nowrap",
           ].join(" ")}>
@@ -130,7 +130,6 @@ export default function HeroAppAiIot() {
                   "bg-white flex flex-[1_0_0] flex-col gap-[20px] items-start",
                   "p-[20px] rounded-[16px]",
                   "min-w-[280px] win-1024:min-w-px",
-                  "win-1280:h-[217px]",
                 ].join(" ")}
               >
                 {/* Ícone */}
