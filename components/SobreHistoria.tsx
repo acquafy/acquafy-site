@@ -62,7 +62,7 @@ export default function SobreHistoria() {
   return (
     <section className="flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center justify-center max-w-[1400px] w-full">
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#1f2e91] text-center w-full">
+        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] text-center w-full">
           Nossa História
         </h2>
         <div className="flex flex-wrap gap-[40px] items-start justify-center w-full">
@@ -90,7 +90,7 @@ export default function SobreHistoria() {
               {/* Text */}
               <div className="flex flex-col gap-[20px] items-start w-full">
                 <div className="flex flex-col gap-[10px] items-start w-full">
-                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#0233c3]">
+                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#0233c3]">
                     {item.year}
                   </p>
                   <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#0569ff]">

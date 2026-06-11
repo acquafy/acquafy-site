@@ -1,4 +1,4 @@
-const products = [
+﻿const products = [
   {
     img: "/figma-assets/238476b1-fb56-4e09-9574-39116eee291b.png",
     name: "Neo Essentials",
@@ -22,7 +22,7 @@ export default function CompatibilidadeAppAiIot() {
       <div className="flex flex-col gap-[40px] items-start max-w-[1400px] w-full">
 
         {/* Título */}
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-center w-full">
+        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-center w-full">
           <span className="text-[#1f2e91]">Compatível com todo o </span>
           <span className="text-[#0569ff]">ecossistema Acquafy</span>
         </h2>
@@ -35,7 +35,7 @@ export default function CompatibilidadeAppAiIot() {
               className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center min-w-[240px] overflow-clip px-[20px] py-[40px] rounded-[16px]"
             >
               {/* Nome */}
-              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#1f2e91] text-center w-full">
+              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] text-center w-full">
                 {p.name}
               </p>
 

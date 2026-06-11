@@ -1,3 +1,4 @@
+﻿import Link from "next/link";
 import FigmaIcon from "./FigmaIcon";
 import { BtnAzulBaseArrow, BtnAzulOutArrow } from "./ui/Buttons";
 
@@ -41,18 +42,18 @@ export default function ExpansaoGlobalBanner() {
           </div>
 
           {/* Title */}
-          <h1 className="font-['Avenir_LT_Pro:95_Black'] text-[64px] leading-[68px] text-[#2a2a2b] text-center lg:text-left">
+          <h1 className="font-['Avenir_LT_Pro:95_Black'] text-hero-xl text-[#2a2a2b] text-center lg:text-left">
             Expansão{" "}
             <span className="text-[#0569ff]">Global</span>
           </h1>
 
           {/* Subtitle */}
-          <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#0569ff] text-center lg:text-left">
+          <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#0569ff] text-center lg:text-left">
             Levando gestão de água inteligente e oportunidades para todos os continentes.
           </p>
 
           {/* Description */}
-          <div className="font-['Avenir_LT_Pro:55_Roman'] text-[20px] leading-[26px] text-[#333] text-center lg:text-left">
+          <div className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#333] text-center lg:text-left">
             <p className="leading-[26px] mb-[4px]">
               A Acquafy está construindo a maior rede global de hidratação inteligente, mídia digital e soluções sustentáveis.
             </p>
@@ -66,9 +67,11 @@ export default function ExpansaoGlobalBanner() {
             <BtnAzulBaseArrow className="flex-[1_0_0] min-h-[50px] min-w-[190px]">
               Seja um parceiro
             </BtnAzulBaseArrow>
-            <BtnAzulOutArrow className="flex-[1_0_0] min-h-[50px] min-w-[190px]">
-              Falar com especialista
-            </BtnAzulOutArrow>
+            <Link href="/contato" className="flex-[1_0_0] min-w-[190px]">
+              <BtnAzulOutArrow className="w-full min-h-[50px]">
+                Falar com especialista
+              </BtnAzulOutArrow>
+            </Link>
           </div>
         </div>
 
@@ -91,7 +94,7 @@ export default function ExpansaoGlobalBanner() {
             <FigmaIcon src={s.icon} size={60} aspectW={s.iconW} aspectH={s.iconH} />
             <div className="flex flex-[1_0_0] flex-col gap-[15px] items-start leading-[0] min-w-[200px]">
               <p className="[text-box-trim:trim-both] [text-box-edge:cap_alphabetic] font-['Avenir_LT_Pro:95_Black'] text-[32px] leading-[39px] text-white w-full">{s.number}</p>
-              <p className="[text-box-trim:trim-both] [text-box-edge:cap_alphabetic] font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-white w-full">{s.label}</p>
+              <p className="[text-box-trim:trim-both] [text-box-edge:cap_alphabetic] font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-white w-full">{s.label}</p>
               <p className="[text-box-trim:trim-both] [text-box-edge:cap_alphabetic] font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-white w-full">{s.sub}</p>
             </div>
           </div>

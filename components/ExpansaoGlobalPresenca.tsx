@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import FigmaIcon from "./FigmaIcon";
 import { BtnAzulOutArrow } from "./ui/Buttons";
 
@@ -20,7 +20,7 @@ export default function ExpansaoGlobalPresenca() {
 
         {/* Section header */}
         <div className="flex flex-col gap-[10px] items-start text-center w-full">
-          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] w-full">
+          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] w-full">
             <span className="text-[#0569ff]">Presença global</span>
             <span className="text-[#1f2e91]"> em crescimento</span>
           </h2>
@@ -47,7 +47,7 @@ export default function ExpansaoGlobalPresenca() {
 
               {/* Regions list */}
               <div className="flex flex-[1_0_0] flex-col gap-[40px] items-start max-w-[360px] min-w-[280px]">
-                <h3 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#1f2e91] w-full">
+                <h3 className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] w-full">
                   Regiões em expansão
                 </h3>
                 <div className="flex flex-col gap-[20px] items-start w-full">
@@ -76,7 +76,7 @@ export default function ExpansaoGlobalPresenca() {
               <FigmaIcon src={imgPlanetWeb} size={40} />
             </div>
 
-            <h3 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#1f2e91] text-center min-h-[50px]">
+            <h3 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] text-center min-h-[50px]">
               Novos mercados, novas oportunidades
             </h3>
 

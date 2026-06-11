@@ -1,4 +1,4 @@
-// ── Brand logo assets ─────────────────────────────────────────────────────────
+﻿// ── Brand logo assets ─────────────────────────────────────────────────────────
 const imgInterfyLogo     = "/figma-assets/bd9110e1-ac06-47eb-a48a-8682234c3894.svg";
 const imgEcofy           = "/figma-assets/849a7fc9-549d-43f0-8f8a-8a3ff7fb9710.svg";
 const imgInterfyShopping = "/figma-assets/e3bd4ef1-a407-479d-9d93-7c6db7bee94c.svg";
@@ -30,7 +30,7 @@ export default function SobreEmpresas() {
     <section className="flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
 
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#1f2e91] text-center w-full">
+        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] text-center w-full">
           Nossas Empresas e Marcas
         </h2>
 

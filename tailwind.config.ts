@@ -41,8 +41,12 @@ const config: Config = {
         sans: ["Avenir LT Pro:55 Roman", "sans-serif"],
       },
       fontSize: {
-        /* Heading hero — 56px ≥1024px, fluid até 32px em 375px */
-        "hero": ["clamp(32px, 3.7vw + 18px, 56px)", { lineHeight: "clamp(36px, 3.7vw + 22px, 60px)" }],
+        /* Heading hero — 56px em 1280px, fluid até 32px em 1024px */
+        "hero": ["clamp(32px, 9.375vw - 64px, 56px)", { lineHeight: "clamp(36px, 9.375vw - 60px, 60px)" }],
+        /* Heading hero-md — 48px em 1280px, fluid até 32px em 1024px */
+        "hero-md": ["clamp(32px, 6.25vw - 32px, 48px)", { lineHeight: "clamp(36px, 6.25vw - 28px, 52px)" }],
+        /* Heading hero-xl — 64px em 1280px, fluid até 32px em 1024px */
+        "hero-xl": ["clamp(32px, 12.5vw - 96px, 64px)", { lineHeight: "clamp(36px, 12.5vw - 92px, 68px)" }],
       },
       maxWidth: {
         container: "1400px",

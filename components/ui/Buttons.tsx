@@ -444,22 +444,15 @@ export function BtnVerdeOutArrow({ children, className = "", disabled, ...rest }
  */
 export function BtnFalaAcquafy({ className = "", disabled, ...rest }: BtnNoChildrenProps) {
   return (
-    <button
-      disabled={disabled}
-      className={`group flex gap-[10px] items-center justify-center min-h-[30px] overflow-hidden p-[20px] rounded-[8px] transition-colors cursor-pointer
-        ${disabled
-          ? "bg-[#f6f9fe] border border-[#c8cfd8] cursor-not-allowed"
-          : "bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8]"}
-        ${className}`}
-      {...rest}
+    <a
+      href="/contato"
+      className={`group flex gap-[10px] items-center justify-center min-h-[30px] overflow-hidden p-[20px] rounded-[8px] transition-colors cursor-pointer bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] ${className}`}
     >
-      {disabled
-        ? <Ico src={imgChatGray} />
-        : <IcoToggle defaultSrc={imgChatBlue} hoverSrc={imgChatWhite} />}
-      <Label className={disabled ? "text-[#c8cfd8]" : "text-[#0233c3] group-hover:text-white group-active:text-white"}>
+      <IcoToggle defaultSrc={imgChatBlue} hoverSrc={imgChatWhite} />
+      <Label className="text-[#0233c3] group-hover:text-white group-active:text-white">
         Falar com a Acquafy
       </Label>
-    </button>
+    </a>
   );
 }
 
@@ -469,20 +462,15 @@ export function BtnFalaAcquafy({ className = "", disabled, ...rest }: BtnNoChild
  */
 export function BtnDistribuidor({ className = "", disabled, ...rest }: BtnNoChildrenProps) {
   return (
-    <button
-      disabled={disabled}
-      className={`flex gap-[10px] items-center justify-center min-h-[30px] overflow-hidden p-[20px] rounded-[8px] border border-white transition-colors cursor-pointer
-        ${disabled
-          ? "bg-[#2a2a2b] cursor-not-allowed"
-          : "bg-[#9f3df5] hover:bg-[#7a16d2] active:bg-[#b25efb]"}
-        ${className}`}
-      {...rest}
+    <a
+      href="/contato"
+      className={`flex gap-[10px] items-center justify-center min-h-[30px] overflow-hidden p-[20px] rounded-[8px] border border-white transition-colors cursor-pointer bg-[#9f3df5] hover:bg-[#7a16d2] active:bg-[#b25efb] ${className}`}
     >
       <Ico src={imgPessoas} aspectW={43.86} aspectH={40.5} />
-      <Label className={disabled ? "text-[#c8cfd8]" : "text-white"}>
+      <Label className="text-white">
         Quero ser Distribuidor
       </Label>
-    </button>
+    </a>
   );
 }
 

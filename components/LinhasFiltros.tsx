@@ -1,4 +1,4 @@
-const imgArrow        = "/figma-assets/278398fb-a5aa-4bc3-917a-023459eaff65.svg";
+﻿const imgArrow        = "/figma-assets/278398fb-a5aa-4bc3-917a-023459eaff65.svg";
 const imgLineAcido    = "/figma-assets/c726b58b-72f4-43b4-a062-2ae70a24328c.svg";
 const imgLineAlcalino = "/figma-assets/ccbce556-9901-4353-ab9e-40dbc4d55024.svg";
 
@@ -47,7 +47,7 @@ function FilterCard({ card, isLast }: { card: FilterCard; isLast: boolean }) {
               : { backgroundColor: "#1f2e91" }
           }
         >
-          <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-white text-center">{card.num}</span>
+          <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-white text-center">{card.num}</span>
         </div>
         <p
           className={`font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] flex-1 min-w-0${isHighlightBlue ? " bg-clip-text text-transparent" : isHighlightGrad ? " bg-clip-text text-transparent" : " text-[#1f2e91]"}`}
@@ -77,7 +77,7 @@ export default function LinhasFiltros() {
 
         {/* Linha Essentials */}
         <div className="flex flex-col gap-[40px] items-center w-full">
-          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#0569ff] text-center w-full">
+          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#0569ff] text-center w-full">
             Linha Essentials - Sistema de Filtração de Alta Performace
           </h2>
           <div className="flex flex-wrap gap-[20px] items-stretch justify-center w-full">
@@ -88,7 +88,7 @@ export default function LinhasFiltros() {
         {/* Linha Premium */}
         <div className="flex flex-col gap-[40px] items-center w-full">
           <h2
-            className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] bg-clip-text text-transparent text-center w-full"
+            className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] bg-clip-text text-transparent text-center w-full"
             style={{ backgroundImage: "linear-gradient(170deg, #0233c3 6.19%, #9f3df5 93.35%)" }}
           >
             Linha Premium - Sistema de Filtração de Alta Performace
@@ -100,7 +100,7 @@ export default function LinhasFiltros() {
 
         {/* Escala de pH */}
         <div className="flex flex-col gap-[40px] items-center w-full">
-          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#1f2e91] text-center w-full">
+          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] text-center w-full">
             Escala de pH
           </h2>
           <div className="flex flex-col gap-[20px] w-full">

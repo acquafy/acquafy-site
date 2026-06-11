@@ -1,4 +1,4 @@
-import FigmaIcon from "./FigmaIcon";
+﻿import FigmaIcon from "./FigmaIcon";
 
 const imgScreenshot   = "/figma-assets/490bae29-1592-42a3-8a9f-4d88ada22566.png";
 const imgHeadset      = "/figma-assets/9dbce4db-3e23-4bb9-80ae-4cbe7c473f9f.png";
@@ -7,12 +7,12 @@ const imgArrowBlue    = "/figma-assets/75971e6c-641c-404b-9d87-240b3150d417.svg"
 export default function BaseConhecimentoSuporte() {
   return (
     <section className="bg-white flex flex-col items-center justify-center overflow-hidden px-[20px] py-[40px] w-full">
-      <div className="flex flex-wrap gap-[20px] items-center justify-center max-w-[1400px] w-full" style={{ minHeight: 280 }}>
+      <div className="flex flex-wrap gap-[20px] items-stretch justify-center max-w-[1400px] w-full" style={{ minHeight: 280 }}>
 
         {/* Card 1 — Base de conhecimento */}
         <div className="bg-[#f6f9fe] flex flex-[1_0_0] flex-wrap gap-[20px] items-center justify-center min-w-[280px] px-[20px] py-[40px] rounded-[16px] w-[690px]">
           <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-[240px]">
-            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#0569ff]">
+            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#0569ff]">
               Base de conhecimento
             </p>
             <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#2a2a2b]">
@@ -46,7 +46,7 @@ export default function BaseConhecimentoSuporte() {
         {/* Card 2 — Não encontrou? */}
         <div className="bg-[#f6f9fe] flex flex-[1_0_0] flex-wrap gap-[20px] items-center justify-center min-w-[280px] px-[20px] py-[40px] rounded-[16px] w-[690px]">
           <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-[240px]">
-            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#0569ff]">
+            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#0569ff]">
               Não encontrou o que procura?
             </p>
             <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#2a2a2b]">

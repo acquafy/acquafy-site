@@ -1,4 +1,4 @@
-import FigmaIcon from "./FigmaIcon";
+﻿import FigmaIcon from "./FigmaIcon";
 
 // Background panorama — xl+ apenas (variante TOTAL)
 const imgBg       = "/figma-assets/947d57e0-fb06-43d4-84bf-75b2e012218a.png";
@@ -59,7 +59,7 @@ export default function BannerLinhaNeo() {
             Linha Neo
           </h1>
 
-          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[20px] leading-[26px] text-[#333] text-center w-full win-1024:text-left">
+          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#333] text-center w-full win-1024:text-left">
             Purificadores inteligentes para cada estilo de vida, com tecnologia global, App + AI + IoT e opções Essentials &amp; Premium.
           </p>
 
@@ -112,7 +112,7 @@ export default function BannerLinhaNeo() {
           <div key={s.title} className="flex flex-[1_0_0] flex-wrap gap-[20px] items-center justify-center min-w-[160px] px-[20px]">
             <FigmaIcon src={s.icon} size={40} />
             <div className="flex flex-[1_0_0] flex-col gap-[15px] items-start min-w-[200px] text-center win-1280:text-left">
-              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#1f2e91] w-full">
+              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] w-full">
                 {s.title}
               </p>
               <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-[#2a2a2b] w-full">

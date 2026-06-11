@@ -1,4 +1,4 @@
-import FigmaIcon from "./FigmaIcon";
+﻿import FigmaIcon from "./FigmaIcon";
 
 // ── Desktop (≥1024px) assets ──────────────────────────────────────────────────
 const imgBg        = "/figma-assets/cf3e69ac-639d-45d7-9276-975505ea6399.png"; // background card
@@ -68,7 +68,7 @@ export default function CheckoutUp() {
               <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] flex-1 min-w-0">
                 {"Ganhe "}
                 <span
-                  className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] bg-clip-text text-transparent"
+                  className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] bg-clip-text text-transparent"
                   style={{ backgroundImage: "linear-gradient(to bottom, #0233c3, #9f3df5)" }}
                 >
                   R$100,00

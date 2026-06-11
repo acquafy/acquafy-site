@@ -1,4 +1,4 @@
-// ── Ícones dos cartões ────────────────────────────────────────────────────────
+﻿// ── Ícones dos cartões ────────────────────────────────────────────────────────
 const imgProfile   = "/figma-assets/e8b08e19-549f-46cf-9c7f-8e1bd6b4b256.svg"; // consumidor
 const imgParceria  = "/figma-assets/d9ac404c-0e24-4e3b-8c9c-6bceac8a3557.svg"; // parceiro
 const imgPlanetWeb = "/figma-assets/869c7e21-fb15-4cbd-993e-a635c3668a73.svg"; // operação global
@@ -81,7 +81,7 @@ function CardContent({ card }: { card: CardDef }) {
       {/* Título + subtítulo */}
       <div className="flex flex-col gap-[10px] w-full">
         <p
-          className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] w-full"
+          className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] w-full"
           style={{ color: card.titleColor }}
         >
           {card.title}
@@ -105,7 +105,7 @@ export default function BeneficiosAppAiIot() {
       <div className="flex flex-col gap-[60px] items-start max-w-[1400px] w-full">
 
         {/* Título */}
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#1f2e91] w-full text-center lg:text-left">
+        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] w-full text-center lg:text-left">
           Benefícios para clientes, parceiros e operadores
         </h2>
 

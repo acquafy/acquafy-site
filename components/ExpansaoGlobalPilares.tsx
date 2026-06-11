@@ -1,4 +1,4 @@
-import FigmaIcon from "./FigmaIcon";
+﻿import FigmaIcon from "./FigmaIcon";
 
 // Aspect ratios from Figma design
 const imgParceria  = "/figma-assets/ac333b1c-fc52-4306-b447-a81917ac56f4.svg";  // 1125×1078 ≈ sq
@@ -39,7 +39,7 @@ export default function ExpansaoGlobalPilares() {
   return (
     <section className="bg-[#f6f9fe] flex flex-col items-center justify-center overflow-hidden px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#1f2e91] text-center w-full">
+        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] text-center w-full">
           Nossos pilares para expansão
         </h2>
 

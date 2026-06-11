@@ -1,4 +1,6 @@
+﻿"use client";
 import FigmaIcon from "./FigmaIcon";
+import { useChatWidget } from "./ChatWidget";
 
 const imgArrowWhite = "/figma-assets/f1bc0ed4-ae05-42d0-9a9b-446afb8aa0de.svg";
 const imgArrowBlue  = "/figma-assets/9fb38b6b-2d2d-4507-a48f-9b970bd17e28.svg";
@@ -13,11 +15,10 @@ const canais = [
     size: 30,
     title: "Chat online",
     desc: "Fale agora com um especialista em tempo real.",
-    badge: "Disponível",
-    badgeColor: "#36ae5c",
-    badgeBg: "#e1f3e7",
+    isChat: true,
+    badge: "", badgeColor: "", badgeBg: "",
     action: "Iniciar chat",
-    href: "#chat",
+    href: null,
   },
   {
     icon: imgMailIcon,
@@ -42,16 +43,22 @@ const canais = [
 ];
 
 export default function CtaBK() {
+  const { isAvailable, openChat } = useChatWidget();
+
+  const chatBadge      = isAvailable ? "Disponível"   : "Indisponível";
+  const chatBadgeColor = isAvailable ? "#36ae5c"      : "#e53e3e";
+  const chatBadgeBg    = isAvailable ? "#e1f3e7"      : "#fee2e2";
+
   return (
     <section className="bg-[#1f2e91] flex flex-col items-center justify-center overflow-hidden px-[20px] py-[60px] w-full">
       <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
 
         {/* Header */}
         <div className="flex flex-col gap-[16px] items-center text-center w-full">
-          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-white w-full">
+          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-white w-full">
             Não encontrou o que procurava?
           </h2>
-          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[20px] leading-[26px] text-white max-w-[600px] w-full">
+          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-white max-w-[600px] w-full">
             Nossa equipe está pronta para ajudar. Escolha o melhor canal de atendimento.
           </p>
         </div>
@@ -116,12 +123,15 @@ export default function CtaBK() {
                   <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-white">
                     {canal.title}
                   </p>
-                  {canal.badge && (
+                  {(canal.badge || canal.isChat) && (
                     <span
                       className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] leading-[13px] px-[10px] py-[5px] rounded-full whitespace-nowrap"
-                      style={{ color: canal.badgeColor, backgroundColor: canal.badgeBg }}
+                      style={{
+                        color: canal.isChat ? chatBadgeColor : canal.badgeColor,
+                        backgroundColor: canal.isChat ? chatBadgeBg : canal.badgeBg,
+                      }}
                     >
-                      {canal.badge}
+                      {canal.isChat ? chatBadge : canal.badge}
                     </span>
                   )}
                 </div>
@@ -132,6 +142,15 @@ export default function CtaBK() {
                   <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0569ff]">
                     {canal.action}
                   </p>
+                ) : canal.isChat ? (
+                  <button
+                    onClick={openChat}
+                    className="bg-[rgba(255,255,255,0.12)] hover:bg-white hover:text-[#0233c3] transition-colors
+                      flex items-center justify-center min-h-[34px] overflow-hidden px-[16px] py-[8px] rounded-[8px]
+                      font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white w-full text-center cursor-pointer"
+                  >
+                    {canal.action}
+                  </button>
                 ) : canal.href ? (
                   <a
                     href={canal.href}

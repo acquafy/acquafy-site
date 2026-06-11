@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { ChatProvider } from "@/components/ChatWidget";
 
 export const metadata: Metadata = {
   title: "Acquafy — Purificadores de Água",
@@ -13,7 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-BR">
-      <body className="bg-white pt-[80px]">{children}</body>
+      <body className="bg-white pt-[80px]">
+        <ChatProvider>{children}</ChatProvider>
+      </body>
     </html>
   );
 }

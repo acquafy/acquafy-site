@@ -1,4 +1,7 @@
+﻿"use client";
 import FigmaIcon from "./FigmaIcon";
+import { useChatWidget } from "./ChatWidget";
+import { quickItems } from "./AcessoRapidoBK";
 
 // ── Assets ────────────────────────────────────────────────────────────────────
 const imgBg        = "/figma-assets/54da886e-ad0c-40e0-b1c5-4ebef3882107.png";
@@ -8,13 +11,6 @@ const imgIconChat    = "/figma-assets/2328f5bd-c67d-4131-836e-a43d2ca36d5b.svg";
 const imgIconCheckin = "/figma-assets/a5657761-5416-4e91-aa2c-da6292ddb56a.svg";
 const imgIconBook    = "/figma-assets/8c24e0f5-d9f7-4e12-a7ac-575b42f5619f.svg";
 const imgIconFone    = "/figma-assets/1dd93c82-743b-4216-9f5f-b173b8df8640.svg";
-
-const imgIconProducts  = "/figma-assets/43762c75-7c8a-4044-8113-69dcb9f63b86.svg";
-const imgIconDownload  = "/figma-assets/0298fb46-013e-4e99-b9a3-d7d90d8218e0.svg";
-const imgIconEducation = "/figma-assets/d22b56b8-0578-4f64-b011-2228a3e888e8.svg";
-const imgIconFaq       = "/figma-assets/383f262b-ce1a-4bcf-956f-07aeabf9e518.svg";
-const imgIconDoc       = "/figma-assets/fd0455b2-5d5a-4c6c-8533-301f8a94c68c.svg";
-const imgIconWifi      = "/figma-assets/e5466ddf-14ac-49c9-908d-c23208fa39f9.svg";
 
 const imgArrowWhite  = "/figma-assets/f1bc0ed4-ae05-42d0-9a9b-446afb8aa0de.svg";
 const imgArrowBlue   = "/figma-assets/9fb38b6b-2d2d-4507-a48f-9b970bd17e28.svg";
@@ -28,15 +24,6 @@ const floatingCards = [
   { icon: imgIconFone,    title: "Abrir chamado",               desc: "Receba suporte da nossa equipe.",   aspectW: 30, aspectH: 30   },
 ];
 
-const quickAccess = [
-  { icon: imgIconProducts,  aspectW: 29, aspectH: 30, title: "Meus produtos",         desc: "Gerencie seus produtos e registros de garantia." },
-  { icon: imgIconDownload,  aspectW: 30, aspectH: 30, title: "Downloads",             desc: "Manuais, guias rápidos, softwares e documentos."  },
-  { icon: imgIconEducation, aspectW: 30, aspectH: 22, title: "Tutoriais e vídeos",    desc: "Aprenda passo a passo com nossos tutoriais."       },
-  { icon: imgIconFaq,       aspectW: 30, aspectH: 30, title: "Perguntas frequentes",  desc: "Encontre respostas para as dúvidas mais comuns"    },
-  { icon: imgIconDoc,       aspectW: 24, aspectH: 30, title: "Políticas e garantias", desc: "Consulte nossas políticas, termos e garantias."    },
-  { icon: imgIconWifi,      aspectW: 30, aspectH: 20, title: "Status do Sistema",     desc: "Acompanhe a operação da plataforma Acquafy."       },
-];
-
 // ── Componente ────────────────────────────────────────────────────────────────
 //
 //  Breakpoints (Figma nodes 3764-13853, 3772-13963, 3772-14308, 3772-14411):
@@ -48,6 +35,7 @@ const quickAccess = [
 //  Sem gap entre main-row e Acesso Rápido (section usa justify-center, sem gap).
 //
 export default function BannerCentralSuporte() {
+  const { openChat } = useChatWidget();
   return (
     <section className="relative flex flex-col items-center justify-center px-[20px] py-[40px] w-full min-h-[calc(100vh-80px)]">
 
@@ -93,12 +81,12 @@ export default function BannerCentralSuporte() {
           </h1>
 
           {/* Subtítulo */}
-          <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#0569ff] text-center w-full xl:text-left">
+          <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#0569ff] text-center w-full xl:text-left">
             Estamos aqui para ajudar.
           </p>
 
           {/* Descrição */}
-          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[20px] leading-[26px] text-[#333] text-center w-full xl:text-left">
+          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#333] text-center w-full xl:text-left">
             Nossa equipe e recursos estão prontos para oferecer a melhor experiência
             com os produtos e soluções Acquafy. Encontre respostas, tutoriais e
             suporte especializado sempre que precisar.
@@ -110,16 +98,18 @@ export default function BannerCentralSuporte() {
            * ≥1280px: justify-start (botões à esquerda)
            */}
           <div className="flex flex-wrap gap-[20px] items-center justify-center w-full xl:justify-start">
-            <button className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#0569ff] transition-colors
+            <button
+              onClick={openChat}
+              className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#0569ff] transition-colors
               flex gap-[10px] items-center justify-center
               min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer shrink-0">
               <span className="font-['Articulat_CF:Bold'] text-[16px] text-white flex-1 text-center leading-normal">
-                Abrir chamado
+                Abrir chat
               </span>
               <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
             </button>
 
-            <button className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors
+            <a href="/contato" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors
               flex gap-[10px] items-center justify-center
               min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer shrink-0">
               <span className="font-['Articulat_CF:Bold'] text-[16px] text-[#0233c3] group-hover:text-white transition-colors flex-1 text-center leading-normal">
@@ -133,7 +123,7 @@ export default function BannerCentralSuporte() {
                   <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
                 </div>
               </div>
-            </button>
+            </a>
           </div>
         </div>
 
@@ -230,35 +220,54 @@ export default function BannerCentralSuporte() {
 
         {/* Título */}
         <div className="flex flex-col items-start w-full shrink-0">
-          <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#1f2e91] text-center w-full">
+          <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] text-center w-full">
             Acesso{" "}
             <span className="text-[#0569ff]">rápido</span>
           </p>
         </div>
 
-        {/* Grid de itens */}
+        {/* Grid de itens — links espelhados de AcessoRapidoBK */}
         <div className="flex flex-wrap gap-[20px] items-start justify-center w-full shrink-0
-          xl:h-[203px] xl:items-stretch">
-          {quickAccess.map((item) => (
-            <button
-              key={item.title}
-              className="bg-[#f6f9fe] hover:bg-[#eaf0fd] transition-colors
-                flex flex-[1_0_0] flex-col gap-[20px] items-center
-                min-w-[180px] p-[20px] rounded-[16px] cursor-pointer">
-              <div className="flex flex-col items-center justify-center shrink-0 size-[40px]">
-                <FigmaIcon src={item.icon} size={30} aspectW={item.aspectW} aspectH={item.aspectH} />
+          xl:items-stretch">
+          {quickItems.map((item) => {
+            const inner = (
+              <>
+                <div className="flex flex-col items-center justify-center shrink-0 size-[40px]">
+                  <FigmaIcon src={item.icon} size={30} aspectW={item.aspectW} aspectH={item.aspectH} />
+                </div>
+                <div className="flex flex-col gap-[10px] items-start text-center w-full flex-1">
+                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] w-full">
+                    {item.title}
+                  </p>
+                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#333] w-full">
+                    {item.desc}
+                  </p>
+                </div>
+                {!item.noPage && (
+                  <FigmaIcon src={imgArrowAccent} size={12} aspectW={11.2} aspectH={8.84} />
+                )}
+              </>
+            );
+
+            return item.noPage ? (
+              <div
+                key={item.title}
+                className="bg-[#f6f9fe] opacity-60 cursor-default
+                  flex flex-[1_0_0] flex-col gap-[20px] items-center
+                  min-w-[180px] p-[20px] rounded-[16px]">
+                {inner}
               </div>
-              <div className="flex flex-col gap-[10px] items-start text-center w-full flex-1">
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] w-full">
-                  {item.title}
-                </p>
-                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#333] w-full">
-                  {item.desc}
-                </p>
-              </div>
-              <FigmaIcon src={imgArrowAccent} size={12} aspectW={11.2} aspectH={8.84} />
-            </button>
-          ))}
+            ) : (
+              <a
+                key={item.title}
+                href={item.href}
+                className="bg-[#f6f9fe] hover:bg-[#eaf0fd] transition-colors
+                  flex flex-[1_0_0] flex-col gap-[20px] items-center
+                  min-w-[180px] p-[20px] rounded-[16px] cursor-pointer no-underline">
+                {inner}
+              </a>
+            );
+          })}
         </div>
 
       </div>

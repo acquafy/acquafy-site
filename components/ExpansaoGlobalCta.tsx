@@ -31,9 +31,11 @@ export default function ExpansaoGlobalCta() {
               Seja um parceiro
             </BtnAzulOutArrow>
           </Link>
-          <BtnAzulBaseArrow className="flex-1 min-w-[200px] min-h-[56px]">
-            Fale com um especialista
-          </BtnAzulBaseArrow>
+          <Link href="/contato" className="flex-1 min-w-[200px]">
+            <BtnAzulBaseArrow className="w-full min-h-[56px]">
+              Fale com um especialista
+            </BtnAzulBaseArrow>
+          </Link>
         </div>
       </div>
     </section>

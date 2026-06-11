@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import FigmaIcon from "./FigmaIcon";
 
 // ── Assets ───────────────────────────────────────────────────────────────────
@@ -73,7 +73,7 @@ function BottomFeature({ icon, iconAlt, title, description }: {
     <div className="flex flex-[1_0_0] flex-wrap gap-[20px] items-center justify-center min-w-[160px] px-[20px]">
       <FigmaIcon src={icon} alt={iconAlt} size={40} />
       <div className="flex flex-[1_0_0] flex-col gap-[8px] items-start min-w-[200px] max-[1340px]:items-center">
-        <p className="flex items-center font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#1f2e91] min-h-[44px] max-[1340px]:text-center max-[1340px]:justify-center">{title}</p>
+        <p className="flex items-center font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] min-h-[44px] max-[1340px]:text-center max-[1340px]:justify-center">{title}</p>
         <p className="flex items-center font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-[#2a2a2b] min-h-[42px] max-[1340px]:text-center max-[1340px]:justify-center">{description}</p>
       </div>
     </div>
@@ -140,7 +140,7 @@ export default function SobreBanner() {
           Sobre a <span className="text-[#0569ff]">Acquafy</span>
         </h1>
 
-        <div className="font-['Avenir_LT_Pro:55_Roman'] text-[20px] text-[#333] text-center">
+        <div className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] text-[#333] text-center">
           <p className="leading-[26px] mb-[4px]">
             Nossa missão é transformar o acesso à água de qualidade e melhorar vidas.
           </p>
@@ -181,7 +181,7 @@ export default function SobreBanner() {
               Sobre a <span className="text-[#0569ff]">Acquafy</span>
             </h1>
 
-            <div className="font-['Avenir_LT_Pro:55_Roman'] text-[20px] text-[#333]">
+            <div className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] text-[#333]">
               <p className="leading-[26px] mb-[4px]">
                 Nossa missão é transformar o acesso à água de qualidade e melhorar vidas.
               </p>

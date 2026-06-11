@@ -1,4 +1,4 @@
-import FigmaIcon from "./FigmaIcon";
+﻿import FigmaIcon from "./FigmaIcon";
 
 const imgScale  = "/figma-assets/ae3c7ad0-7282-4ba0-b278-fe8fab1cf757.svg";  // 30×30
 const imgMoney  = "/figma-assets/1901e66b-c195-4630-81d9-94921427523c.svg";  // 33×30
@@ -45,7 +45,7 @@ export default function PorqueParceiro() {
     <section className="bg-white flex flex-col gap-[40px] items-center justify-center px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
         {/* Header */}
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[26px] leading-[28px] text-[#1f2e91] text-center min-w-[240px] w-full">
+        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] text-center min-w-[240px] w-full">
           {"Porque se tornar um "}
           <span className="text-[#0569ff]">parceiro Acquafy?</span>
         </h2>

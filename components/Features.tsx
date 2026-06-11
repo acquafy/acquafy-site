@@ -1,4 +1,4 @@
-import FigmaIcon from "./FigmaIcon";
+﻿import FigmaIcon from "./FigmaIcon";
 
 const imgPanel = "/figma-assets/4e6b8a1f-cde5-4362-bb86-960a54dd56c3.png";
 const imgHomeMob = "/figma-assets/dc018212-75b4-4bfb-8453-a2918a035342.png"; // Acquafy AI app screenshot
@@ -37,7 +37,7 @@ export default function Features() {
         {/* Card 1 – Painel LED Touch */}
         <div className="bg-[#f6f9fe] flex flex-1 flex-col gap-[20px] items-start min-h-[310px] min-w-[280px] p-[20px] rounded-[16px]">
           <div className="flex flex-1 flex-col gap-[20px] items-start min-w-[200px]">
-            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] w-full">
+            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] w-full">
               <span className="text-[#0569ff]">Painel LED </span>
               <span className="text-[#1f2e91]">Touch Inteligente</span>
             </p>
@@ -68,7 +68,7 @@ export default function Features() {
         {/* Card 2 – Acquafy AI no App */}
         <div className="bg-[#f6f9fe] flex flex-1 flex-col gap-[20px] items-start min-h-[310px] min-w-[280px] p-[20px] rounded-[16px]">
           <div className="flex flex-1 flex-col gap-[20px] items-start min-w-[200px]">
-            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#0569ff] w-full">
+            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#0569ff] w-full">
               Acquafy AI no App
             </p>
             <div className="flex flex-wrap gap-[20px] items-center min-h-[210px] w-full shrink-0">
@@ -102,7 +102,7 @@ export default function Features() {
         {/* Card 3 – Controle pelo App */}
         <div className="bg-[#f6f9fe] flex flex-1 flex-col gap-[20px] items-start min-h-[310px] min-w-[280px] p-[20px] rounded-[16px]">
           <div className="flex flex-1 flex-col gap-[20px] items-start min-w-[200px]">
-            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#0569ff] w-full">
+            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#0569ff] w-full">
               Controle tudo pelo App Acquafy
             </p>
             <div className="flex flex-wrap gap-[20px] items-center min-h-[210px] w-full shrink-0">

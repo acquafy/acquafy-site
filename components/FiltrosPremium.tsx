@@ -5,9 +5,10 @@ type FilterCard = {
   title: string;
   desc: string;
   highlight?: boolean;
+  gradient?: boolean;
 };
 
-const essentials: FilterCard[] = [
+const premium: FilterCard[] = [
   {
     num: "01",
     title: "PPF - Polypropilene Filter",
@@ -20,9 +21,10 @@ const essentials: FilterCard[] = [
   },
   {
     num: "03",
-    title: "UFF - Ultra Filtration Filter",
-    desc: "Com microporos de ultraprecisão, remove organismos, substâncias macromoleculares, verme vermelho, vírus e bactérias.",
+    title: "ROF - Reverse Osmose Filter",
+    desc: "Sistema que produz água com 99% de pureza (livre de vírus e bactérias com até 0,5 microns), foi desenvolvido para atender pessoas que queiram ou necessitem do consumo de uma água extremamente pura.",
     highlight: true,
+    gradient: true,
   },
   {
     num: "04",
@@ -32,6 +34,8 @@ const essentials: FilterCard[] = [
 ];
 
 function FilterCard({ card, isLast }: { card: FilterCard; isLast: boolean }) {
+  const isGrad = card.highlight && card.gradient;
+
   return (
     <div
       className={`flex flex-[1_0_0] flex-col gap-[20px] items-start min-h-[210px] min-w-[200px] px-[20px] py-[25px] relative rounded-[16px] bg-[#f6f9fe]${card.highlight ? " border-2 border-[#0233c3]" : ""}`}
@@ -39,13 +43,13 @@ function FilterCard({ card, isLast }: { card: FilterCard; isLast: boolean }) {
       <div className="flex gap-[10px] items-center w-full shrink-0">
         <div
           className="flex flex-col items-center justify-center rounded-full shrink-0 size-[40px]"
-          style={card.highlight ? { backgroundImage: "linear-gradient(to right, #0041ff, #3f8cff)" } : { backgroundColor: "#1f2e91" }}
+          style={isGrad ? { backgroundImage: "linear-gradient(94deg, #0233c3 6.19%, #9f3df5 93.35%)" } : { backgroundColor: "#1f2e91" }}
         >
           <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-white text-center">{card.num}</span>
         </div>
         <p
-          className={`font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] flex-1 min-w-0${card.highlight ? " bg-clip-text text-transparent" : " text-[#1f2e91]"}`}
-          style={card.highlight ? { backgroundImage: "linear-gradient(to right, #0041ff, #3f8cff)" } : undefined}
+          className={`font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] flex-1 min-w-0${isGrad ? " bg-clip-text text-transparent" : " text-[#1f2e91]"}`}
+          style={isGrad ? { backgroundImage: "linear-gradient(147deg, #0233c3 6.19%, #9f3df5 93.35%)" } : undefined}
         >
           {card.title}
         </p>
@@ -62,16 +66,19 @@ function FilterCard({ card, isLast }: { card: FilterCard; isLast: boolean }) {
   );
 }
 
-export default function FiltrosNeo() {
+export default function FiltrosPremium() {
   return (
     <section className="bg-white flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#0569ff] text-center w-full">
-          Linha Essentials - Sistema de Filtração de Alta Performance
+        <h2
+          className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] bg-clip-text text-transparent text-center w-full"
+          style={{ backgroundImage: "linear-gradient(170deg, #0233c3 6.19%, #9f3df5 93.35%)" }}
+        >
+          Linha Premium - Sistema de Filtração de Alta Performance
         </h2>
         <div className="flex flex-wrap gap-[20px] items-stretch justify-center w-full">
-          {essentials.map((c, i) => (
-            <FilterCard key={i} card={c} isLast={i === essentials.length - 1} />
+          {premium.map((c, i) => (
+            <FilterCard key={i} card={c} isLast={i === premium.length - 1} />
           ))}
         </div>
       </div>
