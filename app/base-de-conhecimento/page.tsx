@@ -3,6 +3,9 @@ import Header from "@/components/Header";
 import BannerBaseConhecimento from "@/components/BannerBaseConhecimento";
 import CategoriasBaseConhecimento from "@/components/CategoriasBaseConhecimento";
 import AcessoRapidoBK from "@/components/AcessoRapidoBK";
+import DownloadsBK from "@/components/DownloadsBK";
+import TutoriaisVideoBK from "@/components/TutoriaisVideoBK";
+import PoliticasGarantiasBK from "@/components/PoliticasGarantiasBK";
 import ArtigosBK from "@/components/ArtigosBK";
 import FaqBK from "@/components/FaqBK";
 import CtaBK from "@/components/CtaBK";
@@ -21,6 +24,9 @@ export default function BaseDeConhecimentoPage() {
         <BannerBaseConhecimento />
         <CategoriasBaseConhecimento />
         <AcessoRapidoBK />
+        <DownloadsBK />
+        <TutoriaisVideoBK />
+        <PoliticasGarantiasBK />
         <ArtigosBK />
         <FaqBK />
         <CtaBK />
