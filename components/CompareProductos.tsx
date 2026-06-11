@@ -90,7 +90,7 @@ const PRODUCTS: Product[] = [
     id: "neo-fit", label: "Neo FIT",
     nameParts: [{ text: "Neo " }, { text: "FIT", highlight: true }],
     linha: "Essentials", categories: ["Bancada"],
-    specs: { formato: "Bancada ou Parede", funcoes: "5 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "400ml", material: "Acabamento premium", preco: "US$ 497.97" },
+    specs: { formato: "Bancada ou Parede", funcoes: "5 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "Eletrônico · 400ml", material: "Acabamento premium", preco: "US$ 497.97" },
   },
   {
     id: "neo-smart-h2", label: "Neo SMART H₂",
@@ -102,13 +102,13 @@ const PRODUCTS: Product[] = [
     id: "neo-touch", label: "Neo TOUCH",
     nameParts: [{ text: "Neo " }, { text: "TOUCH", highlight: true }],
     linha: "Essentials", categories: ["Bancada"],
-    specs: { formato: "Bancada ou Parede", funcoes: "5 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "800ml", material: "Acabamento premium", preco: "US$ 697.97" },
+    specs: { formato: "Bancada ou Parede", funcoes: "5 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "Eletrônico · 800ml", material: "Acabamento premium", preco: "US$ 697.97" },
   },
   {
     id: "neo-plus", label: "Neo PLUS",
     nameParts: [{ text: "Neo " }, { text: "PLUS", highlight: true }],
     linha: "Essentials", categories: ["Bancada"],
-    specs: { formato: "Bancada", funcoes: "5 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "1500ml", material: "Acabamento premium", preco: "US$ 797.97" },
+    specs: { formato: "Bancada", funcoes: "5 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "Eletrônico · 1500ml", material: "Acabamento premium", preco: "US$ 797.97" },
   },
   {
     id: "neo-ultra", label: "Neo ULTRA",
@@ -175,13 +175,13 @@ const PRODUCTS: Product[] = [
     id: "neo-prestige-spark", label: "Neo PRESTIGE SPARK",
     nameParts: [{ text: "Neo " }, { text: "PRESTIGE SPARK", highlight: true }],
     linha: "Premium", categories: ["Embutido", "Água com Gás"],
-    specs: { formato: "Embutido", funcoes: "5 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: false, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,597.97" },
+    specs: { formato: "Embutido", funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: false, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,597.97" },
   },
   {
     id: "neo-prestige-spark-h2", label: "Neo PRESTIGE SPARK H₂",
     nameParts: [{ text: "Neo " }, { text: "PRESTIGE SPARK H", highlight: true }, { text: "2", highlight: true }],
     linha: "Premium", categories: ["Embutido", "Água com Gás", "Água Hidrogenada"],
-    specs: { formato: "Embutido", funcoes: "5 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: true, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,697.97" },
+    specs: { formato: "Embutido", funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: true, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,697.97" },
   },
   {
     id: "neo-prime", label: "Neo PRIME",
@@ -193,13 +193,13 @@ const PRODUCTS: Product[] = [
     id: "neo-prime-spark", label: "Neo PRIME SPARK",
     nameParts: [{ text: "Neo " }, { text: "PRIME SPARK", highlight: true }],
     linha: "Premium", categories: ["Bancada", "Água com Gás"],
-    specs: { formato: "Bancada", funcoes: "5 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: false, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,597.97" },
+    specs: { formato: "Bancada", funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: false, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,597.97" },
   },
   {
     id: "neo-prime-spark-h2", label: "Neo PRIME SPARK H₂",
     nameParts: [{ text: "Neo " }, { text: "PRIME SPARK H", highlight: true }, { text: "2", highlight: true }],
     linha: "Premium", categories: ["Bancada", "Água com Gás", "Água Hidrogenada"],
-    specs: { formato: "Bancada", funcoes: "5 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: true, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,697.97" },
+    specs: { formato: "Bancada", funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: true, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,697.97" },
   },
 ];
 
@@ -216,7 +216,7 @@ const SPEC_ROWS: { key: keyof Specs; label: string; type: "text" | "bool" | "pri
   { key: "wifi",        label: "Wi-Fi + Bluetooth 5.3", type: "bool"  },
   { key: "uv",          label: "UV LED",                type: "bool"  },
   { key: "filtragem",   label: "Sistema de Filtragem",  type: "text"  },
-  { key: "tanque",      label: "Tanque de água gelada", type: "text"  },
+  { key: "tanque",      label: "Resfriamento / Tanque",  type: "text"  },
   { key: "material",    label: "Material",              type: "text"  },
   { key: "preco",       label: "Preço EUA",             type: "price" },
 ];

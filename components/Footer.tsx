@@ -52,6 +52,7 @@ const socialIcons = [
 const navColumns = [
   {
     title: "Plataforma",
+    linkGap: "gap-[30px]",
     links: [
       { label: "Plataforma Acquafy",            href: "/plataforma" },
       { label: "App + AI + IoT",                href: "/app-ai-iot" },
@@ -61,6 +62,7 @@ const navColumns = [
   },
   {
     title: "Produtos",
+    linkGap: "gap-[30px]",
     links: [
       { label: "Linha Neo",            href: "/linha-neo" },
       { label: "Acquafy Media",        href: "/neo-media" },
@@ -70,11 +72,13 @@ const navColumns = [
   },
   {
     title: "Empresa",
+    linkGap: "gap-[18px]",
     links: [
-      { label: "Sobre Nós",                   href: "/sobre"           },
-      { label: "Expansão Global",             href: "/expansao-global" },
-      { label: "Programa de Parceria Global", href: "/parceria"          },
-      { label: "Contatos",                    href: "/contato"         },
+      { label: "Sobre Nós",                   href: "/sobre"                  },
+      { label: "Expansão Global",             href: "/expansao-global"        },
+      { label: "Base de Conhecimento",        href: "/base-de-conhecimento"   },
+      { label: "Programa de Parceria Global", href: "/parceria"               },
+      { label: "Contatos",                    href: "/contato"                },
     ],
   },
 ];
@@ -130,7 +134,7 @@ function MobileNavSection({
   isOpen,
   onToggle,
 }: {
-  col: { title: string; links: { label: string; href: string }[] };
+  col: { title: string; linkGap: string; links: { label: string; href: string }[] };
   isOpen: boolean;
   onToggle: () => void;
 }) {
@@ -156,7 +160,7 @@ function MobileNavSection({
       </button>
       {/* Links — visíveis somente quando aberto */}
       {isOpen && (
-        <div className="flex flex-col gap-[30px] items-start pb-[24px]">
+        <div className={`flex flex-col ${col.linkGap} items-start pb-[24px]`}>
           {col.links.map((link) => (
             <div key={link.label} className="flex gap-[10px] items-center w-full">
               <ArrowBullet />
@@ -214,7 +218,7 @@ export default function Footer() {
                 </p>
                 <div className="h-[1.5px] rounded-full shrink-0 w-[30px]" style={gradientLine} />
               </div>
-              <div className="flex flex-col gap-[30px] items-start w-full">
+              <div className={`flex flex-col ${col.linkGap} items-start w-full`}>
                 {col.links.map((link) => (
                   <div key={link.label} className="flex gap-[10px] items-center w-full">
                     <ArrowBullet />

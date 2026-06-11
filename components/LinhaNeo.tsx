@@ -41,10 +41,10 @@ type Product = {
 
 const row1: Product[] = [
   { img: imgNeoUp,    imgW: 3275, imgH: 4096, name: "Neo UP",                                       sub: "Apenas Natural" },
-  { img: imgNeoFit,   imgW: 3275, imgH: 4096, name: "Neo FIT",                                      sub: "5 em 1", tank: "Tanque de 400 ml" },
+  { img: imgNeoFit,   imgW: 3275, imgH: 4096, name: "Neo FIT",                                      sub: "5 em 1", tank: "Resfriamento Eletrônico · 400ml" },
   { img: imgNeoSmart, imgW: 3275, imgH: 4096, name: <span>Neo SMART H<sub>2</sub></span>,            sub: "5 em 1" },
-  { img: imgNeoTouch, imgW: 3384, imgH: 4096, name: "Neo TOUCH",                                    sub: "5 em 1", tank: "Tanque de 800 ml" },
-  { img: imgNeoPlus,  imgW: 3384, imgH: 4096, name: "Neo PLUS",                                     sub: "5 em 1", tank: "Tanque de 1500 ml" },
+  { img: imgNeoTouch, imgW: 3384, imgH: 4096, name: "Neo TOUCH",                                    sub: "5 em 1", tank: "Resfriamento Eletrônico · 800ml" },
+  { img: imgNeoPlus,  imgW: 3384, imgH: 4096, name: "Neo PLUS",                                     sub: "5 em 1", tank: "Resfriamento Eletrônico · 1500ml" },
 ];
 
 const row2: Product[] = [
