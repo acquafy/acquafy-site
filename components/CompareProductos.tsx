@@ -445,7 +445,7 @@ export default function CompareProductos() {
               </p>
 
               {/* CTA buttons */}
-              <div className="flex gap-[20px] items-center justify-center w-full">
+              <div className="flex gap-[20px] items-center justify-center 1024:justify-start w-full">
                 <a href="/contato" className="bg-white border border-[#0233c3] flex gap-[10px] items-center justify-center min-h-[50px] px-[20px] py-[10px] rounded-[8px] cursor-pointer hover:bg-[#f0f4ff] transition-colors no-underline">
                   <span className="font-['Articulat_CF:Bold'] text-[16px] leading-normal text-[#0233c3]">
                     Falar com um especialista
