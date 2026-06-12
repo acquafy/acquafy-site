@@ -134,7 +134,7 @@ export default function ArtigosContent() {
   return (
     <main>
       {/* ── Hero ─────────────────────────────────────────────────────────── */}
-      <section className="bg-[#1f2e91] border-b border-[#0569ff]/40 relative overflow-hidden flex flex-col items-center justify-center px-[20px] py-[64px] w-full">
+      <section className="bg-[#1f2e91] border-b border-[#0569ff]/40 relative overflow-hidden w-full px-[20px] py-[40px]">
 
         {/* Decorative blobs */}
         <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -146,7 +146,7 @@ export default function ArtigosContent() {
             style={{ background: "radial-gradient(circle, white 0%, transparent 70%)" }} />
         </div>
 
-        <div className="relative z-10 flex flex-col gap-[24px] items-start max-w-[1400px] px-[20px] w-full">
+        <div className="relative z-10 flex flex-col gap-[24px] items-start max-w-[1400px] mx-auto w-full">
 
           {/* Eyebrow badge */}
           <div className="flex items-center gap-[8px] w-full">
