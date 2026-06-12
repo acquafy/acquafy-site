@@ -1,8 +1,6 @@
 ﻿"use client";
 
-import { useState } from "react";
 import FigmaIcon from "./FigmaIcon";
-import TopicPopup from "./TopicPopup";
 import { useChatWidget } from "./ChatWidget";
 import { quickItems } from "./AcessoRapidoBK";
 
@@ -39,7 +37,6 @@ const floatingCards = [
 //
 export default function BannerCentralSuporte() {
   const { openChat } = useChatWidget();
-  const [openSlug, setOpenSlug] = useState<string | null>(null);
   return (
     <section className="relative flex flex-col items-center justify-center px-[20px] py-[40px] w-full min-h-[calc(100vh-80px)]">
 
@@ -264,22 +261,13 @@ export default function BannerCentralSuporte() {
                 </div>
               );
             }
-            if (item.categorySlug) {
-              return (
-                <button
-                  key={item.title}
-                  onClick={() => setOpenSlug(item.categorySlug!)}
-                  className="bg-[#f6f9fe] hover:bg-[#eaf0fd] transition-colors
-                    flex flex-[1_0_0] flex-col gap-[20px] items-center
-                    min-w-[180px] p-[20px] rounded-[16px] cursor-pointer text-left">
-                  {inner}
-                </button>
-              );
-            }
+            const href = item.href.startsWith("#")
+              ? `/base-de-conhecimento${item.href}`
+              : item.href;
             return (
               <a
                 key={item.title}
-                href={item.href}
+                href={href}
                 className="bg-[#f6f9fe] hover:bg-[#eaf0fd] transition-colors
                   flex flex-[1_0_0] flex-col gap-[20px] items-center
                   min-w-[180px] p-[20px] rounded-[16px] cursor-pointer no-underline">
@@ -290,8 +278,6 @@ export default function BannerCentralSuporte() {
         </div>
 
       </div>
-
-      <TopicPopup slug={openSlug} onClose={() => setOpenSlug(null)} />
 
     </section>
   );

@@ -17,7 +17,6 @@ export type QuickItem = {
   desc: string;
   href: string;
   noPage?: boolean;
-  categorySlug?: string;
 };
 
 export const quickItems: QuickItem[] = [
@@ -27,7 +26,6 @@ export const quickItems: QuickItem[] = [
     title: "Meus produtos",
     desc: "Conheça a linha completa de purificadores Neo.",
     href: "/linha-neo",
-    categorySlug: "produtos",
   },
   {
     icon: imgIconDownload,
@@ -35,7 +33,6 @@ export const quickItems: QuickItem[] = [
     title: "Downloads",
     desc: "Manuais, guias rápidos, softwares e documentos.",
     href: "#downloads",
-    categorySlug: "instalacao-e-manutencao",
   },
   {
     icon: imgIconEducation,
@@ -43,7 +40,6 @@ export const quickItems: QuickItem[] = [
     title: "Tutoriais e vídeos",
     desc: "Aprenda passo a passo com nossos tutoriais.",
     href: "#tutoriais-videos",
-    categorySlug: "app-ai-iot",
   },
   {
     icon: imgIconFaq,
@@ -51,7 +47,6 @@ export const quickItems: QuickItem[] = [
     title: "Perguntas frequentes",
     desc: "Encontre respostas para as dúvidas mais comuns.",
     href: "#faq",
-    categorySlug: "produtos",
   },
   {
     icon: imgIconDoc,
@@ -59,7 +54,6 @@ export const quickItems: QuickItem[] = [
     title: "Políticas e garantias",
     desc: "Consulte nossas políticas, termos e garantias.",
     href: "#politicas-garantias",
-    categorySlug: "faturamento",
   },
 ];
 
