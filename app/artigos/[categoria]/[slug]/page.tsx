@@ -169,7 +169,7 @@ export default async function ArtigoPage({ params }: Props) {
 
         {/* ── Header do artigo ─────────────────────────────────────────── */}
         {/* Layout 3 colunas igual ao conteúdo: sidebar | banner | spacer */}
-        <section className="bg-[#1f2e91] relative overflow-hidden w-full">
+        <section className="bg-[#1f2e91] relative overflow-hidden w-full px-[20px] py-[40px]">
 
           <div className="pointer-events-none absolute inset-0 overflow-hidden">
             <div
@@ -186,7 +186,7 @@ export default async function ArtigoPage({ params }: Props) {
               style={{ backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)", backgroundSize: "28px 28px" }} />
           </div>
 
-          <div className="relative z-10 max-w-[1400px] mx-auto w-full px-[20px] pt-[52px] pb-[64px]">
+          <div className="relative z-10 max-w-[1400px] mx-auto w-full">
 
             {/* Conteúdo do banner — preenchimento total */}
             <div className="flex flex-col gap-[22px]">
