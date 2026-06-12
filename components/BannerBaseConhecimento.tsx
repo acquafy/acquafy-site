@@ -294,8 +294,8 @@ export default function BannerBaseConhecimento() {
   }, []);
 
   return (
-    <section className="bg-[#1f2e91] border-b border-[#0569ff] flex flex-col items-center justify-center px-[20px] py-[60px] w-full min-h-[480px]">
-      <div className="flex flex-col gap-[32px] items-center justify-center max-w-[1400px] px-[20px] lg:px-[100px] w-full">
+    <section className="bg-[#1f2e91] border-b border-[#0569ff] px-[20px] py-[40px] w-full">
+      <div className="flex flex-col gap-[32px] items-center max-w-[1400px] mx-auto w-full">
 
         {/* Title */}
         <h1 className="font-['Avenir_LT_Pro:95_Black'] text-[clamp(32px,3.7vw+16px,56px)] leading-[1.07] text-white text-center w-full">
