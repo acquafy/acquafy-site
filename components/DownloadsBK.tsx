@@ -17,6 +17,7 @@ type DownloadFile = {
 type DownloadCategoria = {
   titulo: string;
   arquivos: DownloadFile[];
+  scroll?: boolean;
 };
 
 const tipoBadge: Record<DownloadFile["tipo"], { bg: string; color: string }> = {
@@ -28,7 +29,9 @@ const tipoBadge: Record<DownloadFile["tipo"], { bg: string; color: string }> = {
 const categorias: DownloadCategoria[] = [
   {
     titulo: "Manuais",
+    scroll: true,
     arquivos: [
+      { nome: "Manual do Usuário — Neo UP",       tipo: "PDF", tamanho: "7 MB",   href: "#" },
       { nome: "Manual do Usuário — Neo FIT",      tipo: "PDF", tamanho: "8 MB",   href: "#" },
       { nome: "Manual do Usuário — Neo SMART H₂", tipo: "PDF", tamanho: "9 MB",   href: "#" },
       { nome: "Manual do Usuário — Neo TOUCH",    tipo: "PDF", tamanho: "8 MB",   href: "#" },
@@ -100,7 +103,7 @@ export default function DownloadsBK() {
               </div>
 
               {/* File list */}
-              <ul className="list-none m-0 p-0 divide-y divide-[#f0f3f9]">
+              <ul className={`list-none m-0 p-0 divide-y divide-[#f0f3f9]${cat.scroll ? " max-h-[282px] overflow-y-auto" : ""}`}>
                 {cat.arquivos.map((arquivo) => {
                   const badge = tipoBadge[arquivo.tipo];
                   return (
