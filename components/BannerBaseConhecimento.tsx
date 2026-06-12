@@ -294,7 +294,7 @@ export default function BannerBaseConhecimento() {
   }, []);
 
   return (
-    <section className="bg-[#1f2e91] border-b border-[#0569ff] px-[20px] py-[40px] w-full">
+    <section className="bg-[#1f2e91] border-b border-[#0569ff] px-[20px] py-[40px] w-full lg:min-h-screen lg:flex lg:items-center">
       <div className="flex flex-col gap-[32px] items-center max-w-[1400px] mx-auto w-full">
 
         {/* Title */}
