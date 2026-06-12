@@ -74,7 +74,7 @@ export default function BannerCentralSuporte() {
           </div>
 
           {/* H1 */}
-          <h1 className="font-['Avenir_LT_Pro:95_Black'] text-hero text-[#2a2a2b] text-center w-full lg:text-left">
+          <h1 className="font-['Avenir_LT_Pro:95_Black'] text-hero text-[#2a2a2b] text-center w-full xl:text-left">
             Central de{" "}
             <span
               className="bg-clip-text text-transparent"
@@ -186,7 +186,7 @@ export default function BannerCentralSuporte() {
             <div className="flex flex-col gap-[20px] w-full
               min-[621px]:mb-[-240px]
               md:flex-[1_0_0] md:flex-row md:flex-wrap md:content-center md:h-full md:items-center md:justify-end md:pb-[20px] md:mb-0 md:min-w-px
-              xl:flex-col xl:flex-nowrap xl:items-end xl:justify-center xl:max-w-[270px] xl:min-w-px xl:pb-[20px]">
+              xl:flex-col xl:flex-nowrap xl:items-end xl:justify-center xl:max-w-[270px] xl:min-w-px xl:pb-[14px] xl:gap-[14px]">
 
               {floatingCards.map((card) => (
                 <div
@@ -196,7 +196,7 @@ export default function BannerCentralSuporte() {
                     p-[20px] rounded-[16px] shadow-[0px_4px_8px_0px_rgba(0,0,0,0.25)]
                     w-full min-w-[150px]
                     md:min-h-[90px] md:min-w-[280px] md:w-auto
-                    xl:w-full xl:min-w-[160px] xl:min-h-[80px]">
+                    xl:w-full xl:min-w-[160px] xl:min-h-0 xl:p-[14px] xl:gap-[12px]">
                   <div className="flex flex-col items-center justify-center shrink-0 size-[40px]">
                     <FigmaIcon src={card.icon} size={30} aspectW={card.aspectW} aspectH={card.aspectH} />
                   </div>
