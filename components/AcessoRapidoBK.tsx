@@ -17,6 +17,7 @@ export type QuickItem = {
   desc: string;
   href: string;
   noPage?: boolean;
+  sectionId?: string;
 };
 
 export const quickItems: QuickItem[] = [
@@ -33,6 +34,7 @@ export const quickItems: QuickItem[] = [
     title: "Downloads",
     desc: "Manuais, guias rápidos, softwares e documentos.",
     href: "#downloads",
+    sectionId: "downloads",
   },
   {
     icon: imgIconEducation,
@@ -40,6 +42,7 @@ export const quickItems: QuickItem[] = [
     title: "Tutoriais e vídeos",
     desc: "Aprenda passo a passo com nossos tutoriais.",
     href: "#tutoriais-videos",
+    sectionId: "tutoriais-videos",
   },
   {
     icon: imgIconFaq,
@@ -47,6 +50,7 @@ export const quickItems: QuickItem[] = [
     title: "Perguntas frequentes",
     desc: "Encontre respostas para as dúvidas mais comuns.",
     href: "#faq",
+    sectionId: "faq",
   },
   {
     icon: imgIconDoc,
@@ -54,6 +58,7 @@ export const quickItems: QuickItem[] = [
     title: "Políticas e garantias",
     desc: "Consulte nossas políticas, termos e garantias.",
     href: "#politicas-garantias",
+    sectionId: "politicas-garantias",
   },
 ];
 
