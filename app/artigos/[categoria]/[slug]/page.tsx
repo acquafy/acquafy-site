@@ -260,33 +260,18 @@ export default async function ArtigoPage({ params }: Props) {
 
             </div>
 
-            {/* Espaçador para alinhar com sidebar direito do conteúdo */}
-            <div className="hidden lg:block w-[240px] shrink-0" />
-
           </div>
         </section>
 
-        {/* ── Conteúdo + Sidebars ──────────────────────────────────────── */}
+        {/* ── Conteúdo + Sidebar esquerdo ──────────────────────────────── */}
         <section className="bg-white w-full">
           <div className="flex gap-[36px] max-w-[1400px] mx-auto w-full px-[20px] py-[56px] items-start">
 
-            {/* Espaçador — alinha conteúdo com a coluna da sidebar do banner */}
-            <div className="hidden xl:block w-[210px] shrink-0" />
+            {/* Sidebar esquerdo sticky — 300px */}
+            <aside className="hidden lg:flex flex-col gap-[20px] w-[300px] shrink-0 sticky top-[108px] self-start">
 
-            {/* Conteúdo principal */}
-            <div className="flex flex-col gap-[22px] flex-1 min-w-0">
-              {artigo.conteudo.map((block, i) => (
-                <RenderBlock key={i} block={block} cor={cat.cor} />
-              ))}
-            </div>
-
-            {/* Sidebar direito sticky */}
-            {/* lg (1024–1279px): mostra nav da categoria (já que sidebar esq está oculto) + populares */}
-            {/* xl (1280px+): mostra só populares (sidebar esq já tem nav da categoria) */}
-            <aside className="hidden lg:flex flex-col gap-[14px] w-[240px] shrink-0 sticky top-[108px] self-start">
-
-              {/* Nesta categoria — visível só em lg onde a sidebar esq está oculta */}
-              <div className="xl:hidden border border-[#e8edf5] rounded-[14px] p-[18px] flex flex-col gap-[12px]">
+              {/* Nesta categoria */}
+              <div className="border border-[#e8edf5] rounded-[14px] p-[18px] flex flex-col gap-[12px]">
                 <div className="flex items-center gap-[8px] pb-[10px]" style={{ borderBottom: `1px solid ${cat.cor}20` }}>
                   <div
                     className="flex items-center justify-center shrink-0 size-[26px] rounded-[7px]"
@@ -294,8 +279,8 @@ export default async function ArtigoPage({ params }: Props) {
                   >
                     <FigmaIcon src={cat.icon} size={12} aspectW={cat.aspectW} aspectH={cat.aspectH} />
                   </div>
-                  <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px]" style={{ color: cat.cor }}>
-                    {cat.titulo}
+                  <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[10px] leading-[13px] tracking-[0.09em] uppercase" style={{ color: cat.cor }}>
+                    Nesta categoria
                   </span>
                 </div>
                 <nav className="flex flex-col gap-[2px]">
@@ -316,7 +301,7 @@ export default async function ArtigoPage({ params }: Props) {
                 </nav>
               </div>
 
-              {/* Artigos populares — padrão de card Figma */}
+              {/* Artigos populares */}
               <div className="flex flex-col gap-[10px]">
                 <h3 className="font-['Avenir_LT_Pro:85_Heavy'] text-[10px] leading-[13px] text-[#aaa] uppercase tracking-[0.09em] px-[2px]">
                   Artigos populares
@@ -346,6 +331,14 @@ export default async function ArtigoPage({ params }: Props) {
               </div>
 
             </aside>
+
+            {/* Conteúdo principal */}
+            <div className="flex flex-col gap-[22px] flex-1 min-w-0">
+              {artigo.conteudo.map((block, i) => (
+                <RenderBlock key={i} block={block} cor={cat.cor} />
+              ))}
+            </div>
+
           </div>
         </section>
 
