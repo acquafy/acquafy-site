@@ -29,10 +29,10 @@ const imgNeoMaxSparkH2    = "/figma-assets/74bed368-254c-4522-ba2c-4798b2fb22ab.
 const waterTypes = [
   { label: "Água Natural",     sub: "Presente em todos" },
   { label: "Água Gelada",      sub: "Em todos" },
-  { label: "45º Leite",        sub: "Em todos" },
-  { label: "65º Chá",          sub: "Em todos" },
-  { label: "85º Café",         sub: "Em todos" },
-  { label: "100º Água Quente", sub: "Em todos" },
+  { label: "45ºC Leite",        sub: "Em todos" },
+  { label: "65ºC Chá",          sub: "Em todos" },
+  { label: "85ºC Café",         sub: "Em todos" },
+  { label: "100ºC Água Quente", sub: "Em todos" },
   { label: "Água com Gás",     sub: "7 e 8 em 1 Apenas" },
   { label: "Água Hidrogenada", sub: "8 em 1 e Smart Apenas" },
 ];
