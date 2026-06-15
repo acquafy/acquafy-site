@@ -28,12 +28,13 @@ const imgNeoMaxSparkH2    = "/figma-assets/74bed368-254c-4522-ba2c-4798b2fb22ab.
 
 const waterTypes = [
   { label: "Água Natural",     sub: "Presente em todos" },
-  { label: "Água Gelada",      sub: "Em todos, tirando Smart" },
+  { label: "Água Gelada",      sub: "Em todos" },
   { label: "45º Leite",        sub: "Em todos" },
   { label: "65º Chá",          sub: "Em todos" },
-  { label: "100º Café",        sub: "Em todos" },
-  { label: "Água com Gás",     sub: "6 e 7 em 1 Apenas" },
-  { label: "Água Hidrogenada", sub: "7 em 1 e Smart Apenas" },
+  { label: "85º Café",         sub: "Em todos" },
+  { label: "100º Água Quente", sub: "Em todos" },
+  { label: "Água com Gás",     sub: "7 e 8 em 1 Apenas" },
+  { label: "Água Hidrogenada", sub: "8 em 1 e Smart Apenas" },
 ];
 
 import type { ReactNode } from "react";
@@ -49,19 +50,19 @@ type Product = {
 
 const row1: Product[] = [
   { img: imgNeoUp,    imgW: 3275, imgH: 4096, name: "Neo UP",                                       sub: "Apenas Natural" },
-  { img: imgNeoFit,   imgW: 3275, imgH: 4096, name: "Neo FIT",                                      sub: "5 em 1", tank: "Tanque de 400 ml" },
-  { img: imgNeoSmart, imgW: 3275, imgH: 4096, name: <span>Neo SMART H<sub>2</sub></span>,            sub: "5 em 1" },
-  { img: imgNeoTouch, imgW: 3384, imgH: 4096, name: "Neo TOUCH",                                    sub: "5 em 1", tank: "Tanque de 800 ml" },
-  { img: imgNeoPlus,  imgW: 3384, imgH: 4096, name: "Neo PLUS",                                     sub: "5 em 1", tank: "Tanque de 1500 ml" },
+  { img: imgNeoFit,   imgW: 3275, imgH: 4096, name: "Neo FIT",                                      sub: "6 em 1", tank: "Tanque de 400 ml" },
+  { img: imgNeoSmart, imgW: 3275, imgH: 4096, name: <span>Neo SMART H<sub>2</sub></span>,            sub: "7 em 1" },
+  { img: imgNeoTouch, imgW: 3384, imgH: 4096, name: "Neo TOUCH",                                    sub: "6 em 1", tank: "Tanque de 800 ml" },
+  { img: imgNeoPlus,  imgW: 3384, imgH: 4096, name: "Neo PLUS",                                     sub: "6 em 1", tank: "Tanque de 1500 ml" },
 ];
 
 const row2: Product[] = [
-  { img: imgNeoUltra,        imgW: 3772, imgH: 4096, name: "Neo ULTRA",                              sub: "5 em 1", tank: "Tanque de 3L" },
-  { img: imgNeoUltraSpark,   imgW: 3772, imgH: 4096, name: "Neo ULTRA SPARK",                        sub: "6 em 1", tank: "Tanque de 3L" },
-  { img: imgNeoUltraSparkH2, imgW: 3772, imgH: 4096, name: <span>Neo ULTRA SPARK H<sub>2</sub></span>, sub: "7 em 1", tank: "Tanque de 3L" },
-  { img: imgNeoMax,          imgW: 1515, imgH: 4012, name: "Neo MAX",                                sub: "5 em 1", tank: "Tanque de 3L" },
-  { img: imgNeoMaxSpark,     imgW: 1515, imgH: 4012, name: "Neo MAX SPARK",                          sub: "6 em 1", tank: "Tanque de 3L" },
-  { img: imgNeoMaxSparkH2,   imgW: 1515, imgH: 4012, name: <span>Neo MAX SPARK H<sub>2</sub></span>, sub: "7 em 1", tank: "Tanque de 3L" },
+  { img: imgNeoUltra,        imgW: 3772, imgH: 4096, name: "Neo ULTRA",                              sub: "6 em 1", tank: "Tanque de 3L" },
+  { img: imgNeoUltraSpark,   imgW: 3772, imgH: 4096, name: "Neo ULTRA SPARK",                        sub: "7 em 1", tank: "Tanque de 3L" },
+  { img: imgNeoUltraSparkH2, imgW: 3772, imgH: 4096, name: <span>Neo ULTRA SPARK H<sub>2</sub></span>, sub: "8 em 1", tank: "Tanque de 3L" },
+  { img: imgNeoMax,          imgW: 1515, imgH: 4012, name: "Neo MAX",                                sub: "6 em 1", tank: "Tanque de 3L" },
+  { img: imgNeoMaxSpark,     imgW: 1515, imgH: 4012, name: "Neo MAX SPARK",                          sub: "7 em 1", tank: "Tanque de 3L" },
+  { img: imgNeoMaxSparkH2,   imgW: 1515, imgH: 4012, name: <span>Neo MAX SPARK H<sub>2</sub></span>, sub: "8 em 1", tank: "Tanque de 3L" },
 ];
 
 function CardImage({ src }: { src: string }) {
