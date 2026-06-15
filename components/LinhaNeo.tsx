@@ -137,7 +137,7 @@ export default function LinhaNeo() {
             </p>
             <div className="flex flex-wrap gap-[20px_10px] items-center w-full">
               {waterTypes.map((w) => (
-                <div key={w.label} className="flex flex-[1_0_0] gap-[10px] items-center min-w-[180px]">
+                <div key={w.label} className="flex flex-[0_0_calc(50%-5px)] lg:flex-[0_0_calc(25%-8px)] gap-[10px] items-center">
                   <FigmaIcon src={imgCheckin} size={20} />
                   <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-0">
                     <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] w-full">
