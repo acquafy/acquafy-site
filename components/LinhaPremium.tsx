@@ -40,9 +40,10 @@ const waterTypes = [
   { label: "Água Gelada",       sub: "Em todos" },
   { label: "45º Leite",         sub: "Em todos" },
   { label: "65º Chá",           sub: "Em todos" },
-  { label: "100º Café",         sub: "Em todos" },
-  { label: "Água com Gás",      sub: "6 e 7 em 1 Apenas" },
-  { label: "Água Hidrogenada",  sub: "7 em 1 Apenas" },
+  { label: "85º Café",          sub: "Em todos" },
+  { label: "100º Água Quente",  sub: "Em todos" },
+  { label: "Água com Gás",      sub: "7 e 8 em 1 Apenas" },
+  { label: "Água Hidrogenada",  sub: "8 em 1 Apenas" },
 ];
 
 const panelFeatures = [
@@ -59,21 +60,21 @@ type Product = {
 };
 
 const rowInfinity: Product[] = [
-  { img: imgInfinity,       name: "Neo INFINITY",                                    sub: "5 em 1" },
-  { img: imgInfinitySpark,  name: "Neo INFINITY SPARK",                              sub: "6 em 1" },
-  { img: imgInfinitySparkH2,name: <span>Neo INFINITY SPARK H<sub>2</sub></span>,     sub: "7 em 1" },
+  { img: imgInfinity,       name: "Neo INFINITY",                                    sub: "6 em 1" },
+  { img: imgInfinitySpark,  name: "Neo INFINITY SPARK",                              sub: "7 em 1" },
+  { img: imgInfinitySparkH2,name: <span>Neo INFINITY SPARK H<sub>2</sub></span>,     sub: "8 em 1" },
 ];
 
 const rowPrestige: Product[] = [
-  { img: imgPrestige,        name: "Neo PRESTIGE",                                   sub: "5 em 1" },
-  { img: imgPrestigeSpark,   name: "Neo PRESTIGE SPARK",                             sub: "6 em 1" },
-  { img: imgPrestigeSparkH2, name: <span>Neo PRESTIGE SPARK H<sub>2</sub></span>,    sub: "7 em 1" },
+  { img: imgPrestige,        name: "Neo PRESTIGE",                                   sub: "6 em 1" },
+  { img: imgPrestigeSpark,   name: "Neo PRESTIGE SPARK",                             sub: "7 em 1" },
+  { img: imgPrestigeSparkH2, name: <span>Neo PRESTIGE SPARK H<sub>2</sub></span>,    sub: "8 em 1" },
 ];
 
 const rowPrime: Product[] = [
-  { img: imgPrime,        name: "Neo PRIME",                                         sub: "5 em 1" },
-  { img: imgPrimeSpark,   name: "Neo PRIME SPARK",                                   sub: "6 em 1" },
-  { img: imgPrimeSparkH2, name: <span>Neo PRIME SPARK H<sub>2</sub></span>,          sub: "7 em 1" },
+  { img: imgPrime,        name: "Neo PRIME",                                         sub: "6 em 1" },
+  { img: imgPrimeSpark,   name: "Neo PRIME SPARK",                                   sub: "7 em 1" },
+  { img: imgPrimeSparkH2, name: <span>Neo PRIME SPARK H<sub>2</sub></span>,          sub: "8 em 1" },
 ];
 
 // ─── Card sub-components ────────────────────────────────────────────────────
