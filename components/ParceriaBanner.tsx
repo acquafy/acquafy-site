@@ -4,16 +4,16 @@ import { BtnAzulBaseArrow, BtnAzulOutArrow } from "./ui/Buttons";
 
 /* ── Assets ───────────────────────────────────────────────────── */
 // Tela total (≥1280px) — BG image fills the whole section
-const imgBgPadrao = "/figma-assets/ddb7b9ae-5269-49c5-9935-ed285ed394fa.png";
+const imgBgPadrao = "/figma-assets/bg-padrao.webp";
 
 // 1024–1279px right column + mobile bottom — product image
-const imgFrame1024 = "/figma-assets/405a21e8-227a-4c26-8bcd-c7ad33247447.png";
+const imgFrame1024 = "/figma-assets/frame-1024.webp";
 
 // Badge & tier icons
-const imgPlanet   = "/figma-assets/225f4766-3b68-4083-80f9-8bda33dbe7e3.svg";
-const imgSilver   = "/figma-assets/fc77e73a-6af6-4239-a007-70775393e1d8.png";
-const imgGold     = "/figma-assets/52cce9b5-c0bf-452a-94fd-8f2ead4a089c.png";
-const imgPlatinum = "/figma-assets/9149cb94-288c-4f50-992b-3fdd6369b4cd.png";
+const imgPlanet   = "/figma-assets/icon-planet-b.svg";
+const imgSilver   = "/figma-assets/product-silver-d.webp";
+const imgGold     = "/figma-assets/product-gold-c.webp";
+const imgPlatinum = "/figma-assets/product-platinum-d.webp";
 
 /* ── Tier badge data ─────────────────────────────────────────── */
 const tiers = [

@@ -1,11 +1,11 @@
 ﻿import FigmaIcon from "./FigmaIcon";
 
-const imgScale  = "/figma-assets/ae3c7ad0-7282-4ba0-b278-fe8fab1cf757.svg";  // 30×30
-const imgMoney  = "/figma-assets/1901e66b-c195-4630-81d9-94921427523c.svg";  // 33×30
-const imgGlobe  = "/figma-assets/8869df28-c34e-4fd2-8bc7-77d68c266451.svg";  // 30×30
-const imgBrain  = "/figma-assets/509a003f-38cc-4a31-acb6-7c798cf29bef.svg";  // 30×30
-const imgCrown  = "/figma-assets/ab818f73-45a8-4c51-864d-a2b4e0c6c6d0.svg";  // 30×30
-const imgPhone  = "/figma-assets/b66d8320-f405-425c-8eac-5a49bbc446d9.svg";  // 30×30
+const imgScale  = "/figma-assets/icon-scale-b.svg";  // 30×30
+const imgMoney  = "/figma-assets/icon-money-33px.svg";  // 33×30
+const imgGlobe  = "/figma-assets/icon-globe-30px-b.svg";  // 30×30
+const imgBrain  = "/figma-assets/icon-brain-30px-c.svg";  // 30×30
+const imgCrown  = "/figma-assets/icon-crown-30px.svg";  // 30×30
+const imgPhone  = "/figma-assets/icon-phone-30px.svg";  // 30×30
 
 const cards = [
   {

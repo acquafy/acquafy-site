@@ -1,12 +1,12 @@
 ﻿// ── Ícones dos cartões ────────────────────────────────────────────────────────
-const imgProfile   = "/figma-assets/e8b08e19-549f-46cf-9c7f-8e1bd6b4b256.svg"; // consumidor
-const imgParceria  = "/figma-assets/d9ac404c-0e24-4e3b-8c9c-6bceac8a3557.svg"; // parceiro
-const imgPlanetWeb = "/figma-assets/869c7e21-fb15-4cbd-993e-a635c3668a73.svg"; // operação global
+const imgProfile   = "/figma-assets/icon-profile-consumer.svg"; // consumidor
+const imgParceria  = "/figma-assets/icon-parceiro.svg"; // parceiro
+const imgPlanetWeb = "/figma-assets/icon-planetweb-operacao-global.svg"; // operação global
 
 // ── Fotos dos cartões ─────────────────────────────────────────────────────────
-const imgConsum1   = "/figma-assets/95800f46-e137-4a29-892c-9ade129abbd5.png"; // mulher c/ phone
-const imgConsum2   = "/figma-assets/34988d61-1cf6-42b9-9081-eb60606eece0.png"; // homem
-const imgGlobal    = "/figma-assets/37a95ad4-7a3c-4372-85aa-7444466840a3.png"; // mapa global
+const imgConsum1   = "/figma-assets/photo-consumer-woman.webp"; // mulher c/ phone
+const imgConsum2   = "/figma-assets/photo-consumer-man.webp"; // homem
+const imgGlobal    = "/figma-assets/image-global-map.webp"; // mapa global
 
 type PersonCard = {
   layout: "person";

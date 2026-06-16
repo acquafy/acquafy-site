@@ -4,14 +4,14 @@ import { useState } from "react";
 import FigmaIcon from "./FigmaIcon";
 import TopicPopup from "./TopicPopup";
 
-const imgArrowBlue = "/figma-assets/75971e6c-641c-404b-9d87-240b3150d417.svg";
+const imgArrowBlue = "/figma-assets/icon-arrow-blue-b.svg";
 
-const imgAguaPura   = "/figma-assets/d2eb2d02-8be8-4653-ae2c-174d7b564294.svg";
-const imgMobile     = "/figma-assets/917d2d21-0553-4643-b0fc-73f9af2a9756.svg";
-const imgMedia      = "/figma-assets/b509f7df-2405-4256-b220-011fd8dd5592.svg";
-const imgParceria   = "/figma-assets/14a82867-83cc-431e-98b4-3603d8945aab.svg";
-const imgMoney      = "/figma-assets/00faff7b-84c5-43b7-aa62-455049b87f58.svg";
-const imgManutencao = "/figma-assets/ef3ff887-7eee-4719-b173-bde7b98d9984.svg";
+const imgAguaPura   = "/figma-assets/icon-agua-pura.svg";
+const imgMobile     = "/figma-assets/icon-mobile-b.svg";
+const imgMedia      = "/figma-assets/icon-media.svg";
+const imgParceria   = "/figma-assets/icon-parceria-a.svg";
+const imgMoney      = "/figma-assets/icon-money-b.svg";
+const imgManutencao = "/figma-assets/icon-manutencao.svg";
 
 const topics = [
   {

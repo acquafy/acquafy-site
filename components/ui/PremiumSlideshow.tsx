@@ -1,18 +1,18 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 
 // ── Slide images (3 ambientes) — node 3285:5944 ─────────────────────────────
 // Frame250 = slide 0 (Padrão/dot-1 active), Frame251 = slide 2 (Variante3/dot-3 active)
 const slides = [
-  "/figma-assets/237697cf-ead9-49ad-9437-d9aa0d339349.png", // Frame250 — slide 1 (dot 1 active)
-  "/figma-assets/0e2d4786-97ef-4d1a-84d5-465c1a439987.png", // mármore  — slide 2 (dot 2 active)
-  "/figma-assets/118017fd-1a4f-49aa-92f6-207be544d755.png", // Frame251 — slide 3 (dot 3 active)
+  "/figma-assets/premium-slideshow-1.webp", // Frame250 — slide 1 (dot 1 active)
+  "/figma-assets/premium-slideshow-2.webp", // mármore  — slide 2 (dot 2 active)
+  "/figma-assets/premium-slideshow-3.webp", // Frame251 — slide 3 (dot 3 active)
 ];
 
 // ── Dots (node 3285:5944 — Ellipse3/Ellipse4) ─────────────────────────────
-const imgDotActive   = "/figma-assets/ab3a9184-7dcb-4725-b609-c10027896da2.svg";
-const imgDotInactive = "/figma-assets/d09c7696-cea6-410b-95a5-a916d53917fb.svg";
+const imgDotActive   = "/figma-assets/dot-active-b.svg";
+const imgDotInactive = "/figma-assets/dot-inactive-b.svg";
 
 function Dot({ active, onClick }: { active: boolean; onClick?: () => void }) {
   return (

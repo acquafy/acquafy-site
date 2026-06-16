@@ -2,12 +2,12 @@
 
 // ── Value icon assets ─────────────────────────────────────────────────────────
 // aspectW/H only when clearly non-square; all others treated as square
-const imgLamp        = "/figma-assets/0cee6006-8a4f-432d-9c0a-037b9553ea3e.svg"; // Inovação      21×30 portrait
-const imgShield      = "/figma-assets/146c4b26-2e86-43c0-b6f8-eda8ed5749ec.svg"; // Integridade   sq
-const imgPessoas     = "/figma-assets/ba0d9ba0-26cb-463f-8fbb-8788191beb5c.svg"; // Foco cliente  sq
-const imgSustent     = "/figma-assets/dd5dc580-00f1-4578-b48e-e7365d054765.svg"; // Sustent.      sq
-const imgParceria    = "/figma-assets/b988d6b3-f6b1-4a93-a3af-9e76f9a3d4f9.svg"; // Parceria      sq
-const imgGlobeWorld  = "/figma-assets/c377ebf7-6d10-4189-973f-e080d3c39985.svg"; // Expansão      sq
+const imgLamp        = "/figma-assets/icon-lamp-inovacao.svg"; // Inovação      21×30 portrait
+const imgShield      = "/figma-assets/icon-shield-integridade.svg"; // Integridade   sq
+const imgPessoas     = "/figma-assets/icon-pessoas-foco-cliente.svg"; // Foco cliente  sq
+const imgSustent     = "/figma-assets/icon-sustent-a.svg"; // Sustent.      sq
+const imgParceria    = "/figma-assets/icon-parceria-b.svg"; // Parceria      sq
+const imgGlobeWorld  = "/figma-assets/icon-globe-world.svg"; // Expansão      sq
 
 type ValueItem = {
   icon: string;

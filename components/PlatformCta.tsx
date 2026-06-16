@@ -1,8 +1,8 @@
 ﻿import FigmaIcon from "./FigmaIcon";
 
-const imgBg   = "/figma-assets/588b6943-81ee-4231-824d-a3e56918920f.png";
-const imgChat = "/figma-assets/7a22b5e9-f087-42d0-9204-5e54a681197f.svg";
-const imgArrow= "/figma-assets/03b65413-2c5b-4058-93a1-d3a60c7614c0.svg";
+const imgBg   = "/figma-assets/bg-k.webp";
+const imgChat = "/figma-assets/icon-chat-b.svg";
+const imgArrow= "/figma-assets/icon-arrow-b.svg";
 
 export default function PlatformCta() {
   return (

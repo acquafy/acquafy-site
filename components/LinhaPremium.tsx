@@ -1,39 +1,36 @@
 ﻿import type { ReactNode } from "react";
 import FigmaIcon from "./FigmaIcon";
 import PremiumSlideshow from "./ui/PremiumSlideshow";
+import { PRODUCT_IMAGES } from "@/lib/products";
 
 // Slide dots
-const imgDotActive   = "/figma-assets/1c28eecf-0b03-413f-acc0-d80cace5f949.svg";
-const imgDotInactive = "/figma-assets/b410b09c-6053-47fe-aa6d-96ccd0a7b750.svg";
+const imgDotActive   = "/figma-assets/dot-active-a.svg";
+const imgDotInactive = "/figma-assets/dot-inactive-a.svg";
 
 // Slideshow images
-const imgSlide1 = "/figma-assets/7cbbfd60-44e7-4cb2-9e49-352087597ef0.png";
-const imgSlide2 = "/figma-assets/cf110e85-ad24-43d6-b563-1f1002aa19f7.png";
+const imgSlide1 = "/figma-assets/premium-slide-1.webp";
+const imgSlide2 = "/figma-assets/premium-slide-2.webp";
 
-// Infinity products (keep existing from previous session)
-const imgInfinity      = "/figma-assets/22fda6d3-1ea3-48aa-b26b-bd92fc65d286.png";
-const imgInfinitySpark   = "/figma-assets/ee0e1157-ebcb-43a5-ba1a-a819a777f35b.png";
-const imgInfinitySparkH2 = "/figma-assets/08beedcc-95b5-449d-a7a5-a66aa64ead56.png";
-
-// Prestige products
-const imgPrestige        = "/figma-assets/9d959c11-3d1b-4ee6-a012-3ae5ba6e218d.png";
-const imgPrestigeSpark   = "/figma-assets/9bffacc0-e10f-4e47-9a17-cadb82b8fabd.png";
-const imgPrestigeSparkH2 = "/figma-assets/ded1ddb1-731b-44ac-a5cc-7de82c612d9d.png";
-
-// Prime products
-const imgPrime        = "/figma-assets/1286c1c8-ee96-4d96-9d75-9804a8992a0f.png";
-const imgPrimeSpark   = "/figma-assets/019577f9-c58d-4251-84f2-2a46723d2329.png";
-const imgPrimeSparkH2 = "/figma-assets/83b323cb-be65-4b33-a70a-10daf12a0a06.png";
+// Product images — fonte única via PRODUCT_CATALOG (lib/products.ts)
+const imgInfinity        = PRODUCT_IMAGES["neo-infinity"];
+const imgInfinitySpark   = PRODUCT_IMAGES["neo-infinity-spark"];
+const imgInfinitySparkH2 = PRODUCT_IMAGES["neo-infinity-spark-h2"];
+const imgPrestige        = PRODUCT_IMAGES["neo-prestige"];
+const imgPrestigeSpark   = PRODUCT_IMAGES["neo-prestige-spark"];
+const imgPrestigeSparkH2 = PRODUCT_IMAGES["neo-prestige-spark-h2"];
+const imgPrime           = PRODUCT_IMAGES["neo-prime"];
+const imgPrimeSpark      = PRODUCT_IMAGES["neo-prime-spark"];
+const imgPrimeSparkH2    = PRODUCT_IMAGES["neo-prime-spark-h2"];
 
 // Panel screen (TELA PREMIUM 1 — node 3285:5944)
-const imgPanel   = "/figma-assets/45c97b68-92c7-454f-9dae-8298671c9c07.png";
+const imgPanel   = "/figma-assets/panel-premium.webp";
 
 // Icons (node 3285:5944)
-const imgCheckin    = "/figma-assets/b41fadec-c9cf-4033-967a-21f2b7b8c020.svg";
-const imgIconLCD    = "/figma-assets/f20db2d1-fd07-42cc-97e2-8c275c994409.svg"; // BT_DOCS_2 (square)
-const imgIconFilter = "/figma-assets/72988fa4-9114-44e7-86c8-0bce090e363c.svg"; // Vector/Filtros (40×40 square)
-const imgIconOsmose = "/figma-assets/52211f12-c4c4-4e79-ad60-7d9b9d1b82e7.svg"; // Osmose Reversa (642×642 square)
-const imgIconIoT    = "/figma-assets/908cd665-baf2-4e13-b652-189909b3e36e.svg"; // IoT (629×629 square)
+const imgCheckin    = "/figma-assets/icon-check-b.svg";
+const imgIconLCD    = "/figma-assets/icon-lcd.svg"; // BT_DOCS_2 (square)
+const imgIconFilter = "/figma-assets/icon-filter-40px.svg"; // Vector/Filtros (40×40 square)
+const imgIconOsmose = "/figma-assets/icon-osmose-reversa.svg"; // Osmose Reversa (642×642 square)
+const imgIconIoT    = "/figma-assets/icon-iot.svg"; // IoT (629×629 square)
 
 const waterTypes = [
   { label: "Água Natural",      sub: "Presente em todos" },
@@ -50,7 +47,7 @@ const panelFeatures = [
   { icon: imgIconLCD,    title: "LCD IPS / Total Touch",   desc: "Navegação como iPhone / iPad" },
   { icon: imgIconFilter, title: "Tecnologia Premium",      desc: "Filtros de alta performance" },
   { icon: imgIconOsmose, title: "Osmose Reversa(RO)",      desc: "Água alcalina pura" },
-  { icon: imgIconIoT,    title: "IoT\nAvançado",           desc: "Telemetria em tempo real" },
+  { icon: imgIconIoT,    title: "IoT Avançado",           desc: "Telemetria em tempo real" },
 ];
 
 type Product = {
@@ -165,9 +162,9 @@ export default function LinhaPremium() {
             </p>
             <div className="flex flex-wrap gap-[20px_10px] items-center w-full">
               {waterTypes.map((w) => (
-                <div key={w.label} className="flex flex-1 gap-[10px] items-center min-w-[180px]">
+                <div key={w.label} className="flex flex-[0_0_calc(50%-5px)] lg:flex-[0_0_calc(25%-8px)] gap-[10px] items-center">
                   <FigmaIcon src={imgCheckin} size={20} />
-                  <div className="flex flex-1 flex-col gap-[10px] items-start min-w-0">
+                  <div className="flex flex-1 flex-col gap-[5px] items-start min-w-0">
                     <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] w-full">
                       {w.label}
                     </p>
@@ -242,7 +239,7 @@ export default function LinhaPremium() {
                       <FigmaIcon src={f.icon} size={30} />
                       {/* Text group — gap-[10px] entre label e desc (node I3283:6501;3691:14050) */}
                       <div className="flex flex-col gap-[10px] items-center shrink-0 text-center w-full">
-                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#6e0cc3] text-center w-full whitespace-pre-line min-h-[28px] flex flex-col justify-center">
+                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#6e0cc3] text-center w-full whitespace-pre-line min-h-[34px] flex flex-col justify-center">
                           {f.title}
                         </p>
                         <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] leading-[14px] text-[#2a2a2b] text-center w-full">

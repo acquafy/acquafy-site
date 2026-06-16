@@ -1,13 +1,13 @@
 ﻿"use client";
 import { useState, useMemo, useRef, useEffect } from "react";
 import FigmaIcon from "./FigmaIcon";
-import { PRODUCT_PRICES_BRL, formatBRL } from "@/lib/products";
+import { PRODUCT_PRICES_BRL, formatBRL, PRODUCT_IMAGES as productImages } from "@/lib/products";
 import { useCart } from "@/components/CartProvider";
 
 // ─── Assets ───────────────────────────────────────────────────────────────────
-const imgBannerBg       = "/figma-assets/compare-banner-bg.png";
-const imgBannerProducts = "/figma-assets/compare-banner-products.png";
-const imgBuyCursor      = "/figma-assets/cursor-buy.png";
+const imgBannerBg       = "/figma-assets/compare-banner-bg.webp";
+const imgBannerProducts = "/figma-assets/compare-banner-products.webp";
+const imgBuyCursor      = "/figma-assets/cursor-buy.webp";
 const imgArrowWhite     = "/figma-assets/icon-arrow-white-b.svg";
 const imgArrowBlue      = "/figma-assets/icon-arrow-blue-a.svg";
 const imgMobile         = "/figma-assets/icon-mobile-a.svg";
@@ -21,37 +21,14 @@ const imgCheckin        = "/figma-assets/icon-check-a.svg";
 const imgCheckinBlue    = "/figma-assets/icon-check-blue-a.svg";
 const imgCheckinPurple  = "/figma-assets/icon-check-purple-a.svg";
 const imgMoney          = "/figma-assets/icon-money-a.svg";
-const imgEssentialsBg   = "/figma-assets/bg-essentials-section.png";
-const imgPremiumBg      = "/figma-assets/bg-premium-section.png";
+const imgEssentialsBg   = "/figma-assets/bg-essentials-section.webp";
+const imgPremiumBg      = "/figma-assets/bg-premium-section.webp";
 const imgShield         = "/figma-assets/icon-shield-a.svg";
 const imgLogistics      = "/figma-assets/icon-logistics.svg";
 const imgPhone          = "/figma-assets/icon-phone-a.svg";
 const imgCertificate    = "/figma-assets/icon-certificate.svg";
 const imgSustainability = "/figma-assets/icon-sustainability.svg";
 
-// Product image constants — indexed by product id
-const productImages: Record<string, string> = {
-  "neo-up":                "/figma-assets/neo-up-catalog.png",
-  "neo-fit":               "/figma-assets/neo-fit.png",
-  "neo-smart-h2":          "/figma-assets/neo-smart-h2.png",
-  "neo-touch":             "/figma-assets/neo-touch.png",
-  "neo-plus":              "/figma-assets/neo-plus.png",
-  "neo-ultra":             "/figma-assets/neo-ultra.png",
-  "neo-ultra-spark":       "/figma-assets/neo-ultra-spark.png",
-  "neo-ultra-spark-h2":    "/figma-assets/neo-ultra-spark-h2.png",
-  "neo-max":               "/figma-assets/neo-max.png",
-  "neo-max-spark":         "/figma-assets/neo-max-spark.png",
-  "neo-max-spark-h2":      "/figma-assets/neo-max-spark-h2.png",
-  "neo-infinity":          "/figma-assets/premium-infinity-catalog.png",
-  "neo-infinity-spark":    "/figma-assets/premium-infinity-spark-catalog.png",
-  "neo-infinity-spark-h2": "/figma-assets/premium-infinity-spark-h2-catalog.png",
-  "neo-prestige":          "/figma-assets/premium-prestige-catalog.png",
-  "neo-prestige-spark":    "/figma-assets/premium-prestige-spark-catalog.png",
-  "neo-prestige-spark-h2": "/figma-assets/premium-prestige-spark-h2-catalog.png",
-  "neo-prime":             "/figma-assets/premium-prime-catalog.png",
-  "neo-prime-spark":       "/figma-assets/premium-prime-spark-catalog.png",
-  "neo-prime-spark-h2":    "/figma-assets/premium-prime-spark-h2-catalog.png",
-};
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 type Specs = {

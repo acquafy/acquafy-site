@@ -1,4 +1,4 @@
-﻿const imgArrow = "/figma-assets/278398fb-a5aa-4bc3-917a-023459eaff65.svg";
+﻿const imgArrow = "/figma-assets/icon-arrow-c.svg";
 
 type FilterCard = {
   num: string;
@@ -44,7 +44,7 @@ function FilterCard({ card, isLast }: { card: FilterCard; isLast: boolean }) {
           <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-white text-center">{card.num}</span>
         </div>
         <p
-          className={`font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] flex-1 min-w-0${card.highlight ? " bg-clip-text text-transparent" : " text-[#1f2e91]"}`}
+          className={`font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[24px] flex-1 min-w-0${card.highlight ? " bg-clip-text text-transparent" : " text-[#1f2e91]"}`}
           style={card.highlight ? { backgroundImage: "linear-gradient(to right, #0041ff, #3f8cff)" } : undefined}
         >
           {card.title}

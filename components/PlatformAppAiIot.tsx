@@ -1,13 +1,13 @@
 ﻿import FigmaIcon from "./FigmaIcon";
 
-const imgMonitor   = "/figma-assets/db4bca54-a2c0-4ca3-89d5-b431285d293a.svg";
-const imgFiltros   = "/figma-assets/b48bb694-178a-4fcd-a1ca-c94ecb1a497e.svg";
-const img365       = "/figma-assets/7e5dd72f-f79b-4da7-9844-536e9720f726.svg";
-const imgWater     = "/figma-assets/c16ce133-c8af-4d84-b509-bf0ed3828923.svg";
-const imgNotif     = "/figma-assets/46840551-035d-459c-b88f-beba2e4e0e72.svg";
-const imgGear      = "/figma-assets/407aa9bf-8e66-4864-beb2-fc6fd783edc8.svg";
-const imgBrain     = "/figma-assets/2758fd1b-afa5-4c4b-a058-50717e069442.svg";
-const imgMobile    = "/figma-assets/b6e829b1-ae64-4d1e-a7b9-3943adc6bc21.svg";
+const imgMonitor   = "/figma-assets/icon-monitor.svg";
+const imgFiltros   = "/figma-assets/icon-filtros-b.svg";
+const img365       = "/figma-assets/icon-365.svg";
+const imgWater     = "/figma-assets/icon-water-b.svg";
+const imgNotif     = "/figma-assets/icon-notif.svg";
+const imgGear      = "/figma-assets/icon-gear.svg";
+const imgBrain     = "/figma-assets/icon-brain-b.svg";
+const imgMobile    = "/figma-assets/icon-mobile-c.svg";
 
 const items = [
   { icon: imgMonitor, iconW: 30, iconH: 30, label: "Monitoramento em tempo real" },

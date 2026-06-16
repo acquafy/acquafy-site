@@ -1,10 +1,10 @@
 ﻿import FigmaIcon from "./FigmaIcon";
 
-const imgParceiros  = "/figma-assets/d8cc0e38-9923-4c56-89e0-c6ad7477e55f.svg";
-const imgQrCodes    = "/figma-assets/632e0967-47b3-44a4-a396-37b0cdf98e53.svg";
-const imgMediaNet   = "/figma-assets/72dfe209-47d0-4134-9553-eff1e0e5e643.svg";
-const imgVendas     = "/figma-assets/ecff67f8-3ccb-4c48-b37e-e0b8e3988d68.svg";
-const imgComissoes  = "/figma-assets/ad1535bd-4a84-4a5e-a482-b76edcb8851a.svg";
+const imgParceiros  = "/figma-assets/icon-parceiros-b.svg";
+const imgQrCodes    = "/figma-assets/icon-qr-codes-b.svg";
+const imgMediaNet   = "/figma-assets/icon-medianet-c.svg";
+const imgVendas     = "/figma-assets/icon-vendas-c.svg";
+const imgComissoes  = "/figma-assets/icon-comissoes-c.svg";
 
 const cards = [
   {

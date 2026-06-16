@@ -4,26 +4,26 @@ import { ReactNode, ButtonHTMLAttributes } from "react";
 import FigmaIcon from "../FigmaIcon";
 
 // ── Arrow icons  (11×9 landscape — fills 9px slot by width) ──────────────────
-const imgArrowBlue  = "/figma-assets/f0b222c3-c482-45b1-98ee-af2c8ca021d0.svg"; // outline Padrão
-const imgArrowWhite = "/figma-assets/8b3582ba-350c-4445-b464-872ec596bb95.svg"; // solid buttons
-const imgArrowGray  = "/figma-assets/c296fa36-b707-45b7-8be3-9ddccb4fc438.svg"; // inactive
-const imgArrowGreen = "/figma-assets/dffd5f51-2fd9-400b-84a5-2299c741e2f6.svg"; // verde outline
+const imgArrowBlue  = "/figma-assets/icon-arrow-blue-outline-d.svg"; // outline Padrão
+const imgArrowWhite = "/figma-assets/icon-arrow-white-hover.svg"; // solid buttons
+const imgArrowGray  = "/figma-assets/icon-arrow-gray.svg"; // inactive
+const imgArrowGreen = "/figma-assets/icon-arrow-green.svg"; // verde outline
 
 // ── Partner icon  (40.69×40 — fills 16px slot by width) ──────────────────────
-const imgPartnerWhite = "/figma-assets/52fef4e5-6861-44bb-bc5e-2a5152ca7eeb.svg"; // hover/pressed
-const imgPartnerBlue  = "/figma-assets/dd5c1e75-7d0c-44db-8bec-f75bfc41e589.svg"; // outline Padrão
-const imgPartnerGray  = "/figma-assets/4636168d-4b10-4c37-8230-3e43a51ba870.svg"; // inactive
+const imgPartnerWhite = "/figma-assets/icon-partner-white.svg"; // hover/pressed
+const imgPartnerBlue  = "/figma-assets/icon-partner-blue.svg"; // outline Padrão
+const imgPartnerGray  = "/figma-assets/icon-partner-gray.svg"; // inactive
 
 // ── Chat icon  (30×30 — square) ───────────────────────────────────────────────
-const imgChatBlue  = "/figma-assets/39b74822-f894-4ef2-9b2d-7ec2c6e5edcf.svg"; // Padrão
-const imgChatWhite = "/figma-assets/0ee887f2-5f2a-45d7-9f39-6540523eda63.svg"; // hover/pressed
-const imgChatGray  = "/figma-assets/75713252-8451-4973-9a9a-efdfd074142a.svg"; // inactive
+const imgChatBlue  = "/figma-assets/icon-chat-blue.svg"; // Padrão
+const imgChatWhite = "/figma-assets/icon-chat-white.svg"; // hover/pressed
+const imgChatGray  = "/figma-assets/icon-chat-gray.svg"; // inactive
 
 // ── Gift icon  (642×642 — square) ────────────────────────────────────────────
-const imgGift = "/figma-assets/d283859f-6a9e-4397-ae66-035f33620c96.svg";
+const imgGift = "/figma-assets/icon-gift-b.svg";
 
 // ── Pessoas icon  (43.86×40.50 — fills 16px slot by width) ───────────────────
-const imgPessoas = "/figma-assets/4fff6392-f936-4007-a949-44fbb1ba1266.svg";
+const imgPessoas = "/figma-assets/icon-pessoas-b.svg";
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Internal helpers

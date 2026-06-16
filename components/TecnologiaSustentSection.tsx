@@ -3,8 +3,8 @@ import FigmaIcon from "./FigmaIcon";
 import { BtnVerdeOutArrow } from "./ui/Buttons";
 
 // ── Assets ───────────────────────────────────────────────────────────────────
-const imgBg          = "/figma-assets/ts-sustent-bg.png";         // section bg
-const imgCtaBg       = "/figma-assets/ts-cta-bg.png";             // CTA overlay
+const imgBg          = "/figma-assets/ts-sustent-bg.webp";         // section bg
+const imgCtaBg       = "/figma-assets/ts-cta-bg.webp";             // CTA overlay
 const imgCtaIcon     = "/figma-assets/ts-icon-experiencia.svg";   // CTA icon 438×492
 const imgPlastico    = "/figma-assets/ts-icon-plastico.svg";       // plastic bottle  405×643
 const imgEnergia     = "/figma-assets/ts-icon-energia.svg";        // energia         ~492×492

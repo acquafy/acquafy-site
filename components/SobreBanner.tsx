@@ -2,18 +2,18 @@
 import FigmaIcon from "./FigmaIcon";
 
 // ── Assets ───────────────────────────────────────────────────────────────────
-const imgBg         = "/figma-assets/04c20ac4-caf6-45c0-b736-2593118239e7.png"; // lg+ bg fullscreen (≥1024px)
-const imgBannerCard = "/figma-assets/da7a9ffd-04f1-4cf0-bda1-a75e292de90e.png"; // mobile card (<1024px)
-const imgGlobe      = "/figma-assets/e01680b5-6540-430f-b706-5f234b9fb2c4.svg"; // badge globe  sq
-const imgUsa        = "/figma-assets/aa062646-c2ec-4ba7-8c0b-2a9f95c173a2.svg"; // USA flag     sq
-const imgInterfyIcon= "/figma-assets/6f9b651a-dc3f-4563-89b9-0153ba7eb26f.svg"; // Interfy icon sq
-const imgMobile     = "/figma-assets/8f0523f2-e43d-40d3-8c65-144aa8a9eca2.svg"; // Mobile icon  21×30 portrait
-const imgArrowWhite = "/figma-assets/201ff0b4-75aa-471b-9b9e-a5f4bb928ae1.svg"; // white arrow  (solid btn)
-const imgArrowBlue  = "/figma-assets/3f65252b-7a31-4697-87df-162dc740ef03.svg"; // blue arrow   (outline btn)
-const imgAI         = "/figma-assets/0b38c63f-f4ef-48ed-8fc2-3b7d2f1f0075.svg"; // AI IA        40×40 sq
-const imgWater      = "/figma-assets/14eb6e5a-67c1-4ab7-aea9-7efda79cf374.svg"; // water bubble 40×40 sq
-const imgGlobe2     = "/figma-assets/6aa12ed6-c1cb-4216-87a9-a0ca3b8b206d.svg"; // connectivity 40×40 sq
-const imgSustent    = "/figma-assets/7ee71bdc-5362-4a54-93af-88ae79a69469.svg"; // sustainability sq
+const imgBg         = "/figma-assets/bg-desktop-lg.webp"; // lg+ bg fullscreen (≥1024px)
+const imgBannerCard = "/figma-assets/banner-card-mobile.webp"; // mobile card (<1024px)
+const imgGlobe      = "/figma-assets/icon-globe-badge.svg"; // badge globe  sq
+const imgUsa        = "/figma-assets/flag-usa-sq.svg"; // USA flag     sq
+const imgInterfyIcon= "/figma-assets/icon-interfy.svg"; // Interfy icon sq
+const imgMobile     = "/figma-assets/icon-mobile-21px.svg"; // Mobile icon  21×30 portrait
+const imgArrowWhite = "/figma-assets/icon-arrow-white-solid-btn.svg"; // white arrow  (solid btn)
+const imgArrowBlue  = "/figma-assets/icon-arrow-blue-outline-c.svg"; // blue arrow   (outline btn)
+const imgAI         = "/figma-assets/icon-ai-40px.svg"; // AI IA        40×40 sq
+const imgWater      = "/figma-assets/icon-water-bubble-40px.svg"; // water bubble 40×40 sq
+const imgGlobe2     = "/figma-assets/icon-globe-connectivity-40px.svg"; // connectivity 40×40 sq
+const imgSustent    = "/figma-assets/icon-sustent-b.svg"; // sustainability sq
 
 // ── Pill & bottom data ────────────────────────────────────────────────────────
 type PillItem = {
@@ -70,11 +70,11 @@ function BottomFeature({ icon, iconAlt, title, description }: {
   icon: string; iconAlt: string; title: string; description: string;
 }) {
   return (
-    <div className="flex flex-[1_0_0] flex-wrap gap-[20px] items-center justify-center min-w-[160px] px-[20px]">
+    <div className="flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-w-[160px] win-1280:flex-row win-1280:flex-wrap">
       <FigmaIcon src={icon} alt={iconAlt} size={40} />
-      <div className="flex flex-[1_0_0] flex-col gap-[8px] items-start min-w-[200px] max-[1340px]:items-center">
-        <p className="flex items-center font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] min-h-[44px] max-[1340px]:text-center max-[1340px]:justify-center">{title}</p>
-        <p className="flex items-center font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-[#2a2a2b] min-h-[42px] max-[1340px]:text-center max-[1340px]:justify-center">{description}</p>
+      <div className="flex flex-[1_0_0] flex-col gap-[15px] items-start min-w-[200px] text-center win-1280:text-left">
+        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] w-full">{title}</p>
+        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-[#2a2a2b] w-full">{description}</p>
       </div>
     </div>
   );

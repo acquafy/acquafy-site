@@ -1,11 +1,11 @@
 ﻿import FigmaIcon from "./FigmaIcon";
 
-const imgLocation  = "/figma-assets/eb45c21a-ac77-49ab-b09d-c3e4705c0a7f.svg";
-const imgLanguage  = "/figma-assets/ef8de731-e9ed-4538-93d3-75d559af30e2.svg";
-const imgEcossist  = "/figma-assets/d241fe9a-847c-4791-a487-1f8c6ee6e49a.svg";
-const imgMoney     = "/figma-assets/fbc33102-f642-4776-b6a1-9957d52f8078.svg";
-const imgCountries = "/figma-assets/6914eeab-6551-4aa8-8244-19c287326532.svg";
-const imgMap       = "/figma-assets/ab0bb1cc-3028-44d4-a68d-0e1200e87ccf.png";
+const imgLocation  = "/figma-assets/icon-location-a.svg";
+const imgLanguage  = "/figma-assets/icon-language-b.svg";
+const imgEcossist  = "/figma-assets/icon-ecossistema.svg";
+const imgMoney     = "/figma-assets/icon-money-e.svg";
+const imgCountries = "/figma-assets/icon-countries.svg";
+const imgMap       = "/figma-assets/map-image.webp";
 
 const stats = [
   { icon: imgLocation,  iconW: 42,    iconH: 42, value: "180+",  desc: "Presente em + de 180 países" },

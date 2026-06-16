@@ -1,11 +1,11 @@
 ﻿import FigmaIcon from "./FigmaIcon";
 
 // Aspect ratios from Figma design
-const imgParceria  = "/figma-assets/ac333b1c-fc52-4306-b447-a81917ac56f4.svg";  // 1125×1078 ≈ sq
-const imgEscala    = "/figma-assets/2f5c0e94-be9e-4e5f-9a6f-b7aca4405c02.svg";  // 30×30 sq
-const imgAdaptacao = "/figma-assets/88be1917-3e2e-4903-9518-af5cce460d6e.svg";  // 38×40 portrait
-const imgEducacao  = "/figma-assets/e24c9f3e-708f-4e6c-93c2-c14367b8112d.svg";  // 30×22 landscape
-const imgSustent   = "/figma-assets/83244c90-68e1-4129-93a3-2964dcfe4a76.svg";  // 492×475 ≈ sq
+const imgParceria  = "/figma-assets/icon-parceria-large.svg";  // 1125×1078 ≈ sq
+const imgEscala    = "/figma-assets/icon-escala.svg";  // 30×30 sq
+const imgAdaptacao = "/figma-assets/icon-adaptacao.svg";  // 38×40 portrait
+const imgEducacao  = "/figma-assets/icon-educacao.svg";  // 30×22 landscape
+const imgSustent   = "/figma-assets/icon-sustent-large.svg";  // 492×475 ≈ sq
 
 const pillars = [
   {

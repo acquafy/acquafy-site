@@ -1,13 +1,13 @@
 ﻿import FigmaIcon from "./FigmaIcon";
 
 // ── Assets ────────────────────────────────────────────────────────────────────
-const imgBg       = "/figma-assets/dac94c0b-90ee-420b-ab31-a31ca7b10a14.png";
-const imgProdutos = "/figma-assets/c7db2329-9da9-4f23-b0fa-f13f65ecbb29.png";
+const imgBg       = "/figma-assets/banner-contato-bg.webp";
+const imgProdutos = "/figma-assets/banner-contato-products.webp";
 
 // Feature icons — viewBox 0 0 42 42 (todos quadrados)
-const imgFone      = "/figma-assets/a5ac7430-0e36-4051-9680-377407e8eb96.svg"; // FONE / headset
-const imgTime      = "/figma-assets/fb1809ac-e6e8-4bd9-8e73-65bfa0513f0b.svg"; // TIME / relógio
-const imgPlanetWeb = "/figma-assets/57332476-1372-4ded-9d5e-384e7f8717aa.svg"; // PLANET WEB / globo
+const imgFone      = "/figma-assets/icon-headset.svg"; // FONE / headset
+const imgTime      = "/figma-assets/icon-time-relogio.svg"; // TIME / relógio
+const imgPlanetWeb = "/figma-assets/icon-planetweb-globo.svg"; // PLANET WEB / globo
 
 // ── Feature item ──────────────────────────────────────────────────────────────
 // Layout Figma (3560:12637): ícone + título na MESMA LINHA, descrição abaixo

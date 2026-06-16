@@ -1,6 +1,6 @@
 ﻿import { BtnFalaAcquafy, BtnDistribuidor } from "./ui/Buttons";
 
-const imgBg = "/figma-assets/96402f4c-c25b-4a55-a039-a05af221583c.png";
+const imgBg = "/figma-assets/bg-o.webp";
 
 export default function CtaBanner() {
   return (

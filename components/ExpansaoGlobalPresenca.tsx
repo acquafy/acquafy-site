@@ -2,8 +2,8 @@
 import FigmaIcon from "./FigmaIcon";
 import { BtnAzulOutArrow } from "./ui/Buttons";
 
-const imgMapaMundi = "/figma-assets/c0ebaa80-dd91-4825-8f8d-29198d06ee3f.png";
-const imgPlanetWeb = "/figma-assets/e7e03953-b6e3-4625-ae26-f2578dc2665b.svg";  // 30×30 sq
+const imgMapaMundi = "/figma-assets/image-mapa-mundi.webp";
+const imgPlanetWeb = "/figma-assets/icon-planetweb-30px-c.svg";  // 30×30 sq
 
 const regions = [
   { name: "América do Norte",      countries: "EUA • Canadá • México" },

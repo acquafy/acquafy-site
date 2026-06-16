@@ -1,7 +1,7 @@
 ﻿/* ── Medal icons (55×55) ──────────────────────────────────────── */
-const imgSilver   = "/figma-assets/fc77e73a-6af6-4239-a007-70775393e1d8.png";
-const imgGold     = "/figma-assets/52cce9b5-c0bf-452a-94fd-8f2ead4a089c.png";
-const imgPlatinum = "/figma-assets/9149cb94-288c-4f50-992b-3fdd6369b4cd.png";
+const imgSilver   = "/figma-assets/product-silver-d.webp";
+const imgGold     = "/figma-assets/product-gold-c.webp";
+const imgPlatinum = "/figma-assets/product-platinum-d.webp";
 
 /* ── SVG stroke icons (rendered via CSS mask — NOT <img>) ────── */
 const svgUser      = "/figma-assets/mp-icon-user.svg";

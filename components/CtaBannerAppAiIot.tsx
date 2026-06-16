@@ -1,9 +1,9 @@
 "use client";
 import FigmaIcon from "./FigmaIcon";
 
-const imgBg       = "/figma-assets/ead4c0fb-be00-4d8a-8bd6-9f867cc8acab.png"; // banner bg
-const imgArrow    = "/figma-assets/d47c325f-bc34-492f-a1fa-d2f3d15fc9bc.svg"; // seta azul
-const imgChat     = "/figma-assets/c3816d40-2ab4-42bb-9f2a-6d5c07aa763c.svg"; // chat icon
+const imgBg       = "/figma-assets/bg-banner.webp"; // banner bg
+const imgArrow    = "/figma-assets/icon-arrow-blue-solid.svg"; // seta azul
+const imgChat     = "/figma-assets/icon-chat-a.svg"; // chat icon
 
 export default function CtaBannerAppAiIot() {
   return (

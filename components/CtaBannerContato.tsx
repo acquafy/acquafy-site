@@ -2,7 +2,7 @@ import Link from "next/link";
 import { BtnAzulOutArrow, BtnAzulBaseArrow } from "./ui/Buttons";
 
 // ── Assets ───────────────────────────────────────────────────────────────────
-const imgBg = "/figma-assets/0526acb5-41bb-4aac-bdb8-f13357a94d07.png";
+const imgBg = "/figma-assets/bg-l.webp";
 
 export default function CtaBannerContato() {
   return (

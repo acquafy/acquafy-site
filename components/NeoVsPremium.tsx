@@ -1,16 +1,17 @@
 ﻿import FigmaIcon from "./FigmaIcon";
+import { PRODUCT_IMAGES } from "@/lib/products";
 
 // Card background images
-const imgBgEssentials = "/figma-assets/5b8b92ca-add2-43d4-b26c-96a6dc29a2a5.png";
-const imgBgPremium    = "/figma-assets/7afaf51e-c39c-46c2-943e-dc447b16793e.png";
+const imgBgEssentials = "/figma-assets/bg-essentials.webp";
+const imgBgPremium    = "/figma-assets/bg-premium.webp";
 
 // Checkin icons
-const imgCheckinBlue   = "/figma-assets/e23b591b-0bf0-41a3-a330-a5f82eaf9553.svg"; // blue (essentials)
-const imgCheckinPurple = "/figma-assets/d7553f09-85fb-4d05-b9d6-de700508cb60.svg"; // purple (premium)
+const imgCheckinBlue   = "/figma-assets/icon-check-blue-essentials.svg"; // blue (essentials)
+const imgCheckinPurple = "/figma-assets/icon-check-purple-premium.svg"; // purple (premium)
 
-// Product images (already in project)
-const imgNeoFit          = "/figma-assets/44f74064-36a2-4ed8-b19d-c0e125bc3613.png"; // 3275×4096
-const imgInfinitySparkH2 = "/figma-assets/08beedcc-95b5-449d-a7a5-a66aa64ead56.png"; // 837×1526
+// Product images — catalog via fonte única (lib/products.ts)
+const imgNeoFit          = PRODUCT_IMAGES["neo-fit"];
+const imgInfinitySparkH2 = PRODUCT_IMAGES["neo-infinity-spark-h2"];
 
 const essentialsFeatures = [
   "Painel LED Touch 10,1",
@@ -76,10 +77,10 @@ export default function NeoVsPremium() {
                 ))}
               </div>
             </div>
-            <div className="flex flex-[1_0_0] flex-col items-center justify-center max-w-[200px] min-w-[140px] relative">
+            <div className="flex flex-[1_0_0] flex-col items-center justify-center h-[260px] max-w-[200px] min-w-[140px] relative">
               <img
                 alt="Neo FIT"
-                className="max-w-[200px] w-full object-contain pointer-events-none"
+                className="w-auto h-full max-h-full object-contain pointer-events-none"
                 src={imgNeoFit}
               />
             </div>
@@ -102,10 +103,10 @@ export default function NeoVsPremium() {
                 ))}
               </div>
             </div>
-            <div className="flex flex-[1_0_0] flex-col items-center justify-center max-w-[200px] min-w-[140px] relative">
+            <div className="flex flex-[1_0_0] flex-col items-center justify-center h-[260px] max-w-[200px] min-w-[140px] relative">
               <img
                 alt="Neo INFINITY SPARK H2"
-                className="max-w-[160px] w-full object-contain pointer-events-none"
+                className="w-auto h-full max-h-full object-contain pointer-events-none"
                 src={imgInfinitySparkH2}
               />
             </div>

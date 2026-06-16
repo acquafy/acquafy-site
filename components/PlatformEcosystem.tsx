@@ -1,13 +1,13 @@
 ﻿import FigmaIcon from "./FigmaIcon";
 
-const imgProdNeo    = "/figma-assets/2e9df5b9-59e1-4514-ac60-2b7f9ac33504.svg";
-const imgPhone      = "/figma-assets/a483b432-a778-47fa-a461-e82fa78dee3c.svg";
-const imgCloud      = "/figma-assets/90af4632-97e8-410c-b711-9a2cdd17793d.svg";
-const imgAiInsights = "/figma-assets/f97bd0bd-de99-42e1-8ba2-1282bbf98f44.svg";
-const imgQr         = "/figma-assets/b2f80fcd-c63b-4f1f-9852-5bf54f38e343.svg";
-const imgComissoes  = "/figma-assets/a7f6e7e6-3b24-4c87-8cc8-d85ec08e9a6e.svg";
-const imgArrowLine  = "/figma-assets/4b1b0e25-69d8-4c13-9884-074a33a9a285.svg";
-const imgArrowHead  = "/figma-assets/a5c09c5f-c00a-4c02-9ff4-f3a628844aac.svg";
+const imgProdNeo    = "/figma-assets/icon-prod-neo-b.svg";
+const imgPhone      = "/figma-assets/icon-phone-b.svg";
+const imgCloud      = "/figma-assets/icon-cloud-a.svg";
+const imgAiInsights = "/figma-assets/icon-ai-insights.svg";
+const imgQr         = "/figma-assets/icon-qr-c.svg";
+const imgComissoes  = "/figma-assets/icon-comissoes-b.svg";
+const imgArrowLine  = "/figma-assets/icon-arrow-line.svg";
+const imgArrowHead  = "/figma-assets/icon-arrow-head.svg";
 
 const steps = [
   { icon: imgProdNeo,    iconW: 18, iconH: 20, label: "Produtos Neo / Acquafy Media" },

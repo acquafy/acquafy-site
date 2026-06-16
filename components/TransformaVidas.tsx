@@ -1,13 +1,13 @@
 ﻿import FigmaIcon from "./FigmaIcon";
 
 // ── Assets ────────────────────────────────────────────────────────────────────
-const imgProduct       = "/figma-assets/22acfcd2-3786-49e8-81ce-f9f470567201.png"; // Neo UP c/ laço, aspect 1191/1456
-const imgBgDesktop     = "/figma-assets/e23668bc-8ba6-42b7-891e-ba02f44d2389.png"; // desktop bg (azul + cidade)
-const imgFamilyDesktop = "/figma-assets/0df07aad-6576-4d9b-b9c4-5b7afd48bbcb.png"; // desktop: família + skyline
-const imgBgMobile      = "/figma-assets/261d44fd-8ce5-4fd5-a507-7d8881ce2b7b.png"; // mobile bg (gradiente azul/roxo)
-const imgFamilyMobile  = "/figma-assets/06fc3dd6-e78f-4f0e-a009-4749cd24df15.png"; // mobile: família s/ fundo (DIFERENTE)
-const imgArrowBlue     = "/figma-assets/d7865876-6346-4a62-bf02-b810271db265.svg"; // seta azul botão outline
-const imgArrowWhite    = "/figma-assets/8b3582ba-350c-4445-b464-872ec596bb95.svg"; // seta branca hover
+const imgProduct       = "/figma-assets/neo-up-bow.webp"; // Neo UP c/ laço, aspect 1191/1456
+const imgBgDesktop     = "/figma-assets/bg-desktop-city.webp"; // desktop bg (azul + cidade)
+const imgFamilyDesktop = "/figma-assets/photo-family-desktop.webp"; // desktop: família + skyline
+const imgBgMobile      = "/figma-assets/bg-mobile-gradient.webp"; // mobile bg (gradiente azul/roxo)
+const imgFamilyMobile  = "/figma-assets/photo-family-mobile.webp"; // mobile: família s/ fundo (DIFERENTE)
+const imgArrowBlue     = "/figma-assets/icon-arrow-blue-outline-btn.svg"; // seta azul botão outline
+const imgArrowWhite    = "/figma-assets/icon-arrow-white-hover.svg"; // seta branca hover
 
 // ── Sub-components ────────────────────────────────────────────────────────────
 

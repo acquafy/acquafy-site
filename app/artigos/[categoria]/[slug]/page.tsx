@@ -7,7 +7,7 @@ import FigmaIcon from "@/components/FigmaIcon";
 import CtaBK from "@/components/CtaBK";
 import { CATEGORIAS, getArtigoBySlug, type ContentBlock } from "@/lib/artigos-data";
 
-const imgArrowBlue = "/figma-assets/75971e6c-641c-404b-9d87-240b3150d417.svg";
+const imgArrowBlue = "/figma-assets/icon-arrow-blue-b.svg";
 
 type Props = { params: Promise<{ categoria: string; slug: string }> };
 

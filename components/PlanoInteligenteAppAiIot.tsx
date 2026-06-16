@@ -1,10 +1,10 @@
 ﻿import FigmaIcon from "./FigmaIcon";
 
-const imgFrame35 = "/figma-assets/3a93168c-9987-472d-a245-277cce54ad99.png";
-const imgFrame36 = "/figma-assets/be0d28d0-250f-4a4b-aa32-7ce222acabe5.png";
-const imgFrame37 = "/figma-assets/64876bfc-163d-4698-a5c4-517f17fa689f.png";
-const imgFrame38 = "/figma-assets/9e470851-b513-4d31-a662-faf917e2b38f.png";
-const imgFrame39 = "/figma-assets/b143efc5-66f7-4336-a859-40a40e2167d1.png";
+const imgFrame35 = "/figma-assets/frame-35.webp";
+const imgFrame36 = "/figma-assets/frame-36-b.webp";
+const imgFrame37 = "/figma-assets/frame-37.webp";
+const imgFrame38 = "/figma-assets/frame-38.webp";
+const imgFrame39 = "/figma-assets/frame-39.webp";
 
 const steps = [
   { img: imgFrame35, label: "Purificador Neo",      sub: "Adquira seu purificador" },

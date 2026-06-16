@@ -1,11 +1,14 @@
-﻿import FigmaIcon from "./FigmaIcon";
+﻿"use client";
+import FigmaIcon from "./FigmaIcon";
+import { useChatWidget } from "./ChatWidget";
 
-const imgChatIcon      = "/figma-assets/670c53d1-1537-48df-8655-d6a9ef072f14.svg";
-const imgMailIcon      = "/figma-assets/84fcccc4-1a8c-4979-80f4-8d89504a03f7.svg";
-const imgWhatsappIcon  = "/figma-assets/5238f1c2-3e2f-428b-a2ed-154c0b8d36e4.svg";
-const imgTimeIcon      = "/figma-assets/fcd02a83-8abf-4576-a597-b2cb201790ff.svg";
+const imgChatIcon      = "/figma-assets/icon-chat-icon.svg";
+const imgMailIcon      = "/figma-assets/icon-mail-icon.svg";
+const imgWhatsappIcon  = "/figma-assets/icon-whatsapp-icon.svg";
+const imgTimeIcon      = "/figma-assets/icon-time-icon.svg";
 
 export default function FaleComEquipeSuporte() {
+  const { openChat } = useChatWidget();
   return (
     <section className="bg-[#f6f9fe] flex flex-col items-center justify-center overflow-hidden px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center justify-center max-w-[1400px] w-full">
@@ -45,7 +48,7 @@ export default function FaleComEquipeSuporte() {
                 </p>
               </div>
             </div>
-            <button className="mt-auto bg-white border border-[#0233c3] hover:bg-[#0233c3] hover:text-white transition-colors flex items-center justify-center min-h-[30px] overflow-hidden px-[20px] py-[10px] rounded-[8px]">
+            <button onClick={openChat} className="mt-auto bg-white border border-[#0233c3] hover:bg-[#0233c3] hover:text-white transition-colors flex items-center justify-center min-h-[30px] overflow-hidden px-[20px] py-[10px] rounded-[8px]">
               <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] hover:text-white text-center">
                 Iniciar chat
               </span>

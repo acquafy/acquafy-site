@@ -2,24 +2,24 @@
 import FigmaIcon from "./FigmaIcon";
 
 // ── Fotos nos círculos ───────────────────────────────────────────────────────
-const imgPurifier  = "/figma-assets/d608836d-29ed-48bc-8846-7e02159f476b.png";
-const imgAppPhone  = "/figma-assets/ecde7ec5-bd29-4248-8b73-e42628eccabf.png";
+const imgPurifier  = "/figma-assets/product-purifier.webp";
+const imgAppPhone  = "/figma-assets/app-phone-mockup-b.webp";
 
 // ── Ícones SVG nos círculos ──────────────────────────────────────────────────
-const imgWifi      = "/figma-assets/56009d87-86ec-4d47-9ca9-ce23c76e736f.svg";  // 63×43
-const imgCloud     = "/figma-assets/c82b67f7-912d-4654-830f-371bb0df9a3e.svg";  // 63×63
-const imgBrain     = "/figma-assets/ba8bc26e-15f0-4fe2-a19c-2e0f594c4839.svg";  // 63×63
-const imgBell      = "/figma-assets/069a4c28-f5f9-4a14-9e05-cf62eac10eab.svg";  // 49×63
+const imgWifi      = "/figma-assets/icon-wifi-63px.svg";  // 63×43
+const imgCloud     = "/figma-assets/icon-cloud-63px.svg";  // 63×63
+const imgBrain     = "/figma-assets/icon-brain-63px.svg";  // 63×63
+const imgBell      = "/figma-assets/icon-bell.svg";  // 49×63
 
 // ── Seta tracejada ───────────────────────────────────────────────────────────
-const imgArrow     = "/figma-assets/762e5436-d563-479f-b45c-ee20691bccc9.png";
+const imgArrow     = "/figma-assets/image-arrow.webp";
 
 type StepItem =
   | { label: string; type: "photo"; src: string; padding: string }
   | { label: string; type: "icon";  src: string; padding: string; aspectW: number; aspectH: number };
 
 const steps: StepItem[] = [
-  { label: "Purificador Neo /\nAcquafy Media", type: "photo", src: imgPurifier, padding: "p-[24px]" },
+  { label: "Purificador Neo / Acquafy Media", type: "photo", src: imgPurifier, padding: "p-[24px]" },
   { label: "App Acquafy",      type: "photo", src: imgAppPhone,   padding: "p-[24px]" },
   { label: "IoT & Sensores",   type: "icon",  src: imgWifi,       padding: "p-[30px]", aspectW: 63, aspectH: 43 },
   { label: "Plataforma Cloud", type: "icon",  src: imgCloud,      padding: "p-[30px]", aspectW: 63, aspectH: 63 },
@@ -63,7 +63,7 @@ export default function FluxoInteligenteAppAiIot() {
                 {/* Label */}
                 <p
                   className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[18px] text-[#1f2e91] text-center w-full min-h-[36px] flex items-center justify-center"
-                  style={{ whiteSpace: "pre-line" }}
+                  style={{}}
                 >
                   {step.label}
                 </p>

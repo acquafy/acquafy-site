@@ -1,13 +1,13 @@
 ﻿import FigmaIcon from "./FigmaIcon";
 
-const imgSilver    = "/figma-assets/b52cb10e-f442-402a-ac17-5c35da435575.png";
-const imgGold      = "/figma-assets/abc43d20-830a-4269-a60d-86e42f721bf2.png";
-const imgPlatinum  = "/figma-assets/3c04dafb-7a5d-451d-bdbc-f2ce68a70697.png";
-const imgLayout    = "/figma-assets/3678b0a9-9a93-4bfb-94a3-3d319e921234.svg";
-const imgCrown     = "/figma-assets/a17ec99d-f776-4f21-b16a-64d3b3021592.svg";
-const imgMarketing = "/figma-assets/e1dd78ba-b24c-4fdf-bccf-e1ff0e6dd6dc.svg";
-const imgPlay      = "/figma-assets/d5bc45e9-32a7-4a4f-80f3-4759074142e2.svg";
-const imgCheckin   = "/figma-assets/2aa3fa11-0d1c-4acf-8e00-00b68596f8f5.svg";
+const imgSilver    = "/figma-assets/product-silver-b.webp";
+const imgGold      = "/figma-assets/product-gold-b.webp";
+const imgPlatinum  = "/figma-assets/product-platinum-b.webp";
+const imgLayout    = "/figma-assets/icon-layout.svg";
+const imgCrown     = "/figma-assets/icon-crown-a.svg";
+const imgMarketing = "/figma-assets/icon-marketing-c.svg";
+const imgPlay      = "/figma-assets/icon-play-a.svg";
+const imgCheckin   = "/figma-assets/icon-check-c.svg";
 
 const tiers = [
   { img: imgSilver,   imgAspect: 1, name: "Silver",   desc: "Acessórios essenciais para apresentar sua marca com qualidade Acquafy." },

@@ -1,10 +1,10 @@
 import FigmaIcon from "./FigmaIcon";
 
-const imgBg           = "/figma-assets/3958d1a8-eec0-471c-9c54-c4776137a789.png";
-const imgShield       = "/figma-assets/96d98b3e-dbe3-4d1e-b240-380b886c4cc7.svg";
-const imgFastSupport  = "/figma-assets/32402a0b-fa3e-4b73-a43a-edb18bad797c.svg";
-const imgRating       = "/figma-assets/1688e4c3-a773-4b05-bfd4-aa673b6d1f1a.svg";
-const imgPlanet       = "/figma-assets/7650bdc3-d65a-456a-ac34-017eb512653c.svg";
+const imgBg           = "/figma-assets/bg-a.webp";
+const imgShield       = "/figma-assets/icon-shield-b.svg";
+const imgFastSupport  = "/figma-assets/icon-fast-support.svg";
+const imgRating       = "/figma-assets/icon-rating.svg";
+const imgPlanet       = "/figma-assets/icon-planet-a.svg";
 
 const diferenciais = [
   {

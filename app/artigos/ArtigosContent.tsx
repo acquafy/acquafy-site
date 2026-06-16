@@ -6,8 +6,8 @@ import FigmaIcon from "@/components/FigmaIcon";
 import CtaBK from "@/components/CtaBK";
 import { CATEGORIAS, type ArtigoData, type CategoriaData } from "@/lib/artigos-data";
 
-const imgArrowBlue  = "/figma-assets/75971e6c-641c-404b-9d87-240b3150d417.svg";
-const imgArrowWhite = "/figma-assets/f1bc0ed4-ae05-42d0-9a9b-446afb8aa0de.svg";
+const imgArrowBlue  = "/figma-assets/icon-arrow-blue-b.svg";
+const imgArrowWhite = "/figma-assets/icon-arrow-white-solid.svg";
 
 // ── search helpers ─────────────────────────────────────────────────────────────
 

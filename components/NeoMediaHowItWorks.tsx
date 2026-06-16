@@ -1,11 +1,11 @@
 ﻿// "Como funciona na prática" — 4 numbered steps (Figma node 3258:5253)
 import FigmaIcon from "./FigmaIcon";
 
-const imgWater    = "/figma-assets/37a7ae8a-b232-471a-ade9-74786ac52863.svg";
-const imgMarketing= "/figma-assets/b368fbe9-391a-4de3-b536-4c9d8a01b2a3.svg";
-const imgBrain    = "/figma-assets/a37c8a01-3c4c-455c-ae5c-b90867fa0943.svg";
-const imgScale    = "/figma-assets/03207bc1-864b-4b2a-87da-f48bea2a44a6.svg";
-const imgArrow    = "/figma-assets/06c38be0-29cf-46b7-adf7-0f28fcb469d5.svg";
+const imgWater    = "/figma-assets/icon-water-c.svg";
+const imgMarketing= "/figma-assets/icon-marketing-d.svg";
+const imgBrain    = "/figma-assets/icon-brain-c.svg";
+const imgScale    = "/figma-assets/icon-scale-a.svg";
+const imgArrow    = "/figma-assets/icon-arrow-a.svg";
 
 // aspectW/aspectH do Figma (node 3258:5253):
 // water → 470×450 (landscape), marketing → 39.76×28.46 (landscape),

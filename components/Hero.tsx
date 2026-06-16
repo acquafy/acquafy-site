@@ -4,35 +4,35 @@ import FigmaIcon from "./FigmaIcon";
 import { DotAtivo, DotInativo } from "./ui/SlideDot";
 
 // Backgrounds
-const imgBg1    = "/figma-assets/36b2eff1-2b33-46c0-8363-af973ac799ec.png";  // slide 1 bg
-const imgBg2    = "/figma-assets/5f4ea0b5-ed23-45a8-bee1-2ec2a8de6512.png";  // slide 2 bg (xl only)
+const imgBg1    = "/figma-assets/bg-slide-1.webp";  // slide 1 bg
+const imgBg2    = "/figma-assets/bg-slide-2-xl.webp";  // slide 2 bg (xl only)
 // Images
-const imgMockup  = "/figma-assets/79b198a1-9b67-4b7a-ab37-b3fc0c922bf7.png"; // tablet+phone mockup
-const imgFrame36 = "/figma-assets/4cb6efdd-3d77-46ca-a4b9-148e9c882ed6.png"; // slide 2 mobile product (water+purifier)
+const imgMockup  = "/figma-assets/mockup-tablet-phone.webp"; // tablet+phone mockup
+const imgFrame36 = "/figma-assets/frame-36-mobile-product.webp"; // slide 2 mobile product (water+purifier)
 // Slide 1 feature icons
-const imgPlanetWeb = "/figma-assets/5fb42ebd-d9de-4d78-8bb1-89d82c384f8d.svg";  // 30×30 sq
-const imgCloud     = "/figma-assets/d8408d46-680e-4b13-84fc-1c8813e1fcc3.svg";  // 30×22 landscape
-const imgAI        = "/figma-assets/8a506687-f9ca-4906-9a82-366de1c115c9.svg";  // 30×30 sq
-const imgGlobe     = "/figma-assets/c52ebd87-4575-46c6-a6e1-60989b0ec6ed.svg";  // 30×30 sq
+const imgPlanetWeb = "/figma-assets/icon-planetweb-30px-b.svg";  // 30×30 sq
+const imgCloud     = "/figma-assets/icon-cloud-30px.svg";  // 30×22 landscape
+const imgAI        = "/figma-assets/icon-ai-30px-b.svg";  // 30×30 sq
+const imgGlobe     = "/figma-assets/icon-globe-30px-a.svg";  // 30×30 sq
 // Slide 2 icons
-const imgGiftLabel = "/figma-assets/88ef1f41-2868-4826-ab06-7e03ba2c893a.svg";  // 642×642 sq (label pill)
-const imgFiltros   = "/figma-assets/2f3be640-3970-4223-b08a-afd98104f3e4.svg";  // 40×40 sq
-const imgWater20   = "/figma-assets/7a8d21cc-5b03-4311-9eed-38704fb8a2e1.svg";  // 35×42 portrait
-const imgPlugPlay  = "/figma-assets/414af198-9adf-46f5-8ceb-106d2737b4f2.svg";  // 485×629 portrait
-const imgGiftCTA   = "/figma-assets/92c2449f-030e-410b-af27-15e502e12581.svg";  // sq
+const imgGiftLabel = "/figma-assets/icon-gift-label.svg";  // 642×642 sq (label pill)
+const imgFiltros   = "/figma-assets/icon-filtros-40px.svg";  // 40×40 sq
+const imgWater20   = "/figma-assets/icon-water-20.svg";  // 35×42 portrait
+const imgPlugPlay  = "/figma-assets/icon-plug-play.svg";  // 485×629 portrait
+const imgGiftCTA   = "/figma-assets/icon-gift-cta.svg";  // sq
 // Arrows (11.2×8.84 landscape → size={9} aspectW={11.2} aspectH={8.84})
-const imgArrowWhite = "/figma-assets/9777bc4a-58de-46e7-8e46-08e99069f337.svg"; // solid buttons
-const imgArrowBlue  = "/figma-assets/4e468b96-c90e-4821-837b-9780c1f0b21f.svg"; // outline buttons
+const imgArrowWhite = "/figma-assets/icon-arrow-white-a.svg"; // solid buttons
+const imgArrowBlue  = "/figma-assets/icon-arrow-blue-outline-a.svg"; // outline buttons
 // Stats bar icons (slide 1 blue bar)
-const imgGlobeStats  = "/figma-assets/420aed90-b633-4721-bc7c-59d9f7afa84c.svg";  // 30×30
-const imgChatStats   = "/figma-assets/797bd891-2d3e-47db-9bbd-3b40039f7893.svg";  // 30×30
-const imgMobileStats = "/figma-assets/a9cea2bd-8708-4035-8d92-82cbfbe0f611.svg";  // 21×30 portrait
-const imgWifiStats   = "/figma-assets/34df8d8b-2f8a-4654-ade0-638212a06bac.svg";  // 30×20 landscape
-const imgPessoasStats = "/figma-assets/d3b3f330-1f05-436b-b8a1-eda6f97129c8.svg"; // 43.86×40.50
-const imgMediaStats  = "/figma-assets/db87edd0-3921-4643-acea-15ccf6e50e94.svg";  // 26.67×26.67 sq
+const imgGlobeStats  = "/figma-assets/icon-globe-stats-30px.svg";  // 30×30
+const imgChatStats   = "/figma-assets/icon-chat-stats.svg";  // 30×30
+const imgMobileStats = "/figma-assets/icon-mobile-stats.svg";  // 21×30 portrait
+const imgWifiStats   = "/figma-assets/icon-wifi-stats.svg";  // 30×20 landscape
+const imgPessoasStats = "/figma-assets/icon-pessoas-stats.svg"; // 43.86×40.50
+const imgMediaStats  = "/figma-assets/icon-media-stats.svg";  // 26.67×26.67 sq
 // Slide 2 stats bar icons
-const imgAguaPura = "/figma-assets/a434656b-3ab0-4bd1-a93e-205854e10266.svg";   // 30×30 sq
-const imgShield   = "/figma-assets/df899977-c36b-49b5-8a28-64d40fad415e.svg";   // 26.14×30 portrait
+const imgAguaPura = "/figma-assets/icon-agua-pura-30px.svg";   // 30×30 sq
+const imgShield   = "/figma-assets/icon-shield-26px-b.svg";   // 26.14×30 portrait
 
 // ─── Gradient constants ─────────────────────────────────────────────────────
 
@@ -244,7 +244,7 @@ export default function Hero() {
       >
 
         {/* Main content area — slide 1: row (content + mockup), slide 2: just content (left-aligned) */}
-        <div className={`relative flex xl:flex-row xl:items-center xl:min-h-[660px] gap-[40px] items-center max-w-[1400px] w-full ${slide === 0 ? "justify-center" : "justify-start"}`}>
+        <div className={`relative flex xl:flex-row xl:items-center xl:flex-1 gap-[40px] items-center max-w-[1400px] w-full ${slide === 0 ? "justify-center" : "justify-start"}`}>
 
           {/* LEFT COLUMN */}
           <div className={`flex flex-col gap-[20px] items-start justify-center flex-1 min-w-[280px] ${slide === 0 ? "max-w-[580px]" : "max-w-[680px]"}`}>
@@ -329,8 +329,8 @@ export default function Hero() {
                   <span className="font-['Articulat_CF:Bold'] text-[16px] text-white flex-1 text-center">Conheça a Linha Neo</span>
                   <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
                 </a>
-                <a href="/parceria" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
-                  <span className="font-['Articulat_CF:Bold'] text-[16px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">Seja Parceiro Global</span>
+                <a href="/plataforma" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
+                  <span className="font-['Articulat_CF:Bold'] text-[16px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">Conheça nossa Plataforma</span>
                   <div className="relative shrink-0" style={{ width: 9, height: 9 }}>
                     <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0 group-active:opacity-0"><FigmaIcon src={imgArrowBlue} size={9} aspectW={11.2} aspectH={8.84} /></div>
                     <div className="absolute inset-0 transition-opacity duration-150 opacity-0 group-hover:opacity-100 group-active:opacity-100"><FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} /></div>
@@ -372,7 +372,7 @@ export default function Hero() {
 
       {/* ══ STATS BAR — pinned to bottom ══ */}
       {slide === 0 ? (
-        <div className="relative bg-[#0233c3] flex flex-wrap gap-y-[30px] items-center justify-center max-w-[1400px] min-h-[82px] overflow-hidden px-[20px] py-[25px] rounded-[16px] w-full">
+        <div className="relative bg-[#0233c3] flex flex-wrap gap-y-[30px] items-center justify-center max-w-[1400px] overflow-hidden px-[20px] py-[25px] rounded-[16px] w-full">
           {[
             { icon: imgGlobeStats,   aspectW: 30,    aspectH: 30,    top: "Até",           bottom: "180 países" },
             { icon: imgChatStats,    aspectW: 30,    aspectH: 30,    top: "16",             bottom: "idiomas" },
@@ -380,8 +380,8 @@ export default function Hero() {
             { icon: imgWifiStats,    aspectW: 30,    aspectH: 20,    top: "WiFi 5 +",       bottom: "Bluetooth 5.3" },
             { icon: imgPessoasStats, aspectW: 43.86, aspectH: 40.5,  lines: ["Parceiros Silver,", "Gold e Platinum"] },
             { icon: imgMediaStats,   aspectW: 26.67, aspectH: 26.67, lines: ["Acquafy", "Media Network"] },
-          ].map((s, i, arr) => (
-            <div key={i} className={`flex flex-[1_0_0] flex-wrap gap-[10px] items-center min-w-[160px] px-[20px]${i < arr.length - 1 ? " border-r border-white" : ""}`}>
+          ].map((s, i) => (
+            <div key={i} className="flex flex-[1_0_0] gap-[10px] items-center justify-center min-w-[160px] px-[10px]">
               <FigmaIcon src={s.icon} size={30} aspectW={s.aspectW} aspectH={s.aspectH} />
               <div className="flex flex-col gap-[2px]">
                 {"lines" in s ? s.lines!.map((l, li) => (

@@ -2,16 +2,17 @@
 
 import Link from "next/link";
 import { useEffect, useState, type ReactNode } from "react";
+import { useSearchParams } from "next/navigation";
 import FigmaIcon from "./FigmaIcon";
 import { BtnAzulOutArrow } from "./ui/Buttons";
 
 // ── Assets ────────────────────────────────────────────────────────────────────
-const imgLocal      = "/figma-assets/7fa577a3-29df-4b04-960c-1ec8b8f0b2bc.svg"; // 31.56×38   portrait
-const imgMail       = "/figma-assets/29530df8-b9ae-4a2a-ad2e-0252d2e21f79.svg"; // 38×30.8    landscape
-const imgPhone      = "/figma-assets/32a6f68d-b20c-4087-9c6d-4b88dd21ab20.svg"; // 37.99×38   ~sq  (WhatsApp)
-const imgGlobe      = "/figma-assets/a3d8d3e1-382f-4155-9bb5-9492c1797329.svg"; // 38×38      sq
-const imgPessoas    = "/figma-assets/9cb3b0cd-c1de-41f5-a4b3-1272f0c3596b.svg"; // 38×35.24   landscape
-const imgArrowWhite = "/figma-assets/93b457af-90d0-4dc6-bb02-fb93fc706899.svg"; // 11.2×8.84  landscape
+const imgLocal      = "/figma-assets/icon-local-31px.svg"; // 31.56×38   portrait
+const imgMail       = "/figma-assets/icon-mail-38px.svg"; // 38×30.8    landscape
+const imgPhone      = "/figma-assets/icon-phone-whatsapp.svg"; // 37.99×38   ~sq  (WhatsApp)
+const imgGlobe      = "/figma-assets/icon-globe-38px.svg"; // 38×38      sq
+const imgPessoas    = "/figma-assets/icon-pessoas-38px.svg"; // 38×35.24   landscape
+const imgArrowWhite = "/figma-assets/icon-arrow-white-small.svg"; // 11.2×8.84  landscape
 
 const ASSUNTOS = [
   "Falar com especialista",
@@ -23,6 +24,7 @@ const ASSUNTOS = [
   "Linha Neo",
   "Acquafy Media",
   "Filtros & Acessórios",
+  "Acessórios Acquafy",
   "Plataforma Acquafy",
   "App + AI + IoT",
   "Expansão Global",
@@ -96,9 +98,13 @@ const inputCls =
   "outline-none focus:border-[#0233c3] transition-colors";
 
 export default function ContatoInfoForm() {
+  const searchParams = useSearchParams();
   const [nome, setNome]         = useState("");
   const [email, setEmail]       = useState("");
-  const [assuntos, setAssuntos] = useState<string[]>([]);
+  const [assuntos, setAssuntos] = useState<string[]>(() => {
+    const param = searchParams.get("assunto");
+    return param && ASSUNTOS.includes(param) ? [param] : [];
+  });
   const [mensagem, setMensagem] = useState("");
   const [aceito, setAceito]     = useState(false);
 
@@ -258,8 +264,10 @@ export default function ContatoInfoForm() {
                 </div>
               </div>
               <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#2a2a2b]">
-                Li e concordo com a{" "}
-                <span className="text-[#0569ff]">Política de Privacidade</span>
+                Li e concordo com os{" "}
+                <a href="/termos-de-uso" className="text-[#0569ff] hover:underline" onClick={e => e.stopPropagation()}>Termos de Uso</a>
+                {" "}e a{" "}
+                <a href="/politicas-privacidade" className="text-[#9f3df5] hover:underline" onClick={e => e.stopPropagation()}>Política de Privacidade</a>
                 {" "}da Acquafy
               </span>
             </label>

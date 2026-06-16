@@ -2,12 +2,12 @@
 import FigmaIcon from "./FigmaIcon";
 import { useChatWidget } from "./ChatWidget";
 
-const imgArrowWhite = "/figma-assets/f1bc0ed4-ae05-42d0-9a9b-446afb8aa0de.svg";
-const imgArrowBlue  = "/figma-assets/9fb38b6b-2d2d-4507-a48f-9b970bd17e28.svg";
+const imgArrowWhite = "/figma-assets/icon-arrow-white-solid.svg";
+const imgArrowBlue  = "/figma-assets/icon-arrow-blue-c.svg";
 
-const imgChatIcon   = "/figma-assets/670c53d1-1537-48df-8655-d6a9ef072f14.svg";
-const imgMailIcon   = "/figma-assets/84fcccc4-1a8c-4979-80f4-8d89504a03f7.svg";
-const imgTimeIcon   = "/figma-assets/fcd02a83-8abf-4576-a597-b2cb201790ff.svg";
+const imgChatIcon   = "/figma-assets/icon-chat-icon.svg";
+const imgMailIcon   = "/figma-assets/icon-mail-icon.svg";
+const imgTimeIcon   = "/figma-assets/icon-time-icon.svg";
 
 const canais = [
   {

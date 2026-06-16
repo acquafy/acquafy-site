@@ -1,19 +1,19 @@
 ﻿import FigmaIcon from "./FigmaIcon";
 
-const imgBg     = "/figma-assets/7ded5ace-e878-4b20-8869-4299cf70ff0d.png";
-const imgMockup = "/figma-assets/db9b5ee1-5db7-4786-b9a6-a23d2901a59b.png";
+const imgBg     = "/figma-assets/platform-hero-bg.webp";
+const imgMockup = "/figma-assets/platform-hero-mockup.webp";
 
-const imgChat   = "/figma-assets/7a22b5e9-f087-42d0-9204-5e54a681197f.svg";
+const imgChat   = "/figma-assets/icon-chat-b.svg";
 
-const imgCloud  = "/figma-assets/d3216aaf-e208-4968-8536-7fef8798cde2.svg";
-const imgAI     = "/figma-assets/6c8aa3eb-468d-4290-907f-9c41f9176d79.svg";
-const imgWifi   = "/figma-assets/c7ca77d6-97d3-48de-b1bf-d6d0f18c139d.svg";
-const imgGlobal = "/figma-assets/68ae0005-d7fe-4a58-b370-dcc2fc12dd0e.svg";
+const imgCloud  = "/figma-assets/icon-cloud-platform.svg";
+const imgAI     = "/figma-assets/icon-ai-platform.svg";
+const imgWifi   = "/figma-assets/icon-wifi-b.svg";
+const imgGlobal = "/figma-assets/icon-global.svg";
 
-const imgShield = "/figma-assets/96da4085-c12f-4602-84d4-3ac5e27445f9.svg";
-const imgVendas = "/figma-assets/07d933bd-0244-40bd-a7e4-37350bdb2e3c.svg";
-const imgInteg  = "/figma-assets/f9665df1-44e9-4c92-a01d-c3ea3c375b72.svg";
-const imgTime   = "/figma-assets/15d4df82-fbfc-4fc0-98f5-9052c0340953.svg";
+const imgShield = "/figma-assets/icon-shield-d.svg";
+const imgVendas = "/figma-assets/icon-vendas-d.svg";
+const imgInteg  = "/figma-assets/icon-integration.svg";
+const imgTime   = "/figma-assets/icon-uptime.svg";
 
 const featureCards = [
   { bg: "#0233c3", icon: imgCloud,  iconW: 30, iconH: 30, title: "Cloud Platform",     desc: "Infraestrutura segura e escalável." },
@@ -70,7 +70,7 @@ export default function PlatformHero() {
       <div className="relative flex flex-col 1024:flex-row flex-wrap flex-1 gap-[40px] 1024:gap-x-[20px] items-center 1024:items-start max-w-[1400px] w-full">
 
         {/* ── Coluna esquerda ──────────────────────────────────────────── */}
-        <div className="flex flex-col gap-[20px] items-center 1024:items-start w-full 1024:flex-[1_0_0] 1024:max-w-[670px] 1024:min-w-[280px]">
+        <div className="flex flex-col gap-[20px] items-center 1024:items-start w-full 1024:flex-[1_0_0] 1024:max-w-[670px] 1024:min-w-[280px] 1024:self-center">
 
           {/* Label */}
           <div className="bg-white border border-[#0233c3] flex gap-[10px] items-center justify-center max-w-[290px] px-[12px] py-[8px] rounded-full shrink-0">
