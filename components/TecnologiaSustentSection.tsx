@@ -51,7 +51,7 @@ function SustCard({ icon, aspectW, aspectH, title, description }: {
   icon: string; aspectW: number; aspectH: number; title: string; description: string;
 }) {
   return (
-    <div className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center min-h-[235px] min-w-[160px] px-[10px] py-[20px] rounded-[16px]">
+    <div className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center min-w-[160px] px-[10px] py-[20px] rounded-[16px] win-1024:min-h-[235px]">
       <FigmaIcon src={icon} size={40} aspectW={aspectW} aspectH={aspectH} />
       <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[19px] text-[#0b8650] text-center w-full">
         {title}
@@ -87,7 +87,7 @@ export default function TecnologiaSustentSection() {
             <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-[#333] flex-1">
               Acreditamos que a tecnologia deve caminhar junto com a responsabilidade ambiental. Por isso, nossas soluções são projetadas para reduzir o consumo de recursos, eliminar plásticos descartáveis e gerar impacto positivo real.
             </p>
-            <Link href="/tecnologia" className="max-w-[320px] w-full">
+            <Link href="/tecnologia" className="max-w-[320px] w-full self-center lg:self-start">
               <BtnVerdeOutArrow className="w-full">
                 Conheça nossas iniciativas sustentáveis
               </BtnVerdeOutArrow>

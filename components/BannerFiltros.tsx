@@ -95,12 +95,12 @@ export default function BannerFiltros() {
             "Padrão" (xl+)  : oculta — os filtros aparecem pelo background image     */}
         <div
           className="relative rounded-[16px] overflow-hidden xl:hidden
-                     w-full h-[500px]
-                     lg:h-auto lg:flex-[1_0_0] lg:min-w-[280px] lg:min-h-[192px] lg:[aspect-ratio:700/480]"
+                     w-full
+                     lg:flex-[1_0_0] lg:min-w-[280px] lg:min-h-[192px] lg:[aspect-ratio:700/480]"
         >
           <img
             alt="Filtros Acquafy — linha completa"
-            className="absolute inset-0 w-full h-full object-cover"
+            className="block w-full h-auto lg:absolute lg:inset-0 lg:h-full lg:object-cover"
             src={imgFilters}
           />
         </div>
@@ -116,9 +116,7 @@ export default function BannerFiltros() {
         {stats.map((s, i) => (
           <div
             key={i}
-            className={`flex flex-1 flex-wrap gap-[10px] items-center min-w-[160px] px-[20px]${
-              i < stats.length - 1 ? " border-r border-[#cbd0d4]" : ""
-            }`}
+            className="flex flex-1 flex-wrap gap-[10px] items-center min-w-[160px] px-[20px]"
           >
             <FigmaIcon src={s.icon} size={30} aspectW={s.iconW} aspectH={s.iconH} />
             <div className="flex flex-col gap-[5px] flex-1 min-w-[100px]">

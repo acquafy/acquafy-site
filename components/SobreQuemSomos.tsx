@@ -28,7 +28,7 @@ function StatItem({
 export default function SobreQuemSomos() {
   return (
     <section id="quem-somos" className="scroll-mt-[80px] flex flex-col items-center justify-center overflow-hidden px-[20px] py-[40px] w-full">
-      <div className="flex flex-wrap gap-[40px] items-start justify-center max-w-[1400px] w-full">
+      <div className="flex flex-col gap-[40px] items-start justify-center max-w-[1400px] w-full win-1024:flex-row win-1024:flex-wrap">
 
         {/* Left: Quem Somos */}
         <div className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[40px] items-center max-w-[550px] min-w-[280px] px-[20px] py-[40px] rounded-[16px]">
@@ -65,7 +65,7 @@ export default function SobreQuemSomos() {
           <div className="flex flex-wrap gap-[20px] items-center w-full">
 
             {/* Logo column */}
-            <div className="flex flex-[1_0_0] flex-col items-center justify-center max-w-[330px] min-w-[240px] p-[15px]">
+            <div className="flex flex-[1_0_0] flex-col items-center justify-center min-w-[240px] p-[15px] win-1024:max-w-[330px]">
               <div
                 className="max-h-[82.47px] max-w-[300px] overflow-hidden relative w-full"
                 style={{ aspectRatio: "922.6675 / 253.6643" }}
@@ -79,7 +79,7 @@ export default function SobreQuemSomos() {
             </div>
 
             {/* Description column — border-l serves as divider */}
-            <div className="border-l border-solid border-[#cbd0d4] flex flex-[1_0_0] flex-col items-center justify-center min-w-[280px] p-[15px]">
+            <div className="flex flex-[1_0_0] flex-col items-center justify-center min-w-[280px] p-[15px] win-1024:border-l win-1024:border-solid win-1024:border-[#cbd0d4]">
               <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] w-full">
                 A Acquafy faz parte do{" "}
                 <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[#0569ff]">Interfy Group</span>

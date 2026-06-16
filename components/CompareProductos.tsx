@@ -823,9 +823,9 @@ export default function CompareProductos() {
           <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] text-center">
             Faixas de preço no mercado americano
           </h2>
-          <div className="flex flex-wrap gap-[40px] items-center justify-center w-full">
+          <div className="flex flex-col gap-[40px] items-stretch justify-center w-full win-1024:flex-row win-1024:flex-wrap win-1024:items-start">
             {/* Essentials price range */}
-            <div className="border border-[#cbd0d4] flex flex-wrap gap-[20px] items-start justify-center flex-1 min-w-[240px] p-[20px] rounded-[16px]">
+            <div className="border border-[#cbd0d4] flex flex-col gap-[20px] items-center flex-1 min-w-[240px] p-[20px] rounded-[16px] win-1024:flex-row win-1024:items-start">
               <div className="bg-[#0569ff] flex items-center justify-center rounded-full shrink-0 size-[60px]">
                 <FigmaIcon src={imgMoney} size={30} />
               </div>
@@ -845,7 +845,7 @@ export default function CompareProductos() {
             </div>
 
             {/* Premium price range */}
-            <div className="border border-[#cbd0d4] flex flex-wrap gap-[20px] items-start justify-center flex-1 min-w-[240px] p-[20px] rounded-[16px]">
+            <div className="border border-[#cbd0d4] flex flex-col gap-[20px] items-center flex-1 min-w-[240px] p-[20px] rounded-[16px] win-1024:flex-row win-1024:items-start">
               <div className="bg-[#9f3df5] flex items-center justify-center rounded-full shrink-0 size-[60px]">
                 <FigmaIcon src={imgMoney} size={30} />
               </div>

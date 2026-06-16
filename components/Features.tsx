@@ -36,14 +36,14 @@ export default function Features() {
 
         {/* Card 1 – Painel LED Touch */}
         <div className="bg-[#f6f9fe] flex flex-1 flex-col gap-[20px] items-start min-h-[310px] min-w-[280px] p-[20px] rounded-[16px]">
-          <div className="flex flex-1 flex-col gap-[20px] items-start min-w-[200px]">
-            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] w-full">
+          <div className="flex flex-1 flex-col gap-[20px] items-center min-w-[200px] win-1024:items-start">
+            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-center win-1024:text-left w-full">
               <span className="text-[#0569ff]">Painel LED </span>
               <span className="text-[#1f2e91]">Touch Inteligente</span>
             </p>
-            <div className="flex flex-wrap gap-[20px] items-center min-h-[210px] w-full shrink-0">
+            <div className="flex flex-wrap justify-center gap-[20px] items-center min-h-[210px] w-full shrink-0">
               <CardImage src={imgPanel} outerAspect="4096/2265" />
-              <div className="flex flex-1 flex-col gap-[20px] items-start min-w-[210px]">
+              <div className="flex flex-1 flex-col gap-[20px] items-center min-w-[210px] win-1024:items-start">
                 <div className="flex flex-col h-[134px] items-start justify-between w-full shrink-0">
                   {[
                     "Contagem regressiva de 365 dias até a troca dos filtros",
@@ -67,14 +67,14 @@ export default function Features() {
 
         {/* Card 2 – Acquafy AI no App */}
         <div className="bg-[#f6f9fe] flex flex-1 flex-col gap-[20px] items-start min-h-[310px] min-w-[280px] p-[20px] rounded-[16px]">
-          <div className="flex flex-1 flex-col gap-[20px] items-start min-w-[200px]">
-            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#0569ff] w-full">
+          <div className="flex flex-1 flex-col gap-[20px] items-center min-w-[200px] win-1024:items-start">
+            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#0569ff] text-center win-1024:text-left w-full">
               Acquafy AI no App
             </p>
-            <div className="flex flex-wrap gap-[20px] items-center min-h-[210px] w-full shrink-0">
+            <div className="flex flex-wrap justify-center gap-[20px] items-center min-h-[210px] w-full shrink-0">
               <CardImage src={imgHomeMob} outerAspect="1970/3639" innerAspect="271/500" />
-              <div className="flex flex-1 flex-col gap-[20px] items-start min-w-[210px]">
-                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#1f2e91] w-full">
+              <div className="flex flex-1 flex-col gap-[20px] items-center min-w-[210px] win-1024:items-start">
+                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#1f2e91] text-center win-1024:text-left w-full">
                   Inteligência artificial que aprende, analisa e cuida da sua água.
                 </p>
                 <div className="flex flex-col h-[134px] items-start justify-between w-full shrink-0">
@@ -101,13 +101,13 @@ export default function Features() {
 
         {/* Card 3 – Controle pelo App */}
         <div className="bg-[#f6f9fe] flex flex-1 flex-col gap-[20px] items-start min-h-[310px] min-w-[280px] p-[20px] rounded-[16px]">
-          <div className="flex flex-1 flex-col gap-[20px] items-start min-w-[200px]">
-            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#0569ff] w-full">
+          <div className="flex flex-1 flex-col gap-[20px] items-center min-w-[200px] win-1024:items-start">
+            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#0569ff] text-center win-1024:text-left w-full">
               Controle tudo pelo App Acquafy
             </p>
-            <div className="flex flex-wrap gap-[20px] items-center min-h-[210px] w-full shrink-0">
+            <div className="flex flex-wrap justify-center gap-[20px] items-center min-h-[210px] w-full shrink-0">
               <CardImage src={imgAppView} outerAspect="1970/3639" />
-              <div className="flex flex-1 flex-col gap-[20px] items-start min-w-[210px]">
+              <div className="flex flex-1 flex-col gap-[20px] items-center min-w-[210px] win-1024:items-start">
                 <div className="flex flex-col h-[134px] items-start justify-between w-full shrink-0">
                   {[
                     "Vida útil dos filtros",

@@ -61,13 +61,13 @@ export default function ParceirosAcessorios() {
           {/* Benefits row */}
           <div className="bg-white flex flex-wrap gap-[20px_10px] items-center justify-center p-[20px] rounded-[16px] w-full">
             {benefits.map((b) => (
-              <div key={b.title} className="flex flex-1 gap-[20px] items-center justify-center max-w-[260px] min-w-[200px]">
+              <div key={b.title} className="flex flex-1 gap-[20px] items-center justify-center min-w-[200px]">
                 <div className="flex items-center justify-center shrink-0 size-[30px]">
                   <FigmaIcon src={b.icon} size={30} aspectW={b.iconW} aspectH={b.iconH} />
                 </div>
-                <div className="flex flex-col gap-[10px] items-start shrink-0">
-                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] max-w-[200px]">{b.title}</p>
-                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#333] w-[200px]">{b.desc}</p>
+                <div className="flex flex-col gap-[10px] items-start flex-1 min-w-0">
+                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] w-full">{b.title}</p>
+                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#333] w-full">{b.desc}</p>
                 </div>
               </div>
             ))}

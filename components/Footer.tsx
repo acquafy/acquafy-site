@@ -148,7 +148,6 @@ function MobileNavSection({
           <p className="font-['Articulat_CF:Bold'] text-[18px] leading-[22px] text-[#0569ff]">
             {col.title}
           </p>
-          <div className="h-[1.5px] rounded-full shrink-0 w-[30px]" style={gradientLine} />
         </div>
         {/* Chevron: fechado = ∨ (rotate-180 no SVG que aponta ^), aberto = ^ (sem rotação) */}
         <div className={`shrink-0 transition-transform duration-200${isOpen ? "" : " rotate-180"}`}>

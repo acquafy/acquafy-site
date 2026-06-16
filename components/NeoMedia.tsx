@@ -72,7 +72,7 @@ export default function NeoMedia() {
               Neo Media
             </h2>
             <div className="flex flex-wrap gap-y-[20px] items-center w-full">
-              <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start justify-center min-w-[210px]">
+              <div className="flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-w-[210px] lg:items-start">
                 <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-white w-full text-center lg:text-left">
                   Água inteligente + media digital + receita recorrente.
                   <br />
