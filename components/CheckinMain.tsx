@@ -261,7 +261,7 @@ function QtyControl({ qty, onDec, onInc, onRemove, premium }: {
    ═══════════════════════════════════════════════════════════════════════════ */
 export default function CheckinMain() {
   const [mounted, setMounted] = useState(false);
-  const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
+  const [step, setStep] = useState<1 | 2 | 3 | 4 | 5>(1);
   const [done, setDone] = useState(false);
 
   /* cart: { id, qty }[] */
