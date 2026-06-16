@@ -1,12 +1,12 @@
 ﻿// "Uma plataforma física de hidratação, mídia e conversão" (Figma node 3258:4218)
 import FigmaIcon from "./FigmaIcon";
 
-const imgMarketing = "/figma-assets/9b7dece2-0a8e-4cc0-b793-1c7b71987e1c.svg";
-const imgDashboard = "/figma-assets/3d43f817-a1b2-4de2-9b91-ea3be3c131c1.svg";
-const imgBrain     = "/figma-assets/15106c5c-9181-485c-9cf5-1a613edb5210.svg";
-const imgMoney     = "/figma-assets/4b4a3d2b-a6f9-402c-a12a-a2abcae19631.svg";
-const imgQR        = "/figma-assets/3830e066-a6d5-42ce-ba6a-96dc792a6011.svg";
-const imgLocal     = "/figma-assets/d17a72fb-63e4-425f-a41c-4fdc2039c8af.svg";
+const imgMarketing = "/figma-assets/icon-marketing-a.svg";
+const imgDashboard = "/figma-assets/icon-dashboard.svg";
+const imgBrain     = "/figma-assets/icon-brain-a.svg";
+const imgMoney     = "/figma-assets/icon-money-d.svg";
+const imgQR        = "/figma-assets/icon-qr-a.svg";
+const imgLocal     = "/figma-assets/icon-local-a.svg";
 
 // aspectW/aspectH extraídos do Figma (node 3258:4218):
 // marketing → 39.76×28.46 (landscape), dashboard → 642×642 (sq),

@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useContext, useState, type ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, type ReactNode } from "react";
 
 // ── Plugin configuration ───────────────────────────────────────────────────────
 // Set CHAT_AVAILABLE = true and implement openChatWindow() when connecting a
@@ -30,6 +30,23 @@ export function useChatWidget() {
 
 export function ChatProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [extraBottom, setExtraBottom] = useState(0);
+
+  useEffect(() => {
+    const footer = document.querySelector("footer");
+    if (!footer) return;
+    const update = () => {
+      const overlap = Math.max(0, window.innerHeight - footer.getBoundingClientRect().top);
+      setExtraBottom(overlap > 0 ? overlap + 8 : 0);
+    };
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update, { passive: true });
+    update();
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
 
   function openChat() {
     if (CHAT_AVAILABLE) {
@@ -48,8 +65,9 @@ export function ChatProvider({ children }: { children: ReactNode }) {
         <button
           onClick={openChat}
           aria-label="Abrir chat"
-          className="fixed bottom-[24px] right-[24px] z-[9998] flex items-center gap-[10px] px-[18px] py-[13px] rounded-full shadow-[0_4px_20px_0_rgba(2,51,195,0.35)] hover:shadow-[0_6px_28px_0_rgba(2,51,195,0.45)] hover:scale-[1.04] active:scale-[0.97] transition-all duration-200"
-          style={{ backgroundImage: "linear-gradient(112deg, #0233c3 6.19%, #9f3df5 93.35%)" }}
+          suppressHydrationWarning
+          className="fixed right-[24px] z-[9998] flex items-center gap-[10px] px-[18px] py-[13px] rounded-full shadow-[0_4px_20px_0_rgba(2,51,195,0.35)] hover:shadow-[0_6px_28px_0_rgba(2,51,195,0.45)] hover:scale-[1.04] active:scale-[0.97] transition-all duration-200"
+          style={{ backgroundImage: "linear-gradient(112deg, #0233c3 6.19%, #9f3df5 93.35%)", bottom: 24 + extraBottom }}
         >
           <svg viewBox="0 0 24 24" fill="none" className="size-[20px] shrink-0" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />

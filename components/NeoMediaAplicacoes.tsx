@@ -1,19 +1,19 @@
 ﻿// "Onde o Acquafy Media gera mais impacto" — location cards (Figma node 3258:4243)
 import FigmaIcon from "./FigmaIcon";
 
-const imgAirport   = "/figma-assets/eac0b0d0-0a21-40fc-85d3-6699467e14df.jpg";
-const imgShopping  = "/figma-assets/5856d8d9-5788-4a3d-9a08-e16721ae8927.jpg";
-const imgHospital  = "/figma-assets/c57d83d0-7dd2-4e08-b953-f7fc5046c1a0.jpg";
-const imgOffice    = "/figma-assets/41c939d1-7471-46b8-a8b5-24d8eded655a.jpg";
-const imgEducation = "/figma-assets/8b24d643-32e9-44b1-8faa-2239b9f0f6a1.jpg";
-const imgCrowded   = "/figma-assets/316eb9cd-85a6-4494-aacb-ccf4facae5ea.jpg";
+const imgAirport   = "/figma-assets/photo-location-airport.webp";
+const imgShopping  = "/figma-assets/photo-location-shopping.webp";
+const imgHospital  = "/figma-assets/photo-location-hospital.webp";
+const imgOffice    = "/figma-assets/photo-location-office.webp";
+const imgEducation = "/figma-assets/photo-location-university.webp";
+const imgCrowded   = "/figma-assets/photo-location-public.webp";
 
-const imgPlane     = "/figma-assets/b79edafe-4ce0-4091-8d78-975bc0303322.svg";
-const imgCart      = "/figma-assets/deb7bc58-3867-46e5-8fce-c92b3be24473.svg";
-const imgCross     = "/figma-assets/0e1b34ca-cb32-4845-b5c5-7e4fc3b3d562.svg";
-const imgBuilding  = "/figma-assets/69664d04-75e5-462a-a1bb-c0b5182bb2dc.svg";
-const imgEdu       = "/figma-assets/1eb44019-8bf6-4957-826f-1414337185c2.svg";
-const imgPeople    = "/figma-assets/4884314c-e1b3-4f0b-8374-afa69452a6c5.svg";
+const imgPlane     = "/figma-assets/icon-plane.svg";
+const imgCart      = "/figma-assets/icon-cart.svg";
+const imgCross     = "/figma-assets/icon-cross.svg";
+const imgBuilding  = "/figma-assets/icon-building.svg";
+const imgEdu       = "/figma-assets/icon-edu.svg";
+const imgPeople    = "/figma-assets/icon-people-a.svg";
 
 const locations = [
   { photo: imgAirport,   icon: imgPlane,    aspectW: 32, aspectH: 32,   title: "Aeroportos",                          desc: "Alto fluxo, público qualificado e grande visibilidade para marcas." },

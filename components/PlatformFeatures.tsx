@@ -1,15 +1,15 @@
 ﻿import FigmaIcon from "./FigmaIcon";
 
-const imgHouse       = "/figma-assets/a2df2932-25b9-49dc-97c7-d0da071ff32c.svg";
-const imgParceiros   = "/figma-assets/953ce407-44ff-4042-98de-3fd2411b6e5b.svg";
-const imgQrCodes     = "/figma-assets/ceb28b20-f2b0-4b48-901c-43967b741ff3.svg";
-const imgMediaNet    = "/figma-assets/ecd37759-66ec-4f9c-8fdb-e55d76d6833c.svg";
-const imgProdNeo     = "/figma-assets/4dc41d1c-0a38-4ae1-b950-125ffed282cc.svg";
-const imgVendas      = "/figma-assets/f5d04918-b398-4280-baeb-21a4979af6a3.svg";
-const imgComissoes   = "/figma-assets/1639676d-0faf-4588-b64f-47df1591365a.svg";
-const imgAppIotAi    = "/figma-assets/0055b7d4-d6db-48a5-84e3-c83ad26d82af.svg";
-const imgMapa        = "/figma-assets/0f64f392-56cb-4736-b705-e719734e5413.svg";
-const imgConfig      = "/figma-assets/e0ec465c-ff91-49c4-9457-6f80ca9e1a65.svg";
+const imgHouse       = "/figma-assets/icon-house.svg";
+const imgParceiros   = "/figma-assets/icon-parceiros-a.svg";
+const imgQrCodes     = "/figma-assets/icon-qr-codes-a.svg";
+const imgMediaNet    = "/figma-assets/icon-medianet-b.svg";
+const imgProdNeo     = "/figma-assets/icon-prod-neo-a.svg";
+const imgVendas      = "/figma-assets/icon-vendas-b.svg";
+const imgComissoes   = "/figma-assets/icon-comissoes-a.svg";
+const imgAppIotAi    = "/figma-assets/icon-app-iot-ai.svg";
+const imgMapa        = "/figma-assets/icon-mapa.svg";
+const imgConfig      = "/figma-assets/icon-config.svg";
 
 const features = [
   { bg: "#0569ff", icon: imgHouse,     iconW: 22, iconH: 22, title: "Dashboard Global",  desc: "Visão completa do negócio em tempo real." },

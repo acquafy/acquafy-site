@@ -2,37 +2,37 @@
 
 const items = [
   {
-    icon: "/figma-assets/b4436e72-2a16-43ae-b1ca-e743d4b415b5.svg",
+    icon: "/figma-assets/icon-monitoring-realtime.svg",
     aspectW: 30, aspectH: 30, bg: "#0569ff",
     title: "Monitoramento em tempo real",
     desc: "Acompanhe seus dispositivos 24/7 de qualquer lugar.",
   },
   {
-    icon: "/figma-assets/cda0fdfe-d6fe-4e76-a317-8d9c7f2efa51.svg",
+    icon: "/figma-assets/icon-smart-alerts.svg",
     aspectW: 23, aspectH: 30, bg: "#6e54ef",
     title: "Alertas inteligentes",
     desc: "Notificações automáticas para agir antes de qualquer problema.",
   },
   {
-    icon: "/figma-assets/2bea5dfa-f637-42ae-a0a1-9c37ae63ac66.svg",
+    icon: "/figma-assets/icon-water-quality-app.svg",
     aspectW: 30, aspectH: 30, bg: "#36ae5c",
     title: "Qualidade da água",
     desc: "Dados precisos para garantir água pura e confiável.",
   },
   {
-    icon: "/figma-assets/515915ba-bee4-479a-9d4b-3e347e3d019e.svg",
+    icon: "/figma-assets/icon-filter-status.svg",
     aspectW: 30, aspectH: 30, bg: "#ffa920",
     title: "Status dos filtros",
     desc: "Verifique vida útil, trocas e desempenho dos filtros.",
   },
   {
-    icon: "/figma-assets/2a2def0a-3c93-44cd-b762-a1d5c6043c64.svg",
+    icon: "/figma-assets/icon-remote-control.svg",
     aspectW: 21, aspectH: 30, bg: "#6e54ef",
     title: "Controle remoto",
     desc: "Gerencie funções e operações direto do seu App.",
   },
   {
-    icon: "/figma-assets/95fe6e51-57a0-459d-806d-7b0c277259f5.svg",
+    icon: "/figma-assets/icon-updates-support.svg",
     aspectW: 30, aspectH: 30, bg: "#0569ff",
     title: "Atualizações e suporte",
     desc: "Software sempre atualizado e suporte especializado.",

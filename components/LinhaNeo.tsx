@@ -1,30 +1,29 @@
 ﻿import FigmaIcon from "./FigmaIcon";
+import { PRODUCT_IMAGES } from "@/lib/products";
 
 // ── Checkin icon ───────────────────────────────────────────────────────────────
 const imgCheckin = "/figma-assets/icon-check-e.svg"; // 30×30 sq
 
 // ── Feature card assets ────────────────────────────────────────────────────────
-const imgPanel      = "/figma-assets/panel-led.png";
-const imgHomeMob    = "/figma-assets/app-home-mobile.png";
-const imgAppView    = "/figma-assets/app-view-screen.png";
+const imgPanel      = "/figma-assets/panel-led.webp";
+const imgHomeMob    = "/figma-assets/app-home-mobile.webp";
+const imgAppView    = "/figma-assets/app-view-screen.webp";
 const imgFeatCheck  = "/figma-assets/icon-check-30px.svg";
 const imgFeatWifi   = "/figma-assets/icon-wifi-feat.svg";
 const imgBluetooth  = "/figma-assets/icon-bluetooth.svg";
 
-// ── Product images (PNG) — row 1 ──────────────────────────────────────────────
-const imgNeoUp            = "/figma-assets/neo-up-catalog.png";
-const imgNeoFit           = "/figma-assets/neo-fit.png";
-const imgNeoSmart         = "/figma-assets/neo-smart-h2.png";
-const imgNeoTouch         = "/figma-assets/neo-touch.png";
-const imgNeoPlus          = "/figma-assets/neo-plus.png";
-
-// ── Product images (PNG) — row 2 ──────────────────────────────────────────────
-const imgNeoUltra         = "/figma-assets/neo-ultra.png";
-const imgNeoUltraSpark    = "/figma-assets/neo-ultra-spark.png";
-const imgNeoUltraSparkH2  = "/figma-assets/neo-ultra-spark-h2.png";
-const imgNeoMax           = "/figma-assets/neo-max.png";
-const imgNeoMaxSpark      = "/figma-assets/neo-max-spark.png";
-const imgNeoMaxSparkH2    = "/figma-assets/neo-max-spark-h2.png";
+// ── Product images — source única via PRODUCT_CATALOG (lib/products.ts) ───────
+const imgNeoUp            = PRODUCT_IMAGES["neo-up"];
+const imgNeoFit           = PRODUCT_IMAGES["neo-fit"];
+const imgNeoSmart         = PRODUCT_IMAGES["neo-smart-h2"];
+const imgNeoTouch         = PRODUCT_IMAGES["neo-touch"];
+const imgNeoPlus          = PRODUCT_IMAGES["neo-plus"];
+const imgNeoUltra         = PRODUCT_IMAGES["neo-ultra"];
+const imgNeoUltraSpark    = PRODUCT_IMAGES["neo-ultra-spark"];
+const imgNeoUltraSparkH2  = PRODUCT_IMAGES["neo-ultra-spark-h2"];
+const imgNeoMax           = PRODUCT_IMAGES["neo-max"];
+const imgNeoMaxSpark      = PRODUCT_IMAGES["neo-max-spark"];
+const imgNeoMaxSparkH2    = PRODUCT_IMAGES["neo-max-spark-h2"];
 
 const waterTypes = [
   { label: "Água Natural",     sub: "Presente em todos" },
@@ -67,7 +66,7 @@ const row2: Product[] = [
 
 function CardImage({ src }: { src: string }) {
   return (
-    <div className="flex items-center justify-center h-[220px] max-w-[170px] overflow-hidden relative shrink-0">
+    <div className="flex items-center justify-center h-[220px] w-full min-w-[120px] max-w-[170px] overflow-hidden relative shrink-0">
       <img alt="" className="max-h-full max-w-full object-contain pointer-events-none" src={src} />
     </div>
   );
@@ -170,7 +169,7 @@ export default function LinhaNeo() {
 
           {/* Card 1 – Painel LED Touch */}
           <div className="bg-white flex flex-1 flex-col gap-[20px] items-start min-h-[310px] min-w-[280px] p-[20px] rounded-[16px]">
-            <div className="flex flex-1 flex-col gap-[20px] items-start min-w-[200px]">
+            <div className="flex flex-1 flex-col gap-[20px] items-start w-full">
               <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] w-full">
                 <span className="text-[#0569ff]">Painel LED </span>
                 <span className="text-[#1f2e91]">Touch Inteligente</span>
@@ -201,7 +200,7 @@ export default function LinhaNeo() {
 
           {/* Card 2 – Acquafy AI no App */}
           <div className="bg-white flex flex-1 flex-col gap-[20px] items-start min-h-[310px] min-w-[280px] p-[20px] rounded-[16px]">
-            <div className="flex flex-1 flex-col gap-[20px] items-start min-w-[200px]">
+            <div className="flex flex-1 flex-col gap-[20px] items-start w-full">
               <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#0569ff] w-full">
                 Acquafy AI no App
               </p>
@@ -235,7 +234,7 @@ export default function LinhaNeo() {
 
           {/* Card 3 – Controle pelo App */}
           <div className="bg-white flex flex-1 flex-col gap-[20px] items-start min-h-[310px] min-w-[280px] p-[20px] rounded-[16px]">
-            <div className="flex flex-1 flex-col gap-[20px] items-start min-w-[200px]">
+            <div className="flex flex-1 flex-col gap-[20px] items-start w-full">
               <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#0569ff] w-full">
                 Controle tudo pelo App Acquafy
               </p>

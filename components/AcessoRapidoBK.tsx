@@ -1,13 +1,13 @@
 ﻿import FigmaIcon from "./FigmaIcon";
 
-const imgArrowAccent = "/figma-assets/11e4753e-07db-4612-9dc9-03f33a0075de.svg";
+const imgArrowAccent = "/figma-assets/icon-arrow-accent.svg";
 
-const imgIconProducts  = "/figma-assets/43762c75-7c8a-4044-8113-69dcb9f63b86.svg";
-const imgIconDownload  = "/figma-assets/0298fb46-013e-4e99-b9a3-d7d90d8218e0.svg";
-const imgIconEducation = "/figma-assets/d22b56b8-0578-4f64-b011-2228a3e888e8.svg";
-const imgIconFaq       = "/figma-assets/383f262b-ce1a-4bcf-956f-07aeabf9e518.svg";
-const imgIconDoc       = "/figma-assets/fd0455b2-5d5a-4c6c-8533-301f8a94c68c.svg";
-const imgIconWifi      = "/figma-assets/e5466ddf-14ac-49c9-908d-c23208fa39f9.svg";
+const imgIconProducts  = "/figma-assets/icon-products.svg";
+const imgIconDownload  = "/figma-assets/icon-download.svg";
+const imgIconEducation = "/figma-assets/icon-education.svg";
+const imgIconFaq       = "/figma-assets/icon-faq.svg";
+const imgIconDoc       = "/figma-assets/icon-doc.svg";
+const imgIconWifi      = "/figma-assets/icon-wifi-list.svg";
 
 export type QuickItem = {
   icon: string;

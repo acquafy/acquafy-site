@@ -2,15 +2,15 @@
 import FigmaIcon from "./FigmaIcon";
 import { BtnAzulBaseArrow, BtnAzulOutArrow } from "./ui/Buttons";
 
-const imgBg          = "/figma-assets/e8f7c96b-1a0d-4c5e-96f9-4b31d4de3a60.png";
-const imgSuporte     = "/figma-assets/438796f7-96e0-4e35-ad1a-d3ad2f0457aa.png";
+const imgBg          = "/figma-assets/bg-b.webp";
+const imgSuporte     = "/figma-assets/image-suporte.webp";
 // Badge icon
-const imgPlanetWeb   = "/figma-assets/7df83e65-407c-40b6-889f-80fac86e16af.svg";  // 30×30 sq
+const imgPlanetWeb   = "/figma-assets/icon-planetweb-30px-a.svg";  // 30×30 sq
 // Stats bar icons
-const imgPlanetGlobe = "/figma-assets/f04a607b-d82e-4b6e-b06f-988ff500cf82.svg";  // 30×30 sq
-const imgPessoas     = "/figma-assets/37463702-6601-4d05-ad0c-fcd35effbe7b.svg";  // 43.86×40.50
-const imgLocal       = "/figma-assets/58de908c-74c3-43d3-8b16-c6fda0ac305c.svg";  // 24.63×30 portrait
-const imgScale       = "/figma-assets/221ab3d5-68cf-4358-8e6e-d173eb8bf1b1.svg";  // 30×30 sq
+const imgPlanetGlobe = "/figma-assets/icon-planet-globe-30px.svg";  // 30×30 sq
+const imgPessoas     = "/figma-assets/icon-pessoas-a.svg";  // 43.86×40.50
+const imgLocal       = "/figma-assets/icon-local-24px.svg";  // 24.63×30 portrait
+const imgScale       = "/figma-assets/icon-scale-30px.svg";  // 30×30 sq
 
 const stats = [
   { icon: imgPlanetGlobe, iconW: 30,    iconH: 30,    number: "16",        label: "idiomas",          sub: "com presença ativa" },
@@ -79,7 +79,7 @@ export default function ExpansaoGlobalBanner() {
 
         {/* Right column — product image */}
         <div className="flex w-full lg:flex-[1_0_0] flex-col lg:h-[585px] items-center lg:items-end justify-center">
-          <div className="relative w-full shrink-0" style={{ aspectRatio: "4096/2138" }}>
+          <div className="relative w-full shrink-0" style={{ aspectRatio: "2164/1093" }}>
             <img
               alt="Expansão Global Acquafy"
               className="absolute inset-0 w-full h-full object-cover pointer-events-none"
@@ -93,7 +93,7 @@ export default function ExpansaoGlobalBanner() {
       <div className="relative bg-[#1f2e91] flex flex-wrap gap-[30px_20px] items-start justify-center max-w-[1400px] overflow-clip px-[20px] py-[40px] rounded-[16px] shrink-0 w-full">
         {stats.map((s) => (
           <div key={s.label} className="flex flex-[1_0_0] flex-wrap gap-[20px] items-start min-w-[160px]">
-            <FigmaIcon src={s.icon} size={60} aspectW={s.iconW} aspectH={s.iconH} />
+            <FigmaIcon src={s.icon} size={32} aspectW={s.iconW} aspectH={s.iconH} />
             <div className="flex flex-[1_0_0] flex-col gap-[15px] items-start leading-[0] min-w-[200px]">
               <p className="[text-box-trim:trim-both] [text-box-edge:cap_alphabetic] font-['Avenir_LT_Pro:95_Black'] text-[32px] leading-[39px] text-white w-full">{s.number}</p>
               <p className="[text-box-trim:trim-both] [text-box-edge:cap_alphabetic] font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-white w-full">{s.label}</p>

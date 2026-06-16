@@ -3,22 +3,22 @@ import FigmaIcon from "./FigmaIcon";
 import Link from "next/link";
 import { BtnAzulBaseArrow, BtnAzulOutArrow } from "./ui/Buttons";
 
-const imgBg     = "/figma-assets/06a6a2b8-28b7-4f8a-b500-fea6f628ac43.png";
-const imgFrame  = "/figma-assets/b3635421-87cc-4404-b02a-8a35171ad853.png";
-const imgPlanet = "/figma-assets/afe49ef6-ac37-4f41-bab3-127f4dcae483.svg";
+const imgBg     = "/figma-assets/bg-h.webp";
+const imgFrame  = "/figma-assets/frame-image.webp";
+const imgPlanet = "/figma-assets/icon-planet-c.svg";
 
-const imgPeople = "/figma-assets/6b0fc92c-b6ef-4f8d-ac5b-aa67da06e49c.svg";
-const imgWater  = "/figma-assets/e3111aad-f472-422c-b8d0-33ccfaa9da5d.svg";
-const imgScreen = "/figma-assets/9b404a53-31a6-42bf-bc9b-d1aee2df8a7a.svg";
-const imgMoneyS = "/figma-assets/d82e7b9c-c375-4487-a934-781dfc72c028.svg";
-const imgMobile = "/figma-assets/d60aa24f-5556-41f7-bd47-a70f1ea00014.svg";
-const imgLocal  = "/figma-assets/e3137c73-e1fb-4514-8aee-5d5c9063b8b2.svg";
+const imgPeople = "/figma-assets/icon-people-b.svg";
+const imgWater  = "/figma-assets/icon-water-d.svg";
+const imgScreen = "/figma-assets/icon-screen.svg";
+const imgMoneyS = "/figma-assets/icon-money-small-s.svg";
+const imgMobile = "/figma-assets/icon-mobile-d.svg";
+const imgLocal  = "/figma-assets/icon-local-b.svg";
 
-const imgPlay   = "/figma-assets/e91b43d2-d646-4fca-b01f-0312cf4ad5db.svg";
-const imgQR     = "/figma-assets/78a4cc62-3b5c-448f-8a67-f195cc497b16.svg";
-const imgAI     = "/figma-assets/d0fdc59a-a432-4c43-8deb-0779ba64ad9e.svg";
-const imgMoneyL = "/figma-assets/157fba37-bbd5-4453-a45a-15f32ed9a05e.svg";
-const imgWifi   = "/figma-assets/9ca2ced3-dc54-42a4-8851-732566c5e9f4.svg";
+const imgPlay   = "/figma-assets/icon-play-b.svg";
+const imgQR     = "/figma-assets/icon-qr-b.svg";
+const imgAI     = "/figma-assets/icon-ai-30px-e.svg";
+const imgMoneyL = "/figma-assets/icon-money-large-l.svg";
+const imgWifi   = "/figma-assets/icon-wifi-a.svg";
 
 const stats = [
   { icon: imgPeople, aspectW: 40.69, aspectH: 40,  title: "Alto fluxo",  sub: "de pessoas" },

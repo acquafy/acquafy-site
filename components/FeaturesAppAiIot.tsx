@@ -1,20 +1,20 @@
 ﻿import FigmaIcon from "./FigmaIcon";
 
 // ── Imagens de card ───────────────────────────────────────────────────────────
-const imgFrame10    = "/figma-assets/25c396db-adbd-4033-a6c2-730dee33b6af.png"; // bg mix-blend
-const imgCheckin    = "/figma-assets/8ac04097-5015-4f16-b49f-ca64faf46c51.svg"; // bullet 14px
+const imgFrame10    = "/figma-assets/frame-10-bg-blend.webp"; // bg mix-blend
+const imgCheckin    = "/figma-assets/icon-check-bullet.svg"; // bullet 14px
 
 // ── Ícones dos cards (todos com preserveAspectRatio="none") ───────────────────
-const imgMobile     = "/figma-assets/c949cdb8-5a17-4158-b6b0-8aaef884917e.svg";  // 20.2×28
-const imgBrain      = "/figma-assets/b541d68d-7cda-4158-8395-6f6eb9330e5a.svg";  // 32×32
-const imgWifi       = "/figma-assets/44a31159-c52e-4424-9868-43766b829a50.svg";  // 32×22
-const imgPessoas    = "/figma-assets/9d80f21c-8d2a-4d4e-90c7-46de9785bd6c.svg";  // 32×29.7
+const imgMobile     = "/figma-assets/icon-mobile-20px.svg";  // 20.2×28
+const imgBrain      = "/figma-assets/icon-brain-32px.svg";  // 32×32
+const imgWifi       = "/figma-assets/icon-wifi-32px.svg";  // 32×22
+const imgPessoas    = "/figma-assets/icon-pessoas-32px.svg";  // 32×29.7
 
 // ── Imagens bottom dos cards ──────────────────────────────────────────────────
-const imgAppPhone   = "/figma-assets/47b82084-2a56-48d4-944e-16f89c7dfa57.png";
-const imgAiApp      = "/figma-assets/93031ad9-3e45-43e5-9b96-aece9cb3ae2d.png";
-const imgIotApp     = "/figma-assets/957e36e7-cb9c-4dd0-b61e-186dc792edf7.png";
-const imgCloudApp   = "/figma-assets/f3ca984b-b4cb-4462-8ff0-edce017ec847.png";
+const imgAppPhone   = "/figma-assets/app-phone-mockup-a.webp";
+const imgAiApp      = "/figma-assets/app-ai-screenshot.webp";
+const imgIotApp     = "/figma-assets/app-iot-screen.webp";
+const imgCloudApp   = "/figma-assets/app-cloud-screen.webp";
 
 const cards = [
   {

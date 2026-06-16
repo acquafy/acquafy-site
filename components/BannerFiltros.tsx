@@ -2,19 +2,19 @@
 
 // ── Backgrounds ──────────────────────────────────────────────────────────────
 // "Padrão" (xl+): background hero com splash de água + produtos visíveis ao fundo
-const imgBg      = "/figma-assets/04d3b459-e5cc-4a96-81dc-e4aa96f1e555.png";
+const imgBg      = "/figma-assets/bg-g.webp";
 // "120" (lg) + "1000" (mobile): foto explícita dos filtros no card lateral/stacked
-const imgFilters = "/figma-assets/11374df5-0ab7-4d33-a4da-86050dfce2b2.png";
+const imgFilters = "/figma-assets/image-filters.webp";
 
 // ── Setas: mesmas do Hero (padrão do projeto) ─────────────────────────────────
-const imgArrowWhite = "/figma-assets/9777bc4a-58de-46e7-8e46-08e99069f337.svg";
-const imgArrowBlue  = "/figma-assets/4e468b96-c90e-4821-837b-9780c1f0b21f.svg";
+const imgArrowWhite = "/figma-assets/icon-arrow-white-a.svg";
+const imgArrowBlue  = "/figma-assets/icon-arrow-blue-outline-a.svg";
 
 // ── Stats icons ───────────────────────────────────────────────────────────────
-const imgWater      = "/figma-assets/1bf88936-a8d9-4e4a-837c-b064c61d0cfc.svg";
-const imgAI         = "/figma-assets/02893454-2abf-4b2d-8379-74ca62e14bd5.svg";
-const imgFilter     = "/figma-assets/934e9b9d-e907-4428-8cb1-c0dc59caea70.svg";
-const imgIntegracao = "/figma-assets/95d445db-891f-4524-b733-fcb15cefb5d3.svg";
+const imgWater      = "/figma-assets/icon-water-a.svg";
+const imgAI         = "/figma-assets/icon-ai.svg";
+const imgFilter     = "/figma-assets/icon-filter-a.svg";
+const imgIntegracao = "/figma-assets/icon-integracao.svg";
 
 const stats = [
   { icon: imgWater,      iconW: 40, iconH: 40, title: "Água pura e segura",                    desc: "Mais saúde e bem-estar para você e sua família." },
@@ -70,7 +70,7 @@ export default function BannerFiltros() {
               "1000" (mobile): centralizados | "120"+"Padrão" (lg+): à esquerda       */}
           <div className="flex flex-col md:flex-row flex-wrap gap-[20px] items-center w-full justify-center xl:justify-start">
             {/* BT AZUL BASE ARROW */}
-            <a href="/filtros" className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex w-full md:flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] md:min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
+            <a href="#filtros-lista" className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex w-full md:flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] md:min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
               <span className="font-['Articulat_CF:Bold'] text-[16px] text-white flex-1 text-center">Conheça os filtros</span>
               <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
             </a>

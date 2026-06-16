@@ -6,7 +6,7 @@ const imgIot      = "/figma-assets/ts-icon-iot.svg";
 const imgTela     = "/figma-assets/ts-icon-tela.svg";
 const imgShield   = "/figma-assets/ts-icon-shield-agua.svg";
 const imgScale    = "/figma-assets/ts-icon-scale.svg";
-const imgMagnific = "/figma-assets/ts-hero-right.png";
+const imgMagnific = "/figma-assets/ts-hero-right.webp";
 
 const features = [
   {

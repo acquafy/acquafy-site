@@ -6,9 +6,9 @@ import FigmaIcon from "./FigmaIcon";
 import { LanguageSelectorCompact } from "./ui/LanguageSelector";
 
 // Logo: aspect 1133.86×237.88
-const imgLogo    = "/figma-assets/7641c2d1-4055-43a1-83ae-8a4ce06cbf9d.svg";
+const imgLogo    = "/figma-assets/logo-acquafy.svg";
 // Partner icon: 40.69×40
-const imgPartner = "/figma-assets/ce8a6a7c-0e01-4346-932a-27b6fd8188ed.svg";
+const imgPartner = "/figma-assets/icon-partner-b.svg";
 
 // ── Types ────────────────────────────────────────────────────────────────────
 type DropdownItem = {
@@ -101,7 +101,6 @@ const navItems: NavItem[] = [
       },
     ],
   },
-  { label: "Parceiros", href: "/parceria", extra: [], dropdown: [] },
   {
     label: "Empresa",
     href:  "/sobre",
@@ -138,6 +137,7 @@ const navItems: NavItem[] = [
       },
     ],
   },
+  { label: "Comprar agora", href: "/checkin", extra: [], dropdown: [] },
 ];
 
 // ── Chevron ───────────────────────────────────────────────────────────────────

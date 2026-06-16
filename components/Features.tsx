@@ -1,11 +1,11 @@
 ﻿import FigmaIcon from "./FigmaIcon";
 
-const imgPanel = "/figma-assets/4e6b8a1f-cde5-4362-bb86-960a54dd56c3.png";
-const imgHomeMob = "/figma-assets/dc018212-75b4-4bfb-8453-a2918a035342.png"; // Acquafy AI app screenshot
-const imgAppView = "/figma-assets/91df8984-0d8f-450d-9282-c33ab6e90584.png";
-const imgCheckin = "/figma-assets/6e980cf7-5c09-4a14-8503-ec31deee8e89.svg"; // 30×30 sq, inset -5.36%
-const imgWifi = "/figma-assets/b80097cb-1bf0-4bdb-b383-e091e3b69fcb.svg";
-const imgBluetooth = "/figma-assets/d37a36f4-919f-4d4c-80c4-66382ea5540f.svg";
+const imgPanel = "/figma-assets/panel-led.webp";
+const imgHomeMob = "/figma-assets/app-home-mobile.webp"; // Acquafy AI app screenshot
+const imgAppView = "/figma-assets/app-view-screen.webp";
+const imgCheckin = "/figma-assets/icon-check-30px.svg"; // 30×30 sq, inset -5.36%
+const imgWifi = "/figma-assets/icon-wifi-feat.svg";
+const imgBluetooth = "/figma-assets/icon-bluetooth.svg";
 
 /**
  * CardImage — altura limitada a 220px, largura auto pelo aspect-ratio.

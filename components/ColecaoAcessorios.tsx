@@ -1,28 +1,29 @@
-﻿import FigmaIcon from "./FigmaIcon";
+﻿import Link from "next/link";
+import FigmaIcon from "./FigmaIcon";
 import { BtnAzulOutArrow } from "./ui/Buttons";
 
 // Category icons
-const imgIconCamisa  = "/figma-assets/fdacece8-1388-418b-badd-dfd2d5d9a424.svg";
-const imgIconCaneca  = "/figma-assets/cbb6fbe3-819a-4035-86f9-05265385404c.svg";
-const imgIconSqueeze = "/figma-assets/f0e74906-fa07-4931-8d07-6d9f93f386ec.svg";
-const imgIconBone    = "/figma-assets/c2ba606e-b7d3-411f-9966-abe89d7e0451.svg";
-const imgIconStar    = "/figma-assets/2fde00a7-c93e-4d0d-a01f-68fe082f6e5c.svg";
+const imgIconCamisa  = "/figma-assets/icon-camisa.svg";
+const imgIconCaneca  = "/figma-assets/icon-caneca.svg";
+const imgIconSqueeze = "/figma-assets/icon-squeeze.svg";
+const imgIconBone    = "/figma-assets/icon-bone-item.svg";
+const imgIconStar    = "/figma-assets/icon-star.svg";
 
 // Product images
-const imgCamisa1C = "/figma-assets/64b645f3-9977-4009-a7f1-b4dc80d29047.png";
-const imgCamisa1F = "/figma-assets/7f7745bc-d55c-4185-b251-882a44ccdb44.png";
-const imgPolo11   = "/figma-assets/76c6bf22-5801-4826-97d2-88c63b102b49.png";
-const imgPolo1C1  = "/figma-assets/cd6c1fd6-1ddf-40a2-b3cf-b77a6d446897.png";
-const imgBone11   = "/figma-assets/066e4244-0891-452a-83d5-a4962d63ff03.png";
-const imgCopoPapel = "/figma-assets/48a4575b-6c2e-49e6-9c7b-2ede8d75f003.png";
-const imgSqueeze   = "/figma-assets/4b0ac68f-f59a-4cc7-a549-f3901359c799.png";
-const imgCopoVidro = "/figma-assets/60360f5e-e177-4976-bfde-2516418f7e5c.png";
-const imgCaneca    = "/figma-assets/d6f34527-8945-4629-9a8d-a94db7dc84ab.png";
-const imgSacola    = "/figma-assets/ae5d9833-698f-4126-a7a4-ddce78c8fcf2.png";
-const imgCracha    = "/figma-assets/f3e89b21-50c6-4914-9777-172b947c5207.png";
-const imgAdesivo   = "/figma-assets/57854d52-0c96-428a-a0bf-091497a7bee4.png";
-const imgBroche    = "/figma-assets/c9cfe78e-ad35-46c5-8bd5-d086e430e04c.png";
-const imgCard      = "/figma-assets/d3576d41-0210-4a6a-93b6-3371be2f1873.png";
+const imgCamisa1C = "/figma-assets/product-camisa-1c-a.webp";
+const imgCamisa1F = "/figma-assets/product-camisa-1f-b.webp";
+const imgPolo11   = "/figma-assets/product-polo-11.webp";
+const imgPolo1C1  = "/figma-assets/product-polo-1c1.webp";
+const imgBone11   = "/figma-assets/product-bone-11.webp";
+const imgCopoPapel = "/figma-assets/product-paper-cup.webp";
+const imgSqueeze   = "/figma-assets/product-squeeze-a.webp";
+const imgCopoVidro = "/figma-assets/product-glass-cup.webp";
+const imgCaneca    = "/figma-assets/product-caneca.webp";
+const imgSacola    = "/figma-assets/product-sacola-a.webp";
+const imgCracha    = "/figma-assets/product-cracha.webp";
+const imgAdesivo   = "/figma-assets/product-sticker-a.webp";
+const imgBroche    = "/figma-assets/product-broche-a.webp";
+const imgCard      = "/figma-assets/card-a.webp";
 
 const categories = [
   { icon: imgIconCamisa,  iconBg: "#0569ff",  iconW: 649, iconH: 656, label: "Camisas & Uniformes" },
@@ -141,7 +142,6 @@ function ProductCard({ product }: { product: Product }) {
             {product.desc}
           </p>
         </div>
-        <BtnAzulOutArrow className="mt-[10px] w-full">Saiba mais</BtnAzulOutArrow>
       </div>
     </div>
   );
@@ -185,6 +185,13 @@ export default function ColecaoAcessorios() {
           {products.map((p) => (
             <ProductCard key={p.title} product={p} />
           ))}
+        </div>
+
+        {/* CTA */}
+        <div className="flex justify-center w-full">
+          <Link href="/contato?assunto=Acess%C3%B3rios%20Acquafy">
+            <BtnAzulOutArrow>Fale conosco e saiba mais</BtnAzulOutArrow>
+          </Link>
         </div>
 
       </div>

@@ -2,37 +2,37 @@
 
 const items = [
   {
-    icon: "/figma-assets/17cb8397-8895-4ccc-b269-107123c47918.svg",
+    icon: "/figma-assets/icon-global-monitoring.svg",
     aspectW: 30, aspectH: 30, bg: "#0569ff",
     title: "Monitoramento global",
     desc: "Visão completa de operações e dispositivos em qualquer lugar.",
   },
   {
-    icon: "/figma-assets/435f0a58-c2b6-44df-87ff-db5feb5a42ef.svg",
+    icon: "/figma-assets/icon-preventive-maintenance.svg",
     aspectW: 30, aspectH: 30, bg: "#36ae5c",
     title: "Manutenção preventiva",
     desc: "Antecipe trocas e evite paradas inesperadas.",
   },
   {
-    icon: "/figma-assets/522516b7-2a17-4cb7-a25f-a0686f098b2d.svg",
+    icon: "/figma-assets/icon-filter-365days.svg",
     aspectW: 36, aspectH: 40, bg: "#ffa920",
     title: "Contagem de 365 dias dos filtros",
     desc: "Controle preciso de vida útil e desempenho dos filtros.",
   },
   {
-    icon: "/figma-assets/59698376-e9dd-4e19-ac9e-3fa8e04bb23f.svg",
+    icon: "/figma-assets/icon-app-control.svg",
     aspectW: 21, aspectH: 30, bg: "#6e54ef",
     title: "Controle via App",
     desc: "Funções e ajustes diretamente do seu smartphone.",
   },
   {
-    icon: "/figma-assets/b6e27e2d-200f-49b2-9422-0debb9b003e6.svg",
+    icon: "/figma-assets/icon-ai-insights-app.svg",
     aspectW: 30, aspectH: 30, bg: "#6e54ef",
     title: "Insights com IA",
     desc: "Decisões mais rápidas com dados e sugestões inteligentes.",
   },
   {
-    icon: "/figma-assets/b8a9c397-c8ec-406a-bfcc-f043646207aa.svg",
+    icon: "/figma-assets/icon-16-languages.svg",
     aspectW: 30, aspectH: 30, bg: "#0569ff",
     title: "Operação em 16 idiomas",
     desc: "Histórico e acompanhamento",
@@ -55,7 +55,7 @@ export default function RecursosAppAiIot() {
           {items.map((item) => (
             <div
               key={item.title}
-              className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-w-[200px] p-[20px] rounded-[16px]"
+              className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center justify-start min-w-[200px] p-[20px] rounded-[16px]"
             >
               {/* Ícone — círculo colorido */}
               <div
@@ -67,7 +67,7 @@ export default function RecursosAppAiIot() {
 
               {/* Texto */}
               <div className="flex flex-col gap-[20px] items-start text-center w-full">
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] min-h-[36px] w-full flex items-center">
+                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] min-h-[36px] w-full flex items-center justify-center text-center">
                   {item.title}
                 </p>
                 <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#333] w-full">

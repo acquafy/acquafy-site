@@ -1,12 +1,12 @@
 ﻿import FigmaIcon from "./FigmaIcon";
 
 // ── Assets ───────────────────────────────────────────────────────────────────
-const imgBg        = "/figma-assets/876d7726-5006-4cc7-97bc-45a60e67a3b6.png"; // section bg
-const imgGlobe     = "/figma-assets/57457041-3be7-4286-904b-a50ba0c11b60.svg"; // presença global
-const imgPartner   = "/figma-assets/fe318b6f-e30c-4367-a956-05afe3f35eba.svg"; // rede parceiros
-const imgWater     = "/figma-assets/34b7a71d-fe69-43da-913b-8629ac9c05fe.svg"; // pessoas impactadas
-const imgGloboSust = "/figma-assets/1eda187e-f6c0-4747-8ab5-3ef5f36b6f68.svg"; // sustentabilidade
-const imgChat      = "/figma-assets/f1204284-0630-498a-ba45-04ff40580c7e.svg"; // mídia inteligente
+const imgBg        = "/figma-assets/bg-section.webp"; // section bg
+const imgGlobe     = "/figma-assets/icon-globe-nova-fase.svg"; // presença global
+const imgPartner   = "/figma-assets/icon-partner-rede.svg"; // rede parceiros
+const imgWater     = "/figma-assets/icon-water-pessoas.svg"; // pessoas impactadas
+const imgGloboSust = "/figma-assets/icon-globo-sustentabilidade.svg"; // sustentabilidade
+const imgChat      = "/figma-assets/icon-chat-midia.svg"; // mídia inteligente
 
 const stats = [
   {

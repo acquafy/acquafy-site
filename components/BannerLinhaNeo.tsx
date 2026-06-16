@@ -1,23 +1,23 @@
 ﻿import FigmaIcon from "./FigmaIcon";
 
 // Background panorama — xl+ apenas (variante TOTAL)
-const imgBg       = "/figma-assets/947d57e0-fb06-43d4-84bf-75b2e012218a.png";
+const imgBg       = "/figma-assets/banner-neo-bg.webp";
 // Montagem de produtos — inline (default) e coluna direita (lg)
-const imgProducts = "/figma-assets/25093727-4f9a-4532-aacf-a92049eb825d.png";
+const imgProducts = "/figma-assets/banner-neo-products.webp";
 
 // Feature icons
-const imgMobile   = "/figma-assets/621b62cb-9c11-4f9c-929d-2f0f2f05df2e.svg"; // 21×30
-const imgBrain    = "/figma-assets/21c27aa2-c251-4d21-b072-d097cab8ada9.svg"; // 30×30
-const imgWifi     = "/figma-assets/1e5028c4-ce12-4d6a-9c7c-2c4a282a8abe.svg"; // 30×20
-const imgWater    = "/figma-assets/b9ae65e9-ab56-4b66-8ac4-2cc0713bc87c.svg"; // 576×662
-const imgShield   = "/figma-assets/620ebd35-ffd3-413c-b1e1-badd50994293.svg"; // 26×30
-const imgPlanet   = "/figma-assets/3a6ceadc-3f10-4216-a944-e52a683d16ce.svg"; // 30×30
+const imgMobile   = "/figma-assets/icon-mobile-21px-b.svg"; // 21×30
+const imgBrain    = "/figma-assets/icon-brain-30px-a.svg"; // 30×30
+const imgWifi     = "/figma-assets/icon-wifi-30px-b.svg"; // 30×20
+const imgWater    = "/figma-assets/icon-water-large-a.svg"; // 576×662
+const imgShield   = "/figma-assets/icon-shield-26px-a.svg"; // 26×30
+const imgPlanet   = "/figma-assets/icon-planet-30px-a.svg"; // 30×30
 
 // Stats bar icons
-const imgAI       = "/figma-assets/fc3ef7bd-af62-45f6-aa26-7a48faee67bd.svg"; // 30×30 em slot 40px
-const imgWaterBub = "/figma-assets/c82d8ece-24c3-48a5-af88-93915e0ad0c7.svg"; // 40×40
-const imgPlanet1  = "/figma-assets/cc8e5973-e053-480a-bdc3-e6c6fa961113.svg"; // 30×30 em slot 40px
-const imgSustain  = "/figma-assets/eb4caabf-aa80-4a16-9b77-15b840bc7593.svg"; // 40×40
+const imgAI       = "/figma-assets/icon-ai-30px-c.svg"; // 30×30 em slot 40px
+const imgWaterBub = "/figma-assets/icon-water-bub-40px.svg"; // 40×40
+const imgPlanet1  = "/figma-assets/icon-planet-30px-slot40.svg"; // 30×30 em slot 40px
+const imgSustain  = "/figma-assets/icon-sustain-40px.svg"; // 40×40
 
 const features = [
   { icon: imgMobile, aW: 21,  aH: 30,  title: "App Acquafy",       desc: "Controle total pelo app de onde quiser." },
@@ -109,7 +109,7 @@ export default function BannerLinhaNeo() {
         style={{ backgroundImage: "linear-gradient(92deg, #f3faff 0%, #ceefff 100%)" }}
       >
         {stats.map((s) => (
-          <div key={s.title} className="flex flex-[1_0_0] flex-wrap gap-[20px] items-center justify-center min-w-[160px] px-[20px]">
+          <div key={s.title} className="flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-w-[160px] win-1280:flex-row win-1280:flex-wrap">
             <FigmaIcon src={s.icon} size={40} />
             <div className="flex flex-[1_0_0] flex-col gap-[15px] items-start min-w-[200px] text-center win-1280:text-left">
               <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] w-full">

@@ -1,11 +1,11 @@
 ﻿import FigmaIcon from "./FigmaIcon";
 
-const imgMobile  = "/figma-assets/a2eb6e1c-8e5e-44d1-b255-9f545aa2bb9d.svg"; // 21×30
-const imgBrain   = "/figma-assets/f81826e2-5f76-4485-92b2-9f483f762d68.svg"; // 30×30
-const imgWifi    = "/figma-assets/d258c863-a8b6-428e-bd92-aeda78929186.svg"; // 30×20
-const imgWater   = "/figma-assets/03477969-23e9-4f1f-af09-da450f920605.svg"; // 576×662
-const imgShield  = "/figma-assets/fbc6dbf6-e504-4f0e-81f8-9823e6b65a49.svg"; // 26×30
-const imgPlanet  = "/figma-assets/9752eb0a-fafb-4775-a0b6-48219c46620f.svg"; // 30×30
+const imgMobile  = "/figma-assets/icon-mobile-21px-c.svg"; // 21×30
+const imgBrain   = "/figma-assets/icon-brain-30px-b.svg"; // 30×30
+const imgWifi    = "/figma-assets/icon-wifi-30px-c.svg"; // 30×20
+const imgWater   = "/figma-assets/icon-water-large-b.svg"; // 576×662
+const imgShield  = "/figma-assets/icon-shield-26px-c.svg"; // 26×30
+const imgPlanet  = "/figma-assets/icon-planet-30px-b.svg"; // 30×30
 
 const items = [
   { icon: imgMobile, aW: 21,  aH: 30,  title: "App Acquafy",         desc: "Controle total pelo app de onde quiser." },

@@ -4,8 +4,8 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import FigmaIcon from "./FigmaIcon";
 import { useChatWidget } from "./ChatWidget";
 
-const imgArrowWhite = "/figma-assets/f1bc0ed4-ae05-42d0-9a9b-446afb8aa0de.svg";
-const imgArrowBlue  = "/figma-assets/9fb38b6b-2d2d-4507-a48f-9b970bd17e28.svg";
+const imgArrowWhite = "/figma-assets/icon-arrow-white-solid.svg";
+const imgArrowBlue  = "/figma-assets/icon-arrow-blue-c.svg";
 
 // ── Search index ────────────────────────────────────────────────────────────
 

@@ -1,16 +1,16 @@
 ﻿const products = [
   {
-    img: "/figma-assets/238476b1-fb56-4e09-9574-39116eee291b.png",
+    img: "/figma-assets/neo-ultra-spark-h2.webp",
     name: "Neo Essentials",
     desc: "Compatível com toda linha Neo Essentials para uso diário.",
   },
   {
-    img: "/figma-assets/ea8e8bcf-87f9-4cb1-93be-7bcd9c08d19f.png",
+    img: "/figma-assets/compat-neo-premium.webp",
     name: "Neo Premium",
     desc: "Integração completa com a linha Neo Premium de alto desempenho.",
   },
   {
-    img: "/figma-assets/d0da8581-181a-4c29-be88-500a03c2f50b.png",
+    img: "/figma-assets/acquafy-media-totem.webp",
     name: "Acquafy Media",
     desc: "Conectado à plataforma de mídia para campanhas e comunicações.",
   },

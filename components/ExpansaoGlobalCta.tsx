@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { BtnAzulOutArrow, BtnAzulBaseArrow } from "./ui/Buttons";
 
-const imgBg = "/figma-assets/6e4c7a5e-74be-4ed7-ab5a-e6572a21db21.png";
+const imgBg = "/figma-assets/bg-n.webp";
 
 export default function ExpansaoGlobalCta() {
   return (

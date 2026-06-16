@@ -1,25 +1,25 @@
 ﻿import FigmaIcon from "./FigmaIcon";
 
 // ── Assets ────────────────────────────────────────────────────────────────────
-const imgBg          = "/figma-assets/fe4429bc-7d62-427a-a0f3-f9ea1576c252.png"; // background
-const imgProduct     = "/figma-assets/1c281bc7-409d-4419-a4b0-63a6eb62fc73.png"; // Acquafy Media totem, aspect 1441/4096
-const imgArrowBlue   = "/figma-assets/bf9679c1-4cd0-4871-bf2e-62c09e3cfbe0.svg"; // arrow azul outline
-const imgArrowWhite  = "/figma-assets/8b3582ba-350c-4445-b464-872ec596bb95.svg"; // arrow branca hover
+const imgBg          = "/figma-assets/bg-c.webp"; // background
+const imgProduct     = "/figma-assets/acquafy-media-totem.webp"; // Acquafy Media totem, aspect 1441/4096
+const imgArrowBlue   = "/figma-assets/icon-arrow-blue-outline-b.svg"; // arrow azul outline
+const imgArrowWhite  = "/figma-assets/icon-arrow-white-hover.svg"; // arrow branca hover
 
 // Benefit icons (tamanho 20px cada)
-const imgMarketing  = "/figma-assets/225472c1-d7d8-46c8-9e6a-757e6865e82b.svg"; // 39.76×28.46 landscape
-const imgDivLine1   = "/figma-assets/9defc25d-3efc-459c-b871-185ccacfd1b8.svg"; // divisor linha
-const imgDashboard  = "/figma-assets/d9d2628a-7410-4551-9409-228e4a0c5f01.svg"; // 642×642 sq
-const imgDivLine2   = "/figma-assets/ccb8cadb-da22-4087-9862-0c16fd234d71.svg"; // divisor linha
-const imgAI         = "/figma-assets/900a973a-2672-4d14-bb6a-88d0a32fe6c1.svg"; // 30×30 sq
-const imgMoney      = "/figma-assets/b4c23c4c-c022-43dc-b3ac-5efd2ec978a1.svg"; // 472×440
-const imgLocations  = "/figma-assets/e3082aba-4e52-4b16-8e3a-fc260e3ae74a.svg"; // 642×642 sq
+const imgMarketing  = "/figma-assets/icon-marketing-landscape.svg"; // 39.76×28.46 landscape
+const imgDivLine1   = "/figma-assets/divider-line-1.svg"; // divisor linha
+const imgDashboard  = "/figma-assets/icon-dashboard-large.svg"; // 642×642 sq
+const imgDivLine2   = "/figma-assets/divider-line-2.svg"; // divisor linha
+const imgAI         = "/figma-assets/icon-ai-30px-a.svg"; // 30×30 sq
+const imgMoney      = "/figma-assets/icon-money-large-a.svg"; // 472×440
+const imgLocations  = "/figma-assets/icon-locations.svg"; // 642×642 sq
 
 // Bottom feature icons
-const imgWifi       = "/figma-assets/70eb2c74-72f7-4467-8c0d-6837dce29af3.svg"; // 30×20 landscape
-const imgTime       = "/figma-assets/910c0d8d-f822-4220-ad2c-7445a4cb8e53.svg"; // 30×30 sq
-const imgBatimentos = "/figma-assets/4efb357e-6728-4416-a523-b7dd5fa91638.svg"; // 30×29
-const imgLock       = "/figma-assets/24fb0589-33c6-4a67-9db3-35db57dddabf.svg"; // 27×30 portrait
+const imgWifi       = "/figma-assets/icon-wifi-30px-a.svg"; // 30×20 landscape
+const imgTime       = "/figma-assets/icon-time-30px.svg"; // 30×30 sq
+const imgBatimentos = "/figma-assets/icon-batimentos.svg"; // 30×29
+const imgLock       = "/figma-assets/icon-lock-b.svg"; // 27×30 portrait
 
 const benefits = [
   { icon: imgMarketing,  aspectW: 39.76, aspectH: 28.46, title: "Receita com Anúncios",    desc: "Monetize com companhias de alta viabilidade e marcas relevantes." },
@@ -122,7 +122,7 @@ export default function NeoMedia() {
                     </p>
                   </div>
                   {/* Description (min-h-75 to align across items) */}
-                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] leading-[14px] text-[#2a2a2b] min-h-[75px] w-full">
+                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#2a2a2b] min-h-[75px] w-full">
                     {b.desc}
                   </p>
                 </div>
@@ -135,10 +135,10 @@ export default function NeoMedia() {
                 <div key={f.title} className="flex flex-[1_0_0] gap-[10px] items-center min-w-[120px]">
                   <BenefitIcon icon={f.icon} aspectW={f.aspectW} aspectH={f.aspectH} />
                   <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-0">
-                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] leading-[13px] text-[#1f2e91] w-full">
+                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[15px] text-[#1f2e91] w-full">
                       {f.title}
                     </p>
-                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[10px] leading-[14px] text-[#2a2a2b] w-full">
+                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] leading-[16px] text-[#2a2a2b] w-full">
                       {f.desc}
                     </p>
                   </div>

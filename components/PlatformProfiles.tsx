@@ -1,10 +1,10 @@
 ﻿import FigmaIcon from "./FigmaIcon";
 
-const imgAdmin    = "/figma-assets/93b8dc56-8515-45d3-befc-caf033bfc9ae.svg";
-const imgSilver   = "/figma-assets/d0e9b3db-26b7-4853-8018-8f4f7b7c81ae.png";
-const imgGold     = "/figma-assets/7088aa77-92b2-4653-aa52-56f036e9fb66.png";
-const imgPlatinum = "/figma-assets/1d02e080-51c4-4cd9-9e3c-055ef3998b5d.png";
-const imgMegaphone= "/figma-assets/55bf6a58-127d-4411-8019-bd99dc7c7cab.svg";
+const imgAdmin    = "/figma-assets/icon-admin.svg";
+const imgSilver   = "/figma-assets/product-silver-c.webp";
+const imgGold     = "/figma-assets/product-gold-d.webp";
+const imgPlatinum = "/figma-assets/product-platinum-c.webp";
+const imgMegaphone= "/figma-assets/icon-megaphone.svg";
 
 const profiles = [
   {

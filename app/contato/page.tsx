@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Header from "@/components/Header";
 import BannerContato from "@/components/BannerContato";
 import ContatoInfoForm from "@/components/ContatoInfoForm";
@@ -18,7 +19,9 @@ export default function Contato() {
       <Header />
       <main>
         <BannerContato />
-        <ContatoInfoForm />
+        <Suspense>
+          <ContatoInfoForm />
+        </Suspense>
         <OutrosCanais />
         <CtaBannerContato />
       </main>

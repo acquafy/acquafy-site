@@ -7,17 +7,17 @@ import { useChatWidget } from "./ChatWidget";
 import { quickItems } from "./AcessoRapidoBK";
 
 // ── Assets ────────────────────────────────────────────────────────────────────
-const imgBg        = "/figma-assets/54da886e-ad0c-40e0-b1c5-4ebef3882107.png";
-const imgMainImage = "/figma-assets/0f88f795-dcaa-417c-b773-8e294fb4950f.png";
+const imgBg        = "/figma-assets/bg-d.webp";
+const imgMainImage = "/figma-assets/main-image.webp";
 
-const imgIconChat    = "/figma-assets/2328f5bd-c67d-4131-836e-a43d2ca36d5b.svg";
-const imgIconCheckin = "/figma-assets/a5657761-5416-4e91-aa2c-da6292ddb56a.svg";
-const imgIconBook    = "/figma-assets/8c24e0f5-d9f7-4e12-a7ac-575b42f5619f.svg";
-const imgIconFone    = "/figma-assets/1dd93c82-743b-4216-9f5f-b173b8df8640.svg";
+const imgIconChat    = "/figma-assets/icon-chat-list.svg";
+const imgIconCheckin = "/figma-assets/icon-check-list.svg";
+const imgIconBook    = "/figma-assets/icon-book.svg";
+const imgIconFone    = "/figma-assets/icon-fone-list.svg";
 
-const imgArrowWhite  = "/figma-assets/f1bc0ed4-ae05-42d0-9a9b-446afb8aa0de.svg";
-const imgArrowBlue   = "/figma-assets/9fb38b6b-2d2d-4507-a48f-9b970bd17e28.svg";
-const imgArrowAccent = "/figma-assets/11e4753e-07db-4612-9dc9-03f33a0075de.svg";
+const imgArrowWhite  = "/figma-assets/icon-arrow-white-solid.svg";
+const imgArrowBlue   = "/figma-assets/icon-arrow-blue-c.svg";
+const imgArrowAccent = "/figma-assets/icon-arrow-accent.svg";
 
 // ── Dados ─────────────────────────────────────────────────────────────────────
 const floatingCards = [

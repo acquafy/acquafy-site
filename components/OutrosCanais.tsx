@@ -5,12 +5,12 @@ import FigmaIcon from "./FigmaIcon";
 import { useChatWidget } from "./ChatWidget";
 
 // ── Assets ───────────────────────────────────────────────────────────────────
-const imgChat      = "/figma-assets/42ea5353-8843-46d2-9697-63999c787ed4.svg"; // 42×42      sq
-const imgWhatsApp  = "/figma-assets/5dabfa98-850b-481b-9adc-7a50efe0ae5f.svg"; // 41.98×42   ~sq
-const imgPhone     = "/figma-assets/b42e3aca-077d-485d-8519-8dd743644232.svg"; // 42×42      sq
-const imgCalendar  = "/figma-assets/796ff117-103a-49c0-ada5-b04a49b8cffb.svg"; // 38×42      portrait
-const imgMail      = "/figma-assets/2a1a1b30-6448-4c52-a1e7-7673b9f5da29.svg"; // 42×34      landscape
-const imgArrowBlue = "/figma-assets/cb40773a-2459-425f-9c0e-bae3e3e893ad.svg"; // 11.2×8.84  landscape
+const imgChat      = "/figma-assets/icon-chat-42px.svg"; // 42×42      sq
+const imgWhatsApp  = "/figma-assets/icon-whatsapp.svg"; // 41.98×42   ~sq
+const imgPhone     = "/figma-assets/icon-phone-42px.svg"; // 42×42      sq
+const imgCalendar  = "/figma-assets/icon-calendar-b.svg"; // 38×42      portrait
+const imgMail      = "/figma-assets/icon-mail-42px.svg"; // 42×34      landscape
+const imgArrowBlue = "/figma-assets/icon-arrow-blue-small.svg"; // 11.2×8.84  landscape
 
 const PHONE       = "+14072035669";
 const WHATSAPP    = `https://wa.me/${PHONE.replace("+", "")}`;

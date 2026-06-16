@@ -1,18 +1,18 @@
 ﻿import FigmaIcon from "./FigmaIcon";
 
 // ── Desktop (≥1024px) assets ──────────────────────────────────────────────────
-const imgBg        = "/figma-assets/cf3e69ac-639d-45d7-9276-975505ea6399.png"; // background card
+const imgBg        = "/figma-assets/bg-card.webp"; // background card
 // ── Mobile (<1024px) asset ────────────────────────────────────────────────────
-const imgProduct   = "/figma-assets/12fd06f0-e51f-4d9e-b4b6-8bb2580c31d2.png"; // product+water image
+const imgProduct   = "/figma-assets/product-water-image.webp"; // product+water image
 
 // ── Icons (SVG) ───────────────────────────────────────────────────────────────
-const imgShieldLabel = "/figma-assets/61d3d602-d772-4c91-a4a5-3bc635c886ce.svg"; // 26.14×30 portrait
-const imgGift        = "/figma-assets/30724bb1-938c-461b-a26b-e1313241329f.svg"; // square
-const imgShield      = "/figma-assets/4c506a35-d7a4-4764-911e-604770bc2a88.svg"; // 24×30 portrait
-const imgCert        = "/figma-assets/d5032819-b3dc-4969-954d-7c24c9248f91.svg"; // 19×30 portrait
-const imgFone        = "/figma-assets/b56f7909-a020-4fa4-a1e4-b4b5d14f2c3e.svg"; // 30×30 square
-const imgLock        = "/figma-assets/df276058-73d5-4f5f-9cec-90780e50cfb5.svg"; // 27×30 portrait
-const imgLogoWhite   = "/figma-assets/5f557cfc-a356-4769-81a9-8e85ecc5ebdf.svg"; // 1133.86×237.88 wide
+const imgShieldLabel = "/figma-assets/icon-shield-label.svg"; // 26.14×30 portrait
+const imgGift        = "/figma-assets/icon-gift-a.svg"; // square
+const imgShield      = "/figma-assets/icon-shield-24px.svg"; // 24×30 portrait
+const imgCert        = "/figma-assets/icon-cert.svg"; // 19×30 portrait
+const imgFone        = "/figma-assets/icon-fone-30px.svg"; // 30×30 square
+const imgLock        = "/figma-assets/icon-lock-a.svg"; // 27×30 portrait
+const imgLogoWhite   = "/figma-assets/logo-white.svg"; // 1133.86×237.88 wide
 
 const trustItems = [
   { icon: imgShield, aspectW: 24,    aspectH: 30,    title: "Compra 100% segura",    sub: "Seus dados protegidos" },

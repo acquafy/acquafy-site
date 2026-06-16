@@ -1,5 +1,6 @@
 ﻿'use client'
 import { useRef } from 'react'
+import { PRODUCT_IMAGES } from "@/lib/products";
 
 /* ─────────────────────────────────────────────────────────────────
    ProdutosParceria
@@ -9,32 +10,32 @@ import { useRef } from 'react'
 ───────────────────────────────────────────────────────────────── */
 
 /* ── Assets: Linha Essentials (Node 3542:11643) ───────────────── */
-const imgNeoUltraSparkH2 = "/figma-assets/neo-ultra-spark-h2.png";
-const imgNeoMaxSparkH2   = "/figma-assets/neo-max-spark-h2.png";
-const imgNeoUltraSpark   = "/figma-assets/neo-ultra-spark.png";
-const imgNeoMaxSpark     = "/figma-assets/neo-max-spark.png";
-const imgNeoUltra        = "/figma-assets/neo-ultra.png";
-const imgNeoMax          = "/figma-assets/neo-max.png";
-const imgNeoPlus         = "/figma-assets/neo-plus.png";
-const imgNeoTouch        = "/figma-assets/neo-touch.png";
-const imgNeoSmartH2      = "/figma-assets/neo-smart-h2.png";
-const imgNeoFit          = "/figma-assets/neo-fit.png";
-const imgNeoUp           = "/figma-assets/neo-up.png";
+const imgNeoUltraSparkH2 = "/figma-assets/neo-ultra-spark-h2.webp";
+const imgNeoMaxSparkH2   = "/figma-assets/neo-max-spark-h2.webp";
+const imgNeoUltraSpark   = "/figma-assets/neo-ultra-spark.webp";
+const imgNeoMaxSpark     = "/figma-assets/neo-max-spark.webp";
+const imgNeoUltra        = "/figma-assets/neo-ultra.webp";
+const imgNeoMax          = "/figma-assets/neo-max.webp";
+const imgNeoPlus         = "/figma-assets/neo-plus.webp";
+const imgNeoTouch        = "/figma-assets/neo-touch.webp";
+const imgNeoSmartH2      = "/figma-assets/neo-smart-h2.webp";
+const imgNeoFit          = "/figma-assets/neo-fit.webp";
+const imgNeoUp           = "/figma-assets/neo-up.webp";
 
-/* ── Assets: Linha Neo Premium (Node 3542:12323) ──────────────── */
-const imgInfinitySparkH2  = "/figma-assets/premium-infinity-spark-h2.png";
-const imgPrestigeSparkH2  = "/figma-assets/premium-prestige-spark-h2.png";
-const imgPrimeSparkH2     = "/figma-assets/premium-prime-spark-h2.png";
-const imgInfinitySpark    = "/figma-assets/premium-infinity-spark.png";
-const imgPrestigeSpark    = "/figma-assets/premium-prestige-spark.png";
-const imgPrimeSpark       = "/figma-assets/premium-prime-spark.png";
-const imgInfinity         = "/figma-assets/premium-infinity.png";
-const imgPrestige         = "/figma-assets/premium-prestige.png";
-const imgPrime            = "/figma-assets/premium-prime.png";
+/* ── Assets: Linha Neo Premium — fonte única via PRODUCT_CATALOG (lib/products.ts) ── */
+const imgInfinitySparkH2  = PRODUCT_IMAGES["neo-infinity-spark-h2"];
+const imgPrestigeSparkH2  = PRODUCT_IMAGES["neo-prestige-spark-h2"];
+const imgPrimeSparkH2     = PRODUCT_IMAGES["neo-prime-spark-h2"];
+const imgInfinitySpark    = PRODUCT_IMAGES["neo-infinity-spark"];
+const imgPrestigeSpark    = PRODUCT_IMAGES["neo-prestige-spark"];
+const imgPrimeSpark       = PRODUCT_IMAGES["neo-prime-spark"];
+const imgInfinity         = PRODUCT_IMAGES["neo-infinity"];
+const imgPrestige         = PRODUCT_IMAGES["neo-prestige"];
+const imgPrime            = PRODUCT_IMAGES["neo-prime"];
 
 /* ── Assets: Acquafy Media + cursor ──────────────────────────── */
-const imgMedia   = "/figma-assets/acquafy-media-totem.png";
-const imgBuyCta  = "/figma-assets/buy-cursor-icon.png";
+const imgMedia   = "/figma-assets/acquafy-media-totem.webp";
+const imgBuyCta  = "/figma-assets/buy-cursor-icon.webp";
 
 /* ─────────────────────────────────────────────────────────────────
    ProductItem — 1 produto da lista horizontal
@@ -42,15 +43,11 @@ const imgBuyCta  = "/figma-assets/buy-cursor-icon.png";
    img: 80×80; name: 20px Heavy; subscript: "2" em 12.9px
 ───────────────────────────────────────────────────────────────── */
 type ProductItemProps = {
-  src:      string;
-  /** aspect-ratio da imagem, ex: "3275/4096" */
-  aspect:   string;
-  /** false = objeto retrato → h-full; true = objeto paisagem/quadrado → w-full */
-  portrait: boolean;
-  variant:  "essentials" | "premium";
-  name:     string;
+  src:     string;
+  variant: "essentials" | "premium";
+  name:    string;
   /** se true, renderiza o último char "2" como subscrito 12.9px */
-  sub2?:    boolean;
+  sub2?:   boolean;
 };
 
 function useDragScroll() {
@@ -74,7 +71,7 @@ function useDragScroll() {
   return { ref, onMouseDown, onMouseMove, onMouseUp: onEnd, onMouseLeave: onEnd }
 }
 
-function ProductItem({ src, aspect, portrait, variant, name, sub2 }: ProductItemProps) {
+function ProductItem({ src, variant, name, sub2 }: ProductItemProps) {
   /* gradiente de texto para Essentials */
   const essGrad: React.CSSProperties = {
     backgroundImage:      "linear-gradient(to right, #0233c3, #0569ff)",
@@ -85,24 +82,11 @@ function ProductItem({ src, aspect, portrait, variant, name, sub2 }: ProductItem
   /* sólido para Premium */
   const premColor: React.CSSProperties = { color: "#1f2e91" };
 
-  const [w, h] = aspect.split("/").map(Number);
-  const cssRatio = `${w} / ${h}`;
-
   return (
     <div className="flex flex-col gap-[20px] items-center justify-center relative rounded-[12px] shrink-0">
       {/* imagem 80×80 */}
       <div className="flex items-center justify-center relative shrink-0 size-[80px]">
-        {portrait ? (
-          /* retrato: h-full → largura vem do aspect-ratio */
-          <div className="relative h-full" style={{ aspectRatio: cssRatio }}>
-            <img src={src} alt={name} className="absolute inset-0 w-full h-full object-contain pointer-events-none" />
-          </div>
-        ) : (
-          /* paisagem/quadrado: w-full → altura vem do aspect-ratio */
-          <div className="relative w-full shrink-0" style={{ aspectRatio: cssRatio }}>
-            <img src={src} alt={name} className="absolute inset-0 w-full h-full object-contain pointer-events-none" />
-          </div>
-        )}
+        <img src={src} alt={name} className="w-full h-full object-contain pointer-events-none" />
       </div>
 
       {/* nome do produto */}
@@ -126,17 +110,17 @@ function EssentialsProductRow() {
   return (
     <div className="flex gap-[40px] items-start py-[10px] pr-[20px] shrink-0">
       {/* ordem: do mais completo ao mais simples, da esquerda para direita */}
-      <ProductItem src={imgNeoUltraSparkH2} aspect="3772/4096" portrait name="Neo ULTRA SPARK H2" variant="essentials" sub2 />
-      <ProductItem src={imgNeoMaxSparkH2}   aspect="1515/4012" portrait name="Neo MAX SPARK H2"   variant="essentials" sub2 />
-      <ProductItem src={imgNeoUltraSpark}   aspect="3772/4096" portrait name="Neo ULTRA SPARK"    variant="essentials" />
-      <ProductItem src={imgNeoMaxSpark}     aspect="1515/4012" portrait name="Neo MAX SPARK"       variant="essentials" />
-      <ProductItem src={imgNeoUltra}        aspect="3772/4096" portrait name="Neo ULTRA"           variant="essentials" />
-      <ProductItem src={imgNeoMax}          aspect="1515/4012" portrait name="Neo MAX"             variant="essentials" />
-      <ProductItem src={imgNeoPlus}         aspect="3384/4096" portrait name="Neo PLUS"            variant="essentials" />
-      <ProductItem src={imgNeoTouch}        aspect="3384/4096" portrait name="Neo TOUCH"           variant="essentials" />
-      <ProductItem src={imgNeoSmartH2}      aspect="3275/4096" portrait name="Neo SMART H2"        variant="essentials" sub2 />
-      <ProductItem src={imgNeoFit}          aspect="3275/4096" portrait name="Neo FIT"             variant="essentials" />
-      <ProductItem src={imgNeoUp}           aspect="3275/4096" portrait name="Neo UP"              variant="essentials" />
+      <ProductItem src={imgNeoUltraSparkH2} name="Neo ULTRA SPARK H2" variant="essentials" sub2 />
+      <ProductItem src={imgNeoMaxSparkH2}   name="Neo MAX SPARK H2"   variant="essentials" sub2 />
+      <ProductItem src={imgNeoUltraSpark}   name="Neo ULTRA SPARK"    variant="essentials" />
+      <ProductItem src={imgNeoMaxSpark}     name="Neo MAX SPARK"       variant="essentials" />
+      <ProductItem src={imgNeoUltra}        name="Neo ULTRA"           variant="essentials" />
+      <ProductItem src={imgNeoMax}          name="Neo MAX"             variant="essentials" />
+      <ProductItem src={imgNeoPlus}         name="Neo PLUS"            variant="essentials" />
+      <ProductItem src={imgNeoTouch}        name="Neo TOUCH"           variant="essentials" />
+      <ProductItem src={imgNeoSmartH2}      name="Neo SMART H2"        variant="essentials" sub2 />
+      <ProductItem src={imgNeoFit}          name="Neo FIT"             variant="essentials" />
+      <ProductItem src={imgNeoUp}           name="Neo UP"              variant="essentials" />
     </div>
   );
 }
@@ -144,15 +128,15 @@ function EssentialsProductRow() {
 function PremiumProductRow() {
   return (
     <div className="flex gap-[40px] items-start py-[10px] pr-[20px] shrink-0">
-      <ProductItem src={imgInfinitySparkH2} aspect="837/1526"         portrait name="Neo INFINITY SPARK H2"  variant="premium" sub2 />
-      <ProductItem src={imgPrestigeSparkH2} aspect="113.75/99.76" portrait={false} name="Neo PRESTIGE SPARK H2" variant="premium" sub2 />
-      <ProductItem src={imgPrimeSparkH2}    aspect="3288/3245"    portrait={false} name="Neo PRIME SPARK H2"    variant="premium" sub2 />
-      <ProductItem src={imgInfinitySpark}   aspect="837/1526"         portrait name="Neo INFINITY SPARK"    variant="premium" />
-      <ProductItem src={imgPrestigeSpark}   aspect="113.75/99.76" portrait={false} name="Neo PRESTIGE SPARK"   variant="premium" />
-      <ProductItem src={imgPrimeSpark}      aspect="3288/3245"    portrait={false} name="Neo PRIME SPARK"       variant="premium" />
-      <ProductItem src={imgInfinity}        aspect="837/1526"         portrait name="Neo INFINITY"           variant="premium" />
-      <ProductItem src={imgPrestige}        aspect="113.75/99.76" portrait={false} name="Neo PRESTIGE"          variant="premium" />
-      <ProductItem src={imgPrime}           aspect="3288/3245"    portrait={false} name="Neo PRIME"              variant="premium" />
+      <ProductItem src={imgInfinitySparkH2} name="Neo INFINITY SPARK H2"  variant="premium" sub2 />
+      <ProductItem src={imgPrestigeSparkH2} name="Neo PRESTIGE SPARK H2" variant="premium" sub2 />
+      <ProductItem src={imgPrimeSparkH2}    name="Neo PRIME SPARK H2"    variant="premium" sub2 />
+      <ProductItem src={imgInfinitySpark}   name="Neo INFINITY SPARK"    variant="premium" />
+      <ProductItem src={imgPrestigeSpark}   name="Neo PRESTIGE SPARK"    variant="premium" />
+      <ProductItem src={imgPrimeSpark}      name="Neo PRIME SPARK"       variant="premium" />
+      <ProductItem src={imgInfinity}        name="Neo INFINITY"          variant="premium" />
+      <ProductItem src={imgPrestige}        name="Neo PRESTIGE"          variant="premium" />
+      <ProductItem src={imgPrime}           name="Neo PRIME"             variant="premium" />
     </div>
   );
 }

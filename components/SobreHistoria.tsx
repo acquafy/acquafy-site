@@ -1,13 +1,13 @@
 ﻿import FigmaIcon from "./FigmaIcon";
 
 // ── Timeline icon assets ──────────────────────────────────────────────────────
-const imgWater     = "/figma-assets/7460a337-a4bb-4ffd-b84d-9ae13904163a.svg"; // 2020 Fundação
-const imgContainer = "/figma-assets/6a475d85-2d6a-4d5e-a900-8d6db2cb76e1.svg"; // 2021 Desenvolvimento
-const imgBpmPlay   = "/figma-assets/d2938bab-73ed-4521-a6f5-666c4fb8fc52.svg"; // 2024 Ecossistema Neo
-const imgWifi      = "/figma-assets/e074f426-24d7-4826-8479-933bcbc0314d.svg"; // 2025 Conectividade
-const imgGlobe     = "/figma-assets/57457041-3be7-4286-904b-a50ba0c11b60.svg"; // 2026+ Nova fase
-const imgArrow     = "/figma-assets/506c5c8d-0262-45a7-b763-b436a0de2a2b.svg"; // connector arrow (not last)
-const imgArrowEnd  = "/figma-assets/edb31128-b8d1-4b8b-9128-ac0167bd0bfd.svg"; // last item arrow
+const imgWater     = "/figma-assets/icon-water-fundacao-2020.svg"; // 2020 Fundação
+const imgContainer = "/figma-assets/icon-container.svg"; // 2021 Desenvolvimento
+const imgBpmPlay   = "/figma-assets/icon-bpm-play.svg"; // 2024 Ecossistema Neo
+const imgWifi      = "/figma-assets/icon-wifi-2025.svg"; // 2025 Conectividade
+const imgGlobe     = "/figma-assets/icon-globe-nova-fase.svg"; // 2026+ Nova fase
+const imgArrow     = "/figma-assets/icon-arrow-connector.svg"; // connector arrow (not last)
+const imgArrowEnd  = "/figma-assets/icon-arrow-end.svg"; // last item arrow
 
 type TimelineItem = {
   icon: string; year: string; phase: string; description: string;

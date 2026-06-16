@@ -1,12 +1,12 @@
 ﻿import FigmaIcon from "./FigmaIcon";
 
-const imgPhone       = "/figma-assets/0cf8ade1-fe92-4c27-b5a7-f16fbd11e75b.png";
-const imgNotification = "/figma-assets/fd59420c-8ddb-48d1-a45a-08b6ceb37f89.svg";
-const imgPlanos      = "/figma-assets/f3d37036-43bf-4201-b351-caebcb8f7ec2.svg";
-const imgMoney       = "/figma-assets/d0bb269f-c097-4025-82c3-c64b5c0cefa3.svg";
-const imgCalendar    = "/figma-assets/36a3bc78-15e3-483d-bef8-210955d1cfdf.svg";
-const imgFone        = "/figma-assets/c3c0a11f-1b7f-47cc-9f22-41c97f4eeda7.svg";
-const imgCertificado = "/figma-assets/04fd2c80-34fc-43d6-ab4c-7e617d39efc7.svg";
+const imgPhone       = "/figma-assets/photo-phone.webp";
+const imgNotification = "/figma-assets/icon-notification.svg";
+const imgPlanos      = "/figma-assets/icon-planos.svg";
+const imgMoney       = "/figma-assets/icon-money-c.svg";
+const imgCalendar    = "/figma-assets/icon-calendar-a.svg";
+const imgFone        = "/figma-assets/icon-fone-a.svg";
+const imgCertificado = "/figma-assets/icon-certificado-a.svg";
 
 const features = [
   { icon: imgNotification, aspectW: 23, aspectH: 30, title: "Lembretes automáticos",  desc: "Alertas de troca via App + AI" },

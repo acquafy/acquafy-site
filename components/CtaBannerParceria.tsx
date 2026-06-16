@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { BtnAzulOutArrow, BtnAzulBaseArrow } from "./ui/Buttons";
 
-const imgBg = "/figma-assets/cta-banner-bg.png";
+const imgBg = "/figma-assets/cta-banner-bg.webp";
 
 export default function CtaBannerParceria() {
   return (

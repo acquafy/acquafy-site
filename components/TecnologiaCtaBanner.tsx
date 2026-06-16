@@ -2,7 +2,7 @@
 import { BtnVerdeOutArrow } from "./ui/Buttons";
 
 // ── Assets ───────────────────────────────────────────────────────────────────
-const imgBg   = "/figma-assets/ts-cta-bg.png";
+const imgBg   = "/figma-assets/ts-cta-bg.webp";
 const imgIcon = "/figma-assets/ts-icon-experiencia.svg";  // experiência água  438×492
 
 // ── Main ─────────────────────────────────────────────────────────────────────

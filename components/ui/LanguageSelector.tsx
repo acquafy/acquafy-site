@@ -4,25 +4,25 @@ import { useState, useRef, useEffect } from "react";
 
 // ── Assets ─────────────────────────────────────────────────────────────────
 // Footer selector (3095:5902) — "IDIOMA FULL"
-const imgFlagBR_Full  = "/figma-assets/44759f6f-a798-4941-b8e5-93c69ab86057.svg"; // Brazil 512×512
-const imgArrowFooter  = "/figma-assets/b114f61a-ebeb-4bc1-8659-c10a1093904c.svg"; // 30×18
+const imgFlagBR_Full  = "/figma-assets/flag-br.svg"; // Brazil 512×512
+const imgArrowFooter  = "/figma-assets/icon-arrow-footer.svg"; // 30×18
 
 // Header selector (3102:6909) — "IDIOMA COMPACTO"
-const imgGlobeHeader  = "/figma-assets/8f0b36db-933d-403f-89d7-ee77991b3d07.svg"; // Globe 18×18
-const imgArrowHeader  = "/figma-assets/fbc9c4eb-b063-44be-b35e-84a450dba994.svg"; // 30×18, oriented ∧
+const imgGlobeHeader  = "/figma-assets/icon-globe-header-18px.svg"; // Globe 18×18
+const imgArrowHeader  = "/figma-assets/icon-arrow-header.svg"; // 30×18, oriented ∧
 
 // Language menu flags (shared)
-const imgUSA     = "/figma-assets/11e850be-35ee-437f-ad1c-3d289bfaa564.svg"; // 30×30
-const imgUK      = "/figma-assets/33bd5c2f-c320-4129-8ed9-b8b322032d93.svg"; // 262×262
-const imgBR_Menu = "/figma-assets/44759f6f-a798-4941-b8e5-93c69ab86057.svg"; // 512×512
-const imgPT      = "/figma-assets/8f586395-cc0a-4d61-b158-7beb295f578b.svg"; // w-full
-const imgES      = "/figma-assets/29974bf3-0cc6-43be-83a9-34be04d64160.svg"; // 22×22
-const imgFR      = "/figma-assets/d4e2ac7c-28c1-4878-bdd2-b1fe6a18e35a.svg"; // 30×30
-const imgDE      = "/figma-assets/02cea198-3dfa-468d-9e91-fed48fb92d4c.svg"; // 306×306
-const imgIT      = "/figma-assets/f8aa173c-d1e5-466b-9e72-681d04548bb2.svg"; // 30×30
-const imgZH      = "/figma-assets/7bbec2c4-74c1-45bb-b17f-3069822dc08e.svg"; // 512×512
-const imgJA      = "/figma-assets/9b03aeb2-7bd2-4fa5-870f-925bc62b8f02.svg"; // 512×512
-const imgKO      = "/figma-assets/b08ccc53-a577-47f4-b3fe-8fc5931dbada.svg"; // 374×374
+const imgUSA     = "/figma-assets/flag-usa-30px.svg"; // 30×30
+const imgUK      = "/figma-assets/flag-uk.svg"; // 262×262
+const imgBR_Menu = "/figma-assets/flag-br.svg"; // 512×512
+const imgPT      = "/figma-assets/flag-pt.svg"; // w-full
+const imgES      = "/figma-assets/flag-es.svg"; // 22×22
+const imgFR      = "/figma-assets/flag-fr.svg"; // 30×30
+const imgDE      = "/figma-assets/flag-de.svg"; // 306×306
+const imgIT      = "/figma-assets/flag-it.svg"; // 30×30
+const imgZH      = "/figma-assets/flag-zh.svg"; // 512×512
+const imgJA      = "/figma-assets/flag-ja.svg"; // 512×512
+const imgKO      = "/figma-assets/flag-ko.svg"; // 374×374
 
 // ── Language data ──────────────────────────────────────────────────────────
 type Language = {

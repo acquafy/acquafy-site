@@ -1,11 +1,11 @@
 ﻿import FigmaIcon from "./FigmaIcon";
 
 // ── Assets ───────────────────────────────────────────────────────────────────
-const imgInterfyGroupLogo = "/figma-assets/2d26dd6a-d548-4a59-9c3b-80ace6151f13.svg";
-const imgRatingIcon       = "/figma-assets/26bbd3dd-5a29-4c48-9212-b36ad10dba25.svg"; // +20 anos     sq
-const imgGlobeIcon        = "/figma-assets/0a006afa-4d71-486f-abee-70102e0f7ea9.svg"; // presença     sq
-const imgEcosystemIcon    = "/figma-assets/da874fa3-fb31-4919-b20b-ccfd606f478c.svg"; // ecossistemas sq
-const imgScaleIcon        = "/figma-assets/3178faf1-efe6-43c1-a2ce-df2f2156b143.svg"; // inovação     sq
+const imgInterfyGroupLogo = "/figma-assets/logo-interfy-group.svg";
+const imgRatingIcon       = "/figma-assets/icon-rating-20anos.svg"; // +20 anos     sq
+const imgGlobeIcon        = "/figma-assets/icon-globe-presence.svg"; // presença     sq
+const imgEcosystemIcon    = "/figma-assets/icon-ecosystem.svg"; // ecossistemas sq
+const imgScaleIcon        = "/figma-assets/icon-scale-inovacao.svg"; // inovação     sq
 
 function StatItem({
   icon, iconAlt, title, description,

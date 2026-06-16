@@ -1,14 +1,14 @@
 ﻿// ── Brand logo assets ─────────────────────────────────────────────────────────
-const imgInterfyLogo     = "/figma-assets/bd9110e1-ac06-47eb-a48a-8682234c3894.svg";
-const imgEcofy           = "/figma-assets/849a7fc9-549d-43f0-8f8a-8a3ff7fb9710.svg";
-const imgInterfyShopping = "/figma-assets/e3bd4ef1-a407-479d-9d93-7c6db7bee94c.svg";
-const imgInnovecar       = "/figma-assets/fe76d27c-f0b1-41a9-9a86-674d13d9eebe.png";
-const imgNeoai           = "/figma-assets/47a8f03b-2420-4610-927d-5d5a5e8ea14d.png";
-const imgProcessdoc      = "/figma-assets/c8675b13-e006-4dcf-9a10-e61d5badd14c.svg";
-const imgAcquafy         = "/figma-assets/579d82c1-6fbc-47b4-9c8e-88bf85d88497.svg";
-const imgVisionfy        = "/figma-assets/36342c57-5273-4e54-92f9-aedc28a06503.svg";
-const imgMediafy         = "/figma-assets/0e0e8dbe-7491-4978-b806-395894d8be3f.svg";
-const imgDocsystem       = "/figma-assets/f0d16cf6-8b97-4b0e-b30a-84936420f146.svg";
+const imgInterfyLogo     = "/figma-assets/logo-interfy.svg";
+const imgEcofy           = "/figma-assets/logo-ecofy.svg";
+const imgInterfyShopping = "/figma-assets/logo-interfy-shopping.svg";
+const imgInnovecar       = "/figma-assets/logo-innovecar.webp";
+const imgNeoai           = "/figma-assets/product-neoai.webp";
+const imgProcessdoc      = "/figma-assets/icon-processdoc.svg";
+const imgAcquafy         = "/figma-assets/logo-acquafy-alt.svg";
+const imgVisionfy        = "/figma-assets/logo-visionfy.svg";
+const imgMediafy         = "/figma-assets/logo-mediafy.svg";
+const imgDocsystem       = "/figma-assets/icon-docsystem.svg";
 
 // ── Aspect ratios exatos do Figma (content bounds de cada logo) ───────────────
 // Padrão: container w-full com aspect-ratio fixo + img absolute inset-0
@@ -38,7 +38,7 @@ export default function SobreEmpresas() {
           {brands.map((brand) => (
             <div
               key={brand.alt}
-              className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col items-center justify-center min-h-[130px] min-w-[220px] p-[40px] rounded-[16px]"
+              className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col items-center justify-center min-h-[130px] min-w-[220px] max-w-[340px] p-[40px] rounded-[16px]"
             >
               {/* Container com aspect-ratio fixo do Figma — preenche a largura total do card */}
               <div

@@ -11,9 +11,9 @@
  */
 
 // ── Assets (SVG, 12×12 viewBox) ────────────────────────────────────────────
-const imgAtivo   = "/figma-assets/097d15ad-0e62-4e35-a62c-2d69eb399e46.svg";
-const imgHover   = "/figma-assets/480c9cbb-f813-40eb-8630-189c944ac921.svg";
-const imgInativo = "/figma-assets/5849f089-c2c4-4345-a3c4-f175fd6d7823.svg";
+const imgAtivo   = "/figma-assets/icon-ativos.svg";
+const imgHover   = "/figma-assets/icon-hover.svg";
+const imgInativo = "/figma-assets/icon-inativo.svg";
 
 // ── DotAtivo — estado ativo, não interativo ─────────────────────────────────
 export function DotAtivo({ className }: { className?: string }) {

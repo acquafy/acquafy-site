@@ -2,13 +2,13 @@
 import FigmaIcon from "./FigmaIcon";
 
 // ── Assets ────────────────────────────────────────────────────────────────────
-const imgBg     = "/figma-assets/427e1a29-4c52-4389-b4ff-172ebd6393d0.png";
-const imgMockup = "/figma-assets/ad6b6089-95ed-4abe-b88d-6ef9c6eeca1a.png";
-const imgMobile = "/figma-assets/c949cdb8-5a17-4158-b6b0-8aaef884917e.svg";
-const imgBrain  = "/figma-assets/0b8f0243-2d5a-408a-b20d-efa330a7912b.svg";
-const imgIoT    = "/figma-assets/9efaad61-e4b7-4002-8c20-5c33ed7090b9.svg";
-const imgArrowW = "/figma-assets/9777bc4a-58de-46e7-8e46-08e99069f337.svg";
-const imgArrowB = "/figma-assets/4e468b96-c90e-4821-837b-9780c1f0b21f.svg";
+const imgBg     = "/figma-assets/bg-i.webp";
+const imgMockup = "/figma-assets/mockup-a.webp";
+const imgMobile = "/figma-assets/icon-mobile-20px.svg";
+const imgBrain  = "/figma-assets/icon-brain-d.svg";
+const imgIoT    = "/figma-assets/icon-iot-main.svg";
+const imgArrowW = "/figma-assets/icon-arrow-white-a.svg";
+const imgArrowB = "/figma-assets/icon-arrow-blue-outline-a.svg";
 
 // ── Dados ─────────────────────────────────────────────────────────────────────
 const badges = [

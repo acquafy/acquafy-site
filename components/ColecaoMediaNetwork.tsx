@@ -1,17 +1,20 @@
-﻿// â”€â”€ Product images â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-const imgCopo     = "/figma-assets/e48f4053-5164-4c50-9628-8b18c5e4839d.png";
-const imgCamisa1C = "/figma-assets/da733658-e071-4e5b-8c62-c809f890501e.png";
-const imgCamisa1F = "/figma-assets/205829bb-6180-4a2b-968d-aa15c2974799.png";
-const imgBone     = "/figma-assets/cfd118a1-31fa-4757-887e-6bd3a0f2285d.png";
-const imgSqueeze  = "/figma-assets/e5bfb439-3d08-4d2f-aa91-385dec762f6c.png";
-const imgSacola   = "/figma-assets/5da3a484-e07d-4721-bdb7-90ac2a917949.png";
-const imgBroche   = "/figma-assets/bf223321-cb33-4232-b4a1-5844fad6510f.png";
-const imgAdesivo  = "/figma-assets/2f0b6d29-00e1-44be-9ca6-e5c8152ba0bd.png";
-const imgCard     = "/figma-assets/f7d07dff-1914-41e9-902e-bf2ce3055ca7.png";
-const imgFolheto  = "/figma-assets/38890df3-72f7-40bf-92bd-ef1265dec194.png";
-const imgBackdrop = "/figma-assets/c8375ee8-27e3-4b71-9d9d-276e4b0674dc.png";
-const imgUniforme = "/figma-assets/e2586189-60fb-4f25-bb1a-f6def80b20f5.png";
-const imgDemais   = "/figma-assets/a9d71019-dfd8-4ce4-8a92-af8c3970c951.png";
+import FigmaIcon from "./FigmaIcon";
+
+const imgPartner  = "/figma-assets/icon-partner-b.svg";
+
+const imgCopo     = "/figma-assets/product-cup.webp";
+const imgCamisa1C = "/figma-assets/product-camisa-1c-b.webp";
+const imgCamisa1F = "/figma-assets/product-camisa-1f-a.webp";
+const imgBone     = "/figma-assets/product-bone.webp";
+const imgSqueeze  = "/figma-assets/product-squeeze-b.webp";
+const imgSacola   = "/figma-assets/product-sacola-b.webp";
+const imgBroche   = "/figma-assets/product-broche-b.webp";
+const imgAdesivo  = "/figma-assets/product-sticker-b.webp";
+const imgCard     = "/figma-assets/card-b.webp";
+const imgFolheto  = "/figma-assets/image-folheto.webp";
+const imgBackdrop = "/figma-assets/backdrop.webp";
+const imgUniforme = "/figma-assets/product-uniforme.webp";
+const imgDemais   = "/figma-assets/image-demais.webp";
 
 type Img     = { src: string; aspectW: number; aspectH: number; overlap?: boolean };
 type Product = { imgs: Img[]; title: string; desc: string };
@@ -87,6 +90,16 @@ export default function ColecaoMediaNetwork() {
           {products.map((p) => (
             <ProductCard key={p.title} product={p} />
           ))}
+        </div>
+
+        {/* CTA */}
+        <div className="flex justify-center w-full">
+          <a href="/parceria" className="flex bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors gap-[10px] items-center justify-center h-[40px] overflow-hidden px-[20px] rounded-[8px] shrink-0 cursor-pointer">
+            <FigmaIcon src={imgPartner} size={16} aspectW={41} aspectH={40} />
+            <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white whitespace-nowrap">
+              Seja um Parceiro
+            </span>
+          </a>
         </div>
 
       </div>

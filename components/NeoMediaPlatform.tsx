@@ -1,15 +1,15 @@
 ﻿// "Conectado à Plataforma Acquafy" (Figma node 3265:4714)
 import FigmaIcon from "./FigmaIcon";
 
-const imgAppHome     = "/figma-assets/b9b12f04-77fe-4bac-9edc-dac3265689fd.png";
-const imgAppOp       = "/figma-assets/511b4a22-c94f-48e8-9948-b73b920bbe7b.png";
-const imgQRLinks     = "/figma-assets/f802a7a5-c271-4ee9-b040-3b2d478de229.svg";
-const imgMediaNet    = "/figma-assets/a50a8134-2d45-4253-9877-3edcaf4b77d4.svg";
-const imgSilver      = "/figma-assets/39731139-a944-4e22-8e59-58e0929a64e9.png";
-const imgGold        = "/figma-assets/47e09c17-5072-4c01-832f-1c7df045d4a5.png";
-const imgPlatinum    = "/figma-assets/aec1b912-4cbe-45d3-a29f-a99638f5ddcf.png";
-const imgVendas      = "/figma-assets/86c9331c-c79e-4077-8e2b-bea2e6972486.svg";
-const imgMapaGlobal  = "/figma-assets/b223fb77-3c38-4cfd-a009-91fef475f7df.svg";
+const imgAppHome     = "/figma-assets/app-home-screen.webp";
+const imgAppOp       = "/figma-assets/app-operations-screen.webp";
+const imgQRLinks     = "/figma-assets/icon-qr-links.svg";
+const imgMediaNet    = "/figma-assets/icon-medianet-a.svg";
+const imgSilver      = "/figma-assets/product-silver-a.webp";
+const imgGold        = "/figma-assets/product-gold-a.webp";
+const imgPlatinum    = "/figma-assets/product-platinum-a.webp";
+const imgVendas      = "/figma-assets/icon-vendas-a.svg";
+const imgMapaGlobal  = "/figma-assets/icon-mapa-global.svg";
 
 const cards = [
   {
@@ -52,12 +52,12 @@ function CardVisual({ visual }: { visual: string }) {
           <img
             src={imgAppHome}
             alt="App Home"
-            className="flex-1 min-w-0 max-h-[100px] object-contain mr-[-18px]"
+            className="flex-1 min-w-0 max-w-[100px] max-h-[100px] object-contain mr-[-18px]"
           />
           <img
             src={imgAppOp}
             alt="App Operador"
-            className="flex-1 min-w-0 max-h-[100px] object-contain"
+            className="flex-1 min-w-0 max-w-[100px] max-h-[100px] object-contain"
           />
         </div>
       </div>
@@ -66,9 +66,9 @@ function CardVisual({ visual }: { visual: string }) {
   if (visual === "partners") {
     return (
       <div className="flex items-center justify-center gap-[10px] h-[100px]">
-        <img src={imgPlatinum} alt="Platinum" className="size-[56px] object-contain" />
-        <img src={imgGold}     alt="Gold"     className="size-[56px] object-contain" />
-        <img src={imgSilver}   alt="Silver"   className="size-[46px] object-contain" />
+        <img src={imgPlatinum} alt="Platinum" className="flex-[1_0_0] min-w-0 h-full object-contain" />
+        <img src={imgGold}     alt="Gold"     className="flex-[1_0_0] min-w-0 h-full object-contain" />
+        <img src={imgSilver}   alt="Silver"   className="flex-[1_0_0] min-w-0 h-full object-contain" />
       </div>
     );
   }
@@ -98,12 +98,12 @@ export default function NeoMediaPlatform() {
           {cards.map((c) => (
             <div
               key={c.title}
-              className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center min-h-[320px] min-w-[200px] p-[20px] rounded-[16px]"
+              className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center min-h-[320px] min-w-[180px] win-1024:min-w-[300px] win-1280:min-w-[180px] p-[20px] rounded-[16px] overflow-hidden"
             >
               <h3 className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#333] text-center flex items-center justify-center min-h-[44px] w-full">
                 {c.title}
               </h3>
-              <div className="flex-1 flex items-center justify-center w-full">
+              <div className="flex-1 flex items-center justify-center w-full overflow-hidden">
                 <CardVisual visual={c.visual} />
               </div>
               <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#333] text-center w-full">
