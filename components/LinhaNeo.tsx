@@ -1,30 +1,30 @@
 ﻿import FigmaIcon from "./FigmaIcon";
 
 // ── Checkin icon ───────────────────────────────────────────────────────────────
-const imgCheckin = "/figma-assets/a8739a99-bced-4cff-8957-d1230dbbb560.svg"; // 30×30 sq
+const imgCheckin = "/figma-assets/icon-check-e.svg"; // 30×30 sq
 
 // ── Feature card assets ────────────────────────────────────────────────────────
-const imgPanel      = "/figma-assets/4e6b8a1f-cde5-4362-bb86-960a54dd56c3.png";
-const imgHomeMob    = "/figma-assets/dc018212-75b4-4bfb-8453-a2918a035342.png";
-const imgAppView    = "/figma-assets/91df8984-0d8f-450d-9282-c33ab6e90584.png";
-const imgFeatCheck  = "/figma-assets/6e980cf7-5c09-4a14-8503-ec31deee8e89.svg";
-const imgFeatWifi   = "/figma-assets/b80097cb-1bf0-4bdb-b383-e091e3b69fcb.svg";
-const imgBluetooth  = "/figma-assets/d37a36f4-919f-4d4c-80c4-66382ea5540f.svg";
+const imgPanel      = "/figma-assets/panel-led.png";
+const imgHomeMob    = "/figma-assets/app-home-mobile.png";
+const imgAppView    = "/figma-assets/app-view-screen.png";
+const imgFeatCheck  = "/figma-assets/icon-check-30px.svg";
+const imgFeatWifi   = "/figma-assets/icon-wifi-feat.svg";
+const imgBluetooth  = "/figma-assets/icon-bluetooth.svg";
 
 // ── Product images (PNG) — row 1 ──────────────────────────────────────────────
-const imgNeoUp            = "/figma-assets/e23fc740-275e-4c85-84f9-36e147e4c7f6.png"; // 3275×4096
-const imgNeoFit           = "/figma-assets/44f74064-36a2-4ed8-b19d-c0e125bc3613.png"; // 3275×4096
-const imgNeoSmart         = "/figma-assets/f4783269-9b05-4929-bf94-55ac43a2db0d.png"; // 3275×4096
-const imgNeoTouch         = "/figma-assets/47309acf-e189-4002-8325-6d14513ce62c.png"; // 3384×4096
-const imgNeoPlus          = "/figma-assets/5a009cbe-c107-4867-a67d-45542361d091.png"; // 3384×4096
+const imgNeoUp            = "/figma-assets/neo-up-catalog.png";
+const imgNeoFit           = "/figma-assets/neo-fit.png";
+const imgNeoSmart         = "/figma-assets/neo-smart-h2.png";
+const imgNeoTouch         = "/figma-assets/neo-touch.png";
+const imgNeoPlus          = "/figma-assets/neo-plus.png";
 
 // ── Product images (PNG) — row 2 ──────────────────────────────────────────────
-const imgNeoUltra         = "/figma-assets/a025ff9c-7a77-4fe2-a711-958c47093626.png"; // 3772×4096
-const imgNeoUltraSpark    = "/figma-assets/e36daeb8-1e75-4c4b-93b8-ca391bf2e8a7.png"; // 3772×4096
-const imgNeoUltraSparkH2  = "/figma-assets/b42e0357-4339-485b-beb0-42e50b358494.png"; // 3772×4096
-const imgNeoMax           = "/figma-assets/cc9a0b6d-03ca-4c7c-a920-aa35796f2249.png"; // 1515×4012
-const imgNeoMaxSpark      = "/figma-assets/d2240635-3424-47d9-a264-6631fb173f63.png"; // 1515×4012
-const imgNeoMaxSparkH2    = "/figma-assets/74bed368-254c-4522-ba2c-4798b2fb22ab.png"; // 1515×4012
+const imgNeoUltra         = "/figma-assets/neo-ultra.png";
+const imgNeoUltraSpark    = "/figma-assets/neo-ultra-spark.png";
+const imgNeoUltraSparkH2  = "/figma-assets/neo-ultra-spark-h2.png";
+const imgNeoMax           = "/figma-assets/neo-max.png";
+const imgNeoMaxSpark      = "/figma-assets/neo-max-spark.png";
+const imgNeoMaxSparkH2    = "/figma-assets/neo-max-spark-h2.png";
 
 const waterTypes = [
   { label: "Água Natural",     sub: "Presente em todos" },
@@ -51,7 +51,7 @@ type Product = {
 const row1: Product[] = [
   { img: imgNeoUp,    imgW: 3275, imgH: 4096, name: "Neo UP",                                       sub: "Apenas Natural" },
   { img: imgNeoFit,   imgW: 3275, imgH: 4096, name: "Neo FIT",                                      sub: "6 em 1", tank: "Tanque de 400 ml" },
-  { img: imgNeoSmart, imgW: 3275, imgH: 4096, name: <span>Neo SMART H<sub>2</sub></span>,            sub: "7 em 1" },
+  { img: imgNeoSmart, imgW: 3275, imgH: 4096, name: <span>Neo SMART H<sub>2</sub></span>,            sub: "7 em 1", tank: "Tanque de 800 ml" },
   { img: imgNeoTouch, imgW: 3384, imgH: 4096, name: "Neo TOUCH",                                    sub: "6 em 1", tank: "Tanque de 800 ml" },
   { img: imgNeoPlus,  imgW: 3384, imgH: 4096, name: "Neo PLUS",                                     sub: "6 em 1", tank: "Tanque de 1500 ml" },
 ];
@@ -139,7 +139,7 @@ export default function LinhaNeo() {
               {waterTypes.map((w) => (
                 <div key={w.label} className="flex flex-[0_0_calc(50%-5px)] lg:flex-[0_0_calc(25%-8px)] gap-[10px] items-center">
                   <FigmaIcon src={imgCheckin} size={20} />
-                  <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-0">
+                  <div className="flex flex-[1_0_0] flex-col gap-[5px] items-start min-w-0">
                     <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] w-full">
                       {w.label}
                     </p>

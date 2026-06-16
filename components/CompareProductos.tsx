@@ -1,54 +1,56 @@
 ﻿"use client";
 import { useState, useMemo, useRef, useEffect } from "react";
 import FigmaIcon from "./FigmaIcon";
+import { PRODUCT_PRICES_BRL, formatBRL } from "@/lib/products";
+import { useCart } from "@/components/CartProvider";
 
 // ─── Assets ───────────────────────────────────────────────────────────────────
-const imgBannerBg       = "/figma-assets/5bbdc47a-61d4-4460-ad07-ddc4b9d3fe07.png";
-const imgBannerProducts = "/figma-assets/1ae06b42-1c10-4a52-80da-a7e1945c1fde.png";
-const imgBuyCursor      = "/figma-assets/b764ff7a-f4f3-4eb1-98bb-7839fab99ab1.png";
-const imgArrowWhite     = "/figma-assets/35731080-b7d1-499f-b156-d8f75e87501a.svg";
-const imgArrowBlue      = "/figma-assets/42472dab-beee-45e5-9a8b-22eca8103268.svg";
-const imgMobile         = "/figma-assets/8206c21c-4de2-413e-a5ef-cc8fb20ce878.svg";
-const imgLanguage       = "/figma-assets/4ddb6786-e393-4c2a-967b-61f79ba5aa9c.svg";
-const imgPlanetWeb      = "/figma-assets/ceff79df-c647-4795-aebd-30d9ad4f281a.svg";
-const imgPlanetGlobal   = "/figma-assets/ae2a46ab-cbbf-4f31-a75f-af0ef9e6cfcd.svg";
-const imgWaterVector    = "/figma-assets/2741cb06-1fd0-43f7-b99e-528f650f0446.svg";
-const imgNegativeX      = "/figma-assets/345408d4-ce63-4c06-8fa0-570f5e20c116.svg";
-const imgNegative       = "/figma-assets/0b93c426-791c-435c-9632-a09442eb4aa3.svg";
-const imgCheckin        = "/figma-assets/b8cb7b14-abc4-4e14-892b-b8f374be909b.svg";
-const imgCheckinBlue    = "/figma-assets/12364ca0-a347-4a2a-bd0a-2748875e9c81.svg";
-const imgCheckinPurple  = "/figma-assets/5cafca54-4bd4-4a3a-95a7-f01e897c3f8b.svg";
-const imgMoney          = "/figma-assets/417fa02e-d4d2-43f3-9b5d-7d4250220344.svg";
-const imgEssentialsBg   = "/figma-assets/3729c390-3009-4ecf-add4-d81e314592da.png";
-const imgPremiumBg      = "/figma-assets/36656c11-f5b1-4e8b-825d-ca48f745e1ac.png";
-const imgShield         = "/figma-assets/784774df-e19e-4c3c-9587-b0a62131c822.svg";
-const imgLogistics      = "/figma-assets/b3650486-b28d-4d10-a4fb-a872d2d9b959.svg";
-const imgPhone          = "/figma-assets/72b9b35c-136f-4aab-948e-2a4605603913.svg";
-const imgCertificate    = "/figma-assets/1c6b039e-bc1c-4308-b6b0-51551a300887.svg";
-const imgSustainability = "/figma-assets/44128385-0fdd-49a4-868a-0f8ab11363cb.svg";
+const imgBannerBg       = "/figma-assets/compare-banner-bg.png";
+const imgBannerProducts = "/figma-assets/compare-banner-products.png";
+const imgBuyCursor      = "/figma-assets/cursor-buy.png";
+const imgArrowWhite     = "/figma-assets/icon-arrow-white-b.svg";
+const imgArrowBlue      = "/figma-assets/icon-arrow-blue-a.svg";
+const imgMobile         = "/figma-assets/icon-mobile-a.svg";
+const imgLanguage       = "/figma-assets/icon-language-a.svg";
+const imgPlanetWeb      = "/figma-assets/icon-planetweb-a.svg";
+const imgPlanetGlobal   = "/figma-assets/icon-planet-global.svg";
+const imgWaterVector    = "/figma-assets/icon-water-vector.svg";
+const imgNegativeX      = "/figma-assets/icon-negative-x.svg";
+const imgNegative       = "/figma-assets/icon-negative.svg";
+const imgCheckin        = "/figma-assets/icon-check-a.svg";
+const imgCheckinBlue    = "/figma-assets/icon-check-blue-a.svg";
+const imgCheckinPurple  = "/figma-assets/icon-check-purple-a.svg";
+const imgMoney          = "/figma-assets/icon-money-a.svg";
+const imgEssentialsBg   = "/figma-assets/bg-essentials-section.png";
+const imgPremiumBg      = "/figma-assets/bg-premium-section.png";
+const imgShield         = "/figma-assets/icon-shield-a.svg";
+const imgLogistics      = "/figma-assets/icon-logistics.svg";
+const imgPhone          = "/figma-assets/icon-phone-a.svg";
+const imgCertificate    = "/figma-assets/icon-certificate.svg";
+const imgSustainability = "/figma-assets/icon-sustainability.svg";
 
 // Product image constants — indexed by product id
 const productImages: Record<string, string> = {
-  "neo-up":                "/figma-assets/fee70d57-1b06-44cb-aac9-25d397534f44.png",
-  "neo-fit":               "/figma-assets/8a6326a4-3fbe-4c47-b081-999c7472e346.png",
-  "neo-smart-h2":          "/figma-assets/3f225d27-02bd-4e61-b227-4830c151e9fd.png",
-  "neo-touch":             "/figma-assets/8fe6e04c-144e-4195-bcfd-79f29c743631.png",
-  "neo-plus":              "/figma-assets/0d82e077-7e58-4d61-8aac-b8b294d35f5f.png",
-  "neo-ultra":             "/figma-assets/54cf780f-10e0-412c-965c-45556b7abdc4.png",
-  "neo-ultra-spark":       "/figma-assets/53356b70-af1a-4fc3-9210-ca1737e2a88f.png",
-  "neo-ultra-spark-h2":    "/figma-assets/3bf2cb07-1bfe-4fba-a450-71247f07fbd8.png",
-  "neo-max":               "/figma-assets/2900867f-fe3a-4116-ad34-00aa961aa3cc.png",
-  "neo-max-spark":         "/figma-assets/20cd97aa-254e-4d17-96eb-7e17a550b78b.png",
-  "neo-max-spark-h2":      "/figma-assets/d21183e6-9cc0-40e5-9a21-6275962d57ce.png",
-  "neo-infinity":          "/figma-assets/38e64ef2-ddfe-4578-8f17-c56f622b769b.png",
-  "neo-infinity-spark":    "/figma-assets/fce4da17-998c-43a3-a271-8b13e0441f97.png",
-  "neo-infinity-spark-h2": "/figma-assets/207a6e4b-0a5f-45fb-8e47-8bc89ea56ff1.png",
-  "neo-prestige":          "/figma-assets/d87df890-105d-48c4-b716-8059feed24ef.png",
-  "neo-prestige-spark":    "/figma-assets/2a7f2aa5-5228-45d6-8016-c716aa97fc47.png",
-  "neo-prestige-spark-h2": "/figma-assets/b856eec1-6487-40f2-90b9-e151ebfadabf.png",
-  "neo-prime":             "/figma-assets/25eefd1b-9956-462a-87c6-0b882a53ee50.png",
-  "neo-prime-spark":       "/figma-assets/23cf5e9d-1928-4d80-85b6-af909bb2d4a2.png",
-  "neo-prime-spark-h2":    "/figma-assets/52c53e36-40fc-4293-a4dd-642df8cb1fc8.png",
+  "neo-up":                "/figma-assets/neo-up-catalog.png",
+  "neo-fit":               "/figma-assets/neo-fit.png",
+  "neo-smart-h2":          "/figma-assets/neo-smart-h2.png",
+  "neo-touch":             "/figma-assets/neo-touch.png",
+  "neo-plus":              "/figma-assets/neo-plus.png",
+  "neo-ultra":             "/figma-assets/neo-ultra.png",
+  "neo-ultra-spark":       "/figma-assets/neo-ultra-spark.png",
+  "neo-ultra-spark-h2":    "/figma-assets/neo-ultra-spark-h2.png",
+  "neo-max":               "/figma-assets/neo-max.png",
+  "neo-max-spark":         "/figma-assets/neo-max-spark.png",
+  "neo-max-spark-h2":      "/figma-assets/neo-max-spark-h2.png",
+  "neo-infinity":          "/figma-assets/premium-infinity-catalog.png",
+  "neo-infinity-spark":    "/figma-assets/premium-infinity-spark-catalog.png",
+  "neo-infinity-spark-h2": "/figma-assets/premium-infinity-spark-h2-catalog.png",
+  "neo-prestige":          "/figma-assets/premium-prestige-catalog.png",
+  "neo-prestige-spark":    "/figma-assets/premium-prestige-spark-catalog.png",
+  "neo-prestige-spark-h2": "/figma-assets/premium-prestige-spark-h2-catalog.png",
+  "neo-prime":             "/figma-assets/premium-prime-catalog.png",
+  "neo-prime-spark":       "/figma-assets/premium-prime-spark-catalog.png",
+  "neo-prime-spark-h2":    "/figma-assets/premium-prime-spark-h2-catalog.png",
 };
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -97,7 +99,7 @@ const PRODUCTS: Product[] = [
     id: "neo-smart-h2", label: "Neo SMART H₂",
     nameParts: [{ text: "Neo " }, { text: "SMART H", highlight: true }, { text: "2", highlight: true }],
     linha: "Essentials", categories: ["Bancada", "Água Hidrogenada"],
-    specs: { formato: "Bancada ou Parede", funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: true, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "—", material: "Acabamento premium", preco: "US$ 597.97" },
+    specs: { formato: "Bancada ou Parede", funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: true, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "800ml", material: "Acabamento premium", preco: "US$ 597.97" },
   },
   {
     id: "neo-touch", label: "Neo TOUCH",
@@ -219,7 +221,7 @@ const SPEC_ROWS: { key: keyof Specs; label: string; type: "text" | "bool" | "pri
   { key: "filtragem",   label: "Sistema de Filtragem",  type: "text"  },
   { key: "tanque",      label: "Tanque de água gelada", type: "text"  },
   { key: "material",    label: "Material",              type: "text"  },
-  { key: "preco",       label: "Preço EUA",             type: "price" },
+  { key: "preco",       label: "Preço BR",              type: "price" },
 ];
 
 const FILTERS = ["Todos", "Essentials", "Premium", "Bancada", "Coluna", "Embutido", "Água com Gás", "Água Hidrogenada"];
@@ -277,6 +279,11 @@ export default function CompareProductos() {
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [activeFilter, setActiveFilter] = useState("Todos");
   const [showSelectorModal, setShowSelectorModal] = useState(false);
+
+  const { addToCart: addToCartCtx } = useCart();
+  function addToCart(product: Product) {
+    addToCartCtx(product.id, product.label);
+  }
 
   const selectedBarRef = useRef<HTMLElement>(null);
 
@@ -736,8 +743,8 @@ export default function CompareProductos() {
                         {row.type === "bool" ? (
                           <BoolCell value={val as boolean} />
                         ) : row.type === "price" ? (
-                          <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] leading-[17px] text-[#0233c3] text-center">
-                            {val as string}
+                          <p className="font-['Avenir_LT_Pro:95_Black'] text-[16px] leading-[20px] text-[#0233c3] text-center">
+                            {formatBRL(PRODUCT_PRICES_BRL[product.id] ?? 0)}
                           </p>
                         ) : val === "—" ? (
                           <BoolCell value={false} />
@@ -751,6 +758,23 @@ export default function CompareProductos() {
                   })}
                 </div>
               ))}
+
+              {/* ── Buy row ── */}
+              <div className="flex" style={{ background: "linear-gradient(90deg, #f0f4ff 0%, #f8f4ff 100%)" }}>
+                <div className="sticky left-0 z-10 flex items-center w-[200px] shrink-0 px-[20px] py-[16px] border-r border-[#cbd0d4]" style={{ background: "linear-gradient(90deg, #f0f4ff, #f0f4ff)" }}>
+                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#555]">Adquirir</p>
+                </div>
+                {selectedProducts.map(product => (
+                  <div key={product.id} className="flex items-center justify-center flex-1 min-w-[200px] px-[16px] py-[16px] border-r border-[#cbd0d4] last:border-r-0">
+                    <button
+                      onClick={() => addToCart(product)}
+                      className="flex items-center gap-[8px] px-[22px] py-[10px] rounded-full font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-white transition-opacity hover:opacity-85 whitespace-nowrap cursor-pointer"
+                      style={{ background: product.linha === "Premium" ? "linear-gradient(135deg, #9f3df5, #0233c3)" : "linear-gradient(135deg, #0233c3, #0569ff)" }}>
+                      Comprar Agora →
+                    </button>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         )}
@@ -1024,6 +1048,7 @@ export default function CompareProductos() {
           </div>
         </div>
       )}
+
     </>
   );
 }
