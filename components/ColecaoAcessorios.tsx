@@ -167,7 +167,7 @@ export default function ColecaoAcessorios() {
             {categories.map((cat, i) => (
               <div
                 key={cat.label}
-                className={`flex flex-1 flex-col gap-[20px] items-center min-w-[180px] overflow-hidden p-[20px]${i < categories.length - 1 ? " border-r border-[#cbd0d4]" : ""}`}
+                className="flex flex-1 flex-col gap-[20px] items-center min-w-[180px] overflow-hidden p-[20px]"
               >
                 <div className="flex flex-col items-center justify-center p-[15px] rounded-full shrink-0 size-[60px]" style={{ backgroundColor: cat.iconBg }}>
                   <FigmaIcon src={cat.icon} size={30} aspectW={cat.iconW} aspectH={cat.iconH} />

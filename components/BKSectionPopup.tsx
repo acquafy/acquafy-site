@@ -385,7 +385,7 @@ export default function BKSectionPopup({ sectionId, onClose }: Props) {
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center p-[20px] bg-black/50 backdrop-blur-[2px]"
+      className="fixed inset-0 z-[10000] flex items-center justify-center p-[20px] bg-black/50 backdrop-blur-[2px]"
       onClick={onClose}
     >
       <div

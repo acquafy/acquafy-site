@@ -11,7 +11,7 @@ export default function BaseConhecimentoSuporte() {
 
         {/* Card 1 — Base de conhecimento */}
         <div className="bg-[#f6f9fe] flex flex-[1_0_0] flex-wrap gap-[20px] items-center justify-center min-w-[280px] px-[20px] py-[40px] rounded-[16px] w-[690px]">
-          <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-[240px]">
+          <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-[120px]">
             <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#0569ff]">
               Base de conhecimento
             </p>
@@ -45,7 +45,7 @@ export default function BaseConhecimentoSuporte() {
 
         {/* Card 2 — Não encontrou? */}
         <div className="bg-[#f6f9fe] flex flex-[1_0_0] flex-wrap gap-[20px] items-center justify-center min-w-[280px] px-[20px] py-[40px] rounded-[16px] w-[690px]">
-          <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-[240px]">
+          <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-[120px]">
             <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#0569ff]">
               Não encontrou o que procura?
             </p>

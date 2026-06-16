@@ -44,7 +44,7 @@ const stats = [
 export default function SobreImpacto() {
   return (
     <section className="flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
-      <div className="flex flex-col lg:flex-row lg:flex-wrap gap-[30px] items-center justify-center max-w-[1400px] overflow-hidden px-[20px] py-[25px] relative rounded-[16px] w-full">
+      <div className="flex flex-col lg:flex-row lg:flex-wrap gap-[20px] items-center justify-center max-w-[1400px] overflow-hidden px-[20px] py-[25px] relative rounded-[16px] w-full">
         {/* Dark background */}
         <div className="absolute inset-0 rounded-[16px] pointer-events-none" aria-hidden>
           <div className="absolute bg-[#1f2e91] inset-0 rounded-[16px]" />

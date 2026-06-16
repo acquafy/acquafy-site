@@ -36,7 +36,7 @@ function FilterCard({ card, isLast }: { card: FilterCard; isLast: boolean }) {
   return (
     <div className={`flex flex-[1_0_0] flex-col gap-[20px] items-start min-h-[210px] min-w-[200px] px-[20px] py-[25px] relative rounded-[16px] bg-[#f6f9fe]${isHighlightBlue ? " border-2 border-[#0233c3]" : ""}${isHighlightGrad ? " border-2 border-[#0233c3]" : ""}`}>
       {/* Number + title */}
-      <div className="flex gap-[10px] items-center w-full shrink-0">
+      <div className="flex flex-col gap-[10px] items-center w-full shrink-0">
         <div
           className="flex flex-col items-center justify-center rounded-full shrink-0 size-[40px]"
           style={
@@ -50,7 +50,7 @@ function FilterCard({ card, isLast }: { card: FilterCard; isLast: boolean }) {
           <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-white text-center">{card.num}</span>
         </div>
         <p
-          className={`font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[24px] flex-1 min-w-0${isHighlightBlue ? " bg-clip-text text-transparent" : isHighlightGrad ? " bg-clip-text text-transparent" : " text-[#1f2e91]"}`}
+          className={`font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[24px] flex-1 min-w-0 text-center${isHighlightBlue ? " bg-clip-text text-transparent" : isHighlightGrad ? " bg-clip-text text-transparent" : " text-[#1f2e91]"}`}
           style={isHighlightBlue ? { backgroundImage: "linear-gradient(to right, #0041ff, #3f8cff)" } : isHighlightGrad ? { backgroundImage: "linear-gradient(147deg, #0233c3 6.19%, #9f3df5 93.35%)" } : undefined}
         >
           {card.title}

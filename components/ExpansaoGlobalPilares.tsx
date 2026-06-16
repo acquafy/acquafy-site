@@ -43,7 +43,7 @@ export default function ExpansaoGlobalPilares() {
           Nossos pilares para expansão
         </h2>
 
-        <div className="flex flex-wrap gap-[20px] items-start justify-center w-full">
+        <div className="flex flex-wrap gap-[20px] items-stretch justify-center w-full">
           {pillars.map((p) => (
             <div
               key={p.title}
