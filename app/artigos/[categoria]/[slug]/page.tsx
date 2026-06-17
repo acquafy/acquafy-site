@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FigmaIcon from "@/components/FigmaIcon";
 import CtaBK from "@/components/CtaBK";
+import { PtOnlyGuard } from "@/components/PtOnlyGuard";
 import { CATEGORIAS, getArtigoBySlug, type ContentBlock } from "@/lib/artigos-data";
 
 const imgArrowBlue = "/figma-assets/icon-arrow-blue-b.svg";
@@ -165,6 +166,7 @@ export default async function ArtigoPage({ params }: Props) {
   return (
     <>
       <Header />
+      <PtOnlyGuard subtitle={{ en: "This article is available in Portuguese only and is intended for Brazilian users.", es: "Este artículo está disponible solo en Portugués y está dirigido a usuarios brasileños." }}>
       <main>
 
         {/* ── Header do artigo ─────────────────────────────────────────── */}
@@ -388,6 +390,7 @@ export default async function ArtigoPage({ params }: Props) {
 
         <CtaBK />
       </main>
+      </PtOnlyGuard>
       <Footer />
     </>
   );
