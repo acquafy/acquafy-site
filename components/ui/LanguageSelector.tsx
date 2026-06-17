@@ -10,7 +10,6 @@ const imgGlobeHeader  = "/figma-assets/icon-globe-header-18px.svg";
 const imgArrowHeader  = "/figma-assets/icon-arrow-header.svg";
 
 const imgUSA     = "/figma-assets/flag-usa-30px.svg";
-const imgUK      = "/figma-assets/flag-uk.svg";
 const imgBR_Menu = "/figma-assets/flag-br.svg";
 const imgPT      = "/figma-assets/flag-pt.svg";
 const imgES      = "/figma-assets/flag-es.svg";
@@ -32,8 +31,7 @@ type Language = {
 };
 
 const LANGUAGES: Language[] = [
-  { code: "en-us", label: "English (United States)", flag: imgUSA,    aspectW: 30,    aspectH: 30,    langCode: "en" },
-  { code: "en-gb", label: "English (England)",       flag: imgUK,     aspectW: 262.3, aspectH: 262.3, langCode: "en" },
+  { code: "en",    label: "English (Global)",         flag: imgUSA, aspectW: 18, aspectH: 18, langCode: "en" },
   { code: "pt-br", label: "Português (BR)",          flag: imgBR_Menu,aspectW: 512,   aspectH: 512,   langCode: "pt" },
   { code: "pt-pt", label: "Português (Portugal)",    flag: imgPT,     aspectW: 1,     aspectH: 1,     langCode: null },
   { code: "es",    label: "Español",                 flag: imgES,     aspectW: 22,    aspectH: 22,    langCode: "es" },
@@ -51,7 +49,7 @@ const COMPACT_LABEL: Record<Lang, string> = { pt: "BR", en: "EN", es: "ES" };
 // Full label + flag shown in Footer button
 const FULL_INFO: Record<Lang, { flag: string; aspectW: number; aspectH: number; label: string }> = {
   pt: { flag: imgBR_Menu, aspectW: 512, aspectH: 512, label: "Português (BR)" },
-  en: { flag: imgUSA,     aspectW: 30,  aspectH: 30,  label: "English" },
+  en: { flag: imgUSA, aspectW: 18, aspectH: 18, label: "English (Global)" },
   es: { flag: imgES,      aspectW: 22,  aspectH: 22,  label: "Español" },
 };
 

@@ -3,6 +3,7 @@ import { useState, useMemo, useRef, useEffect } from "react";
 import FigmaIcon from "./FigmaIcon";
 import { PRODUCT_PRICES_BRL, formatBRL, PRODUCT_IMAGES as productImages } from "@/lib/products";
 import { useCart } from "@/components/CartProvider";
+import { useLang, type Lang } from "@/context/LanguageContext";
 
 // ─── Assets ───────────────────────────────────────────────────────────────────
 const imgBannerBg       = "/figma-assets/compare-banner-bg.webp";
@@ -201,7 +202,160 @@ const SPEC_ROWS: { key: keyof Specs; label: string; type: "text" | "bool" | "pri
   { key: "preco",       label: "Preço BR",              type: "price" },
 ];
 
-const FILTERS = ["Todos", "Essentials", "Premium", "Bancada", "Coluna", "Embutido", "Água com Gás", "Água Hidrogenada"];
+// ─── Spec value translator ────────────────────────────────────────────────────
+const SPEC_TRANSLATE: Partial<Record<Lang, Record<string, string>>> = {
+  en: {
+    "Bancada ou Parede": "Countertop or Wall",
+    "Bancada": "Countertop",
+    "Coluna": "Floor Stand",
+    "Embutido": "Built-in",
+    "Natural, Gelada e Quente": "Natural, Cold & Hot",
+    "Natural": "Natural",
+    "Acabamento premium": "Premium Finish",
+    "Aço inox": "Stainless Steel",
+    "4 Filtros UF de Alta Performance": "4 High-Performance UF Filters",
+    "4 Filtros RO / Osmose Reversa de Alta Performance": "4 High-Performance RO / Reverse Osmosis Filters",
+    "6 em 1": "6 in 1", "7 em 1": "7 in 1", "8 em 1": "8 in 1",
+  },
+  es: {
+    "Bancada ou Parede": "Encimera o Pared",
+    "Bancada": "Encimera",
+    "Coluna": "Columna",
+    "Embutido": "Empotrado",
+    "Natural, Gelada e Quente": "Natural, Fría y Caliente",
+    "Natural": "Natural",
+    "Acabamento premium": "Acabado premium",
+    "Aço inox": "Acero inoxidable",
+    "4 Filtros UF de Alta Performance": "4 Filtros UF de Alto Rendimiento",
+    "4 Filtros RO / Osmose Reversa de Alta Performance": "4 Filtros RO / Ósmosis Inversa de Alto Rendimiento",
+    "6 em 1": "6 en 1", "7 em 1": "7 en 1", "8 em 1": "8 en 1",
+  },
+};
+
+function translateSpec(val: string, lang: Lang): string {
+  if (lang === "pt") return val;
+  return SPEC_TRANSLATE[lang]?.[val] ?? val;
+}
+
+// ─── Filters (PT keys used for logic) ─────────────────────────────────────────
+const FILTERS_PT = ["Todos", "Essentials", "Premium", "Bancada", "Coluna", "Embutido", "Água com Gás", "Água Hidrogenada"];
+
+// ─── Translations ─────────────────────────────────────────────────────────────
+const T: Record<Lang, {
+  filters: string[];
+  badgeLabel: string;
+  h1Pre: string; h1Highlight: string;
+  subtitle: string;
+  ctaSpecialist: string;
+  pills: string[];
+  selectorPre: string; selector44: string;
+  viewComparison: string;
+  selectedBarTitle: string; selectedBarSub: string;
+  selectProduct: string; removeLabel: string;
+  tableFeatures: string;
+  linePrefix: string;
+  specRowLabels: string[];
+  acquireLabel: string; buyNow: string;
+  emptyTable: string;
+  essentialsChecklist: string[];
+  premiumChecklist: string[];
+  priceRangesTitle: string;
+  priceFrom: string; priceTo: string;
+  trustItems: { title: string; desc: string }[];
+  modalNone: string; modalSelected: string; modalCompare: string; modalClose: string;
+  altYes: string; altNo: string;
+}> = {
+  pt: {
+    filters: ["Todos", "Essentials", "Premium", "Bancada", "Coluna", "Embutido", "Água com Gás", "Água Hidrogenada"],
+    badgeLabel: "Compare Produtos",
+    h1Pre: "Compare os produtos ", h1Highlight: "Acquafy Neo",
+    subtitle: "Compare as linhas Neo Essentials & Neo Premium e encontre o modelo ideal para você.",
+    ctaSpecialist: "Falar com um especialista",
+    pills: ["App + AI + IoT", "16 idiomas", "Operação global", "Plataforma Inteligente de Água"],
+    selectorPre: "Selecione os modelos para comparar (", selector44: "/4)",
+    viewComparison: "Ver comparação",
+    selectedBarTitle: "Produtos selecionados", selectedBarSub: "Adicione ou remova produtos para comparar",
+    selectProduct: "Selecione um produto", removeLabel: "Remover",
+    tableFeatures: "Características",
+    linePrefix: "Linha Neo ",
+    specRowLabels: ["Formato", "Funções", "Temperaturas", "Água com gás", "Água hidrogenada", "Painel", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Sistema de Filtragem", "Tanque de água gelada", "Material", "Preço BR"],
+    acquireLabel: "Adquirir", buyNow: "Comprar Agora →",
+    emptyTable: "Selecione ao menos um produto para comparar.",
+    essentialsChecklist: ["Painel LED Touch 10,1", "App + AI + IoT", "4 Filtros UF de Alta Performance", "Modelos Bancada, Parede e Coluna", "Excelente custo-benefício"],
+    premiumChecklist: ["Aço inox", "Painel LCD IPS Touch 15.6", "Mini Media Network", "4 Filtros RO / Osmose Reversa de Alta Performance", "Proposta premium e sofisticada"],
+    priceRangesTitle: "Faixas de preço no mercado americano",
+    priceFrom: "de ", priceTo: " a ",
+    trustItems: [
+      { title: "Qualidade Garantida",  desc: "Produtos variados e certificados com os mais altos padrões." },
+      { title: "Entrega Segura",       desc: "Entrega rígida e segura para todo o Brasil." },
+      { title: "Assistência Técnica",  desc: "Rede autorizada de assistência em todo o país." },
+      { title: "Garantia Estendida",   desc: "Mais tranquilidade para você e sua família." },
+      { title: "Sustentabilidade",     desc: "Tecnologia que cuida da água e do planeta." },
+    ],
+    modalNone: "Nenhum produto selecionado", modalSelected: " de 4 produto", modalCompare: "Comparar", modalClose: "Fechar",
+    altYes: "Sim", altNo: "Não",
+  },
+  en: {
+    filters: ["All", "Essentials", "Premium", "Countertop", "Floor Stand", "Built-in", "Sparkling Water", "Hydrogen Water"],
+    badgeLabel: "Compare Products",
+    h1Pre: "Compare ", h1Highlight: "Acquafy Neo",
+    subtitle: "Compare the Neo Essentials & Neo Premium lines and find the ideal model for you.",
+    ctaSpecialist: "Talk to a Specialist",
+    pills: ["App + AI + IoT", "16 Languages", "Global Operation", "Smart Water Platform"],
+    selectorPre: "Select models to compare (", selector44: "/4)",
+    viewComparison: "View Comparison",
+    selectedBarTitle: "Selected Products", selectedBarSub: "Add or remove products to compare",
+    selectProduct: "Select a product", removeLabel: "Remove",
+    tableFeatures: "Features",
+    linePrefix: "Neo Line ",
+    specRowLabels: ["Format", "Functions", "Temperatures", "Sparkling Water", "Hydrogen Water", "Panel", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Filtration System", "Cold Water Tank", "Material", "BR Price"],
+    acquireLabel: "Buy", buyNow: "Buy Now →",
+    emptyTable: "Select at least one product to compare.",
+    essentialsChecklist: ["LED Touch Panel 10.1", "App + AI + IoT", "4 High-Performance UF Filters", "Countertop, Wall and Floor Stand Models", "Excellent value for money"],
+    premiumChecklist: ["Stainless Steel", "LCD IPS Touch Panel 15.6", "Mini Media Network", "4 High-Performance RO / Reverse Osmosis Filters", "Premium and sophisticated proposition"],
+    priceRangesTitle: "Price Ranges in the US Market",
+    priceFrom: "from ", priceTo: " to ",
+    trustItems: [
+      { title: "Guaranteed Quality",  desc: "Certified products with the highest standards." },
+      { title: "Secure Delivery",     desc: "Reliable and secure delivery throughout Brazil." },
+      { title: "Technical Support",   desc: "Authorized service network throughout the country." },
+      { title: "Extended Warranty",   desc: "More peace of mind for you and your family." },
+      { title: "Sustainability",      desc: "Technology that cares for water and the planet." },
+    ],
+    modalNone: "No product selected", modalSelected: " of 4 product", modalCompare: "Compare", modalClose: "Close",
+    altYes: "Yes", altNo: "No",
+  },
+  es: {
+    filters: ["Todos", "Essentials", "Premium", "Encimera", "Columna", "Empotrado", "Agua con Gas", "Agua Hidrogenada"],
+    badgeLabel: "Comparar Productos",
+    h1Pre: "Compara los ", h1Highlight: "Acquafy Neo",
+    subtitle: "Compara las líneas Neo Essentials & Neo Premium y encuentra el modelo ideal para ti.",
+    ctaSpecialist: "Hablar con un Especialista",
+    pills: ["App + AI + IoT", "16 Idiomas", "Operación Global", "Plataforma Inteligente de Agua"],
+    selectorPre: "Selecciona modelos para comparar (", selector44: "/4)",
+    viewComparison: "Ver Comparación",
+    selectedBarTitle: "Productos Seleccionados", selectedBarSub: "Agrega o elimina productos para comparar",
+    selectProduct: "Selecciona un producto", removeLabel: "Eliminar",
+    tableFeatures: "Características",
+    linePrefix: "Línea Neo ",
+    specRowLabels: ["Formato", "Funciones", "Temperaturas", "Agua con Gas", "Agua Hidrogenada", "Panel", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Sistema de Filtración", "Depósito de Agua Fría", "Material", "Precio BR"],
+    acquireLabel: "Adquirir", buyNow: "Comprar Ahora →",
+    emptyTable: "Selecciona al menos un producto para comparar.",
+    essentialsChecklist: ["Panel LED Touch 10.1", "App + AI + IoT", "4 Filtros UF de Alto Rendimiento", "Modelos Encimera, Pared y Columna", "Excelente relación calidad-precio"],
+    premiumChecklist: ["Acero inoxidable", "Panel LCD IPS Touch 15.6", "Mini Media Network", "4 Filtros RO / Ósmosis Inversa de Alto Rendimiento", "Propuesta premium y sofisticada"],
+    priceRangesTitle: "Rangos de Precio en el Mercado Estadounidense",
+    priceFrom: "de ", priceTo: " a ",
+    trustItems: [
+      { title: "Calidad Garantizada",  desc: "Productos certificados con los más altos estándares." },
+      { title: "Entrega Segura",       desc: "Entrega confiable y segura a todo Brasil." },
+      { title: "Asistencia Técnica",   desc: "Red autorizada de asistencia en todo el país." },
+      { title: "Garantía Extendida",   desc: "Mayor tranquilidad para ti y tu familia." },
+      { title: "Sostenibilidad",       desc: "Tecnología que cuida el agua y el planeta." },
+    ],
+    modalNone: "Ningún producto seleccionado", modalSelected: " de 4 producto", modalCompare: "Comparar", modalClose: "Cerrar",
+    altYes: "Sí", altNo: "No",
+  },
+};
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
@@ -234,9 +388,9 @@ function FeaturePill({ icon, label, aspectW, aspectH }: { icon: string; label: s
   );
 }
 
-function BoolCell({ value }: { value: boolean }) {
+function BoolCell({ value, altYes = "Sim", altNo = "Não" }: { value: boolean; altYes?: string; altNo?: string }) {
   return (
-    <FigmaIcon src={value ? imgCheckin : imgNegative} size={24} alt={value ? "Sim" : "Não"} />
+    <FigmaIcon src={value ? imgCheckin : imgNegative} size={24} alt={value ? altYes : altNo} />
   );
 }
 
@@ -253,6 +407,10 @@ function CheckListItem({ icon, text }: { icon: string; text: string }) {
 
 // ─── Main Component ───────────────────────────────────────────────────────────
 export default function CompareProductos() {
+  const { lang } = useLang();
+  const t = T[lang];
+  const specRows = t.specRowLabels.map((label, i) => ({ ...SPEC_ROWS[i], label }));
+
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [activeFilter, setActiveFilter] = useState("Todos");
   const [showSelectorModal, setShowSelectorModal] = useState(false);
@@ -404,13 +562,13 @@ export default function CompareProductos() {
               <div className="bg-white border border-[#0233c3] flex gap-[10px] items-center px-[12px] py-[8px] rounded-full">
                 <FigmaIcon src={imgPlanetWeb} size={16} />
                 <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] whitespace-nowrap">
-                  Compare Produtos
+                  {t.badgeLabel}
                 </span>
               </div>
 
               {/* Title */}
               <h1 className="font-['Avenir_LT_Pro:95_Black'] text-hero text-[#333] text-center 1024:text-left">
-                Compare os produtos{" "}
+                {t.h1Pre}
                 <span
                   className="bg-clip-text"
                   style={{
@@ -419,20 +577,20 @@ export default function CompareProductos() {
                     backgroundImage: "linear-gradient(to bottom, #0233c3, #9f3df5)",
                   }}
                 >
-                  Acquafy Neo
+                  {t.h1Highlight}
                 </span>
               </h1>
 
               {/* Subtitle */}
               <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#333] text-center 1024:text-left">
-                Compare as linhas Neo Essentials &amp; Neo Premium e encontre o modelo ideal para você.
+                {t.subtitle}
               </p>
 
               {/* CTA buttons */}
               <div className="flex gap-[20px] items-center justify-center 1024:justify-start w-full">
                 <a href="/contato" className="bg-white border border-[#0233c3] flex gap-[10px] items-center justify-center min-h-[50px] px-[20px] py-[10px] rounded-[8px] cursor-pointer hover:bg-[#f0f4ff] transition-colors no-underline">
                   <span className="font-['Articulat_CF:Bold'] text-[16px] leading-normal text-[#0233c3]">
-                    Falar com um especialista
+                    {t.ctaSpecialist}
                   </span>
                   <FigmaIcon src={imgArrowBlue} size={10} aspectW={30} aspectH={18} />
                 </a>
@@ -450,10 +608,10 @@ export default function CompareProductos() {
 
           {/* Feature pills — fora do hero row, todos os breakpoints ≥1024px */}
           <div className="flex flex-wrap gap-[20px] items-center justify-between w-full">
-            <FeaturePill icon={imgMobile} label="App + AI + IoT" aspectW={211} aspectH={295} />
-            <FeaturePill icon={imgLanguage} label="16 idiomas" />
-            <FeaturePill icon={imgPlanetGlobal} label="Operação global" />
-            <FeaturePill icon={imgWaterVector} label="Plataforma Inteligente de Água" aspectW={307} aspectH={295} />
+            <FeaturePill icon={imgMobile} label={t.pills[0]} aspectW={211} aspectH={295} />
+            <FeaturePill icon={imgLanguage} label={t.pills[1]} />
+            <FeaturePill icon={imgPlanetGlobal} label={t.pills[2]} />
+            <FeaturePill icon={imgWaterVector} label={t.pills[3]} aspectW={307} aspectH={295} />
           </div>
 
           {/* Product selector card */}
@@ -462,13 +620,13 @@ export default function CompareProductos() {
             <div className="flex flex-col 1024:flex-row gap-[10px] items-center w-full">
               <div className="flex gap-[10px] items-center shrink-0 w-full justify-center 1024:w-auto 1024:justify-start">
                 <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] whitespace-nowrap">
-                  Selecione os modelos para comparar ({selectedIds.length}/4)
+                  {t.selectorPre}{selectedIds.length}{t.selector44}
                 </p>
                 <FigmaIcon src={imgBuyCursor} size={30} />
               </div>
               {/* Filter pills */}
               <div className="flex flex-wrap gap-[10px] items-center justify-center 1024:justify-end flex-1 min-w-0">
-                {FILTERS.filter(f => f !== "Todos").map(filter => (
+                {FILTERS_PT.filter(f => f !== "Todos").map((filter, fi) => (
                   <button
                     key={filter}
                     onClick={() => setActiveFilter(activeFilter === filter ? "Todos" : filter)}
@@ -478,7 +636,7 @@ export default function CompareProductos() {
                         : "bg-white border-[#f6f9fe] text-[#c8cfd8] hover:border-[#cbd0d4] hover:text-[#333]"
                     }`}
                   >
-                    {filter}
+                    {t.filters[fi + 1]}
                   </button>
                 ))}
               </div>
@@ -516,7 +674,7 @@ export default function CompareProductos() {
                     onClick={() => scrollTo(selectedBarRef)}
                     className="bg-[#0233c3] flex gap-[10px] items-center justify-center px-[20px] py-[10px] rounded-[8px] cursor-pointer hover:bg-[#002ba8] transition-colors"
                   >
-                    <span className="font-['Articulat_CF:Bold'] text-[15px] leading-normal text-white whitespace-nowrap">Ver comparação</span>
+                    <span className="font-['Articulat_CF:Bold'] text-[15px] leading-normal text-white whitespace-nowrap">{t.viewComparison}</span>
                     <FigmaIcon src={imgArrowWhite} size={10} aspectW={30} aspectH={18} />
                   </button>
                 </div>
@@ -605,10 +763,10 @@ export default function CompareProductos() {
           {/* Info */}
           <div className="flex flex-col gap-[10px] items-center min-[1024px]:items-start flex-1 min-w-[240px] max-w-[340px]">
             <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] text-center min-[1024px]:text-left">
-              Produtos selecionados ({selectedProducts.length}/4)
+              {t.selectedBarTitle} ({selectedProducts.length}/4)
             </p>
             <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#333] text-center min-[1024px]:text-left">
-              Adicione ou remova produtos para comparar
+              {t.selectedBarSub}
             </p>
           </div>
 
@@ -631,7 +789,7 @@ export default function CompareProductos() {
                     <ProductName parts={product.nameParts} />
                   </p>
                   <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] leading-[13px] text-[#8a8f97]">
-                    Remover
+                    {t.removeLabel}
                   </p>
                 </div>
                 {/* Remove button */}
@@ -655,7 +813,7 @@ export default function CompareProductos() {
                   <span className="text-[#cbd0d4] text-[32px] font-light group-hover:text-[#0233c3] transition-colors">+</span>
                 </div>
                 <p className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] leading-[15px] text-[#c8cfd8] group-hover:text-[#0233c3] transition-colors">
-                  Selecione um produto
+                  {t.selectProduct}
                 </p>
               </button>
             ))}
@@ -668,7 +826,7 @@ export default function CompareProductos() {
         {selectedProducts.length === 0 ? (
           <div className="max-w-[1400px] w-full text-center py-[60px]">
             <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#8a8f97]">
-              Selecione ao menos um produto para comparar.
+              {t.emptyTable}
             </p>
           </div>
         ) : (
@@ -685,7 +843,7 @@ export default function CompareProductos() {
               <div className="flex border-b border-[#cbd0d4]">
                 <div className="sticky left-0 z-10 bg-white flex items-center w-[200px] shrink-0 px-[20px] py-[12px] border-r border-[#cbd0d4]">
                   <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#2a2a2b]">
-                    Características
+                    {t.tableFeatures}
                   </p>
                 </div>
                 {selectedProducts.map(product => (
@@ -698,7 +856,7 @@ export default function CompareProductos() {
                         <ProductName parts={product.nameParts} />
                       </p>
                       <p className="font-['Avenir_LT_Pro:55_Roman'] text-[11px] leading-[13px] text-[#8a8f97]">
-                        Linha Neo {product.linha}
+                        {t.linePrefix}{product.linha}
                       </p>
                     </div>
                   </div>
@@ -706,7 +864,7 @@ export default function CompareProductos() {
               </div>
 
               {/* ── Spec rows ── */}
-              {SPEC_ROWS.map(row => (
+              {specRows.map(row => (
                 <div key={row.key} className="flex border-b border-[#cbd0d4] last:border-b-0">
                   <div className="sticky left-0 z-10 bg-white flex items-center w-[200px] shrink-0 px-[20px] py-[12px] border-r border-[#cbd0d4]">
                     <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] leading-[16px] text-[#2a2a2b]">
@@ -718,16 +876,16 @@ export default function CompareProductos() {
                     return (
                       <div key={product.id} className="flex items-center justify-center flex-1 min-w-[200px] px-[16px] py-[12px] border-r border-[#cbd0d4] last:border-r-0">
                         {row.type === "bool" ? (
-                          <BoolCell value={val as boolean} />
+                          <BoolCell value={val as boolean} altYes={t.altYes} altNo={t.altNo} />
                         ) : row.type === "price" ? (
                           <p className="font-['Avenir_LT_Pro:95_Black'] text-[16px] leading-[20px] text-[#0233c3] text-center">
                             {formatBRL(PRODUCT_PRICES_BRL[product.id] ?? 0)}
                           </p>
                         ) : val === "—" ? (
-                          <BoolCell value={false} />
+                          <BoolCell value={false} altYes={t.altYes} altNo={t.altNo} />
                         ) : (
                           <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] leading-[15px] text-[#2a2a2b] text-center">
-                            {val as string}
+                            {translateSpec(val as string, lang)}
                           </p>
                         )}
                       </div>
@@ -739,7 +897,7 @@ export default function CompareProductos() {
               {/* ── Buy row ── */}
               <div className="flex" style={{ background: "linear-gradient(90deg, #f0f4ff 0%, #f8f4ff 100%)" }}>
                 <div className="sticky left-0 z-10 flex items-center w-[200px] shrink-0 px-[20px] py-[16px] border-r border-[#cbd0d4]" style={{ background: "linear-gradient(90deg, #f0f4ff, #f0f4ff)" }}>
-                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#555]">Adquirir</p>
+                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#555]">{t.acquireLabel}</p>
                 </div>
                 {selectedProducts.map(product => (
                   <div key={product.id} className="flex items-center justify-center flex-1 min-w-[200px] px-[16px] py-[16px] border-r border-[#cbd0d4] last:border-r-0">
@@ -747,7 +905,7 @@ export default function CompareProductos() {
                       onClick={() => addToCart(product)}
                       className="flex items-center gap-[8px] px-[22px] py-[10px] rounded-full font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-white transition-opacity hover:opacity-85 whitespace-nowrap cursor-pointer"
                       style={{ background: product.linha === "Premium" ? "linear-gradient(135deg, #9f3df5, #0233c3)" : "linear-gradient(135deg, #0233c3, #0569ff)" }}>
-                      Comprar Agora →
+                      {t.buyNow}
                     </button>
                   </div>
                 ))}
@@ -769,13 +927,7 @@ export default function CompareProductos() {
                 Neo Essentials
               </p>
               <div className="flex flex-col gap-[10px] items-start w-full">
-                {[
-                  "Painel LED Touch 10,1",
-                  "App + AI + IoT",
-                  "4 Filtros UF de Alta Performance",
-                  "Modelos Bancada, Parede e Coluna",
-                  "Excelente custo-benefício",
-                ].map(item => (
+                {t.essentialsChecklist.map(item => (
                   <CheckListItem key={item} icon={imgCheckinBlue} text={item} />
                 ))}
               </div>
@@ -797,13 +949,7 @@ export default function CompareProductos() {
                 Neo Premium
               </p>
               <div className="flex flex-col gap-[10px] items-start w-full">
-                {[
-                  "Aço inox",
-                  "Painel LCD IPS Touch 15.6",
-                  "Mini Media Network",
-                  "4 Filtros RO / Osmose Reversa de Alta Performance",
-                  "Proposta premium e sofisticada",
-                ].map(item => (
+                {t.premiumChecklist.map(item => (
                   <CheckListItem key={item} icon={imgCheckinPurple} text={item} />
                 ))}
               </div>
@@ -821,7 +967,7 @@ export default function CompareProductos() {
         {/* Pricing ranges */}
         <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
           <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] text-center">
-            Faixas de preço no mercado americano
+            {t.priceRangesTitle}
           </h2>
           <div className="flex flex-col gap-[40px] items-stretch justify-center w-full win-1024:flex-row win-1024:flex-wrap win-1024:items-start">
             {/* Essentials price range */}
@@ -836,9 +982,9 @@ export default function CompareProductos() {
                   </p>
                 </div>
                 <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-center">
-                  <span className="text-[#1f2e91]">de </span>
+                  <span className="text-[#1f2e91]">{t.priceFrom}</span>
                   <span className="text-[#0569ff]">US$ 267.97 </span>
-                  <span className="text-[#1f2e91]">a </span>
+                  <span className="text-[#1f2e91]">{t.priceTo}</span>
                   <span className="text-[#0569ff]">US$ 1,397.97</span>
                 </p>
               </div>
@@ -856,9 +1002,9 @@ export default function CompareProductos() {
                   </p>
                 </div>
                 <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-center">
-                  <span className="text-[#1f2e91]">de </span>
+                  <span className="text-[#1f2e91]">{t.priceFrom}</span>
                   <span className="text-[#9f3df5]">US$ 1,297.97 </span>
-                  <span className="text-[#1f2e91]">a </span>
+                  <span className="text-[#1f2e91]">{t.priceTo}</span>
                   <span className="text-[#9f3df5]">US$ 1,697.97</span>
                 </p>
               </div>
@@ -870,27 +1016,30 @@ export default function CompareProductos() {
       {/* ── 5. TRUST BAR ── */}
       <section className="bg-white flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
         <div className="bg-white border border-[#cbd0d4] flex flex-wrap gap-[20px] items-start max-w-[1400px] p-[20px] rounded-[16px] w-full">
-          {[
-            { icon: imgShield,         aspectW: 189, aspectH: 215, title: "Qualidade Garantida",  desc: "Produtos variados e certificados com os mais altos padrões." },
-            { icon: imgLogistics,      aspectW: 215, aspectH: 182, title: "Entrega Segura",       desc: "Entrega rígida e segura para todo o Brasil." },
-            { icon: imgPhone,                                       title: "Assistência Técnica",  desc: "Rede autorizada de assistência em todo o país." },
-            { icon: imgCertificate,    aspectW: 142, aspectH: 215, title: "Garantia Estendida",   desc: "Mais tranquilidade para você e sua família." },
-            { icon: imgSustainability,                              title: "Sustentabilidade",     desc: "Tecnologia que cuida da água e do planeta." },
-          ].map(item => (
-            <div key={item.title} className="flex gap-[10px] items-start flex-1 min-w-[180px]">
-              <div className="bg-[#f1f5fe] flex items-center justify-center p-[10px] rounded-[12px] shrink-0 size-[40px]">
-                <FigmaIcon src={item.icon} size={20} aspectW={item.aspectW} aspectH={item.aspectH} />
+          {(() => {
+            const TRUST_ICONS = [
+              { icon: imgShield,         aspectW: 189 as number | undefined, aspectH: 215 as number | undefined },
+              { icon: imgLogistics,      aspectW: 215 as number | undefined, aspectH: 182 as number | undefined },
+              { icon: imgPhone,          aspectW: undefined,                 aspectH: undefined                 },
+              { icon: imgCertificate,    aspectW: 142 as number | undefined, aspectH: 215 as number | undefined },
+              { icon: imgSustainability, aspectW: undefined,                 aspectH: undefined                 },
+            ];
+            return t.trustItems.map((item, i) => (
+              <div key={item.title} className="flex gap-[10px] items-start flex-1 min-w-[180px]">
+                <div className="bg-[#f1f5fe] flex items-center justify-center p-[10px] rounded-[12px] shrink-0 size-[40px]">
+                  <FigmaIcon src={TRUST_ICONS[i].icon} size={20} aspectW={TRUST_ICONS[i].aspectW} aspectH={TRUST_ICONS[i].aspectH} />
+                </div>
+                <div className="flex flex-col gap-[10px] items-start flex-1 min-w-0">
+                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91]">
+                    {item.title}
+                  </p>
+                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] leading-[14px] text-[#333]">
+                    {item.desc}
+                  </p>
+                </div>
               </div>
-              <div className="flex flex-col gap-[10px] items-start flex-1 min-w-0">
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91]">
-                  {item.title}
-                </p>
-                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] leading-[14px] text-[#333]">
-                  {item.desc}
-                </p>
-              </div>
-            </div>
-          ))}
+            ));
+          })()}
         </div>
       </section>
 
@@ -910,7 +1059,7 @@ export default function CompareProductos() {
             <div className="flex items-center justify-between gap-[10px]">
               <div className="flex gap-[10px] items-center">
                 <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] whitespace-nowrap">
-                  Selecione os modelos para comparar ({selectedIds.length}/4)
+                  {t.selectorPre}{selectedIds.length}{t.selector44}
                 </p>
                 <FigmaIcon src={imgBuyCursor} size={28} />
               </div>
@@ -924,7 +1073,7 @@ export default function CompareProductos() {
 
             {/* Filter pills */}
             <div className="flex flex-wrap gap-[10px] items-center">
-              {FILTERS.filter(f => f !== "Todos").map(filter => (
+              {FILTERS_PT.filter(f => f !== "Todos").map((filter, fi) => (
                 <button
                   key={filter}
                   onClick={() => setActiveFilter(activeFilter === filter ? "Todos" : filter)}
@@ -934,7 +1083,7 @@ export default function CompareProductos() {
                       : "bg-white border-[#cbd0d4] text-[#333] hover:border-[#0233c3] hover:text-[#0233c3]"
                   }`}
                 >
-                  {filter}
+                  {t.filters[fi + 1]}
                 </button>
               ))}
             </div>
@@ -1007,15 +1156,15 @@ export default function CompareProductos() {
             <div className="flex items-center justify-between gap-[16px] pt-[4px] border-t border-[#cbd0d4]">
               <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[17px] text-[#8a8f97]">
                 {selectedIds.length === 0
-                  ? "Nenhum produto selecionado"
-                  : `${selectedIds.length} de 4 produto${selectedIds.length > 1 ? "s" : ""} selecionado${selectedIds.length > 1 ? "s" : ""}`}
+                  ? t.modalNone
+                  : `${selectedIds.length}${t.modalSelected}${selectedIds.length > 1 ? "s" : ""} selecionado${selectedIds.length > 1 ? "s" : ""}`}
               </p>
               <button
                 onClick={() => setShowSelectorModal(false)}
                 className="bg-[#0233c3] flex gap-[10px] items-center justify-center px-[24px] py-[10px] rounded-[8px] cursor-pointer hover:bg-[#002ba8] transition-colors shrink-0"
               >
                 <span className="font-['Articulat_CF:Bold'] text-[15px] leading-normal text-white">
-                  {selectedIds.length > 0 ? "Comparar" : "Fechar"}
+                  {selectedIds.length > 0 ? t.modalCompare : t.modalClose}
                 </span>
                 {selectedIds.length > 0 && (
                   <FigmaIcon src={imgArrowWhite} size={10} aspectW={30} aspectH={18} />

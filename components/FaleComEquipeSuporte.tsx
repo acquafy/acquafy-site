@@ -1,14 +1,63 @@
-﻿"use client";
+"use client";
 import FigmaIcon from "./FigmaIcon";
 import { useChatWidget } from "./ChatWidget";
+import { useLang, type Lang } from "@/context/LanguageContext";
 
 const imgChatIcon      = "/figma-assets/icon-chat-icon.svg";
 const imgMailIcon      = "/figma-assets/icon-mail-icon.svg";
 const imgWhatsappIcon  = "/figma-assets/icon-whatsapp-icon.svg";
 const imgTimeIcon      = "/figma-assets/icon-time-icon.svg";
 
+const T: Record<Lang, {
+  heading: string;
+  subtitle: string;
+  chatBadge: string;
+  chatDesc: string;
+  chatButton: string;
+  emailDesc: string;
+  whatsappDesc: string;
+  hoursTitle: string;
+  hoursDesc: string;
+}> = {
+  pt: {
+    heading: "Fale com nossa equipe",
+    subtitle: "Escolha o canal de atendimento ideal para você.",
+    chatBadge: "Disponível",
+    chatDesc: "Fale agora com um especialista em tempo real.",
+    chatButton: "Iniciar chat",
+    emailDesc: "Envie sua dúvida ou solicitação que responderemos em breve.",
+    whatsappDesc: "Atendimento rápido pelo WhatsApp.",
+    hoursTitle: "Horário de atendimento",
+    hoursDesc: "Segunda a Sexta",
+  },
+  en: {
+    heading: "Talk to Our Team",
+    subtitle: "Choose the ideal support channel for you.",
+    chatBadge: "Available",
+    chatDesc: "Talk now with a specialist in real time.",
+    chatButton: "Start Chat",
+    emailDesc: "Send your question or request and we will reply shortly.",
+    whatsappDesc: "Quick support via WhatsApp.",
+    hoursTitle: "Support Hours",
+    hoursDesc: "Monday to Friday",
+  },
+  es: {
+    heading: "Habla con Nuestro Equipo",
+    subtitle: "Elige el canal de atención ideal para ti.",
+    chatBadge: "Disponible",
+    chatDesc: "Habla ahora con un especialista en tiempo real.",
+    chatButton: "Iniciar Chat",
+    emailDesc: "Envía tu consulta o solicitud y responderemos pronto.",
+    whatsappDesc: "Atención rápida por WhatsApp.",
+    hoursTitle: "Horario de Atención",
+    hoursDesc: "Lunes a Viernes",
+  },
+};
+
 export default function FaleComEquipeSuporte() {
   const { openChat } = useChatWidget();
+  const { lang } = useLang();
+  const t = T[lang];
   return (
     <section className="bg-[#f6f9fe] flex flex-col items-center justify-center overflow-hidden px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center justify-center max-w-[1400px] w-full">
@@ -16,10 +65,10 @@ export default function FaleComEquipeSuporte() {
         {/* Header */}
         <div className="flex flex-col gap-[10px] items-start text-center w-full">
           <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] w-full">
-            Fale com nossa equipe
+            {t.heading}
           </h2>
           <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] w-full">
-            Escolha o canal de atendimento ideal para você.
+            {t.subtitle}
           </p>
         </div>
 
@@ -39,18 +88,18 @@ export default function FaleComEquipeSuporte() {
                   </p>
                   <div className="bg-[#e1f3e7] flex flex-col items-center justify-center px-[10px] py-[6px] rounded-full shrink-0">
                     <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] leading-[13px] text-[#36ae5c] whitespace-nowrap">
-                      Disponível
+                      {t.chatBadge}
                     </span>
                   </div>
                 </div>
                 <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#333] w-full">
-                  Fale agora com um especialista em tempo real.
+                  {t.chatDesc}
                 </p>
               </div>
             </div>
             <button onClick={openChat} className="mt-auto bg-white border border-[#0233c3] hover:bg-[#0233c3] hover:text-white transition-colors flex items-center justify-center min-h-[30px] overflow-hidden px-[20px] py-[10px] rounded-[8px]">
               <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] hover:text-white text-center">
-                Iniciar chat
+                {t.chatButton}
               </span>
             </button>
           </div>
@@ -66,7 +115,7 @@ export default function FaleComEquipeSuporte() {
                   E-mail
                 </p>
                 <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#333] w-full">
-                  Envie sua dúvida ou solicitação que responderemos em breve.
+                  {t.emailDesc}
                 </p>
               </div>
             </div>
@@ -91,7 +140,7 @@ export default function FaleComEquipeSuporte() {
                   WhatsApp
                 </p>
                 <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#333] w-full">
-                  Atendimento rápido pelo WhatsApp.
+                  {t.whatsappDesc}
                 </p>
               </div>
             </div>
@@ -115,10 +164,10 @@ export default function FaleComEquipeSuporte() {
               </div>
               <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-px">
                 <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] w-full">
-                  Horário de atendimento
+                  {t.hoursTitle}
                 </p>
                 <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#333] w-full">
-                  Segunda a Sexta
+                  {t.hoursDesc}
                 </p>
               </div>
             </div>

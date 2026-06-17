@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { PRODUCT_PRICES_BRL, PRODUCT_IMAGES } from "@/lib/products";
+import { useLang, type Lang } from "@/context/LanguageContext";
 
 /* ─── Countdown ──────────────────────────────────────────────────────────── */
 function useCountdown(startSeconds = 600) {
@@ -93,36 +94,303 @@ const ALL_PRODUCTS: Product[] = PRODUCT_GROUPS.flatMap((g) => g.products).map((p
   price: PRODUCT_PRICES_BRL[p.id] ?? p.price,
 }));
 
-const FILTER_TAGS = ["Todos", "Essentials", "Premium", "Bancada", "Coluna", "Embutido", "Água com Gás", "Água Hidrogenada"];
+const FILTER_TAGS_PT = ["Todos", "Essentials", "Premium", "Bancada", "Coluna", "Embutido", "Água com Gás", "Água Hidrogenada"];
 
 /* ─── Upsell ─────────────────────────────────────────────────────────────── */
 type KitId = "essentials" | "premium";
 
-const FILTER_KITS: { id: KitId; name: string; desc: string; price: number; originalPrice: number; color: string; bg: string }[] = [
-  {
-    id: "essentials",
-    name: "Kit de Filtros Essentials (1 ano)",
-    desc: "Filtros UF — compatível com toda a linha Neo Essentials. 12 meses sem se preocupar com reposição.",
-    price: 290,
-    originalPrice: 490,
-    color: "#0233c3",
-    bg: "#f0f4ff",
-  },
-  {
-    id: "premium",
-    name: "Kit de Filtros Premium (1 ano)",
-    desc: "Filtros RO/Osmose Reversa — compatível com toda a linha Neo Premium. Filtros de alta performance para sistemas avançados.",
-    price: 390,
-    originalPrice: 590,
-    color: "#9f3df5",
-    bg: "#f5f0ff",
-  },
-];
+type CheckinT = {
+  filterTags: string[];
+  steps: string[];
+  secureLabel: string;
+  step1Title: string; step1Sub: string;
+  selectAtLeast: string;
+  continueBtn: string; continueBtnWith: string; continueBtnSufSg: string; continueBtnSufPl: string;
+  step2Title: string; step2Sub: string;
+  deliveryAddr: string;
+  labelNome: string; phNome: string;
+  labelEmail: string; phEmail: string;
+  labelTelefone: string;
+  labelCep: string;
+  labelRua: string; phRua: string;
+  labelNumero: string;
+  labelComplemento: string; phComplemento: string;
+  labelBairro: string; phBairro: string;
+  labelCidade: string; phCidade: string;
+  labelEstado: string;
+  step3Title: string; step3Sub: string;
+  free: string;
+  step4Title: string; step4Sub: string;
+  save: string; addBtn: string;
+  continuePay: string;
+  termsText1: string; termsAnd: string; termsText2: string;
+  step5Title: string; step5Sub: string;
+  payCard: string; payPix: string; payBoleto: string;
+  labelCardNum: string;
+  labelExpiry: string;
+  labelCvc: string;
+  labelNameOnCard: string; phNameOnCard: string;
+  pixTitle: string; pixDesc: string;
+  boletoTitle: string; boletoDesc: string;
+  finalizeBtn: string;
+  summaryTitle: string;
+  noModelSelected: string;
+  remove: string;
+  subtotalLabel: string; prodSg: string; prodPl: string;
+  shippingLabel: string; totalLabel: string;
+  stockWarning: string;
+  reservedPre: string; reservedSuf: string;
+  trustItems: { label: string; desc: string }[];
+  reviewsTitle: string;
+  reviewsSub: string;
+  reviewRoles: string[];
+  reviewQuotes: string[];
+  successTitle: string;
+  successMsgPre: string; successMsgSuf: string; successEmailFallback: string;
+  backToSite: string;
+  kits: { name: string; desc: string }[];
+  shipping: { label: string; desc: string }[];
+  errors: {
+    nome: string; email: string; telefone: string; telefoneInvalid: string;
+    cep: string; cepInvalid: string; rua: string; numero: string;
+    bairro: string; cidade: string; uf: string;
+    cardNumber: string; expiry: string; cvc: string; nameOnCard: string;
+  };
+};
 
-const SHIPPING_OPTIONS = [
-  { id: "gratis",  label: "Frete Grátis",       desc: "Entrega padrão — 5 a 7 dias úteis", price: 0    },
-  { id: "express", label: "Entrega Expressa",    desc: "Chegada em 2 a 3 dias úteis",       price: 4990 },
-];
+const T: Record<Lang, CheckinT> = {
+  pt: {
+    filterTags: ["Todos", "Essentials", "Premium", "Bancada", "Coluna", "Embutido", "Água com Gás", "Água Hidrogenada"],
+    steps: ["Modelo", "Dados", "Frete", "Adicional", "Pagamento"],
+    secureLabel: "CHECKIN SEGURO",
+    step1Title: "Escolha o seu modelo", step1Sub: "Você pode selecionar mais de um produto.",
+    selectAtLeast: "Selecione ao menos um modelo para continuar.",
+    continueBtn: "CONTINUAR →", continueBtnWith: "CONTINUAR COM ", continueBtnSufSg: " PRODUTO →", continueBtnSufPl: " PRODUTOS →",
+    step2Title: "Dados pessoais", step2Sub: "Usaremos estas informações para enviar o seu pedido.",
+    deliveryAddr: "Endereço de entrega",
+    labelNome: "Nome completo", phNome: "Seu nome completo",
+    labelEmail: "E-mail", phEmail: "seuemail@email.com",
+    labelTelefone: "Telefone / WhatsApp",
+    labelCep: "CEP",
+    labelRua: "Rua / Avenida", phRua: "Rua das Águas Claras",
+    labelNumero: "Número",
+    labelComplemento: "Complemento", phComplemento: "Apto, sala, bloco...",
+    labelBairro: "Bairro", phBairro: "Seu bairro",
+    labelCidade: "Cidade", phCidade: "Sua cidade",
+    labelEstado: "Estado",
+    step3Title: "Opção de entrega", step3Sub: "Escolha como prefere receber o seu pedido.",
+    free: "GRÁTIS",
+    step4Title: "Adicione ao pedido", step4Sub: "Economize e garanta sua água pura por mais tempo.",
+    save: "Economize", addBtn: "Adicionar",
+    continuePay: "CONTINUAR PARA PAGAMENTO →",
+    termsText1: "Ao prosseguir, você concorda com os nossos", termsAnd: "e", termsText2: ".",
+    step5Title: "Forma de pagamento", step5Sub: "Todas as transações são seguras e criptografadas.",
+    payCard: "Cartão de Crédito", payPix: "PIX", payBoleto: "Boleto",
+    labelCardNum: "Número do cartão",
+    labelExpiry: "Validade (MM/AA)",
+    labelCvc: "CVV",
+    labelNameOnCard: "Nome no cartão", phNameOnCard: "Nome como impresso no cartão",
+    pixTitle: "Como funciona o PIX", pixDesc: "Após confirmar o pedido, você receberá um QR Code e a chave PIX por e-mail. O pagamento é aprovado em segundos.",
+    boletoTitle: "Como funciona o Boleto", boletoDesc: "O boleto será enviado para o seu e-mail. A confirmação pode levar até 3 dias úteis após o pagamento.",
+    finalizeBtn: "FINALIZAR PEDIDO",
+    summaryTitle: "Resumo do pedido",
+    noModelSelected: "Nenhum modelo selecionado",
+    remove: "Remover",
+    subtotalLabel: "Subtotal", prodSg: " produto", prodPl: " produtos",
+    shippingLabel: "Frete", totalLabel: "Total",
+    stockWarning: "Apenas 8 unidades em estoque!",
+    reservedPre: "Seu pedido está reservado por ", reservedSuf: "",
+    trustItems: [
+      { label: "Compra 100% segura",              desc: "Pagamento criptografado e protegido." },
+      { label: "Frete grátis para todo o Brasil", desc: "Entrega sem custo para qualquer estado." },
+      { label: "Garantia de 1 ano",               desc: "Cobertura total sem burocracia" },
+      { label: "Suporte especializado",           desc: "Atendimento com especialistas Acquafy" },
+    ],
+    reviewsTitle: "O que dizem nossos clientes",
+    reviewsSub: "mais de 3.200 clientes satisfeitos",
+    reviewRoles: ["Cliente", "Empresário", "Consumidora"],
+    reviewQuotes: [
+      "\"A qualidade da água mudou completamente. O Neo PLUS é incrível — minha família adora a água hidrogenada!\"",
+      "\"Comprei o Neo INFINITY para o escritório. O painel touch de 15\" impressiona todo mundo. Suporte impecável.\"",
+      "\"Instalação rápida, água gelada na hora. O app é muito prático para acompanhar a vida dos filtros.\"",
+    ],
+    successTitle: "Pedido confirmado!",
+    successMsgPre: "Obrigado pela sua compra. Um e-mail de confirmação será enviado para",
+    successMsgSuf: ".", successEmailFallback: "seu e-mail",
+    backToSite: "← Voltar ao site",
+    kits: [
+      { name: "Kit de Filtros Essentials (1 ano)", desc: "Filtros UF — compatível com toda a linha Neo Essentials. 12 meses sem se preocupar com reposição." },
+      { name: "Kit de Filtros Premium (1 ano)",    desc: "Filtros RO/Osmose Reversa — compatível com toda a linha Neo Premium. Filtros de alta performance para sistemas avançados." },
+    ],
+    shipping: [
+      { label: "Frete Grátis",    desc: "Entrega padrão — 5 a 7 dias úteis" },
+      { label: "Entrega Expressa", desc: "Chegada em 2 a 3 dias úteis" },
+    ],
+    errors: {
+      nome: "Nome completo é obrigatório", email: "E-mail é obrigatório",
+      telefone: "Telefone é obrigatório", telefoneInvalid: "Telefone inválido (DDD + número)",
+      cep: "CEP é obrigatório", cepInvalid: "CEP inválido",
+      rua: "Rua é obrigatória", numero: "Número é obrigatório",
+      bairro: "Bairro é obrigatório", cidade: "Cidade é obrigatória", uf: "Estado é obrigatório",
+      cardNumber: "Número do cartão é obrigatório", expiry: "Validade é obrigatória",
+      cvc: "CVV é obrigatório", nameOnCard: "Nome no cartão é obrigatório",
+    },
+  },
+  en: {
+    filterTags: ["All", "Essentials", "Premium", "Countertop", "Floor Stand", "Built-in", "Sparkling Water", "Hydrogen Water"],
+    steps: ["Model", "Info", "Shipping", "Add-ons", "Payment"],
+    secureLabel: "SECURE CHECKOUT",
+    step1Title: "Choose Your Model", step1Sub: "You can select more than one product.",
+    selectAtLeast: "Select at least one model to continue.",
+    continueBtn: "CONTINUE →", continueBtnWith: "CONTINUE WITH ", continueBtnSufSg: " ITEM →", continueBtnSufPl: " ITEMS →",
+    step2Title: "Personal Information", step2Sub: "We will use this information to ship your order.",
+    deliveryAddr: "Delivery Address",
+    labelNome: "Full Name", phNome: "Your full name",
+    labelEmail: "E-mail", phEmail: "youremail@email.com",
+    labelTelefone: "Phone / WhatsApp",
+    labelCep: "ZIP Code",
+    labelRua: "Street / Avenue", phRua: "123 Main Street",
+    labelNumero: "Number",
+    labelComplemento: "Apt, Suite, etc.", phComplemento: "Apt, suite, block...",
+    labelBairro: "Neighborhood", phBairro: "Your neighborhood",
+    labelCidade: "City", phCidade: "Your city",
+    labelEstado: "State",
+    step3Title: "Delivery Option", step3Sub: "Choose how you prefer to receive your order.",
+    free: "FREE",
+    step4Title: "Add to Order", step4Sub: "Save and ensure your pure water for longer.",
+    save: "Save", addBtn: "Add",
+    continuePay: "CONTINUE TO PAYMENT →",
+    termsText1: "By proceeding, you agree to our", termsAnd: "and", termsText2: ".",
+    step5Title: "Payment Method", step5Sub: "All transactions are secure and encrypted.",
+    payCard: "Credit Card", payPix: "PIX", payBoleto: "Boleto",
+    labelCardNum: "Card Number",
+    labelExpiry: "Expiry (MM/YY)",
+    labelCvc: "CVV",
+    labelNameOnCard: "Name on Card", phNameOnCard: "Name as printed on card",
+    pixTitle: "How PIX works", pixDesc: "After confirming the order, you will receive a QR Code and the PIX key by email. Payment is approved in seconds.",
+    boletoTitle: "How Boleto works", boletoDesc: "The bank slip will be sent to your email. Confirmation may take up to 3 business days after payment.",
+    finalizeBtn: "PLACE ORDER",
+    summaryTitle: "Order Summary",
+    noModelSelected: "No model selected",
+    remove: "Remove",
+    subtotalLabel: "Subtotal", prodSg: " item", prodPl: " items",
+    shippingLabel: "Shipping", totalLabel: "Total",
+    stockWarning: "Only 8 units in stock!",
+    reservedPre: "Your order is reserved for ", reservedSuf: "",
+    trustItems: [
+      { label: "100% Secure Purchase",      desc: "Encrypted and protected payment." },
+      { label: "Free Shipping Nationwide",   desc: "No cost delivery to any state." },
+      { label: "1-Year Warranty",            desc: "Full coverage without hassle" },
+      { label: "Specialized Support",        desc: "Service by Acquafy specialists" },
+    ],
+    reviewsTitle: "What Our Customers Say",
+    reviewsSub: "over 3,200 satisfied customers",
+    reviewRoles: ["Customer", "Business Owner", "Consumer"],
+    reviewQuotes: [
+      "\"The water quality changed completely. The Neo PLUS is incredible — my family loves the hydrogen water!\"",
+      "\"I bought the Neo INFINITY for the office. The 15\" touch panel impresses everyone. Impeccable support.\"",
+      "\"Quick installation, cold water right away. The app is very practical for tracking filter life.\"",
+    ],
+    successTitle: "Order confirmed!",
+    successMsgPre: "Thank you for your purchase. A confirmation email will be sent to",
+    successMsgSuf: ".", successEmailFallback: "your email",
+    backToSite: "← Back to Site",
+    kits: [
+      { name: "Essentials Filter Kit (1 year)", desc: "UF Filters — compatible with the entire Neo Essentials line. 12 months without worrying about replacement." },
+      { name: "Premium Filter Kit (1 year)",    desc: "RO/Reverse Osmosis Filters — compatible with the entire Neo Premium line. High-performance filters for advanced systems." },
+    ],
+    shipping: [
+      { label: "Free Shipping",    desc: "Standard delivery — 5 to 7 business days" },
+      { label: "Express Delivery", desc: "Arrives in 2 to 3 business days" },
+    ],
+    errors: {
+      nome: "Full name is required", email: "Email is required",
+      telefone: "Phone is required", telefoneInvalid: "Invalid phone (area code + number)",
+      cep: "ZIP code is required", cepInvalid: "Invalid ZIP code",
+      rua: "Street is required", numero: "Number is required",
+      bairro: "Neighborhood is required", cidade: "City is required", uf: "State is required",
+      cardNumber: "Card number is required", expiry: "Expiry date is required",
+      cvc: "CVV is required", nameOnCard: "Name on card is required",
+    },
+  },
+  es: {
+    filterTags: ["Todos", "Essentials", "Premium", "Encimera", "Columna", "Empotrado", "Agua con Gas", "Agua Hidrogenada"],
+    steps: ["Modelo", "Datos", "Envío", "Adicional", "Pago"],
+    secureLabel: "PAGO SEGURO",
+    step1Title: "Elige tu Modelo", step1Sub: "Puedes seleccionar más de un producto.",
+    selectAtLeast: "Selecciona al menos un modelo para continuar.",
+    continueBtn: "CONTINUAR →", continueBtnWith: "CONTINUAR CON ", continueBtnSufSg: " ARTÍCULO →", continueBtnSufPl: " ARTÍCULOS →",
+    step2Title: "Datos Personales", step2Sub: "Usaremos esta información para enviar tu pedido.",
+    deliveryAddr: "Dirección de Entrega",
+    labelNome: "Nombre Completo", phNome: "Tu nombre completo",
+    labelEmail: "E-mail", phEmail: "tuemail@email.com",
+    labelTelefone: "Teléfono / WhatsApp",
+    labelCep: "Código Postal",
+    labelRua: "Calle / Avenida", phRua: "Calle Principal 123",
+    labelNumero: "Número",
+    labelComplemento: "Apto, Suite, etc.", phComplemento: "Apto, suite, bloque...",
+    labelBairro: "Barrio", phBairro: "Tu barrio",
+    labelCidade: "Ciudad", phCidade: "Tu ciudad",
+    labelEstado: "Estado",
+    step3Title: "Opción de Entrega", step3Sub: "Elige cómo prefieres recibir tu pedido.",
+    free: "GRATIS",
+    step4Title: "Añade al Pedido", step4Sub: "Ahorra y garantiza tu agua pura por más tiempo.",
+    save: "Ahorra", addBtn: "Agregar",
+    continuePay: "CONTINUAR AL PAGO →",
+    termsText1: "Al continuar, aceptas nuestros", termsAnd: "y", termsText2: ".",
+    step5Title: "Método de Pago", step5Sub: "Todas las transacciones son seguras y cifradas.",
+    payCard: "Tarjeta de Crédito", payPix: "PIX", payBoleto: "Boleto",
+    labelCardNum: "Número de Tarjeta",
+    labelExpiry: "Vencimiento (MM/AA)",
+    labelCvc: "CVV",
+    labelNameOnCard: "Nombre en la Tarjeta", phNameOnCard: "Nombre tal como aparece en la tarjeta",
+    pixTitle: "Cómo funciona el PIX", pixDesc: "Tras confirmar el pedido, recibirás un QR Code y la clave PIX por email. El pago se aprueba en segundos.",
+    boletoTitle: "Cómo funciona el Boleto", boletoDesc: "El comprobante de pago se enviará a tu email. La confirmación puede tardar hasta 3 días hábiles.",
+    finalizeBtn: "FINALIZAR PEDIDO",
+    summaryTitle: "Resumen del Pedido",
+    noModelSelected: "Ningún modelo seleccionado",
+    remove: "Eliminar",
+    subtotalLabel: "Subtotal", prodSg: " artículo", prodPl: " artículos",
+    shippingLabel: "Envío", totalLabel: "Total",
+    stockWarning: "¡Solo 8 unidades en stock!",
+    reservedPre: "Tu pedido está reservado por ", reservedSuf: "",
+    trustItems: [
+      { label: "Compra 100% Segura",      desc: "Pago cifrado y protegido." },
+      { label: "Envío Gratis a Todo Brasil", desc: "Entrega sin costo a cualquier estado." },
+      { label: "Garantía de 1 Año",        desc: "Cobertura total sin burocracia" },
+      { label: "Soporte Especializado",    desc: "Atención con especialistas Acquafy" },
+    ],
+    reviewsTitle: "Lo que dicen nuestros clientes",
+    reviewsSub: "más de 3.200 clientes satisfechos",
+    reviewRoles: ["Cliente", "Empresario", "Consumidora"],
+    reviewQuotes: [
+      "\"La calidad del agua cambió por completo. El Neo PLUS es increíble — ¡a mi familia le encanta el agua hidrogenada!\"",
+      "\"Compré el Neo INFINITY para la oficina. El panel táctil de 15\" impresiona a todos. Soporte impecable.\"",
+      "\"Instalación rápida, agua fría al instante. La app es muy práctica para seguir la vida de los filtros.\"",
+    ],
+    successTitle: "¡Pedido confirmado!",
+    successMsgPre: "Gracias por tu compra. Se enviará un correo de confirmación a",
+    successMsgSuf: ".", successEmailFallback: "tu correo electrónico",
+    backToSite: "← Volver al Sitio",
+    kits: [
+      { name: "Kit de Filtros Essentials (1 año)", desc: "Filtros UF — compatible con toda la línea Neo Essentials. 12 meses sin preocuparte por la reposición." },
+      { name: "Kit de Filtros Premium (1 año)",    desc: "Filtros RO/Ósmosis Inversa — compatible con toda la línea Neo Premium. Filtros de alto rendimiento para sistemas avanzados." },
+    ],
+    shipping: [
+      { label: "Envío Gratis",    desc: "Envío estándar — 5 a 7 días hábiles" },
+      { label: "Envío Exprés",    desc: "Llegada en 2 a 3 días hábiles" },
+    ],
+    errors: {
+      nome: "El nombre completo es obligatorio", email: "El correo electrónico es obligatorio",
+      telefone: "El teléfono es obligatorio", telefoneInvalid: "Teléfono inválido (código de área + número)",
+      cep: "El código postal es obligatorio", cepInvalid: "Código postal inválido",
+      rua: "La calle es obligatoria", numero: "El número es obligatorio",
+      bairro: "El barrio es obligatorio", cidade: "La ciudad es obligatoria", uf: "El estado es obligatorio",
+      cardNumber: "El número de tarjeta es obligatorio", expiry: "La fecha de vencimiento es obligatoria",
+      cvc: "El CVV es obligatorio", nameOnCard: "El nombre en la tarjeta es obligatorio",
+    },
+  },
+};
 
 /* ─── Helpers ────────────────────────────────────────────────────────────── */
 function formatBRL(v: number) {
@@ -227,15 +495,15 @@ function Stars() {
 }
 
 /* ─── Qty controls ───────────────────────────────────────────────────────── */
-function QtyControl({ qty, onDec, onInc, onRemove, premium }: {
-  qty: number; onDec: () => void; onInc: () => void; onRemove: () => void; premium?: boolean;
+function QtyControl({ qty, onDec, onInc, onRemove, premium, removeLabel = "Remover" }: {
+  qty: number; onDec: () => void; onInc: () => void; onRemove: () => void; premium?: boolean; removeLabel?: string;
 }) {
   const accent = premium ? "#9f3df5" : "#0233c3";
   return (
     <div className="flex items-center justify-between w-full gap-[6px] mt-[2px]">
       <button type="button" onClick={onRemove}
         className="font-['Avenir_LT_Pro:55_Roman'] text-[11px] text-[#dc2626] underline leading-none shrink-0">
-        Remover
+        {removeLabel}
       </button>
       <div className="flex items-center gap-[4px] shrink-0">
         <button type="button" onClick={onDec}
@@ -260,6 +528,18 @@ function QtyControl({ qty, onDec, onInc, onRemove, premium }: {
    MAIN COMPONENT
    ═══════════════════════════════════════════════════════════════════════════ */
 export default function CheckinMain() {
+  const { lang } = useLang();
+  const t = T[lang];
+
+  const FILTER_KITS = [
+    { id: "essentials" as KitId, name: t.kits[0].name, desc: t.kits[0].desc, price: 290, originalPrice: 490, color: "#0233c3", bg: "#f0f4ff" },
+    { id: "premium"    as KitId, name: t.kits[1].name, desc: t.kits[1].desc, price: 390, originalPrice: 590, color: "#9f3df5", bg: "#f5f0ff" },
+  ];
+  const SHIPPING_OPTIONS = [
+    { id: "gratis",  label: t.shipping[0].label, desc: t.shipping[0].desc, price: 0    },
+    { id: "express", label: t.shipping[1].label, desc: t.shipping[1].desc, price: 4990 },
+  ];
+
   const [mounted, setMounted] = useState(false);
   const [step, setStep] = useState<1 | 2 | 3 | 4 | 5>(1);
   const [done, setDone] = useState(false);
@@ -390,17 +670,17 @@ export default function CheckinMain() {
 
   const validateStep2 = () => {
     const errs: Record<string, string> = {};
-    if (!form.nome.trim()) errs.nome = "Nome completo é obrigatório";
-    if (!form.email.trim()) errs.email = "E-mail é obrigatório";
-    if (!form.telefone.trim()) errs.telefone = "Telefone é obrigatório";
-    else if (form.telefone.replace(/\D/g, "").length < 10) errs.telefone = "Telefone inválido (DDD + número)";
-    if (!form.cep.trim()) errs.cep = "CEP é obrigatório";
-    else if (form.cep.replace(/\D/g, "").length !== 8) errs.cep = "CEP inválido";
-    if (!form.rua.trim()) errs.rua = "Rua é obrigatória";
-    if (!form.numero.trim()) errs.numero = "Número é obrigatório";
-    if (!form.bairro.trim()) errs.bairro = "Bairro é obrigatório";
-    if (!form.cidade.trim()) errs.cidade = "Cidade é obrigatória";
-    if (!form.uf) errs.uf = "Estado é obrigatório";
+    if (!form.nome.trim()) errs.nome = t.errors.nome;
+    if (!form.email.trim()) errs.email = t.errors.email;
+    if (!form.telefone.trim()) errs.telefone = t.errors.telefone;
+    else if (form.telefone.replace(/\D/g, "").length < 10) errs.telefone = t.errors.telefoneInvalid;
+    if (!form.cep.trim()) errs.cep = t.errors.cep;
+    else if (form.cep.replace(/\D/g, "").length !== 8) errs.cep = t.errors.cepInvalid;
+    if (!form.rua.trim()) errs.rua = t.errors.rua;
+    if (!form.numero.trim()) errs.numero = t.errors.numero;
+    if (!form.bairro.trim()) errs.bairro = t.errors.bairro;
+    if (!form.cidade.trim()) errs.cidade = t.errors.cidade;
+    if (!form.uf) errs.uf = t.errors.uf;
     setErrors(errs);
     if (Object.keys(errs).length > 0) {
       document.getElementById(Object.keys(errs)[0])?.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -412,10 +692,10 @@ export default function CheckinMain() {
   const validateStep4 = () => {
     if (paymentMethod !== "card") return true;
     const errs: Record<string, string> = {};
-    if (!form.cardNumber.trim()) errs.cardNumber = "Número do cartão é obrigatório";
-    if (!form.expiry.trim()) errs.expiry = "Validade é obrigatória";
-    if (!form.cvc.trim()) errs.cvc = "CVV é obrigatório";
-    if (!form.nameOnCard.trim()) errs.nameOnCard = "Nome no cartão é obrigatório";
+    if (!form.cardNumber.trim()) errs.cardNumber = t.errors.cardNumber;
+    if (!form.expiry.trim()) errs.expiry = t.errors.expiry;
+    if (!form.cvc.trim()) errs.cvc = t.errors.cvc;
+    if (!form.nameOnCard.trim()) errs.nameOnCard = t.errors.nameOnCard;
     setErrors(errs);
     if (Object.keys(errs).length > 0) {
       document.getElementById(Object.keys(errs)[0])?.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -424,7 +704,7 @@ export default function CheckinMain() {
     return true;
   };
 
-  const STEPS = ["Modelo", "Dados", "Frete", "Adicional", "Pagamento"];
+  const STEPS = t.steps;
 
   if (!mounted) return null;
 
@@ -438,14 +718,14 @@ export default function CheckinMain() {
           </svg>
         </div>
         <div>
-          <p className="font-['Avenir_LT_Pro:95_Black'] text-[28px] text-[#1f2e91] leading-tight">Pedido confirmado!</p>
+          <p className="font-['Avenir_LT_Pro:95_Black'] text-[28px] text-[#1f2e91] leading-tight">{t.successTitle}</p>
           <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] text-[#555] mt-2 max-w-[420px] mx-auto leading-relaxed">
-            Obrigado pela sua compra. Um e-mail de confirmação será enviado para{" "}
-            <strong className="font-['Avenir_LT_Pro:85_Heavy']">{form.email || "seu e-mail"}</strong>.
+            {t.successMsgPre}{" "}
+            <strong className="font-['Avenir_LT_Pro:85_Heavy']">{form.email || t.successEmailFallback}</strong>{t.successMsgSuf}
           </p>
         </div>
         <Link href="/" className="inline-flex items-center gap-2 text-white font-['Avenir_LT_Pro:85_Heavy'] text-[16px] px-8 py-3 rounded-[12px] transition-colors" style={{ background: "linear-gradient(135deg, #0233c3, #9f3df5)" }}>
-          ← Voltar ao site
+          {t.backToSite}
         </Link>
       </section>
     );
@@ -462,7 +742,7 @@ export default function CheckinMain() {
               <rect x="1" y="6" width="12" height="9" rx="2" stroke="#0233c3" strokeWidth="1.5"/>
               <path d="M4 6V4.5a3 3 0 0 1 6 0V6" stroke="#0233c3" strokeWidth="1.5" strokeLinecap="round"/>
             </svg>
-            <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#0233c3]">CHECKIN SEGURO</span>
+            <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#0233c3]">{t.secureLabel}</span>
           </div>
         </div>
 
@@ -504,14 +784,14 @@ export default function CheckinMain() {
                   <div className="flex gap-[12px] items-start">
                     <StepBadge n={1} />
                     <div className="flex-1 min-w-0 flex flex-col gap-[6px]">
-                      <p className="font-['Avenir_LT_Pro:95_Black'] text-[24px] text-[#1f2e91] leading-tight">Escolha o seu modelo</p>
-                      <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] text-[#555]">Você pode selecionar mais de um produto.</p>
+                      <p className="font-['Avenir_LT_Pro:95_Black'] text-[24px] text-[#1f2e91] leading-tight">{t.step1Title}</p>
+                      <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] text-[#555]">{t.step1Sub}</p>
                     </div>
                   </div>
 
                   {/* ── Filter tags ─────────────────────────────────────── */}
                   <div className="flex flex-wrap gap-[8px]">
-                    {FILTER_TAGS.map((tag) => {
+                    {FILTER_TAGS_PT.map((tag, i) => {
                       const active = activeFilter === tag;
                       let activeBg = "#0233c3";
                       if (tag === "Premium") activeBg = "#9f3df5";
@@ -526,7 +806,7 @@ export default function CheckinMain() {
                               : "bg-white text-[#555] border-[#e8ecf4] hover:border-[#0233c3] hover:text-[#0233c3]"
                           }`}
                           style={active ? { background: activeBg } : {}}>
-                          {tag}
+                          {t.filterTags[i]}
                         </button>
                       );
                     })}
@@ -586,6 +866,7 @@ export default function CheckinMain() {
                                     onInc={() => updateQty(p.id, +1)}
                                     onRemove={() => removeFromCart(p.id)}
                                     premium={prem}
+                                    removeLabel={t.remove}
                                   />
                                 )}
                               </div>
@@ -598,14 +879,14 @@ export default function CheckinMain() {
                 </div>
 
                 {cart.length === 0 && (
-                  <p className="text-[14px] text-[#dc2626] font-['Avenir_LT_Pro:55_Roman'] text-center">Selecione ao menos um modelo para continuar.</p>
+                  <p className="text-[14px] text-[#dc2626] font-['Avenir_LT_Pro:55_Roman'] text-center">{t.selectAtLeast}</p>
                 )}
 
                 <button type="button" disabled={cart.length === 0}
                   onClick={() => { if (cart.length > 0) goToStep(2); }}
                   className={`w-full h-[56px] rounded-[12px] flex items-center justify-center gap-[8px] font-['Avenir_LT_Pro:95_Black'] text-[16px] text-white transition-all ${cart.length > 0 ? "hover:opacity-90" : "opacity-40 cursor-not-allowed"}`}
                   style={{ background: "linear-gradient(135deg, #0233c3, #9f3df5)" }}>
-                  {cart.length > 0 ? `CONTINUAR COM ${totalQty} PRODUTO${totalQty > 1 ? "S" : ""} →` : "CONTINUAR →"}
+                  {cart.length > 0 ? `${t.continueBtnWith}${totalQty}${totalQty > 1 ? t.continueBtnSufPl : t.continueBtnSufSg}` : t.continueBtn}
                 </button>
               </>
             )}
@@ -617,29 +898,29 @@ export default function CheckinMain() {
                   <div className="flex gap-[12px] items-start">
                     <StepBadge n={2} />
                     <div className="flex-1 min-w-0 flex flex-col gap-[6px]">
-                      <p className="font-['Avenir_LT_Pro:95_Black'] text-[24px] text-[#1f2e91] leading-tight">Dados pessoais</p>
-                      <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] text-[#555]">Usaremos estas informações para enviar o seu pedido.</p>
+                      <p className="font-['Avenir_LT_Pro:95_Black'] text-[24px] text-[#1f2e91] leading-tight">{t.step2Title}</p>
+                      <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] text-[#555]">{t.step2Sub}</p>
                     </div>
                   </div>
                   <div className="flex flex-col gap-[16px]">
-                    <FormField id="nome" label="Nome completo" placeholder="Seu nome completo" required error={errors.nome} value={form.nome} onChange={(v) => updateField("nome", v)} />
+                    <FormField id="nome" label={t.labelNome} placeholder={t.phNome} required error={errors.nome} value={form.nome} onChange={(v) => updateField("nome", v)} />
                     <div className="flex flex-wrap gap-[16px]">
                       <div className="flex-[1_0_0] min-w-[200px]">
-                        <FormField id="email" label="E-mail" placeholder="seuemail@email.com" type="email" required error={errors.email} value={form.email} onChange={(v) => updateField("email", v)} />
+                        <FormField id="email" label={t.labelEmail} placeholder={t.phEmail} type="email" required error={errors.email} value={form.email} onChange={(v) => updateField("email", v)} />
                       </div>
                       <div className="flex-[1_0_0] min-w-[160px]">
-                        <FormField id="telefone" label="Telefone / WhatsApp" placeholder="(11) 99999-9999" type="tel" required error={errors.telefone} value={form.telefone} onChange={(v) => updateField("telefone", maskPhone(v))} />
+                        <FormField id="telefone" label={t.labelTelefone} placeholder="(11) 99999-9999" type="tel" required error={errors.telefone} value={form.telefone} onChange={(v) => updateField("telefone", maskPhone(v))} />
                       </div>
                     </div>
                   </div>
                 </div>
 
                 <div className="bg-[#f6f9fe] rounded-[16px] p-[24px] flex flex-col gap-[24px]">
-                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] text-[#1f2e91]">Endereço de entrega</p>
+                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] text-[#1f2e91]">{t.deliveryAddr}</p>
                   <div className="flex flex-col gap-[16px]">
                     <div className="flex flex-wrap gap-[16px]">
                       <div className="flex-[1_0_0] min-w-[160px]">
-                        <FormField id="cep" label="CEP" placeholder="00000-000" required error={errors.cep}>
+                        <FormField id="cep" label={t.labelCep} placeholder="00000-000" required error={errors.cep}>
                           <div className={`border rounded-[12px] px-[16px] py-[14px] w-full transition-colors flex items-center gap-[8px] ${errors.cep ? "border-[#dc2626] bg-[#fff5f5]" : "border-[#cbd0d4]"}`}>
                             <input
                               type="text"
@@ -659,24 +940,24 @@ export default function CheckinMain() {
                         </FormField>
                       </div>
                       <div className="flex-[2_0_0] min-w-[220px]">
-                        <FormField id="rua" label="Rua / Avenida" placeholder="Rua das Águas Claras" required error={errors.rua} value={form.rua} onChange={(v) => updateField("rua", v)} />
+                        <FormField id="rua" label={t.labelRua} placeholder={t.phRua} required error={errors.rua} value={form.rua} onChange={(v) => updateField("rua", v)} />
                       </div>
                     </div>
                     <div className="flex flex-wrap gap-[16px]">
                       <div className="flex-[1_0_0] min-w-[100px]">
-                        <FormField id="numero" label="Número" placeholder="123" required error={errors.numero} value={form.numero} onChange={(v) => updateField("numero", v)} />
+                        <FormField id="numero" label={t.labelNumero} placeholder="123" required error={errors.numero} value={form.numero} onChange={(v) => updateField("numero", v)} />
                       </div>
                       <div className="flex-[2_0_0] min-w-[200px]">
-                        <FormField id="complemento" label="Complemento" placeholder="Apto, sala, bloco..." value={form.complemento} onChange={(v) => updateField("complemento", v)} />
+                        <FormField id="complemento" label={t.labelComplemento} placeholder={t.phComplemento} value={form.complemento} onChange={(v) => updateField("complemento", v)} />
                       </div>
                     </div>
-                    <FormField id="bairro" label="Bairro" placeholder="Seu bairro" required error={errors.bairro} value={form.bairro} onChange={(v) => updateField("bairro", v)} />
+                    <FormField id="bairro" label={t.labelBairro} placeholder={t.phBairro} required error={errors.bairro} value={form.bairro} onChange={(v) => updateField("bairro", v)} />
                     <div className="flex flex-wrap gap-[16px]">
                       <div className="flex-[2_0_0] min-w-[180px]">
-                        <FormField id="cidade" label="Cidade" placeholder="Sua cidade" required error={errors.cidade} value={form.cidade} onChange={(v) => updateField("cidade", v)} />
+                        <FormField id="cidade" label={t.labelCidade} placeholder={t.phCidade} required error={errors.cidade} value={form.cidade} onChange={(v) => updateField("cidade", v)} />
                       </div>
                       <div className="flex-[1_0_0] min-w-[120px]">
-                        <FormField id="uf" label="Estado" required error={errors.uf}>
+                        <FormField id="uf" label={t.labelEstado} required error={errors.uf}>
                           <div className={`border rounded-[12px] px-[16px] py-[14px] w-full transition-colors ${errors.uf ? "border-[#dc2626] bg-[#fff5f5]" : "border-[#cbd0d4]"}`}>
                             <select value={form.uf} onChange={(e) => updateField("uf", e.target.value)}
                               className="w-full text-[16px] text-[#333] bg-transparent focus:outline-none font-['Avenir_LT_Pro:55_Roman']">
@@ -694,7 +975,7 @@ export default function CheckinMain() {
                   onClick={() => { if (validateStep2()) goToStep(3); }}
                   className="w-full h-[56px] rounded-[12px] flex items-center justify-center font-['Avenir_LT_Pro:95_Black'] text-[16px] text-white hover:opacity-90 transition-opacity"
                   style={{ background: "linear-gradient(135deg, #0233c3, #9f3df5)" }}>
-                  CONTINUAR →
+                  {t.continueBtn}
                 </button>
               </>
             )}
@@ -706,8 +987,8 @@ export default function CheckinMain() {
                   <div className="flex gap-[12px] items-start">
                     <StepBadge n={3} />
                     <div className="flex-1 min-w-0 flex flex-col gap-[6px]">
-                      <p className="font-['Avenir_LT_Pro:95_Black'] text-[24px] text-[#1f2e91] leading-tight">Opção de entrega</p>
-                      <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] text-[#555]">Escolha como prefere receber o seu pedido.</p>
+                      <p className="font-['Avenir_LT_Pro:95_Black'] text-[24px] text-[#1f2e91] leading-tight">{t.step3Title}</p>
+                      <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] text-[#555]">{t.step3Sub}</p>
                     </div>
                   </div>
                   <div className="flex flex-col gap-[12px]">
@@ -727,7 +1008,7 @@ export default function CheckinMain() {
                           </div>
                           <div className="shrink-0 text-right">
                             {opt.price === 0
-                              ? <span className="font-['Avenir_LT_Pro:95_Black'] text-[16px] text-[#36ae5c]">GRÁTIS</span>
+                              ? <span className="font-['Avenir_LT_Pro:95_Black'] text-[16px] text-[#36ae5c]">{t.free}</span>
                               : <span className="font-['Avenir_LT_Pro:95_Black'] text-[16px] text-[#0233c3]">{formatBRL(opt.price)}</span>
                             }
                           </div>
@@ -739,7 +1020,7 @@ export default function CheckinMain() {
                 <button type="button" onClick={() => goToStep(4)}
                   className="w-full h-[56px] rounded-[12px] flex items-center justify-center font-['Avenir_LT_Pro:95_Black'] text-[16px] text-white hover:opacity-90 transition-opacity"
                   style={{ background: "linear-gradient(135deg, #0233c3, #9f3df5)" }}>
-                  CONTINUAR →
+                  {t.continueBtn}
                 </button>
               </>
             )}
@@ -751,8 +1032,8 @@ export default function CheckinMain() {
                   <div className="flex gap-[12px] items-start">
                     <StepBadge n={4} />
                     <div className="flex-1 min-w-0 flex flex-col gap-[6px]">
-                      <p className="font-['Avenir_LT_Pro:95_Black'] text-[24px] text-[#1f2e91] leading-tight">Adicione ao pedido</p>
-                      <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] text-[#555]">Economize e garanta sua água pura por mais tempo.</p>
+                      <p className="font-['Avenir_LT_Pro:95_Black'] text-[24px] text-[#1f2e91] leading-tight">{t.step4Title}</p>
+                      <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] text-[#555]">{t.step4Sub}</p>
                     </div>
                   </div>
 
@@ -778,7 +1059,7 @@ export default function CheckinMain() {
                         <div className="px-[20px] pb-[16px] flex items-center justify-between gap-[12px]">
                           <div className="rounded-full px-[12px] py-[4px]" style={{ background: `${kit.color}18` }}>
                             <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px]" style={{ color: kit.color }}>
-                              Economize {formatBRL(kit.originalPrice - kit.price)}
+                              {t.save} {formatBRL(kit.originalPrice - kit.price)}
                             </p>
                           </div>
                           {/* Qty control */}
@@ -802,7 +1083,7 @@ export default function CheckinMain() {
                               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                                 <path d="M6 1v10M1 6h10" stroke="white" strokeWidth="1.8" strokeLinecap="round"/>
                               </svg>
-                              Adicionar
+                              {t.addBtn}
                             </button>
                           )}
                         </div>
@@ -814,13 +1095,13 @@ export default function CheckinMain() {
                 <button type="button" onClick={() => goToStep(5)}
                   className="w-full h-[56px] rounded-[12px] flex items-center justify-center font-['Avenir_LT_Pro:95_Black'] text-[16px] text-white hover:opacity-90 transition-opacity"
                   style={{ background: "linear-gradient(135deg, #0233c3, #9f3df5)" }}>
-                  CONTINUAR PARA PAGAMENTO →
+                  {t.continuePay}
                 </button>
 
                 <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#777] text-center">
-                  Ao prosseguir, você concorda com os nossos{" "}
-                  <Link href="/termos-de-uso" className="font-['Avenir_LT_Pro:85_Heavy'] text-[#0569ff] hover:underline">Termos de Uso</Link>{" "}e{" "}
-                  <Link href="/politicas-privacidade" className="font-['Avenir_LT_Pro:85_Heavy'] text-[#9f3df5] hover:underline">Política de Privacidade</Link>.
+                  {t.termsText1}{" "}
+                  <Link href="/termos-de-uso" className="font-['Avenir_LT_Pro:85_Heavy'] text-[#0569ff] hover:underline">Termos de Uso</Link>{" "}{t.termsAnd}{" "}
+                  <Link href="/politicas-privacidade" className="font-['Avenir_LT_Pro:85_Heavy'] text-[#9f3df5] hover:underline">Política de Privacidade</Link>{t.termsText2}
                 </p>
               </>
             )}
@@ -832,17 +1113,17 @@ export default function CheckinMain() {
                   <div className="flex gap-[12px] items-start">
                     <StepBadge n={5} />
                     <div className="flex-1 min-w-0 flex flex-col gap-[6px]">
-                      <p className="font-['Avenir_LT_Pro:95_Black'] text-[24px] text-[#1f2e91] leading-tight">Forma de pagamento</p>
-                      <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] text-[#555]">Todas as transações são seguras e criptografadas.</p>
+                      <p className="font-['Avenir_LT_Pro:95_Black'] text-[24px] text-[#1f2e91] leading-tight">{t.step5Title}</p>
+                      <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] text-[#555]">{t.step5Sub}</p>
                     </div>
                   </div>
 
                   <div className="flex flex-col gap-[20px]">
                     <div className="flex flex-wrap gap-[12px]">
                       {([
-                        { id: "card" as const, label: "Cartão de Crédito", icon: (<svg width="22" height="16" viewBox="0 0 22 16" fill="none"><rect x="1" y="1" width="20" height="14" rx="2" stroke="currentColor" strokeWidth="1.5"/><path d="M1 5h20" stroke="currentColor" strokeWidth="1.5"/><rect x="3" y="9" width="4" height="2" rx="0.5" fill="currentColor"/></svg>) },
-                        { id: "pix" as const, label: "PIX", icon: (<svg width="22" height="22" viewBox="0 0 578.98 578.98" fill="currentColor"><path d="M464.82 446.04l-103.18 103.18c-39.68,39.68 -104.61,39.68 -144.29,0l-103.04 -103.04c19.22,-0.18 35.61,-2.5 49.17,-6.98 14.21,-4.69 25.32,-11.73 33.35,-21.13l83.19 -84.54c4.27,-3.61 8.51,-5.43 12.7,-5.45 4.19,0.02 8.43,1.84 12.7,5.45l83.19 84.54c8.03,9.4 19.15,16.44 33.35,21.13 12.05,3.97 26.34,6.25 42.86,6.84zm-350.97 -312.78l103.5 -103.5c39.68,-39.68 104.61,-39.68 144.29,0l103.62 103.62c-16.71,0.56 -31.14,2.84 -43.3,6.85 -14.21,4.69 -25.32,11.73 -33.35,21.13l-83.19 84.54c-4.27,3.61 -8.51,5.43 -12.7,5.45 -4.19,-0.02 -8.43,-1.84 -12.7,-5.45l-83.19 -84.54c-8.03,-9.4 -19.15,-16.44 -33.35,-21.13 -13.67,-4.51 -30.21,-6.84 -49.63,-6.98zm-84.09 84.09l48.18 -48.18c36.94,-5.95 61.14,-3.63 78.45,2.47 17.52,6.17 28.02,16.24 37.54,25.5l0 0c60.63,61.3 79.88,76.43 79.93,76.47l0.03 0.02c2.38,1.67 5.65,3.09 9.13,4.09 3.56,1.03 7.37,1.63 10.68,1.63 3.31,0 6.97,-0.58 10.38,-1.59 3.4,-1.01 6.58,-2.44 8.95,-4.14l0.03 -0.02c0.06,-0.04 19.31,-15.17 79.93,-76.47l0 0c9.52,-9.26 20.02,-19.33 37.54,-25.5 15.81,-5.57 37.37,-7.99 69.14,-3.83l49.55 49.55c39.68,39.68 39.68,104.61 0,144.29l-50.24 50.24c-31.39,4.03 -52.75,1.61 -68.44,-3.92 -17.52,-6.17 -28.02,-16.24 -37.54,-25.5l0 0c-60.63,-61.3 -79.88,-76.43 -79.93,-76.47l-0.03 -0.02c-2.37,-1.7 -5.55,-3.14 -8.95,-4.14 -3.41,-1.01 -7.06,-1.59 -10.38,-1.59 -3.32,0 -7.12,0.61 -10.68,1.63 -3.49,1.01 -6.76,2.43 -9.13,4.09l-0.03 0.02c-0.06,0.04 -19.31,15.17 -79.93,76.47l0 0c-9.52,9.26 -20.02,19.33 -37.54,25.5 -17.2,6.06 -41.2,8.39 -77.73,2.59l-48.9 -48.9c-39.68,-39.68 -39.68,-104.61 0,-144.29z"/></svg>) },
-                        { id: "boleto" as const, label: "Boleto", icon: (<svg width="22" height="18" viewBox="0 0 22 18" fill="none"><rect x="1" y="1" width="20" height="16" rx="2" stroke="currentColor" strokeWidth="1.5"/><path d="M5 5v8M7 5v8M10 5v8M13 5v8M15 5v8M17 5v8" stroke="currentColor" strokeWidth="1.5"/></svg>) },
+                        { id: "card" as const, label: t.payCard, icon: (<svg width="22" height="16" viewBox="0 0 22 16" fill="none"><rect x="1" y="1" width="20" height="14" rx="2" stroke="currentColor" strokeWidth="1.5"/><path d="M1 5h20" stroke="currentColor" strokeWidth="1.5"/><rect x="3" y="9" width="4" height="2" rx="0.5" fill="currentColor"/></svg>) },
+                        { id: "pix" as const, label: t.payPix, icon: (<svg width="22" height="22" viewBox="0 0 578.98 578.98" fill="currentColor"><path d="M464.82 446.04l-103.18 103.18c-39.68,39.68 -104.61,39.68 -144.29,0l-103.04 -103.04c19.22,-0.18 35.61,-2.5 49.17,-6.98 14.21,-4.69 25.32,-11.73 33.35,-21.13l83.19 -84.54c4.27,-3.61 8.51,-5.43 12.7,-5.45 4.19,0.02 8.43,1.84 12.7,5.45l83.19 84.54c8.03,9.4 19.15,16.44 33.35,21.13 12.05,3.97 26.34,6.25 42.86,6.84zm-350.97 -312.78l103.5 -103.5c39.68,-39.68 104.61,-39.68 144.29,0l103.62 103.62c-16.71,0.56 -31.14,2.84 -43.3,6.85 -14.21,4.69 -25.32,11.73 -33.35,21.13l-83.19 84.54c-4.27,3.61 -8.51,5.43 -12.7,5.45 -4.19,-0.02 -8.43,-1.84 -12.7,-5.45l-83.19 -84.54c-8.03,-9.4 -19.15,-16.44 -33.35,-21.13 -13.67,-4.51 -30.21,-6.84 -49.63,-6.98zm-84.09 84.09l48.18 -48.18c36.94,-5.95 61.14,-3.63 78.45,2.47 17.52,6.17 28.02,16.24 37.54,25.5l0 0c60.63,61.3 79.88,76.43 79.93,76.47l0.03 0.02c2.38,1.67 5.65,3.09 9.13,4.09 3.56,1.03 7.37,1.63 10.68,1.63 3.31,0 6.97,-0.58 10.38,-1.59 3.4,-1.01 6.58,-2.44 8.95,-4.14l0.03 -0.02c0.06,-0.04 19.31,-15.17 79.93,-76.47l0 0c9.52,-9.26 20.02,-19.33 37.54,-25.5 15.81,-5.57 37.37,-7.99 69.14,-3.83l49.55 49.55c39.68,39.68 39.68,104.61 0,144.29l-50.24 50.24c-31.39,4.03 -52.75,1.61 -68.44,-3.92 -17.52,-6.17 -28.02,-16.24 -37.54,-25.5l0 0c-60.63,-61.3 -79.88,-76.43 -79.93,-76.47l-0.03 -0.02c-2.37,-1.7 -5.55,-3.14 -8.95,-4.14 -3.41,-1.01 -7.06,-1.59 -10.38,-1.59 -3.32,0 -7.12,0.61 -10.68,1.63 -3.49,1.01 -6.76,2.43 -9.13,4.09l-0.03 0.02c-0.06,0.04 -19.31,15.17 -79.93,76.47l0 0c-9.52,9.26 -20.02,19.33 -37.54,25.5 -17.2,6.06 -41.2,8.39 -77.73,2.59l-48.9 -48.9c-39.68,-39.68 -39.68,-104.61 0,-144.29z"/></svg>) },
+                        { id: "boleto" as const, label: t.payBoleto, icon: (<svg width="22" height="18" viewBox="0 0 22 18" fill="none"><rect x="1" y="1" width="20" height="16" rx="2" stroke="currentColor" strokeWidth="1.5"/><path d="M5 5v8M7 5v8M10 5v8M13 5v8M15 5v8M17 5v8" stroke="currentColor" strokeWidth="1.5"/></svg>) },
                       ]).map((m) => (
                         <button key={m.id} type="button" onClick={() => setPaymentMethod(m.id)}
                           className={`flex-[1_0_0] min-w-[120px] flex flex-col gap-[8px] items-center justify-center px-[12px] py-[16px] rounded-[12px] border-[1.5px] transition-all ${paymentMethod === m.id ? "bg-[#f0f4ff] border-[#0233c3] text-[#0233c3]" : "bg-white border-[#e8ecf4] text-[#777] hover:border-[#0569ff]"}`}>
@@ -854,7 +1135,7 @@ export default function CheckinMain() {
 
                     {paymentMethod === "card" && (
                       <div className="flex flex-col gap-[16px]">
-                        <FormField id="cardNumber" label="Número do cartão" required error={errors.cardNumber}>
+                        <FormField id="cardNumber" label={t.labelCardNum} required error={errors.cardNumber}>
                           <div className={`border rounded-[12px] px-[16px] py-[14px] w-full transition-colors flex items-center gap-[10px] ${errors.cardNumber ? "border-[#dc2626] bg-[#fff5f5]" : "border-[#cbd0d4]"}`}>
                             <input
                               type="text"
@@ -883,25 +1164,25 @@ export default function CheckinMain() {
                         </FormField>
                         <div className="flex flex-wrap gap-[16px]">
                           <div className="flex-[1_0_0] min-w-[160px]">
-                            <FormField id="expiry" label="Validade (MM/AA)" placeholder="MM / AA" required error={errors.expiry} value={form.expiry} onChange={(v) => updateField("expiry", maskExpiry(v))} />
+                            <FormField id="expiry" label={t.labelExpiry} placeholder="MM / AA" required error={errors.expiry} value={form.expiry} onChange={(v) => updateField("expiry", maskExpiry(v))} />
                           </div>
                           <div className="flex-[1_0_0] min-w-[120px]">
-                            <FormField id="cvc" label="CVV" placeholder="123" required error={errors.cvc} value={form.cvc} onChange={(v) => updateField("cvc", v.replace(/\D/g, "").slice(0, cardBrand === "amex" ? 4 : 3))} />
+                            <FormField id="cvc" label={t.labelCvc} placeholder="123" required error={errors.cvc} value={form.cvc} onChange={(v) => updateField("cvc", v.replace(/\D/g, "").slice(0, cardBrand === "amex" ? 4 : 3))} />
                           </div>
                         </div>
-                        <FormField id="nameOnCard" label="Nome no cartão" placeholder="Nome como impresso no cartão" required error={errors.nameOnCard} value={form.nameOnCard} onChange={(v) => updateField("nameOnCard", v.toUpperCase())} />
+                        <FormField id="nameOnCard" label={t.labelNameOnCard} placeholder={t.phNameOnCard} required error={errors.nameOnCard} value={form.nameOnCard} onChange={(v) => updateField("nameOnCard", v.toUpperCase())} />
                       </div>
                     )}
                     {paymentMethod === "pix" && (
                       <div className="bg-[#f6f9fe] border border-[#0569ff] rounded-[12px] p-[20px] flex flex-col gap-[8px]">
-                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91]">Como funciona o PIX</p>
-                        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#555] leading-relaxed">Após confirmar o pedido, você receberá um QR Code e a chave PIX por e-mail. O pagamento é aprovado em segundos.</p>
+                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91]">{t.pixTitle}</p>
+                        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#555] leading-relaxed">{t.pixDesc}</p>
                       </div>
                     )}
                     {paymentMethod === "boleto" && (
                       <div className="bg-[#f6f9fe] border border-[#dfa727] rounded-[12px] p-[20px] flex flex-col gap-[8px]">
-                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91]">Como funciona o Boleto</p>
-                        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#555] leading-relaxed">O boleto será enviado para o seu e-mail. A confirmação pode levar até 3 dias úteis após o pagamento.</p>
+                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91]">{t.boletoTitle}</p>
+                        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#555] leading-relaxed">{t.boletoDesc}</p>
                       </div>
                     )}
                   </div>
@@ -914,13 +1195,13 @@ export default function CheckinMain() {
                     <rect x="1" y="7" width="16" height="12" rx="2" stroke="white" strokeWidth="1.5"/>
                     <path d="M5 7V5a4 4 0 0 1 8 0v2" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
                   </svg>
-                  FINALIZAR PEDIDO — {formatBRL(grandTotal)}
+                  {t.finalizeBtn} — {formatBRL(grandTotal)}
                 </button>
 
                 <p className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#777] text-center">
-                  Ao finalizar, você concorda com os{" "}
-                  <Link href="/termos-de-uso" className="font-['Avenir_LT_Pro:85_Heavy'] text-[#0569ff] hover:underline">Termos de Uso</Link>{" "}e{" "}
-                  <Link href="/politicas-privacidade" className="font-['Avenir_LT_Pro:85_Heavy'] text-[#9f3df5] hover:underline">Política de Privacidade</Link>.
+                  {t.termsText1}{" "}
+                  <Link href="/termos-de-uso" className="font-['Avenir_LT_Pro:85_Heavy'] text-[#0569ff] hover:underline">Termos de Uso</Link>{" "}{t.termsAnd}{" "}
+                  <Link href="/politicas-privacidade" className="font-['Avenir_LT_Pro:85_Heavy'] text-[#9f3df5] hover:underline">Política de Privacidade</Link>{t.termsText2}
                 </p>
               </>
             )}
@@ -933,10 +1214,10 @@ export default function CheckinMain() {
 
               {/* Header fixo */}
               <div className="flex items-center justify-between px-[24px] pt-[24px] pb-[16px] shrink-0">
-                <p className="font-['Avenir_LT_Pro:95_Black'] text-[20px] text-[#1f2e91]">Resumo do pedido</p>
+                <p className="font-['Avenir_LT_Pro:95_Black'] text-[20px] text-[#1f2e91]">{t.summaryTitle}</p>
                 {totalQty > 0 && (
                   <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-white bg-[#0233c3] px-[10px] py-[4px] rounded-full">
-                    {totalQty} produto{totalQty > 1 ? "s" : ""}
+                    {totalQty}{totalQty > 1 ? t.prodPl : t.prodSg}
                   </span>
                 )}
               </div>
@@ -966,7 +1247,7 @@ export default function CheckinMain() {
                                 className="w-[22px] h-[22px] rounded-full flex items-center justify-center text-[14px] leading-none text-white"
                                 style={{ background: accent }}>+</button>
                               <button type="button" onClick={() => removeFromCart(p.id)}
-                                className="ml-auto font-['Avenir_LT_Pro:55_Roman'] text-[11px] text-[#dc2626] underline leading-none">Remover</button>
+                                className="ml-auto font-['Avenir_LT_Pro:55_Roman'] text-[11px] text-[#dc2626] underline leading-none">{t.remove}</button>
                             </div>
                           </div>
                           <div className="shrink-0 text-right">
@@ -978,7 +1259,7 @@ export default function CheckinMain() {
                     })}
                   </div>
                 ) : (
-                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[15px] text-[#aab2bc] text-center py-[16px]">Nenhum modelo selecionado</p>
+                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[15px] text-[#aab2bc] text-center py-[16px]">{t.noModelSelected}</p>
                 )}
 
                 {FILTER_KITS.filter((k) => kitQty[k.id] > 0).map((kit) => (
@@ -998,7 +1279,7 @@ export default function CheckinMain() {
                           style={{ background: kit.color }}>+</button>
                         <button type="button"
                           onClick={() => setKitQty((prev) => ({ ...prev, [kit.id]: 0 }))}
-                          className="ml-auto font-['Avenir_LT_Pro:55_Roman'] text-[11px] text-[#dc2626] underline leading-none">Remover</button>
+                          className="ml-auto font-['Avenir_LT_Pro:55_Roman'] text-[11px] text-[#dc2626] underline leading-none">{t.remove}</button>
                       </div>
                     </div>
                     <p className="font-['Avenir_LT_Pro:95_Black'] text-[14px] shrink-0" style={{ color: kit.color }}>{formatBRL(kit.price * kitQty[kit.id])}</p>
@@ -1010,7 +1291,7 @@ export default function CheckinMain() {
               <div className="px-[24px] pb-[24px] shrink-0">
                 <div className="border-t border-[#f0f0f0] pt-[16px] flex flex-col gap-[10px]">
                   <div className="flex justify-between items-center">
-                    <span className="font-['Avenir_LT_Pro:55_Roman'] text-[15px] text-[#555]">Subtotal ({totalQty} produto{totalQty !== 1 ? "s" : ""})</span>
+                    <span className="font-['Avenir_LT_Pro:55_Roman'] text-[15px] text-[#555]">{t.subtotalLabel} ({totalQty}{totalQty !== 1 ? t.prodPl : t.prodSg})</span>
                     <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#333]">{formatBRL(productsSubtotal)}</span>
                   </div>
                   {FILTER_KITS.filter((k) => kitQty[k.id] > 0).map((kit) => (
@@ -1022,16 +1303,16 @@ export default function CheckinMain() {
                     </div>
                   ))}
                   <div className="flex justify-between items-center">
-                    <span className="font-['Avenir_LT_Pro:55_Roman'] text-[15px] text-[#555]">Frete</span>
+                    <span className="font-['Avenir_LT_Pro:55_Roman'] text-[15px] text-[#555]">{t.shippingLabel}</span>
                     {shippingCost === 0
-                      ? <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#36ae5c]">GRÁTIS</span>
+                      ? <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#36ae5c]">{t.free}</span>
                       : <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#333]">{formatBRL(shippingCost)}</span>
                     }
                   </div>
                 </div>
 
                 <div className="border-t border-[#f0f0f0] pt-[16px] mt-[10px] flex justify-between items-center">
-                  <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] text-[#333]">Total</span>
+                  <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] text-[#333]">{t.totalLabel}</span>
                   <span className="font-['Avenir_LT_Pro:95_Black'] text-[22px] text-[#0233c3]">{formatBRL(grandTotal)}</span>
                 </div>
 
@@ -1049,7 +1330,7 @@ export default function CheckinMain() {
                     className={`mt-[16px] w-full h-[52px] rounded-[12px] flex items-center justify-center font-['Avenir_LT_Pro:95_Black'] text-[15px] text-white transition-all ${step === 1 && cart.length === 0 ? "opacity-40 cursor-not-allowed" : "hover:opacity-90"}`}
                     style={{ background: "linear-gradient(135deg, #0233c3, #9f3df5)" }}
                   >
-                    {step === 4 ? "CONTINUAR PARA PAGAMENTO →" : "CONTINUAR →"}
+                    {step === 4 ? t.continuePay : t.continueBtn}
                   </button>
                 )}
                 {step === 5 && (
@@ -1063,7 +1344,7 @@ export default function CheckinMain() {
                       <rect x="1" y="7" width="16" height="12" rx="2" stroke="white" strokeWidth="1.5"/>
                       <path d="M5 7V5a4 4 0 0 1 8 0v2" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
                     </svg>
-                    FINALIZAR — {formatBRL(grandTotal)}
+                    {t.finalizeBtn} — {formatBRL(grandTotal)}
                   </button>
                 )}
 
@@ -1072,7 +1353,7 @@ export default function CheckinMain() {
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#dfa727" strokeWidth="1.8">
                       <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
                     </svg>
-                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#b8831a]">Apenas 8 unidades em estoque!</p>
+                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#b8831a]">{t.stockWarning}</p>
                   </div>
                   <div className="bg-white border-2 border-[#e8ecf4] rounded-[10px] px-[16px] py-[10px] flex gap-[10px] items-center">
                     <svg width="16" height="18" viewBox="0 0 16 18" fill="none" stroke="#0233c3" strokeWidth="1.5">
@@ -1080,7 +1361,7 @@ export default function CheckinMain() {
                       <path d="M8 5v4l2.5 2.5" strokeLinecap="round"/>
                     </svg>
                     <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#0233c3]">
-                      Seu pedido está reservado por <span className="text-[#dc2626]">{timer}</span>
+                      {t.reservedPre}<span className="text-[#dc2626]">{timer}</span>{t.reservedSuf}
                     </p>
                   </div>
                 </div>
@@ -1094,10 +1375,10 @@ export default function CheckinMain() {
         {/* ── Trust strip ────────────────────────────────────────────────── */}
         <div className="bg-[#f6f9fe] rounded-[16px] flex flex-wrap gap-[8px] items-center justify-center p-[20px]">
             {[
-              { label: "Compra 100% segura",              desc: "Pagamento criptografado e protegido.",      icon: "/figma-assets/checkin-icon-shield.svg"   },
-              { label: "Frete grátis para todo o Brasil", desc: "Entrega sem custo para qualquer estado.",   icon: "/figma-assets/checkin-icon-delivery.svg" },
-              { label: "Garantia de 1 ano",               desc: "Cobertura total sem burocracia",            icon: "/figma-assets/checkin-icon-warranty.svg" },
-              { label: "Suporte especializado",           desc: "Atendimento com especialistas Acquafy",     icon: "/figma-assets/checkin-icon-support.svg"  },
+              { ...t.trustItems[0], icon: "/figma-assets/checkin-icon-shield.svg"   },
+              { ...t.trustItems[1], icon: "/figma-assets/checkin-icon-delivery.svg" },
+              { ...t.trustItems[2], icon: "/figma-assets/checkin-icon-warranty.svg" },
+              { ...t.trustItems[3], icon: "/figma-assets/checkin-icon-support.svg"  },
             ].map((badge, i) => (
               <div key={i} className="flex flex-[1_0_0] gap-[8px] items-center min-w-[180px]">
                 <div className="size-[32px] flex items-center justify-center shrink-0">
@@ -1114,7 +1395,7 @@ export default function CheckinMain() {
         {/* ── Depoimentos ────────────────────────── */}
         <div className="flex flex-col gap-[24px]">
           <div className="flex flex-col gap-[8px]">
-            <p className="font-['Avenir_LT_Pro:95_Black'] text-[24px] text-[#1f2e91] leading-tight">O que dizem nossos clientes</p>
+            <p className="font-['Avenir_LT_Pro:95_Black'] text-[24px] text-[#1f2e91] leading-tight">{t.reviewsTitle}</p>
             <div className="flex items-center gap-[10px]">
               <div className="flex gap-[3px]">
                 {[0,1,2,3,4].map((i) => (
@@ -1124,27 +1405,27 @@ export default function CheckinMain() {
                 ))}
               </div>
               <span className="font-['Avenir_LT_Pro:95_Black'] text-[15px] text-[#dfa727]">4.9</span>
-              <span className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#aab2bc]">· mais de 3.200 clientes satisfeitos</span>
+              <span className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#aab2bc]">· {t.reviewsSub}</span>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[20px]">
             {[
-              { initials: "MC", name: "Mariana C.", role: "Cliente", city: "São Paulo, SP",       color: "#0233c3", colorB: "#0569ff", quote: "\"A qualidade da água mudou completamente. O Neo PLUS é incrível — minha família adora a água hidrogenada!\"" },
-              { initials: "RL", name: "Rafael L.",  role: "Empresário", city: "Belo Horizonte, MG", color: "#9f3df5", colorB: "#c46cff", quote: "\"Comprei o Neo INFINITY para o escritório. O painel touch de 15″ impressiona todo mundo. Suporte impecável.\"" },
-              { initials: "JS", name: "Juliana S.", role: "Consumidora", city: "Curitiba, PR",      color: "#36ae5c", colorB: "#52c97a", quote: "\"Instalação rápida, água gelada na hora. O app é muito prático para acompanhar a vida dos filtros.\"" },
-            ].map((t, i) => (
+              { initials: "MC", name: "Mariana C.", city: "São Paulo, SP",       color: "#0233c3", colorB: "#0569ff" },
+              { initials: "RL", name: "Rafael L.",  city: "Belo Horizonte, MG", color: "#9f3df5", colorB: "#c46cff" },
+              { initials: "JS", name: "Juliana S.", city: "Curitiba, PR",        color: "#36ae5c", colorB: "#52c97a" },
+            ].map((rev, i) => (
               <div key={i} className="bg-white rounded-[16px] p-[24px] flex flex-col gap-[16px] shadow-[0_2px_12px_rgba(2,51,195,0.06)]">
                 <div className="flex items-center gap-[14px]">
-                  <div className="shrink-0 size-[52px] rounded-full flex items-center justify-center font-['Avenir_LT_Pro:95_Black'] text-[18px] text-white" style={{ background: `linear-gradient(135deg, ${t.color}, ${t.colorB})` }}>
-                    {t.initials}
+                  <div className="shrink-0 size-[52px] rounded-full flex items-center justify-center font-['Avenir_LT_Pro:95_Black'] text-[18px] text-white" style={{ background: `linear-gradient(135deg, ${rev.color}, ${rev.colorB})` }}>
+                    {rev.initials}
                   </div>
                   <div className="flex flex-col gap-[2px]">
-                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91]">{t.name}</p>
-                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#aab2bc]">{t.role} · {t.city}</p>
+                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91]">{rev.name}</p>
+                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#aab2bc]">{t.reviewRoles[i]} · {rev.city}</p>
                   </div>
                 </div>
-                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#444] leading-relaxed flex-1">{t.quote}</p>
+                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#444] leading-relaxed flex-1">{t.reviewQuotes[i]}</p>
                 <div className="flex gap-[3px]">
                   {[0,1,2,3,4].map((j) => (
                     <svg key={j} width="14" height="14" viewBox="0 0 24 24" fill="#dfa727">
@@ -1170,7 +1451,7 @@ export default function CheckinMain() {
               className={`w-full h-[54px] rounded-[14px] flex items-center justify-center gap-[8px] font-['Avenir_LT_Pro:95_Black'] text-[15px] text-white shadow-[0_4px_24px_rgba(2,51,195,0.35)] transition-all ${cart.length > 0 ? "active:opacity-90" : "opacity-40 cursor-not-allowed"}`}
               style={{ background: "linear-gradient(135deg, #0233c3, #9f3df5)" }}
             >
-              {cart.length > 0 ? `CONTINUAR COM ${totalQty} PRODUTO${totalQty > 1 ? "S" : ""} →` : "CONTINUAR →"}
+              {cart.length > 0 ? `${t.continueBtnWith}${totalQty}${totalQty > 1 ? t.continueBtnSufPl : t.continueBtnSufSg}` : t.continueBtn}
             </button>
           )}
           {step === 2 && (
@@ -1180,7 +1461,7 @@ export default function CheckinMain() {
               className="w-full h-[54px] rounded-[14px] flex items-center justify-center gap-[8px] font-['Avenir_LT_Pro:95_Black'] text-[15px] text-white shadow-[0_4px_24px_rgba(2,51,195,0.35)] active:opacity-90 transition-opacity"
               style={{ background: "linear-gradient(135deg, #0233c3, #9f3df5)" }}
             >
-              CONTINUAR →
+              {t.continueBtn}
             </button>
           )}
           {step === 3 && (
@@ -1190,7 +1471,7 @@ export default function CheckinMain() {
               className="w-full h-[54px] rounded-[14px] flex items-center justify-center gap-[8px] font-['Avenir_LT_Pro:95_Black'] text-[15px] text-white shadow-[0_4px_24px_rgba(2,51,195,0.35)] active:opacity-90 transition-opacity"
               style={{ background: "linear-gradient(135deg, #0233c3, #9f3df5)" }}
             >
-              CONTINUAR →
+              {t.continueBtn}
             </button>
           )}
           {step === 4 && (
@@ -1200,7 +1481,7 @@ export default function CheckinMain() {
               className="w-full h-[54px] rounded-[14px] flex items-center justify-center gap-[8px] font-['Avenir_LT_Pro:95_Black'] text-[15px] text-white shadow-[0_4px_24px_rgba(2,51,195,0.35)] active:opacity-90 transition-opacity"
               style={{ background: "linear-gradient(135deg, #0233c3, #9f3df5)" }}
             >
-              CONTINUAR PARA PAGAMENTO →
+              {t.continuePay}
             </button>
           )}
           {step === 5 && (
@@ -1214,7 +1495,7 @@ export default function CheckinMain() {
                 <rect x="1" y="7" width="16" height="12" rx="2" stroke="white" strokeWidth="1.5"/>
                 <path d="M5 7V5a4 4 0 0 1 8 0v2" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
               </svg>
-              FINALIZAR PEDIDO →
+              {t.finalizeBtn} →
             </button>
           )}
         </div>

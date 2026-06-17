@@ -1,11 +1,76 @@
-﻿"use client";
+"use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
 import FigmaIcon from "./FigmaIcon";
 import { useChatWidget } from "./ChatWidget";
+import { useLang, type Lang } from "@/context/LanguageContext";
 
 const imgArrowWhite = "/figma-assets/icon-arrow-white-solid.svg";
 const imgArrowBlue  = "/figma-assets/icon-arrow-blue-c.svg";
+
+// ── Translations ─────────────────────────────────────────────────────────────
+
+const T: Record<Lang, {
+  title: string;
+  subtitle: string;
+  description: string;
+  placeholder: string;
+  clearLabel: string;
+  noResultPrefix: string;
+  showing: string;
+  of: string;
+  results: string;
+  for: string;
+  openChat: string;
+  talkExpert: string;
+  viewArticles: string;
+}> = {
+  pt: {
+    title:         "Bem vindo à Base de Conhecimento Acquafy",
+    subtitle:      "Estamos aqui para ajudar.",
+    description:   "Nossa equipe e recursos estão prontos para oferecer a melhor experiência com os produtos e soluções Acquafy. Encontre respostas, tutoriais e suporte especializado sempre que precisar.",
+    placeholder:   "Buscar parceiros, vendas, produtos...",
+    clearLabel:    "Limpar busca",
+    noResultPrefix: "Nenhum resultado para",
+    showing:       "Mostrando",
+    of:            "de",
+    results:       "resultados",
+    for:           "para",
+    openChat:      "Abrir chat",
+    talkExpert:    "Fale com um especialista",
+    viewArticles:  "Ver artigos",
+  },
+  en: {
+    title:         "Welcome to the Acquafy Knowledge Base",
+    subtitle:      "We are here to help.",
+    description:   "Our team and resources are ready to provide the best experience with Acquafy products and solutions. Find answers, tutorials, and specialized support whenever you need.",
+    placeholder:   "Search partners, sales, products...",
+    clearLabel:    "Clear search",
+    noResultPrefix: "No results for",
+    showing:       "Showing",
+    of:            "of",
+    results:       "results",
+    for:           "for",
+    openChat:      "Open chat",
+    talkExpert:    "Talk to a specialist",
+    viewArticles:  "View articles",
+  },
+  es: {
+    title:         "Bienvenido a la Base de Conocimiento Acquafy",
+    subtitle:      "Estamos aquí para ayudar.",
+    description:   "Nuestro equipo y recursos están listos para ofrecer la mejor experiencia con los productos y soluciones Acquafy. Encuentra respuestas, tutoriales y soporte especializado siempre que lo necesites.",
+    placeholder:   "Buscar socios, ventas, productos...",
+    clearLabel:    "Limpiar búsqueda",
+    noResultPrefix: "Sin resultados para",
+    showing:       "Mostrando",
+    of:            "de",
+    results:       "resultados",
+    for:           "para",
+    openChat:      "Abrir chat",
+    talkExpert:    "Habla con un especialista",
+    viewArticles:  "Ver artículos",
+  },
+};
 
 // ── Search index ────────────────────────────────────────────────────────────
 
@@ -218,6 +283,9 @@ function Highlight({ text, query }: { text: string; query: string }) {
 
 export default function BannerBaseConhecimento() {
   const { openChat } = useChatWidget();
+  const { lang } = useLang();
+  const t = T[lang];
+
   const [query, setQuery]     = useState("");
   const [open, setOpen]       = useState(false);
   const [active, setActive]   = useState(-1);   // keyboard-selected index
@@ -299,19 +367,17 @@ export default function BannerBaseConhecimento() {
 
         {/* Title */}
         <h1 className="font-['Avenir_LT_Pro:95_Black'] text-[clamp(32px,3.7vw+16px,56px)] leading-[1.07] text-white text-center w-full">
-          Bem vindo à Base de Conhecimento Acquafy
+          {t.title}
         </h1>
 
         {/* Subtitle */}
         <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-white text-center w-full">
-          Estamos aqui para ajudar.
+          {t.subtitle}
         </p>
 
         {/* Description */}
         <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-white text-center w-full max-w-[800px]">
-          Nossa equipe e recursos estão prontos para oferecer a melhor experiência com os
-          produtos e soluções Acquafy. Encontre respostas, tutoriais e suporte especializado
-          sempre que precisar.
+          {t.description}
         </p>
 
         {/* Search wrapper — position:relative so the popup anchors here */}
@@ -335,7 +401,7 @@ export default function BannerBaseConhecimento() {
               onChange={handleChange}
               onFocus={() => query.length >= 2 && setOpen(true)}
               onKeyDown={handleKeyDown}
-              placeholder="Buscar parceiros, vendas, produtos..."
+              placeholder={t.placeholder}
               className="flex-1 font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#333] placeholder:text-[#c8cfd8] outline-none bg-transparent min-w-0"
               autoComplete="off"
               spellCheck={false}
@@ -344,7 +410,7 @@ export default function BannerBaseConhecimento() {
               <button
                 onClick={handleClear}
                 className="shrink-0 size-[22px] flex items-center justify-center rounded-full bg-[#e8edf5] hover:bg-[#d0d7e2] transition-colors text-[#666] text-[14px] leading-none"
-                aria-label="Limpar busca"
+                aria-label={t.clearLabel}
               >
                 ×
               </button>
@@ -363,7 +429,7 @@ export default function BannerBaseConhecimento() {
                     <path d="M11 14h6M14 11v6" stroke="#c8cfd8" strokeWidth="2" strokeLinecap="round" />
                   </svg>
                   <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#999] text-center">
-                    Nenhum resultado para <strong className="font-['Avenir_LT_Pro:85_Heavy'] text-[#333]">"{query}"</strong>
+                    {t.noResultPrefix} <strong className="font-['Avenir_LT_Pro:85_Heavy'] text-[#333]">"{query}"</strong>
                   </p>
                 </div>
               ) : (
@@ -418,9 +484,9 @@ export default function BannerBaseConhecimento() {
                   {results.length > MAX_VISIBLE && (
                     <div className="border-t border-[#e8edf5] px-[20px] py-[10px]">
                       <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#999] text-center">
-                        Mostrando {MAX_VISIBLE} de{" "}
-                        <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[#0233c3]">{results.length} resultados</span>
-                        {" "}para <span className="text-[#333]">"{query}"</span>
+                        {t.showing} {MAX_VISIBLE} {t.of}{" "}
+                        <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[#0233c3]">{results.length} {t.results}</span>
+                        {" "}{t.for} <span className="text-[#333]">"{query}"</span>
                       </p>
                     </div>
                   )}
@@ -435,21 +501,21 @@ export default function BannerBaseConhecimento() {
         <div className="flex flex-wrap gap-[16px] items-center justify-center w-full">
           <button onClick={openChat} className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#0569ff] transition-colors flex gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer shrink-0">
             <span className="font-['Articulat_CF:Bold'] text-[16px] text-white flex-1 text-center leading-normal">
-              Abrir chat
+              {t.openChat}
             </span>
             <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
           </button>
 
           <a href="/contato" className="group bg-white border border-white hover:border-[#e2e8f0] hover:bg-[rgba(255,255,255,0.9)] active:bg-white transition-colors flex gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer shrink-0">
             <span className="font-['Articulat_CF:Bold'] text-[16px] text-[#0233c3] flex-1 text-center leading-normal">
-              Fale com um especialista
+              {t.talkExpert}
             </span>
             <FigmaIcon src={imgArrowBlue} size={9} aspectW={11.2} aspectH={8.84} />
           </a>
 
           <a href="/artigos" className="group border-2 border-white hover:bg-white active:bg-[rgba(255,255,255,0.9)] transition-colors flex gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer shrink-0">
             <span className="font-['Articulat_CF:Bold'] text-[16px] text-white group-hover:text-[#0233c3] transition-colors flex-1 text-center leading-normal">
-              Ver artigos
+              {t.viewArticles}
             </span>
             <div className="relative shrink-0" style={{ width: 9, height: 9 }}>
               <div className="absolute inset-0 transition-opacity opacity-100 group-hover:opacity-0">

@@ -1,5 +1,6 @@
 "use client";
 import { createContext, useContext, useState, useEffect, type ReactNode } from "react";
+import { useLang, type Lang } from "@/context/LanguageContext";
 
 // ── Plugin configuration ───────────────────────────────────────────────────────
 // Set CHAT_AVAILABLE = true and implement openChatWindow() when connecting a
@@ -17,6 +18,48 @@ function openChatWindow() {
 }
 // ──────────────────────────────────────────────────────────────────────────────
 
+const T: Record<Lang, {
+  fabLabel: string;
+  fabText: string;
+  headerTitle: string;
+  headerStatus: string;
+  closeLabel: string;
+  bodyMessage: string;
+  sendMessage: string;
+  close: string;
+}> = {
+  pt: {
+    fabLabel: "Abrir chat",
+    fabText: "Abrir chat",
+    headerTitle: "Chat Acquafy",
+    headerStatus: "Atendimento online",
+    closeLabel: "Fechar chat",
+    bodyMessage: "O chat ao vivo será ativado quando um plugin ou API de atendimento for configurado.",
+    sendMessage: "Enviar mensagem",
+    close: "Fechar",
+  },
+  en: {
+    fabLabel: "Open Chat",
+    fabText: "Open Chat",
+    headerTitle: "Acquafy Chat",
+    headerStatus: "Online Support",
+    closeLabel: "Close chat",
+    bodyMessage: "Live chat will be enabled once a support plugin or API is configured.",
+    sendMessage: "Send a message",
+    close: "Close",
+  },
+  es: {
+    fabLabel: "Abrir Chat",
+    fabText: "Abrir Chat",
+    headerTitle: "Chat Acquafy",
+    headerStatus: "Soporte en Línea",
+    closeLabel: "Cerrar chat",
+    bodyMessage: "El chat en vivo se activará cuando se configure un plugin o API de atención al cliente.",
+    sendMessage: "Enviar mensaje",
+    close: "Cerrar",
+  },
+};
+
 type ChatCtx = { isAvailable: boolean; openChat: () => void };
 
 const ChatContext = createContext<ChatCtx>({
@@ -32,6 +75,8 @@ export function ChatProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
   const [extraBottom, setExtraBottom] = useState(0);
   const [pastBanner, setPastBanner] = useState(false);
+  const { lang } = useLang();
+  const t = T[lang];
 
   useEffect(() => {
     const footer = document.querySelector("footer");
@@ -72,7 +117,7 @@ export function ChatProvider({ children }: { children: ReactNode }) {
       {!isOpen && pastBanner && (
         <button
           onClick={openChat}
-          aria-label="Abrir chat"
+          aria-label={t.fabLabel}
           suppressHydrationWarning
           className="fixed right-[24px] z-[9998] flex items-center gap-[10px] px-[18px] py-[13px] rounded-full shadow-[0_4px_20px_0_rgba(2,51,195,0.35)] hover:shadow-[0_6px_28px_0_rgba(2,51,195,0.45)] hover:scale-[1.04] active:scale-[0.97] transition-all duration-200"
           style={{ backgroundImage: "linear-gradient(112deg, #0233c3 6.19%, #9f3df5 93.35%)", bottom: 24 + extraBottom }}
@@ -81,7 +126,7 @@ export function ChatProvider({ children }: { children: ReactNode }) {
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
           </svg>
           <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white whitespace-nowrap">
-            Abrir chat
+            {t.fabText}
           </span>
         </button>
       )}
@@ -102,15 +147,15 @@ export function ChatProvider({ children }: { children: ReactNode }) {
             >
               <div className="flex flex-col gap-[2px]">
                 <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-white">
-                  Chat Acquafy
+                  {t.headerTitle}
                 </p>
                 <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] leading-[14px] text-[rgba(255,255,255,0.7)]">
-                  Atendimento online
+                  {t.headerStatus}
                 </p>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                aria-label="Fechar chat"
+                aria-label={t.closeLabel}
                 className="flex items-center justify-center size-[32px] rounded-full hover:bg-[rgba(255,255,255,0.15)] transition-colors text-white text-[18px] leading-none shrink-0"
               >
                 ✕
@@ -125,20 +170,20 @@ export function ChatProvider({ children }: { children: ReactNode }) {
                 </svg>
               </div>
               <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[20px] text-[#555]">
-                O chat ao vivo será ativado quando um plugin ou API de atendimento for configurado.
+                {t.bodyMessage}
               </p>
               <a
                 href="/contato"
                 className="flex items-center justify-center min-h-[44px] w-full rounded-[8px] overflow-hidden px-[20px] py-[10px] text-white font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] hover:opacity-90 transition-opacity"
                 style={{ backgroundImage: "linear-gradient(112deg, #0233c3 6.19%, #9f3df5 93.35%)" }}
               >
-                Enviar mensagem
+                {t.sendMessage}
               </a>
               <button
                 onClick={() => setIsOpen(false)}
                 className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] leading-[16px] text-[#999] hover:text-[#333] transition-colors"
               >
-                Fechar
+                {t.close}
               </button>
             </div>
           </div>
