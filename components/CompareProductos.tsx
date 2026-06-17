@@ -453,7 +453,7 @@ export default function CompareProductos() {
             <FeaturePill icon={imgMobile} label="App + AI + IoT" aspectW={211} aspectH={295} />
             <FeaturePill icon={imgLanguage} label="16 idiomas" />
             <FeaturePill icon={imgPlanetGlobal} label="Operação global" />
-            <FeaturePill icon={imgWaterVector} label="Água inteligente" aspectW={307} aspectH={295} />
+            <FeaturePill icon={imgWaterVector} label="Plataforma Inteligente de Água" aspectW={307} aspectH={295} />
           </div>
 
           {/* Product selector card */}
