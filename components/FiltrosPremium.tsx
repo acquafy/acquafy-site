@@ -1,4 +1,7 @@
-﻿const imgArrow = "/figma-assets/icon-arrow-c.svg";
+"use client";
+import { useLang, type Lang } from "@/context/LanguageContext";
+
+const imgArrow = "/figma-assets/icon-arrow-c.svg";
 
 type FilterCard = {
   num: string;
@@ -8,34 +11,45 @@ type FilterCard = {
   gradient?: boolean;
 };
 
-const premium: FilterCard[] = [
-  {
-    num: "01",
-    title: "PPF - Polypropilene Filter",
-    desc: "Remove iodo, sujeira, ferrugem, filtra impurezas, compostos químicos, partículas suspensas, odores e sabores normalmente presentes na água de torneira.",
-  },
-  {
-    num: "02",
-    title: "ACF - Anti-Scale Activated Block Carbon Filter",
-    desc: "Remove o cloro, compostos químicos, partículas suspensas, odores e sabores normalmente presentes na água de torneira.",
-  },
-  {
-    num: "03",
-    title: "ROF - Reverse Osmose Filter",
-    desc: "Sistema que produz água com 99% de pureza (livre de vírus e bactérias com até 0,5 microns), foi desenvolvido para atender pessoas que queiram ou necessitem do consumo de uma água extremamente pura.",
-    highlight: true,
-    gradient: true,
-  },
-  {
-    num: "04",
-    title: "AAF - Alkaline Antioxidant Filter",
-    desc: "Ele ajusta a faixa de pH da água, torna a água filtrada alcalina com pH acima de 9, antioxidante e rica em hidrogênio",
-  },
+const FILTER_STRUCTURE: Omit<FilterCard, "desc">[] = [
+  { num: "01", title: "PPF - Polypropilene Filter" },
+  { num: "02", title: "ACF - Anti-Scale Activated Block Carbon Filter" },
+  { num: "03", title: "ROF - Reverse Osmose Filter", highlight: true, gradient: true },
+  { num: "04", title: "AAF - Alkaline Antioxidant Filter" },
 ];
 
-function FilterCard({ card, isLast }: { card: FilterCard; isLast: boolean }) {
-  const isGrad = card.highlight && card.gradient;
+const T: Record<Lang, { h2: string; descs: string[] }> = {
+  pt: {
+    h2: "Linha Premium - Sistema de Filtração de Alta Performance",
+    descs: [
+      "Remove iodo, sujeira, ferrugem, filtra impurezas, compostos químicos, partículas suspensas, odores e sabores normalmente presentes na água de torneira.",
+      "Remove o cloro, compostos químicos, partículas suspensas, odores e sabores normalmente presentes na água de torneira.",
+      "Sistema que produz água com 99% de pureza (livre de vírus e bactérias com até 0,5 microns), foi desenvolvido para atender pessoas que queiram ou necessitem do consumo de uma água extremamente pura.",
+      "Ele ajusta a faixa de pH da água, torna a água filtrada alcalina com pH acima de 9, antioxidante e rica em hidrogênio",
+    ],
+  },
+  en: {
+    h2: "Premium Line - High Performance Filtration System",
+    descs: [
+      "Removes iodine, dirt, rust, filters impurities, chemical compounds, suspended particles, odors and flavors normally present in tap water.",
+      "Removes chlorine, chemical compounds, suspended particles, odors and flavors normally present in tap water.",
+      "System that produces water with 99% purity (free of viruses and bacteria down to 0.5 microns), developed for people who want or need to consume extremely pure water.",
+      "It adjusts the pH range of the water, making the filtered water alkaline with a pH above 9, antioxidant and hydrogen-rich.",
+    ],
+  },
+  es: {
+    h2: "Línea Premium - Sistema de Filtración de Alto Rendimiento",
+    descs: [
+      "Elimina yodo, suciedad, herrumbre, filtra impurezas, compuestos químicos, partículas en suspensión, olores y sabores normalmente presentes en el agua del grifo.",
+      "Elimina el cloro, compuestos químicos, partículas en suspensión, olores y sabores normalmente presentes en el agua del grifo.",
+      "Sistema que produce agua con 99% de pureza (libre de virus y bacterias de hasta 0,5 micras), desarrollado para personas que deseen o necesiten consumir agua extremadamente pura.",
+      "Ajusta el rango de pH del agua, haciendo que el agua filtrada sea alcalina con pH superior a 9, antioxidante y rica en hidrógeno.",
+    ],
+  },
+};
 
+function FilterCardItem({ card, isLast }: { card: FilterCard; isLast: boolean }) {
+  const isGrad = card.highlight && card.gradient;
   return (
     <div
       className={`flex flex-[1_0_0] flex-col gap-[20px] items-start min-h-[210px] min-w-[200px] px-[20px] py-[25px] relative rounded-[16px] bg-[#f6f9fe]${card.highlight ? " border-2 border-[#0233c3]" : ""}`}
@@ -67,6 +81,10 @@ function FilterCard({ card, isLast }: { card: FilterCard; isLast: boolean }) {
 }
 
 export default function FiltrosPremium() {
+  const { lang } = useLang();
+  const t = T[lang];
+  const cards: FilterCard[] = FILTER_STRUCTURE.map((s, i) => ({ ...s, desc: t.descs[i] }));
+
   return (
     <section className="bg-white flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
@@ -74,11 +92,11 @@ export default function FiltrosPremium() {
           className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] bg-clip-text text-transparent text-center w-full"
           style={{ backgroundImage: "linear-gradient(170deg, #0233c3 6.19%, #9f3df5 93.35%)" }}
         >
-          Linha Premium - Sistema de Filtração de Alta Performance
+          {t.h2}
         </h2>
         <div className="flex flex-wrap gap-[20px] items-stretch justify-center w-full">
-          {premium.map((c, i) => (
-            <FilterCard key={i} card={c} isLast={i === premium.length - 1} />
+          {cards.map((c, i) => (
+            <FilterCardItem key={i} card={c} isLast={i === cards.length - 1} />
           ))}
         </div>
       </div>

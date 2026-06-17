@@ -1,62 +1,100 @@
-﻿import FigmaIcon from "./FigmaIcon";
+"use client";
+import FigmaIcon from "./FigmaIcon";
+import { useLang, type Lang } from "@/context/LanguageContext";
 
-// ── Desktop (≥1024px) assets ──────────────────────────────────────────────────
-const imgBg        = "/figma-assets/bg-card.webp"; // background card
-// ── Mobile (<1024px) asset ────────────────────────────────────────────────────
-const imgProduct   = "/figma-assets/product-water-image.webp"; // product+water image
+const imgBg          = "/figma-assets/bg-card.webp";
+const imgProduct     = "/figma-assets/product-water-image.webp";
+const imgShieldLabel = "/figma-assets/icon-shield-label.svg";
+const imgGift        = "/figma-assets/icon-gift-a.svg";
+const imgShield      = "/figma-assets/icon-shield-24px.svg";
+const imgCert        = "/figma-assets/icon-cert.svg";
+const imgFone        = "/figma-assets/icon-fone-30px.svg";
+const imgLock        = "/figma-assets/icon-lock-a.svg";
+const imgLogoWhite   = "/figma-assets/logo-white.svg";
 
-// ── Icons (SVG) ───────────────────────────────────────────────────────────────
-const imgShieldLabel = "/figma-assets/icon-shield-label.svg"; // 26.14×30 portrait
-const imgGift        = "/figma-assets/icon-gift-a.svg"; // square
-const imgShield      = "/figma-assets/icon-shield-24px.svg"; // 24×30 portrait
-const imgCert        = "/figma-assets/icon-cert.svg"; // 19×30 portrait
-const imgFone        = "/figma-assets/icon-fone-30px.svg"; // 30×30 square
-const imgLock        = "/figma-assets/icon-lock-a.svg"; // 27×30 portrait
-const imgLogoWhite   = "/figma-assets/logo-white.svg"; // 1133.86×237.88 wide
-
-const trustItems = [
-  { icon: imgShield, aspectW: 24,    aspectH: 30,    title: "Compra 100% segura",    sub: "Seus dados protegidos" },
-  { icon: imgCert,   aspectW: 19,    aspectH: 30,    title: "Produto com garantia",  sub: "Qualidade Acquafy" },
-  { icon: imgFone,   aspectW: 30,    aspectH: 30,    title: "Suporte especializado", sub: "Antes e após a sua compra" },
+const TRUST_ICONS = [
+  { icon: imgShield, aspectW: 24, aspectH: 30 },
+  { icon: imgCert,   aspectW: 19, aspectH: 30 },
+  { icon: imgFone,   aspectW: 30, aspectH: 30 },
 ];
 
+const T: Record<Lang, {
+  badge: string;
+  h2a: string; h2b: string;
+  bonus1: string; bonus2: string;
+  trust: { title: string; sub: string }[];
+  bannerTitle: string;
+  bannerSub1: string; bannerSub2: string;
+}> = {
+  pt: {
+    badge: "CHECKOUT SEGURO",
+    h2a: "Seu purificador antigo vale", h2b: "um UP!",
+    bonus1: "Ganhe ", bonus2: " de bônus na compra do Acquafy Neo UP Essentials.",
+    trust: [
+      { title: "Compra 100% segura",    sub: "Seus dados protegidos" },
+      { title: "Produto com garantia",  sub: "Qualidade Acquafy" },
+      { title: "Suporte especializado", sub: "Antes e após a sua compra" },
+    ],
+    bannerTitle: "Água de qualidade não deve ser privilégio.",
+    bannerSub1: "Faça um ", bannerSub2: " e leve mais saúde para você e sua família.",
+  },
+  en: {
+    badge: "SECURE CHECKOUT",
+    h2a: "Your old purifier is worth", h2b: "an UP!",
+    bonus1: "Earn ", bonus2: " in bonus on the purchase of the Acquafy Neo UP Essentials.",
+    trust: [
+      { title: "100% secure purchase",  sub: "Your data is protected" },
+      { title: "Product with warranty", sub: "Acquafy Quality" },
+      { title: "Specialized support",   sub: "Before and after your purchase" },
+    ],
+    bannerTitle: "Quality water shouldn't be a privilege.",
+    bannerSub1: "Do an ", bannerSub2: " and bring more health to you and your family.",
+  },
+  es: {
+    badge: "PAGO SEGURO",
+    h2a: "Tu purificador antiguo vale", h2b: "¡un UP!",
+    bonus1: "Gana ", bonus2: " de bono en la compra del Acquafy Neo UP Essentials.",
+    trust: [
+      { title: "Compra 100% segura",    sub: "Tus datos protegidos" },
+      { title: "Producto con garantía", sub: "Calidad Acquafy" },
+      { title: "Soporte especializado", sub: "Antes y después de tu compra" },
+    ],
+    bannerTitle: "El agua de calidad no debe ser un privilegio.",
+    bannerSub1: "Haz un ", bannerSub2: " y lleva más salud a ti y a tu familia.",
+  },
+};
+
 export default function CheckoutUp() {
+  const { lang } = useLang();
+  const t = T[lang];
+  const trustItems = TRUST_ICONS.map((ic, i) => ({ ...ic, ...t.trust[i] }));
+
   return (
     <section className="flex flex-col items-center justify-center p-[20px] w-full lg:bg-transparent bg-gradient-to-b from-[#fafbff] to-[#e8f1f8]">
-      {/*
-       * Outer container:
-       *   lg (≥1024): card com bg image, padding, border-radius, max-w-1400
-       *   <1024:      sem card, sem bg image, itens centralizados
-       */}
       <div className="relative flex flex-col lg:items-start items-center lg:max-w-[1400px] lg:p-[20px] lg:rounded-[16px] w-full lg:overflow-hidden gap-[20px]">
 
-        {/* Background image — desktop only */}
         <img
           alt=""
           className="hidden lg:block absolute inset-0 w-full h-full object-cover pointer-events-none rounded-[16px]"
           src={imgBg}
         />
 
-        {/* Content — desktop: max-w-710 left-aligned · mobile: full-width centered */}
         <div className="relative flex flex-col gap-[20px] lg:items-start items-center lg:max-w-[710px] w-full">
 
-          {/* Label */}
           <div className="bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center max-w-[280px] px-[12px] py-[8px] rounded-full shrink-0">
             <FigmaIcon src={imgShieldLabel} size={16} aspectW={26.14} aspectH={30} />
             <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] whitespace-nowrap">
-              CHECKOUT SEGURO
+              {t.badge}
             </span>
           </div>
 
-          {/* H1 — left on desktop, centered on mobile */}
           <h2 className="font-['Avenir_LT_Pro:95_Black'] text-[32px] leading-[39px] text-[#2a2a2b] w-full lg:text-left text-center">
-            Seu purificador antigo vale{" "}
+            {t.h2a}{" "}
             <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(to bottom, #0233c3, #9f3df5)" }}>
-              um UP!
+              {t.h2b}
             </span>
           </h2>
 
-          {/* Bonus card */}
           <div className="bg-white flex flex-col items-center justify-center p-[20px] rounded-[16px] w-full shrink-0">
             <div className="flex gap-[10px] items-center justify-center w-full">
               <div
@@ -66,19 +104,18 @@ export default function CheckoutUp() {
                 <FigmaIcon src={imgGift} size={26} />
               </div>
               <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] flex-1 min-w-0">
-                {"Ganhe "}
+                {t.bonus1}
                 <span
                   className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] bg-clip-text text-transparent"
                   style={{ backgroundImage: "linear-gradient(to bottom, #0233c3, #9f3df5)" }}
                 >
                   R$100,00
                 </span>
-                {" de bônus na compra do Acquafy Neo UP Essentials."}
+                {t.bonus2}
               </p>
             </div>
           </div>
 
-          {/* Trust items — left on desktop, centered on mobile */}
           <div className="flex flex-wrap gap-[15px] items-center lg:justify-start justify-center w-full">
             {trustItems.map((item) => (
               <div key={item.title} className="flex flex-[1_0_0] gap-[10px] items-center min-w-[180px]">
@@ -95,7 +132,6 @@ export default function CheckoutUp() {
             ))}
           </div>
 
-          {/* Bottom banner */}
           <div
             className="flex flex-wrap gap-[20px] items-center justify-center p-[20px] rounded-[16px] w-full shrink-0 drop-shadow-[0px_0px_2px_rgba(0,0,0,0.1)]"
             style={{ background: "linear-gradient(to bottom, #0233c3, #9f3df5)" }}
@@ -103,15 +139,14 @@ export default function CheckoutUp() {
             <FigmaIcon src={imgLock} size={30} aspectW={27} aspectH={30} />
             <div className="flex flex-[1_0_0] flex-col gap-[5px] items-start justify-center min-w-[240px]">
               <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-white w-full">
-                Água de qualidade não deve ser privilégio.
+                {t.bannerTitle}
               </p>
               <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-white w-full">
-                {"Faça um "}
+                {t.bannerSub1}
                 <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[#73d0ff]">UP</span>
-                {" e leve mais saúde para você e sua família."}
+                {t.bannerSub2}
               </p>
             </div>
-            {/* Acquafy white logo */}
             <div className="flex flex-[1_0_0] flex-col items-start max-h-[33.57px] max-w-[160px] min-w-[160px]">
               <div className="relative w-full" style={{ aspectRatio: "1133.86 / 237.88" }}>
                 <img
@@ -124,7 +159,6 @@ export default function CheckoutUp() {
           </div>
         </div>
 
-        {/* Product image — mobile only (<1024px), below content */}
         <div className="lg:hidden flex flex-col h-[380px] items-center justify-center overflow-clip rounded-[16px] shrink-0 w-full">
           <img
             alt="Acquafy Neo UP"

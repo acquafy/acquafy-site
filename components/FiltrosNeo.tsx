@@ -1,4 +1,7 @@
-﻿const imgArrow = "/figma-assets/icon-arrow-c.svg";
+"use client";
+import { useLang, type Lang } from "@/context/LanguageContext";
+
+const imgArrow = "/figma-assets/icon-arrow-c.svg";
 
 type FilterCard = {
   num: string;
@@ -7,31 +10,44 @@ type FilterCard = {
   highlight?: boolean;
 };
 
-const essentials: FilterCard[] = [
-  {
-    num: "01",
-    title: "PPF - Polypropilene Filter",
-    desc: "Remove iodo, sujeira, ferrugem, filtra impurezas, compostos químicos, partículas suspensas, odores e sabores normalmente presentes na água de torneira.",
-  },
-  {
-    num: "02",
-    title: "ACF - Anti-Scale Activated Block Carbon Filter",
-    desc: "Remove o cloro, compostos químicos, partículas suspensas, odores e sabores normalmente presentes na água de torneira.",
-  },
-  {
-    num: "03",
-    title: "UFF - Ultra Filtration Filter",
-    desc: "Com microporos de ultraprecisão, remove organismos, substâncias macromoleculares, verme vermelho, vírus e bactérias.",
-    highlight: true,
-  },
-  {
-    num: "04",
-    title: "AAF - Alkaline Antioxidant Filter",
-    desc: "Ele ajusta a faixa de pH da água, torna a água filtrada alcalina com pH acima de 9, antioxidante e rica em hidrogênio",
-  },
+const FILTER_STRUCTURE: Omit<FilterCard, "desc">[] = [
+  { num: "01", title: "PPF - Polypropilene Filter" },
+  { num: "02", title: "ACF - Anti-Scale Activated Block Carbon Filter" },
+  { num: "03", title: "UFF - Ultra Filtration Filter", highlight: true },
+  { num: "04", title: "AAF - Alkaline Antioxidant Filter" },
 ];
 
-function FilterCard({ card, isLast }: { card: FilterCard; isLast: boolean }) {
+const T: Record<Lang, { h2: string; descs: string[] }> = {
+  pt: {
+    h2: "Linha Essentials - Sistema de Filtração de Alta Performance",
+    descs: [
+      "Remove iodo, sujeira, ferrugem, filtra impurezas, compostos químicos, partículas suspensas, odores e sabores normalmente presentes na água de torneira.",
+      "Remove o cloro, compostos químicos, partículas suspensas, odores e sabores normalmente presentes na água de torneira.",
+      "Com microporos de ultraprecisão, remove organismos, substâncias macromoleculares, verme vermelho, vírus e bactérias.",
+      "Ele ajusta a faixa de pH da água, torna a água filtrada alcalina com pH acima de 9, antioxidante e rica em hidrogênio",
+    ],
+  },
+  en: {
+    h2: "Essentials Line - High Performance Filtration System",
+    descs: [
+      "Removes iodine, dirt, rust, filters impurities, chemical compounds, suspended particles, odors and flavors normally present in tap water.",
+      "Removes chlorine, chemical compounds, suspended particles, odors and flavors normally present in tap water.",
+      "With ultra-precision micropores, removes organisms, macromolecular substances, red worm, viruses and bacteria.",
+      "It adjusts the pH range of the water, making the filtered water alkaline with a pH above 9, antioxidant and hydrogen-rich.",
+    ],
+  },
+  es: {
+    h2: "Línea Essentials - Sistema de Filtración de Alto Rendimiento",
+    descs: [
+      "Elimina yodo, suciedad, herrumbre, filtra impurezas, compuestos químicos, partículas en suspensión, olores y sabores normalmente presentes en el agua del grifo.",
+      "Elimina el cloro, compuestos químicos, partículas en suspensión, olores y sabores normalmente presentes en el agua del grifo.",
+      "Con microporos de ultraprecisión, elimina organismos, sustancias macromoleculares, gusanos rojos, virus y bacterias.",
+      "Ajusta el rango de pH del agua, haciendo que el agua filtrada sea alcalina con pH superior a 9, antioxidante y rica en hidrógeno.",
+    ],
+  },
+};
+
+function FilterCardItem({ card, isLast }: { card: FilterCard; isLast: boolean }) {
   return (
     <div
       className={`flex flex-[1_0_0] flex-col gap-[20px] items-start min-h-[210px] min-w-[200px] px-[20px] py-[25px] relative rounded-[16px] bg-[#f6f9fe]${card.highlight ? " border-2 border-[#0233c3]" : ""}`}
@@ -63,15 +79,19 @@ function FilterCard({ card, isLast }: { card: FilterCard; isLast: boolean }) {
 }
 
 export default function FiltrosNeo() {
+  const { lang } = useLang();
+  const t = T[lang];
+  const cards: FilterCard[] = FILTER_STRUCTURE.map((s, i) => ({ ...s, desc: t.descs[i] }));
+
   return (
     <section className="bg-white flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
         <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#0569ff] text-center w-full">
-          Linha Essentials - Sistema de Filtração de Alta Performance
+          {t.h2}
         </h2>
         <div className="flex flex-wrap gap-[20px] items-stretch justify-center w-full">
-          {essentials.map((c, i) => (
-            <FilterCard key={i} card={c} isLast={i === essentials.length - 1} />
+          {cards.map((c, i) => (
+            <FilterCardItem key={i} card={c} isLast={i === cards.length - 1} />
           ))}
         </div>
       </div>
