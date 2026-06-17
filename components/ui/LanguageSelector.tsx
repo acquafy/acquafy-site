@@ -1,28 +1,25 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { useLang, type Lang } from "@/context/LanguageContext";
 
 // ── Assets ─────────────────────────────────────────────────────────────────
-// Footer selector (3095:5902) — "IDIOMA FULL"
-const imgFlagBR_Full  = "/figma-assets/flag-br.svg"; // Brazil 512×512
-const imgArrowFooter  = "/figma-assets/icon-arrow-footer.svg"; // 30×18
+const imgFlagBR_Full  = "/figma-assets/flag-br.svg";
+const imgArrowFooter  = "/figma-assets/icon-arrow-footer.svg";
+const imgGlobeHeader  = "/figma-assets/icon-globe-header-18px.svg";
+const imgArrowHeader  = "/figma-assets/icon-arrow-header.svg";
 
-// Header selector (3102:6909) — "IDIOMA COMPACTO"
-const imgGlobeHeader  = "/figma-assets/icon-globe-header-18px.svg"; // Globe 18×18
-const imgArrowHeader  = "/figma-assets/icon-arrow-header.svg"; // 30×18, oriented ∧
-
-// Language menu flags (shared)
-const imgUSA     = "/figma-assets/flag-usa-30px.svg"; // 30×30
-const imgUK      = "/figma-assets/flag-uk.svg"; // 262×262
-const imgBR_Menu = "/figma-assets/flag-br.svg"; // 512×512
-const imgPT      = "/figma-assets/flag-pt.svg"; // w-full
-const imgES      = "/figma-assets/flag-es.svg"; // 22×22
-const imgFR      = "/figma-assets/flag-fr.svg"; // 30×30
-const imgDE      = "/figma-assets/flag-de.svg"; // 306×306
-const imgIT      = "/figma-assets/flag-it.svg"; // 30×30
-const imgZH      = "/figma-assets/flag-zh.svg"; // 512×512
-const imgJA      = "/figma-assets/flag-ja.svg"; // 512×512
-const imgKO      = "/figma-assets/flag-ko.svg"; // 374×374
+const imgUSA     = "/figma-assets/flag-usa-30px.svg";
+const imgUK      = "/figma-assets/flag-uk.svg";
+const imgBR_Menu = "/figma-assets/flag-br.svg";
+const imgPT      = "/figma-assets/flag-pt.svg";
+const imgES      = "/figma-assets/flag-es.svg";
+const imgFR      = "/figma-assets/flag-fr.svg";
+const imgDE      = "/figma-assets/flag-de.svg";
+const imgIT      = "/figma-assets/flag-it.svg";
+const imgZH      = "/figma-assets/flag-zh.svg";
+const imgJA      = "/figma-assets/flag-ja.svg";
+const imgKO      = "/figma-assets/flag-ko.svg";
 
 // ── Language data ──────────────────────────────────────────────────────────
 type Language = {
@@ -31,63 +28,78 @@ type Language = {
   flag: string;
   aspectW: number;
   aspectH: number;
-  active?: boolean;
+  langCode: Lang | null; // null = ainda não disponível
 };
 
 const LANGUAGES: Language[] = [
-  { code: "en-us", label: "English (United States)", flag: imgUSA,    aspectW: 30,    aspectH: 30    },
-  { code: "en-gb", label: "English (England)",       flag: imgUK,     aspectW: 262.3, aspectH: 262.3 },
-  { code: "pt-br", label: "Português (BR)",          flag: imgBR_Menu,aspectW: 512,   aspectH: 512,  active: true },
-  { code: "pt-pt", label: "Português (Portugal)",    flag: imgPT,     aspectW: 1,     aspectH: 1     },
-  { code: "es",    label: "Español",                 flag: imgES,     aspectW: 22,    aspectH: 22    },
-  { code: "fr",    label: "Français",                flag: imgFR,     aspectW: 30,    aspectH: 30    },
-  { code: "de",    label: "Deutsch",                 flag: imgDE,     aspectW: 306.6, aspectH: 306.7 },
-  { code: "it",    label: "Italiano",                flag: imgIT,     aspectW: 30,    aspectH: 30    },
-  { code: "zh",    label: "中文",                    flag: imgZH,     aspectW: 512,   aspectH: 512   },
-  { code: "ja",    label: "中国語",                  flag: imgJA,     aspectW: 512,   aspectH: 512   },
-  { code: "ko",    label: "중국",                    flag: imgKO,     aspectW: 374,   aspectH: 374   },
+  { code: "en-us", label: "English (United States)", flag: imgUSA,    aspectW: 30,    aspectH: 30,    langCode: "en" },
+  { code: "en-gb", label: "English (England)",       flag: imgUK,     aspectW: 262.3, aspectH: 262.3, langCode: "en" },
+  { code: "pt-br", label: "Português (BR)",          flag: imgBR_Menu,aspectW: 512,   aspectH: 512,   langCode: "pt" },
+  { code: "pt-pt", label: "Português (Portugal)",    flag: imgPT,     aspectW: 1,     aspectH: 1,     langCode: null },
+  { code: "es",    label: "Español",                 flag: imgES,     aspectW: 22,    aspectH: 22,    langCode: "es" },
+  { code: "fr",    label: "Français",                flag: imgFR,     aspectW: 30,    aspectH: 30,    langCode: null },
+  { code: "de",    label: "Deutsch",                 flag: imgDE,     aspectW: 306.6, aspectH: 306.7, langCode: null },
+  { code: "it",    label: "Italiano",                flag: imgIT,     aspectW: 30,    aspectH: 30,    langCode: null },
+  { code: "zh",    label: "中文",                    flag: imgZH,     aspectW: 512,   aspectH: 512,   langCode: null },
+  { code: "ja",    label: "日本語",                  flag: imgJA,     aspectW: 512,   aspectH: 512,   langCode: null },
+  { code: "ko",    label: "한국어",                  flag: imgKO,     aspectW: 374,   aspectH: 374,   langCode: null },
 ];
+
+// Compact label shown in Header button
+const COMPACT_LABEL: Record<Lang, string> = { pt: "BR", en: "EN", es: "ES" };
+
+// Full label + flag shown in Footer button
+const FULL_INFO: Record<Lang, { flag: string; aspectW: number; aspectH: number; label: string }> = {
+  pt: { flag: imgBR_Menu, aspectW: 512, aspectH: 512, label: "Português (BR)" },
+  en: { flag: imgUSA,     aspectW: 30,  aspectH: 30,  label: "English" },
+  es: { flag: imgES,      aspectW: 22,  aspectH: 22,  label: "Español" },
+};
 
 // ── Flag 20×20 helper ──────────────────────────────────────────────────────
 function FlagImg({ flag, aspectW, aspectH }: Pick<Language, "flag" | "aspectW" | "aspectH">) {
   return (
     <div className="flex flex-col items-center justify-center overflow-clip shrink-0 size-[20px]">
-      <div
-        className="flex-[1_0_0] min-h-px relative w-full"
-        style={{ aspectRatio: `${aspectW}/${aspectH}` }}
-      >
+      <div className="flex-[1_0_0] min-h-px relative w-full" style={{ aspectRatio: `${aspectW}/${aspectH}` }}>
         <img alt="" className="absolute block inset-0 max-w-none size-full" src={flag} />
       </div>
     </div>
   );
 }
 
-// ── Dropdown menu (shared between full & compact) ──────────────────────────
-function DropdownMenu({ dropUp }: { dropUp: boolean }) {
+// ── Dropdown menu ──────────────────────────────────────────────────────────
+function DropdownMenu({
+  dropUp, lang, setLang, onClose,
+}: {
+  dropUp: boolean; lang: Lang; setLang: (l: Lang) => void; onClose: () => void;
+}) {
   return (
     <div
-      className="absolute bg-white border border-[#cbd0d4] flex flex-col gap-[12px] items-start justify-center overflow-clip pl-[20px] pr-[50px] py-[20px] right-[-1px] rounded-[6px] w-[290px] z-50"
+      className="absolute bg-white border border-[#cbd0d4] flex flex-col gap-[12px] items-start overflow-clip pl-[20px] pr-[20px] py-[20px] right-[-1px] rounded-[6px] w-[290px] z-50"
       style={{ [dropUp ? "bottom" : "top"]: "calc(100% + 4px)" }}
     >
-      {LANGUAGES.map((lang) => (
-        <div
-          key={lang.code}
-          className="flex gap-[10px] items-center overflow-clip shrink-0 w-full cursor-pointer hover:opacity-70 transition-opacity"
-        >
-          <FlagImg flag={lang.flag} aspectW={lang.aspectW} aspectH={lang.aspectH} />
-          {lang.active ? (
-            /* Active item — Plus Jakarta Sans Bold, leading-normal */
-            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#2a2a2b] whitespace-nowrap shrink-0">
-              {lang.label}
+      {LANGUAGES.map((item) => {
+        const isActive    = item.langCode === lang;
+        const isAvailable = item.langCode !== null;
+        return (
+          <div
+            key={item.code}
+            onClick={() => { if (item.langCode) { setLang(item.langCode); onClose(); } }}
+            className={`flex gap-[10px] items-center overflow-clip shrink-0 w-full transition-opacity ${
+              isAvailable ? "cursor-pointer hover:opacity-70" : "cursor-default opacity-40"
+            }`}
+          >
+            <FlagImg flag={item.flag} aspectW={item.aspectW} aspectH={item.aspectH} />
+            <p className={`${isActive ? "font-['Avenir_LT_Pro:85_Heavy']" : "font-['Avenir_LT_Pro:55_Roman']"} text-[16px] leading-[20px] text-[#2a2a2b] whitespace-nowrap shrink-0 flex-1 min-w-0`}>
+              {item.label}
             </p>
-          ) : (
-            /* Regular item — Plus Jakarta Sans Regular, leading-[25px] */
-            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#2a2a2b] whitespace-nowrap shrink-0">
-              {lang.label}
-            </p>
-          )}
-        </div>
-      ))}
+            {!isAvailable && (
+              <span className="text-[10px] font-['Avenir_LT_Pro:55_Roman'] text-[#aaa] whitespace-nowrap shrink-0">
+                Em breve
+              </span>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -105,12 +117,12 @@ function useClickOutside(onClose: () => void) {
   return ref;
 }
 
-// ── FOOTER variant — "IDIOMA FULL" (3095:5902) ────────────────────────────
-// Arrow: sempre aponta ∧ (para cima), pois o dropdown abre acima.
-// Figma usa rotate-180 + -scale-y-100 no asset do footer → resultado: ∧.
+// ── FOOTER variant ─────────────────────────────────────────────────────────
 export function LanguageSelectorFull() {
   const [open, setOpen] = useState(false);
+  const { lang, setLang } = useLang();
   const ref = useClickOutside(() => setOpen(false));
+  const info = FULL_INFO[lang];
 
   return (
     <div ref={ref} className="relative">
@@ -120,19 +132,10 @@ export function LanguageSelectorFull() {
           open ? "bg-[#f6f9fe] border-[0.5px] border-[#cbd0d4]" : "border-[#cbd0d4]"
         }`}
       >
-        {/* Brazil flag 20×20 — overflow-clip, aspect 512/512 */}
-        <FlagImg flag={imgFlagBR_Full} aspectW={512} aspectH={512} />
-
-        {/* Label — Plus Jakarta Sans Bold 14px */}
-        <p
-          className={`font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] flex-[1_0_0] min-w-px text-left ${
-            open ? "text-[#0233c3]" : "text-[#333]"
-          }`}
-        >
-          Português (BR)
+        <FlagImg flag={info.flag} aspectW={info.aspectW} aspectH={info.aspectH} />
+        <p className={`font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] flex-[1_0_0] min-w-px text-left ${open ? "text-[#0233c3]" : "text-[#333]"}`}>
+          {info.label}
         </p>
-
-        {/* Arrow footer — Figma: rotate-180(outer) + -scale-y-100(inner) = sempre ∧ */}
         <div className="flex items-center justify-center shrink-0">
           <div className="flex-none rotate-180">
             <div className="flex flex-col items-center justify-center size-[10px]">
@@ -147,19 +150,15 @@ export function LanguageSelectorFull() {
           </div>
         </div>
       </button>
-
-      {/* Dropdown abre ACIMA */}
-      {open && <DropdownMenu dropUp />}
+      {open && <DropdownMenu dropUp lang={lang} setLang={setLang} onClose={() => setOpen(false)} />}
     </div>
   );
 }
 
-// ── HEADER variant — "IDIOMA COMPACTO" (3102:6909) ───────────────────────
-// Arrow: ∨ (baixo) quando fechado, ∧ (cima) quando aberto.
-// Figma usa -scale-y-100 no asset ∧ para dar ∨ no estado fechado.
-// Toggle: fechado = -scale-y-100, aberto = sem scale.
+// ── HEADER variant ─────────────────────────────────────────────────────────
 export function LanguageSelectorCompact() {
   const [open, setOpen] = useState(false);
+  const { lang, setLang } = useLang();
   const ref = useClickOutside(() => setOpen(false));
 
   return (
@@ -170,30 +169,13 @@ export function LanguageSelectorCompact() {
           open ? "bg-[#f6f9fe] border-[0.5px] border-[#cbd0d4]" : "border-[#cbd0d4]"
         }`}
       >
-        {/* Globe icon — size-[18px], inset-[-2.78%] */}
-        <div className="flex flex-col items-center justify-center shrink-0">
-          <div className="relative shrink-0 size-[18px]">
-            <div className="absolute inset-[-2.78%]">
-              <img alt="" className="block max-w-none size-full" src={imgGlobeHeader} />
-            </div>
-          </div>
-        </div>
-
-        {/* "BR" label — Plus Jakarta Sans Bold 14px */}
-        <p
-          className={`font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] whitespace-nowrap shrink-0 ${
-            open ? "text-[#0233c3]" : "text-[#333]"
-          }`}
-        >
-          BR
+        <FlagImg flag={FULL_INFO[lang].flag} aspectW={FULL_INFO[lang].aspectW} aspectH={FULL_INFO[lang].aspectH} />
+        <p className={`font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] whitespace-nowrap shrink-0 ${open ? "text-[#0233c3]" : "text-[#333]"}`}>
+          {COMPACT_LABEL[lang]}
         </p>
-
-        {/* Arrow header — ∧ asset com -scale-y-100 dá ∨ (fechado); sem scale = ∧ (aberto) */}
         <div className="flex flex-col items-center justify-center size-[10px] shrink-0">
           <div className="flex items-center justify-center shrink-0 w-full">
-            <div
-              className={`flex-none w-full transition-transform duration-200 ${open ? "" : "-scale-y-100"}`}
-            >
+            <div className={`flex-none w-full transition-transform duration-200 ${open ? "" : "-scale-y-100"}`}>
               <div className="relative size-full" style={{ aspectRatio: "30/18" }}>
                 <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgArrowHeader} />
               </div>
@@ -201,9 +183,7 @@ export function LanguageSelectorCompact() {
           </div>
         </div>
       </button>
-
-      {/* Dropdown abre ABAIXO */}
-      {open && <DropdownMenu dropUp={false} />}
+      {open && <DropdownMenu dropUp={false} lang={lang} setLang={setLang} onClose={() => setOpen(false)} />}
     </div>
   );
 }

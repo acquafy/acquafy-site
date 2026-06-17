@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ChatProvider } from "@/components/ChatWidget";
 import { CartProvider } from "@/components/CartProvider";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 export const metadata: Metadata = {
   title: "Acquafy — Purificadores de Água",
@@ -16,9 +17,11 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body className="bg-white pt-[80px]">
-        <CartProvider>
-          <ChatProvider>{children}</ChatProvider>
-        </CartProvider>
+        <LanguageProvider>
+          <CartProvider>
+            <ChatProvider>{children}</ChatProvider>
+          </CartProvider>
+        </LanguageProvider>
       </body>
     </html>
   );

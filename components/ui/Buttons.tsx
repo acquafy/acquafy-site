@@ -1,23 +1,24 @@
-﻿"use client";
+"use client";
 
 import { ReactNode, ButtonHTMLAttributes } from "react";
 import FigmaIcon from "../FigmaIcon";
+import { useLang } from "@/context/LanguageContext";
 
 // ── Arrow icons  (11×9 landscape — fills 9px slot by width) ──────────────────
-const imgArrowBlue  = "/figma-assets/icon-arrow-blue-outline-d.svg"; // outline Padrão
-const imgArrowWhite = "/figma-assets/icon-arrow-white-hover.svg"; // solid buttons
-const imgArrowGray  = "/figma-assets/icon-arrow-gray.svg"; // inactive
-const imgArrowGreen = "/figma-assets/icon-arrow-green.svg"; // verde outline
+const imgArrowBlue  = "/figma-assets/icon-arrow-blue-outline-d.svg";
+const imgArrowWhite = "/figma-assets/icon-arrow-white-hover.svg";
+const imgArrowGray  = "/figma-assets/icon-arrow-gray.svg";
+const imgArrowGreen = "/figma-assets/icon-arrow-green.svg";
 
 // ── Partner icon  (40.69×40 — fills 16px slot by width) ──────────────────────
-const imgPartnerWhite = "/figma-assets/icon-partner-white.svg"; // hover/pressed
-const imgPartnerBlue  = "/figma-assets/icon-partner-blue.svg"; // outline Padrão
-const imgPartnerGray  = "/figma-assets/icon-partner-gray.svg"; // inactive
+const imgPartnerWhite = "/figma-assets/icon-partner-white.svg";
+const imgPartnerBlue  = "/figma-assets/icon-partner-blue.svg";
+const imgPartnerGray  = "/figma-assets/icon-partner-gray.svg";
 
 // ── Chat icon  (30×30 — square) ───────────────────────────────────────────────
-const imgChatBlue  = "/figma-assets/icon-chat-blue.svg"; // Padrão
-const imgChatWhite = "/figma-assets/icon-chat-white.svg"; // hover/pressed
-const imgChatGray  = "/figma-assets/icon-chat-gray.svg"; // inactive
+const imgChatBlue  = "/figma-assets/icon-chat-blue.svg";
+const imgChatWhite = "/figma-assets/icon-chat-white.svg";
+const imgChatGray  = "/figma-assets/icon-chat-gray.svg";
 
 // ── Gift icon  (642×642 — square) ────────────────────────────────────────────
 const imgGift = "/figma-assets/icon-gift-b.svg";
@@ -29,16 +30,10 @@ const imgPessoas = "/figma-assets/icon-pessoas-b.svg";
 // Internal helpers
 // ─────────────────────────────────────────────────────────────────────────────
 
-/** Fixed arrow: landscape 11×9 — fills 9px slot by width */
 function Arrow({ src }: { src: string }) {
   return <FigmaIcon src={src} size={9} aspectW={11} aspectH={9} />;
 }
 
-/**
- * Toggle arrow: shows defaultSrc normally, hoverSrc on group-hover/group-active.
- * Landscape 11×9 — each state rendered via FigmaIcon in an absolute overlay.
- * Parent button MUST have className="group".
- */
 function ArrowToggle({ defaultSrc, hoverSrc }: { defaultSrc: string; hoverSrc: string }) {
   return (
     <div className="relative shrink-0" style={{ width: 9, height: 9 }}>
@@ -52,7 +47,6 @@ function ArrowToggle({ defaultSrc, hoverSrc }: { defaultSrc: string; hoverSrc: s
   );
 }
 
-/** 16×16 icon slot — longest axis fills 16px, shorter axis scales proportionally */
 function Ico({ src, aspectW = 1, aspectH = 1 }: { src: string; aspectW?: number; aspectH?: number }) {
   const size = 16;
   const bleed = 2.5;
@@ -76,10 +70,6 @@ function Ico({ src, aspectW = 1, aspectH = 1 }: { src: string; aspectW?: number;
   );
 }
 
-/**
- * Toggle icon: shows defaultSrc normally, hoverSrc on group-hover/group-active.
- * Parent button MUST have className="group".
- */
 function IcoToggle({ defaultSrc, hoverSrc, aspectW = 1, aspectH = 1 }: {
   defaultSrc: string; hoverSrc: string; aspectW?: number; aspectH?: number;
 }) {
@@ -95,7 +85,6 @@ function IcoToggle({ defaultSrc, hoverSrc, aspectW = 1, aspectH = 1 }: {
   );
 }
 
-/** Button label — Avenir Heavy 14/17 */
 function Label({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
     <span className={`font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-center whitespace-nowrap shrink-0 ${className}`}>
@@ -114,7 +103,6 @@ type BtnNoChildrenProps = Omit<ButtonHTMLAttributes<HTMLButtonElement>, "childre
 // OUTLINE AZUL
 // ─────────────────────────────────────────────────────────────────────────────
 
-/** Outline azul — sem ícone, sem seta */
 export function BtnAzulOut({ children, className = "", disabled, ...rest }: BtnProps) {
   return (
     <button
@@ -133,7 +121,6 @@ export function BtnAzulOut({ children, className = "", disabled, ...rest }: BtnP
   );
 }
 
-/** Outline azul — com seta */
 export function BtnAzulOutArrow({ children, className = "", disabled, ...rest }: BtnProps) {
   return (
     <button
@@ -155,7 +142,6 @@ export function BtnAzulOutArrow({ children, className = "", disabled, ...rest }:
   );
 }
 
-/** Outline azul + ícone parceiro */
 export function BtnAzulOutPartner({ children, className = "", disabled, ...rest }: BtnProps) {
   return (
     <button
@@ -177,7 +163,6 @@ export function BtnAzulOutPartner({ children, className = "", disabled, ...rest 
   );
 }
 
-/** Outline azul + ícone parceiro + seta */
 export function BtnAzulOutPartnerArrow({ children, className = "", disabled, ...rest }: BtnProps) {
   return (
     <button
@@ -206,7 +191,6 @@ export function BtnAzulOutPartnerArrow({ children, className = "", disabled, ...
 // SÓLIDO AZUL
 // ─────────────────────────────────────────────────────────────────────────────
 
-/** Sólido azul — sem ícone, sem seta */
 export function BtnAzulBase({ children, className = "", disabled, ...rest }: BtnProps) {
   return (
     <button
@@ -223,7 +207,6 @@ export function BtnAzulBase({ children, className = "", disabled, ...rest }: Btn
   );
 }
 
-/** Sólido azul — com seta */
 export function BtnAzulBaseArrow({ children, className = "", disabled, ...rest }: BtnProps) {
   return (
     <button
@@ -241,7 +224,6 @@ export function BtnAzulBaseArrow({ children, className = "", disabled, ...rest }
   );
 }
 
-/** Sólido azul + ícone parceiro */
 export function BtnAzulBasePartner({ children, className = "", disabled, ...rest }: BtnProps) {
   return (
     <button
@@ -259,7 +241,6 @@ export function BtnAzulBasePartner({ children, className = "", disabled, ...rest
   );
 }
 
-/** Sólido azul + ícone parceiro + seta */
 export function BtnAzulBasePartnerArrow({ children, className = "", disabled, ...rest }: BtnProps) {
   return (
     <button
@@ -285,7 +266,6 @@ const gdStyle = { backgroundImage: "linear-gradient(103.83deg, #0233c3 6.19%, #9
 const gdHoverStyle = { backgroundImage: "linear-gradient(103.83deg, #002ba8 6.19%, #6e0cc3 93.35%)" };
 const gdPressedStyle = { backgroundImage: "linear-gradient(103.83deg, #0569ff 6.19%, #b25efb 93.35%)" };
 
-/** Gradient — sem ícone, sem seta */
 export function BtnGd({ children, className = "", disabled, ...rest }: BtnProps) {
   return (
     <button
@@ -305,7 +285,6 @@ export function BtnGd({ children, className = "", disabled, ...rest }: BtnProps)
   );
 }
 
-/** Gradient + seta */
 export function BtnGdArrow({ children, className = "", disabled, ...rest }: BtnProps) {
   return (
     <button
@@ -326,7 +305,6 @@ export function BtnGdArrow({ children, className = "", disabled, ...rest }: BtnP
   );
 }
 
-/** Gradient + ícone presente (Kit Promocional) */
 export function BtnGdGift({ children, className = "", disabled, ...rest }: BtnProps) {
   return (
     <button
@@ -351,7 +329,6 @@ export function BtnGdGift({ children, className = "", disabled, ...rest }: BtnPr
 // VERDE
 // ─────────────────────────────────────────────────────────────────────────────
 
-/** Verde sólido — sem seta */
 export function BtnVerde({ children, className = "", disabled, ...rest }: BtnProps) {
   return (
     <button
@@ -370,7 +347,6 @@ export function BtnVerde({ children, className = "", disabled, ...rest }: BtnPro
   );
 }
 
-/** Verde sólido + seta */
 export function BtnVerdeArrow({ children, className = "", disabled, ...rest }: BtnProps) {
   return (
     <button
@@ -392,7 +368,6 @@ export function BtnVerdeArrow({ children, className = "", disabled, ...rest }: B
   );
 }
 
-/** Outline verde — sem seta */
 export function BtnVerdeOut({ children, className = "", disabled, ...rest }: BtnProps) {
   return (
     <button
@@ -411,7 +386,6 @@ export function BtnVerdeOut({ children, className = "", disabled, ...rest }: Btn
   );
 }
 
-/** Outline verde + seta */
 export function BtnVerdeOutArrow({ children, className = "", disabled, ...rest }: BtnProps) {
   return (
     <button
@@ -437,12 +411,14 @@ export function BtnVerdeOutArrow({ children, className = "", disabled, ...rest }
 // ESPECÍFICOS (label fixo, usado no site todo)
 // ─────────────────────────────────────────────────────────────────────────────
 
-/**
- * "Falar com a Acquafy"
- * Padrão: bg-white border-azul ícone-azul texto-azul
- * Hover/Pressed: bg-azul ícone-branco texto-branco
- */
+const BTN_LABELS = {
+  falaAcquafy:  { pt: "Falar com a Acquafy",      en: "Talk to Acquafy",            es: "Hablar con Acquafy" },
+  distribuidor: { pt: "Quero ser Distribuidor",    en: "I want to be a Distributor", es: "Quiero ser Distribuidor" },
+  kitGift:      { pt: "Solicitar Kit Promocional", en: "Request Promotional Kit",    es: "Solicitar Kit Promocional" },
+} as const;
+
 export function BtnFalaAcquafy({ className = "", disabled, ...rest }: BtnNoChildrenProps) {
+  const { lang } = useLang();
   return (
     <a
       href="/contato"
@@ -450,17 +426,14 @@ export function BtnFalaAcquafy({ className = "", disabled, ...rest }: BtnNoChild
     >
       <IcoToggle defaultSrc={imgChatBlue} hoverSrc={imgChatWhite} />
       <Label className="text-[#0233c3] group-hover:text-white group-active:text-white">
-        Falar com a Acquafy
+        {BTN_LABELS.falaAcquafy[lang]}
       </Label>
     </a>
   );
 }
 
-/**
- * "Quero ser Distribuidor"
- * Padrão: #9f3df5 | Hover: #7a16d2 | Pressed: #b25efb | Inactive: #2a2a2b
- */
 export function BtnDistribuidor({ className = "", disabled, ...rest }: BtnNoChildrenProps) {
+  const { lang } = useLang();
   return (
     <a
       href="/contato"
@@ -468,17 +441,14 @@ export function BtnDistribuidor({ className = "", disabled, ...rest }: BtnNoChil
     >
       <Ico src={imgPessoas} aspectW={43.86} aspectH={40.5} />
       <Label className="text-white">
-        Quero ser Distribuidor
+        {BTN_LABELS.distribuidor[lang]}
       </Label>
     </a>
   );
 }
 
-/**
- * "Solicitar Kit Promocional"
- * Gradient + ícone presente
- */
 export function BtnKitGift({ className = "", disabled, ...rest }: BtnNoChildrenProps) {
+  const { lang } = useLang();
   return (
     <button
       disabled={disabled}
@@ -494,7 +464,7 @@ export function BtnKitGift({ className = "", disabled, ...rest }: BtnNoChildrenP
     >
       <Ico src={imgGift} />
       <Label className={disabled ? "text-[#c8cfd8]" : "text-white"}>
-        Solicitar Kit Promocional
+        {BTN_LABELS.kitGift[lang]}
       </Label>
     </button>
   );
@@ -504,10 +474,6 @@ export function BtnKitGift({ className = "", disabled, ...rest }: BtnNoChildrenP
 // TEXTO (sem fundo, sem borda)
 // ─────────────────────────────────────────────────────────────────────────────
 
-/**
- * "SAIBA MAIS →" — texto puro com seta
- * Padrão: texto #2a2a2b seta azul | Hover: texto azul | Inactive: cinza
- */
 export function BtnSaibaMais({ children = "SAIBA MAIS", className = "", disabled, ...rest }: BtnProps) {
   return (
     <button

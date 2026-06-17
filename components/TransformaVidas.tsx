@@ -1,17 +1,43 @@
-﻿import FigmaIcon from "./FigmaIcon";
+"use client";
+import FigmaIcon from "./FigmaIcon";
+import { useLang, type Lang } from "@/context/LanguageContext";
 
-// ── Assets ────────────────────────────────────────────────────────────────────
-const imgProduct       = "/figma-assets/neo-up-bow.webp"; // Neo UP c/ laço, aspect 1191/1456
-const imgBgDesktop     = "/figma-assets/bg-desktop-city.webp"; // desktop bg (azul + cidade)
-const imgFamilyDesktop = "/figma-assets/photo-family-desktop.webp"; // desktop: família + skyline
-const imgBgMobile      = "/figma-assets/bg-mobile-gradient.webp"; // mobile bg (gradiente azul/roxo)
-const imgFamilyMobile  = "/figma-assets/photo-family-mobile.webp"; // mobile: família s/ fundo (DIFERENTE)
-const imgArrowBlue     = "/figma-assets/icon-arrow-blue-outline-btn.svg"; // seta azul botão outline
-const imgArrowWhite    = "/figma-assets/icon-arrow-white-hover.svg"; // seta branca hover
+const imgProduct       = "/figma-assets/neo-up-bow.webp";
+const imgBgDesktop     = "/figma-assets/bg-desktop-city.webp";
+const imgFamilyDesktop = "/figma-assets/photo-family-desktop.webp";
+const imgBgMobile      = "/figma-assets/bg-mobile-gradient.webp";
+const imgFamilyMobile  = "/figma-assets/photo-family-mobile.webp";
+const imgArrowBlue     = "/figma-assets/icon-arrow-blue-outline-btn.svg";
+const imgArrowWhite    = "/figma-assets/icon-arrow-white-hover.svg";
 
-// ── Sub-components ────────────────────────────────────────────────────────────
+const T: Record<Lang, {
+  title: string;
+  sub1: string; sub2: string; sub3: string;
+  btn: string;
+}> = {
+  pt: {
+    title: "CAMPANHA ACQUAFY TRANSFORMA VIDAS",
+    sub1: "De julho a dezembro, 1 purificador por mês.",
+    sub2: "Participe e concorra a um ",
+    sub3: " todo mês!",
+    btn: "Quero participar",
+  },
+  en: {
+    title: "ACQUAFY TRANSFORMS LIVES CAMPAIGN",
+    sub1: "From July to December, 1 purifier per month.",
+    sub2: "Join and compete for an ",
+    sub3: " every month!",
+    btn: "I want to participate",
+  },
+  es: {
+    title: "CAMPAÑA ACQUAFY TRANSFORMA VIDAS",
+    sub1: "De julio a diciembre, 1 purificador por mes.",
+    sub2: "Participa y concursa por un ",
+    sub3: " ¡cada mes!",
+    btn: "Quiero participar",
+  },
+};
 
-/** Produto Neo UP com laço – slot quadrado, imagem portrait 1191×1456 via flex-[1_0_0] */
 function NeoUPProduct({ size }: { size: number }) {
   return (
     <div
@@ -32,12 +58,28 @@ function NeoUPProduct({ size }: { size: number }) {
   );
 }
 
-/** Botão outline azul com seta toggle hover/pressed */
-function ParticipateButton() {
+function CampaignText({ centered, t }: { centered?: boolean; t: typeof T["pt"] }) {
+  return (
+    <div className={`flex flex-col gap-[20px] items-start text-white w-full ${centered ? "items-center text-center" : ""}`}>
+      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-white w-full">
+        {t.title}
+      </p>
+      <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-white w-full">
+        {t.sub1}
+        <br />
+        {t.sub2}
+        <span className="font-['Avenir_LT_Pro:85_Heavy']">Acquafy Neo UP</span>
+        {t.sub3}
+      </p>
+    </div>
+  );
+}
+
+function ParticipateButton({ label }: { label: string }) {
   return (
     <a href="/contato" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex gap-[10px] items-center justify-center min-h-[30px] overflow-hidden px-[20px] py-[10px] rounded-[8px] shrink-0 cursor-pointer">
       <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors text-center whitespace-nowrap">
-        Quero participar
+        {label}
       </span>
       <div className="relative shrink-0" style={{ width: 9, height: 9 }}>
         <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0 group-active:opacity-0">
@@ -51,76 +93,47 @@ function ParticipateButton() {
   );
 }
 
-// ── Texto compartilhado ────────────────────────────────────────────────────────
-function CampaignText({ centered }: { centered?: boolean }) {
-  return (
-    <div className={`flex flex-col gap-[20px] items-start text-white w-full ${centered ? "items-center text-center" : ""}`}>
-      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-white w-full">
-        CAMPANHA ACQUAFY TRANSFORMA VIDAS
-      </p>
-      <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-white w-full">
-        De julho a dezembro, 1 purificador por mês.
-        <br />
-        {"Participe e concorra a um "}
-        <span className="font-['Avenir_LT_Pro:85_Heavy']">Acquafy Neo UP</span>
-        {" todo mês!"}
-      </p>
-    </div>
-  );
-}
-
-// ── Componente principal ───────────────────────────────────────────────────────
 export default function TransformaVidas() {
+  const { lang } = useLang();
+  const t = T[lang];
+
   return (
     <section className="bg-white flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
-      {/*
-       * Container:
-       *   Mobile (<1024px): flex-col, gap-40, pt-40, px-20, sem max-h
-       *   Desktop (lg/≥1024px): flex-wrap (row), gap-10, sem padding (herdado do bg)
-       *   A altura é controlada pelo bloco direito (h-[390px] no desktop)
-       */}
       <div className="
         max-w-[1400px] overflow-hidden relative rounded-[16px] w-full
         flex flex-col items-center justify-center gap-[40px] pt-[40px] px-[20px]
         lg:flex-row lg:flex-wrap lg:gap-[10px] lg:pt-0 lg:px-0 lg:items-center lg:justify-center
       ">
 
-        {/* Background desktop */}
         <img
           alt=""
           className="hidden lg:block absolute inset-0 size-full object-cover pointer-events-none rounded-[16px]"
           src={imgBgDesktop}
         />
 
-        {/* Background mobile */}
         <img
           alt=""
           className="lg:hidden absolute inset-0 size-full object-cover pointer-events-none rounded-[16px]"
           src={imgBgMobile}
         />
 
-        {/* ── MOBILE: texto + botão ── */}
         <div className="lg:hidden relative flex flex-col gap-[10px] items-center justify-center min-w-[240px] shrink-0 w-full">
-          <CampaignText centered />
-          <ParticipateButton />
+          <CampaignText centered t={t} />
+          <ParticipateButton label={t.btn} />
         </div>
 
-        {/* ── DESKTOP LEFT: texto + produto lado a lado ── */}
         <div className="hidden lg:flex flex-[1_0_0] flex-wrap gap-[10px] min-w-px pl-[20px] py-[20px]">
-          {/* Coluna texto */}
           <div className="relative flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-[280px] py-[40px]">
             <div className="max-w-[370px] rounded-[16px] w-full">
-              <CampaignText />
+              <CampaignText t={t} />
             </div>
-            <ParticipateButton />
+            <ParticipateButton label={t.btn} />
           </div>
-          {/* Coluna produto — h-[268px] exato do Figma */}
           <div className="flex flex-[1_0_0] items-center justify-center min-w-[240px]" style={{ height: 268 }}>
             <NeoUPProduct size={246} />
           </div>
         </div>
 
-        {/* ── MOBILE: produto (size 290px) ── */}
         <div className="lg:hidden flex flex-col items-center justify-center relative shrink-0" style={{ width: 290, height: 290, maxWidth: 292, maxHeight: 292 }}>
           <div className="flex-[1_0_0] min-h-px relative" style={{ aspectRatio: "1191 / 1456" }}>
             <img
@@ -131,11 +144,6 @@ export default function TransformaVidas() {
           </div>
         </div>
 
-        {/* ── DESKTOP RIGHT: família (h-390, justify-end) ── */}
-        {/*
-         * flex-[1_0_0] min-h-px dentro ocupa toda a altura de 390px.
-         * A imagem cobre com object-cover.
-         */}
         <div
           className="hidden lg:flex flex-col items-center justify-end shrink-0 w-[400px]"
           style={{ height: 390, maxHeight: 390 }}
@@ -149,7 +157,6 @@ export default function TransformaVidas() {
           </div>
         </div>
 
-        {/* ── MOBILE: família (imagem DIFERENTE, bottom-aligned) ── */}
         <div
           className="lg:hidden flex flex-col items-center justify-end min-w-[240px] shrink-0 w-full relative"
           style={{ maxHeight: 390 }}

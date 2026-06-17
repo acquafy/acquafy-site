@@ -1,40 +1,101 @@
-﻿import FigmaIcon from "./FigmaIcon";
+"use client";
+import FigmaIcon from "./FigmaIcon";
+import { useLang, type Lang } from "@/context/LanguageContext";
 
-// ── Assets ────────────────────────────────────────────────────────────────────
-const imgBg          = "/figma-assets/bg-c.webp"; // background
-const imgProduct     = "/figma-assets/acquafy-media-totem.webp"; // Acquafy Media totem, aspect 1441/4096
-const imgArrowBlue   = "/figma-assets/icon-arrow-blue-outline-b.svg"; // arrow azul outline
-const imgArrowWhite  = "/figma-assets/icon-arrow-white-hover.svg"; // arrow branca hover
+const imgBg          = "/figma-assets/bg-c.webp";
+const imgProduct     = "/figma-assets/acquafy-media-totem.webp";
+const imgArrowBlue   = "/figma-assets/icon-arrow-blue-outline-b.svg";
+const imgArrowWhite  = "/figma-assets/icon-arrow-white-hover.svg";
 
-// Benefit icons (tamanho 20px cada)
-const imgMarketing  = "/figma-assets/icon-marketing-landscape.svg"; // 39.76×28.46 landscape
-const imgDivLine1   = "/figma-assets/divider-line-1.svg"; // divisor linha
-const imgDashboard  = "/figma-assets/icon-dashboard-large.svg"; // 642×642 sq
-const imgDivLine2   = "/figma-assets/divider-line-2.svg"; // divisor linha
-const imgAI         = "/figma-assets/icon-ai-30px-a.svg"; // 30×30 sq
-const imgMoney      = "/figma-assets/icon-money-large-a.svg"; // 472×440
-const imgLocations  = "/figma-assets/icon-locations.svg"; // 642×642 sq
+const imgMarketing  = "/figma-assets/icon-marketing-landscape.svg";
+const imgDivLine1   = "/figma-assets/divider-line-1.svg";
+const imgDashboard  = "/figma-assets/icon-dashboard-large.svg";
+const imgDivLine2   = "/figma-assets/divider-line-2.svg";
+const imgAI         = "/figma-assets/icon-ai-30px-a.svg";
+const imgMoney      = "/figma-assets/icon-money-large-a.svg";
+const imgLocations  = "/figma-assets/icon-locations.svg";
 
-// Bottom feature icons
-const imgWifi       = "/figma-assets/icon-wifi-30px-a.svg"; // 30×20 landscape
-const imgTime       = "/figma-assets/icon-time-30px.svg"; // 30×30 sq
-const imgBatimentos = "/figma-assets/icon-batimentos.svg"; // 30×29
-const imgLock       = "/figma-assets/icon-lock-b.svg"; // 27×30 portrait
+const imgWifi       = "/figma-assets/icon-wifi-30px-a.svg";
+const imgTime       = "/figma-assets/icon-time-30px.svg";
+const imgBatimentos = "/figma-assets/icon-batimentos.svg";
+const imgLock       = "/figma-assets/icon-lock-b.svg";
 
-const benefits = [
-  { icon: imgMarketing,  aspectW: 39.76, aspectH: 28.46, title: "Receita com Anúncios",    desc: "Monetize com companhias de alta viabilidade e marcas relevantes." },
-  { icon: imgDashboard,  aspectW: 0,     aspectH: 0,      title: "Dashboard do Operador",  desc: "Gestão completa de campanhas, usuários, vendas e indicadores." },
-  { icon: imgAI,         aspectW: 0,     aspectH: 0,      title: "IA + Dados Operacionais", desc: "Insights inteligentes para manutenção performance e expansão." },
-  { icon: imgMoney,      aspectW: 472,   aspectH: 440,   title: "Receita Recorrente",       desc: "Modelo de receita contínua com mídia e venda de água." },
-  { icon: imgLocations,  aspectW: 0,     aspectH: 0,      title: "Locais Ideais",           desc: "Aeroportos, shoppings, hospitais, empresas, universidades e muito mais." },
+const BENEFIT_ICONS = [
+  { icon: imgMarketing,  aspectW: 39.76, aspectH: 28.46 },
+  { icon: imgDashboard,  aspectW: 0,     aspectH: 0 },
+  { icon: imgAI,         aspectW: 0,     aspectH: 0 },
+  { icon: imgMoney,      aspectW: 472,   aspectH: 440 },
+  { icon: imgLocations,  aspectW: 0,     aspectH: 0 },
 ];
 
-const bottomFeatures = [
-  { icon: imgWifi,       aspectW: 30, aspectH: 20, title: "Concetividade Avançada", desc: "4G/5G + Wi-Fi" },
-  { icon: imgTime,       aspectW: 0,  aspectH: 0,  title: "Suporte 24h",            desc: "Atendimento dedicado" },
-  { icon: imgBatimentos, aspectW: 30, aspectH: 29, title: "Monitoramento Inteligente", desc: "Uso, filtros e consumo" },
-  { icon: imgLock,       aspectW: 27, aspectH: 30, title: "Segurança de Dados",     desc: "Conformidade e LGPD" },
+const BOTTOM_ICONS = [
+  { icon: imgWifi,       aspectW: 30, aspectH: 20 },
+  { icon: imgTime,       aspectW: 0,  aspectH: 0 },
+  { icon: imgBatimentos, aspectW: 30, aspectH: 29 },
+  { icon: imgLock,       aspectW: 27, aspectH: 30 },
 ];
+
+const T: Record<Lang, {
+  descLine1: string; descLine2: string;
+  btnInvest: string;
+  benefits: { title: string; desc: string }[];
+  bottomFeatures: { title: string; desc: string }[];
+}> = {
+  pt: {
+    descLine1: "Plataforma Inteligente de Água + Media Digital + Receita Recorrente.",
+    descLine2: "Transforme locais públicos em pontos de hidratação, mídia e negócios. Ganhe com anúncios e venda dos produtos Acquafy Neo.",
+    btnInvest: "Quero investir no Media Network",
+    benefits: [
+      { title: "Receita com Anúncios",    desc: "Monetize com companhias de alta viabilidade e marcas relevantes." },
+      { title: "Dashboard do Operador",   desc: "Gestão completa de campanhas, usuários, vendas e indicadores." },
+      { title: "IA + Dados Operacionais", desc: "Insights inteligentes para manutenção performance e expansão." },
+      { title: "Receita Recorrente",      desc: "Modelo de receita contínua com mídia e venda de água." },
+      { title: "Locais Ideais",           desc: "Aeroportos, shoppings, hospitais, empresas, universidades e muito mais." },
+    ],
+    bottomFeatures: [
+      { title: "Conectividade Avançada",    desc: "4G/5G + Wi-Fi" },
+      { title: "Suporte 24h",              desc: "Atendimento dedicado" },
+      { title: "Monitoramento Inteligente", desc: "Uso, filtros e consumo" },
+      { title: "Segurança de Dados",       desc: "Conformidade e LGPD" },
+    ],
+  },
+  en: {
+    descLine1: "Smart Water + Digital Media + Recurring Revenue Platform.",
+    descLine2: "Transform public spaces into hydration, media and business hubs. Earn with ads and sales of Acquafy Neo products.",
+    btnInvest: "I want to invest in Media Network",
+    benefits: [
+      { title: "Ad Revenue",            desc: "Monetize with high-viability companies and relevant brands." },
+      { title: "Operator Dashboard",    desc: "Full management of campaigns, users, sales and indicators." },
+      { title: "AI + Operational Data", desc: "Smart insights for maintenance, performance and expansion." },
+      { title: "Recurring Revenue",     desc: "Continuous revenue model with media and water sales." },
+      { title: "Ideal Locations",       desc: "Airports, malls, hospitals, businesses, universities and much more." },
+    ],
+    bottomFeatures: [
+      { title: "Advanced Connectivity", desc: "4G/5G + Wi-Fi" },
+      { title: "24h Support",           desc: "Dedicated service" },
+      { title: "Smart Monitoring",      desc: "Usage, filters and consumption" },
+      { title: "Data Security",         desc: "Compliance and GDPR" },
+    ],
+  },
+  es: {
+    descLine1: "Plataforma Inteligente de Agua + Media Digital + Ingresos Recurrentes.",
+    descLine2: "Transforma espacios públicos en puntos de hidratación, medios y negocios. Gana con anuncios y venta de productos Acquafy Neo.",
+    btnInvest: "Quiero invertir en Media Network",
+    benefits: [
+      { title: "Ingresos por Anuncios",  desc: "Monetiza con empresas de alta viabilidad y marcas relevantes." },
+      { title: "Panel del Operador",     desc: "Gestión completa de campañas, usuarios, ventas e indicadores." },
+      { title: "IA + Datos Operativos",  desc: "Insights inteligentes para mantenimiento, rendimiento y expansión." },
+      { title: "Ingresos Recurrentes",   desc: "Modelo de ingresos continuos con medios y venta de agua." },
+      { title: "Ubicaciones Ideales",    desc: "Aeropuertos, centros comerciales, hospitales, empresas, universidades y más." },
+    ],
+    bottomFeatures: [
+      { title: "Conectividad Avanzada",   desc: "4G/5G + Wi-Fi" },
+      { title: "Soporte 24h",             desc: "Atención dedicada" },
+      { title: "Monitoreo Inteligente",   desc: "Uso, filtros y consumo" },
+      { title: "Seguridad de Datos",      desc: "Conformidad y RGPD" },
+    ],
+  },
+};
 
 function BenefitIcon({ icon, aspectW, aspectH }: { icon: string; aspectW: number; aspectH: number }) {
   if (aspectW && aspectH) {
@@ -44,29 +105,24 @@ function BenefitIcon({ icon, aspectW, aspectH }: { icon: string; aspectW: number
 }
 
 export default function NeoMedia() {
+  const { lang } = useLang();
+  const t = T[lang];
+
   return (
     <section className="bg-white relative flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
-      {/*
-       * Container:
-       *   ≥1024px (lg): flex-wrap horizontal — texto+cards esquerda, produto direita
-       *   <1024px:       flex-col vertical   — tudo empilhado, produto no final
-       */}
       <div className="
         border border-[#cbd0d4] flex max-w-[1400px] p-[20px] relative rounded-[16px] w-full overflow-hidden
         flex-col gap-[20px] items-center justify-center
         lg:flex-row lg:flex-wrap lg:items-center lg:justify-center lg:gap-[20px]
       ">
-        {/* Background */}
         <img
           alt=""
           className="absolute inset-0 w-full h-full object-cover pointer-events-none rounded-[16px] z-0"
           src={imgBg}
         />
 
-        {/* LEFT / TOP: título, texto, botão, cards */}
         <div className="relative z-10 flex flex-col gap-[20px] items-start min-w-[240px] w-full lg:flex-[1_0_0]">
 
-          {/* Header */}
           <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start justify-center min-w-[240px] pt-[20px]">
             <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-white w-full text-center lg:text-left">
               Neo Media
@@ -74,12 +130,11 @@ export default function NeoMedia() {
             <div className="flex flex-wrap gap-y-[20px] items-center w-full">
               <div className="flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-w-[210px] lg:items-start">
                 <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-white w-full text-center lg:text-left">
-                  Plataforma Inteligente de Água + Media Digital + Receita Recorrente.
+                  {t.descLine1}
                   <br />
-                  Transforme locais públicos em pontos de hidratação, mídia e negócios. Ganhe com anúncios e venda dos produtos Acquafy Neo.
+                  {t.descLine2}
                 </p>
 
-                {/* Botão outline com hover/pressed */}
                 <a href="/contato" className="
                   group bg-white border border-[#0233c3]
                   hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors
@@ -92,7 +147,7 @@ export default function NeoMedia() {
                     text-[#0233c3] group-hover:text-white group-active:text-white
                     transition-colors text-center
                   ">
-                    Quero investir no Media Network
+                    {t.btnInvest}
                   </span>
                   <div className="relative shrink-0" style={{ width: 9, height: 9 }}>
                     <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0 group-active:opacity-0">
@@ -107,39 +162,34 @@ export default function NeoMedia() {
             </div>
           </div>
 
-          {/* Cards wrapper */}
           <div className="flex flex-col gap-[20px] items-start min-w-[240px] shrink-0 w-full">
 
-            {/* Benefits card */}
             <div className="bg-white border border-[#cbd0d4] flex flex-wrap gap-[20px_10px] items-start justify-center overflow-hidden p-[20px] rounded-[16px] shrink-0 w-full">
-              {benefits.map((b, i) => (
-                <div key={b.title} className="flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-[150px]">
-                  {/* Icon + title block (h-65 to align across items) */}
+              {BENEFIT_ICONS.map((b, i) => (
+                <div key={i} className="flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-[150px]">
                   <div className="flex flex-col gap-[20px] h-[65px] items-start justify-center w-full shrink-0">
                     <BenefitIcon icon={b.icon} aspectW={b.aspectW} aspectH={b.aspectH} />
                     <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] min-h-[25px] w-full">
-                      {b.title}
+                      {t.benefits[i].title}
                     </p>
                   </div>
-                  {/* Description (min-h-75 to align across items) */}
                   <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#2a2a2b] min-h-[75px] w-full">
-                    {b.desc}
+                    {t.benefits[i].desc}
                   </p>
                 </div>
               ))}
             </div>
 
-            {/* Bottom features card */}
             <div className="bg-white border border-[#cbd0d4] flex flex-wrap gap-[10px] items-center justify-center overflow-hidden p-[20px] rounded-[16px] shrink-0 w-full">
-              {bottomFeatures.map((f) => (
-                <div key={f.title} className="flex flex-[1_0_0] gap-[10px] items-center min-w-[120px]">
+              {BOTTOM_ICONS.map((f, i) => (
+                <div key={i} className="flex flex-[1_0_0] gap-[10px] items-center min-w-[120px]">
                   <BenefitIcon icon={f.icon} aspectW={f.aspectW} aspectH={f.aspectH} />
                   <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-0">
                     <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[15px] text-[#1f2e91] w-full">
-                      {f.title}
+                      {t.bottomFeatures[i].title}
                     </p>
                     <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] leading-[16px] text-[#2a2a2b] w-full">
-                      {f.desc}
+                      {t.bottomFeatures[i].desc}
                     </p>
                   </div>
                 </div>
@@ -149,16 +199,11 @@ export default function NeoMedia() {
           </div>
         </div>
 
-        {/* RIGHT / BOTTOM: produto Acquafy Media totem
-            Desktop: aspect-[350/430] flex-[1_0_0] (ocupa espaço restante)
-            Mobile: w-full shrink-0 (abaixo do conteúdo)
-        */}
         <div className="
           relative flex flex-wrap gap-y-[40px] items-center justify-center
           min-w-[240px] max-w-[350px] max-h-[430px]
           w-full lg:flex-[1_0_0] lg:aspect-[350/430] relative z-10
         ">
-          {/* Totem — w-[151px] h-[430px], aspect 1441/4096 portrait */}
           <div className="flex flex-col items-center justify-center h-[430px] w-[151px] shrink-0">
             <div className="flex-[1_0_0] min-h-px relative" style={{ aspectRatio: "1441 / 4096" }}>
               <img
