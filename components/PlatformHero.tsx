@@ -220,7 +220,7 @@ export default function PlatformHero() {
 
         {/* ── Trust badges linha separada — default + 1024, oculta no win-1280+ ── */}
         <div className="flex win-1280:hidden flex-wrap gap-[8px] items-center w-full 1024:flex-none">
-          <BadgeRow />
+          <BadgeRow badges={t.trustBadges} />
         </div>
 
       </div>
