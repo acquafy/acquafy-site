@@ -1,6 +1,7 @@
-﻿"use client";
+"use client";
 import FigmaIcon from "./FigmaIcon";
 import { useChatWidget } from "./ChatWidget";
+import { useLang, type Lang } from "@/context/LanguageContext";
 
 const imgArrowWhite = "/figma-assets/icon-arrow-white-solid.svg";
 const imgArrowBlue  = "/figma-assets/icon-arrow-blue-c.svg";
@@ -9,45 +10,113 @@ const imgChatIcon   = "/figma-assets/icon-chat-icon.svg";
 const imgMailIcon   = "/figma-assets/icon-mail-icon.svg";
 const imgTimeIcon   = "/figma-assets/icon-time-icon.svg";
 
-const canais = [
-  {
-    icon: imgChatIcon,
-    size: 30,
-    title: "Chat online",
-    desc: "Fale agora com um especialista em tempo real.",
-    isChat: true,
-    badge: "", badgeColor: "", badgeBg: "",
-    action: "Iniciar chat",
-    href: null,
+const T: Record<Lang, {
+  heading: string;
+  subheading: string;
+  btnOpenTicket: string;
+  btnTalkSpecialist: string;
+  chatTitle: string;
+  chatDesc: string;
+  chatAction: string;
+  chatBadgeAvailable: string;
+  chatBadgeUnavailable: string;
+  emailTitle: string;
+  emailDesc: string;
+  hoursTitle: string;
+  hoursDesc: string;
+  hoursAction: string;
+}> = {
+  pt: {
+    heading: "Não encontrou o que procurava?",
+    subheading: "Nossa equipe está pronta para ajudar. Escolha o melhor canal de atendimento.",
+    btnOpenTicket: "Abrir chamado",
+    btnTalkSpecialist: "Fale com um especialista",
+    chatTitle: "Chat online",
+    chatDesc: "Fale agora com um especialista em tempo real.",
+    chatAction: "Iniciar chat",
+    chatBadgeAvailable: "Disponível",
+    chatBadgeUnavailable: "Indisponível",
+    emailTitle: "E-mail",
+    emailDesc: "Envie sua dúvida e responderemos em breve.",
+    hoursTitle: "Horário de atendimento",
+    hoursDesc: "Segunda a Sexta",
+    hoursAction: "8h às 18h (EST)",
   },
-  {
-    icon: imgMailIcon,
-    size: 30,
-    aspectW: 30, aspectH: 24,
-    title: "E-mail",
-    desc: "Envie sua dúvida e responderemos em breve.",
-    badge: null,
-    action: "suporte@acquafy.com",
-    href: "mailto:suporte@acquafy.com",
+  en: {
+    heading: "Didn't find what you were looking for?",
+    subheading: "Our team is ready to help. Choose the best support channel.",
+    btnOpenTicket: "Open a ticket",
+    btnTalkSpecialist: "Talk to a specialist",
+    chatTitle: "Live Chat",
+    chatDesc: "Talk now with a specialist in real time.",
+    chatAction: "Start Chat",
+    chatBadgeAvailable: "Available",
+    chatBadgeUnavailable: "Unavailable",
+    emailTitle: "E-mail",
+    emailDesc: "Send your question and we will reply shortly.",
+    hoursTitle: "Support Hours",
+    hoursDesc: "Monday to Friday",
+    hoursAction: "8am to 6pm (EST)",
   },
-  {
-    icon: imgTimeIcon,
-    size: 30,
-    title: "Horário de atendimento",
-    desc: "Segunda a Sexta",
-    badge: null,
-    action: "8h às 18h (EST)",
-    href: null,
-    isInfo: true,
+  es: {
+    heading: "¿No encontró lo que buscaba?",
+    subheading: "Nuestro equipo está listo para ayudar. Elija el mejor canal de atención.",
+    btnOpenTicket: "Abrir ticket",
+    btnTalkSpecialist: "Hablar con un especialista",
+    chatTitle: "Chat en Vivo",
+    chatDesc: "Hable ahora con un especialista en tiempo real.",
+    chatAction: "Iniciar Chat",
+    chatBadgeAvailable: "Disponible",
+    chatBadgeUnavailable: "No disponible",
+    emailTitle: "E-mail",
+    emailDesc: "Envíe su consulta y le responderemos pronto.",
+    hoursTitle: "Horario de Atención",
+    hoursDesc: "Lunes a Viernes",
+    hoursAction: "8h a 18h (EST)",
   },
-];
+};
 
 export default function CtaBK() {
   const { isAvailable, openChat } = useChatWidget();
+  const { lang } = useLang();
+  const t = T[lang];
 
-  const chatBadge      = isAvailable ? "Disponível"   : "Indisponível";
-  const chatBadgeColor = isAvailable ? "#36ae5c"      : "#e53e3e";
-  const chatBadgeBg    = isAvailable ? "#e1f3e7"      : "#fee2e2";
+  const chatBadge      = isAvailable ? t.chatBadgeAvailable   : t.chatBadgeUnavailable;
+  const chatBadgeColor = isAvailable ? "#36ae5c"              : "#e53e3e";
+  const chatBadgeBg    = isAvailable ? "#e1f3e7"              : "#fee2e2";
+
+  const canais = [
+    {
+      icon: imgChatIcon,
+      size: 30,
+      title: t.chatTitle,
+      desc: t.chatDesc,
+      isChat: true,
+      badge: "", badgeColor: "", badgeBg: "",
+      action: t.chatAction,
+      href: null,
+    },
+    {
+      icon: imgMailIcon,
+      size: 30,
+      aspectW: 30, aspectH: 24,
+      title: t.emailTitle,
+      desc: t.emailDesc,
+      badge: null,
+      action: "suporte@acquafy.com",
+      href: "mailto:suporte@acquafy.com",
+    },
+    {
+      icon: imgTimeIcon,
+      size: 30,
+      title: t.hoursTitle,
+      desc: t.hoursDesc,
+      badge: null,
+      action: t.hoursAction,
+      href: null,
+      isInfo: true,
+    },
+  ];
 
   return (
     <section className="bg-[#1f2e91] flex flex-col items-center justify-center overflow-hidden px-[20px] py-[60px] w-full">
@@ -56,10 +125,10 @@ export default function CtaBK() {
         {/* Header */}
         <div className="flex flex-col gap-[16px] items-center text-center w-full">
           <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-white w-full">
-            Não encontrou o que procurava?
+            {t.heading}
           </h2>
           <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-white max-w-[600px] w-full">
-            Nossa equipe está pronta para ajudar. Escolha o melhor canal de atendimento.
+            {t.subheading}
           </p>
         </div>
 
@@ -73,7 +142,7 @@ export default function CtaBK() {
               shadow-[0_2px_12px_0_rgba(255,255,255,0.15)] no-underline"
           >
             <span className="font-['Articulat_CF:Bold'] text-[16px] text-[#0233c3] flex-1 text-center leading-normal">
-              Abrir chamado
+              {t.btnOpenTicket}
             </span>
             <FigmaIcon src={imgArrowBlue} size={9} aspectW={11.2} aspectH={8.84} />
           </a>
@@ -82,7 +151,7 @@ export default function CtaBK() {
             flex gap-[10px] items-center justify-center
             min-h-[54px] min-w-[200px] overflow-hidden px-[28px] py-[12px] rounded-[8px] cursor-pointer shrink-0">
             <span className="font-['Articulat_CF:Bold'] text-[16px] text-white group-hover:text-[#0233c3] transition-colors flex-1 text-center leading-normal">
-              Fale com um especialista
+              {t.btnTalkSpecialist}
             </span>
             <div className="relative shrink-0" style={{ width: 9, height: 9 }}>
               <div className="absolute inset-0 transition-opacity opacity-100 group-hover:opacity-0">
