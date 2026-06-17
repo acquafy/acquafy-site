@@ -9,12 +9,20 @@ const Ctx = createContext<{ lang: Lang; setLang: (l: Lang) => void }>({
   setLang: () => {},
 });
 
+function detectLang(): Lang {
+  const saved = localStorage.getItem("acquafy-lang") as Lang | null;
+  if (saved && (["pt", "en", "es"] as Lang[]).includes(saved)) return saved;
+  const nav = navigator.language.toLowerCase();
+  if (nav.startsWith("pt")) return "pt";
+  if (nav.startsWith("es")) return "es";
+  return "en";
+}
+
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLang] = useState<Lang>("pt");
 
   useEffect(() => {
-    const saved = localStorage.getItem("acquafy-lang") as Lang | null;
-    if (saved && (["pt", "en", "es"] as Lang[]).includes(saved)) setLang(saved);
+    setLang(detectLang());
   }, []);
 
   function changeLang(l: Lang) {
