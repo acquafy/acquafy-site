@@ -1,5 +1,7 @@
-﻿import React from "react";
+"use client";
+import React from "react";
 import FigmaIcon from "./FigmaIcon";
+import { useLang, type Lang } from "@/context/LanguageContext";
 
 // ── Fotos nos círculos ───────────────────────────────────────────────────────
 const imgPurifier  = "/figma-assets/product-purifier.webp";
@@ -18,24 +20,79 @@ type StepItem =
   | { label: string; type: "photo"; src: string; padding: string }
   | { label: string; type: "icon";  src: string; padding: string; aspectW: number; aspectH: number };
 
-const steps: StepItem[] = [
-  { label: "Purificador Neo / Acquafy Media", type: "photo", src: imgPurifier, padding: "p-[24px]" },
-  { label: "App Acquafy",      type: "photo", src: imgAppPhone,   padding: "p-[24px]" },
-  { label: "IoT & Sensores",   type: "icon",  src: imgWifi,       padding: "p-[30px]", aspectW: 63, aspectH: 43 },
-  { label: "Plataforma Cloud", type: "icon",  src: imgCloud,      padding: "p-[30px]", aspectW: 63, aspectH: 63 },
-  { label: "Acquafy AI",       type: "icon",  src: imgBrain,      padding: "p-[30px]", aspectW: 63, aspectH: 63 },
-  { label: "Alertas & Ações",  type: "icon",  src: imgBell,       padding: "p-[30px]", aspectW: 49, aspectH: 63 },
+const T: Record<Lang, {
+  heading1: string;
+  heading2: string;
+  subtitle: string;
+  labels: string[];
+}> = {
+  pt: {
+    heading1: "Fluxo inteligente",
+    heading2: " da operação",
+    subtitle: "Dados dos produtos e dispositivos coletados, analisados e transformados em insights e ações em tempo real.",
+    labels: [
+      "Purificador Neo / Acquafy Media",
+      "App Acquafy",
+      "IoT & Sensores",
+      "Plataforma Cloud",
+      "Acquafy AI",
+      "Alertas & Ações",
+    ],
+  },
+  en: {
+    heading1: "Intelligent flow",
+    heading2: " of operations",
+    subtitle: "Product and device data collected, analyzed and transformed into real-time insights and actions.",
+    labels: [
+      "Neo Purifier / Acquafy Media",
+      "Acquafy App",
+      "IoT & Sensors",
+      "Cloud Platform",
+      "Acquafy AI",
+      "Alerts & Actions",
+    ],
+  },
+  es: {
+    heading1: "Flujo inteligente",
+    heading2: " de la operación",
+    subtitle: "Datos de productos y dispositivos recopilados, analizados y transformados en insights y acciones en tiempo real.",
+    labels: [
+      "Purificador Neo / Acquafy Media",
+      "App Acquafy",
+      "IoT & Sensores",
+      "Plataforma Cloud",
+      "Acquafy AI",
+      "Alertas & Acciones",
+    ],
+  },
+};
+
+const stepMeta = [
+  { type: "photo" as const, src: imgPurifier, padding: "p-[24px]" },
+  { type: "photo" as const, src: imgAppPhone,  padding: "p-[24px]" },
+  { type: "icon"  as const, src: imgWifi,      padding: "p-[30px]", aspectW: 63, aspectH: 43 },
+  { type: "icon"  as const, src: imgCloud,     padding: "p-[30px]", aspectW: 63, aspectH: 63 },
+  { type: "icon"  as const, src: imgBrain,     padding: "p-[30px]", aspectW: 63, aspectH: 63 },
+  { type: "icon"  as const, src: imgBell,      padding: "p-[30px]", aspectW: 49, aspectH: 63 },
 ];
 
 export default function FluxoInteligenteAppAiIot() {
+  const { lang } = useLang();
+  const t = T[lang];
+
+  const steps: StepItem[] = t.labels.map((label, i) => ({
+    label,
+    ...stepMeta[i],
+  }));
+
   return (
     <section className="bg-white flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center justify-center max-w-[1400px] rounded-[16px] w-full">
 
         {/* Título */}
         <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-center w-full">
-          <span className="text-[#0569ff]">Fluxo inteligente</span>
-          <span className="text-[#1f2e91]"> da operação</span>
+          <span className="text-[#0569ff]">{t.heading1}</span>
+          <span className="text-[#1f2e91]">{t.heading2}</span>
         </h2>
 
         {/* Steps — itens flex-1; setas preenchem espaço disponível entre eles */}
@@ -84,7 +141,7 @@ export default function FluxoInteligenteAppAiIot() {
 
         {/* Subtítulo */}
         <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#2a2a2b] text-center w-full min-w-[240px]">
-          Dados dos produtos e dispositivos coletados, analisados e transformados em insights e ações em tempo real.
+          {t.subtitle}
         </p>
       </div>
     </section>

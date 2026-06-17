@@ -1,10 +1,34 @@
+"use client";
+
 import Link from "next/link";
 import { BtnAzulOutArrow, BtnAzulBaseArrow } from "./ui/Buttons";
+import { useLang, type Lang } from "@/context/LanguageContext";
 
 // ── Assets ───────────────────────────────────────────────────────────────────
 const imgBg = "/figma-assets/bg-l.webp";
 
+const T: Record<Lang, { heading: string; btnNeo: string; btnMedia: string }> = {
+  pt: {
+    heading: "Vamos juntos transformar o acesso a água e a vida das pessoas.",
+    btnNeo: "Conheça Linha NEO",
+    btnMedia: "Conheça o Acquafy Media",
+  },
+  en: {
+    heading: "Let's together transform access to water and people's lives.",
+    btnNeo: "Discover the NEO Line",
+    btnMedia: "Discover Acquafy Media",
+  },
+  es: {
+    heading: "Juntos transformemos el acceso al agua y la vida de las personas.",
+    btnNeo: "Conoce la Línea NEO",
+    btnMedia: "Conoce Acquafy Media",
+  },
+};
+
 export default function CtaBannerContato() {
+  const { lang } = useLang();
+  const t = T[lang];
+
   return (
     <section className="bg-white flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
       <div className="border border-[#cbd0d4] flex flex-col lg:flex-row gap-[20px] items-center justify-center max-w-[1400px] overflow-hidden px-[20px] lg:px-[80px] py-[40px] relative rounded-[16px] w-full">
@@ -19,7 +43,7 @@ export default function CtaBannerContato() {
         {/* Texto esquerdo */}
         <div className="relative flex flex-[1_0_0] flex-col items-center justify-center min-w-[240px]">
           <h2 className="font-['Avenir_LT_Pro:95_Black'] text-[32px] leading-[39px] text-white w-full text-center lg:text-left">
-            Vamos juntos transformar o acesso a água e a vida das pessoas.
+            {t.heading}
           </h2>
         </div>
 
@@ -28,13 +52,13 @@ export default function CtaBannerContato() {
           {/* Botão outline — bg-white, texto azul */}
           <Link href="/linha-neo" className="flex-1 min-w-[200px]">
             <BtnAzulOutArrow className="w-full min-h-[56px]">
-              Conheça Linha NEO
+              {t.btnNeo}
             </BtnAzulOutArrow>
           </Link>
           {/* Botão sólido — bg azul, texto branco */}
           <Link href="/neo-media" className="flex-1 min-w-[200px]">
             <BtnAzulBaseArrow className="w-full min-h-[56px]">
-              Conheça o Acquafy Media
+              {t.btnMedia}
             </BtnAzulBaseArrow>
           </Link>
         </div>

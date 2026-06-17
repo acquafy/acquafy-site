@@ -1,3 +1,6 @@
+"use client";
+import { useLang, type Lang } from "@/context/LanguageContext";
+
 function IconDownload() {
   return (
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -26,64 +29,198 @@ const tipoBadge: Record<DownloadFile["tipo"], { bg: string; color: string }> = {
   APP: { bg: "#dcfce7", color: "#15803d" },
 };
 
-const categorias: DownloadCategoria[] = [
-  {
-    titulo: "Manuais",
-    scroll: true,
-    arquivos: [
-      { nome: "Manual do Usuário — Neo UP",              tipo: "PDF", tamanho: "7 MB",  href: "#" },
-      { nome: "Manual do Usuário — Neo FIT",             tipo: "PDF", tamanho: "8 MB",  href: "#" },
-      { nome: "Manual do Usuário — Neo SMART H₂",       tipo: "PDF", tamanho: "9 MB",  href: "#" },
-      { nome: "Manual do Usuário — Neo TOUCH",           tipo: "PDF", tamanho: "8 MB",  href: "#" },
-      { nome: "Manual do Usuário — Neo PLUS",            tipo: "PDF", tamanho: "9 MB",  href: "#" },
-      { nome: "Manual do Usuário — Neo ULTRA",           tipo: "PDF", tamanho: "10 MB", href: "#" },
-      { nome: "Manual do Usuário — Neo ULTRA SPARK",    tipo: "PDF", tamanho: "10 MB", href: "#" },
-      { nome: "Manual do Usuário — Neo ULTRA SPARK H₂", tipo: "PDF", tamanho: "10 MB", href: "#" },
-      { nome: "Manual do Usuário — Neo MAX",             tipo: "PDF", tamanho: "11 MB", href: "#" },
-      { nome: "Manual do Usuário — Neo MAX SPARK",      tipo: "PDF", tamanho: "11 MB", href: "#" },
-      { nome: "Manual do Usuário — Neo MAX SPARK H₂",   tipo: "PDF", tamanho: "11 MB", href: "#" },
-      { nome: "Manual do Usuário — Neo INFINITY",        tipo: "PDF", tamanho: "12 MB", href: "#" },
-      { nome: "Manual do Usuário — Neo INFINITY SPARK",      tipo: "PDF", tamanho: "12 MB", href: "#" },
-      { nome: "Manual do Usuário — Neo INFINITY SPARK H₂",   tipo: "PDF", tamanho: "12 MB", href: "#" },
-      { nome: "Manual do Usuário — Neo PRESTIGE",        tipo: "PDF", tamanho: "12 MB", href: "#" },
-      { nome: "Manual do Usuário — Neo PRESTIGE SPARK",      tipo: "PDF", tamanho: "12 MB", href: "#" },
-      { nome: "Manual do Usuário — Neo PRESTIGE SPARK H₂",   tipo: "PDF", tamanho: "12 MB", href: "#" },
-      { nome: "Manual do Usuário — Neo PRIME",           tipo: "PDF", tamanho: "12 MB", href: "#" },
-      { nome: "Manual do Usuário — Neo PRIME SPARK",         tipo: "PDF", tamanho: "12 MB", href: "#" },
-      { nome: "Manual do Usuário — Neo PRIME SPARK H₂",      tipo: "PDF", tamanho: "12 MB", href: "#" },
+const T: Record<Lang, {
+  heading: string;
+  subheading: string;
+  categorias: DownloadCategoria[];
+}> = {
+  pt: {
+    heading: "Downloads",
+    subheading: "Manuais, guias, softwares e documentos disponíveis para download.",
+    categorias: [
+      {
+        titulo: "Manuais",
+        scroll: true,
+        arquivos: [
+          { nome: "Manual do Usuário — Neo UP",                    tipo: "PDF", tamanho: "7 MB",  href: "#" },
+          { nome: "Manual do Usuário — Neo FIT",                   tipo: "PDF", tamanho: "8 MB",  href: "#" },
+          { nome: "Manual do Usuário — Neo SMART H₂",             tipo: "PDF", tamanho: "9 MB",  href: "#" },
+          { nome: "Manual do Usuário — Neo TOUCH",                 tipo: "PDF", tamanho: "8 MB",  href: "#" },
+          { nome: "Manual do Usuário — Neo PLUS",                  tipo: "PDF", tamanho: "9 MB",  href: "#" },
+          { nome: "Manual do Usuário — Neo ULTRA",                 tipo: "PDF", tamanho: "10 MB", href: "#" },
+          { nome: "Manual do Usuário — Neo ULTRA SPARK",           tipo: "PDF", tamanho: "10 MB", href: "#" },
+          { nome: "Manual do Usuário — Neo ULTRA SPARK H₂",       tipo: "PDF", tamanho: "10 MB", href: "#" },
+          { nome: "Manual do Usuário — Neo MAX",                   tipo: "PDF", tamanho: "11 MB", href: "#" },
+          { nome: "Manual do Usuário — Neo MAX SPARK",             tipo: "PDF", tamanho: "11 MB", href: "#" },
+          { nome: "Manual do Usuário — Neo MAX SPARK H₂",         tipo: "PDF", tamanho: "11 MB", href: "#" },
+          { nome: "Manual do Usuário — Neo INFINITY",              tipo: "PDF", tamanho: "12 MB", href: "#" },
+          { nome: "Manual do Usuário — Neo INFINITY SPARK",        tipo: "PDF", tamanho: "12 MB", href: "#" },
+          { nome: "Manual do Usuário — Neo INFINITY SPARK H₂",    tipo: "PDF", tamanho: "12 MB", href: "#" },
+          { nome: "Manual do Usuário — Neo PRESTIGE",              tipo: "PDF", tamanho: "12 MB", href: "#" },
+          { nome: "Manual do Usuário — Neo PRESTIGE SPARK",        tipo: "PDF", tamanho: "12 MB", href: "#" },
+          { nome: "Manual do Usuário — Neo PRESTIGE SPARK H₂",    tipo: "PDF", tamanho: "12 MB", href: "#" },
+          { nome: "Manual do Usuário — Neo PRIME",                 tipo: "PDF", tamanho: "12 MB", href: "#" },
+          { nome: "Manual do Usuário — Neo PRIME SPARK",           tipo: "PDF", tamanho: "12 MB", href: "#" },
+          { nome: "Manual do Usuário — Neo PRIME SPARK H₂",       tipo: "PDF", tamanho: "12 MB", href: "#" },
+        ],
+      },
+      {
+        titulo: "Guias Rápidos",
+        arquivos: [
+          { nome: "Guia de Instalação Rápida",       tipo: "PDF", tamanho: "2 MB",  href: "#" },
+          { nome: "Guia de Manutenção e Limpeza",    tipo: "PDF", tamanho: "3 MB",  href: "#" },
+          { nome: "Primeiros Passos — App Acquafy",  tipo: "PDF", tamanho: "4 MB",  href: "#" },
+          { nome: "Guia do Parceiro Acquafy",        tipo: "PDF", tamanho: "5 MB",  href: "#" },
+          { nome: "Guia de Troca de Filtros",        tipo: "PDF", tamanho: "2 MB",  href: "#" },
+        ],
+      },
+      {
+        titulo: "Softwares",
+        arquivos: [
+          { nome: "App Acquafy — iOS",    tipo: "APP", tamanho: "App Store",  href: "#" },
+          { nome: "App Acquafy — Android", tipo: "APP", tamanho: "Play Store", href: "#" },
+          { nome: "Firmware Neo v2.4.1",  tipo: "ZIP", tamanho: "15 MB",      href: "#" },
+        ],
+      },
+      {
+        titulo: "Documentos",
+        arquivos: [
+          { nome: "Ficha Técnica — Linha Neo",           tipo: "PDF", tamanho: "3 MB",   href: "#" },
+          { nome: "Certificado de Conformidade",         tipo: "PDF", tamanho: "1 MB",   href: "#" },
+          { nome: "Contrato Modelo de Parceria",         tipo: "PDF", tamanho: "2 MB",   href: "#" },
+          { nome: "Política de Garantia Acquafy",        tipo: "PDF", tamanho: "1 MB",   href: "#" },
+          { nome: "Declaração de Conformidade ANATEL",   tipo: "PDF", tamanho: "500 KB", href: "#" },
+        ],
+      },
     ],
   },
-  {
-    titulo: "Guias Rápidos",
-    arquivos: [
-      { nome: "Guia de Instalação Rápida",       tipo: "PDF", tamanho: "2 MB",  href: "#" },
-      { nome: "Guia de Manutenção e Limpeza",    tipo: "PDF", tamanho: "3 MB",  href: "#" },
-      { nome: "Primeiros Passos — App Acquafy",  tipo: "PDF", tamanho: "4 MB",  href: "#" },
-      { nome: "Guia do Parceiro Acquafy",        tipo: "PDF", tamanho: "5 MB",  href: "#" },
-      { nome: "Guia de Troca de Filtros",        tipo: "PDF", tamanho: "2 MB",  href: "#" },
+  en: {
+    heading: "Downloads",
+    subheading: "Manuals, guides, software, and documents available for download.",
+    categorias: [
+      {
+        titulo: "Manuals",
+        scroll: true,
+        arquivos: [
+          { nome: "User Manual — Neo UP",                    tipo: "PDF", tamanho: "7 MB",  href: "#" },
+          { nome: "User Manual — Neo FIT",                   tipo: "PDF", tamanho: "8 MB",  href: "#" },
+          { nome: "User Manual — Neo SMART H₂",             tipo: "PDF", tamanho: "9 MB",  href: "#" },
+          { nome: "User Manual — Neo TOUCH",                 tipo: "PDF", tamanho: "8 MB",  href: "#" },
+          { nome: "User Manual — Neo PLUS",                  tipo: "PDF", tamanho: "9 MB",  href: "#" },
+          { nome: "User Manual — Neo ULTRA",                 tipo: "PDF", tamanho: "10 MB", href: "#" },
+          { nome: "User Manual — Neo ULTRA SPARK",           tipo: "PDF", tamanho: "10 MB", href: "#" },
+          { nome: "User Manual — Neo ULTRA SPARK H₂",       tipo: "PDF", tamanho: "10 MB", href: "#" },
+          { nome: "User Manual — Neo MAX",                   tipo: "PDF", tamanho: "11 MB", href: "#" },
+          { nome: "User Manual — Neo MAX SPARK",             tipo: "PDF", tamanho: "11 MB", href: "#" },
+          { nome: "User Manual — Neo MAX SPARK H₂",         tipo: "PDF", tamanho: "11 MB", href: "#" },
+          { nome: "User Manual — Neo INFINITY",              tipo: "PDF", tamanho: "12 MB", href: "#" },
+          { nome: "User Manual — Neo INFINITY SPARK",        tipo: "PDF", tamanho: "12 MB", href: "#" },
+          { nome: "User Manual — Neo INFINITY SPARK H₂",    tipo: "PDF", tamanho: "12 MB", href: "#" },
+          { nome: "User Manual — Neo PRESTIGE",              tipo: "PDF", tamanho: "12 MB", href: "#" },
+          { nome: "User Manual — Neo PRESTIGE SPARK",        tipo: "PDF", tamanho: "12 MB", href: "#" },
+          { nome: "User Manual — Neo PRESTIGE SPARK H₂",    tipo: "PDF", tamanho: "12 MB", href: "#" },
+          { nome: "User Manual — Neo PRIME",                 tipo: "PDF", tamanho: "12 MB", href: "#" },
+          { nome: "User Manual — Neo PRIME SPARK",           tipo: "PDF", tamanho: "12 MB", href: "#" },
+          { nome: "User Manual — Neo PRIME SPARK H₂",       tipo: "PDF", tamanho: "12 MB", href: "#" },
+        ],
+      },
+      {
+        titulo: "Quick Guides",
+        arquivos: [
+          { nome: "Quick Installation Guide",        tipo: "PDF", tamanho: "2 MB",  href: "#" },
+          { nome: "Maintenance and Cleaning Guide",  tipo: "PDF", tamanho: "3 MB",  href: "#" },
+          { nome: "Getting Started — Acquafy App",   tipo: "PDF", tamanho: "4 MB",  href: "#" },
+          { nome: "Acquafy Partner Guide",           tipo: "PDF", tamanho: "5 MB",  href: "#" },
+          { nome: "Filter Replacement Guide",        tipo: "PDF", tamanho: "2 MB",  href: "#" },
+        ],
+      },
+      {
+        titulo: "Software",
+        arquivos: [
+          { nome: "Acquafy App — iOS",    tipo: "APP", tamanho: "App Store",  href: "#" },
+          { nome: "Acquafy App — Android", tipo: "APP", tamanho: "Play Store", href: "#" },
+          { nome: "Neo Firmware v2.4.1",  tipo: "ZIP", tamanho: "15 MB",      href: "#" },
+        ],
+      },
+      {
+        titulo: "Documents",
+        arquivos: [
+          { nome: "Technical Sheet — Neo Line",         tipo: "PDF", tamanho: "3 MB",   href: "#" },
+          { nome: "Certificate of Conformity",          tipo: "PDF", tamanho: "1 MB",   href: "#" },
+          { nome: "Partnership Agreement Template",     tipo: "PDF", tamanho: "2 MB",   href: "#" },
+          { nome: "Acquafy Warranty Policy",            tipo: "PDF", tamanho: "1 MB",   href: "#" },
+          { nome: "ANATEL Declaration of Conformity",   tipo: "PDF", tamanho: "500 KB", href: "#" },
+        ],
+      },
     ],
   },
-  {
-    titulo: "Softwares",
-    arquivos: [
-      { nome: "App Acquafy — iOS",    tipo: "APP", tamanho: "App Store",  href: "#" },
-      { nome: "App Acquafy — Android", tipo: "APP", tamanho: "Play Store", href: "#" },
-      { nome: "Firmware Neo v2.4.1",  tipo: "ZIP", tamanho: "15 MB",      href: "#" },
+  es: {
+    heading: "Descargas",
+    subheading: "Manuales, guías, software y documentos disponibles para descarga.",
+    categorias: [
+      {
+        titulo: "Manuales",
+        scroll: true,
+        arquivos: [
+          { nome: "Manual de Usuario — Neo UP",                    tipo: "PDF", tamanho: "7 MB",  href: "#" },
+          { nome: "Manual de Usuario — Neo FIT",                   tipo: "PDF", tamanho: "8 MB",  href: "#" },
+          { nome: "Manual de Usuario — Neo SMART H₂",             tipo: "PDF", tamanho: "9 MB",  href: "#" },
+          { nome: "Manual de Usuario — Neo TOUCH",                 tipo: "PDF", tamanho: "8 MB",  href: "#" },
+          { nome: "Manual de Usuario — Neo PLUS",                  tipo: "PDF", tamanho: "9 MB",  href: "#" },
+          { nome: "Manual de Usuario — Neo ULTRA",                 tipo: "PDF", tamanho: "10 MB", href: "#" },
+          { nome: "Manual de Usuario — Neo ULTRA SPARK",           tipo: "PDF", tamanho: "10 MB", href: "#" },
+          { nome: "Manual de Usuario — Neo ULTRA SPARK H₂",       tipo: "PDF", tamanho: "10 MB", href: "#" },
+          { nome: "Manual de Usuario — Neo MAX",                   tipo: "PDF", tamanho: "11 MB", href: "#" },
+          { nome: "Manual de Usuario — Neo MAX SPARK",             tipo: "PDF", tamanho: "11 MB", href: "#" },
+          { nome: "Manual de Usuario — Neo MAX SPARK H₂",         tipo: "PDF", tamanho: "11 MB", href: "#" },
+          { nome: "Manual de Usuario — Neo INFINITY",              tipo: "PDF", tamanho: "12 MB", href: "#" },
+          { nome: "Manual de Usuario — Neo INFINITY SPARK",        tipo: "PDF", tamanho: "12 MB", href: "#" },
+          { nome: "Manual de Usuario — Neo INFINITY SPARK H₂",    tipo: "PDF", tamanho: "12 MB", href: "#" },
+          { nome: "Manual de Usuario — Neo PRESTIGE",              tipo: "PDF", tamanho: "12 MB", href: "#" },
+          { nome: "Manual de Usuario — Neo PRESTIGE SPARK",        tipo: "PDF", tamanho: "12 MB", href: "#" },
+          { nome: "Manual de Usuario — Neo PRESTIGE SPARK H₂",    tipo: "PDF", tamanho: "12 MB", href: "#" },
+          { nome: "Manual de Usuario — Neo PRIME",                 tipo: "PDF", tamanho: "12 MB", href: "#" },
+          { nome: "Manual de Usuario — Neo PRIME SPARK",           tipo: "PDF", tamanho: "12 MB", href: "#" },
+          { nome: "Manual de Usuario — Neo PRIME SPARK H₂",       tipo: "PDF", tamanho: "12 MB", href: "#" },
+        ],
+      },
+      {
+        titulo: "Guías Rápidas",
+        arquivos: [
+          { nome: "Guía de Instalación Rápida",          tipo: "PDF", tamanho: "2 MB",  href: "#" },
+          { nome: "Guía de Mantenimiento y Limpieza",    tipo: "PDF", tamanho: "3 MB",  href: "#" },
+          { nome: "Primeros Pasos — App Acquafy",        tipo: "PDF", tamanho: "4 MB",  href: "#" },
+          { nome: "Guía del Socio Acquafy",              tipo: "PDF", tamanho: "5 MB",  href: "#" },
+          { nome: "Guía de Cambio de Filtros",           tipo: "PDF", tamanho: "2 MB",  href: "#" },
+        ],
+      },
+      {
+        titulo: "Software",
+        arquivos: [
+          { nome: "App Acquafy — iOS",     tipo: "APP", tamanho: "App Store",  href: "#" },
+          { nome: "App Acquafy — Android", tipo: "APP", tamanho: "Play Store", href: "#" },
+          { nome: "Firmware Neo v2.4.1",   tipo: "ZIP", tamanho: "15 MB",      href: "#" },
+        ],
+      },
+      {
+        titulo: "Documentos",
+        arquivos: [
+          { nome: "Ficha Técnica — Línea Neo",           tipo: "PDF", tamanho: "3 MB",   href: "#" },
+          { nome: "Certificado de Conformidad",          tipo: "PDF", tamanho: "1 MB",   href: "#" },
+          { nome: "Contrato Modelo de Asociación",       tipo: "PDF", tamanho: "2 MB",   href: "#" },
+          { nome: "Política de Garantía Acquafy",        tipo: "PDF", tamanho: "1 MB",   href: "#" },
+          { nome: "Declaración de Conformidad ANATEL",   tipo: "PDF", tamanho: "500 KB", href: "#" },
+        ],
+      },
     ],
   },
-  {
-    titulo: "Documentos",
-    arquivos: [
-      { nome: "Ficha Técnica — Linha Neo",           tipo: "PDF", tamanho: "3 MB",   href: "#" },
-      { nome: "Certificado de Conformidade",         tipo: "PDF", tamanho: "1 MB",   href: "#" },
-      { nome: "Contrato Modelo de Parceria",         tipo: "PDF", tamanho: "2 MB",   href: "#" },
-      { nome: "Política de Garantia Acquafy",        tipo: "PDF", tamanho: "1 MB",   href: "#" },
-      { nome: "Declaração de Conformidade ANATEL",   tipo: "PDF", tamanho: "500 KB", href: "#" },
-    ],
-  },
-];
+};
 
 export default function DownloadsBK() {
+  const { lang } = useLang();
+  const t = T[lang];
+  const categorias = t.categorias;
+
   return (
     <section
       id="downloads"
@@ -94,10 +231,10 @@ export default function DownloadsBK() {
         {/* Header */}
         <div className="flex flex-col gap-[10px] items-start text-center w-full">
           <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] w-full">
-            Downloads
+            {t.heading}
           </h2>
           <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[22px] text-[#333] w-full">
-            Manuais, guias, softwares e documentos disponíveis para download.
+            {t.subheading}
           </p>
         </div>
 

@@ -1,4 +1,6 @@
-﻿import FigmaIcon from "./FigmaIcon";
+"use client";
+import FigmaIcon from "./FigmaIcon";
+import { useLang, type Lang } from "@/context/LanguageContext";
 
 const imgLocation  = "/figma-assets/icon-location-a.svg";
 const imgLanguage  = "/figma-assets/icon-language-b.svg";
@@ -7,22 +9,67 @@ const imgMoney     = "/figma-assets/icon-money-e.svg";
 const imgCountries = "/figma-assets/icon-countries.svg";
 const imgMap       = "/figma-assets/map-image.webp";
 
-const stats = [
-  { icon: imgLocation,  iconW: 42,    iconH: 42, value: "180+",  desc: "Presente em + de 180 países" },
-  { icon: imgLanguage,  iconW: 70,    iconH: 70, value: "16",    desc: "Disponível em 16 idiomas" },
-  { icon: imgEcossist,  iconW: 38,    iconH: 40, value: "100%",  desc: "Operação 100% global" },
-  { icon: imgMoney,     iconW: 33.33, iconH: 30, value: "100%",  desc: "Modelo de receita 100% recorrente" },
-  { icon: imgCountries, iconW: 42,    iconH: 42, value: "Multi", desc: "Gestão multi-região e multi-moeda" },
+const statIcons = [
+  { icon: imgLocation,  iconW: 42,    iconH: 42, value: "180+" },
+  { icon: imgLanguage,  iconW: 70,    iconH: 70, value: "16"   },
+  { icon: imgEcossist,  iconW: 38,    iconH: 40, value: "100%" },
+  { icon: imgMoney,     iconW: 33.33, iconH: 30, value: "100%" },
+  { icon: imgCountries, iconW: 42,    iconH: 42, value: "Multi" },
 ];
 
+const T: Record<Lang, {
+  heading1: string;
+  heading2: string;
+  descs: string[];
+}> = {
+  pt: {
+    heading1: "Operação ",
+    heading2: "global e escalável",
+    descs: [
+      "Presente em + de 180 países",
+      "Disponível em 16 idiomas",
+      "Operação 100% global",
+      "Modelo de receita 100% recorrente",
+      "Gestão multi-região e multi-moeda",
+    ],
+  },
+  en: {
+    heading1: "Global and ",
+    heading2: "scalable operation",
+    descs: [
+      "Present in 180+ countries",
+      "Available in 16 languages",
+      "100% global operation",
+      "100% recurring revenue model",
+      "Multi-region and multi-currency management",
+    ],
+  },
+  es: {
+    heading1: "Operación ",
+    heading2: "global y escalable",
+    descs: [
+      "Presente en más de 180 países",
+      "Disponible en 16 idiomas",
+      "Operación 100% global",
+      "Modelo de ingresos 100% recurrente",
+      "Gestión multi-región y multi-moneda",
+    ],
+  },
+};
+
 export default function PlatformGlobal() {
+  const { lang } = useLang();
+  const t = T[lang];
+
+  const stats = statIcons.map((ico, i) => ({ ...ico, desc: t.descs[i] }));
+
   return (
     <section className="bg-[#f6f9fe] flex flex-col items-center justify-center overflow-hidden px-[20px] py-[40px] relative w-full">
       <div className="flex flex-col gap-[60px] items-start max-w-[1400px] relative w-full">
 
         <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-center w-full">
-          <span className="text-[#1f2e91]">Operação </span>
-          <span className="text-[#0569ff]">global e escalável</span>
+          <span className="text-[#1f2e91]">{t.heading1}</span>
+          <span className="text-[#0569ff]">{t.heading2}</span>
         </h2>
 
         <div className="flex flex-col win-1280:flex-row win-1280:flex-wrap gap-[20px] items-center justify-center w-full">

@@ -1,4 +1,6 @@
+"use client";
 import FigmaIcon from "./FigmaIcon";
+import { useLang, type Lang } from "@/context/LanguageContext";
 
 const imgBg           = "/figma-assets/bg-a.webp";
 const imgShield       = "/figma-assets/icon-shield-b.svg";
@@ -6,34 +8,51 @@ const imgFastSupport  = "/figma-assets/icon-fast-support.svg";
 const imgRating       = "/figma-assets/icon-rating.svg";
 const imgPlanet       = "/figma-assets/icon-planet-a.svg";
 
-const diferenciais = [
-  {
-    icon: imgShield,
-    aspectW: 26.14, aspectH: 30,
-    title: "Atendimento especializado",
-    desc: "Equipe treinada e certificada para oferecer o melhor suporte.",
+const T: Record<Lang, {
+  diferenciais: { title: string; desc: string }[];
+}> = {
+  pt: {
+    diferenciais: [
+      { title: "Atendimento especializado", desc: "Equipe treinada e certificada para oferecer o melhor suporte." },
+      { title: "Respostas rápidas",          desc: "Agilidade no atendimento e soluções eficientes." },
+      { title: "Satisfação garantida",       desc: "Compromisso com a sua satisfação e sucesso." },
+      { title: "Suporte global",             desc: "Atendimento para clientes e parceiros em 16 idiomas." },
+    ],
   },
-  {
-    icon: imgFastSupport,
-    aspectW: 30, aspectH: 30,
-    title: "Respostas rápidas",
-    desc: "Agilidade no atendimento e soluções eficientes.",
+  en: {
+    diferenciais: [
+      { title: "Specialized support",    desc: "Trained and certified team to provide the best support." },
+      { title: "Fast responses",         desc: "Agile service and efficient solutions." },
+      { title: "Guaranteed satisfaction", desc: "Commitment to your satisfaction and success." },
+      { title: "Global support",         desc: "Service for clients and partners in 16 languages." },
+    ],
   },
-  {
-    icon: imgRating,
-    aspectW: 480.3, aspectH: 453,
-    title: "Satisfação garantida",
-    desc: "Compromisso com a sua satisfação e sucesso.",
+  es: {
+    diferenciais: [
+      { title: "Atención especializada", desc: "Equipo capacitado y certificado para ofrecer el mejor soporte." },
+      { title: "Respuestas rápidas",     desc: "Agilidad en la atención y soluciones eficientes." },
+      { title: "Satisfacción garantizada", desc: "Compromiso con tu satisfacción y éxito." },
+      { title: "Soporte global",         desc: "Atención para clientes y socios en 16 idiomas." },
+    ],
   },
-  {
-    icon: imgPlanet,
-    aspectW: 30, aspectH: 30,
-    title: "Suporte global",
-    desc: "Atendimento para clientes e parceiros em 16 idiomas.",
-  },
-];
+};
+
+const icons = [imgShield, imgFastSupport, imgRating, imgPlanet];
+const aspectWs = [26.14, 30, 480.3, 30];
+const aspectHs = [30, 30, 453, 30];
 
 export default function DiferenciaisSuporte() {
+  const { lang } = useLang();
+  const t = T[lang];
+
+  const diferenciais = t.diferenciais.map((item, i) => ({
+    icon: icons[i],
+    aspectW: aspectWs[i],
+    aspectH: aspectHs[i],
+    title: item.title,
+    desc: item.desc,
+  }));
+
   return (
     <section className="bg-[#f6f9fe] flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
       <div className="relative flex flex-wrap gap-[20px] items-center justify-center max-w-[1400px] overflow-hidden px-[20px] py-[40px] rounded-[16px] w-full">

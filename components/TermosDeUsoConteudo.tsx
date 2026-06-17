@@ -1,3 +1,84 @@
+"use client";
+
+import { useLang, type Lang } from "@/context/LanguageContext";
+
+// ── Traduções ─────────────────────────────────────────────────────────────────
+
+const T: Record<Lang, {
+  sidebarLabel: string;
+  navItems: { id: string; label: string }[];
+  introP1: React.ReactNode;
+  introP2: string;
+  privacyPolicyLink: string;
+}> = {
+  pt: {
+    sidebarLabel: "Nesta página",
+    navItems: [
+      { id: "aceitacao",        label: "1. Aceitação dos Termos" },
+      { id: "sobre",            label: "2. Sobre a Acquafy" },
+      { id: "uso-permitido",    label: "3. Uso Permitido" },
+      { id: "contas",           label: "4. Contas de Usuário" },
+      { id: "produtos",         label: "5. Produtos e Serviços" },
+      { id: "propriedade",      label: "6. Propriedade Intelectual" },
+      { id: "responsabilidade", label: "7. Limitação de Responsabilidade" },
+      { id: "links",            label: "8. Links de Terceiros" },
+      { id: "privacidade",      label: "9. Privacidade" },
+      { id: "indenizacao",      label: "10. Indenização" },
+      { id: "modificacoes",     label: "11. Modificações" },
+      { id: "rescisao",         label: "12. Rescisão" },
+      { id: "legislacao",       label: "13. Legislação Aplicável" },
+      { id: "contato",          label: "14. Contato" },
+    ],
+    introP1: <>Bem-vindo ao site da <strong>Acquafy Corporation</strong> (&quot;Acquafy&quot;, &quot;nós&quot; ou &quot;nosso&quot;). Ao acessar ou utilizar nosso site, aplicativo, produtos ou serviços, você concorda com estes Termos de Uso. Se não concordar com qualquer parte destes termos, pedimos que não utilize nossos serviços.</>,
+    introP2: "Estes termos constituem um acordo legal entre você (o usuário) e a Acquafy Corporation, empresa constituída nos Estados Unidos e integrante do Interfy Group.",
+    privacyPolicyLink: "Política de Privacidade",
+  },
+  en: {
+    sidebarLabel: "On this page",
+    navItems: [
+      { id: "aceitacao",        label: "1. Acceptance of Terms" },
+      { id: "sobre",            label: "2. About Acquafy" },
+      { id: "uso-permitido",    label: "3. Permitted Use" },
+      { id: "contas",           label: "4. User Accounts" },
+      { id: "produtos",         label: "5. Products and Services" },
+      { id: "propriedade",      label: "6. Intellectual Property" },
+      { id: "responsabilidade", label: "7. Limitation of Liability" },
+      { id: "links",            label: "8. Third-Party Links" },
+      { id: "privacidade",      label: "9. Privacy" },
+      { id: "indenizacao",      label: "10. Indemnification" },
+      { id: "modificacoes",     label: "11. Modifications" },
+      { id: "rescisao",         label: "12. Termination" },
+      { id: "legislacao",       label: "13. Applicable Law" },
+      { id: "contato",          label: "14. Contact" },
+    ],
+    introP1: <>Welcome to the <strong>Acquafy Corporation</strong> website (&quot;Acquafy&quot;, &quot;we&quot; or &quot;our&quot;). By accessing or using our website, app, products or services, you agree to these Terms of Use. If you do not agree with any part of these terms, please do not use our services.</>,
+    introP2: "These terms constitute a legal agreement between you (the user) and Acquafy Corporation, a company incorporated in the United States and part of the Interfy Group.",
+    privacyPolicyLink: "Privacy Policy",
+  },
+  es: {
+    sidebarLabel: "En esta página",
+    navItems: [
+      { id: "aceitacao",        label: "1. Aceptación de los Términos" },
+      { id: "sobre",            label: "2. Sobre Acquafy" },
+      { id: "uso-permitido",    label: "3. Uso Permitido" },
+      { id: "contas",           label: "4. Cuentas de Usuario" },
+      { id: "produtos",         label: "5. Productos y Servicios" },
+      { id: "propriedade",      label: "6. Propiedad Intelectual" },
+      { id: "responsabilidade", label: "7. Limitación de Responsabilidad" },
+      { id: "links",            label: "8. Enlaces de Terceros" },
+      { id: "privacidade",      label: "9. Privacidad" },
+      { id: "indenizacao",      label: "10. Indemnización" },
+      { id: "modificacoes",     label: "11. Modificaciones" },
+      { id: "rescisao",         label: "12. Rescisión" },
+      { id: "legislacao",       label: "13. Legislación Aplicable" },
+      { id: "contato",          label: "14. Contacto" },
+    ],
+    introP1: <>Bienvenido al sitio de <strong>Acquafy Corporation</strong> (&quot;Acquafy&quot;, &quot;nosotros&quot; o &quot;nuestro&quot;). Al acceder o utilizar nuestro sitio, aplicación, productos o servicios, usted acepta estos Términos de Uso. Si no está de acuerdo con alguna parte de estos términos, le pedimos que no utilice nuestros servicios.</>,
+    introP2: "Estos términos constituyen un acuerdo legal entre usted (el usuario) y Acquafy Corporation, empresa constituida en los Estados Unidos e integrante del Interfy Group.",
+    privacyPolicyLink: "Política de Privacidad",
+  },
+};
+
 // ── Tipos ─────────────────────────────────────────────────────────────────────
 
 type SectionProps = {
@@ -67,28 +148,12 @@ function UL({ items }: { items: string[] }) {
   );
 }
 
-// ── Dados da navegação lateral ────────────────────────────────────────────────
-
-const navItems = [
-  { id: "aceitacao",             label: "1. Aceitação dos Termos" },
-  { id: "sobre",                 label: "2. Sobre a Acquafy" },
-  { id: "uso-permitido",         label: "3. Uso Permitido" },
-  { id: "contas",                label: "4. Contas de Usuário" },
-  { id: "produtos",              label: "5. Produtos e Serviços" },
-  { id: "propriedade",           label: "6. Propriedade Intelectual" },
-  { id: "responsabilidade",      label: "7. Limitação de Responsabilidade" },
-  { id: "links",                 label: "8. Links de Terceiros" },
-  { id: "privacidade",           label: "9. Privacidade" },
-  { id: "indenizacao",           label: "10. Indenização" },
-  { id: "modificacoes",          label: "11. Modificações" },
-  { id: "rescisao",              label: "12. Rescisão" },
-  { id: "legislacao",            label: "13. Legislação Aplicável" },
-  { id: "contato",               label: "14. Contato" },
-];
-
 // ── Componente principal ──────────────────────────────────────────────────────
 
 export default function TermosDeUsoConteudo() {
+  const { lang } = useLang();
+  const t = T[lang];
+  const navItems = t.navItems;
   return (
     <div className="flex flex-col items-center px-[20px] py-[80px] w-full bg-white">
       <div className="flex gap-[60px] items-start max-w-[1200px] w-full">
@@ -96,7 +161,7 @@ export default function TermosDeUsoConteudo() {
         {/* ── Sidebar de navegação (desktop only) ────────────────────────── */}
         <aside className="hidden xl:flex flex-col gap-[8px] shrink-0 w-[260px] sticky top-[100px] self-start">
           <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] leading-[16px] text-[#888] uppercase tracking-[1px] mb-[8px]">
-            Nesta página
+            {t.sidebarLabel}
           </p>
           {navItems.map((item) => (
             <a
@@ -117,16 +182,8 @@ export default function TermosDeUsoConteudo() {
             className="flex flex-col gap-[16px] p-[32px] rounded-[16px] border border-[#e0e8ff]"
             style={{ background: "linear-gradient(135deg, #f8faff, #f0f4ff)" }}
           >
-            <P>
-              Bem-vindo ao site da <strong>Acquafy Corporation</strong> (&quot;Acquafy&quot;, &quot;nós&quot; ou &quot;nosso&quot;).
-              Ao acessar ou utilizar nosso site, aplicativo, produtos ou serviços, você
-              concorda com estes Termos de Uso. Se não concordar com qualquer parte destes
-              termos, pedimos que não utilize nossos serviços.
-            </P>
-            <P>
-              Estes termos constituem um acordo legal entre você (o usuário) e a Acquafy
-              Corporation, empresa constituída nos Estados Unidos e integrante do Interfy Group.
-            </P>
+            <P>{t.introP1}</P>
+            <P>{t.introP2}</P>
           </div>
 
           {/* 1. Aceitação */}
@@ -290,7 +347,7 @@ export default function TermosDeUsoConteudo() {
                 href="/politicas-privacidade"
                 className="text-[#0569ff] underline underline-offset-2 hover:text-[#0035c1] transition-colors"
               >
-                Política de Privacidade
+                {t.privacyPolicyLink}
               </a>
               , que integra estes Termos de Uso. Ao utilizar nossos serviços, você consente com
               as práticas de coleta e uso de dados descritas nessa política.

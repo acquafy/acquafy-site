@@ -2,6 +2,7 @@
 import FigmaIcon from "./FigmaIcon";
 import Link from "next/link";
 import { BtnAzulBaseArrow, BtnAzulOutArrow } from "./ui/Buttons";
+import { useLang, type Lang } from "@/context/LanguageContext";
 
 const imgBg     = "/figma-assets/bg-h.webp";
 const imgFrame  = "/figma-assets/frame-image.webp";
@@ -20,22 +21,82 @@ const imgAI     = "/figma-assets/icon-ai-30px-e.svg";
 const imgMoneyL = "/figma-assets/icon-money-large-l.svg";
 const imgWifi   = "/figma-assets/icon-wifi-a.svg";
 
-const stats = [
-  { icon: imgPeople, aspectW: 40.69, aspectH: 40,  title: "Alto fluxo",  sub: "de pessoas" },
-  { icon: imgWater,  aspectW: 40,    aspectH: 40,  title: "Água",         sub: "Premium" },
-  { icon: imgScreen, aspectW: 21,    aspectH: 30,  title: "Tela de 43'", sub: "de alta visibilidade" },
-  { icon: imgMoneyS, aspectW: 472,   aspectH: 440, title: "Receita",      sub: "Recorrente" },
-  { icon: imgMobile, aspectW: 21,    aspectH: 30,  title: "Gestão",       sub: "via App" },
-  { icon: imgLocal,  aspectW: 24.63, aspectH: 30,  title: "Instalação",   sub: "Estratégica" },
-];
-
-const cards = [
-  { icon: imgPlay,   aspectW: 26.67, aspectH: 26.67, label: "Media Network" },
-  { icon: imgQR,     aspectW: 629,   aspectH: 629,   label: "QR Code" },
-  { icon: imgAI,     aspectW: 30,    aspectH: 28,    label: "AI" },
-  { icon: imgMoneyL, aspectW: 33.33, aspectH: 30,    label: "Receita recorrente" },
-  { icon: imgWifi,   aspectW: 30,    aspectH: 20,    label: "App + IoT" },
-];
+const T: Record<Lang, {
+  h2: string;
+  pMobile: string;
+  pDesktop: string;
+  btnPrimary: string;
+  btnSecondary: string;
+  stats: { title: string; sub: string }[];
+  cards: { label: string }[];
+}> = {
+  pt: {
+    h2: "Plataforma Inteligente de Água + Mídia Digital + Receita Recorrente.",
+    pMobile: "O Acquafy Media transforma locais públicos em pontos de hidratação, visibilidade e negócios. Combine água gratuita, anúncios, QR Codes e venda da linha Neo para gerar receita recorrente.",
+    pDesktop: "O Acquafy Media transforma locais públicos em pontos de hidratação, visibilidade e negócios. Combine fornecimento de água gratuita e acessível, exibição de anúncios, QR Codes e venda da linha Neo para gerar valor contínuo para sua operação e para as marcas.",
+    btnPrimary: "Quero o Acquafy Media",
+    btnSecondary: "Falar com especialista",
+    stats: [
+      { title: "Alto fluxo",  sub: "de pessoas" },
+      { title: "Água",        sub: "Premium" },
+      { title: "Tela de 43'", sub: "de alta visibilidade" },
+      { title: "Receita",     sub: "Recorrente" },
+      { title: "Gestão",      sub: "via App" },
+      { title: "Instalação",  sub: "Estratégica" },
+    ],
+    cards: [
+      { label: "Media Network" },
+      { label: "QR Code" },
+      { label: "AI" },
+      { label: "Receita recorrente" },
+      { label: "App + IoT" },
+    ],
+  },
+  en: {
+    h2: "Smart Water Platform + Digital Media + Recurring Revenue.",
+    pMobile: "Acquafy Media transforms public spaces into hydration, visibility, and business hubs. Combine free water, ads, QR Codes, and Neo line sales to generate recurring revenue.",
+    pDesktop: "Acquafy Media transforms public spaces into hydration, visibility, and business hubs. Combine free and accessible water supply, ad display, QR Codes, and Neo line sales to continuously generate value for your operation and brands.",
+    btnPrimary: "I want Acquafy Media",
+    btnSecondary: "Talk to a specialist",
+    stats: [
+      { title: "High traffic",    sub: "of people" },
+      { title: "Water",           sub: "Premium" },
+      { title: "43\" screen",     sub: "high visibility" },
+      { title: "Revenue",         sub: "Recurring" },
+      { title: "Management",      sub: "via App" },
+      { title: "Installation",    sub: "Strategic" },
+    ],
+    cards: [
+      { label: "Media Network" },
+      { label: "QR Code" },
+      { label: "AI" },
+      { label: "Recurring revenue" },
+      { label: "App + IoT" },
+    ],
+  },
+  es: {
+    h2: "Plataforma Inteligente de Agua + Medios Digitales + Ingresos Recurrentes.",
+    pMobile: "Acquafy Media transforma espacios públicos en puntos de hidratación, visibilidad y negocios. Combina agua gratuita, anuncios, códigos QR y ventas de la línea Neo para generar ingresos recurrentes.",
+    pDesktop: "Acquafy Media transforma espacios públicos en puntos de hidratación, visibilidad y negocios. Combina suministro de agua gratuita y accesible, exhibición de anuncios, códigos QR y ventas de la línea Neo para generar valor continuo para tu operación y las marcas.",
+    btnPrimary: "Quiero Acquafy Media",
+    btnSecondary: "Hablar con un especialista",
+    stats: [
+      { title: "Alto tráfico",    sub: "de personas" },
+      { title: "Agua",            sub: "Premium" },
+      { title: "Pantalla de 43\"", sub: "alta visibilidad" },
+      { title: "Ingresos",        sub: "Recurrentes" },
+      { title: "Gestión",         sub: "vía App" },
+      { title: "Instalación",     sub: "Estratégica" },
+    ],
+    cards: [
+      { label: "Media Network" },
+      { label: "QR Code" },
+      { label: "AI" },
+      { label: "Ingresos recurrentes" },
+      { label: "App + IoT" },
+    ],
+  },
+};
 
 const titleGradient = "linear-gradient(130.89deg, #0233c3 6.2%, #9f3df5 93.4%)";
 
@@ -50,7 +111,8 @@ function Label() {
   );
 }
 
-function CardItem({ c, fullWidth }: { c: typeof cards[0]; fullWidth?: boolean }) {
+type CardItemData = { icon: string; aspectW: number; aspectH: number; label: string };
+function CardItem({ c, fullWidth }: { c: CardItemData; fullWidth?: boolean }) {
   return (
     <div
       className={`flex gap-[20px] items-center h-[80px] p-[20px] rounded-[16px] shadow-[0px_4px_8px_0px_rgba(0,0,0,0.25)] shrink-0 ${fullWidth ? "w-full" : "w-[250px]"}`}
@@ -67,6 +129,26 @@ function CardItem({ c, fullWidth }: { c: typeof cards[0]; fullWidth?: boolean })
 }
 
 export default function NeoMediaBanner() {
+  const { lang } = useLang();
+  const t = T[lang];
+
+  const stats = [
+    { icon: imgPeople, aspectW: 40.69, aspectH: 40,  ...t.stats[0] },
+    { icon: imgWater,  aspectW: 40,    aspectH: 40,  ...t.stats[1] },
+    { icon: imgScreen, aspectW: 21,    aspectH: 30,  ...t.stats[2] },
+    { icon: imgMoneyS, aspectW: 472,   aspectH: 440, ...t.stats[3] },
+    { icon: imgMobile, aspectW: 21,    aspectH: 30,  ...t.stats[4] },
+    { icon: imgLocal,  aspectW: 24.63, aspectH: 30,  ...t.stats[5] },
+  ];
+
+  const cards = [
+    { icon: imgPlay,   aspectW: 26.67, aspectH: 26.67, ...t.cards[0] },
+    { icon: imgQR,     aspectW: 629,   aspectH: 629,   ...t.cards[1] },
+    { icon: imgAI,     aspectW: 30,    aspectH: 28,    ...t.cards[2] },
+    { icon: imgMoneyL, aspectW: 33.33, aspectH: 30,    ...t.cards[3] },
+    { icon: imgWifi,   aspectW: 30,    aspectH: 20,    ...t.cards[4] },
+  ];
+
   return (
     <section className="relative flex flex-col items-center gap-[20px] px-[20px] py-[40px] w-full overflow-hidden xl:h-[calc(100vh-80px)]">
       {/* BG foto — apenas >= lg (1024px) */}
@@ -86,19 +168,18 @@ export default function NeoMediaBanner() {
           Acquafy Media
         </h1>
         <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[26px] text-[#1f2e91] text-center">
-          Plataforma Inteligente de Água + Mídia Digital + Receita Recorrente.
+          {t.h2}
         </h2>
         <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#333] text-center">
-          O Acquafy Media transforma locais públicos em pontos de hidratação, visibilidade e negócios.
-          Combine água gratuita, anúncios, QR Codes e venda da linha Neo para gerar receita recorrente.
+          {t.pMobile}
         </p>
         <div className="flex flex-wrap gap-[16px] items-center justify-center w-full">
           <BtnAzulBaseArrow className="flex-[1_0_0] min-w-[190px] min-h-[50px] px-[20px]">
-            Quero o Acquafy Media
+            {t.btnPrimary}
           </BtnAzulBaseArrow>
           <Link href="/contato" className="flex-[1_0_0] min-w-[190px]">
             <BtnAzulOutArrow className="w-full min-h-[50px] px-[20px]">
-              Falar com especialista
+              {t.btnSecondary}
             </BtnAzulOutArrow>
           </Link>
         </div>
@@ -143,20 +224,18 @@ export default function NeoMediaBanner() {
               Acquafy Media
             </h1>
             <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91]">
-              Plataforma Inteligente de Água + Mídia Digital + Receita Recorrente.
+              {t.h2}
             </h2>
             <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#333]">
-              O Acquafy Media transforma locais públicos em pontos de hidratação, visibilidade e negócios.
-              Combine fornecimento de água gratuita e acessível, exibição de anúncios, QR Codes e venda da
-              linha Neo para gerar valor contínuo para sua operação e para as marcas.
+              {t.pDesktop}
             </p>
             {/* Botões — node 3258:5041 */}
             <div className="flex flex-wrap gap-[20px] items-center justify-center xl:justify-start w-full">
               <BtnAzulBaseArrow className="min-h-[50px] px-[20px]">
-                Quero o Acquafy Media
+                {t.btnPrimary}
               </BtnAzulBaseArrow>
               <BtnAzulOutArrow className="min-h-[50px] px-[20px]">
-                Falar com especialista
+                {t.btnSecondary}
               </BtnAzulOutArrow>
             </div>
             {/* Stats — node 3410:13509 */}

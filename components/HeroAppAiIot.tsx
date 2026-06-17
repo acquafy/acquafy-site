@@ -1,5 +1,6 @@
 ﻿"use client";
 import FigmaIcon from "./FigmaIcon";
+import { useLang, type Lang } from "@/context/LanguageContext";
 
 // ── Assets ────────────────────────────────────────────────────────────────────
 const imgBg     = "/figma-assets/bg-i.webp";
@@ -10,24 +11,52 @@ const imgIoT    = "/figma-assets/icon-iot-main.svg";
 const imgArrowW = "/figma-assets/icon-arrow-white-a.svg";
 const imgArrowB = "/figma-assets/icon-arrow-blue-outline-a.svg";
 
-// ── Dados ─────────────────────────────────────────────────────────────────────
-const badges = [
-  {
-    icon: imgMobile, aspectW: 21, aspectH: 30, bg: "#0233c3",
-    title: "App Acquafy",
-    desc: "Controle remoto, status do equipamento e suporte na palma da mão.",
+// ── Traduções ─────────────────────────────────────────────────────────────────
+const T: Record<Lang, {
+  label: string;
+  description: string;
+  badges: { title: string; desc: string }[];
+  btnPrimary: string;
+  btnSecondary: string;
+  mockupAlt: string;
+}> = {
+  pt: {
+    label: "ECOSSISTEMA CONECTADO ACQUAFY",
+    description: "Controle seus purificadores, monitore dispositivos, receba alertas inteligentes e gerencie toda a operação em uma experiência integrada.",
+    badges: [
+      { title: "App Acquafy", desc: "Controle remoto, status do equipamento e suporte na palma da mão." },
+      { title: "Acquafy AI", desc: "Inteligência artificial para insights, automações e decisões mais rápidas." },
+      { title: "IoT & Dispositivos", desc: "Sensores, conectividade e monitoramento em tempo real." },
+    ],
+    btnPrimary: "Baixar o App",
+    btnSecondary: "Explorar recursos",
+    mockupAlt: "App Acquafy — tablet e smartphone",
   },
-  {
-    icon: imgBrain, aspectW: 30, aspectH: 30, bg: "#6e54ef",
-    title: "Acquafy AI",
-    desc: "Inteligência artificial para insights, automações e decisões mais rápidas.",
+  en: {
+    label: "ACQUAFY CONNECTED ECOSYSTEM",
+    description: "Control your purifiers, monitor devices, receive smart alerts and manage the entire operation in an integrated experience.",
+    badges: [
+      { title: "App Acquafy", desc: "Remote control, equipment status and support at your fingertips." },
+      { title: "Acquafy AI", desc: "Artificial intelligence for insights, automation and faster decisions." },
+      { title: "IoT & Devices", desc: "Sensors, connectivity and real-time monitoring." },
+    ],
+    btnPrimary: "Download the App",
+    btnSecondary: "Explore features",
+    mockupAlt: "App Acquafy — tablet and smartphone",
   },
-  {
-    icon: imgIoT, aspectW: 27.5, aspectH: 18.8, bg: "#36ae5c",
-    title: "IoT & Dispositivos",
-    desc: "Sensores, conectividade e monitoramento em tempo real.",
+  es: {
+    label: "ECOSISTEMA CONECTADO ACQUAFY",
+    description: "Controla tus purificadores, monitorea dispositivos, recibe alertas inteligentes y gestiona toda la operación en una experiencia integrada.",
+    badges: [
+      { title: "App Acquafy", desc: "Control remoto, estado del equipo y soporte en la palma de la mano." },
+      { title: "Acquafy AI", desc: "Inteligencia artificial para insights, automatizaciones y decisiones más rápidas." },
+      { title: "IoT & Dispositivos", desc: "Sensores, conectividad y monitoreo en tiempo real." },
+    ],
+    btnPrimary: "Descargar la App",
+    btnSecondary: "Explorar recursos",
+    mockupAlt: "App Acquafy — tablet y smartphone",
   },
-];
+};
 
 /*
   BREAKPOINTS (tailwind.config.ts)
@@ -42,6 +71,15 @@ const badges = [
   win-1280 (≥ 1280px) : Figma TELA TOTAL   — bg-image, h-[875px], badges h-[217px]
 */
 export default function HeroAppAiIot() {
+  const { lang } = useLang();
+  const t = T[lang];
+
+  const badges = [
+    { icon: imgMobile, aspectW: 21, aspectH: 30, bg: "#0233c3", title: t.badges[0].title, desc: t.badges[0].desc },
+    { icon: imgBrain,  aspectW: 30, aspectH: 30, bg: "#6e54ef", title: t.badges[1].title, desc: t.badges[1].desc },
+    { icon: imgIoT,    aspectW: 27.5, aspectH: 18.8, bg: "#36ae5c", title: t.badges[2].title, desc: t.badges[2].desc },
+  ];
+
   return (
     // ── SECTION ──────────────────────────────────────────────────────────────
     // Base    : bg cinza, padding, altura automática
@@ -85,7 +123,7 @@ export default function HeroAppAiIot() {
           {/* Label pill */}
           <div className="bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center max-w-[290px] px-[12px] py-[8px] rounded-full shrink-0 w-full">
             <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] whitespace-nowrap">
-              ECOSSISTEMA CONECTADO ACQUAFY
+              {t.label}
             </span>
           </div>
 
@@ -107,7 +145,7 @@ export default function HeroAppAiIot() {
               win-1024 : alinhada à esquerda
           */}
           <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#333] w-full text-center win-1024:text-left">
-            Controle seus purificadores, monitore dispositivos, receba alertas inteligentes e gerencie toda a operação em uma experiência integrada.
+            {t.description}
           </p>
 
           {/* ── BADGE-CARDS ────────────────────────────────────────────────
@@ -166,7 +204,7 @@ export default function HeroAppAiIot() {
               "min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer",
             ].join(" ")}>
               <span className="font-['Articulat_CF:Bold'] text-[16px] text-white flex-1 text-center">
-                Baixar o App
+                {t.btnPrimary}
               </span>
               <FigmaIcon src={imgArrowW} size={9} aspectW={11.2} aspectH={8.84} />
             </button>
@@ -178,7 +216,7 @@ export default function HeroAppAiIot() {
               "min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer",
             ].join(" ")}>
               <span className="font-['Articulat_CF:Bold'] text-[16px] text-[#0233c3] group-hover:text-white transition-colors flex-1 text-center">
-                Explorar recursos
+                {t.btnSecondary}
               </span>
               <div className="relative shrink-0" style={{ width: 9, height: 9 }}>
                 <div className="absolute inset-0 opacity-100 group-hover:opacity-0 transition-opacity duration-150">
@@ -200,7 +238,7 @@ export default function HeroAppAiIot() {
         <div className="win-1280:hidden rounded-[16px] overflow-clip h-[481px] min-w-[280px] w-full win-1024:flex-[1_0_0]">
           <img
             src={imgMockup}
-            alt="App Acquafy — tablet e smartphone"
+            alt={t.mockupAlt}
             className="w-full h-full object-cover"
           />
         </div>

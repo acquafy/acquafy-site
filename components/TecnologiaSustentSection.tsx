@@ -1,6 +1,9 @@
-﻿import Link from "next/link";
+﻿"use client";
+
+import Link from "next/link";
 import FigmaIcon from "./FigmaIcon";
 import { BtnVerdeOutArrow } from "./ui/Buttons";
+import { useLang, type Lang } from "@/context/LanguageContext";
 
 // ── Assets ───────────────────────────────────────────────────────────────────
 const imgBg          = "/figma-assets/ts-sustent-bg.webp";         // section bg
@@ -15,35 +18,73 @@ const imgStatsAgua      = "/figma-assets/ts-icon-stats-agua.svg";       // 40×4
 const imgStatsPlanta    = "/figma-assets/ts-icon-stats-planta.svg";     // 335.36×361.50
 const imgStatsPlanetWeb = "/figma-assets/ts-icon-stats-planet-web.svg"; // 30×30
 
-const sustCards = [
-  {
-    icon: imgPlastico,    aspectW: 405, aspectH: 643,
-    title: "Menos plástico descartável",
-    description: "Reduzimos milhões de garrafas plásticas ao oferecer água pura acessível em locais estratégicos.",
+const T: Record<Lang, {
+  infoTitle: string;
+  infoParagraph: string;
+  infoCta: string;
+  sustCards: { icon: string; aspectW: number; aspectH: number; title: string; description: string }[];
+  stats: { value: string; label: string; icon: string; aspectW: number; aspectH: number }[];
+  ctaTitle: string;
+  ctaBtn: string;
+}> = {
+  pt: {
+    infoTitle: "Sustentabilidade em cada gota",
+    infoParagraph: "Acreditamos que a tecnologia deve caminhar junto com a responsabilidade ambiental. Por isso, nossas soluções são projetadas para reduzir o consumo de recursos, eliminar plásticos descartáveis e gerar impacto positivo real.",
+    infoCta: "Conheça nossas iniciativas sustentáveis",
+    sustCards: [
+      { icon: imgPlastico, aspectW: 405, aspectH: 643, title: "Menos plástico descartável", description: "Reduzimos milhões de garrafas plásticas ao oferecer água pura acessível em locais estratégicos." },
+      { icon: imgEnergia, aspectW: 492, aspectH: 492, title: "Consumo consciente de energia", description: "Equipamentos eficientes e inteligentes que otimizam o consumo de energia." },
+      { icon: imgReciclavel, aspectW: 30, aspectH: 30, title: "Materiais recicláveis e duráveis", description: "Componentes de alta qualidade recicláveis e projetados para longa vida útil." },
+      { icon: imgPreservAgua, aspectW: 643, aspectH: 631, title: "Preservação da água", description: "Tecnologias que economizam água em cada etapa do processo de purificação." },
+    ],
+    stats: [
+      { value: "+50M",        label: "pessoas impactadas positivamente",       icon: imgStatsPessoas,   aspectW: 43.86,  aspectH: 40.50  },
+      { value: "+2.000",      label: "toneladas de plástico evitadas por ano", icon: imgStatsAgua,      aspectW: 40,     aspectH: 40     },
+      { value: "+15M",        label: "litros de água economizados por ano",    icon: imgStatsPlanta,    aspectW: 335.36, aspectH: 361.50 },
+      { value: "+180 países", label: "impactados e em expansão",               icon: imgStatsPlanetWeb, aspectW: 30,     aspectH: 30     },
+    ],
+    ctaTitle: "Inovação que cuida de pessoas e do planeta ao mesmo tempo.",
+    ctaBtn: "Faça parte dessa transformação",
   },
-  {
-    icon: imgEnergia,     aspectW: 492, aspectH: 492,
-    title: "Consumo consciente de energia",
-    description: "Equipamentos eficientes e inteligentes que otimizam o consumo de energia.",
+  en: {
+    infoTitle: "Sustainability in every drop",
+    infoParagraph: "We believe technology must go hand in hand with environmental responsibility. That is why our solutions are designed to reduce resource consumption, eliminate disposable plastics and generate real positive impact.",
+    infoCta: "Discover our sustainable initiatives",
+    sustCards: [
+      { icon: imgPlastico, aspectW: 405, aspectH: 643, title: "Less disposable plastic", description: "We reduce millions of plastic bottles by offering accessible pure water in strategic locations." },
+      { icon: imgEnergia, aspectW: 492, aspectH: 492, title: "Conscious energy consumption", description: "Efficient and intelligent equipment that optimizes energy consumption." },
+      { icon: imgReciclavel, aspectW: 30, aspectH: 30, title: "Recyclable and durable materials", description: "High-quality recyclable components designed for a long service life." },
+      { icon: imgPreservAgua, aspectW: 643, aspectH: 631, title: "Water preservation", description: "Technologies that save water at every stage of the purification process." },
+    ],
+    stats: [
+      { value: "+50M",          label: "people positively impacted",             icon: imgStatsPessoas,   aspectW: 43.86,  aspectH: 40.50  },
+      { value: "+2,000",        label: "tons of plastic avoided per year",        icon: imgStatsAgua,      aspectW: 40,     aspectH: 40     },
+      { value: "+15M",          label: "liters of water saved per year",          icon: imgStatsPlanta,    aspectW: 335.36, aspectH: 361.50 },
+      { value: "+180 countries", label: "impacted and expanding",                 icon: imgStatsPlanetWeb, aspectW: 30,     aspectH: 30     },
+    ],
+    ctaTitle: "Innovation that takes care of people and the planet at the same time.",
+    ctaBtn: "Be part of this transformation",
   },
-  {
-    icon: imgReciclavel,  aspectW: 30,  aspectH: 30,
-    title: "Materiais recicláveis e duráveis",
-    description: "Componentes de alta qualidade recicláveis e projetados para longa vida útil.",
+  es: {
+    infoTitle: "Sostenibilidad en cada gota",
+    infoParagraph: "Creemos que la tecnología debe ir de la mano con la responsabilidad ambiental. Por eso, nuestras soluciones están diseñadas para reducir el consumo de recursos, eliminar plásticos desechables y generar un impacto positivo real.",
+    infoCta: "Conoce nuestras iniciativas sostenibles",
+    sustCards: [
+      { icon: imgPlastico, aspectW: 405, aspectH: 643, title: "Menos plástico desechable", description: "Reducimos millones de botellas plásticas al ofrecer agua pura accesible en lugares estratégicos." },
+      { icon: imgEnergia, aspectW: 492, aspectH: 492, title: "Consumo consciente de energía", description: "Equipos eficientes e inteligentes que optimizan el consumo de energía." },
+      { icon: imgReciclavel, aspectW: 30, aspectH: 30, title: "Materiales reciclables y duraderos", description: "Componentes de alta calidad reciclables y diseñados para larga vida útil." },
+      { icon: imgPreservAgua, aspectW: 643, aspectH: 631, title: "Preservación del agua", description: "Tecnologías que ahorran agua en cada etapa del proceso de purificación." },
+    ],
+    stats: [
+      { value: "+50M",          label: "personas impactadas positivamente",       icon: imgStatsPessoas,   aspectW: 43.86,  aspectH: 40.50  },
+      { value: "+2.000",        label: "toneladas de plástico evitadas por año",  icon: imgStatsAgua,      aspectW: 40,     aspectH: 40     },
+      { value: "+15M",          label: "litros de agua ahorrados por año",        icon: imgStatsPlanta,    aspectW: 335.36, aspectH: 361.50 },
+      { value: "+180 países",   label: "impactados y en expansión",               icon: imgStatsPlanetWeb, aspectW: 30,     aspectH: 30     },
+    ],
+    ctaTitle: "Innovación que cuida a las personas y al planeta al mismo tiempo.",
+    ctaBtn: "Sé parte de esta transformación",
   },
-  {
-    icon: imgPreservAgua, aspectW: 643, aspectH: 631,
-    title: "Preservação da água",
-    description: "Tecnologias que economizam água em cada etapa do processo de purificação.",
-  },
-];
-
-const stats = [
-  { value: "+50M",        label: "pessoas impactadas positivamente",      icon: imgStatsPessoas,   aspectW: 43.86,  aspectH: 40.50  },
-  { value: "+2.000",      label: "toneladas de plástico evitadas por ano", icon: imgStatsAgua,      aspectW: 40,     aspectH: 40     },
-  { value: "+15M",        label: "litros de água economizados por ano",   icon: imgStatsPlanta,    aspectW: 335.36, aspectH: 361.50 },
-  { value: "+180 países", label: "impactados e em expansão",              icon: imgStatsPlanetWeb, aspectW: 30,     aspectH: 30     },
-];
+};
 
 // ── Sub-component ─────────────────────────────────────────────────────────────
 
@@ -66,6 +107,11 @@ function SustCard({ icon, aspectW, aspectH, title, description }: {
 // ── Main ─────────────────────────────────────────────────────────────────────
 
 export default function TecnologiaSustentSection() {
+  const { lang } = useLang();
+  const t = T[lang];
+  const sustCards = t.sustCards;
+  const stats = t.stats;
+
   return (
     <section className="relative flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
       {/* Background */}
@@ -81,15 +127,15 @@ export default function TecnologiaSustentSection() {
           {/* Info card */}
           <div className="bg-white flex flex-col gap-[20px] items-start min-h-[235px] min-w-[280px] overflow-hidden p-[20px] rounded-[16px] w-full">
             <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#0b8650] text-center lg:text-left">
-              Sustentabilidade em cada gota
+              {t.infoTitle}
             </h2>
             <div className="bg-[#36ae5c] h-[2px] w-[80px] shrink-0" />
             <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-[#333] flex-1">
-              Acreditamos que a tecnologia deve caminhar junto com a responsabilidade ambiental. Por isso, nossas soluções são projetadas para reduzir o consumo de recursos, eliminar plásticos descartáveis e gerar impacto positivo real.
+              {t.infoParagraph}
             </p>
             <Link href="/tecnologia" className="max-w-[320px] w-full self-center lg:self-start">
               <BtnVerdeOutArrow className="w-full">
-                Conheça nossas iniciativas sustentáveis
+                {t.infoCta}
               </BtnVerdeOutArrow>
             </Link>
           </div>
@@ -137,14 +183,14 @@ export default function TecnologiaSustentSection() {
           {/* Título */}
           <div className="relative flex flex-col items-center justify-center w-full lg:flex-[1_0_0] lg:min-w-[240px]">
             <p className="font-['Avenir_LT_Pro:95_Black'] text-[32px] leading-[39px] text-white w-full text-center lg:text-left">
-              Inovação que cuida de pessoas e do planeta ao mesmo tempo.
+              {t.ctaTitle}
             </p>
           </div>
 
           {/* Botão */}
           <div className="relative flex items-center justify-center w-full lg:flex-[1_0_0] lg:max-w-[300px] lg:min-w-[200px]">
             <BtnVerdeOutArrow className="w-full min-h-[56px]">
-              Faça parte dessa transformação
+              {t.ctaBtn}
             </BtnVerdeOutArrow>
           </div>
         </div>

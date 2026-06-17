@@ -1,4 +1,6 @@
-﻿import FigmaIcon from "./FigmaIcon";
+"use client";
+import FigmaIcon from "./FigmaIcon";
+import { useLang, type Lang } from "@/context/LanguageContext";
 
 const imgArrowBlue = "/figma-assets/icon-arrow-blue-b.svg";
 
@@ -9,52 +11,79 @@ const imgParceria   = "/figma-assets/icon-parceria-a.svg";
 const imgMoney      = "/figma-assets/icon-money-b.svg";
 const imgManutencao = "/figma-assets/icon-manutencao.svg";
 
-const categorias = [
-  {
-    icon: imgAguaPura,
-    aspectW: 642.7, aspectH: 630.7,
-    title: "Produtos",
-    desc: "Informações sobre Linha Neo, Acquafy Media, filtros, acessórios e especificações.",
-    href: "/artigos#produtos",
-  },
-  {
-    icon: imgMobile,
-    aspectW: 21, aspectH: 30,
-    title: "App + AI + IoT",
-    desc: "Suporte ao aplicativo, conectividade, sensores, IA e integração IoT.",
-    href: "/artigos#app-ai-iot",
-  },
-  {
-    icon: imgMedia,
-    aspectW: 30, aspectH: 30,
-    title: "Media Network",
-    desc: "Dúvidas sobre anúncios, QR Codes, campanhas e receita recorrente.",
-    href: "/artigos#media-network",
-  },
-  {
-    icon: imgParceria,
-    aspectW: 1125, aspectH: 1078,
-    title: "Parceiros",
-    desc: "Informações para parceiros, Gold Partner, contratos e materiais de apoio.",
-    href: "/artigos#parceiros",
-  },
-  {
-    icon: imgMoney,
-    aspectW: 33.3, aspectH: 30,
-    title: "Faturamento",
-    desc: "Dúvidas sobre pedidos, faturas, pagamentos e comissões.",
-    href: "/artigos#faturamento",
-  },
-  {
-    icon: imgManutencao,
-    aspectW: 30, aspectH: 30,
-    title: "Instalação e Manutenção",
-    desc: "Instalação, manutenção preventiva, limpeza e suporte técnico.",
-    href: "/artigos#instalacao-e-manutencao",
-  },
+// Icon metadata (static, not translated)
+const iconMeta = [
+  { icon: imgAguaPura,   aspectW: 642.7, aspectH: 630.7, href: "/artigos#produtos" },
+  { icon: imgMobile,     aspectW: 21,    aspectH: 30,    href: "/artigos#app-ai-iot" },
+  { icon: imgMedia,      aspectW: 30,    aspectH: 30,    href: "/artigos#media-network" },
+  { icon: imgParceria,   aspectW: 1125,  aspectH: 1078,  href: "/artigos#parceiros" },
+  { icon: imgMoney,      aspectW: 33.3,  aspectH: 30,    href: "/artigos#faturamento" },
+  { icon: imgManutencao, aspectW: 30,    aspectH: 30,    href: "/artigos#instalacao-e-manutencao" },
 ];
 
+const T: Record<Lang, {
+  heading: string;
+  headingHighlight: string;
+  subheading: string;
+  viewTopics: string;
+  categorias: { title: string; desc: string }[];
+}> = {
+  pt: {
+    heading: "Como",
+    headingHighlight: "podemos ajudar?",
+    subheading: "Escolha o assunto para encontrar as melhores soluções.",
+    viewTopics: "Ver tópicos",
+    categorias: [
+      { title: "Produtos",                desc: "Informações sobre Linha Neo, Acquafy Media, filtros, acessórios e especificações." },
+      { title: "App + AI + IoT",          desc: "Suporte ao aplicativo, conectividade, sensores, IA e integração IoT." },
+      { title: "Media Network",           desc: "Dúvidas sobre anúncios, QR Codes, campanhas e receita recorrente." },
+      { title: "Parceiros",               desc: "Informações para parceiros, Gold Partner, contratos e materiais de apoio." },
+      { title: "Faturamento",             desc: "Dúvidas sobre pedidos, faturas, pagamentos e comissões." },
+      { title: "Instalação e Manutenção", desc: "Instalação, manutenção preventiva, limpeza e suporte técnico." },
+    ],
+  },
+  en: {
+    heading: "How can",
+    headingHighlight: "we help you?",
+    subheading: "Choose a topic to find the best solutions.",
+    viewTopics: "View topics",
+    categorias: [
+      { title: "Products",                  desc: "Information about the Neo Line, Acquafy Media, filters, accessories and specifications." },
+      { title: "App + AI + IoT",            desc: "App support, connectivity, sensors, AI and IoT integration." },
+      { title: "Media Network",             desc: "Questions about ads, QR Codes, campaigns and recurring revenue." },
+      { title: "Partners",                  desc: "Information for partners, Gold Partner, contracts and support materials." },
+      { title: "Billing",                   desc: "Questions about orders, invoices, payments and commissions." },
+      { title: "Installation & Maintenance",desc: "Installation, preventive maintenance, cleaning and technical support." },
+    ],
+  },
+  es: {
+    heading: "¿Cómo",
+    headingHighlight: "podemos ayudarte?",
+    subheading: "Elige el tema para encontrar las mejores soluciones.",
+    viewTopics: "Ver temas",
+    categorias: [
+      { title: "Productos",                    desc: "Información sobre la Línea Neo, Acquafy Media, filtros, accesorios y especificaciones." },
+      { title: "App + AI + IoT",               desc: "Soporte a la aplicación, conectividad, sensores, IA e integración IoT." },
+      { title: "Media Network",                desc: "Dudas sobre anuncios, códigos QR, campañas e ingresos recurrentes." },
+      { title: "Socios",                       desc: "Información para socios, Gold Partner, contratos y materiales de apoyo." },
+      { title: "Facturación",                  desc: "Dudas sobre pedidos, facturas, pagos y comisiones." },
+      { title: "Instalación y Mantenimiento",  desc: "Instalación, mantenimiento preventivo, limpieza y soporte técnico." },
+    ],
+  },
+};
+
 export default function CategoriasBaseConhecimento() {
+  const { lang } = useLang();
+  const t = T[lang];
+
+  const categorias = t.categorias.map((cat, i) => ({
+    ...cat,
+    icon: iconMeta[i].icon,
+    aspectW: iconMeta[i].aspectW,
+    aspectH: iconMeta[i].aspectH,
+    href: iconMeta[i].href,
+  }));
+
   return (
     <section className="bg-white flex flex-col items-center justify-center overflow-hidden px-[20px] py-[60px] w-full">
       <div className="flex flex-col gap-[40px] items-center justify-center max-w-[1400px] w-full">
@@ -62,11 +91,11 @@ export default function CategoriasBaseConhecimento() {
         {/* Header */}
         <div className="flex flex-col gap-[10px] items-start text-center w-full">
           <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] w-full">
-            Como{" "}
-            <span className="text-[#0569ff]">podemos ajudar?</span>
+            {t.heading}{" "}
+            <span className="text-[#0569ff]">{t.headingHighlight}</span>
           </h2>
           <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[22px] text-[#333] w-full">
-            Escolha o assunto para encontrar as melhores soluções.
+            {t.subheading}
           </p>
         </div>
 
@@ -99,7 +128,7 @@ export default function CategoriasBaseConhecimento() {
               {/* Link */}
               <div className="flex gap-[5px] items-center justify-center shrink-0">
                 <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] text-center whitespace-nowrap">
-                  Ver tópicos
+                  {t.viewTopics}
                 </span>
                 <FigmaIcon src={imgArrowBlue} size={9} aspectW={11.2} aspectH={8.84} />
               </div>

@@ -1,4 +1,7 @@
-﻿// ── Brand logo assets ─────────────────────────────────────────────────────────
+"use client";
+import { useLang, type Lang } from "@/context/LanguageContext";
+
+// ── Brand logo assets ─────────────────────────────────────────────────────────
 const imgInterfyLogo     = "/figma-assets/logo-interfy.svg";
 const imgEcofy           = "/figma-assets/logo-ecofy.svg";
 const imgInterfyShopping = "/figma-assets/logo-interfy-shopping.svg";
@@ -25,13 +28,22 @@ const brands = [
   { src: imgDocsystem,       alt: "Docsystem",         aw: 219.423,  ah: 55.768  },
 ];
 
+const T: Record<Lang, { heading: string }> = {
+  pt: { heading: "Nossas Empresas e Marcas" },
+  en: { heading: "Our Companies and Brands" },
+  es: { heading: "Nuestras Empresas y Marcas" },
+};
+
 export default function SobreEmpresas() {
+  const { lang } = useLang();
+  const t = T[lang];
+
   return (
     <section className="flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
 
         <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] text-center w-full">
-          Nossas Empresas e Marcas
+          {t.heading}
         </h2>
 
         <div className="flex flex-wrap gap-[20px] items-center justify-center w-full">

@@ -1,4 +1,6 @@
-﻿import FigmaIcon from "./FigmaIcon";
+﻿"use client";
+import FigmaIcon from "./FigmaIcon";
+import { useLang, type Lang } from "@/context/LanguageContext";
 
 // ── Timeline icon assets ──────────────────────────────────────────────────────
 const imgWater     = "/figma-assets/icon-water-fundacao-2020.svg"; // 2020 Fundação
@@ -14,56 +16,57 @@ type TimelineItem = {
   isLast: boolean; aspectW?: number; aspectH?: number;
 };
 
-const timeline: TimelineItem[] = [
-  {
-    icon: imgWater,
-    year: "2020",
-    phase: "Fundação",
-    description:
-      "A Acquafy é fundada nos EUA com o propósito de transformar e formar como o mundo cuida da água.",
-    isLast: false,
+const T: Record<Lang, {
+  heading: string;
+  items: { phase: string; description: string }[];
+}> = {
+  pt: {
+    heading: "Nossa História",
+    items: [
+      { phase: "Fundação",        description: "A Acquafy é fundada nos EUA com o propósito de transformar e formar como o mundo cuida da água." },
+      { phase: "Desenvolvimento", description: "Desenvolvimento da linha inicial de produtos e da plataforma de gestão inteligente." },
+      { phase: "Ecossistema Neo", description: "Lançamento do ecossistema Neo e do Acquafy Media Network para educação, conteúdo e engajamento." },
+      { phase: "Conectividade",   description: "Expansão da plataforma com App + IA + IoT conectando dispositivos e pessoas." },
+      { phase: "Nova fase global",description: "Nova fase de crescimento com presença global escalável e expansão da rede de parceiros." },
+    ],
   },
-  {
-    icon: imgContainer,
-    year: "2021",
-    phase: "Desenvolvimento",
-    description:
-      "Desenvolvimento da linha inicial de produtos e da plataforma de gestão inteligente.",
-    isLast: false,
+  en: {
+    heading: "Our History",
+    items: [
+      { phase: "Foundation",      description: "Acquafy is founded in the USA with the purpose of transforming how the world cares for water." },
+      { phase: "Development",     description: "Development of the initial product line and the intelligent management platform." },
+      { phase: "Neo Ecosystem",   description: "Launch of the Neo ecosystem and Acquafy Media Network for education, content and engagement." },
+      { phase: "Connectivity",    description: "Platform expansion with App + AI + IoT connecting devices and people." },
+      { phase: "New global phase",description: "New growth phase with scalable global presence and expansion of the partner network." },
+    ],
   },
-  {
-    icon: imgBpmPlay,
-    year: "2024",
-    phase: "Ecossistema Neo",
-    description:
-      "Lançamento do ecossistema Neo e do Acquafy Media Network para educação, conteúdo e engajamento.",
-    isLast: false,
+  es: {
+    heading: "Nuestra Historia",
+    items: [
+      { phase: "Fundación",        description: "Acquafy es fundada en EE.UU. con el propósito de transformar la manera en que el mundo cuida el agua." },
+      { phase: "Desarrollo",       description: "Desarrollo de la línea inicial de productos y de la plataforma de gestión inteligente." },
+      { phase: "Ecosistema Neo",   description: "Lanzamiento del ecosistema Neo y del Acquafy Media Network para educación, contenido y engagement." },
+      { phase: "Conectividad",     description: "Expansión de la plataforma con App + IA + IoT conectando dispositivos y personas." },
+      { phase: "Nueva fase global",description: "Nueva fase de crecimiento con presencia global escalable y expansión de la red de socios." },
+    ],
   },
-  {
-    icon: imgWifi,
-    year: "2025",
-    phase: "Conectividade",
-    description:
-      "Expansão da plataforma com App + IA + IoT conectando dispositivos e pessoas.",
-    isLast: false,
-    aspectW: 31.5, aspectH: 21.5,  // viewBox 31.5×21.5 — landscape
-  },
-  {
-    icon: imgGlobe,
-    year: "2026+",
-    phase: "Nova fase global",
-    description:
-      "Nova fase de crescimento com presença global escalável e expansão da rede de parceiros.",
-    isLast: true,
-  },
-];
+};
 
 export default function SobreHistoria() {
+  const { lang } = useLang();
+  const t = T[lang];
+  const timeline: TimelineItem[] = [
+    { icon: imgWater,     year: "2020",  phase: t.items[0].phase, description: t.items[0].description, isLast: false },
+    { icon: imgContainer, year: "2021",  phase: t.items[1].phase, description: t.items[1].description, isLast: false },
+    { icon: imgBpmPlay,   year: "2024",  phase: t.items[2].phase, description: t.items[2].description, isLast: false },
+    { icon: imgWifi,      year: "2025",  phase: t.items[3].phase, description: t.items[3].description, isLast: false, aspectW: 31.5, aspectH: 21.5 },
+    { icon: imgGlobe,     year: "2026+", phase: t.items[4].phase, description: t.items[4].description, isLast: true },
+  ];
   return (
     <section className="flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center justify-center max-w-[1400px] w-full">
         <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] text-center w-full">
-          Nossa História
+          {t.heading}
         </h2>
         <div className="flex flex-wrap gap-[40px] items-start justify-center w-full">
           {timeline.map((item) => (

@@ -1,4 +1,6 @@
-﻿import FigmaIcon from "./FigmaIcon";
+﻿"use client";
+import FigmaIcon from "./FigmaIcon";
+import { useLang, type Lang } from "@/context/LanguageContext";
 
 const imgBg     = "/figma-assets/platform-hero-bg.webp";
 const imgMockup = "/figma-assets/platform-hero-mockup.webp";
@@ -15,27 +17,92 @@ const imgVendas = "/figma-assets/icon-vendas-d.svg";
 const imgInteg  = "/figma-assets/icon-integration.svg";
 const imgTime   = "/figma-assets/icon-uptime.svg";
 
-const featureCards = [
-  { bg: "#0233c3", icon: imgCloud,  iconW: 30, iconH: 30, title: "Cloud Platform",     desc: "Infraestrutura segura e escalável." },
-  { bg: "#6e54ef", icon: imgAI,     iconW: 30, iconH: 30, title: "App + AI",           desc: "Inteligência artificial para decisões e automação" },
-  { bg: "#36ae5c", icon: imgWifi,   iconW: 30, iconH: 20, title: "IoT & Dispositivos", desc: "Monitoramento remoto e sensores conectados" },
-  { bg: "#e240ba", icon: imgGlobal, iconW: 30, iconH: 30, title: "Gestão Global",      desc: "Operação em 180+ países e 16 idiomas" },
+const T: Record<Lang, {
+  badge: string;
+  h1part1: string;
+  h1part2: string;
+  subtitle: string;
+  cta: string;
+  mockupAlt: string;
+  featureCards: { title: string; desc: string }[];
+  trustBadges: { title: string; sub: string }[];
+}> = {
+  pt: {
+    badge: "ECOSSISTEMA DIGITAL ACQUAFY",
+    h1part1: "Plataforma ",
+    h1part2: "App Inteligente",
+    subtitle: "Gestão global, App + AI + IoT em uma experiência integrada para mídia, parceiros, vendas e operação da água inteligente.",
+    cta: "Solicitar demonstração",
+    mockupAlt: "Plataforma Acquafy — tablet e smartphone",
+    featureCards: [
+      { title: "Cloud Platform",     desc: "Infraestrutura segura e escalável." },
+      { title: "App + AI",           desc: "Inteligência artificial para decisões e automação" },
+      { title: "IoT & Dispositivos", desc: "Monitoramento remoto e sensores conectados" },
+      { title: "Gestão Global",      desc: "Operação em 180+ países e 16 idiomas" },
+    ],
+    trustBadges: [
+      { title: "Seguro & Confiável", sub: "Dados protegidos" },
+      { title: "Escalável",          sub: "Performance elástica" },
+      { title: "Integração Total",   sub: "App + Web + IoT + AI" },
+      { title: "Disponibilidade",    sub: "99,9% uptime" },
+    ],
+  },
+  en: {
+    badge: "ACQUAFY DIGITAL ECOSYSTEM",
+    h1part1: "Platform ",
+    h1part2: "Smart App",
+    subtitle: "Global management, App + AI + IoT in an integrated experience for media, partners, sales and smart water operations.",
+    cta: "Request a demo",
+    mockupAlt: "Acquafy Platform — tablet and smartphone",
+    featureCards: [
+      { title: "Cloud Platform",    desc: "Secure and scalable infrastructure." },
+      { title: "App + AI",          desc: "Artificial intelligence for decisions and automation" },
+      { title: "IoT & Devices",     desc: "Remote monitoring and connected sensors" },
+      { title: "Global Management", desc: "Operations in 180+ countries and 16 languages" },
+    ],
+    trustBadges: [
+      { title: "Secure & Reliable", sub: "Protected data" },
+      { title: "Scalable",          sub: "Elastic performance" },
+      { title: "Full Integration",  sub: "App + Web + IoT + AI" },
+      { title: "Availability",      sub: "99.9% uptime" },
+    ],
+  },
+  es: {
+    badge: "ECOSISTEMA DIGITAL ACQUAFY",
+    h1part1: "Plataforma ",
+    h1part2: "App Inteligente",
+    subtitle: "Gestión global, App + AI + IoT en una experiencia integrada para medios, socios, ventas y operación de agua inteligente.",
+    cta: "Solicitar demostración",
+    mockupAlt: "Plataforma Acquafy — tablet y smartphone",
+    featureCards: [
+      { title: "Cloud Platform",     desc: "Infraestructura segura y escalable." },
+      { title: "App + AI",           desc: "Inteligencia artificial para decisiones y automatización" },
+      { title: "IoT & Dispositivos", desc: "Monitoreo remoto y sensores conectados" },
+      { title: "Gestión Global",     desc: "Operación en 180+ países y 16 idiomas" },
+    ],
+    trustBadges: [
+      { title: "Seguro y Confiable", sub: "Datos protegidos" },
+      { title: "Escalable",          sub: "Rendimiento elástico" },
+      { title: "Integración Total",  sub: "App + Web + IoT + AI" },
+      { title: "Disponibilidad",     sub: "99,9% uptime" },
+    ],
+  },
+};
+
+const trustBadgeIcons = [
+  { icon: imgShield, iconW: 24, iconH: 30 },
+  { icon: imgVendas, iconW: 44, iconH: 22 },
+  { icon: imgInteg,  iconW: 38, iconH: 40 },
+  { icon: imgTime,   iconW: 30, iconH: 30 },
 ];
 
-const trustBadges = [
-  { icon: imgShield, iconW: 24, iconH: 30, title: "Seguro & Confiável", sub: "Dados protegidos" },
-  { icon: imgVendas, iconW: 44, iconH: 22, title: "Escalável",          sub: "Performance elástica" },
-  { icon: imgInteg,  iconW: 38, iconH: 40, title: "Integração Total",   sub: "App + Web + IoT + AI" },
-  { icon: imgTime,   iconW: 30, iconH: 30, title: "Disponibilidade",    sub: "99,9% uptime" },
-];
-
-function BadgeRow() {
+function BadgeRow({ badges }: { badges: { title: string; sub: string }[] }) {
   return (
     <>
-      {trustBadges.map((b) => (
+      {badges.map((b, i) => (
         <div key={b.title} className="flex flex-[1_0_0] gap-[8px] items-center min-w-[160px]">
           <div className="flex items-center justify-center shrink-0 size-[26px]">
-            <FigmaIcon src={b.icon} size={26} aspectW={b.iconW} aspectH={b.iconH} />
+            <FigmaIcon src={trustBadgeIcons[i].icon} size={26} aspectW={trustBadgeIcons[i].iconW} aspectH={trustBadgeIcons[i].iconH} />
           </div>
           <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-px">
             <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#1f2e91]">{b.title}</p>
@@ -48,6 +115,16 @@ function BadgeRow() {
 }
 
 export default function PlatformHero() {
+  const { lang } = useLang();
+  const t = T[lang];
+
+  const featureCards = [
+    { bg: "#0233c3", icon: imgCloud,  iconW: 30, iconH: 30, ...t.featureCards[0] },
+    { bg: "#6e54ef", icon: imgAI,     iconW: 30, iconH: 30, ...t.featureCards[1] },
+    { bg: "#36ae5c", icon: imgWifi,   iconW: 30, iconH: 20, ...t.featureCards[2] },
+    { bg: "#e240ba", icon: imgGlobal, iconW: 30, iconH: 30, ...t.featureCards[3] },
+  ];
+
   /*
     default (< 1024px)   : coluna única centrada, bg-[#f6f9fe]            — Figma 1024px
     1024:   (1024px+)    : duas colunas, bg-[#f6f9fe], mockup direita,
@@ -75,25 +152,25 @@ export default function PlatformHero() {
           {/* Label */}
           <div className="bg-white border border-[#0233c3] flex gap-[10px] items-center justify-center max-w-[290px] px-[12px] py-[8px] rounded-full shrink-0">
             <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] whitespace-nowrap">
-              ECOSSISTEMA DIGITAL ACQUAFY
+              {t.badge}
             </span>
           </div>
 
           {/* H1 */}
           <h1 className="font-['Avenir_LT_Pro:95_Black'] text-hero text-[#2a2a2b] w-full text-center 1024:text-left">
-            {"Plataforma "}
+            {t.h1part1}
             <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(113deg, #0233c3 6.19%, #9f3df5 93.35%)" }}>
               Web
             </span>
             {" + "}
             <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(113deg, #0233c3 6.19%, #9f3df5 93.35%)" }}>
-              App Inteligente
+              {t.h1part2}
             </span>
           </h1>
 
           {/* Subtítulo */}
           <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#333] w-full text-center 1024:text-left">
-            Gestão global, App + AI + IoT em uma experiência integrada para mídia, parceiros, vendas e operação da água inteligente.
+            {t.subtitle}
           </p>
 
           {/* CTAs */}
@@ -105,7 +182,7 @@ export default function PlatformHero() {
             >
               <FigmaIcon src={imgChat} size={16} />
               <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white text-center whitespace-nowrap">
-                Solicitar demonstração
+                {t.cta}
               </span>
             </a>
           </div>
@@ -127,7 +204,7 @@ export default function PlatformHero() {
 
           {/* Trust badges — dentro da col esquerda apenas no win-1280+ (TELA TOTAL) */}
           <div className="hidden win-1280:flex flex-wrap gap-[8px] items-center w-full">
-            <BadgeRow />
+            <BadgeRow badges={t.trustBadges} />
           </div>
         </div>
 
@@ -136,7 +213,7 @@ export default function PlatformHero() {
         <div className="win-1280:invisible rounded-[16px] overflow-clip h-[481px] min-w-[280px] w-full 1024:flex-[1_0_0] 1024:self-center">
           <img
             src={imgMockup}
-            alt="Plataforma Acquafy — tablet e smartphone"
+            alt={t.mockupAlt}
             className="w-full h-full object-cover"
           />
         </div>
