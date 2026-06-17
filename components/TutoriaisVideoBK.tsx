@@ -1,6 +1,7 @@
 "use client";
 
 import { useLang, type Lang } from "@/context/LanguageContext";
+import { PtOnlyGuard } from "@/components/PtOnlyGuard";
 
 type Video = {
   // Para adicionar um vídeo real, substitua null pelo ID do YouTube (ex: "dQw4w9WgXcQ")
@@ -103,6 +104,11 @@ const catColors: Record<string, string> = {
   parceria:   "#1f2e91",
 };
 
+const PT_ONLY_SUB = {
+  en: "Our video tutorials are currently available in Portuguese only.",
+  es: "Nuestros tutoriales en vídeo están disponibles actualmente solo en Portugués.",
+};
+
 export default function TutoriaisVideoBK() {
   const { lang } = useLang();
   const t = T[lang];
@@ -116,6 +122,7 @@ export default function TutoriaisVideoBK() {
   }));
 
   return (
+    <PtOnlyGuard subtitle={PT_ONLY_SUB}>
     <section
       id="tutoriais-videos"
       className="bg-[#f6f9fe] flex flex-col items-center justify-center overflow-hidden px-[20px] py-[60px] w-full scroll-mt-[80px]"
@@ -194,5 +201,7 @@ export default function TutoriaisVideoBK() {
 
       </div>
     </section>
+    </PtOnlyGuard>
   );
 }
+

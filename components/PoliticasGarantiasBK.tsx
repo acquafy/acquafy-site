@@ -1,5 +1,6 @@
 "use client";
 import { useLang, type Lang } from "@/context/LanguageContext";
+import { PtOnlyGuard } from "@/components/PtOnlyGuard";
 
 type Politica = {
   titulo: string;
@@ -175,11 +176,17 @@ const T: Record<Lang, {
   },
 };
 
+const PT_ONLY_SUB = {
+  en: "These policies and guarantees are specific to Brazilian consumer law.",
+  es: "Estas políticas y garantías son específicas de la legislación de consumidor de Brasil.",
+};
+
 export default function PoliticasGarantiasBK() {
   const { lang } = useLang();
   const t = T[lang];
 
   return (
+    <PtOnlyGuard subtitle={PT_ONLY_SUB}>
     <section
       id="politicas-garantias"
       className="bg-white flex flex-col items-center justify-center overflow-hidden px-[20px] py-[60px] w-full scroll-mt-[80px]"
@@ -239,5 +246,7 @@ export default function PoliticasGarantiasBK() {
 
       </div>
     </section>
+    </PtOnlyGuard>
   );
 }
+
