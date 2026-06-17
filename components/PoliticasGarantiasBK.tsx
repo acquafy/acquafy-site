@@ -1,6 +1,5 @@
 "use client";
 import { useLang, type Lang } from "@/context/LanguageContext";
-import { PtOnlyGuard } from "@/components/PtOnlyGuard";
 
 type Politica = {
   titulo: string;
@@ -176,24 +175,41 @@ const T: Record<Lang, {
   },
 };
 
-const PT_ONLY_SUB = {
-  en: "These policies and guarantees are specific to Brazilian consumer law.",
-  es: "Estas políticas y garantías son específicas de la legislación de consumidor de Brasil.",
-};
-
 export default function PoliticasGarantiasBK() {
-  const { lang } = useLang();
+  const { lang, setLang } = useLang();
   const t = T[lang];
 
+  if (lang !== "pt") {
+    const isEn = lang === "en";
+    return (
+      <section className="flex flex-col items-center justify-center px-[20px] py-[60px] w-full bg-white">
+        <div className="flex flex-col gap-[16px] items-center text-center max-w-[480px] p-[40px] bg-[#f6f9fe] rounded-[20px] border border-[#e0e8ff] shadow-sm">
+          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91]">
+            {isEn ? "Content available in Portuguese only" : "Contenido disponible solo en Portugués"}
+          </h2>
+          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[15px] leading-[22px] text-[#666]">
+            {isEn
+              ? "These policies and guarantees are specific to Brazilian consumer law."
+              : "Estas políticas y garantías son específicas de la legislación de consumidor de Brasil."}
+          </p>
+          <button
+            onClick={() => setLang("pt")}
+            className="mt-[8px] bg-[#0233c3] hover:bg-[#002ba8] transition-colors font-['Avenir_LT_Pro:85_Heavy'] text-[14px] text-white px-[28px] py-[12px] rounded-[8px] cursor-pointer"
+          >
+            {isEn ? "Switch to Português" : "Cambiar a Portugués"}
+          </button>
+        </div>
+      </section>
+    );
+  }
+
   return (
-    <PtOnlyGuard subtitle={PT_ONLY_SUB}>
     <section
       id="politicas-garantias"
       className="bg-white flex flex-col items-center justify-center overflow-hidden px-[20px] py-[60px] w-full scroll-mt-[80px]"
     >
       <div className="flex flex-col gap-[60px] items-start max-w-[1400px] w-full">
 
-        {/* Header */}
         <div className="flex flex-col gap-[10px] items-start text-center w-full">
           <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] w-full">
             {t.heading}{" "}
@@ -204,24 +220,18 @@ export default function PoliticasGarantiasBK() {
           </p>
         </div>
 
-        {/* Cards grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-[24px] w-full">
           {t.politicas.map((pol) => (
             <div
               key={pol.titulo}
               className="bg-[#f6f9fe] border border-[#e8edf5] rounded-[16px] p-[24px] flex flex-col gap-[16px]"
             >
-              {/* Title */}
               <h3 className="font-['Avenir_LT_Pro:85_Heavy'] text-[17px] leading-[22px] text-[#1f2e91]">
                 {pol.titulo}
               </h3>
-
-              {/* Desc */}
               <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[20px] text-[#555]">
                 {pol.desc}
               </p>
-
-              {/* Bullet items */}
               <ul className="flex flex-col gap-[8px] list-none m-0 p-0 flex-1">
                 {pol.itens.map((item) => (
                   <li key={item} className="flex gap-[10px] items-start">
@@ -232,8 +242,6 @@ export default function PoliticasGarantiasBK() {
                   </li>
                 ))}
               </ul>
-
-              {/* Footer */}
               <div className="flex items-center gap-[8px] pt-[8px] border-t border-[#e8edf5]">
                 <span className="shrink-0 size-[6px] rounded-full bg-[#ef4444]" />
                 <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] text-[#bbb]">
@@ -246,7 +254,5 @@ export default function PoliticasGarantiasBK() {
 
       </div>
     </section>
-    </PtOnlyGuard>
   );
 }
-
