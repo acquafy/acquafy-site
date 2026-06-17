@@ -5,9 +5,117 @@ import Link from "next/link";
 import FigmaIcon from "@/components/FigmaIcon";
 import CtaBK from "@/components/CtaBK";
 import { CATEGORIAS, type ArtigoData, type CategoriaData } from "@/lib/artigos-data";
+import { useLang, type Lang } from "@/context/LanguageContext";
 
 const imgArrowBlue  = "/figma-assets/icon-arrow-blue-b.svg";
 const imgArrowWhite = "/figma-assets/icon-arrow-white-solid.svg";
+
+// ── Translations ──────────────────────────────────────────────────────────────
+const T: Record<Lang, {
+  breadcrumbBase: string;
+  breadcrumbArtigos: string;
+  h1pre: string; h1highlight: string;
+  subtitle: string;
+  searchPlaceholder: string;
+  clearSearch: string;
+  resultsFor: string; resultSg: string; resultPl: string; forWord: string;
+  noResultsTitle: string; noResultsSub: string; seeAll: string;
+  readArticle: string; minRead: string;
+  articleCount: string;
+  catTitles: Record<string, string>;
+  catDescs: Record<string, string>;
+}> = {
+  pt: {
+    breadcrumbBase: "Base de Conhecimento",
+    breadcrumbArtigos: "Artigos",
+    h1pre: "Artigos e", h1highlight: "Guias",
+    subtitle: "Tutoriais, guias e respostas detalhadas organizados por tema para você encontrar exatamente o que precisa.",
+    searchPlaceholder: "Buscar artigos e guias…",
+    clearSearch: "Limpar busca",
+    resultsFor: "resultados para", resultSg: "resultado", resultPl: "resultados", forWord: "para",
+    noResultsTitle: "Nenhum artigo encontrado",
+    noResultsSub: "Tente termos diferentes ou explore as categorias abaixo.",
+    seeAll: "Ver todos os artigos",
+    readArticle: "Ler artigo", minRead: "min de leitura",
+    articleCount: "artigos",
+    catTitles: {
+      "produtos": "Produtos",
+      "app-ai-iot": "App + AI + IoT",
+      "media-network": "Media Network",
+      "parceiros": "Parceiros",
+      "faturamento": "Faturamento",
+      "instalacao-e-manutencao": "Instalação e Manutenção",
+    },
+    catDescs: {
+      "produtos": "Especificações, guias de compra e funcionalidades dos purificadores Neo.",
+      "app-ai-iot": "Configuração, uso e recursos do aplicativo Acquafy com IA e IoT.",
+      "media-network": "Como usar o sistema de anúncios, QR Code e receita recorrente.",
+      "parceiros": "Guias para parceiros Silver, Gold e Platinum da Acquafy.",
+      "faturamento": "Faturas, comissões, pagamentos e documentação fiscal.",
+      "instalacao-e-manutencao": "Instalação, limpeza, troca de filtros e manutenção preventiva.",
+    },
+  },
+  en: {
+    breadcrumbBase: "Knowledge Base",
+    breadcrumbArtigos: "Articles",
+    h1pre: "Articles &", h1highlight: "Guides",
+    subtitle: "Tutorials, guides and detailed answers organized by topic so you can find exactly what you need.",
+    searchPlaceholder: "Search articles and guides…",
+    clearSearch: "Clear search",
+    resultsFor: "results for", resultSg: "result", resultPl: "results", forWord: "for",
+    noResultsTitle: "No articles found",
+    noResultsSub: "Try different terms or explore the categories below.",
+    seeAll: "See all articles",
+    readArticle: "Read article", minRead: "min read",
+    articleCount: "articles",
+    catTitles: {
+      "produtos": "Products",
+      "app-ai-iot": "App + AI + IoT",
+      "media-network": "Media Network",
+      "parceiros": "Partners",
+      "faturamento": "Billing",
+      "instalacao-e-manutencao": "Installation & Maintenance",
+    },
+    catDescs: {
+      "produtos": "Specs, buying guides and features of Neo purifiers.",
+      "app-ai-iot": "Setup, usage and features of the Acquafy app with AI and IoT.",
+      "media-network": "How to use the ad system, QR Code and recurring revenue.",
+      "parceiros": "Guides for Acquafy Silver, Gold and Platinum partners.",
+      "faturamento": "Invoices, commissions, payments and tax documentation.",
+      "instalacao-e-manutencao": "Installation, cleaning, filter replacement and preventive maintenance.",
+    },
+  },
+  es: {
+    breadcrumbBase: "Base de Conocimiento",
+    breadcrumbArtigos: "Artículos",
+    h1pre: "Artículos y", h1highlight: "Guías",
+    subtitle: "Tutoriales, guías y respuestas detalladas organizadas por tema para que encuentres exactamente lo que necesitas.",
+    searchPlaceholder: "Buscar artículos y guías…",
+    clearSearch: "Borrar búsqueda",
+    resultsFor: "resultados para", resultSg: "resultado", resultPl: "resultados", forWord: "para",
+    noResultsTitle: "Ningún artículo encontrado",
+    noResultsSub: "Prueba términos diferentes o explora las categorías a continuación.",
+    seeAll: "Ver todos los artículos",
+    readArticle: "Leer artículo", minRead: "min de lectura",
+    articleCount: "artículos",
+    catTitles: {
+      "produtos": "Productos",
+      "app-ai-iot": "App + AI + IoT",
+      "media-network": "Media Network",
+      "parceiros": "Socios",
+      "faturamento": "Facturación",
+      "instalacao-e-manutencao": "Instalación y Mantenimiento",
+    },
+    catDescs: {
+      "produtos": "Especificaciones, guías de compra y funcionalidades de los purificadores Neo.",
+      "app-ai-iot": "Configuración, uso y recursos de la aplicación Acquafy con IA e IoT.",
+      "media-network": "Cómo usar el sistema de anuncios, QR Code e ingresos recurrentes.",
+      "parceiros": "Guías para socios Silver, Gold y Platinum de Acquafy.",
+      "faturamento": "Facturas, comisiones, pagos y documentación fiscal.",
+      "instalacao-e-manutencao": "Instalación, limpieza, cambio de filtros y mantenimiento preventivo.",
+    },
+  },
+};
 
 // ── search helpers ─────────────────────────────────────────────────────────────
 
@@ -60,11 +168,14 @@ function Highlight({ text, query }: { text: string; query: string }) {
 
 // ── article card ───────────────────────────────────────────────────────────────
 
-function ArticleCard({ artigo, cat, query, showCategory }: {
+function ArticleCard({ artigo, cat, query, showCategory, readLabel = "Ler artigo", minReadLabel = "min de leitura", catLabel }: {
   artigo: ArtigoData;
   cat: CategoriaData;
   query?: string;
   showCategory?: boolean;
+  readLabel?: string;
+  minReadLabel?: string;
+  catLabel?: string;
 }) {
   return (
     <Link
@@ -86,7 +197,7 @@ function ArticleCard({ artigo, cat, query, showCategory }: {
             <FigmaIcon src={cat.icon} size={12} aspectW={cat.aspectW} aspectH={cat.aspectH} />
           </div>
           <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[11px] leading-[14px]" style={{ color: cat.cor }}>
-            {cat.titulo}
+            {catLabel ?? cat.titulo}
           </span>
         </div>
       )}
@@ -113,10 +224,10 @@ function ArticleCard({ artigo, cat, query, showCategory }: {
 
       <div className="flex gap-[6px] items-center justify-between pt-[8px] border-t border-[#f0f4fb]">
         <span className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#aaa]">
-          {artigo.tempoLeitura} min de leitura
+          {artigo.tempoLeitura} {minReadLabel}
         </span>
         <div className="flex gap-[4px] items-center opacity-60 group-hover:opacity-100 transition-opacity">
-          <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] leading-[15px] text-[#0233c3]">Ler artigo</span>
+          <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] leading-[15px] text-[#0233c3]">{readLabel}</span>
           <FigmaIcon src={imgArrowBlue} size={8} aspectW={11.2} aspectH={8.84} />
         </div>
       </div>
@@ -128,6 +239,8 @@ function ArticleCard({ artigo, cat, query, showCategory }: {
 
 export default function ArtigosContent() {
   const [query, setQuery] = useState("");
+  const { lang } = useLang();
+  const t = T[lang];
   const hits   = useMemo(() => runSearch(query), [query]);
   const active = query.trim().length >= 2;
 
@@ -154,23 +267,23 @@ export default function ArtigosContent() {
               href="/base-de-conhecimento"
               className="font-['Avenir_LT_Pro:85_Heavy'] text-[11px] leading-[14px] tracking-[0.08em] uppercase text-white/50 hover:text-white/80 transition-colors no-underline"
             >
-              Base de Conhecimento
+              {t.breadcrumbBase}
             </Link>
             <span className="text-white/30 text-[11px]">/</span>
             <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[11px] leading-[14px] tracking-[0.08em] uppercase text-[#0569ff]">
-              Artigos
+              {t.breadcrumbArtigos}
             </span>
           </div>
 
           <div className="flex flex-col gap-[14px] w-full">
             <h1 className="font-['Avenir_LT_Pro:95_Black'] text-[clamp(28px,3vw+14px,52px)] leading-[1.06] text-white w-full">
-              Artigos e{" "}
+              {t.h1pre}{" "}
               <span style={{ background: "linear-gradient(90deg, #0569ff, #9f3df5)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
-                Guias
+                {t.h1highlight}
               </span>
             </h1>
             <p className="font-['Avenir_LT_Pro:55_Roman'] text-[17px] leading-[26px] text-white/70 w-full max-w-[620px]">
-              Tutoriais, guias e respostas detalhadas organizados por tema para você encontrar exatamente o que precisa.
+              {t.subtitle}
             </p>
           </div>
 
@@ -185,7 +298,7 @@ export default function ArtigosContent() {
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Buscar artigos e guias…"
+                placeholder={t.searchPlaceholder}
                 autoComplete="off"
                 spellCheck={false}
                 className="flex-1 font-['Avenir_LT_Pro:55_Roman'] text-[15px] leading-[20px] text-[#1f2e91] placeholder:text-[#c0c8d4] outline-none bg-transparent min-w-0"
@@ -193,7 +306,7 @@ export default function ArtigosContent() {
               {query && (
                 <button
                   onClick={() => setQuery("")}
-                  aria-label="Limpar busca"
+                  aria-label={t.clearSearch}
                   className="shrink-0 size-[22px] flex items-center justify-center rounded-full bg-[#e8edf5] hover:bg-[#d0d7e2] transition-colors text-[#666] text-[15px] leading-none"
                 >
                   ×
@@ -211,7 +324,7 @@ export default function ArtigosContent() {
                   href={`#${cat.slug}`}
                   className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] leading-[15px] px-[14px] py-[8px] rounded-full border border-white/20 text-white/60 hover:text-white hover:border-white/50 hover:bg-white/10 transition-all no-underline whitespace-nowrap"
                 >
-                  {cat.titulo}
+                  {t.catTitles[cat.slug] ?? cat.titulo}
                 </a>
               ))}
             </div>
@@ -228,14 +341,14 @@ export default function ArtigosContent() {
             <div className="flex flex-wrap gap-[12px] items-center">
               <p className="font-['Avenir_LT_Pro:55_Roman'] text-[15px] text-[#555]">
                 <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[#1f2e91]">{hits.length}</span>
-                {" "}{hits.length === 1 ? "resultado" : "resultados"} para{" "}
+                {" "}{hits.length === 1 ? t.resultSg : t.resultPl} {t.forWord}{" "}
                 <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[#0233c3]">&ldquo;{query}&rdquo;</span>
               </p>
               <button
                 onClick={() => setQuery("")}
                 className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#aaa] hover:text-[#0233c3] transition-colors underline"
               >
-                Limpar busca
+                {t.clearSearch}
               </button>
             </div>
 
@@ -249,16 +362,16 @@ export default function ArtigosContent() {
                   </svg>
                 </div>
                 <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] text-[#888]">
-                  Nenhum artigo encontrado
+                  {t.noResultsTitle}
                 </p>
                 <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#aaa] max-w-[300px]">
-                  Tente termos diferentes ou explore as categorias abaixo.
+                  {t.noResultsSub}
                 </p>
                 <button
                   onClick={() => setQuery("")}
                   className="mt-[8px] bg-[#0233c3] hover:bg-[#002ba8] transition-colors font-['Avenir_LT_Pro:85_Heavy'] text-[14px] text-white px-[22px] py-[10px] rounded-[8px]"
                 >
-                  Ver todos os artigos
+                  {t.seeAll}
                 </button>
               </div>
             ) : (
@@ -270,6 +383,9 @@ export default function ArtigosContent() {
                     cat={cat}
                     query={query}
                     showCategory
+                    readLabel={t.readArticle}
+                    minReadLabel={t.minRead}
+                    catLabel={t.catTitles[cat.slug]}
                   />
                 ))}
               </div>
@@ -294,10 +410,10 @@ export default function ArtigosContent() {
                     </div>
                     <div className="flex flex-col gap-[4px]">
                       <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px]" style={{ color: cat.cor }}>
-                        {cat.titulo}
+                        {t.catTitles[cat.slug] ?? cat.titulo}
                       </h2>
                       <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[18px] text-[#777]">
-                        {cat.descricao}
+                        {t.catDescs[cat.slug] ?? cat.descricao}
                       </p>
                     </div>
                   </div>
@@ -305,14 +421,14 @@ export default function ArtigosContent() {
                     className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] px-[10px] py-[4px] rounded-full border"
                     style={{ color: cat.cor, borderColor: cat.cor + "30", backgroundColor: cat.corBg }}
                   >
-                    {cat.artigos.length} artigos
+                    {cat.artigos.length} {t.articleCount}
                   </span>
                 </div>
 
                 {/* Grid de artigos */}
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[16px]">
                   {cat.artigos.map((artigo) => (
-                    <ArticleCard key={artigo.slug} artigo={artigo} cat={cat} />
+                    <ArticleCard key={artigo.slug} artigo={artigo} cat={cat} readLabel={t.readArticle} minReadLabel={t.minRead} />
                   ))}
                 </div>
 
