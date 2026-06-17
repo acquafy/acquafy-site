@@ -166,7 +166,7 @@ export default async function ArtigoPage({ params }: Props) {
   return (
     <>
       <Header />
-      <PtOnlyGuard subtitle={{ en: "This article is available in Portuguese only and is intended for Brazilian users.", es: "Este artículo está disponible solo en Portugués y está dirigido a usuarios brasileños." }}>
+      <PtOnlyGuard>
       <main>
 
         {/* ── Header do artigo ─────────────────────────────────────────── */}
