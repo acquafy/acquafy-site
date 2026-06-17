@@ -31,8 +31,8 @@ type Language = {
 };
 
 const LANGUAGES: Language[] = [
-  { code: "en",    label: "English (Global)",         flag: imgUSA, aspectW: 18, aspectH: 18, langCode: "en" },
   { code: "pt-br", label: "Português (BR)",          flag: imgBR_Menu,aspectW: 512,   aspectH: 512,   langCode: "pt" },
+  { code: "en",    label: "English (Global)",         flag: imgUSA, aspectW: 18, aspectH: 18, langCode: "en" },
   { code: "pt-pt", label: "Português (Portugal)",    flag: imgPT,     aspectW: 1,     aspectH: 1,     langCode: null },
   { code: "es",    label: "Español",                 flag: imgES,     aspectW: 22,    aspectH: 22,    langCode: "es" },
   { code: "fr",    label: "Français",                flag: imgFR,     aspectW: 30,    aspectH: 30,    langCode: null },
