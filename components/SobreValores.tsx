@@ -77,7 +77,7 @@ export default function SobreValores() {
               className="bg-white flex flex-[1_0_0] flex-col gap-[25px] items-center min-h-[240px] min-w-[180px] px-[10px] py-[20px] rounded-[16px]"
             >
               <FigmaIcon src={v.icon} alt={v.alt} size={40} aspectW={v.aspectW} aspectH={v.aspectH} />
-              <div className="flex flex-col gap-[20px] items-start text-center w-full">
+              <div className="flex flex-col gap-[20px] items-center text-center w-full">
                 <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] w-full">
                   {v.title}
                 </p>
