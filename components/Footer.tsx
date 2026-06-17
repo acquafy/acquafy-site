@@ -197,7 +197,7 @@ export default function Footer() {
               </div>
             </a>
             <p className="font-['Articulat_CF:Regular'] text-[16px] leading-[25px] text-[#333] flex-[1_0_0] min-h-px w-full mob:text-center mob:flex-none mob:min-h-0">
-              Acquafy Platform + App + AI + IoT para gestão global da água inteligente.
+              Acquafy Platform + App + AI + IoT para Gestão Global Inteligente de Água.
             </p>
             {/* Social icons — grid 5 colunas fixas */}
             <div className="grid grid-cols-5 gap-[10px] w-full mt-auto mob:max-w-[260px] mob:mx-auto mob:mt-0">

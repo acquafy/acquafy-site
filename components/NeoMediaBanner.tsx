@@ -86,7 +86,7 @@ export default function NeoMediaBanner() {
           Acquafy Media
         </h1>
         <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[26px] text-[#1f2e91] text-center">
-          Plataforma de Água Inteligente + Mídia Digital + Receita Recorrente.
+          Plataforma Inteligente de Água + Mídia Digital + Receita Recorrente.
         </h2>
         <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#333] text-center">
           O Acquafy Media transforma locais públicos em pontos de hidratação, visibilidade e negócios.
@@ -143,7 +143,7 @@ export default function NeoMediaBanner() {
               Acquafy Media
             </h1>
             <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91]">
-              Plataforma de Água Inteligente + Mídia Digital + Receita Recorrente.
+              Plataforma Inteligente de Água + Mídia Digital + Receita Recorrente.
             </h2>
             <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#333]">
               O Acquafy Media transforma locais públicos em pontos de hidratação, visibilidade e negócios.
