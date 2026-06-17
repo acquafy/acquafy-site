@@ -66,7 +66,7 @@ export default function RecursosAppAiIot() {
               </div>
 
               {/* Texto */}
-              <div className="flex flex-col gap-[20px] items-start text-center w-full">
+              <div className="flex flex-col gap-[20px] items-center text-center w-full">
                 <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] min-h-[36px] w-full flex items-center justify-center text-center">
                   {item.title}
                 </p>
