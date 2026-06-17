@@ -74,7 +74,7 @@ export default function NeoMedia() {
             <div className="flex flex-wrap gap-y-[20px] items-center w-full">
               <div className="flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-w-[210px] lg:items-start">
                 <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-white w-full text-center lg:text-left">
-                  Água inteligente + media digital + receita recorrente.
+                  Plataforma Inteligente de Água + Media Digital + Receita Recorrente.
                   <br />
                   Transforme locais públicos em pontos de hidratação, mídia e negócios. Ganhe com anúncios e venda dos produtos Acquafy Neo.
                 </p>
@@ -84,13 +84,13 @@ export default function NeoMedia() {
                   group bg-white border border-[#0233c3]
                   hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors
                   flex gap-[10px] items-center justify-center
-                  max-w-[280px] min-h-[30px] min-w-[240px] overflow-hidden
-                  px-[20px] py-[10px] rounded-[8px] shrink-0 w-full cursor-pointer
+                  min-h-[30px] px-[20px] py-[10px] rounded-[8px] shrink-0
+                  w-full lg:w-fit cursor-pointer
                 ">
                   <span className="
                     font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px]
                     text-[#0233c3] group-hover:text-white group-active:text-white
-                    transition-colors text-center whitespace-nowrap
+                    transition-colors text-center
                   ">
                     Quero investir no Media Network
                   </span>
