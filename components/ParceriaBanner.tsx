@@ -1,6 +1,39 @@
-﻿import FigmaIcon from "./FigmaIcon";
+﻿"use client";
+
+import FigmaIcon from "./FigmaIcon";
 import Link from "next/link";
 import { BtnAzulBaseArrow, BtnAzulOutArrow } from "./ui/Buttons";
+import { useLang, type Lang } from "@/context/LanguageContext";
+
+const T: Record<Lang, {
+  pill: string;
+  title: string;
+  subtitle: string;
+  cta: string;
+  imgAlt: string;
+}> = {
+  pt: {
+    pill:     "NOVA FASE GLOBAL",
+    title:    "Programa de Parceria Global Acquafy",
+    subtitle: "Três níveis para crescer com a marca em escala global: indicar, operar ou distribuir.",
+    cta:      "Falar com especialista",
+    imgAlt:   "Produto Acquafy",
+  },
+  en: {
+    pill:     "NEW GLOBAL PHASE",
+    title:    "Acquafy Global Partnership Program",
+    subtitle: "Three levels to grow with the brand on a global scale: refer, operate, or distribute.",
+    cta:      "Talk to a specialist",
+    imgAlt:   "Acquafy Product",
+  },
+  es: {
+    pill:     "NUEVA FASE GLOBAL",
+    title:    "Programa de Asociación Global Acquafy",
+    subtitle: "Tres niveles para crecer con la marca a escala global: referir, operar o distribuir.",
+    cta:      "Hablar con un especialista",
+    imgAlt:   "Producto Acquafy",
+  },
+};
 
 /* ── Assets ───────────────────────────────────────────────────── */
 // Tela total (≥1280px) — BG image fills the whole section
@@ -47,6 +80,8 @@ const tiers = [
 ];
 
 export default function ParceriaBanner() {
+  const { lang } = useLang();
+  const t = T[lang];
   return (
     <section className="relative bg-white w-full px-[20px] py-[40px] flex items-center justify-center overflow-hidden xl:bg-transparent xl:min-h-[875px]">
 
@@ -68,7 +103,7 @@ export default function ParceriaBanner() {
           <div className="bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center px-[12px] py-[8px] rounded-full shrink-0">
             <FigmaIcon src={imgPlanet} size={16} />
             <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] text-[#0233c3]">
-              NOVA FASE GLOBAL
+              {t.pill}
             </span>
           </div>
 
@@ -77,33 +112,33 @@ export default function ParceriaBanner() {
             className="font-['Avenir_LT_Pro:95_Black'] text-hero bg-clip-text text-transparent w-full text-center lg:text-left"
             style={{ backgroundImage: "linear-gradient(110.27deg, #0233c3 6.19%, #9f3df5 93.35%)" }}
           >
-            Programa de Parceria Global Acquafy
+            {t.title}
           </h1>
 
           {/* Subtitle */}
           <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[24px] lg:text-[18px] lg:leading-[26px] text-[#333] text-center lg:text-left">
-            Três níveis para crescer com a marca em escala global: indicar, operar ou distribuir.
+            {t.subtitle}
           </p>
 
           {/* CTAs */}
           <div className="flex flex-wrap gap-[20px] items-center justify-center xl:justify-start w-full">
             <Link href="/contato">
               <BtnAzulOutArrow className="min-h-[50px]">
-                Falar com especialista
+                {t.cta}
               </BtnAzulOutArrow>
             </Link>
           </div>
 
           {/* Tier badges */}
           <div className="flex flex-row gap-[20px] items-stretch justify-center xl:justify-start w-full">
-            {tiers.map((t) => (
+            {tiers.map((tier) => (
               <div
-                key={t.key}
+                key={tier.key}
                 className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center p-[10px] rounded-[16px]"
               >
-                <img src={t.src} alt={t.alt} className={t.imgCls} />
-                <span className={`${t.labelCls} text-center`} style={t.labelStyle}>
-                  {t.label}
+                <img src={tier.src} alt={tier.alt} className={tier.imgCls} />
+                <span className={`${tier.labelCls} text-center`} style={tier.labelStyle}>
+                  {tier.label}
                 </span>
               </div>
             ))}
@@ -115,7 +150,7 @@ export default function ParceriaBanner() {
         <div className="xl:hidden relative aspect-[750/745] min-h-[278px] min-w-[280px] rounded-[16px] shrink-0 w-full lg:flex-[1_0_0] lg:w-auto overflow-hidden">
           <img
             src={imgFrame1024}
-            alt="Produto Acquafy"
+            alt={t.imgAlt}
             className="absolute inset-0 w-full h-full object-cover rounded-[16px]"
           />
         </div>

@@ -1,5 +1,7 @@
-﻿import FigmaIcon from "./FigmaIcon";
+"use client";
+import FigmaIcon from "./FigmaIcon";
 import { PRODUCT_IMAGES } from "@/lib/products";
+import { useLang, type Lang } from "@/context/LanguageContext";
 
 // Card background images
 const imgBgEssentials = "/figma-assets/bg-essentials.webp";
@@ -13,21 +15,59 @@ const imgCheckinPurple = "/figma-assets/icon-check-purple-premium.svg"; // purpl
 const imgNeoFit          = PRODUCT_IMAGES["neo-fit"];
 const imgInfinitySparkH2 = PRODUCT_IMAGES["neo-infinity-spark-h2"];
 
-const essentialsFeatures = [
-  "Painel LED Touch 10,1",
-  "4 filtros de Alta Performance UF",
-  "Opções de 1 até 7 funções",
-  "Tanques: 400ml, 800ml. 1500ml e 3000ml",
-  "Foco em praticidade e variedade para o dia a dia",
-];
-
-const premiumFeatures = [
-  "Painel LCD IPS Touch 15.6",
-  "Osmose Reversa (RO)",
-  "Aço inox e design sofisticado",
-  "Mini Media Network integrado",
-  "Experiência premium completa",
-];
+const T: Record<Lang, {
+  essentialsFeatures: string[];
+  premiumFeatures: string[];
+}> = {
+  pt: {
+    essentialsFeatures: [
+      "Painel LED Touch 10,1",
+      "4 filtros de Alta Performance UF",
+      "Opções de 1 até 7 funções",
+      "Tanques: 400ml, 800ml. 1500ml e 3000ml",
+      "Foco em praticidade e variedade para o dia a dia",
+    ],
+    premiumFeatures: [
+      "Painel LCD IPS Touch 15.6",
+      "Osmose Reversa (RO)",
+      "Aço inox e design sofisticado",
+      "Mini Media Network integrado",
+      "Experiência premium completa",
+    ],
+  },
+  en: {
+    essentialsFeatures: [
+      "10.1 LED Touch Panel",
+      "4 High-Performance UF Filters",
+      "Options from 1 to 7 functions",
+      "Tanks: 400ml, 800ml, 1500ml and 3000ml",
+      "Focus on practicality and variety for daily use",
+    ],
+    premiumFeatures: [
+      "15.6 IPS LCD Touch Panel",
+      "Reverse Osmosis (RO)",
+      "Stainless steel and sophisticated design",
+      "Integrated Mini Media Network",
+      "Complete premium experience",
+    ],
+  },
+  es: {
+    essentialsFeatures: [
+      "Panel LED Touch 10,1",
+      "4 filtros de Alta Performance UF",
+      "Opciones de 1 hasta 7 funciones",
+      "Tanques: 400ml, 800ml, 1500ml y 3000ml",
+      "Enfoque en practicidad y variedad para el día a día",
+    ],
+    premiumFeatures: [
+      "Panel LCD IPS Touch 15.6",
+      "Ósmosis Inversa (RO)",
+      "Acero inoxidable y diseño sofisticado",
+      "Mini Media Network integrado",
+      "Experiencia premium completa",
+    ],
+  },
+};
 
 function CheckItem({ label, iconSrc }: { label: string; iconSrc: string }) {
   return (
@@ -41,6 +81,9 @@ function CheckItem({ label, iconSrc }: { label: string; iconSrc: string }) {
 }
 
 export default function NeoVsPremium() {
+  const { lang } = useLang();
+  const t = T[lang];
+
   return (
     <section className="bg-white flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center justify-center max-w-[1400px] w-full">
@@ -72,7 +115,7 @@ export default function NeoVsPremium() {
                 Neo Essentials
               </p>
               <div className="flex flex-col gap-[10px] items-start w-full">
-                {essentialsFeatures.map((f) => (
+                {t.essentialsFeatures.map((f) => (
                   <CheckItem key={f} label={f} iconSrc={imgCheckinBlue} />
                 ))}
               </div>
@@ -98,7 +141,7 @@ export default function NeoVsPremium() {
                 Neo Premium
               </p>
               <div className="flex flex-col gap-[10px] items-start w-full">
-                {premiumFeatures.map((f) => (
+                {t.premiumFeatures.map((f) => (
                   <CheckItem key={f} label={f} iconSrc={imgCheckinPurple} />
                 ))}
               </div>

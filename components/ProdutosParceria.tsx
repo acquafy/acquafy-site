@@ -1,6 +1,7 @@
 ﻿'use client'
 import { useRef } from 'react'
 import { PRODUCT_IMAGES } from "@/lib/products";
+import { useLang, type Lang } from "@/context/LanguageContext";
 
 /* ─────────────────────────────────────────────────────────────────
    ProdutosParceria
@@ -141,6 +142,49 @@ function PremiumProductRow() {
   );
 }
 
+/* ── Translations ────────────────────────────────────────────── */
+const T: Record<Lang, {
+  heading:         string;
+  headingHL:       string;
+  essentialsTitle: string;
+  essentialsSub:   string;
+  premiumTitle:    string;
+  premiumSub:      string;
+  mediaTitle:      string;
+  mediaSub:        string;
+}> = {
+  pt: {
+    heading:         "Produtos para cada ",
+    headingHL:       "modelo de parceria",
+    essentialsTitle: "Linha Essentials",
+    essentialsSub:   "Silver pode indicar e vender toda a linha Neo",
+    premiumTitle:    "Linha Neo Premium",
+    premiumSub:      "Silver e Gold vendem. Platinum distribui.",
+    mediaTitle:      "Acquafy Media",
+    mediaSub:        "Gold opera e monetiza. Ideal para mídia e hidratação.",
+  },
+  en: {
+    heading:         "Products for each ",
+    headingHL:       "partnership model",
+    essentialsTitle: "Essentials Line",
+    essentialsSub:   "Silver can refer and sell the entire Neo line",
+    premiumTitle:    "Neo Premium Line",
+    premiumSub:      "Silver and Gold sell. Platinum distributes.",
+    mediaTitle:      "Acquafy Media",
+    mediaSub:        "Gold operates and monetizes. Ideal for media and hydration.",
+  },
+  es: {
+    heading:         "Productos para cada ",
+    headingHL:       "modelo de asociación",
+    essentialsTitle: "Línea Essentials",
+    essentialsSub:   "Silver puede referir y vender toda la línea Neo",
+    premiumTitle:    "Línea Neo Premium",
+    premiumSub:      "Silver y Gold venden. Platinum distribuye.",
+    mediaTitle:      "Acquafy Media",
+    mediaSub:        "Gold opera y monetiza. Ideal para medios e hidratación.",
+  },
+};
+
 /* ─────────────────────────────────────────────────────────────────
    ProductLineCard — bloco de 1 linha de produto
    (Node 3542:11304 e variante Premium 3542:11305)
@@ -150,6 +194,8 @@ function PremiumProductRow() {
 ───────────────────────────────────────────────────────────────── */
 function ProductLineCard({ variant }: { variant: "essentials" | "premium" }) {
   const drag = useDragScroll()
+  const { lang } = useLang();
+  const t = T[lang];
   const isEssentials = variant === "essentials";
 
   const titleStyle: React.CSSProperties = isEssentials
@@ -179,12 +225,10 @@ function ProductLineCard({ variant }: { variant: "essentials" | "premium" }) {
           className="font-['Avenir_LT_Pro:85_Heavy'] not-italic text-[20px] leading-[28px] min-h-[36px] whitespace-nowrap shrink-0 w-full"
           style={titleStyle}
         >
-          {isEssentials ? "Linha Essentials" : "Linha Neo Premium"}
+          {isEssentials ? t.essentialsTitle : t.premiumTitle}
         </p>
         <p className="font-['Avenir_LT_Pro:55_Roman'] not-italic text-[18px] leading-[19px] text-[#333] w-full shrink-0">
-          {isEssentials
-            ? "Silver pode indicar e vender toda a linha Neo"
-            : "Silver e Gold vendem. Platinum distribui."}
+          {isEssentials ? t.essentialsSub : t.premiumSub}
         </p>
       </div>
 
@@ -213,14 +257,17 @@ function ProductLineCard({ variant }: { variant: "essentials" | "premium" }) {
    (Node 3542:11243)
 ───────────────────────────────────────────────────────────────── */
 export default function ProdutosParceria() {
+  const { lang } = useLang();
+  const t = T[lang];
+
   return (
     <section className="bg-[#f2f6fd] flex items-center justify-center px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
 
         {/* título da seção */}
         <h2 className="font-['Avenir_LT_Pro:85_Heavy'] not-italic text-[20px] leading-[28px] text-[#1f2e91] text-center min-w-[240px] w-full">
-          {"Produtos para cada "}
-          <span className="text-[#0569ff]">modelo de parceria</span>
+          {t.heading}
+          <span className="text-[#0569ff]">{t.headingHL}</span>
         </h2>
 
         {/* ── cards ── */}
@@ -238,10 +285,10 @@ export default function ProdutosParceria() {
             {/* header centralizado */}
             <div className="flex flex-col gap-[10px] items-center text-center w-full shrink-0">
               <p className="font-['Avenir_LT_Pro:85_Heavy'] not-italic text-[20px] leading-[28px] text-[#0569ff] min-h-[36px] w-full">
-                Acquafy Media
+                {t.mediaTitle}
               </p>
               <p className="font-['Avenir_LT_Pro:55_Roman'] not-italic text-[18px] leading-[19px] text-[#333] w-full">
-                Gold opera e monetiza. Ideal para mídia e hidratação.
+                {t.mediaSub}
               </p>
             </div>
 

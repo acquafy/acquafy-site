@@ -1,13 +1,36 @@
-﻿import FigmaIcon from "./FigmaIcon";
+"use client";
+import FigmaIcon from "./FigmaIcon";
 import { BtnVerdeOutArrow } from "./ui/Buttons";
+import { useLang, type Lang } from "@/context/LanguageContext";
 
 // ── Assets ───────────────────────────────────────────────────────────────────
 const imgBg   = "/figma-assets/ts-cta-bg.webp";
 const imgIcon = "/figma-assets/ts-icon-experiencia.svg";  // experiência água  438×492
 
+const T: Record<Lang, {
+  heading: string;
+  cta: string;
+}> = {
+  pt: {
+    heading: "Inovação que cuida de pessoas e do planeta ao mesmo tempo.",
+    cta: "Faça parte dessa transformação",
+  },
+  en: {
+    heading: "Innovation that cares for people and the planet at the same time.",
+    cta: "Be part of this transformation",
+  },
+  es: {
+    heading: "Innovación que cuida a las personas y al planeta al mismo tiempo.",
+    cta: "Sé parte de esta transformación",
+  },
+};
+
 // ── Main ─────────────────────────────────────────────────────────────────────
 
 export default function TecnologiaCtaBanner() {
+  const { lang } = useLang();
+  const t = T[lang];
+
   return (
     <section className="bg-white flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
       <div className="relative flex flex-wrap gap-[20px] items-center justify-center max-w-[1400px] overflow-hidden p-[40px] rounded-[16px] w-full">
@@ -29,14 +52,14 @@ export default function TecnologiaCtaBanner() {
         {/* Title */}
         <div className="relative flex flex-[1_0_0] flex-col items-center justify-center min-w-[240px]">
           <h2 className="font-['Avenir_LT_Pro:95_Black'] text-[32px] leading-[39px] text-white w-full text-center lg:text-left">
-            Inovação que cuida de pessoas e do planeta ao mesmo tempo.
+            {t.heading}
           </h2>
         </div>
 
         {/* CTA button */}
         <div className="relative flex flex-[1_0_0] items-center justify-center max-w-[300px] min-w-[200px]">
           <BtnVerdeOutArrow className="w-full min-h-[56px]">
-            Faça parte dessa transformação
+            {t.cta}
           </BtnVerdeOutArrow>
         </div>
       </div>

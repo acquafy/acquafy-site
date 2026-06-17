@@ -1,4 +1,6 @@
-﻿import FigmaIcon from "./FigmaIcon";
+"use client";
+import FigmaIcon from "./FigmaIcon";
+import { useLang, type Lang } from "@/context/LanguageContext";
 
 const imgMonitor   = "/figma-assets/icon-monitor.svg";
 const imgFiltros   = "/figma-assets/icon-filtros-b.svg";
@@ -9,18 +11,62 @@ const imgGear      = "/figma-assets/icon-gear.svg";
 const imgBrain     = "/figma-assets/icon-brain-b.svg";
 const imgMobile    = "/figma-assets/icon-mobile-c.svg";
 
-const items = [
-  { icon: imgMonitor, iconW: 30, iconH: 30, label: "Monitoramento em tempo real" },
-  { icon: imgFiltros, iconW: 40, iconH: 40, label: "Status dos filtros" },
-  { icon: img365,     iconW: 30, iconH: 30, label: "Contagem regressiva 365 dias" },
-  { icon: imgWater,   iconW: 40, iconH: 40, label: "Qualidade da água" },
-  { icon: imgNotif,   iconW: 23, iconH: 30, label: "Alertas automáticos" },
-  { icon: imgGear,    iconW: 30, iconH: 30, label: "Manutenção preventiva" },
-  { icon: imgBrain,   iconW: 30, iconH: 30, label: "Acquafy AI Insights" },
-  { icon: imgMobile,  iconW: 21, iconH: 30, label: "App para dispositivos Neo e Acquafy Media" },
+const itemIcons = [
+  { icon: imgMonitor, iconW: 30, iconH: 30 },
+  { icon: imgFiltros, iconW: 40, iconH: 40 },
+  { icon: img365,     iconW: 30, iconH: 30 },
+  { icon: imgWater,   iconW: 40, iconH: 40 },
+  { icon: imgNotif,   iconW: 23, iconH: 30 },
+  { icon: imgGear,    iconW: 30, iconH: 30 },
+  { icon: imgBrain,   iconW: 30, iconH: 30 },
+  { icon: imgMobile,  iconW: 21, iconH: 30 },
 ];
 
+const T: Record<Lang, { labels: string[] }> = {
+  pt: {
+    labels: [
+      "Monitoramento em tempo real",
+      "Status dos filtros",
+      "Contagem regressiva 365 dias",
+      "Qualidade da água",
+      "Alertas automáticos",
+      "Manutenção preventiva",
+      "Acquafy AI Insights",
+      "App para dispositivos Neo e Acquafy Media",
+    ],
+  },
+  en: {
+    labels: [
+      "Real-time monitoring",
+      "Filter status",
+      "365-day countdown",
+      "Water quality",
+      "Automatic alerts",
+      "Preventive maintenance",
+      "Acquafy AI Insights",
+      "App for Neo and Acquafy Media devices",
+    ],
+  },
+  es: {
+    labels: [
+      "Monitoreo en tiempo real",
+      "Estado de los filtros",
+      "Cuenta regresiva 365 días",
+      "Calidad del agua",
+      "Alertas automáticas",
+      "Mantenimiento preventivo",
+      "Acquafy AI Insights",
+      "App para dispositivos Neo y Acquafy Media",
+    ],
+  },
+};
+
 export default function PlatformAppAiIot() {
+  const { lang } = useLang();
+  const t = T[lang];
+
+  const items = itemIcons.map((ico, i) => ({ ...ico, label: t.labels[i] }));
+
   return (
     <section className="bg-white flex flex-col items-center justify-center overflow-hidden px-[20px] py-[40px] w-full">
       <div className="bg-[#f6f9fe] flex flex-col gap-[40px] items-center justify-center max-w-[1400px] p-[20px] rounded-[16px] w-full">

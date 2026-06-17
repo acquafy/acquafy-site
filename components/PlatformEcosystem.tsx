@@ -1,4 +1,6 @@
-﻿import FigmaIcon from "./FigmaIcon";
+"use client";
+import FigmaIcon from "./FigmaIcon";
+import { useLang, type Lang } from "@/context/LanguageContext";
 
 const imgProdNeo    = "/figma-assets/icon-prod-neo-b.svg";
 const imgPhone      = "/figma-assets/icon-phone-b.svg";
@@ -9,14 +11,50 @@ const imgComissoes  = "/figma-assets/icon-comissoes-b.svg";
 const imgArrowLine  = "/figma-assets/icon-arrow-line.svg";
 const imgArrowHead  = "/figma-assets/icon-arrow-head.svg";
 
-const steps = [
-  { icon: imgProdNeo,    iconW: 18, iconH: 20, label: "Produtos Neo / Acquafy Media" },
-  { icon: imgPhone,      iconW: 98, iconH: 179, label: "App + IoT" },
-  { icon: imgCloud,      iconW: 30, iconH: 22,  label: "Plataforma Cloud" },
-  { icon: imgAiInsights, iconW: 20, iconH: 20,  label: "AI Insights" },
-  { icon: imgQr,         iconW: 20, iconH: 20,  label: "QR Codes + Vendas" },
-  { icon: imgComissoes,  iconW: 20, iconH: 20,  label: "Comissões + Operação Global" },
+const stepIcons = [
+  { icon: imgProdNeo,    iconW: 18,  iconH: 20  },
+  { icon: imgPhone,      iconW: 98,  iconH: 179 },
+  { icon: imgCloud,      iconW: 30,  iconH: 22  },
+  { icon: imgAiInsights, iconW: 20,  iconH: 20  },
+  { icon: imgQr,         iconW: 20,  iconH: 20  },
+  { icon: imgComissoes,  iconW: 20,  iconH: 20  },
 ];
+
+const T: Record<Lang, { heading: string; labels: string[] }> = {
+  pt: {
+    heading: "Como a plataforma conecta o ecossistema",
+    labels: [
+      "Produtos Neo / Acquafy Media",
+      "App + IoT",
+      "Plataforma Cloud",
+      "AI Insights",
+      "QR Codes + Vendas",
+      "Comissões + Operação Global",
+    ],
+  },
+  en: {
+    heading: "How the platform connects the ecosystem",
+    labels: [
+      "Neo Products / Acquafy Media",
+      "App + IoT",
+      "Cloud Platform",
+      "AI Insights",
+      "QR Codes + Sales",
+      "Commissions + Global Operation",
+    ],
+  },
+  es: {
+    heading: "Cómo la plataforma conecta el ecosistema",
+    labels: [
+      "Productos Neo / Acquafy Media",
+      "App + IoT",
+      "Plataforma Cloud",
+      "AI Insights",
+      "Códigos QR + Ventas",
+      "Comisiones + Operación Global",
+    ],
+  },
+};
 
 function ArrowConnector() {
   return (
@@ -34,12 +72,17 @@ function ArrowConnector() {
 }
 
 export default function PlatformEcosystem() {
+  const { lang } = useLang();
+  const t = T[lang];
+
+  const steps = stepIcons.map((ico, i) => ({ ...ico, label: t.labels[i] }));
+
   return (
     <section className="bg-white flex flex-col items-center justify-center overflow-hidden px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center justify-center max-w-[1400px] w-full">
 
         <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] text-center w-full">
-          Como a plataforma conecta o ecossistema
+          {t.heading}
         </h2>
 
         <div className="flex flex-wrap gap-[10px] items-center justify-center w-full">

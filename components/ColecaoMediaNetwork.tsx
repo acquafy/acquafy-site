@@ -1,4 +1,67 @@
+"use client";
 import FigmaIcon from "./FigmaIcon";
+import { useLang, type Lang } from "@/context/LanguageContext";
+
+const T: Record<Lang, {
+  heading: string;
+  products: { title: string; desc: string }[];
+  cta: string;
+}> = {
+  pt: {
+    heading: "Acessórios para Acquafy",
+    products: [
+      { title: "Copo Exclusivo",             desc: "Brinde para eventos e ativações" },
+      { title: "Camiseta",                   desc: "Uniforme padrão para equipes e promotores" },
+      { title: "Boné",                       desc: "Identidade visual para equipes de campo." },
+      { title: "Squeeze de 750ml",           desc: "Prático, sustentável e ideal para ações e brindes." },
+      { title: "Sacola",                     desc: "Para kits, brindes e materiais promocionais." },
+      { title: "Botton (Broche)",            desc: "Divulgação e identificação da equipe." },
+      { title: "Adesivo / Ticket",           desc: "Para copos, equipamentos e vitrines." },
+      { title: "Cartão de Visita",           desc: "Para parceiros e anunciantes." },
+      { title: "Folheto / Flyer",            desc: "Material para abordagem e divulgação." },
+      { title: "Banner / Backdrop",          desc: "Ideal para eventos e ações promocionais." },
+      { title: "Uniforme Promotor",          desc: "Camiseta - Boné para promotores e equipe." },
+      { title: "Outros Materiais Sugeridos", desc: "Pulseira de silicone, chaveiro, caneta, bloco e outros itens." },
+    ],
+    cta: "Seja um Parceiro",
+  },
+  en: {
+    heading: "Accessories for Acquafy",
+    products: [
+      { title: "Exclusive Cup",              desc: "Gift for events and activations" },
+      { title: "T-Shirt",                   desc: "Standard uniform for teams and promoters" },
+      { title: "Cap",                        desc: "Visual identity for field teams." },
+      { title: "750ml Squeeze Bottle",       desc: "Practical, sustainable, ideal for actions and gifts." },
+      { title: "Tote Bag",                   desc: "For kits, gifts and promotional materials." },
+      { title: "Button (Brooch)",            desc: "Team promotion and identification." },
+      { title: "Sticker / Ticket",           desc: "For cups, equipment and shop windows." },
+      { title: "Business Card",              desc: "For partners and advertisers." },
+      { title: "Leaflet / Flyer",            desc: "Material for outreach and promotion." },
+      { title: "Banner / Backdrop",          desc: "Ideal for events and promotional actions." },
+      { title: "Promoter Uniform",           desc: "T-Shirt - Cap for promoters and team." },
+      { title: "Other Suggested Materials",  desc: "Silicone bracelet, keychain, pen, notepad and other items." },
+    ],
+    cta: "Become a Partner",
+  },
+  es: {
+    heading: "Accesorios para Acquafy",
+    products: [
+      { title: "Vaso Exclusivo",             desc: "Obsequio para eventos y activaciones" },
+      { title: "Camiseta",                   desc: "Uniforme estándar para equipos y promotores" },
+      { title: "Gorra",                      desc: "Identidad visual para equipos de campo." },
+      { title: "Botella de 750ml",           desc: "Práctica, sostenible e ideal para acciones y obsequios." },
+      { title: "Bolsa",                      desc: "Para kits, obsequios y materiales promocionales." },
+      { title: "Botón (Broche)",             desc: "Difusión e identificación del equipo." },
+      { title: "Adhesivo / Ticket",          desc: "Para vasos, equipos y vitrinas." },
+      { title: "Tarjeta de Visita",          desc: "Para socios y anunciantes." },
+      { title: "Folleto / Flyer",            desc: "Material para acercamiento y difusión." },
+      { title: "Banner / Backdrop",          desc: "Ideal para eventos y acciones promocionales." },
+      { title: "Uniforme Promotor",          desc: "Camiseta - Gorra para promotores y equipo." },
+      { title: "Otros Materiales Sugeridos", desc: "Pulsera de silicona, llavero, bolígrafo, bloc y otros artículos." },
+    ],
+    cta: "Ser Socio",
+  },
+};
 
 const imgPartner  = "/figma-assets/icon-partner-b.svg";
 
@@ -19,19 +82,19 @@ const imgDemais   = "/figma-assets/image-demais.webp";
 type Img     = { src: string; aspectW: number; aspectH: number; overlap?: boolean };
 type Product = { imgs: Img[]; title: string; desc: string };
 
-const products: Product[] = [
-  { imgs: [{ src: imgCopo,     aspectW: 1156, aspectH: 1625 }],                                                                         title: "Copo Exclusivo",              desc: "Brinde para eventos e ativações" },
-  { imgs: [{ src: imgCamisa1C, aspectW: 1610, aspectH: 1824, overlap: true }, { src: imgCamisa1F, aspectW: 1621, aspectH: 1755 }],       title: "Camiseta",                    desc: "Uniforme padrão para equipes e promotores" },
-  { imgs: [{ src: imgBone,     aspectW: 1670, aspectH: 1411 }],                                                                         title: "Boné",                        desc: "Identidade visual para equipes de campo." },
-  { imgs: [{ src: imgSqueeze,  aspectW: 1446, aspectH: 1925 }],                                                                         title: "Squeeze de 750ml",            desc: "Prático, sustentável e ideal para ações e brindes." },
-  { imgs: [{ src: imgSacola,   aspectW: 1972, aspectH: 2166 }],                                                                         title: "Sacola",                      desc: "Para kits, brindes e materiais promocionais." },
-  { imgs: [{ src: imgBroche,   aspectW: 1628, aspectH: 1289 }],                                                                         title: "Botton (Broche)",             desc: "Divulgação e identificação da equipe." },
-  { imgs: [{ src: imgAdesivo,  aspectW: 4096, aspectH: 2358 }],                                                                         title: "Adesivo / Ticket",            desc: "Para copos, equipamentos e vitrines." },
-  { imgs: [{ src: imgCard,     aspectW: 2712, aspectH: 1626 }],                                                                         title: "Cartão de Visita",            desc: "Para parceiros e anunciantes." },
-  { imgs: [{ src: imgFolheto,  aspectW: 3359, aspectH: 4096 }],                                                                         title: "Folheto / Flyer",             desc: "Material para abordagem e divulgação." },
-  { imgs: [{ src: imgBackdrop, aspectW: 2711, aspectH: 2273 }],                                                                         title: "Banner / Backdrop",           desc: "Ideal para eventos e ações promocionais." },
-  { imgs: [{ src: imgUniforme, aspectW: 4096, aspectH: 4096 }],                                                                         title: "Uniforme Promotor",           desc: "Camiseta - Boné para promotores e equipe." },
-  { imgs: [{ src: imgDemais,   aspectW: 3801, aspectH: 2806 }],                                                                         title: "Outros Materiais Sugeridos",  desc: "Pulseira de silicone, chaveiro, caneta, bloco e outros itens." },
+const productImgs: Img[][] = [
+  [{ src: imgCopo,     aspectW: 1156, aspectH: 1625 }],
+  [{ src: imgCamisa1C, aspectW: 1610, aspectH: 1824, overlap: true }, { src: imgCamisa1F, aspectW: 1621, aspectH: 1755 }],
+  [{ src: imgBone,     aspectW: 1670, aspectH: 1411 }],
+  [{ src: imgSqueeze,  aspectW: 1446, aspectH: 1925 }],
+  [{ src: imgSacola,   aspectW: 1972, aspectH: 2166 }],
+  [{ src: imgBroche,   aspectW: 1628, aspectH: 1289 }],
+  [{ src: imgAdesivo,  aspectW: 4096, aspectH: 2358 }],
+  [{ src: imgCard,     aspectW: 2712, aspectH: 1626 }],
+  [{ src: imgFolheto,  aspectW: 3359, aspectH: 4096 }],
+  [{ src: imgBackdrop, aspectW: 2711, aspectH: 2273 }],
+  [{ src: imgUniforme, aspectW: 4096, aspectH: 4096 }],
+  [{ src: imgDemais,   aspectW: 3801, aspectH: 2806 }],
 ];
 
 function ProductCard({ product }: { product: Product }) {
@@ -72,6 +135,13 @@ function ProductCard({ product }: { product: Product }) {
 }
 
 export default function ColecaoMediaNetwork() {
+  const { lang } = useLang();
+  const t = T[lang];
+  const products: Product[] = productImgs.map((imgs, i) => ({
+    imgs,
+    title: t.products[i].title,
+    desc: t.products[i].desc,
+  }));
   return (
     <section className="bg-white flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
@@ -79,7 +149,7 @@ export default function ColecaoMediaNetwork() {
         {/* Header */}
         <div className="flex gap-[10px] items-center justify-between w-full flex-wrap">
           <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] flex-1 min-w-[240px] text-center lg:text-left">
-            <span className="text-[#1f2e91]">Acessórios para Acquafy</span>
+            <span className="text-[#1f2e91]">{t.heading}</span>
             {" "}
             <span className="text-[#0569ff]">Media Network</span>
           </h2>
@@ -97,7 +167,7 @@ export default function ColecaoMediaNetwork() {
           <a href="/parceria" className="flex bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors gap-[10px] items-center justify-center h-[40px] overflow-hidden px-[20px] rounded-[8px] shrink-0 cursor-pointer">
             <FigmaIcon src={imgPartner} size={16} aspectW={41} aspectH={40} />
             <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white whitespace-nowrap">
-              Seja um Parceiro
+              {t.cta}
             </span>
           </a>
         </div>

@@ -1,4 +1,6 @@
-﻿import FigmaIcon from "./FigmaIcon";
+﻿"use client";
+import FigmaIcon from "./FigmaIcon";
+import { useLang, type Lang } from "@/context/LanguageContext";
 
 // ── Backgrounds ──────────────────────────────────────────────────────────────
 // "Padrão" (xl+): background hero com splash de água + produtos visíveis ao fundo
@@ -16,14 +18,68 @@ const imgAI         = "/figma-assets/icon-ai.svg";
 const imgFilter     = "/figma-assets/icon-filter-a.svg";
 const imgIntegracao = "/figma-assets/icon-integracao.svg";
 
-const stats = [
-  { icon: imgWater,      iconW: 40, iconH: 40, title: "Água pura e segura",                    desc: "Mais saúde e bem-estar para você e sua família." },
-  { icon: imgAI,         iconW: 30, iconH: 30, title: "Tecnologia avançada",                   desc: "Filtros de alta performance e máxima eficiência" },
-  { icon: imgFilter,     iconW: 30, iconH: 30, title: "Fácil instalação e manutenção",         desc: "Praticidade para o dia a dia e maior durabilidade." },
-  { icon: imgIntegracao, iconW: 30, iconH: 30, title: "Compatibilidade com produtos Acquafy",  desc: "Desenvolvidos para performance total do seu equipamento." },
-];
+const T: Record<Lang, {
+  title1: string;
+  title2: string;
+  subtitle: string;
+  desc: string;
+  btn1: string;
+  btn2: string;
+  stats: { title: string; desc: string }[];
+}> = {
+  pt: {
+    title1: "Filtros & ",
+    title2: "Acessórios",
+    subtitle: "Performance, qualidade e proteção para cada gota",
+    desc: "Os filtros e acessórios Acquafy são projetados para manter a água sempre pura, segura e com o máximo desempenho em todos os equipamentos Acquafy.",
+    btn1: "Conheça os filtros",
+    btn2: "Falar com um especialista",
+    stats: [
+      { title: "Água pura e segura",                   desc: "Mais saúde e bem-estar para você e sua família." },
+      { title: "Tecnologia avançada",                  desc: "Filtros de alta performance e máxima eficiência" },
+      { title: "Fácil instalação e manutenção",        desc: "Praticidade para o dia a dia e maior durabilidade." },
+      { title: "Compatibilidade com produtos Acquafy", desc: "Desenvolvidos para performance total do seu equipamento." },
+    ],
+  },
+  en: {
+    title1: "Filters & ",
+    title2: "Accessories",
+    subtitle: "Performance, quality and protection for every drop",
+    desc: "Acquafy filters and accessories are designed to keep water always pure, safe and at peak performance across all Acquafy equipment.",
+    btn1: "Discover the filters",
+    btn2: "Talk to a specialist",
+    stats: [
+      { title: "Pure and safe water",              desc: "More health and well-being for you and your family." },
+      { title: "Advanced technology",              desc: "High-performance filters with maximum efficiency" },
+      { title: "Easy installation and maintenance",desc: "Convenience for everyday life and greater durability." },
+      { title: "Acquafy product compatibility",    desc: "Developed for total performance of your equipment." },
+    ],
+  },
+  es: {
+    title1: "Filtros & ",
+    title2: "Accesorios",
+    subtitle: "Rendimiento, calidad y protección para cada gota",
+    desc: "Los filtros y accesorios Acquafy están diseñados para mantener el agua siempre pura, segura y con el máximo rendimiento en todos los equipos Acquafy.",
+    btn1: "Conoce los filtros",
+    btn2: "Hablar con un especialista",
+    stats: [
+      { title: "Agua pura y segura",                  desc: "Más salud y bienestar para usted y su familia." },
+      { title: "Tecnología avanzada",                 desc: "Filtros de alto rendimiento y máxima eficiencia" },
+      { title: "Fácil instalación y mantenimiento",   desc: "Practicidad para el día a día y mayor durabilidad." },
+      { title: "Compatibilidad con productos Acquafy",desc: "Desarrollados para el rendimiento total de su equipo." },
+    ],
+  },
+};
 
 export default function BannerFiltros() {
+  const { lang } = useLang();
+  const t = T[lang];
+  const stats = [
+    { icon: imgWater,      iconW: 40, iconH: 40, title: t.stats[0].title, desc: t.stats[0].desc },
+    { icon: imgAI,         iconW: 30, iconH: 30, title: t.stats[1].title, desc: t.stats[1].desc },
+    { icon: imgFilter,     iconW: 30, iconH: 30, title: t.stats[2].title, desc: t.stats[2].desc },
+    { icon: imgIntegracao, iconW: 30, iconH: 30, title: t.stats[3].title, desc: t.stats[3].desc },
+  ];
   return (
     <section
       className="relative flex flex-col gap-[20px] items-center px-[20px] py-[40px] w-full overflow-hidden
@@ -47,23 +103,23 @@ export default function BannerFiltros() {
 
           {/* Título */}
           <h1 className="font-['Avenir_LT_Pro:95_Black'] text-hero w-full text-center lg:text-left">
-            <span className="text-[#2a2a2b]">Filtros &amp; </span>
+            <span className="text-[#2a2a2b]">{t.title1}</span>
             <span
               className="bg-clip-text text-transparent"
               style={{ backgroundImage: "linear-gradient(to right, #0233c3, #0569ff)" }}
             >
-              Acessórios
+              {t.title2}
             </span>
           </h1>
 
           {/* Subtítulo azul */}
           <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#0233c3] w-full text-center lg:text-left">
-            Performance, qualidade e proteção para cada gota
+            {t.subtitle}
           </p>
 
           {/* Descrição */}
           <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#333] w-full text-center lg:text-left">
-            Os filtros e acessórios Acquafy são projetados para manter a água sempre pura, segura e com o máximo desempenho em todos os equipamentos Acquafy.
+            {t.desc}
           </p>
 
           {/* Botões CTA — hero-size (50px, Articulat CF Bold 16px), mesmo padrão do Hero
@@ -71,12 +127,12 @@ export default function BannerFiltros() {
           <div className="flex flex-col md:flex-row flex-wrap gap-[20px] items-center w-full justify-center xl:justify-start">
             {/* BT AZUL BASE ARROW */}
             <a href="#filtros-lista" className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex w-full md:flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] md:min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
-              <span className="font-['Articulat_CF:Bold'] text-[16px] text-white flex-1 text-center">Conheça os filtros</span>
+              <span className="font-['Articulat_CF:Bold'] text-[16px] text-white flex-1 text-center">{t.btn1}</span>
               <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
             </a>
             {/* BT AZUL OUT ARROW */}
             <a href="/contato" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex w-full md:flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] md:min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
-              <span className="font-['Articulat_CF:Bold'] text-[16px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">Falar com um especialista</span>
+              <span className="font-['Articulat_CF:Bold'] text-[16px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">{t.btn2}</span>
               <div className="relative shrink-0" style={{ width: 9, height: 9 }}>
                 <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0 group-active:opacity-0">
                   <FigmaIcon src={imgArrowBlue} size={9} aspectW={11.2} aspectH={8.84} />

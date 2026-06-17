@@ -4,6 +4,33 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { CATEGORIAS } from "@/lib/artigos-data";
 import FigmaIcon from "./FigmaIcon";
+import { useLang, type Lang } from "@/context/LanguageContext";
+
+const T: Record<Lang, {
+  closeLabel: string;
+  articleCount: (n: number) => string;
+  readArticle: string;
+  viewKnowledgeBase: string;
+}> = {
+  pt: {
+    closeLabel:       "Fechar",
+    articleCount:     (n) => `${n} artigos nesta categoria`,
+    readArticle:      "Ler artigo",
+    viewKnowledgeBase:"Ver Base de Conhecimento",
+  },
+  en: {
+    closeLabel:       "Close",
+    articleCount:     (n) => `${n} article${n !== 1 ? "s" : ""} in this category`,
+    readArticle:      "Read article",
+    viewKnowledgeBase:"View Knowledge Base",
+  },
+  es: {
+    closeLabel:       "Cerrar",
+    articleCount:     (n) => `${n} artículo${n !== 1 ? "s" : ""} en esta categoría`,
+    readArticle:      "Leer artículo",
+    viewKnowledgeBase:"Ver Base de Conocimiento",
+  },
+};
 
 const imgArrowBlue  = "/figma-assets/icon-arrow-blue-b.svg";
 const imgArrowWhite = "/figma-assets/icon-arrow-white-solid.svg";
@@ -14,6 +41,8 @@ type Props = {
 };
 
 export default function TopicPopup({ slug, onClose }: Props) {
+  const { lang } = useLang();
+  const t = T[lang];
   const cat = slug ? CATEGORIAS.find((c) => c.slug === slug) ?? null : null;
 
   useEffect(() => {
@@ -69,7 +98,7 @@ export default function TopicPopup({ slug, onClose }: Props) {
           </div>
           <button
             onClick={onClose}
-            aria-label="Fechar"
+            aria-label={t.closeLabel}
             className="shrink-0 size-[36px] flex items-center justify-center rounded-full bg-[#f6f9fe] hover:bg-[#e8edf5] transition-colors text-[#555] text-[22px] leading-none"
           >
             ×
@@ -104,7 +133,7 @@ export default function TopicPopup({ slug, onClose }: Props) {
                   {artigo.resumo}
                 </p>
                 <div className="flex gap-[4px] items-center pt-[8px] border-t border-[#f0f4fb]">
-                  <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] text-[#0233c3]">Ler artigo</span>
+                  <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] text-[#0233c3]">{t.readArticle}</span>
                   <FigmaIcon src={imgArrowBlue} size={8} aspectW={11.2} aspectH={8.84} />
                 </div>
               </Link>
@@ -115,7 +144,7 @@ export default function TopicPopup({ slug, onClose }: Props) {
         {/* Footer */}
         <div className="shrink-0 px-[24px] py-[16px] border-t border-[#e8edf5] flex flex-wrap items-center justify-between gap-[12px]">
           <span className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#aaa]">
-            {cat.artigos.length} artigos nesta categoria
+            {t.articleCount(cat.artigos.length)}
           </span>
           <Link
             href={`/artigos#${cat.slug}`}
@@ -123,7 +152,7 @@ export default function TopicPopup({ slug, onClose }: Props) {
             className="bg-[#0233c3] hover:bg-[#002ba8] transition-colors flex gap-[8px] items-center justify-center px-[20px] py-[10px] rounded-[8px] no-underline"
           >
             <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white whitespace-nowrap">
-              Ver Base de Conhecimento
+              {t.viewKnowledgeBase}
             </span>
             <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
           </Link>

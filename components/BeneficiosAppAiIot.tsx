@@ -1,4 +1,7 @@
-﻿// ── Ícones dos cartões ────────────────────────────────────────────────────────
+﻿"use client";
+import { useLang, type Lang } from "@/context/LanguageContext";
+
+// ── Ícones dos cartões ────────────────────────────────────────────────────────
 const imgProfile   = "/figma-assets/icon-profile-consumer.svg"; // consumidor
 const imgParceria  = "/figma-assets/icon-parceiro.svg"; // parceiro
 const imgPlanetWeb = "/figma-assets/icon-planetweb-operacao-global.svg"; // operação global
@@ -32,38 +35,71 @@ type MapCard = {
 
 type CardDef = PersonCard | MapCard;
 
-const cards: CardDef[] = [
-  {
-    layout: "person",
-    icon: imgProfile,
-    borderColor: "#0569ff",
-    titleColor: "#0569ff",
-    title: "Consumidor",
-    subtitle: "Facilidade, controle e tranquilidade",
-    desc: "Tenha o controle total do seu purificador, receba alertas e garanta água pura com mais conforto e segurança.",
-    photo: imgConsum1,
+const T: Record<Lang, {
+  heading: string;
+  cards: { title: string; subtitle: string; desc: string }[];
+}> = {
+  pt: {
+    heading: "Benefícios para clientes, parceiros e operadores",
+    cards: [
+      {
+        title: "Consumidor",
+        subtitle: "Facilidade, controle e tranquilidade",
+        desc: "Tenha o controle total do seu purificador, receba alertas e garanta água pura com mais conforto e segurança.",
+      },
+      {
+        title: "Parceiro",
+        subtitle: "Visibilidade, suporte e operação conectada",
+        desc: "Acompanhe seus clientes, receba insights e ofereça um atendimento mais ágil e eficiente.",
+      },
+      {
+        title: "Operação Global",
+        subtitle: "Padronização, escalabilidade e dados centralizados",
+        desc: "Gerencie múltiplas unidades e mercados com dados unificados e processos padronizados.",
+      },
+    ],
   },
-  {
-    layout: "person",
-    icon: imgParceria,
-    borderColor: "#6e54ef",
-    titleColor: "#6e54ef",
-    title: "Parceiro",
-    subtitle: "Visibilidade, suporte e operação conectada",
-    desc: "Acompanhe seus clientes, receba insights e ofereça um atendimento mais ágil e eficiente.",
-    photo: imgConsum2,
+  en: {
+    heading: "Benefits for customers, partners and operators",
+    cards: [
+      {
+        title: "Consumer",
+        subtitle: "Ease, control and peace of mind",
+        desc: "Take full control of your purifier, receive alerts and ensure pure water with greater comfort and safety.",
+      },
+      {
+        title: "Partner",
+        subtitle: "Visibility, support and connected operations",
+        desc: "Monitor your customers, receive insights and offer faster, more efficient service.",
+      },
+      {
+        title: "Global Operations",
+        subtitle: "Standardization, scalability and centralized data",
+        desc: "Manage multiple units and markets with unified data and standardized processes.",
+      },
+    ],
   },
-  {
-    layout: "map",
-    icon: imgPlanetWeb,
-    borderColor: "#06ae4c",
-    titleColor: "#06ae4c",
-    title: "Operação Global",
-    subtitle: "Padronização, escalabilidade e dados centralizados",
-    desc: "Gerencie múltiplas unidades e mercados com dados unificados e processos padronizados.",
-    photo: imgGlobal,
+  es: {
+    heading: "Beneficios para clientes, socios y operadores",
+    cards: [
+      {
+        title: "Consumidor",
+        subtitle: "Facilidad, control y tranquilidad",
+        desc: "Ten el control total de tu purificador, recibe alertas y garantiza agua pura con mayor comodidad y seguridad.",
+      },
+      {
+        title: "Socio",
+        subtitle: "Visibilidad, soporte y operación conectada",
+        desc: "Acompaña a tus clientes, recibe insights y ofrece una atención más ágil y eficiente.",
+      },
+      {
+        title: "Operación Global",
+        subtitle: "Estandarización, escalabilidad y datos centralizados",
+        desc: "Gestiona múltiples unidades y mercados con datos unificados y procesos estandarizados.",
+      },
+    ],
   },
-];
+};
 
 function CardContent({ card }: { card: CardDef }) {
   return (
@@ -100,13 +136,49 @@ function CardContent({ card }: { card: CardDef }) {
 }
 
 export default function BeneficiosAppAiIot() {
+  const { lang } = useLang();
+  const t = T[lang];
+
+  const cards: CardDef[] = [
+    {
+      layout: "person",
+      icon: imgProfile,
+      borderColor: "#0569ff",
+      titleColor: "#0569ff",
+      title: t.cards[0].title,
+      subtitle: t.cards[0].subtitle,
+      desc: t.cards[0].desc,
+      photo: imgConsum1,
+    },
+    {
+      layout: "person",
+      icon: imgParceria,
+      borderColor: "#6e54ef",
+      titleColor: "#6e54ef",
+      title: t.cards[1].title,
+      subtitle: t.cards[1].subtitle,
+      desc: t.cards[1].desc,
+      photo: imgConsum2,
+    },
+    {
+      layout: "map",
+      icon: imgPlanetWeb,
+      borderColor: "#06ae4c",
+      titleColor: "#06ae4c",
+      title: t.cards[2].title,
+      subtitle: t.cards[2].subtitle,
+      desc: t.cards[2].desc,
+      photo: imgGlobal,
+    },
+  ];
+
   return (
     <section className="bg-[#f6f9fe] flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[60px] items-start max-w-[1400px] w-full">
 
         {/* Título */}
         <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] w-full text-center lg:text-left">
-          Benefícios para clientes, parceiros e operadores
+          {t.heading}
         </h2>
 
         {/* 3 cartões — flex-col abaixo de 1220px; flex-row a partir de 1220px

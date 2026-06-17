@@ -1,44 +1,64 @@
-﻿const imgIconUser     = "/figma-assets/como-icon-user.svg";
+"use client";
+import { useLang, type Lang } from "@/context/LanguageContext";
+
+const imgIconUser     = "/figma-assets/como-icon-user.svg";
 const imgIconMobile   = "/figma-assets/como-icon-mobile.svg";
 const imgIconLocation = "/figma-assets/como-icon-location.svg";
 const imgIconScale    = "/figma-assets/como-icon-scale.svg";
 const imgArrow        = "/figma-assets/como-arrow.svg";
 
-const steps = [
-  {
-    num:  "01",
-    icon: imgIconUser,
-    title: "Escolha seu nível",
-    desc:  "Selecione o modelo de parceria que melhor se encaixa no seu perfil e na sua estratégia.",
+const T: Record<Lang, {
+  heading1: string;
+  heading2: string;
+  steps: { num: string; title: string; desc: string }[];
+}> = {
+  pt: {
+    heading1: "Como funciona o ",
+    heading2: "Programa de Parceria Global",
+    steps: [
+      { num: "01", title: "Escolha seu nível", desc: "Selecione o modelo de parceria que melhor se encaixa no seu perfil e na sua estratégia." },
+      { num: "02", title: "Receba estrutura digital", desc: "Acesso ao App, materiais, treinamentos, links, QR Codes e suporte multilíngue." },
+      { num: "03", title: "Ative vendas mídia ou distribuição", desc: "Indique, opere o Acquafy Media ou distribua a linha Neo na sua região." },
+      { num: "04", title: "Escale com a Plataforma Acquafy", desc: "Acompanhe resultados, expanda sua rede e cresça com o ecossistema global." },
+    ],
   },
-  {
-    num:  "02",
-    icon: imgIconMobile,
-    title: "Receba estrutura digital",
-    desc:  "Acesso ao App, materiais, treinamentos, links, QR Codes e suporte multilíngue.",
+  en: {
+    heading1: "How the ",
+    heading2: "Global Partnership Program works",
+    steps: [
+      { num: "01", title: "Choose your level", desc: "Select the partnership model that best fits your profile and strategy." },
+      { num: "02", title: "Receive digital structure", desc: "Access to the App, materials, training, links, QR Codes and multilingual support." },
+      { num: "03", title: "Activate media sales or distribution", desc: "Refer, operate Acquafy Media or distribute the Neo line in your region." },
+      { num: "04", title: "Scale with the Acquafy Platform", desc: "Track results, expand your network and grow with the global ecosystem." },
+    ],
   },
-  {
-    num:  "03",
-    icon: imgIconLocation,
-    title: "Ative vendas mídia ou distribuição",
-    desc:  "Indique, opere o Acquafy Media ou distribua a linha Neo na sua região.",
+  es: {
+    heading1: "Cómo funciona el ",
+    heading2: "Programa de Asociación Global",
+    steps: [
+      { num: "01", title: "Elige tu nivel", desc: "Selecciona el modelo de asociación que mejor se adapta a tu perfil y estrategia." },
+      { num: "02", title: "Recibe estructura digital", desc: "Acceso a la App, materiales, entrenamientos, enlaces, QR Codes y soporte multilingüe." },
+      { num: "03", title: "Activa ventas de medios o distribución", desc: "Indica, opera el Acquafy Media o distribuye la línea Neo en tu región." },
+      { num: "04", title: "Escala con la Plataforma Acquafy", desc: "Monitorea resultados, expande tu red y crece con el ecosistema global." },
+    ],
   },
-  {
-    num:  "04",
-    icon: imgIconScale,
-    title: "Escale com a Plataforma Acquafy",
-    desc:  "Acompanhe resultados, expanda sua rede e cresça com o ecossistema global.",
-  },
-];
+};
+
+const stepIcons = [imgIconUser, imgIconMobile, imgIconLocation, imgIconScale];
 
 export default function ComoFuncionaParceria() {
+  const { lang } = useLang();
+  const t = T[lang];
+
+  const steps = t.steps.map((s, i) => ({ ...s, icon: stepIcons[i] }));
+
   return (
     <section className="bg-white flex items-center justify-center px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
 
         <h2 className="font-['Avenir_LT_Pro:85_Heavy'] not-italic text-[20px] leading-[28px] text-center min-w-[240px] w-full">
-          <span className="text-[#1f2e91]">{"Como funciona o "}</span>
-          <span className="text-[#0569ff]">Programa de Parceria Global</span>
+          <span className="text-[#1f2e91]">{t.heading1}</span>
+          <span className="text-[#0569ff]">{t.heading2}</span>
         </h2>
 
         <div className="flex flex-wrap gap-[20px] items-start justify-center w-full">
