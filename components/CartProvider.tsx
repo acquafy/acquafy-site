@@ -62,6 +62,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const openCart = useCallback(() => setShowCartPanel(true), []);
 
   const [extraBottom, setExtraBottom] = useState(0);
+  const [pastBanner, setPastBanner] = useState(false);
+
   useEffect(() => {
     const footer = document.querySelector("footer");
     if (!footer) return;
@@ -78,6 +80,13 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     };
   }, []);
 
+  useEffect(() => {
+    const check = () => setPastBanner(window.scrollY > 150);
+    window.addEventListener("scroll", check, { passive: true });
+    check();
+    return () => window.removeEventListener("scroll", check);
+  }, []);
+
   const cartTotal = cart.reduce((sum, item) => sum + (PRODUCT_PRICES_BRL[item.id] ?? 0) * item.qty, 0);
   const cartCount = cart.reduce((s, i) => s + i.qty, 0);
 
@@ -86,7 +95,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       {children}
 
       {/* ── BOTÃO FLUTUANTE CARRINHO ── */}
-      {pathname !== '/checkin' && (
+      {pathname !== '/checkin' && pastBanner && (
         <button
           onClick={() => setShowCartPanel(true)}
           suppressHydrationWarning

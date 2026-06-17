@@ -31,6 +31,7 @@ export function useChatWidget() {
 export function ChatProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
   const [extraBottom, setExtraBottom] = useState(0);
+  const [pastBanner, setPastBanner] = useState(false);
 
   useEffect(() => {
     const footer = document.querySelector("footer");
@@ -48,6 +49,13 @@ export function ChatProvider({ children }: { children: ReactNode }) {
     };
   }, []);
 
+  useEffect(() => {
+    const check = () => setPastBanner(window.scrollY > 150);
+    window.addEventListener("scroll", check, { passive: true });
+    check();
+    return () => window.removeEventListener("scroll", check);
+  }, []);
+
   function openChat() {
     if (CHAT_AVAILABLE) {
       openChatWindow();
@@ -61,7 +69,7 @@ export function ChatProvider({ children }: { children: ReactNode }) {
       {children}
 
       {/* ── FAB — bottom-left chat bubble ── */}
-      {!isOpen && (
+      {!isOpen && pastBanner && (
         <button
           onClick={openChat}
           aria-label="Abrir chat"
