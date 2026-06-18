@@ -56,6 +56,90 @@ const T: Record<Lang, {
     btnSecondary: "Explorar recursos",
     mockupAlt: "App Acquafy — tablet y smartphone",
   },
+  fr: {
+    label: "ÉCOSYSTÈME CONNECTÉ ACQUAFY",
+    description: "Contrôlez vos purificateurs, surveillez vos appareils, recevez des alertes intelligentes et gérez l'ensemble de l'opération dans une expérience intégrée.",
+    badges: [
+      { title: "App Acquafy", desc: "Contrôle à distance, état de l'équipement et support à portée de main." },
+      { title: "Acquafy AI", desc: "Intelligence artificielle pour les insights, l'automatisation et des décisions plus rapides." },
+      { title: "IoT & Appareils", desc: "Capteurs, connectivité et surveillance en temps réel." },
+    ],
+    btnPrimary: "Télécharger l'App",
+    btnSecondary: "Explorer les fonctionnalités",
+    mockupAlt: "App Acquafy — tablette et smartphone",
+  },
+  de: {
+    label: "VERNETZTES ACQUAFY-ÖKOSYSTEM",
+    description: "Steuern Sie Ihre Reiniger, überwachen Sie Geräte, empfangen Sie intelligente Benachrichtigungen und verwalten Sie den gesamten Betrieb in einem integrierten Erlebnis.",
+    badges: [
+      { title: "App Acquafy", desc: "Fernsteuerung, Gerätestatus und Support immer griffbereit." },
+      { title: "Acquafy AI", desc: "Künstliche Intelligenz für Insights, Automatisierungen und schnellere Entscheidungen." },
+      { title: "IoT & Geräte", desc: "Sensoren, Konnektivität und Echtzeit-Überwachung." },
+    ],
+    btnPrimary: "App herunterladen",
+    btnSecondary: "Funktionen entdecken",
+    mockupAlt: "App Acquafy — Tablet und Smartphone",
+  },
+  it: {
+    label: "ECOSISTEMA CONNESSO ACQUAFY",
+    description: "Controlla i tuoi purificatori, monitora i dispositivi, ricevi avvisi intelligenti e gestisci l'intera operazione in un'esperienza integrata.",
+    badges: [
+      { title: "App Acquafy", desc: "Controllo remoto, stato dell'attrezzatura e supporto a portata di mano." },
+      { title: "Acquafy AI", desc: "Intelligenza artificiale per insights, automazioni e decisioni più rapide." },
+      { title: "IoT & Dispositivi", desc: "Sensori, connettività e monitoraggio in tempo reale." },
+    ],
+    btnPrimary: "Scarica l'App",
+    btnSecondary: "Esplora le funzionalità",
+    mockupAlt: "App Acquafy — tablet e smartphone",
+  },
+  zh: {
+    label: "ACQUAFY 互联生态系统",
+    description: "控制您的净水器，监控设备，接收智能提醒，并在一体化体验中管理整个运营。",
+    badges: [
+      { title: "App Acquafy", desc: "远程控制、设备状态和支持触手可及。" },
+      { title: "Acquafy AI", desc: "人工智能助力洞察、自动化和更快决策。" },
+      { title: "IoT & 设备", desc: "传感器、连接性和实时监控。" },
+    ],
+    btnPrimary: "下载 App",
+    btnSecondary: "探索功能",
+    mockupAlt: "App Acquafy — 平板电脑和智能手机",
+  },
+  ja: {
+    label: "ACQUAFY コネクテッドエコシステム",
+    description: "浄水器をコントロールし、デバイスを監視し、スマートアラートを受け取り、一体化された体験で全体の運営を管理します。",
+    badges: [
+      { title: "App Acquafy", desc: "手のひらでリモートコントロール、機器の状態確認とサポートを。" },
+      { title: "Acquafy AI", desc: "インサイト、自動化、迅速な意思決定のための人工知能。" },
+      { title: "IoT & デバイス", desc: "センサー、コネクティビティ、リアルタイム監視。" },
+    ],
+    btnPrimary: "App をダウンロード",
+    btnSecondary: "機能を見る",
+    mockupAlt: "App Acquafy — タブレットとスマートフォン",
+  },
+  ko: {
+    label: "ACQUAFY 연결 생태계",
+    description: "정수기를 제어하고, 기기를 모니터링하며, 스마트 알림을 받고, 통합된 경험으로 전체 운영을 관리하세요.",
+    badges: [
+      { title: "App Acquafy", desc: "원격 제어, 장비 상태 및 지원을 손끝에서." },
+      { title: "Acquafy AI", desc: "인사이트, 자동화, 더 빠른 결정을 위한 인공지능." },
+      { title: "IoT & 기기", desc: "센서, 연결성 및 실시간 모니터링." },
+    ],
+    btnPrimary: "App 다운로드",
+    btnSecondary: "기능 탐색",
+    mockupAlt: "App Acquafy — 태블릿 및 스마트폰",
+  },
+  "pt-pt": {
+    label: "ECOSSISTEMA CONECTADO ACQUAFY",
+    description: "Controle os seus purificadores, monitorize dispositivos, receba alertas inteligentes e gira toda a operação numa experiência integrada.",
+    badges: [
+      { title: "App Acquafy", desc: "Controlo remoto, estado do equipamento e suporte na palma da mão." },
+      { title: "Acquafy AI", desc: "Inteligência artificial para insights, automatizações e decisões mais rápidas." },
+      { title: "IoT & Dispositivos", desc: "Sensores, conectividade e monitorização em tempo real." },
+    ],
+    btnPrimary: "Transferir a App",
+    btnSecondary: "Explorar recursos",
+    mockupAlt: "App Acquafy — tablet e smartphone",
+  },
 };
 
 /*

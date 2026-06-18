@@ -6,8 +6,15 @@ const imgBg = "/figma-assets/bg-o.webp";
 
 const T: Record<Lang, { title: string }> = {
   pt: { title: "Leve a Acquafy para sua família, sua empresa ou seu país." },
+  "pt-pt": { title: "Leve a Acquafy para a sua família, a sua empresa ou o seu país." },
   en: { title: "Bring Acquafy to your family, your company or your country." },
   es: { title: "Lleva Acquafy a tu familia, tu empresa o tu país." },
+  fr: { title: "Amenez Acquafy dans votre famille, votre entreprise ou votre pays." },
+  de: { title: "Bringen Sie Acquafy in Ihre Familie, Ihr Unternehmen oder Ihr Land." },
+  it: { title: "Porta Acquafy nella tua famiglia, nella tua azienda o nel tuo paese." },
+  zh: { title: "将 Acquafy 带给您的家庭、企业或您的国家。" },
+  ja: { title: "Acquafy を、ご家族、企業、そして国へ。" },
+  ko: { title: "Acquafy를 당신의 가족, 기업, 그리고 나라에 데려오세요." },
 };
 
 export default function CtaBanner() {

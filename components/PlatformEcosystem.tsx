@@ -32,6 +32,17 @@ const T: Record<Lang, { heading: string; labels: string[] }> = {
       "Comissões + Operação Global",
     ],
   },
+  "pt-pt": {
+    heading: "Como a plataforma conecta o ecossistema",
+    labels: [
+      "Produtos Neo / Acquafy Media",
+      "App + IoT",
+      "Plataforma Cloud",
+      "AI Insights",
+      "QR Codes + Vendas",
+      "Comissões + Operação Global",
+    ],
+  },
   en: {
     heading: "How the platform connects the ecosystem",
     labels: [
@@ -52,6 +63,72 @@ const T: Record<Lang, { heading: string; labels: string[] }> = {
       "AI Insights",
       "Códigos QR + Ventas",
       "Comisiones + Operación Global",
+    ],
+  },
+  fr: {
+    heading: "Comment la plateforme connecte l'écosystème",
+    labels: [
+      "Produits Neo / Acquafy Media",
+      "App + IoT",
+      "Cloud Platform",
+      "AI Insights",
+      "Codes QR + Ventes",
+      "Commissions + Opération Mondiale",
+    ],
+  },
+  de: {
+    heading: "Wie die Plattform das Ökosystem verbindet",
+    labels: [
+      "Neo Produkte / Acquafy Media",
+      "App + IoT",
+      "Cloud Platform",
+      "AI Insights",
+      "QR-Codes + Verkauf",
+      "Provisionen + Globaler Betrieb",
+    ],
+  },
+  it: {
+    heading: "Come la piattaforma connette l'ecosistema",
+    labels: [
+      "Prodotti Neo / Acquafy Media",
+      "App + IoT",
+      "Cloud Platform",
+      "AI Insights",
+      "Codici QR + Vendite",
+      "Commissioni + Operazione Globale",
+    ],
+  },
+  zh: {
+    heading: "平台如何连接生态系统",
+    labels: [
+      "Neo 产品 / Acquafy Media",
+      "App + IoT",
+      "Cloud Platform",
+      "AI Insights",
+      "二维码 + 销售",
+      "佣金 + 全球运营",
+    ],
+  },
+  ja: {
+    heading: "プラットフォームがエコシステムを繋ぐ仕組み",
+    labels: [
+      "Neo製品 / Acquafy Media",
+      "App + IoT",
+      "Cloud Platform",
+      "AI Insights",
+      "QRコード + 販売",
+      "コミッション + グローバル運営",
+    ],
+  },
+  ko: {
+    heading: "플랫폼이 생태계를 연결하는 방법",
+    labels: [
+      "Neo 제품 / Acquafy Media",
+      "App + IoT",
+      "Cloud Platform",
+      "AI Insights",
+      "QR 코드 + 판매",
+      "커미션 + 글로벌 운영",
     ],
   },
 };

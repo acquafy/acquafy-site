@@ -46,6 +46,69 @@ const T: Record<Lang, { h2: string; descs: string[] }> = {
       "Ajusta el rango de pH del agua, haciendo que el agua filtrada sea alcalina con pH superior a 9, antioxidante y rica en hidrógeno.",
     ],
   },
+  fr: {
+    h2: "Gamme Premium - Système de Filtration Haute Performance",
+    descs: [
+      "Élimine l'iode, la saleté, la rouille, filtre les impuretés, les composés chimiques, les particules en suspension, les odeurs et les saveurs normalement présents dans l'eau du robinet.",
+      "Élimine le chlore, les composés chimiques, les particules en suspension, les odeurs et les saveurs normalement présents dans l'eau du robinet.",
+      "Système qui produit une eau d'une pureté de 99 % (exempte de virus et de bactéries jusqu'à 0,5 micron), conçu pour les personnes souhaitant ou nécessitant une eau extrêmement pure.",
+      "Il ajuste la plage de pH de l'eau, rendant l'eau filtrée alcaline avec un pH supérieur à 9, antioxydante et riche en hydrogène.",
+    ],
+  },
+  de: {
+    h2: "Premium-Linie - Hochleistungs-Filtrationssystem",
+    descs: [
+      "Entfernt Jod, Schmutz, Rost, filtert Verunreinigungen, chemische Verbindungen, Schwebeteilchen, Gerüche und Geschmacksstoffe, die normalerweise im Leitungswasser vorkommen.",
+      "Entfernt Chlor, chemische Verbindungen, Schwebeteilchen, Gerüche und Geschmacksstoffe, die normalerweise im Leitungswasser vorkommen.",
+      "System, das Wasser mit 99 % Reinheit produziert (frei von Viren und Bakterien bis zu 0,5 Mikron), entwickelt für Personen, die extrem reines Wasser konsumieren möchten oder müssen.",
+      "Es reguliert den pH-Bereich des Wassers und macht das gefilterte Wasser mit einem pH-Wert über 9 alkalisch, antioxidativ und wasserstoffreich.",
+    ],
+  },
+  it: {
+    h2: "Linea Premium - Sistema di Filtrazione ad Alta Prestazione",
+    descs: [
+      "Rimuove iodio, sporco, ruggine, filtra impurità, composti chimici, particelle sospese, odori e sapori normalmente presenti nell'acqua del rubinetto.",
+      "Rimuove il cloro, composti chimici, particelle sospese, odori e sapori normalmente presenti nell'acqua del rubinetto.",
+      "Sistema che produce acqua con purezza al 99% (priva di virus e batteri fino a 0,5 micron), sviluppato per chi desidera o necessita di consumare acqua estremamente pura.",
+      "Regola il range di pH dell'acqua, rendendo l'acqua filtrata alcalina con pH superiore a 9, antiossidante e ricca di idrogeno.",
+    ],
+  },
+  zh: {
+    h2: "Premium系列 - 高性能净水系统",
+    descs: [
+      "去除碘、污垢、铁锈，过滤自来水中通常含有的杂质、化学物质、悬浮颗粒、异味和异味。",
+      "去除氯气、化学物质、悬浮颗粒，以及自来水中通常含有的异味和异味。",
+      "该系统生产纯度达99%的水（去除0.5微米以内的病毒和细菌），专为需要饮用极纯净水的人群而开发。",
+      "调节水的pH范围，使过滤后的水呈碱性，pH值高于9，具有抗氧化性且富含氢。",
+    ],
+  },
+  ja: {
+    h2: "プレミアムライン - 高性能ろ過システム",
+    descs: [
+      "水道水に通常含まれるヨウ素、汚れ、錆を除去し、不純物、化学物質、浮遊粒子、臭いおよび異味をろ過します。",
+      "水道水に通常含まれる塩素、化学物質、浮遊粒子、臭いおよび異味を除去します。",
+      "99%の純度の水を生成するシステム（0.5ミクロンまでのウイルスや細菌を除去）で、極めて純粋な水を必要とする方のために開発されました。",
+      "水のpH範囲を調整し、ろ過された水をpH9以上のアルカリ性にし、抗酸化性と水素を豊富に含む水にします。",
+    ],
+  },
+  ko: {
+    h2: "프리미엄 라인 - 고성능 여과 시스템",
+    descs: [
+      "수돗물에 일반적으로 존재하는 요오드, 먼지, 녹을 제거하고 불순물, 화학 물질, 부유 입자, 냄새 및 맛을 여과합니다.",
+      "수돗물에 일반적으로 존재하는 염소, 화학 물질, 부유 입자, 냄새 및 맛을 제거합니다.",
+      "99% 순도의 물을 생산하는 시스템(0.5마이크론까지의 바이러스 및 박테리아 제거)으로, 극도로 순수한 물을 원하거나 필요로 하는 사람들을 위해 개발되었습니다.",
+      "물의 pH 범위를 조절하여 여과된 물을 pH 9 이상의 알칼리성으로 만들고, 항산화 효과와 수소가 풍부한 물로 만듭니다.",
+    ],
+  },
+  "pt-pt": {
+    h2: "Linha Premium - Sistema de Filtração de Alta Performance",
+    descs: [
+      "Remove iodo, sujidade, ferrugem, filtra impurezas, compostos químicos, partículas em suspensão, odores e sabores normalmente presentes na água da torneira.",
+      "Remove o cloro, compostos químicos, partículas em suspensão, odores e sabores normalmente presentes na água da torneira.",
+      "Sistema que produz água com 99% de pureza (isenta de vírus e bactérias até 0,5 microns), foi desenvolvido para servir pessoas que queiram ou necessitem do consumo de uma água extremamente pura.",
+      "Ajusta a gama de pH da água, tornando a água filtrada alcalina com pH acima de 9, antioxidante e rica em hidrogénio.",
+    ],
+  },
 };
 
 function FilterCardItem({ card, isLast }: { card: FilterCard; isLast: boolean }) {

@@ -38,6 +38,18 @@ const T: Record<Lang, {
     bannerTitle: "Água de qualidade não deve ser privilégio.",
     bannerSub1: "Faça um ", bannerSub2: " e leve mais saúde para você e sua família.",
   },
+  "pt-pt": {
+    badge: "CHECKOUT SEGURO",
+    h2a: "O seu purificador antigo vale", h2b: "um UP!",
+    bonus1: "Ganhe ", bonus2: " de bónus na compra do Acquafy Neo UP Essentials.",
+    trust: [
+      { title: "Compra 100% segura",    sub: "Os seus dados protegidos" },
+      { title: "Produto com garantia",  sub: "Qualidade Acquafy" },
+      { title: "Suporte especializado", sub: "Antes e após a sua compra" },
+    ],
+    bannerTitle: "Água de qualidade não deve ser um privilégio.",
+    bannerSub1: "Faça um ", bannerSub2: " e leve mais saúde para si e para a sua família.",
+  },
   en: {
     badge: "SECURE CHECKOUT",
     h2a: "Your old purifier is worth", h2b: "an UP!",
@@ -61,6 +73,78 @@ const T: Record<Lang, {
     ],
     bannerTitle: "El agua de calidad no debe ser un privilegio.",
     bannerSub1: "Haz un ", bannerSub2: " y lleva más salud a ti y a tu familia.",
+  },
+  fr: {
+    badge: "PAIEMENT SÉCURISÉ",
+    h2a: "Votre ancien purificateur vaut", h2b: "un UP !",
+    bonus1: "Gagnez ", bonus2: " de bonus à l'achat de l'Acquafy Neo UP Essentials.",
+    trust: [
+      { title: "Achat 100 % sécurisé",  sub: "Vos données sont protégées" },
+      { title: "Produit avec garantie", sub: "Qualité Acquafy" },
+      { title: "Support spécialisé",    sub: "Avant et après votre achat" },
+    ],
+    bannerTitle: "L'eau de qualité ne devrait pas être un privilège.",
+    bannerSub1: "Faites un ", bannerSub2: " et apportez plus de santé à vous et votre famille.",
+  },
+  de: {
+    badge: "SICHERER KAUF",
+    h2a: "Ihr alter Purifier ist", h2b: "ein UP wert!",
+    bonus1: "Erhalten Sie ", bonus2: " Bonus beim Kauf des Acquafy Neo UP Essentials.",
+    trust: [
+      { title: "100 % sicherer Kauf",    sub: "Ihre Daten sind geschützt" },
+      { title: "Produkt mit Garantie",   sub: "Acquafy Qualität" },
+      { title: "Spezialisierter Support", sub: "Vor und nach Ihrem Kauf" },
+    ],
+    bannerTitle: "Qualitätswasser sollte kein Privileg sein.",
+    bannerSub1: "Machen Sie ein ", bannerSub2: " und bringen Sie mehr Gesundheit für sich und Ihre Familie.",
+  },
+  it: {
+    badge: "ACQUISTO SICURO",
+    h2a: "Il tuo vecchio purificatore vale", h2b: "un UP!",
+    bonus1: "Guadagna ", bonus2: " di bonus all'acquisto dell'Acquafy Neo UP Essentials.",
+    trust: [
+      { title: "Acquisto 100% sicuro",   sub: "I tuoi dati sono protetti" },
+      { title: "Prodotto con garanzia",  sub: "Qualità Acquafy" },
+      { title: "Supporto specializzato", sub: "Prima e dopo il tuo acquisto" },
+    ],
+    bannerTitle: "L'acqua di qualità non dovrebbe essere un privilegio.",
+    bannerSub1: "Fai un ", bannerSub2: " e porta più salute a te e alla tua famiglia.",
+  },
+  zh: {
+    badge: "安全结账",
+    h2a: "您的旧净水机值得换一台", h2b: "UP！",
+    bonus1: "购买 Acquafy Neo UP Essentials 即可获得 ", bonus2: " 奖励。",
+    trust: [
+      { title: "100% 安全购物",  sub: "您的数据受到保护" },
+      { title: "产品享有保修",   sub: "Acquafy 品质保证" },
+      { title: "专业售后支持",   sub: "购买前后全程服务" },
+    ],
+    bannerTitle: "优质水源不应是少数人的特权。",
+    bannerSub1: "体验 ", bannerSub2: "，为您和家人带来更多健康。",
+  },
+  ja: {
+    badge: "安全なチェックアウト",
+    h2a: "古い浄水器が", h2b: "UP に生まれ変わる！",
+    bonus1: "Acquafy Neo UP Essentials のご購入で ", bonus2: " ボーナスをゲット。",
+    trust: [
+      { title: "100% 安全なお買い物", sub: "お客様のデータを保護" },
+      { title: "保証付き製品",        sub: "Acquafy の品質" },
+      { title: "専門サポート",         sub: "ご購入の前後を通じてサポート" },
+    ],
+    bannerTitle: "質の高い水は特権であってはなりません。",
+    bannerSub1: "", bannerSub2: " で、あなたと家族にもっと健康を。",
+  },
+  ko: {
+    badge: "안전한 결제",
+    h2a: "기존 정수기를", h2b: "UP으로 업그레이드하세요!",
+    bonus1: "Acquafy Neo UP Essentials 구매 시 ", bonus2: " 보너스를 받으세요.",
+    trust: [
+      { title: "100% 안전한 구매",  sub: "고객님의 데이터가 보호됩니다" },
+      { title: "보증이 있는 제품",  sub: "Acquafy 품질" },
+      { title: "전문 지원 서비스",  sub: "구매 전후 모두 지원" },
+    ],
+    bannerTitle: "깨끗한 물은 특권이 되어서는 안 됩니다.",
+    bannerSub1: "", bannerSub2: "을 통해 가족 모두에게 더 건강한 삶을 선물하세요.",
   },
 };
 

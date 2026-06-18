@@ -16,6 +16,13 @@ const T: Record<Lang, {
     sub: "Leia com atenção os termos e condições que regem o uso do nosso site e dos nossos produtos e serviços.",
     lastUpdate: "Última atualização: 16 de junho de 2026",
   },
+  "pt-pt": {
+    badge: "Informações Legais",
+    headingMain: "Termos de",
+    headingHighlight: "Utilização",
+    sub: "Leia com atenção os termos e condições que regem a utilização do nosso site e dos nossos produtos e serviços.",
+    lastUpdate: "Última actualização: 16 de junho de 2026",
+  },
   en: {
     badge: "Legal Information",
     headingMain: "Terms of",
@@ -29,6 +36,48 @@ const T: Record<Lang, {
     headingHighlight: "Uso",
     sub: "Lea detenidamente los términos y condiciones que rigen el uso de nuestro sitio web y de nuestros productos y servicios.",
     lastUpdate: "Última actualización: 16 de junio de 2026",
+  },
+  fr: {
+    badge: "Informations Légales",
+    headingMain: "Conditions",
+    headingHighlight: "d'Utilisation",
+    sub: "Veuillez lire attentivement les termes et conditions régissant l'utilisation de notre site web, de nos produits et services.",
+    lastUpdate: "Dernière mise à jour : 16 juin 2026",
+  },
+  de: {
+    badge: "Rechtliche Informationen",
+    headingMain: "Nutzungs-",
+    headingHighlight: "bedingungen",
+    sub: "Bitte lesen Sie sorgfältig die Allgemeinen Geschäftsbedingungen, die die Nutzung unserer Website sowie unserer Produkte und Dienstleistungen regeln.",
+    lastUpdate: "Zuletzt aktualisiert: 16. Juni 2026",
+  },
+  it: {
+    badge: "Informazioni Legali",
+    headingMain: "Termini di",
+    headingHighlight: "Utilizzo",
+    sub: "Leggete attentamente i termini e le condizioni che regolano l'utilizzo del nostro sito web e dei nostri prodotti e servizi.",
+    lastUpdate: "Ultimo aggiornamento: 16 giugno 2026",
+  },
+  zh: {
+    badge: "法律信息",
+    headingMain: "使用",
+    headingHighlight: "条款",
+    sub: "请仔细阅读管理我们网站及产品和服务使用的条款和条件。",
+    lastUpdate: "最后更新：2026年6月16日",
+  },
+  ja: {
+    badge: "法的情報",
+    headingMain: "利用",
+    headingHighlight: "規約",
+    sub: "当社のウェブサイト、製品およびサービスの利用を規定する利用規約をよくお読みください。",
+    lastUpdate: "最終更新：2026年6月16日",
+  },
+  ko: {
+    badge: "법적 정보",
+    headingMain: "이용",
+    headingHighlight: "약관",
+    sub: "당사 웹사이트 및 제품과 서비스의 이용을 규정하는 이용 약관을 주의 깊게 읽어 주세요.",
+    lastUpdate: "최종 업데이트: 2026년 6월 16일",
   },
 };
 

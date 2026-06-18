@@ -43,6 +43,90 @@ const T: Record<Lang, {
       { title: "Actualizaciones y soporte", desc: "Software siempre actualizado y soporte especializado." },
     ],
   },
+  fr: {
+    heading1: "Tout connecté en une ",
+    heading2: "expérience unique",
+    items: [
+      { title: "Surveillance en temps réel", desc: "Suivez vos appareils 24h/24 et 7j/7 depuis n'importe où." },
+      { title: "Alertes intelligentes", desc: "Notifications automatiques pour agir avant tout problème." },
+      { title: "Qualité de l'eau", desc: "Données précises pour garantir une eau pure et fiable." },
+      { title: "État des filtres", desc: "Vérifiez la durée de vie, les remplacements et les performances des filtres." },
+      { title: "Contrôle à distance", desc: "Gérez les fonctions et opérations directement depuis votre App." },
+      { title: "Mises à jour et support", desc: "Logiciel toujours à jour et support spécialisé." },
+    ],
+  },
+  de: {
+    heading1: "Alles verbunden in einem ",
+    heading2: "einzigen Erlebnis",
+    items: [
+      { title: "Echtzeit-Überwachung", desc: "Verfolgen Sie Ihre Geräte rund um die Uhr von überall." },
+      { title: "Intelligente Benachrichtigungen", desc: "Automatische Meldungen, um vor jedem Problem handeln zu können." },
+      { title: "Wasserqualität", desc: "Präzise Daten zur Gewährleistung von reinem und zuverlässigem Wasser." },
+      { title: "Filterstatus", desc: "Überprüfen Sie Lebensdauer, Austausch und Filterleistung." },
+      { title: "Fernsteuerung", desc: "Verwalten Sie Funktionen und Abläufe direkt aus Ihrer App." },
+      { title: "Updates und Support", desc: "Stets aktuelle Software und spezialisierter Support." },
+    ],
+  },
+  it: {
+    heading1: "Tutto connesso in un'",
+    heading2: "unica esperienza",
+    items: [
+      { title: "Monitoraggio in tempo reale", desc: "Tieni traccia dei tuoi dispositivi 24/7 da qualsiasi luogo." },
+      { title: "Avvisi intelligenti", desc: "Notifiche automatiche per agire prima di qualsiasi problema." },
+      { title: "Qualità dell'acqua", desc: "Dati precisi per garantire acqua pura e affidabile." },
+      { title: "Stato dei filtri", desc: "Verifica la durata, le sostituzioni e le prestazioni dei filtri." },
+      { title: "Controllo remoto", desc: "Gestisci funzioni e operazioni direttamente dalla tua App." },
+      { title: "Aggiornamenti e supporto", desc: "Software sempre aggiornato e supporto specializzato." },
+    ],
+  },
+  zh: {
+    heading1: "一切连接于",
+    heading2: "一体化体验",
+    items: [
+      { title: "实时监控", desc: "随时随地全天候追踪您的设备。" },
+      { title: "智能提醒", desc: "自动通知，让您在任何问题发生前及时行动。" },
+      { title: "水质监测", desc: "精确数据，确保纯净可靠的饮用水。" },
+      { title: "滤芯状态", desc: "查看滤芯使用寿命、更换情况和性能表现。" },
+      { title: "远程控制", desc: "直接通过您的 App 管理功能和操作。" },
+      { title: "更新与支持", desc: "软件始终保持最新，并提供专业支持。" },
+    ],
+  },
+  ja: {
+    heading1: "すべてが一つの",
+    heading2: "体験でつながる",
+    items: [
+      { title: "リアルタイム監視", desc: "どこからでも24時間365日デバイスを追跡。" },
+      { title: "スマートアラート", desc: "問題が発生する前に行動できる自動通知。" },
+      { title: "水質管理", desc: "純粋で信頼性の高い水を確保するための正確なデータ。" },
+      { title: "フィルター状態", desc: "フィルターの寿命、交換、パフォーマンスを確認。" },
+      { title: "リモートコントロール", desc: "Appから直接機能と操作を管理。" },
+      { title: "アップデートとサポート", desc: "常に最新のソフトウェアと専門的なサポート。" },
+    ],
+  },
+  ko: {
+    heading1: "모든 것이 연결된 ",
+    heading2: "하나의 경험",
+    items: [
+      { title: "실시간 모니터링", desc: "어디서든 24/7 기기를 추적하세요." },
+      { title: "스마트 알림", desc: "문제가 발생하기 전에 조치할 수 있는 자동 알림." },
+      { title: "수질 관리", desc: "순수하고 신뢰할 수 있는 물을 보장하는 정확한 데이터." },
+      { title: "필터 상태", desc: "필터 수명, 교체 및 성능을 확인하세요." },
+      { title: "원격 제어", desc: "App에서 직접 기능과 작업을 관리하세요." },
+      { title: "업데이트 및 지원", desc: "항상 최신 소프트웨어와 전문적인 지원." },
+    ],
+  },
+  "pt-pt": {
+    heading1: "Tudo conectado numa ",
+    heading2: "única experiência",
+    items: [
+      { title: "Monitorização em tempo real", desc: "Acompanhe os seus dispositivos 24/7 a partir de qualquer lugar." },
+      { title: "Alertas inteligentes", desc: "Notificações automáticas para agir antes de qualquer problema." },
+      { title: "Qualidade da água", desc: "Dados precisos para garantir água pura e fiável." },
+      { title: "Estado dos filtros", desc: "Verifique a vida útil, substituições e desempenho dos filtros." },
+      { title: "Controlo remoto", desc: "Gira funções e operações diretamente a partir da sua App." },
+      { title: "Atualizações e suporte", desc: "Software sempre atualizado e suporte especializado." },
+    ],
+  },
 };
 
 const icons = [

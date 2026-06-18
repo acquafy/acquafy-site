@@ -99,6 +99,146 @@ const T: Record<Lang, {
       },
     ],
   },
+  fr: {
+    heading: "Avantages pour les clients, partenaires et opérateurs",
+    cards: [
+      {
+        title: "Consommateur",
+        subtitle: "Facilité, contrôle et tranquillité d'esprit",
+        desc: "Prenez le contrôle total de votre purificateur, recevez des alertes et garantissez une eau pure avec plus de confort et de sécurité.",
+      },
+      {
+        title: "Partenaire",
+        subtitle: "Visibilité, support et opérations connectées",
+        desc: "Suivez vos clients, recevez des insights et offrez un service plus rapide et plus efficace.",
+      },
+      {
+        title: "Opérations Mondiales",
+        subtitle: "Standardisation, évolutivité et données centralisées",
+        desc: "Gérez plusieurs unités et marchés avec des données unifiées et des processus standardisés.",
+      },
+    ],
+  },
+  de: {
+    heading: "Vorteile für Kunden, Partner und Betreiber",
+    cards: [
+      {
+        title: "Verbraucher",
+        subtitle: "Einfachheit, Kontrolle und Sicherheit",
+        desc: "Behalten Sie die volle Kontrolle über Ihren Reiniger, erhalten Sie Benachrichtigungen und gewährleisten Sie reines Wasser mit mehr Komfort und Sicherheit.",
+      },
+      {
+        title: "Partner",
+        subtitle: "Transparenz, Support und vernetzte Abläufe",
+        desc: "Beobachten Sie Ihre Kunden, erhalten Sie Insights und bieten Sie einen schnelleren, effizienteren Service.",
+      },
+      {
+        title: "Globaler Betrieb",
+        subtitle: "Standardisierung, Skalierbarkeit und zentralisierte Daten",
+        desc: "Verwalten Sie mehrere Standorte und Märkte mit einheitlichen Daten und standardisierten Prozessen.",
+      },
+    ],
+  },
+  it: {
+    heading: "Vantaggi per clienti, partner e operatori",
+    cards: [
+      {
+        title: "Consumatore",
+        subtitle: "Semplicità, controllo e tranquillità",
+        desc: "Hai il pieno controllo del tuo purificatore, ricevi avvisi e garantisci acqua pura con maggiore comfort e sicurezza.",
+      },
+      {
+        title: "Partner",
+        subtitle: "Visibilità, supporto e operazioni connesse",
+        desc: "Monitora i tuoi clienti, ricevi insights e offri un servizio più rapido ed efficiente.",
+      },
+      {
+        title: "Operazioni Globali",
+        subtitle: "Standardizzazione, scalabilità e dati centralizzati",
+        desc: "Gestisci più unità e mercati con dati unificati e processi standardizzati.",
+      },
+    ],
+  },
+  zh: {
+    heading: "为客户、合作伙伴和运营商带来的优势",
+    cards: [
+      {
+        title: "消费者",
+        subtitle: "便捷、掌控与安心",
+        desc: "全面掌控您的净水器，接收提醒，以更高的舒适度和安全性确保饮水纯净。",
+      },
+      {
+        title: "合作伙伴",
+        subtitle: "可见性、支持与互联运营",
+        desc: "监控您的客户，获取洞察，提供更快速、更高效的服务。",
+      },
+      {
+        title: "全球运营",
+        subtitle: "标准化、可扩展性与集中数据",
+        desc: "通过统一数据和标准化流程管理多个业务单元和市场。",
+      },
+    ],
+  },
+  ja: {
+    heading: "お客様、パートナー、オペレーターへのメリット",
+    cards: [
+      {
+        title: "消費者",
+        subtitle: "利便性、制御、そして安心感",
+        desc: "浄水器を完全にコントロールし、アラートを受け取り、より快適で安全な純水をお届けします。",
+      },
+      {
+        title: "パートナー",
+        subtitle: "可視性、サポート、連携した運営",
+        desc: "顧客を監視し、インサイトを受け取り、より迅速で効率的なサービスを提供します。",
+      },
+      {
+        title: "グローバル運営",
+        subtitle: "標準化、スケーラビリティ、集中データ管理",
+        desc: "統一されたデータと標準化されたプロセスで複数の拠点と市場を管理します。",
+      },
+    ],
+  },
+  ko: {
+    heading: "고객, 파트너 및 운영자를 위한 혜택",
+    cards: [
+      {
+        title: "소비자",
+        subtitle: "편리함, 제어, 그리고 안심",
+        desc: "정수기를 완전히 제어하고, 알림을 받으며, 더 높은 편의성과 안전성으로 순수한 물을 보장하세요.",
+      },
+      {
+        title: "파트너",
+        subtitle: "가시성, 지원 및 연결된 운영",
+        desc: "고객을 모니터링하고, 인사이트를 받으며, 더 빠르고 효율적인 서비스를 제공하세요.",
+      },
+      {
+        title: "글로벌 운영",
+        subtitle: "표준화, 확장성 및 중앙 집중식 데이터",
+        desc: "통합된 데이터와 표준화된 프로세스로 여러 단위와 시장을 관리하세요.",
+      },
+    ],
+  },
+  "pt-pt": {
+    heading: "Benefícios para clientes, parceiros e operadores",
+    cards: [
+      {
+        title: "Consumidor",
+        subtitle: "Facilidade, controlo e tranquilidade",
+        desc: "Tenha o controlo total do seu purificador, receba alertas e garanta água pura com mais conforto e segurança.",
+      },
+      {
+        title: "Parceiro",
+        subtitle: "Visibilidade, suporte e operação conectada",
+        desc: "Acompanhe os seus clientes, receba insights e ofereça um atendimento mais ágil e eficiente.",
+      },
+      {
+        title: "Operação Global",
+        subtitle: "Padronização, escalabilidade e dados centralizados",
+        desc: "Gira múltiplas unidades e mercados com dados unificados e processos padronizados.",
+      },
+    ],
+  },
 };
 
 function CardContent({ card }: { card: CardDef }) {

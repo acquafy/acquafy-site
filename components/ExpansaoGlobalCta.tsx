@@ -13,6 +13,12 @@ const T: Record<Lang, { heading: string; sub: string; btnPartner: string; btnSpe
     btnPartner: "Seja um parceiro",
     btnSpecialist: "Fale com um especialista",
   },
+  "pt-pt": {
+    heading: "Faça parte da rede global Acquafy",
+    sub: "Juntos podemos transformar milhões de vidas, gerar oportunidades e construir um futuro mais saudável e sustentável.",
+    btnPartner: "Seja um parceiro",
+    btnSpecialist: "Fale com um especialista",
+  },
   en: {
     heading: "Join the global Acquafy network",
     sub: "Together we can transform millions of lives, create opportunities and build a healthier, more sustainable future.",
@@ -24,6 +30,42 @@ const T: Record<Lang, { heading: string; sub: string; btnPartner: string; btnSpe
     sub: "Juntos podemos transformar millones de vidas, generar oportunidades y construir un futuro más saludable y sostenible.",
     btnPartner: "Sé un socio",
     btnSpecialist: "Habla con un especialista",
+  },
+  fr: {
+    heading: "Rejoignez le réseau mondial Acquafy",
+    sub: "Ensemble, nous pouvons transformer des millions de vies, créer des opportunités et bâtir un avenir plus sain et plus durable.",
+    btnPartner: "Devenir partenaire",
+    btnSpecialist: "Parler à un spécialiste",
+  },
+  de: {
+    heading: "Werden Sie Teil des globalen Acquafy-Netzwerks",
+    sub: "Gemeinsam können wir Millionen von Leben verändern, Chancen schaffen und eine gesündere, nachhaltigere Zukunft aufbauen.",
+    btnPartner: "Partner werden",
+    btnSpecialist: "Mit Experten sprechen",
+  },
+  it: {
+    heading: "Entra a far parte della rete globale Acquafy",
+    sub: "Insieme possiamo trasformare milioni di vite, creare opportunità e costruire un futuro più sano e sostenibile.",
+    btnPartner: "Diventa partner",
+    btnSpecialist: "Parla con uno specialista",
+  },
+  zh: {
+    heading: "加入 Acquafy 全球网络",
+    sub: "携手共进，我们可以改变数百万人的生活，创造机遇，共建更健康、更可持续的未来。",
+    btnPartner: "成为合作伙伴",
+    btnSpecialist: "联系专家",
+  },
+  ja: {
+    heading: "Acquafy グローバルネットワークに参加する",
+    sub: "共に、何百万もの人々の生活を変え、チャンスを生み出し、より健康で持続可能な未来を築きましょう。",
+    btnPartner: "パートナーになる",
+    btnSpecialist: "専門家に相談する",
+  },
+  ko: {
+    heading: "Acquafy 글로벌 네트워크에 참여하세요",
+    sub: "함께라면 수백만 명의 삶을 변화시키고, 기회를 창출하며, 더 건강하고 지속 가능한 미래를 만들 수 있습니다.",
+    btnPartner: "파트너 되기",
+    btnSpecialist: "전문가와 상담",
   },
 };
 

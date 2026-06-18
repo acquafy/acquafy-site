@@ -33,6 +33,17 @@ const T: Record<Lang, {
       "Gestão multi-região e multi-moeda",
     ],
   },
+  "pt-pt": {
+    heading1: "Operação ",
+    heading2: "global e escalável",
+    descs: [
+      "Presente em mais de 180 países",
+      "Disponível em 16 idiomas",
+      "Operação 100% global",
+      "Modelo de receita 100% recorrente",
+      "Gestão multi-região e multi-moeda",
+    ],
+  },
   en: {
     heading1: "Global and ",
     heading2: "scalable operation",
@@ -53,6 +64,72 @@ const T: Record<Lang, {
       "Operación 100% global",
       "Modelo de ingresos 100% recurrente",
       "Gestión multi-región y multi-moneda",
+    ],
+  },
+  fr: {
+    heading1: "Opération ",
+    heading2: "mondiale et évolutive",
+    descs: [
+      "Présent dans 180+ pays",
+      "Disponible en 16 langues",
+      "Opération 100% mondiale",
+      "Modèle de revenus 100% récurrent",
+      "Gestion multi-région et multi-devise",
+    ],
+  },
+  de: {
+    heading1: "Globaler und ",
+    heading2: "skalierbarer Betrieb",
+    descs: [
+      "Präsent in 180+ Ländern",
+      "Verfügbar in 16 Sprachen",
+      "100% globaler Betrieb",
+      "100% wiederkehrendes Umsatzmodell",
+      "Multi-Region- und Multi-Währungs-Management",
+    ],
+  },
+  it: {
+    heading1: "Operazione ",
+    heading2: "globale e scalabile",
+    descs: [
+      "Presente in 180+ paesi",
+      "Disponibile in 16 lingue",
+      "Operazione 100% globale",
+      "Modello di ricavi 100% ricorrente",
+      "Gestione multi-regione e multi-valuta",
+    ],
+  },
+  zh: {
+    heading1: "全球化",
+    heading2: "可扩展运营",
+    descs: [
+      "覆盖 180+ 个国家",
+      "支持 16 种语言",
+      "100% 全球化运营",
+      "100% 经常性收入模式",
+      "多区域、多货币管理",
+    ],
+  },
+  ja: {
+    heading1: "グローバルで",
+    heading2: "スケーラブルな運営",
+    descs: [
+      "180か国以上に展開",
+      "16言語対応",
+      "100%グローバル運営",
+      "100%リカーリング収益モデル",
+      "マルチリージョン・マルチ通貨管理",
+    ],
+  },
+  ko: {
+    heading1: "글로벌하고 ",
+    heading2: "확장 가능한 운영",
+    descs: [
+      "180개국 이상 진출",
+      "16개 언어 지원",
+      "100% 글로벌 운영",
+      "100% 반복 수익 모델",
+      "다지역 및 다통화 관리",
     ],
   },
 };

@@ -36,6 +36,55 @@ const T: Record<Lang, {
     sub3: " ¡cada mes!",
     btn: "Quiero participar",
   },
+  fr: {
+    title: "CAMPAGNE ACQUAFY TRANSFORME DES VIES",
+    sub1: "De juillet à décembre, 1 purificateur par mois.",
+    sub2: "Participez et concourez pour un ",
+    sub3: " chaque mois !",
+    btn: "Je veux participer",
+  },
+  de: {
+    title: "ACQUAFY VERÄNDERT LEBEN KAMPAGNE",
+    sub1: "Von Juli bis Dezember, 1 Wasserreiniger pro Monat.",
+    sub2: "Mitmachen und gewinnen Sie einen ",
+    sub3: " jeden Monat!",
+    btn: "Ich möchte mitmachen",
+  },
+  it: {
+    title: "CAMPAGNA ACQUAFY TRASFORMA VITE",
+    sub1: "Da luglio a dicembre, 1 purificatore al mese.",
+    sub2: "Partecipa e concorri per un ",
+    sub3: " ogni mese!",
+    btn: "Voglio partecipare",
+  },
+  zh: {
+    title: "ACQUAFY改变生活活动",
+    sub1: "从7月到12月，每月一台净水器。",
+    sub2: "参与并角逐一台 ",
+    sub3: " 每个月！",
+    btn: "我想参与",
+  },
+  ja: {
+    title: "ACQUAFY 生活を変えるキャンペーン",
+    sub1: "7月から12月まで、毎月1台の浄水器。",
+    sub2: "参加して ",
+    sub3: " を毎月獲得しよう！",
+    btn: "参加したい",
+  },
+  ko: {
+    title: "ACQUAFY 삶을 변화시키는 캠페인",
+    sub1: "7월부터 12월까지, 매월 정수기 1대.",
+    sub2: "참여하고 ",
+    sub3: " 을 매달 받아가세요!",
+    btn: "참여하고 싶어요",
+  },
+  "pt-pt": {
+    title: "CAMPANHA ACQUAFY TRANSFORMA VIDAS",
+    sub1: "De julho a dezembro, 1 purificador por mês.",
+    sub2: "Participe e concorra a um ",
+    sub3: " todos os meses!",
+    btn: "Quero participar",
+  },
 };
 
 function NeoUPProduct({ size }: { size: number }) {

@@ -59,6 +59,90 @@ const T: Record<Lang, { labels: string[] }> = {
       "App para dispositivos Neo y Acquafy Media",
     ],
   },
+  fr: {
+    labels: [
+      "Surveillance en temps réel",
+      "État des filtres",
+      "Compte à rebours 365 jours",
+      "Qualité de l'eau",
+      "Alertes automatiques",
+      "Maintenance préventive",
+      "Acquafy AI Insights",
+      "App pour les appareils Neo et Acquafy Media",
+    ],
+  },
+  de: {
+    labels: [
+      "Echtzeit-Überwachung",
+      "Filterstatus",
+      "365-Tage-Countdown",
+      "Wasserqualität",
+      "Automatische Alarme",
+      "Vorbeugende Wartung",
+      "Acquafy AI Insights",
+      "App für Neo- und Acquafy Media-Geräte",
+    ],
+  },
+  it: {
+    labels: [
+      "Monitoraggio in tempo reale",
+      "Stato dei filtri",
+      "Conto alla rovescia 365 giorni",
+      "Qualità dell'acqua",
+      "Avvisi automatici",
+      "Manutenzione preventiva",
+      "Acquafy AI Insights",
+      "App per dispositivi Neo e Acquafy Media",
+    ],
+  },
+  zh: {
+    labels: [
+      "实时监控",
+      "滤芯状态",
+      "365 天倒计时",
+      "水质检测",
+      "自动提醒",
+      "预防性维护",
+      "Acquafy AI Insights",
+      "适用于 Neo 和 Acquafy Media 设备的 App",
+    ],
+  },
+  ja: {
+    labels: [
+      "リアルタイム監視",
+      "フィルター状態",
+      "365日カウントダウン",
+      "水質管理",
+      "自動アラート",
+      "予防保全",
+      "Acquafy AI Insights",
+      "Neo および Acquafy Media デバイス対応 App",
+    ],
+  },
+  ko: {
+    labels: [
+      "실시간 모니터링",
+      "필터 상태",
+      "365일 카운트다운",
+      "수질 관리",
+      "자동 알림",
+      "예방 유지보수",
+      "Acquafy AI Insights",
+      "Neo 및 Acquafy Media 기기용 App",
+    ],
+  },
+  "pt-pt": {
+    labels: [
+      "Monitorização em tempo real",
+      "Estado dos filtros",
+      "Contagem decrescente de 365 dias",
+      "Qualidade da água",
+      "Alertas automáticos",
+      "Manutenção preventiva",
+      "Acquafy AI Insights",
+      "App para dispositivos Neo e Acquafy Media",
+    ],
+  },
 };
 
 export default function PlatformAppAiIot() {

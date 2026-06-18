@@ -13,6 +13,11 @@ const T: Record<Lang, { heading: string; btnNeo: string; btnMedia: string }> = {
     btnNeo: "Conheça Linha NEO",
     btnMedia: "Conheça o Acquafy Media",
   },
+  "pt-pt": {
+    heading: "Juntos, vamos transformar o acesso à água e a vida das pessoas.",
+    btnNeo: "Conheça a Linha NEO",
+    btnMedia: "Conheça o Acquafy Media",
+  },
   en: {
     heading: "Let's together transform access to water and people's lives.",
     btnNeo: "Discover the NEO Line",
@@ -22,6 +27,36 @@ const T: Record<Lang, { heading: string; btnNeo: string; btnMedia: string }> = {
     heading: "Juntos transformemos el acceso al agua y la vida de las personas.",
     btnNeo: "Conoce la Línea NEO",
     btnMedia: "Conoce Acquafy Media",
+  },
+  fr: {
+    heading: "Transformons ensemble l'accès à l'eau et la vie des personnes.",
+    btnNeo: "Découvrir la Gamme NEO",
+    btnMedia: "Découvrir Acquafy Media",
+  },
+  de: {
+    heading: "Lassen Sie uns gemeinsam den Zugang zu Wasser und das Leben der Menschen verändern.",
+    btnNeo: "Neo Linie entdecken",
+    btnMedia: "Acquafy Media entdecken",
+  },
+  it: {
+    heading: "Trasformiamo insieme l'accesso all'acqua e la vita delle persone.",
+    btnNeo: "Scopri la Linea NEO",
+    btnMedia: "Scopri Acquafy Media",
+  },
+  zh: {
+    heading: "让我们共同改变人们获取水资源的方式和生活。",
+    btnNeo: "了解 NEO 系列",
+    btnMedia: "了解 Acquafy Media",
+  },
+  ja: {
+    heading: "共に、水へのアクセスと人々の生活を変えていきましょう。",
+    btnNeo: "Neo ラインを見る",
+    btnMedia: "Acquafy Media を見る",
+  },
+  ko: {
+    heading: "함께 물에 대한 접근성과 사람들의 삶을 변화시켜 나갑시다.",
+    btnNeo: "NEO 라인 알아보기",
+    btnMedia: "Acquafy Media 알아보기",
   },
 };
 
