@@ -23,6 +23,34 @@ const T: Record<Lang, {
     heading: "Innovación que cuida a las personas y al planeta al mismo tiempo.",
     cta: "Sé parte de esta transformación",
   },
+  fr: {
+    heading: "Innovation qui prend soin des personnes et de la planète en même temps.",
+    cta: "Faites partie de cette transformation",
+  },
+  de: {
+    heading: "Innovation, die gleichzeitig für Menschen und den Planeten sorgt.",
+    cta: "Werden Sie Teil dieser Transformation",
+  },
+  it: {
+    heading: "Innovazione che si prende cura delle persone e del pianeta allo stesso tempo.",
+    cta: "Fai parte di questa trasformazione",
+  },
+  zh: {
+    heading: "同时关爱人类与地球的创新。",
+    cta: "成为这场变革的一部分",
+  },
+  ja: {
+    heading: "人と地球を同時に大切にするイノベーション。",
+    cta: "この変革の一員になりましょう",
+  },
+  ko: {
+    heading: "사람과 지구를 동시에 돌보는 혁신.",
+    cta: "이 변화의 일원이 되세요",
+  },
+  "pt-pt": {
+    heading: "Inovação que cuida das pessoas e do planeta ao mesmo tempo.",
+    cta: "Faça parte desta transformação",
+  },
 };
 
 // ── Main ─────────────────────────────────────────────────────────────────────

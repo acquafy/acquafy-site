@@ -52,6 +52,90 @@ const T: Record<Lang, {
       { label: "Acquafy X",          sub: "Experiencia completa" },
     ],
   },
+  fr: {
+    heading1: "Plan d'abonnement ",
+    heading2: "intelligent",
+    subtitle: "Un parcours complet depuis l'équipement jusqu'à l'expérience numérique la plus avancée.",
+    steps: [
+      { label: "Purificateur Neo",    sub: "Obtenez votre purificateur" },
+      { label: "App Acquafy",         sub: "Téléchargez et connectez" },
+      { label: "AI & Fonctionnalités", sub: "Intelligence activée" },
+      { label: "Plateforme Acquafy",  sub: "Gestion intégrée" },
+      { label: "Acquafy X",           sub: "Expérience complète" },
+    ],
+  },
+  de: {
+    heading1: "Intelligenter ",
+    heading2: "Abonnementplan",
+    subtitle: "Eine vollständige Reise vom Gerät bis hin zum modernsten digitalen Erlebnis.",
+    steps: [
+      { label: "Neo Reiniger",         sub: "Holen Sie sich Ihren Reiniger" },
+      { label: "App Acquafy",          sub: "Herunterladen und verbinden" },
+      { label: "AI & Funktionen",      sub: "Intelligenz aktiviert" },
+      { label: "Acquafy-Plattform",    sub: "Integriertes Management" },
+      { label: "Acquafy X",            sub: "Vollständiges Erlebnis" },
+    ],
+  },
+  it: {
+    heading1: "Piano di abbonamento ",
+    heading2: "intelligente",
+    subtitle: "Un percorso completo dall'attrezzatura all'esperienza digitale più avanzata.",
+    steps: [
+      { label: "Purificatore Neo",    sub: "Acquista il tuo purificatore" },
+      { label: "App Acquafy",         sub: "Scarica e connetti" },
+      { label: "AI & Funzionalità",   sub: "Intelligenza attivata" },
+      { label: "Piattaforma Acquafy", sub: "Gestione integrata" },
+      { label: "Acquafy X",           sub: "Esperienza completa" },
+    ],
+  },
+  zh: {
+    heading1: "智能",
+    heading2: "订阅计划",
+    subtitle: "从设备到最先进数字体验的完整旅程。",
+    steps: [
+      { label: "Neo 净水器",         sub: "获取您的净水器" },
+      { label: "App Acquafy",        sub: "下载并连接" },
+      { label: "AI & 功能",          sub: "智能已激活" },
+      { label: "Acquafy 平台",       sub: "集成管理" },
+      { label: "Acquafy X",          sub: "完整体验" },
+    ],
+  },
+  ja: {
+    heading1: "スマート",
+    heading2: "サブスクリプションプラン",
+    subtitle: "機器から最先端のデジタル体験までの完全なジャーニー。",
+    steps: [
+      { label: "Neo 浄水器",         sub: "浄水器を手に入れる" },
+      { label: "App Acquafy",        sub: "ダウンロードして接続" },
+      { label: "AI & 機能",          sub: "インテリジェンス有効化" },
+      { label: "Acquafy プラットフォーム", sub: "統合管理" },
+      { label: "Acquafy X",          sub: "完全な体験" },
+    ],
+  },
+  ko: {
+    heading1: "스마트 ",
+    heading2: "구독 플랜",
+    subtitle: "장비에서 가장 진보된 디지털 경험까지의 완전한 여정.",
+    steps: [
+      { label: "Neo 정수기",         sub: "정수기 구매하기" },
+      { label: "App Acquafy",        sub: "다운로드 및 연결" },
+      { label: "AI & 기능",          sub: "인텔리전스 활성화" },
+      { label: "Acquafy 플랫폼",     sub: "통합 관리" },
+      { label: "Acquafy X",          sub: "완전한 경험" },
+    ],
+  },
+  "pt-pt": {
+    heading1: "Plano Inteligente de ",
+    heading2: "subscrição",
+    subtitle: "Uma jornada completa do equipamento até à experiência digital mais avançada.",
+    steps: [
+      { label: "Purificador Neo",    sub: "Adquira o seu purificador" },
+      { label: "App Acquafy",        sub: "Transfira e conecte" },
+      { label: "AI & Recursos",      sub: "Inteligência ativada" },
+      { label: "Plataforma Acquafy", sub: "Gestão integrada" },
+      { label: "Acquafy X",          sub: "Experiência completa" },
+    ],
+  },
 };
 
 export default function PlanoInteligenteAppAiIot() {

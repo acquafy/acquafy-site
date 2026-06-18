@@ -59,6 +59,90 @@ const T: Record<Lang, {
       { title: "Diseño Global",       desc: "Acabado sofisticado y premiado." },
     ],
   },
+  fr: {
+    heading1: "Pourquoi choisir la ",
+    heading2: "Gamme Neo",
+    items: [
+      { title: "App Acquafy",          desc: "Contrôle total via l'application où que vous soyez." },
+      { title: "Acquafy AI",           desc: "Intelligence qui apprend vos habitudes." },
+      { title: "IoT Intelligent",      desc: "Connectivité et données en temps réel." },
+      { title: "Eau Personnalisée",    desc: "Températures et fonctions pour chaque instant." },
+      { title: "Haute Performance",    desc: "Technologie mondiale et filtres de dernière génération." },
+      { title: "Design Global",        desc: "Finition sophistiquée et primée." },
+    ],
+  },
+  de: {
+    heading1: "Warum die ",
+    heading2: "Neo-Linie wählen",
+    items: [
+      { title: "App Acquafy",          desc: "Vollständige Steuerung über die App von überall." },
+      { title: "Acquafy AI",           desc: "Intelligenz, die Ihre Gewohnheiten erlernt." },
+      { title: "Smartes IoT",          desc: "Konnektivität und Echtzeitdaten." },
+      { title: "Personalisiertes Wasser", desc: "Temperaturen und Funktionen für jeden Moment." },
+      { title: "Hochleistung",         desc: "Globale Technologie und Filter der neuesten Generation." },
+      { title: "Globales Design",      desc: "Anspruchsvolle und preisgekrönte Verarbeitung." },
+    ],
+  },
+  it: {
+    heading1: "Perché scegliere la ",
+    heading2: "Linea Neo",
+    items: [
+      { title: "App Acquafy",          desc: "Controllo totale tramite l'app da qualsiasi luogo." },
+      { title: "Acquafy AI",           desc: "Intelligenza che impara le tue abitudini." },
+      { title: "IoT Intelligente",     desc: "Connettività e dati in tempo reale." },
+      { title: "Acqua Personalizzata", desc: "Temperature e funzioni per ogni momento." },
+      { title: "Alta Prestazione",     desc: "Tecnologia globale e filtri di ultima generazione." },
+      { title: "Design Globale",       desc: "Finitura sofisticata e premiata." },
+    ],
+  },
+  zh: {
+    heading1: "为什么选择",
+    heading2: "Neo系列",
+    items: [
+      { title: "Acquafy App",   desc: "随时随地通过应用程序全面掌控。" },
+      { title: "Acquafy AI",    desc: "学习您的习惯的智能人工智能。" },
+      { title: "智能物联网",    desc: "实时连接与数据。" },
+      { title: "个性化水质",    desc: "适合每个时刻的温度和功能。" },
+      { title: "高性能",        desc: "全球技术与新一代滤芯。" },
+      { title: "全球设计",      desc: "精致且荣获奖项的工艺。" },
+    ],
+  },
+  ja: {
+    heading1: "なぜ",
+    heading2: "Neoラインを選ぶのか",
+    items: [
+      { title: "App Acquafy",      desc: "どこからでもアプリで完全コントロール。" },
+      { title: "Acquafy AI",       desc: "あなたの習慣を学ぶ人工知能。" },
+      { title: "スマートIoT",      desc: "リアルタイムの接続とデータ。" },
+      { title: "パーソナライズ水", desc: "あらゆる場面に合わせた温度と機能。" },
+      { title: "高性能",           desc: "グローバル技術と次世代フィルター。" },
+      { title: "グローバルデザイン", desc: "洗練された受賞歴のある仕上がり。" },
+    ],
+  },
+  ko: {
+    heading1: "왜 ",
+    heading2: "Neo 라인을 선택해야 할까요",
+    items: [
+      { title: "App Acquafy",      desc: "어디서나 앱으로 완전한 제어." },
+      { title: "Acquafy AI",       desc: "당신의 습관을 배우는 인공지능." },
+      { title: "스마트 IoT",       desc: "실시간 연결 및 데이터." },
+      { title: "맞춤형 물",        desc: "모든 순간에 맞는 온도와 기능." },
+      { title: "고성능",           desc: "글로벌 기술과 차세대 필터." },
+      { title: "글로벌 디자인",    desc: "정교하고 수상 경력에 빛나는 마감." },
+    ],
+  },
+  "pt-pt": {
+    heading1: "Porque escolher a ",
+    heading2: "Linha Neo",
+    items: [
+      { title: "App Acquafy",         desc: "Controlo total pela app a partir de qualquer lugar." },
+      { title: "Acquafy AI",          desc: "Inteligência que aprende os seus hábitos." },
+      { title: "IoT Inteligente",     desc: "Conectividade e dados em tempo real." },
+      { title: "Água Personalizada",  desc: "Temperaturas e funções para cada momento." },
+      { title: "Alta Performance",    desc: "Tecnologia global e filtros de última geração." },
+      { title: "Design Global",       desc: "Acabamento sofisticado e premiado." },
+    ],
+  },
 };
 
 export default function PorqueNeo() {

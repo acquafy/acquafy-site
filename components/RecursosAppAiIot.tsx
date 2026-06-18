@@ -43,6 +43,90 @@ const T: Record<Lang, {
       { title: "Operación en 16 idiomas",            desc: "Historial y seguimiento" },
     ],
   },
+  fr: {
+    heading1: "Fonctionnalités",
+    heading2: " en vedette",
+    items: [
+      { title: "Surveillance mondiale",              desc: "Vue complète des opérations et des appareils n'importe où." },
+      { title: "Maintenance préventive",             desc: "Anticipez les remplacements et évitez les arrêts imprévus." },
+      { title: "Compte à rebours 365 jours des filtres", desc: "Contrôle précis de la durée de vie et des performances des filtres." },
+      { title: "Contrôle via App",                   desc: "Fonctions et réglages directement depuis votre smartphone." },
+      { title: "Insights avec IA",                   desc: "Décisions plus rapides grâce aux données et suggestions intelligentes." },
+      { title: "Opération en 16 langues",            desc: "Historique et suivi" },
+    ],
+  },
+  de: {
+    heading1: "Highlights",
+    heading2: " der Funktionen",
+    items: [
+      { title: "Globale Überwachung",                desc: "Vollständige Übersicht über Abläufe und Geräte überall." },
+      { title: "Vorbeugende Wartung",                desc: "Tauschen Sie vorausschauend und vermeiden Sie unerwartete Ausfälle." },
+      { title: "365-Tage-Countdown der Filter",      desc: "Präzise Kontrolle über Filterlebensdauer und -leistung." },
+      { title: "App-Steuerung",                      desc: "Funktionen und Einstellungen direkt von Ihrem Smartphone." },
+      { title: "KI-Insights",                        desc: "Schnellere Entscheidungen dank Daten und intelligenten Vorschlägen." },
+      { title: "Betrieb in 16 Sprachen",             desc: "Verlauf und Nachverfolgung" },
+    ],
+  },
+  it: {
+    heading1: "Funzionalità",
+    heading2: " in evidenza",
+    items: [
+      { title: "Monitoraggio globale",               desc: "Visione completa di operazioni e dispositivi ovunque." },
+      { title: "Manutenzione preventiva",            desc: "Anticipa le sostituzioni ed evita fermi imprevisti." },
+      { title: "Conto alla rovescia 365 giorni dei filtri", desc: "Controllo preciso della durata e delle prestazioni dei filtri." },
+      { title: "Controllo tramite App",              desc: "Funzioni e regolazioni direttamente dal tuo smartphone." },
+      { title: "Insights con IA",                    desc: "Decisioni più rapide con dati e suggerimenti intelligenti." },
+      { title: "Operazione in 16 lingue",            desc: "Cronologia e monitoraggio" },
+    ],
+  },
+  zh: {
+    heading1: "精选",
+    heading2: "功能",
+    items: [
+      { title: "全球监控",                           desc: "随时随地全面了解运营和设备状况。" },
+      { title: "预防性维护",                         desc: "提前安排更换，避免意外停机。" },
+      { title: "滤芯 365 天倒计时",                  desc: "精确控制滤芯使用寿命和性能。" },
+      { title: "App 控制",                           desc: "直接通过智能手机操控功能和调整设置。" },
+      { title: "AI 洞察",                            desc: "借助数据和智能建议做出更快决策。" },
+      { title: "支持 16 种语言运营",                 desc: "历史记录与追踪" },
+    ],
+  },
+  ja: {
+    heading1: "注目の",
+    heading2: "機能",
+    items: [
+      { title: "グローバル監視",                     desc: "どこからでも運営とデバイスを包括的に把握。" },
+      { title: "予防保全",                           desc: "交換を事前に計画し、予期せぬダウンタイムを回避。" },
+      { title: "フィルター365日カウントダウン",       desc: "フィルターの寿命とパフォーマンスを正確に管理。" },
+      { title: "Appコントロール",                    desc: "スマートフォンから直接機能を操作・調整。" },
+      { title: "AIインサイト",                       desc: "データとインテリジェントな提案でより迅速な意思決定。" },
+      { title: "16言語対応オペレーション",            desc: "履歴と追跡" },
+    ],
+  },
+  ko: {
+    heading1: "주요",
+    heading2: " 기능",
+    items: [
+      { title: "글로벌 모니터링",                    desc: "어디서든 운영 및 기기를 완벽하게 파악." },
+      { title: "예방 유지보수",                      desc: "교체를 미리 계획하고 예기치 않은 다운타임을 방지." },
+      { title: "필터 365일 카운트다운",               desc: "필터 수명 및 성능을 정밀하게 관리." },
+      { title: "App 제어",                           desc: "스마트폰에서 직접 기능과 설정을 조작." },
+      { title: "AI 인사이트",                        desc: "데이터와 지능적인 제안으로 더 빠른 의사결정." },
+      { title: "16개 언어 운영",                     desc: "기록 및 추적" },
+    ],
+  },
+  "pt-pt": {
+    heading1: "Recursos",
+    heading2: " em destaque",
+    items: [
+      { title: "Monitorização global",              desc: "Visão completa de operações e dispositivos em qualquer lugar." },
+      { title: "Manutenção preventiva",             desc: "Antecipe substituições e evite paragens inesperadas." },
+      { title: "Contagem de 365 dias dos filtros",  desc: "Controlo preciso da vida útil e desempenho dos filtros." },
+      { title: "Controlo via App",                  desc: "Funções e ajustes diretamente do seu smartphone." },
+      { title: "Insights com AI",                   desc: "Decisões mais rápidas com dados e sugestões inteligentes." },
+      { title: "Operação em 16 idiomas",            desc: "Histórico e acompanhamento" },
+    ],
+  },
 };
 
 const icons = [

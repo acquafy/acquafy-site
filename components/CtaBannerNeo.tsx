@@ -10,6 +10,10 @@ const T: Record<Lang, { heading: string; sub: string }> = {
     heading: "Escolha a Neo ideal para sua rotina",
     sub: "Conheça toda a linha e encontre o purificador perfeito para você.",
   },
+  "pt-pt": {
+    heading: "Escolha a Neo ideal para a sua rotina",
+    sub: "Conheça toda a linha e encontre o purificador perfeito para si.",
+  },
   en: {
     heading: "Choose the ideal Neo for your routine",
     sub: "Explore the full line and find the perfect purifier for you.",
@@ -17,6 +21,30 @@ const T: Record<Lang, { heading: string; sub: string }> = {
   es: {
     heading: "Elige el Neo ideal para tu rutina",
     sub: "Conoce toda la línea y encuentra el purificador perfecto para ti.",
+  },
+  fr: {
+    heading: "Choisissez le Neo idéal pour votre quotidien",
+    sub: "Découvrez toute la gamme et trouvez le purificateur parfait pour vous.",
+  },
+  de: {
+    heading: "Wählen Sie den idealen Neo für Ihren Alltag",
+    sub: "Entdecken Sie die gesamte Reihe und finden Sie den perfekten Purifier für sich.",
+  },
+  it: {
+    heading: "Scegli il Neo ideale per la tua routine",
+    sub: "Scopri tutta la linea e trova il purificatore perfetto per te.",
+  },
+  zh: {
+    heading: "为您的日常选择理想的 Neo",
+    sub: "探索完整系列，找到最适合您的净水器。",
+  },
+  ja: {
+    heading: "あなたの日常に最適な Neo を選んでください",
+    sub: "全ラインナップをご覧になり、あなたにぴったりのピュリファイアーを見つけてください。",
+  },
+  ko: {
+    heading: "당신의 일상에 맞는 이상적인 Neo를 선택하세요",
+    sub: "전체 라인업을 살펴보고 당신에게 완벽한 정수기를 찾아보세요.",
   },
 };
 

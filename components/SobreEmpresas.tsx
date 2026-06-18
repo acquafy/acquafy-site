@@ -30,8 +30,15 @@ const brands = [
 
 const T: Record<Lang, { heading: string }> = {
   pt: { heading: "Nossas Empresas e Marcas" },
+  "pt-pt": { heading: "As Nossas Empresas e Marcas" },
   en: { heading: "Our Companies and Brands" },
   es: { heading: "Nuestras Empresas y Marcas" },
+  fr: { heading: "Nos Entreprises et Marques" },
+  de: { heading: "Unsere Unternehmen und Marken" },
+  it: { heading: "Le Nostre Aziende e Marchi" },
+  zh: { heading: "我们的企业与品牌" },
+  ja: { heading: "私たちの企業とブランド" },
+  ko: { heading: "우리의 기업과 브랜드" },
 };
 
 export default function SobreEmpresas() {

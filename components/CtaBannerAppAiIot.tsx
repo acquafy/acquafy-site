@@ -16,6 +16,11 @@ const T: Record<Lang, {
     btn1: "Solicitar demonstração",
     btn2: "Falar com especialista",
   },
+  "pt-pt": {
+    heading: "Leve o poder da App + AI Acquafy para a sua vida ou o seu negócio.",
+    btn1: "Solicitar demonstração",
+    btn2: "Falar com especialista",
+  },
   en: {
     heading: "Bring the power of the Acquafy App + AI to your life or your business.",
     btn1: "Request a Demo",
@@ -25,6 +30,36 @@ const T: Record<Lang, {
     heading: "Lleva el poder del App + AI Acquafy a tu vida o tu negocio.",
     btn1: "Solicitar una Demo",
     btn2: "Hablar con un Especialista",
+  },
+  fr: {
+    heading: "Apportez la puissance de l'App + AI Acquafy à votre vie ou votre entreprise.",
+    btn1: "Demander une démo",
+    btn2: "Parler à un spécialiste",
+  },
+  de: {
+    heading: "Bringen Sie die Kraft der Acquafy App + AI in Ihr Leben oder Ihr Unternehmen.",
+    btn1: "Demo anfordern",
+    btn2: "Mit einem Spezialisten sprechen",
+  },
+  it: {
+    heading: "Porta il potere dell'App + AI Acquafy nella tua vita o nel tuo business.",
+    btn1: "Richiedi una Demo",
+    btn2: "Parla con uno Specialista",
+  },
+  zh: {
+    heading: "将 Acquafy App + AI 的力量带入您的生活或业务。",
+    btn1: "申请演示",
+    btn2: "联系专家",
+  },
+  ja: {
+    heading: "Acquafy App + AI のパワーを、あなたの生活やビジネスに。",
+    btn1: "デモをリクエスト",
+    btn2: "専門家に相談する",
+  },
+  ko: {
+    heading: "Acquafy App + AI의 힘을 당신의 삶과 비즈니스에 가져오세요.",
+    btn1: "데모 요청",
+    btn2: "전문가와 상담",
   },
 };
 

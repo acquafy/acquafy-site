@@ -67,6 +67,118 @@ const T: Record<Lang, {
       "Experiencia premium completa",
     ],
   },
+  fr: {
+    essentialsFeatures: [
+      "Panneau LED Touch 10,1",
+      "4 filtres UF haute performance",
+      "Options de 1 à 7 fonctions",
+      "Réservoirs : 400ml, 800ml, 1500ml et 3000ml",
+      "Axé sur la praticité et la variété au quotidien",
+    ],
+    premiumFeatures: [
+      "Panneau LCD IPS Touch 15.6",
+      "Osmose Inverse (RO)",
+      "Acier inoxydable et design sophistiqué",
+      "Mini Media Network intégré",
+      "Expérience premium complète",
+    ],
+  },
+  de: {
+    essentialsFeatures: [
+      "LED Touch-Panel 10,1",
+      "4 Hochleistungs-UF-Filter",
+      "Optionen von 1 bis 7 Funktionen",
+      "Tanks: 400ml, 800ml, 1500ml und 3000ml",
+      "Fokus auf Praktikabilität und Vielfalt im Alltag",
+    ],
+    premiumFeatures: [
+      "LCD IPS Touch-Panel 15.6",
+      "Umkehrosmose (RO)",
+      "Edelstahl und anspruchsvolles Design",
+      "Integriertes Mini Media Network",
+      "Komplettes Premium-Erlebnis",
+    ],
+  },
+  it: {
+    essentialsFeatures: [
+      "Pannello LED Touch 10,1",
+      "4 filtri UF ad alta prestazione",
+      "Opzioni da 1 a 7 funzioni",
+      "Serbatoi: 400ml, 800ml, 1500ml e 3000ml",
+      "Focalizzato su praticità e varietà per il quotidiano",
+    ],
+    premiumFeatures: [
+      "Pannello LCD IPS Touch 15.6",
+      "Osmosi Inversa (RO)",
+      "Acciaio inossidabile e design sofisticato",
+      "Mini Media Network integrato",
+      "Esperienza premium completa",
+    ],
+  },
+  zh: {
+    essentialsFeatures: [
+      "LED触控面板 10.1",
+      "4个高性能UF滤芯",
+      "1至7种功能可选",
+      "水箱：400ml、800ml、1500ml和3000ml",
+      "专注日常实用性与多样化",
+    ],
+    premiumFeatures: [
+      "LCD IPS触控面板 15.6",
+      "反渗透（RO）",
+      "不锈钢与精致设计",
+      "集成迷你媒体网络",
+      "完整高端体验",
+    ],
+  },
+  ja: {
+    essentialsFeatures: [
+      "LEDタッチパネル 10.1",
+      "高性能UFフィルター×4",
+      "1～7機能から選択可能",
+      "タンク：400ml、800ml、1500ml、3000ml",
+      "日常の使いやすさと多様性に特化",
+    ],
+    premiumFeatures: [
+      "LCD IPSタッチパネル 15.6",
+      "逆浸透（RO）",
+      "ステンレス素材と洗練されたデザイン",
+      "ミニメディアネットワーク内蔵",
+      "完全なプレミアム体験",
+    ],
+  },
+  ko: {
+    essentialsFeatures: [
+      "LED 터치 패널 10.1",
+      "고성능 UF 필터 4개",
+      "1~7가지 기능 선택 가능",
+      "탱크: 400ml, 800ml, 1500ml 및 3000ml",
+      "일상의 편리함과 다양성에 집중",
+    ],
+    premiumFeatures: [
+      "LCD IPS 터치 패널 15.6",
+      "역삼투 (RO)",
+      "스테인리스 스틸과 정교한 디자인",
+      "미니 미디어 네트워크 통합",
+      "완전한 프리미엄 경험",
+    ],
+  },
+  "pt-pt": {
+    essentialsFeatures: [
+      "Painel LED Touch 10,1",
+      "4 filtros de Alta Performance UF",
+      "Opções de 1 até 7 funções",
+      "Reservatórios: 400ml, 800ml, 1500ml e 3000ml",
+      "Foco em praticidade e variedade para o dia a dia",
+    ],
+    premiumFeatures: [
+      "Painel LCD IPS Touch 15.6",
+      "Osmose Inversa (RO)",
+      "Aço inox e design sofisticado",
+      "Mini Media Network integrado",
+      "Experiência premium completa",
+    ],
+  },
 };
 
 function CheckItem({ label, iconSrc }: { label: string; iconSrc: string }) {

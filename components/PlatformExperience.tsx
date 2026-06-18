@@ -32,6 +32,17 @@ const T: Record<Lang, {
       { title: "Comissões",         desc: "Cálculo e pagamento de comissões para Gold e Silver. Regra FOB do Platinum." },
     ],
   },
+  "pt-pt": {
+    heading1: "Tudo ligado numa ",
+    heading2: "experiência única",
+    cards: [
+      { title: "Parceiros",         desc: "Gestão completa de parceiros Gold, Silver e Platinum. Rede Silver e regras comerciais estratégicas." },
+      { title: "QR Codes & Links",  desc: "Geração, rastreio, origem das vendas, performance e conversão em tempo real." },
+      { title: "Media Network",     desc: "Gestão de anunciantes, campanhas, criativos e exibição na Acquafy Media e Neo Premium." },
+      { title: "Produtos & Vendas", desc: "Catálogo da linha Neo, preços EUA, encomendas, clientes, faturação e devoluções." },
+      { title: "Comissões",         desc: "Cálculo e pagamento de comissões para Gold e Silver. Regra FOB do Platinum." },
+    ],
+  },
   en: {
     heading1: "Everything connected in a ",
     heading2: "single experience",
@@ -52,6 +63,72 @@ const T: Record<Lang, {
       { title: "Media Network",      desc: "Gestión de anunciantes, campañas, creativos y visualización en Acquafy Media y Neo Premium." },
       { title: "Productos & Ventas", desc: "Catálogo de la línea Neo, precios EUA, pedidos, clientes, facturación y devoluciones." },
       { title: "Comisiones",         desc: "Cálculo y pago de comisiones para Gold y Silver. Regla FOB del Platinum." },
+    ],
+  },
+  fr: {
+    heading1: "Tout connecté en une ",
+    heading2: "expérience unique",
+    cards: [
+      { title: "Partenaires",         desc: "Gestion complète des partenaires Gold, Silver et Platinum. Réseau Silver et règles commerciales stratégiques." },
+      { title: "Codes QR & Liens",    desc: "Génération, suivi, origine des ventes, performance et conversion en temps réel." },
+      { title: "Media Network",       desc: "Gestion des annonceurs, campagnes, créatifs et diffusion sur Acquafy Media et Neo Premium." },
+      { title: "Produits & Ventes",   desc: "Catalogue de la gamme Neo, prix États-Unis, commandes, clients, facturation et retours." },
+      { title: "Commissions",         desc: "Calcul et paiement des commissions pour Gold et Silver. Règle FOB Platinum." },
+    ],
+  },
+  de: {
+    heading1: "Alles verbunden in einer ",
+    heading2: "einzigen Erfahrung",
+    cards: [
+      { title: "Partner",             desc: "Vollständige Verwaltung von Gold-, Silver- und Platinum-Partnern. Silver-Netzwerk und strategische Handelsregeln." },
+      { title: "QR-Codes & Links",    desc: "Erstellung, Tracking, Verkaufsherkunft, Performance und Echtzeit-Konversion." },
+      { title: "Media Network",       desc: "Verwaltung von Werbetreibenden, Kampagnen, Creatives und Anzeige auf Acquafy Media und Neo Premium." },
+      { title: "Produkte & Verkauf",  desc: "Neo-Linienkatalog, US-Preise, Bestellungen, Kunden, Abrechnung und Retouren." },
+      { title: "Provisionen",         desc: "Berechnung und Zahlung von Provisionen für Gold und Silver. Platinum-FOB-Regel." },
+    ],
+  },
+  it: {
+    heading1: "Tutto connesso in un'",
+    heading2: "unica esperienza",
+    cards: [
+      { title: "Partner",             desc: "Gestione completa dei partner Gold, Silver e Platinum. Rete Silver e regole commerciali strategiche." },
+      { title: "Codici QR & Link",    desc: "Generazione, tracciamento, origine delle vendite, performance e conversione in tempo reale." },
+      { title: "Media Network",       desc: "Gestione di inserzionisti, campagne, creativi e visualizzazione su Acquafy Media e Neo Premium." },
+      { title: "Prodotti & Vendite",  desc: "Catalogo della linea Neo, prezzi USA, ordini, clienti, fatturazione e resi." },
+      { title: "Commissioni",         desc: "Calcolo e pagamento delle commissioni per Gold e Silver. Regola FOB Platinum." },
+    ],
+  },
+  zh: {
+    heading1: "一切尽在",
+    heading2: "统一体验",
+    cards: [
+      { title: "合作伙伴",             desc: "全面管理 Gold、Silver 和 Platinum 合作伙伴。Silver 网络和战略商业规则。" },
+      { title: "二维码与链接",          desc: "生成、追踪、销售来源、绩效及实时转化。" },
+      { title: "Media Network",        desc: "管理广告商、活动、创意，并在 Acquafy Media 和 Neo Premium 上展示。" },
+      { title: "产品与销售",            desc: "Neo 系列目录、美国价格、订单、客户、开票和退货。" },
+      { title: "佣金",                  desc: "为 Gold 和 Silver 计算及支付佣金。Platinum FOB 规则。" },
+    ],
+  },
+  ja: {
+    heading1: "すべてつながる、",
+    heading2: "ひとつの体験",
+    cards: [
+      { title: "パートナー",            desc: "Gold、Silver、Platinum パートナーの包括管理。Silverネットワークと戦略的商業ルール。" },
+      { title: "QRコード & リンク",     desc: "生成、追跡、販売元、パフォーマンス、リアルタイムコンバージョン。" },
+      { title: "Media Network",        desc: "広告主、キャンペーン、クリエイティブの管理および Acquafy Media・Neo Premium への配信。" },
+      { title: "製品 & 販売",          desc: "Neoラインカタログ、米国価格、注文、顧客、請求、返品。" },
+      { title: "コミッション",          desc: "GoldおよびSilverのコミッション計算と支払い。Platinum FOBルール。" },
+    ],
+  },
+  ko: {
+    heading1: "모든 것이 연결된 ",
+    heading2: "단일 경험",
+    cards: [
+      { title: "파트너",               desc: "Gold, Silver, Platinum 파트너의 완전한 관리. Silver 네트워크 및 전략적 상업 규칙." },
+      { title: "QR 코드 & 링크",       desc: "생성, 추적, 판매 출처, 성과 및 실시간 전환." },
+      { title: "Media Network",        desc: "광고주, 캠페인, 크리에이티브 관리 및 Acquafy Media, Neo Premium 게재." },
+      { title: "제품 & 판매",          desc: "Neo 라인 카탈로그, 미국 가격, 주문, 고객, 청구 및 반품." },
+      { title: "커미션",               desc: "Gold 및 Silver 커미션 계산 및 지급. Platinum FOB 규칙." },
     ],
   },
 };

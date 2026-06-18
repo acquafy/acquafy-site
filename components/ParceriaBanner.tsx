@@ -19,6 +19,13 @@ const T: Record<Lang, {
     cta:      "Falar com especialista",
     imgAlt:   "Produto Acquafy",
   },
+  "pt-pt": {
+    pill:     "NOVA FASE GLOBAL",
+    title:    "Programa de Parceria Global Acquafy",
+    subtitle: "Três níveis para crescer com a marca à escala global: indicar, operar ou distribuir.",
+    cta:      "Falar com especialista",
+    imgAlt:   "Produto Acquafy",
+  },
   en: {
     pill:     "NEW GLOBAL PHASE",
     title:    "Acquafy Global Partnership Program",
@@ -32,6 +39,48 @@ const T: Record<Lang, {
     subtitle: "Tres niveles para crecer con la marca a escala global: referir, operar o distribuir.",
     cta:      "Hablar con un especialista",
     imgAlt:   "Producto Acquafy",
+  },
+  fr: {
+    pill:     "NOUVELLE PHASE MONDIALE",
+    title:    "Programme de Partenariat Mondial Acquafy",
+    subtitle: "Trois niveaux pour grandir avec la marque à l'échelle mondiale : recommander, opérer ou distribuer.",
+    cta:      "Parler à un spécialiste",
+    imgAlt:   "Produit Acquafy",
+  },
+  de: {
+    pill:     "NEUE GLOBALE PHASE",
+    title:    "Globales Acquafy Partnerschaftsprogramm",
+    subtitle: "Drei Ebenen, um mit der Marke global zu wachsen: empfehlen, betreiben oder vertreiben.",
+    cta:      "Mit einem Experten sprechen",
+    imgAlt:   "Acquafy Produkt",
+  },
+  it: {
+    pill:     "NUOVA FASE GLOBALE",
+    title:    "Programma di Partnership Globale Acquafy",
+    subtitle: "Tre livelli per crescere con il brand su scala globale: segnalare, operare o distribuire.",
+    cta:      "Parla con uno specialista",
+    imgAlt:   "Prodotto Acquafy",
+  },
+  zh: {
+    pill:     "全新全球阶段",
+    title:    "Acquafy 全球合作伙伴计划",
+    subtitle: "三个层级，实现品牌全球规模增长：推荐、运营或分销。",
+    cta:      "联系专家",
+    imgAlt:   "Acquafy 产品",
+  },
+  ja: {
+    pill:     "新しいグローバルフェーズ",
+    title:    "Acquafy グローバルパートナーシッププログラム",
+    subtitle: "グローバル規模でブランドとともに成長する3つのレベル：紹介、運営、または流通。",
+    cta:      "専門家に相談する",
+    imgAlt:   "Acquafy 製品",
+  },
+  ko: {
+    pill:     "새로운 글로벌 단계",
+    title:    "Acquafy 글로벌 파트너십 프로그램",
+    subtitle: "글로벌 규모로 브랜드와 함께 성장하는 3가지 레벨: 추천, 운영 또는 유통.",
+    cta:      "전문가와 상담하기",
+    imgAlt:   "Acquafy 제품",
   },
 };
 

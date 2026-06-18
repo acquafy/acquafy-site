@@ -30,6 +30,49 @@ const T: Record<Lang, {
     readArticle:      "Leer artículo",
     viewKnowledgeBase:"Ver Base de Conocimiento",
   },
+  fr: {
+    closeLabel:       "Fermer",
+    articleCount:     (n) => `${n} article${n !== 1 ? "s" : ""} dans cette catégorie`,
+    readArticle:      "Lire l'article",
+    viewKnowledgeBase:"Voir la Base de Connaissances",
+  },
+  de: {
+    closeLabel:       "Schließen",
+    articleCount:     (n) => `${n} Artikel in dieser Kategorie`,
+    readArticle:      "Artikel lesen",
+    viewKnowledgeBase:"Wissensdatenbank anzeigen",
+  },
+  it: {
+    closeLabel:       "Chiudi",
+    articleCount:     (n) => `${n} articolo${n !== 1 ? "i" : ""} in questa categoria`,
+    readArticle:      "Leggi articolo",
+    viewKnowledgeBase:"Visualizza la Knowledge Base",
+  },
+  zh: {
+    closeLabel:       "关闭",
+    articleCount:     (n) => `此分类中有 ${n} 篇文章`,
+    readArticle:      "阅读文章",
+    viewKnowledgeBase:"查看知识库",
+  },
+  ja: {
+    closeLabel:       "閉じる",
+    articleCount:     (n) => `このカテゴリには ${n} 件の記事があります`,
+    readArticle:      "記事を読む",
+    viewKnowledgeBase:"ナレッジベースを見る",
+  },
+  ko: {
+    closeLabel:       "닫기",
+    articleCount:     (n) => `이 카테고리에 ${n}개의 문서가 있습니다`,
+    readArticle:      "문서 읽기",
+    viewKnowledgeBase:"지식 베이스 보기",
+  },
+
+  "pt-pt": {
+    closeLabel:       "Fechar",
+    articleCount:     (n) => `${n} artigo${n !== 1 ? "s" : ""} nesta categoria`,
+    readArticle:      "Ler artigo",
+    viewKnowledgeBase:"Ver Base de Conhecimento",
+  },
 };
 
 const imgArrowBlue  = "/figma-assets/icon-arrow-blue-b.svg";

@@ -33,24 +33,31 @@ type Language = {
 const LANGUAGES: Language[] = [
   { code: "pt-br", label: "Português (BR)",          flag: imgBR_Menu,aspectW: 512,   aspectH: 512,   langCode: "pt" },
   { code: "en",    label: "English (Global)",         flag: imgUSA, aspectW: 18, aspectH: 18, langCode: "en" },
-  { code: "pt-pt", label: "Português (Portugal)",    flag: imgPT,     aspectW: 1,     aspectH: 1,     langCode: null },
+  { code: "pt-pt", label: "Português (Portugal)",    flag: imgPT,     aspectW: 1,     aspectH: 1,     langCode: "pt-pt" },
   { code: "es",    label: "Español",                 flag: imgES,     aspectW: 22,    aspectH: 22,    langCode: "es" },
-  { code: "fr",    label: "Français",                flag: imgFR,     aspectW: 30,    aspectH: 30,    langCode: null },
-  { code: "de",    label: "Deutsch",                 flag: imgDE,     aspectW: 306.6, aspectH: 306.7, langCode: null },
-  { code: "it",    label: "Italiano",                flag: imgIT,     aspectW: 30,    aspectH: 30,    langCode: null },
-  { code: "zh",    label: "中文",                    flag: imgZH,     aspectW: 512,   aspectH: 512,   langCode: null },
-  { code: "ja",    label: "日本語",                  flag: imgJA,     aspectW: 512,   aspectH: 512,   langCode: null },
-  { code: "ko",    label: "한국어",                  flag: imgKO,     aspectW: 374,   aspectH: 374,   langCode: null },
+  { code: "fr",    label: "Français",                flag: imgFR,     aspectW: 30,    aspectH: 30,    langCode: "fr" },
+  { code: "de",    label: "Deutsch",                 flag: imgDE,     aspectW: 306.6, aspectH: 306.7, langCode: "de" },
+  { code: "it",    label: "Italiano",                flag: imgIT,     aspectW: 30,    aspectH: 30,    langCode: "it" },
+  { code: "zh",    label: "中文",                    flag: imgZH,     aspectW: 512,   aspectH: 512,   langCode: "zh" },
+  { code: "ja",    label: "日本語",                  flag: imgJA,     aspectW: 512,   aspectH: 512,   langCode: "ja" },
+  { code: "ko",    label: "한국어",                  flag: imgKO,     aspectW: 374,   aspectH: 374,   langCode: "ko" },
 ];
 
 // Compact label shown in Header button
-const COMPACT_LABEL: Record<Lang, string> = { pt: "BR", en: "EN", es: "ES" };
+const COMPACT_LABEL: Record<Lang, string> = { pt: "BR", "pt-pt": "PT", en: "EN", es: "ES", fr: "FR", de: "DE", it: "IT", zh: "中文", ja: "日本語", ko: "한국어" };
 
 // Full label + flag shown in Footer button
 const FULL_INFO: Record<Lang, { flag: string; aspectW: number; aspectH: number; label: string }> = {
-  pt: { flag: imgBR_Menu, aspectW: 512, aspectH: 512, label: "Português (BR)" },
-  en: { flag: imgUSA, aspectW: 18, aspectH: 18, label: "English (Global)" },
-  es: { flag: imgES,      aspectW: 22,  aspectH: 22,  label: "Español" },
+  pt:      { flag: imgBR_Menu, aspectW: 512,   aspectH: 512,   label: "Português (BR)" },
+  "pt-pt": { flag: imgPT,     aspectW: 1,     aspectH: 1,     label: "Português (Portugal)" },
+  en:      { flag: imgUSA,    aspectW: 18,    aspectH: 18,    label: "English (Global)" },
+  es: { flag: imgES,      aspectW: 22,    aspectH: 22,    label: "Español" },
+  fr: { flag: imgFR,      aspectW: 30,    aspectH: 30,    label: "Français" },
+  de: { flag: imgDE,      aspectW: 306.6, aspectH: 306.7, label: "Deutsch" },
+  it: { flag: imgIT,      aspectW: 30,    aspectH: 30,    label: "Italiano" },
+  zh: { flag: imgZH,      aspectW: 512,   aspectH: 512,   label: "中文" },
+  ja: { flag: imgJA,      aspectW: 512,   aspectH: 512,   label: "日本語" },
+  ko: { flag: imgKO,      aspectW: 374,   aspectH: 374,   label: "한국어" },
 };
 
 // ── Flag 20×20 helper ──────────────────────────────────────────────────────

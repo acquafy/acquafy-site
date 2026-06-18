@@ -13,6 +13,11 @@ const T: Record<Lang, { heading: string; btnDemo: string; btnSpecialist: string 
     btnDemo: "Solicitar demonstração",
     btnSpecialist: "Falar com especialista",
   },
+  "pt-pt": {
+    heading: "Pronto para operar a nova geração de água inteligente?",
+    btnDemo: "Solicitar demonstração",
+    btnSpecialist: "Falar com especialista",
+  },
   en: {
     heading: "Ready to operate the new generation of smart water?",
     btnDemo: "Request a demo",
@@ -22,6 +27,36 @@ const T: Record<Lang, { heading: string; btnDemo: string; btnSpecialist: string 
     heading: "¿Listo para operar la nueva generación de agua inteligente?",
     btnDemo: "Solicitar demostración",
     btnSpecialist: "Hablar con un especialista",
+  },
+  fr: {
+    heading: "Prêt à opérer la nouvelle génération d'eau intelligente ?",
+    btnDemo: "Demander une démo",
+    btnSpecialist: "Parler à un spécialiste",
+  },
+  de: {
+    heading: "Bereit, die neue Generation intelligenten Wassers zu betreiben?",
+    btnDemo: "Demo anfordern",
+    btnSpecialist: "Mit einem Spezialisten sprechen",
+  },
+  it: {
+    heading: "Pronti a gestire la nuova generazione di acqua intelligente?",
+    btnDemo: "Richiedi una demo",
+    btnSpecialist: "Parla con uno specialista",
+  },
+  zh: {
+    heading: "准备好运营新一代智能水务了吗？",
+    btnDemo: "申请演示",
+    btnSpecialist: "联系专家",
+  },
+  ja: {
+    heading: "次世代のスマートウォーターを運用する準備はできていますか？",
+    btnDemo: "デモを申し込む",
+    btnSpecialist: "専門家に相談する",
+  },
+  ko: {
+    heading: "새로운 세대의 스마트 워터를 운영할 준비가 되셨나요?",
+    btnDemo: "데모 신청",
+    btnSpecialist: "전문가와 상담",
   },
 };
 

@@ -45,6 +45,69 @@ const T: Record<Lang, { h2: string; descs: string[] }> = {
       "Ajusta el rango de pH del agua, haciendo que el agua filtrada sea alcalina con pH superior a 9, antioxidante y rica en hidrógeno.",
     ],
   },
+  fr: {
+    h2: "Gamme Essentials - Système de Filtration Haute Performance",
+    descs: [
+      "Élimine l'iode, la saleté, la rouille, filtre les impuretés, les composés chimiques, les particules en suspension, les odeurs et les saveurs normalement présents dans l'eau du robinet.",
+      "Élimine le chlore, les composés chimiques, les particules en suspension, les odeurs et les saveurs normalement présents dans l'eau du robinet.",
+      "Grâce à des micropores d'ultra-précision, élimine les organismes, les substances macromoléculaires, les vers rouges, les virus et les bactéries.",
+      "Il ajuste la plage de pH de l'eau, rendant l'eau filtrée alcaline avec un pH supérieur à 9, antioxydante et riche en hydrogène.",
+    ],
+  },
+  de: {
+    h2: "Essentials-Linie - Hochleistungs-Filtrationssystem",
+    descs: [
+      "Entfernt Jod, Schmutz, Rost, filtert Verunreinigungen, chemische Verbindungen, Schwebeteilchen, Gerüche und Geschmacksstoffe, die normalerweise im Leitungswasser vorkommen.",
+      "Entfernt Chlor, chemische Verbindungen, Schwebeteilchen, Gerüche und Geschmacksstoffe, die normalerweise im Leitungswasser vorkommen.",
+      "Mit ultrapräzisen Mikroporen werden Organismen, makromolekulare Substanzen, rote Würmer, Viren und Bakterien entfernt.",
+      "Es reguliert den pH-Bereich des Wassers und macht das gefilterte Wasser mit einem pH-Wert über 9 alkalisch, antioxidativ und wasserstoffreich.",
+    ],
+  },
+  it: {
+    h2: "Linea Essentials - Sistema di Filtrazione ad Alta Prestazione",
+    descs: [
+      "Rimuove iodio, sporco, ruggine, filtra impurità, composti chimici, particelle sospese, odori e sapori normalmente presenti nell'acqua del rubinetto.",
+      "Rimuove il cloro, composti chimici, particelle sospese, odori e sapori normalmente presenti nell'acqua del rubinetto.",
+      "Con micropori di ultraprecisione, rimuove organismi, sostanze macromolecolari, vermi rossi, virus e batteri.",
+      "Regola il range di pH dell'acqua, rendendo l'acqua filtrata alcalina con pH superiore a 9, antiossidante e ricca di idrogeno.",
+    ],
+  },
+  zh: {
+    h2: "Essentials系列 - 高性能净水系统",
+    descs: [
+      "去除碘、污垢、铁锈，过滤自来水中通常含有的杂质、化学物质、悬浮颗粒、异味和异味。",
+      "去除氯气、化学物质、悬浮颗粒，以及自来水中通常含有的异味和异味。",
+      "凭借超精密微孔，去除有机物、大分子物质、红虫、病毒和细菌。",
+      "调节水的pH范围，使过滤后的水呈碱性，pH值高于9，具有抗氧化性且富含氢。",
+    ],
+  },
+  ja: {
+    h2: "エッセンシャルライン - 高性能ろ過システム",
+    descs: [
+      "水道水に通常含まれるヨウ素、汚れ、錆を除去し、不純物、化学物質、浮遊粒子、臭いおよび異味をろ過します。",
+      "水道水に通常含まれる塩素、化学物質、浮遊粒子、臭いおよび異味を除去します。",
+      "超精密マイクロポアにより、微生物、高分子物質、赤虫、ウイルス、細菌を除去します。",
+      "水のpH範囲を調整し、ろ過された水をpH9以上のアルカリ性にし、抗酸化性と水素を豊富に含む水にします。",
+    ],
+  },
+  ko: {
+    h2: "에센셜 라인 - 고성능 여과 시스템",
+    descs: [
+      "수돗물에 일반적으로 존재하는 요오드, 먼지, 녹을 제거하고 불순물, 화학 물질, 부유 입자, 냄새 및 맛을 여과합니다.",
+      "수돗물에 일반적으로 존재하는 염소, 화학 물질, 부유 입자, 냄새 및 맛을 제거합니다.",
+      "초정밀 마이크로포어로 유기물, 고분자 물질, 붉은 벌레, 바이러스 및 박테리아를 제거합니다.",
+      "물의 pH 범위를 조절하여 여과된 물을 pH 9 이상의 알칼리성으로 만들고, 항산화 효과와 수소가 풍부한 물로 만듭니다.",
+    ],
+  },
+  "pt-pt": {
+    h2: "Linha Essentials - Sistema de Filtração de Alta Performance",
+    descs: [
+      "Remove iodo, sujidade, ferrugem, filtra impurezas, compostos químicos, partículas em suspensão, odores e sabores normalmente presentes na água da torneira.",
+      "Remove o cloro, compostos químicos, partículas em suspensão, odores e sabores normalmente presentes na água da torneira.",
+      "Com microporos de ultraprecisão, remove organismos, substâncias macromoleculares, verme vermelho, vírus e bactérias.",
+      "Ajusta a gama de pH da água, tornando a água filtrada alcalina com pH acima de 9, antioxidante e rica em hidrogénio.",
+    ],
+  },
 };
 
 function FilterCardItem({ card, isLast }: { card: FilterCard; isLast: boolean }) {

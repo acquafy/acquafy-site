@@ -34,6 +34,16 @@ const T: Record<Lang, {
       { title: "Gere receita com mídia e vendas",  desc: "Receba por campanhas publicitárias e comissões sobre vendas da linha Neo." },
     ],
   },
+  "pt-pt": {
+    heading1: "Como funciona",
+    heading2: " na prática",
+    steps: [
+      { title: "Instale o Acquafy Media",         desc: "Instalação rápida e integração à Plataforma Acquafy." },
+      { title: "Exiba campanhas e QR Codes",       desc: "Mostre anúncios, ofertas e QR Codes ao público de forma inteligente." },
+      { title: "Capture dados e monitorize com IA", desc: "Acompanhe o uso, envolvimento e performance com inteligência artificial." },
+      { title: "Gere receita com média e vendas",  desc: "Receba por campanhas publicitárias e comissões sobre vendas da linha Neo." },
+    ],
+  },
   en: {
     heading1: "How it works",
     heading2: " in practice",
@@ -52,6 +62,66 @@ const T: Record<Lang, {
       { title: "Muestra campañas y QR Codes",           desc: "Exhibe anuncios, ofertas y QR Codes al público de forma inteligente." },
       { title: "Captura datos y monitorea con IA",      desc: "Sigue el uso, engagement y rendimiento con inteligencia artificial." },
       { title: "Genera ingresos con medios y ventas",   desc: "Recibe por campañas publicitarias y comisiones sobre ventas de la línea Neo." },
+    ],
+  },
+  fr: {
+    heading1: "Comment ça fonctionne",
+    heading2: " en pratique",
+    steps: [
+      { title: "Installez Acquafy Media",                  desc: "Installation rapide et intégration avec la Plateforme Acquafy." },
+      { title: "Diffusez des campagnes et QR Codes",        desc: "Affichez des publicités, offres et QR Codes au public de façon intelligente." },
+      { title: "Collectez des données et surveillez avec l'IA", desc: "Suivez l'utilisation, l'engagement et les performances avec l'intelligence artificielle." },
+      { title: "Générez des revenus avec médias et ventes", desc: "Percevez des revenus de campagnes publicitaires et des commissions sur les ventes de la gamme Neo." },
+    ],
+  },
+  de: {
+    heading1: "So funktioniert es",
+    heading2: " in der Praxis",
+    steps: [
+      { title: "Acquafy Media installieren",               desc: "Schnelle Installation und Integration mit der Acquafy Plattform." },
+      { title: "Kampagnen und QR Codes anzeigen",           desc: "Zeigen Sie Werbung, Angebote und QR Codes intelligent dem Publikum." },
+      { title: "Daten erfassen und mit KI überwachen",      desc: "Verfolgen Sie Nutzung, Engagement und Performance mit künstlicher Intelligenz." },
+      { title: "Einnahmen mit Medien und Verkäufen erzielen", desc: "Verdienen Sie durch Werbekampagnen und Provisionen auf Neo-Produktverkäufe." },
+    ],
+  },
+  it: {
+    heading1: "Come funziona",
+    heading2: " nella pratica",
+    steps: [
+      { title: "Installa Acquafy Media",                   desc: "Installazione rapida e integrazione con la Piattaforma Acquafy." },
+      { title: "Mostra campagne e QR Codes",                desc: "Visualizza annunci, offerte e QR Codes al pubblico in modo intelligente." },
+      { title: "Acquisisci dati e monitora con AI",         desc: "Monitora utilizzo, engagement e performance con intelligenza artificiale." },
+      { title: "Genera ricavi con media e vendite",         desc: "Incassa dalle campagne pubblicitarie e commissioni sulle vendite della linea Neo." },
+    ],
+  },
+  zh: {
+    heading1: "实际操作",
+    heading2: "中的运作方式",
+    steps: [
+      { title: "安装 Acquafy Media",                       desc: "快速安装并与 Acquafy 平台集成。" },
+      { title: "展示活动和 QR Code",                        desc: "智能地向受众展示广告、优惠和 QR Code。" },
+      { title: "通过 AI 采集数据并监控",                    desc: "利用人工智能追踪使用情况、参与度和绩效。" },
+      { title: "通过媒体和销售创造收入",                    desc: "通过广告活动和 Neo 系列产品销售佣金获得收益。" },
+    ],
+  },
+  ja: {
+    heading1: "実際の",
+    heading2: "仕組み",
+    steps: [
+      { title: "Acquafy Media をインストール",              desc: "迅速なインストールと Acquafy プラットフォームへの統合。" },
+      { title: "キャンペーンと QR Code を表示",             desc: "広告、オファー、QR Code をオーディエンスにインテリジェントに表示。" },
+      { title: "AI でデータを収集・監視",                   desc: "人工知能で使用状況、エンゲージメント、パフォーマンスを追跡。" },
+      { title: "メディアと販売で収益を生む",                desc: "広告キャンペーンと Neo ライン販売のコミッションで収益を獲得。" },
+    ],
+  },
+  ko: {
+    heading1: "실제로",
+    heading2: " 작동하는 방식",
+    steps: [
+      { title: "Acquafy Media 설치",                       desc: "빠른 설치와 Acquafy 플랫폼과의 통합." },
+      { title: "캠페인과 QR Code 표시",                    desc: "광고, 오퍼 및 QR Code를 대중에게 스마트하게 표시." },
+      { title: "AI로 데이터 수집 및 모니터링",              desc: "인공지능으로 사용량, 참여도 및 성과를 추적." },
+      { title: "미디어와 판매로 수익 창출",                 desc: "광고 캠페인 수익과 Neo 라인 판매 커미션을 획득." },
     ],
   },
 };
