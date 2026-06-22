@@ -11,7 +11,6 @@ const imgX         = "/figma-assets/icon-x-twitter.svg";
 const imgLinkedin  = "/figma-assets/icon-linkedin.svg";
 const imgYoutube   = "/figma-assets/icon-youtube.svg";
 const imgFacebook  = "/figma-assets/icon-facebook.svg";
-const imgArrowBullet = "/figma-assets/icon-arrow-bullet.svg";
 const imgGlobe     = "/figma-assets/icon-globe-planetweb-30px.svg";
 const imgChat      = "/figma-assets/icon-chat-large.svg";
 const imgLocation  = "/figma-assets/icon-location-b.svg";
@@ -384,22 +383,6 @@ const T: Record<Lang, {
 
 const gradientLine = { backgroundImage: "linear-gradient(146.8deg, #3447d2 4.03%, #0035c1 124%)" };
 
-function ArrowBullet() {
-  return (
-    <div className="flex h-[12px] items-center justify-center shrink-0 w-[6px]">
-      <div className="-rotate-90 flex-none">
-        <div className="flex flex-col h-[6px] items-start w-[12px]">
-          <div className="relative shrink-0 w-full" style={{ aspectRatio: "226.27/113.14" }}>
-            <div className="absolute inset-[-12.5%_-6.25%]">
-              <img alt="" className="block max-w-none size-full" src={imgArrowBullet} />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
 function SocialCircle({ src, alt, aspectW, aspectH }: { src: string; alt: string; aspectW: number; aspectH: number }) {
   const isSquare = Math.abs(aspectW - aspectH) < 1;
   return (
@@ -438,7 +421,6 @@ function MobileNavSection({
         <div className="flex flex-col gap-[30px] items-start pb-[24px]">
           {col.links.map((link) => (
             <div key={link.href} className="flex gap-[10px] items-center w-full">
-              <ArrowBullet />
               <a href={link.href} className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#2a2a2b] flex-[1_0_0] min-w-px hover:text-[#0233c3] transition-colors">
                 {link.label}
               </a>
@@ -490,7 +472,6 @@ export default function Footer() {
               <div className="flex flex-col gap-[30px] items-start w-full">
                 {col.links.map((link) => (
                   <div key={link.href} className="flex gap-[10px] items-center w-full">
-                    <ArrowBullet />
                     <a href={link.href} className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#2a2a2b] flex-[1_0_0] min-w-px hover:text-[#0233c3] transition-colors">
                       {link.label}
                     </a>

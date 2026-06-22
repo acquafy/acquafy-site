@@ -159,17 +159,6 @@ export default function NeoMediaHowItWorks() {
               <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#333] text-center w-full">
                 {s.desc}
               </p>
-              {/* Arrow connector (not on last step) */}
-              {i < steps.length - 1 && (
-                <>
-                  <div className="hidden sm:block absolute -right-[12px] top-1/2 -translate-y-1/2 z-10">
-                    <FigmaIcon src={imgArrow} size={12} aspectW={12} aspectH={14.7} />
-                  </div>
-                  <div className="sm:hidden absolute -bottom-[12px] left-1/2 -translate-x-1/2 z-10">
-                    <FigmaIcon src={imgArrow} size={12} aspectW={12} aspectH={14.7} className="rotate-90" />
-                  </div>
-                </>
-              )}
             </div>
           ))}
         </div>

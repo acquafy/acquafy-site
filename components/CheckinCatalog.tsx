@@ -20,7 +20,7 @@ export default function CheckinCatalog() {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-[24px] gap-y-[56px]">
+        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-[24px] gap-y-[40px]">
           {CHECKIN_FAMILIES.map((family) => {
             const lowestPrice = Math.min(...family.variants.map((v) => v.price));
             const coverImg = family.variants[0].img;
@@ -31,14 +31,14 @@ export default function CheckinCatalog() {
             return (
               <div
                 key={family.slug}
-                className="flex flex-col items-center gap-[20px]"
+                className="flex flex-col items-center gap-[16px]"
               >
                 {/* Image */}
-                <div className="w-full h-[200px] xl:h-[240px] flex items-center justify-center">
+                <div className="w-full h-[160px] xl:h-[200px] flex items-center justify-center">
                   <img
                     src={coverImg}
                     alt={family.title}
-                    className="max-h-full w-auto object-contain"
+                    className="max-h-[200px] max-w-[200px] w-auto object-contain"
                   />
                 </div>
 

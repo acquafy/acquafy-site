@@ -2,7 +2,6 @@
 
 import { useLang, type Lang } from "@/context/LanguageContext";
 
-const imgArrow        = "/figma-assets/icon-arrow-c.svg";
 const imgLineAcido    = "/figma-assets/icon-line-acido.svg";
 const imgLineAlcalino = "/figma-assets/icon-line-alcalino.svg";
 
@@ -231,7 +230,7 @@ const phColors = [
   "#fecb15", "#5fbd02", "#006eaf", "#4d5daa", "#7a459c",
 ];
 
-function FilterCard({ card, isLast }: { card: FilterCard; isLast: boolean }) {
+function FilterCard({ card }: { card: FilterCard }) {
   const isHighlightBlue = card.highlight && !card.gradient;
   const isHighlightGrad = card.highlight && card.gradient;
 
@@ -260,14 +259,6 @@ function FilterCard({ card, isLast }: { card: FilterCard; isLast: boolean }) {
       </div>
       {/* Description */}
       <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#2a2a2b] flex-1 w-full">{card.desc}</p>
-      {/* Arrow connector (not on last card) */}
-      {!isLast && (
-        <div className="absolute -right-[10px] top-1/2 -translate-y-1/2 w-[10px] h-0 pointer-events-none">
-          <div className="absolute" style={{ inset: "-7.36px -10% -7.36px 0" }}>
-            <img alt="" className="block max-w-none size-full" src={imgArrow} />
-          </div>
-        </div>
-      )}
     </div>
   );
 }
@@ -288,7 +279,7 @@ export default function LinhasFiltros() {
             {t.essentialsHeading}
           </h2>
           <div className="flex flex-wrap gap-[20px] items-stretch justify-center w-full">
-            {essentials.map((c, i) => <FilterCard key={i} card={c} isLast={i === essentials.length - 1} />)}
+            {essentials.map((c, i) => <FilterCard key={i} card={c} />)}
           </div>
         </div>
 
@@ -301,7 +292,7 @@ export default function LinhasFiltros() {
             {t.premiumHeading}
           </h2>
           <div className="flex flex-wrap gap-[20px] items-stretch justify-center w-full">
-            {premium.map((c, i) => <FilterCard key={i} card={c} isLast={i === premium.length - 1} />)}
+            {premium.map((c, i) => <FilterCard key={i} card={c} />)}
           </div>
         </div>
 

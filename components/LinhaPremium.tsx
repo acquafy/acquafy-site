@@ -1,5 +1,5 @@
 "use client";
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import FigmaIcon from "./FigmaIcon";
 import PremiumSlideshow from "./ui/PremiumSlideshow";
 import { PRODUCT_IMAGES } from "@/lib/products";
@@ -21,7 +21,14 @@ const imgPrime           = PRODUCT_IMAGES["neo-prime"];
 const imgPrimeSpark      = PRODUCT_IMAGES["neo-prime-spark"];
 const imgPrimeSparkH2    = PRODUCT_IMAGES["neo-prime-spark-h2"];
 
-const imgPanel   = "/figma-assets/panel-premium.webp";
+const panelSlideSrcs = [
+  "/figma-assets/panel-premium-1.webp",
+  "/figma-assets/panel-premium-2.webp",
+  "/figma-assets/panel-premium-3.webp",
+  "/figma-assets/panel-premium-4.webp",
+  "/figma-assets/panel-premium-5.webp",
+  "/figma-assets/panel-premium-6.webp",
+];
 
 const imgCheckin    = "/figma-assets/icon-check-b.svg";
 const imgIconLCD    = "/figma-assets/icon-lcd.svg";
@@ -307,6 +314,40 @@ function PremiumCard({ product, color = "#6e0cc3" }: { product: Product; color?:
   );
 }
 
+function PanelSlideshow() {
+  const [active, setActive] = useState(0);
+  return (
+    <div className="flex flex-col gap-[10px] items-center justify-center shrink-0 min-w-[240px] max-w-[249px] w-[240px]">
+      <div
+        className="relative w-full cursor-pointer"
+        style={{ aspectRatio: "2309/3821" }}
+        onClick={() => setActive((active + 1) % panelSlideSrcs.length)}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => e.key === "Enter" && setActive((active + 1) % panelSlideSrcs.length)}
+        aria-label="Próximo slide"
+      >
+        <img
+          alt="Painel Premium"
+          className="absolute inset-0 max-w-none object-cover pointer-events-none size-full"
+          src={panelSlideSrcs[active]}
+        />
+      </div>
+      <div className="flex gap-[10px] items-center justify-center">
+        {panelSlideSrcs.map((_, i) => (
+          <div
+            key={i}
+            className="relative shrink-0 size-[12px] cursor-pointer"
+            onClick={() => setActive(i)}
+          >
+            <img alt="" className="absolute block inset-0 max-w-none size-full" src={active === i ? imgDotActive : imgDotInactive} />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export default function LinhaPremium() {
   const { lang } = useLang();
   const t = T[lang];
@@ -424,15 +465,7 @@ export default function LinhaPremium() {
                   ))}
                 </div>
 
-                <div className="flex flex-col gap-[10px] items-center justify-center shrink-0 min-w-[240px] max-w-[249px] w-[240px]">
-                  <div className="relative w-full" style={{ aspectRatio: "2309/3821" }}>
-                    <img
-                      alt="Painel Premium"
-                      className="absolute inset-0 max-w-none object-cover pointer-events-none size-full"
-                      src={imgPanel}
-                    />
-                  </div>
-                </div>
+                <PanelSlideshow />
               </div>
             </div>
 

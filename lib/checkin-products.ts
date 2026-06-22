@@ -42,7 +42,7 @@ export const CHECKIN_FAMILIES: CheckinFamily[] = [
     isPremium: false,
     variants: [
       v("neo-fit", "Neo FIT", "6 em 1"),
-      v("neo-smart-h2", "Neo SMART H₂", "7 em 1 + H₂"),
+      v("neo-smart-h2", "Neo SMART H₂", "7 em 1"),
       v("neo-touch", "Neo TOUCH", "6 em 1"),
       v("neo-plus", "Neo PLUS", "6 em 1"),
     ],
@@ -55,8 +55,8 @@ export const CHECKIN_FAMILIES: CheckinFamily[] = [
     isPremium: false,
     variants: [
       v("neo-ultra", "Neo ULTRA", "6 em 1"),
-      v("neo-ultra-spark", "Neo ULTRA SPARK", "7 em 1 + Gás"),
-      v("neo-ultra-spark-h2", "Neo ULTRA SPARK H₂", "8 em 1 + Gás + H₂"),
+      v("neo-ultra-spark", "Neo ULTRA SPARK", "7 em 1"),
+      v("neo-ultra-spark-h2", "Neo ULTRA SPARK H₂", "8 em 1"),
     ],
     scenes: [],
   },
@@ -67,8 +67,8 @@ export const CHECKIN_FAMILIES: CheckinFamily[] = [
     isPremium: false,
     variants: [
       v("neo-max", "Neo MAX", "6 em 1"),
-      v("neo-max-spark", "Neo MAX SPARK", "7 em 1 + Gás"),
-      v("neo-max-spark-h2", "Neo MAX SPARK H₂", "8 em 1 + Gás + H₂"),
+      v("neo-max-spark", "Neo MAX SPARK", "7 em 1"),
+      v("neo-max-spark-h2", "Neo MAX SPARK H₂", "8 em 1"),
     ],
     scenes: [],
   },
@@ -79,8 +79,8 @@ export const CHECKIN_FAMILIES: CheckinFamily[] = [
     isPremium: true,
     variants: [
       v("neo-prestige", "Neo PRESTIGE", "6 em 1 · Aço inox"),
-      v("neo-prestige-spark", "Neo PRESTIGE SPARK", "7 em 1 + Gás"),
-      v("neo-prestige-spark-h2", "Neo PRESTIGE SPARK H₂", "8 em 1 + Gás + H₂"),
+      v("neo-prestige-spark", "Neo PRESTIGE SPARK", "7 em 1"),
+      v("neo-prestige-spark-h2", "Neo PRESTIGE SPARK H₂", "8 em 1"),
     ],
     scenes: [],
   },
@@ -91,8 +91,8 @@ export const CHECKIN_FAMILIES: CheckinFamily[] = [
     isPremium: true,
     variants: [
       v("neo-prime", "Neo PRIME", "6 em 1"),
-      v("neo-prime-spark", "Neo PRIME SPARK", "7 em 1 + Gás"),
-      v("neo-prime-spark-h2", "Neo PRIME SPARK H₂", "8 em 1 + Gás + H₂"),
+      v("neo-prime-spark", "Neo PRIME SPARK", "7 em 1"),
+      v("neo-prime-spark-h2", "Neo PRIME SPARK H₂", "8 em 1"),
     ],
     scenes: [],
   },
@@ -103,8 +103,8 @@ export const CHECKIN_FAMILIES: CheckinFamily[] = [
     isPremium: true,
     variants: [
       v("neo-infinity", "Neo INFINITY", "6 em 1 · IPS 15,6\""),
-      v("neo-infinity-spark", "Neo INFINITY SPARK", "7 em 1 + Gás"),
-      v("neo-infinity-spark-h2", "Neo INFINITY SPARK H₂", "8 em 1 + Gás + H₂"),
+      v("neo-infinity-spark", "Neo INFINITY SPARK", "7 em 1"),
+      v("neo-infinity-spark-h2", "Neo INFINITY SPARK H₂", "8 em 1"),
     ],
     scenes: [],
   },
