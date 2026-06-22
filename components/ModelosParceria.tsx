@@ -1,26 +1,24 @@
-﻿"use client";
+"use client";
+import { useState } from "react";
 import { useLang, type Lang } from "@/context/LanguageContext";
+import FigmaIcon from "./FigmaIcon";
 
-/* ── Medal icons (55×55) ──────────────────────────────────────── */
-const imgSilver   = "/figma-assets/product-silver-d.webp";
-const imgGold     = "/figma-assets/product-gold-c.webp";
-const imgPlatinum = "/figma-assets/product-platinum-d.webp";
+/* ── Assets ──────────────────────────────────────────────────────── */
+const imgArrowWhite = "/figma-assets/icon-arrow-white-small.svg";
+const imgSilver     = "/figma-assets/product-silver-d.webp";
+const imgGold       = "/figma-assets/product-gold-c.webp";
+const imgPlatinum   = "/figma-assets/product-platinum-d.webp";
 
-/* ── SVG stroke icons (rendered via CSS mask — NOT <img>) ────── */
+/* ── SVG stroke icons (rendered via CSS mask — NOT <img>) ────────── */
 const svgUser      = "/figma-assets/mp-icon-user.svg";
 const svgScale     = "/figma-assets/mp-icon-scale.svg";
 const svgCountry   = "/figma-assets/mp-icon-country.svg";
-const svgShield    = "/figma-assets/mp-icon-shield.svg";     // 24×30 (portrait)
-const svgDigital   = "/figma-assets/mp-icon-digital.svg";    // 38×40 → 28.5×30
+const svgShield    = "/figma-assets/mp-icon-shield.svg";
+const svgDigital   = "/figma-assets/mp-icon-digital.svg";
 const svgMultiReg  = "/figma-assets/mp-icon-multireg.svg";
 
 /* ─────────────────────────────────────────────────────────────────
-   StrokeIcon
-   Renders an SVG stroke icon using CSS mask-image so its colour
-   can be overridden per-tier (solid or gradient) without touching
-   the SVG file. The SVG's own colour is discarded; only its
-   transparent/opaque areas (alpha) drive the mask shape.
-   Renders as a <div> — never as an <img>.
+   StrokeIcon — renders SVG via CSS mask so colour can be overridden
 ───────────────────────────────────────────────────────────────── */
 function StrokeIcon({ src, color, aspectW = 30, aspectH = 30 }: { src: string; color: string; aspectW?: number; aspectH?: number }) {
   const isGradient = color.startsWith("linear-gradient");
@@ -42,19 +40,16 @@ function StrokeIcon({ src, color, aspectW = 30, aspectH = 30 }: { src: string; c
   };
   return (
     <div
-      style={
-        isGradient
-          ? { ...base, backgroundImage: color }
-          : { ...base, backgroundColor: color }
-      }
+      style={isGradient ? { ...base, backgroundImage: color } : { ...base, backgroundColor: color }}
     />
   );
 }
 
-/* ── Types ───────────────────────────────────────────────────── */
+/* ── Types ───────────────────────────────────────────────────────── */
 type TierItem = { icon: string; label: string; value: string; aspectW?: number; aspectH?: number };
 
 type TierDef = {
+  key:         "silver" | "gold" | "platinum";
   medal:       string;
   name:        string;
   nameStyle:   React.CSSProperties;
@@ -66,10 +61,12 @@ type TierDef = {
   labelStyle:  React.CSSProperties;
   footer:      string;
   footerStyle?: React.CSSProperties;
+  btnCls:      string;
+  btnStyle?:   React.CSSProperties;
   items:       TierItem[];
 };
 
-/* ── Platinum shared tokens ──────────────────────────────────── */
+/* ── Platinum shared tokens ──────────────────────────────────────── */
 const platGradient = "linear-gradient(148.94deg, #002ba8 0%, #6e0cc3 100%)";
 
 const platLabelStyle: React.CSSProperties = {
@@ -83,7 +80,7 @@ const platBadgeStyle: React.CSSProperties = {
   backgroundImage: "linear-gradient(94.37deg, #e0e8ff 6.19%, #fefeff 49.77%, #f5eaff 93.35%)",
 };
 
-/* ── Translations ────────────────────────────────────────────── */
+/* ── Tier translations ───────────────────────────────────────────── */
 const T: Record<Lang, {
   heading:    string;
   headingHL:  string;
@@ -376,15 +373,315 @@ const T: Record<Lang, {
   },
 };
 
-/* ── Component ───────────────────────────────────────────────── */
+/* ── Form translations ───────────────────────────────────────────── */
+type FormLang = {
+  titleSilver: string; titleGold: string; titlePlatinum: string;
+  labelNome: string; placeholderNome: string;
+  labelEmail: string; placeholderEmail: string;
+  labelEmpresa: string; placeholderEmpresa: string;
+  labelRegiao: string; placeholderRegiao: string;
+  labelMensagem: string; placeholderMensagem: string;
+  submitBtn: string;
+  btnSilver: string; btnGold: string; btnPlatinum: string;
+  privacyPre: string; privacyTerms: string; privacyMid: string; privacyPolicy: string; privacyPost: string;
+};
+
+const FORM_T: Record<Lang, FormLang> = {
+  pt: {
+    titleSilver: "Parceria Silver", titleGold: "Parceria Gold", titlePlatinum: "Parceria Platinum",
+    labelNome: "Nome completo", placeholderNome: "Seu nome",
+    labelEmail: "E-mail", placeholderEmail: "seu@email.com",
+    labelEmpresa: "Nome da empresa", placeholderEmpresa: "Nome da sua empresa",
+    labelRegiao: "País / Região", placeholderRegiao: "Ex.: Brasil, Portugal, EUA…",
+    labelMensagem: "Mensagem", placeholderMensagem: "Como podemos ajudar você",
+    submitBtn: "Enviar",
+    btnSilver: "Seja um parceiro Silver", btnGold: "Seja um parceiro Gold", btnPlatinum: "Seja um parceiro Platinum",
+    privacyPre: "Li e concordo com os ", privacyTerms: "Termos de Uso", privacyMid: " e a ", privacyPolicy: "Política de Privacidade", privacyPost: " da Acquafy",
+  },
+  "pt-pt": {
+    titleSilver: "Parceria Silver", titleGold: "Parceria Gold", titlePlatinum: "Parceria Platinum",
+    labelNome: "Nome completo", placeholderNome: "O seu nome",
+    labelEmail: "E-mail", placeholderEmail: "o.seu@email.com",
+    labelEmpresa: "Nome da empresa", placeholderEmpresa: "Nome da sua empresa",
+    labelRegiao: "País / Região", placeholderRegiao: "Ex.: Brasil, Portugal, EUA…",
+    labelMensagem: "Mensagem", placeholderMensagem: "Como podemos ajudá-lo",
+    submitBtn: "Enviar",
+    btnSilver: "Seja um parceiro Silver", btnGold: "Seja um parceiro Gold", btnPlatinum: "Seja um parceiro Platinum",
+    privacyPre: "Li e concordo com os ", privacyTerms: "Termos de Utilização", privacyMid: " e a ", privacyPolicy: "Política de Privacidade", privacyPost: " da Acquafy",
+  },
+  en: {
+    titleSilver: "Silver Partnership", titleGold: "Gold Partnership", titlePlatinum: "Platinum Partnership",
+    labelNome: "Full Name", placeholderNome: "Your name",
+    labelEmail: "E-mail", placeholderEmail: "your@email.com",
+    labelEmpresa: "Company Name", placeholderEmpresa: "Your company name",
+    labelRegiao: "Country / Region", placeholderRegiao: "E.g.: USA, Brazil, Portugal…",
+    labelMensagem: "Message", placeholderMensagem: "How can we help you",
+    submitBtn: "Send",
+    btnSilver: "Become a Silver Partner", btnGold: "Become a Gold Partner", btnPlatinum: "Become a Platinum Partner",
+    privacyPre: "I have read and agree to the ", privacyTerms: "Terms of Use", privacyMid: " and ", privacyPolicy: "Privacy Policy", privacyPost: " of Acquafy",
+  },
+  es: {
+    titleSilver: "Asociación Silver", titleGold: "Asociación Gold", titlePlatinum: "Asociación Platinum",
+    labelNome: "Nombre completo", placeholderNome: "Tu nombre",
+    labelEmail: "E-mail", placeholderEmail: "tu@email.com",
+    labelEmpresa: "Nombre de la empresa", placeholderEmpresa: "Nombre de tu empresa",
+    labelRegiao: "País / Región", placeholderRegiao: "Ej.: España, México, Argentina…",
+    labelMensagem: "Mensaje", placeholderMensagem: "¿Cómo podemos ayudarte?",
+    submitBtn: "Enviar",
+    btnSilver: "Ser Socio Silver", btnGold: "Ser Socio Gold", btnPlatinum: "Ser Socio Platinum",
+    privacyPre: "He leído y acepto los ", privacyTerms: "Términos de Uso", privacyMid: " y la ", privacyPolicy: "Política de Privacidad", privacyPost: " de Acquafy",
+  },
+  fr: {
+    titleSilver: "Partenariat Silver", titleGold: "Partenariat Gold", titlePlatinum: "Partenariat Platinum",
+    labelNome: "Nom complet", placeholderNome: "Votre nom",
+    labelEmail: "E-mail", placeholderEmail: "votre@email.com",
+    labelEmpresa: "Nom de l'entreprise", placeholderEmpresa: "Nom de votre entreprise",
+    labelRegiao: "Pays / Région", placeholderRegiao: "Ex. : France, Belgique, Canada…",
+    labelMensagem: "Message", placeholderMensagem: "Comment pouvons-nous vous aider ?",
+    submitBtn: "Envoyer",
+    btnSilver: "Devenir Partenaire Silver", btnGold: "Devenir Partenaire Gold", btnPlatinum: "Devenir Partenaire Platinum",
+    privacyPre: "J'ai lu et j'accepte les ", privacyTerms: "Conditions d'Utilisation", privacyMid: " et la ", privacyPolicy: "Politique de Confidentialité", privacyPost: " d'Acquafy",
+  },
+  de: {
+    titleSilver: "Silver-Partnerschaft", titleGold: "Gold-Partnerschaft", titlePlatinum: "Platinum-Partnerschaft",
+    labelNome: "Vollständiger Name", placeholderNome: "Ihr Name",
+    labelEmail: "E-Mail", placeholderEmail: "ihre@email.com",
+    labelEmpresa: "Firmenname", placeholderEmpresa: "Name Ihres Unternehmens",
+    labelRegiao: "Land / Region", placeholderRegiao: "z. B.: Deutschland, Österreich, Schweiz…",
+    labelMensagem: "Nachricht", placeholderMensagem: "Wie können wir Ihnen helfen?",
+    submitBtn: "Senden",
+    btnSilver: "Silver-Partner werden", btnGold: "Gold-Partner werden", btnPlatinum: "Platinum-Partner werden",
+    privacyPre: "Ich habe die ", privacyTerms: "Nutzungsbedingungen", privacyMid: " und die ", privacyPolicy: "Datenschutzrichtlinie", privacyPost: " von Acquafy gelesen und stimme zu",
+  },
+  it: {
+    titleSilver: "Partnership Silver", titleGold: "Partnership Gold", titlePlatinum: "Partnership Platinum",
+    labelNome: "Nome completo", placeholderNome: "Il tuo nome",
+    labelEmail: "E-mail", placeholderEmail: "tua@email.com",
+    labelEmpresa: "Nome dell'azienda", placeholderEmpresa: "Nome della tua azienda",
+    labelRegiao: "Paese / Regione", placeholderRegiao: "Es.: Italia, Svizzera, USA…",
+    labelMensagem: "Messaggio", placeholderMensagem: "Come possiamo aiutarti?",
+    submitBtn: "Invia",
+    btnSilver: "Diventa Partner Silver", btnGold: "Diventa Partner Gold", btnPlatinum: "Diventa Partner Platinum",
+    privacyPre: "Ho letto e accetto i ", privacyTerms: "Termini di Utilizzo", privacyMid: " e la ", privacyPolicy: "Politica sulla Privacy", privacyPost: " di Acquafy",
+  },
+  zh: {
+    titleSilver: "Silver 合作伙伴", titleGold: "Gold 合作伙伴", titlePlatinum: "Platinum 合作伙伴",
+    labelNome: "全名", placeholderNome: "您的姓名",
+    labelEmail: "电子邮件", placeholderEmail: "您的@邮箱.com",
+    labelEmpresa: "公司名称", placeholderEmpresa: "您的公司名称",
+    labelRegiao: "国家 / 地区", placeholderRegiao: "例：中国、新加坡、美国…",
+    labelMensagem: "消息", placeholderMensagem: "我们如何为您提供帮助？",
+    submitBtn: "发送",
+    btnSilver: "成为 Silver 合作伙伴", btnGold: "成为 Gold 合作伙伴", btnPlatinum: "成为 Platinum 合作伙伴",
+    privacyPre: "我已阅读并同意 Acquafy 的 ", privacyTerms: "使用条款", privacyMid: " 和 ", privacyPolicy: "隐私政策", privacyPost: "",
+  },
+  ja: {
+    titleSilver: "Silver パートナーシップ", titleGold: "Gold パートナーシップ", titlePlatinum: "Platinum パートナーシップ",
+    labelNome: "氏名", placeholderNome: "お名前",
+    labelEmail: "メールアドレス", placeholderEmail: "your@email.com",
+    labelEmpresa: "会社名", placeholderEmpresa: "会社名を入力してください",
+    labelRegiao: "国 / 地域", placeholderRegiao: "例：日本、アメリカ、オーストラリア…",
+    labelMensagem: "メッセージ", placeholderMensagem: "どのようにお手伝いできますか？",
+    submitBtn: "送信",
+    btnSilver: "Silver パートナーになる", btnGold: "Gold パートナーになる", btnPlatinum: "Platinum パートナーになる",
+    privacyPre: "Acquafy の ", privacyTerms: "利用規約", privacyMid: " および ", privacyPolicy: "プライバシーポリシー", privacyPost: " を読み、同意します",
+  },
+  ko: {
+    titleSilver: "Silver 파트너십", titleGold: "Gold 파트너십", titlePlatinum: "Platinum 파트너십",
+    labelNome: "전체 이름", placeholderNome: "이름을 입력하세요",
+    labelEmail: "이메일", placeholderEmail: "your@email.com",
+    labelEmpresa: "회사명", placeholderEmpresa: "회사명을 입력하세요",
+    labelRegiao: "국가 / 지역", placeholderRegiao: "예: 한국, 미국, 일본…",
+    labelMensagem: "메시지", placeholderMensagem: "어떻게 도와드릴까요?",
+    submitBtn: "보내기",
+    btnSilver: "Silver 파트너 신청", btnGold: "Gold 파트너 신청", btnPlatinum: "Platinum 파트너 신청",
+    privacyPre: "Acquafy 의 ", privacyTerms: "이용약관", privacyMid: " 및 ", privacyPolicy: "개인정보 처리방침", privacyPost: "을 읽고 동의합니다",
+  },
+};
+
+/* ── Shared styles ───────────────────────────────────────────────── */
+const inputCls =
+  "bg-white border-[0.5px] border-[#cbd0d4] flex gap-[10px] items-start overflow-clip p-[20px] rounded-[12px] w-full " +
+  "font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#333] placeholder:text-[#c8cfd8] " +
+  "outline-none focus:border-[#0233c3] transition-colors";
+
+function FormField({ label, children }: { label: React.ReactNode; children: React.ReactNode }) {
+  return (
+    <div className="flex flex-col gap-[12px] items-start w-full">
+      <div className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#2a2a2b] w-full">
+        {label}
+      </div>
+      {children}
+    </div>
+  );
+}
+
+/* ── Partner Modal ───────────────────────────────────────────────── */
+function PartnerModal({ tier, ft, onClose }: {
+  tier: "silver" | "gold" | "platinum";
+  ft: FormLang;
+  onClose: () => void;
+}) {
+  const [nome, setNome]         = useState("");
+  const [email, setEmail]       = useState("");
+  const [empresa, setEmpresa]   = useState("");
+  const [regiao, setRegiao]     = useState("");
+  const [mensagem, setMensagem] = useState("");
+  const [aceito, setAceito]     = useState(false);
+
+  const isCompany  = tier !== "silver";
+  const isPlatinum = tier === "platinum";
+  const title = tier === "silver" ? ft.titleSilver : tier === "gold" ? ft.titleGold : ft.titlePlatinum;
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-[20px]"
+      onClick={onClose}
+    >
+      {/* Backdrop */}
+      <div className="absolute inset-0 bg-black/50" />
+
+      {/* Modal card */}
+      <div
+        className="relative bg-white rounded-[16px] w-full max-w-[600px] max-h-[90vh] overflow-y-auto p-[30px] lg:p-[40px] flex flex-col gap-[24px] shadow-xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Header */}
+        <div className="flex items-center justify-between shrink-0">
+          <p
+            className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] bg-clip-text text-transparent"
+            style={{ backgroundImage: "linear-gradient(90deg, #0233c3, #0569ff)" }}
+          >
+            {title}
+          </p>
+          <button
+            onClick={onClose}
+            className="flex items-center justify-center size-[36px] rounded-full hover:bg-[#f0f0f0] transition-colors shrink-0 cursor-pointer"
+            aria-label="Fechar"
+          >
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M1 1l12 12M13 1L1 13" stroke="#3e4650" strokeWidth="1.8" strokeLinecap="round" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Form */}
+        <div className="flex flex-col gap-[20px]">
+
+          {/* Nome + Email */}
+          <div className="flex flex-wrap gap-[16px] items-start">
+            <div className="flex-1 min-w-[200px]">
+              <FormField label={<>{ft.labelNome}<span className="text-[#d74b4d]">*</span></>}>
+                <input
+                  type="text"
+                  placeholder={ft.placeholderNome}
+                  value={nome}
+                  onChange={(e) => setNome(e.target.value)}
+                  className={inputCls}
+                />
+              </FormField>
+            </div>
+            <div className="flex-1 min-w-[200px]">
+              <FormField label={<>{ft.labelEmail}<span className="text-[#d74b4d]">*</span></>}>
+                <input
+                  type="email"
+                  placeholder={ft.placeholderEmail}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className={inputCls}
+                />
+              </FormField>
+            </div>
+          </div>
+
+          {/* Empresa (Gold + Platinum) */}
+          {isCompany && (
+            <FormField label={<>{ft.labelEmpresa}<span className="text-[#d74b4d]">*</span></>}>
+              <input
+                type="text"
+                placeholder={ft.placeholderEmpresa}
+                value={empresa}
+                onChange={(e) => setEmpresa(e.target.value)}
+                className={inputCls}
+              />
+            </FormField>
+          )}
+
+          {/* País / Região (Platinum only) */}
+          {isPlatinum && (
+            <FormField label={<>{ft.labelRegiao}<span className="text-[#d74b4d]">*</span></>}>
+              <input
+                type="text"
+                placeholder={ft.placeholderRegiao}
+                value={regiao}
+                onChange={(e) => setRegiao(e.target.value)}
+                className={inputCls}
+              />
+            </FormField>
+          )}
+
+          {/* Mensagem */}
+          <FormField label={<>{ft.labelMensagem}<span className="text-[#d74b4d]">*</span></>}>
+            <textarea
+              placeholder={ft.placeholderMensagem}
+              value={mensagem}
+              onChange={(e) => setMensagem(e.target.value)}
+              rows={5}
+              className={`${inputCls} resize-none`}
+            />
+          </FormField>
+
+          {/* Submit */}
+          <button
+            type="submit"
+            className="bg-[#0233c3] flex gap-[10px] items-center justify-center min-h-[50px] overflow-hidden px-[20px] py-[10px] rounded-[8px] w-full hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors cursor-pointer shrink-0"
+          >
+            <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-white text-center whitespace-nowrap">
+              {ft.submitBtn}
+            </span>
+            <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
+          </button>
+
+          {/* Checkbox privacidade */}
+          <label className="flex gap-[9px] items-center w-full cursor-pointer shrink-0">
+            <div className="relative shrink-0">
+              <input
+                type="checkbox"
+                className="sr-only"
+                checked={aceito}
+                onChange={(e) => setAceito(e.target.checked)}
+              />
+              <div className="bg-white border-[0.5px] border-[#cbd0d4] flex flex-col items-center justify-center size-[24px] overflow-hidden p-[6px] rounded-[5px]">
+                <div className={`bg-[#0569ff] rounded-full w-full aspect-square transition-opacity ${aceito ? "opacity-100" : "opacity-0"}`} />
+              </div>
+            </div>
+            <span className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[18px] text-[#2a2a2b]">
+              {ft.privacyPre}
+              <a href="/termos-de-uso" className="text-[#0569ff] hover:underline" onClick={(e) => e.stopPropagation()}>{ft.privacyTerms}</a>
+              {ft.privacyMid}
+              <a href="/politicas-privacidade" className="text-[#9f3df5] hover:underline" onClick={(e) => e.stopPropagation()}>{ft.privacyPolicy}</a>
+              {ft.privacyPost}
+            </span>
+          </label>
+
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Component ───────────────────────────────────────────────────── */
 export default function ModelosParceria() {
   const { lang } = useLang();
-  const t = T[lang];
+  const t  = T[lang];
+  const ft = FORM_T[lang];
+  const [openModal, setOpenModal] = useState<"silver" | "gold" | "platinum" | null>(null);
 
-  /* ── Tier data (inside component to use translated strings) ── */
+  /* ── Tier data (inside component to use translated strings) ────── */
   const tiers: TierDef[] = [
     /* ── SILVER ── */
     {
+      key:       "silver",
       medal:     imgSilver,
       name:      "SILVER",
       nameStyle: { color: "#3e4650" },
@@ -394,6 +691,7 @@ export default function ModelosParceria() {
       iconColor: "#0569ff",
       labelStyle: { color: "#2a2a2b" },
       footer: t.silverFooter,
+      btnCls: "bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] text-white",
       items: [
         { icon: svgUser,    label: t.silver.profile,  value: t.silver.profileVal },
         { icon: svgScale,   label: t.silver.earn,     value: t.silver.earnVal },
@@ -404,6 +702,7 @@ export default function ModelosParceria() {
 
     /* ── GOLD ── */
     {
+      key:       "gold",
       medal:     imgGold,
       name:      "GOLD",
       nameStyle: { color: "#dfa727" },
@@ -413,6 +712,8 @@ export default function ModelosParceria() {
       iconColor: "#dfa727",
       labelStyle: { color: "#dfa727" },
       footer: t.goldFooter,
+      btnCls: "hover:opacity-90 active:opacity-80 text-white",
+      btnStyle: { backgroundColor: "#dfa727" },
       items: [
         { icon: svgUser,    label: t.gold.profile,     value: t.gold.profileVal },
         { icon: svgScale,   label: t.gold.earn,        value: t.gold.earnVal },
@@ -424,6 +725,7 @@ export default function ModelosParceria() {
 
     /* ── PLATINUM ── */
     {
+      key:        "platinum",
       medal:      imgPlatinum,
       name:       "PLATINUM",
       nameStyle:  { color: "white" },
@@ -435,6 +737,8 @@ export default function ModelosParceria() {
       labelStyle: platLabelStyle,
       footer: t.platFooter,
       footerStyle: { color: "white" },
+      btnCls: "hover:opacity-90 active:opacity-80 text-white",
+      btnStyle: { backgroundImage: "linear-gradient(90deg, #0233c3, #9f3df5)" },
       items: [
         { icon: svgUser,     label: t.plat.profile,   value: t.plat.profileVal },
         { icon: svgScale,    label: t.plat.howOp,     value: t.plat.howOpVal },
@@ -446,81 +750,90 @@ export default function ModelosParceria() {
     },
   ];
 
+  const btnLabel = (key: "silver" | "gold" | "platinum") =>
+    key === "silver" ? ft.btnSilver : key === "gold" ? ft.btnGold : ft.btnPlatinum;
+
   return (
-    <section className="bg-white flex flex-col gap-[40px] items-center justify-center px-[20px] py-[40px] w-full">
-      <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
+    <>
+      <section className="bg-white flex flex-col gap-[40px] items-center justify-center px-[20px] py-[40px] w-full">
+        <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
 
-        {/* Header */}
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] text-center min-w-[240px] w-full">
-          {t.heading}
-          <span className="text-[#0569ff]">{t.headingHL}</span>
-        </h2>
+          {/* Header */}
+          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] text-center min-w-[240px] w-full">
+            {t.heading}
+            <span className="text-[#0569ff]">{t.headingHL}</span>
+          </h2>
 
-        {/* Cards */}
-        <div className="flex flex-wrap gap-[20px] items-stretch justify-center w-full">
-          {tiers.map((t) => (
-            <div
-              key={t.name}
-              className={`flex flex-[1_0_0] flex-col gap-[25px] items-center min-h-[320px] min-w-[280px] px-[20px] py-[25px] rounded-[16px] ${t.outerCls}`}
-              style={t.name === "PLATINUM" ? { backgroundImage: "linear-gradient(92.97deg, #0233c3 6.19%, #9f3df5 93.35%)" } : undefined}
-            >
-              {/* Medal + tier name */}
-              <div className="flex gap-[20px] items-center justify-center px-[20px] shrink-0 w-full">
-                <img
-                  src={t.medal}
-                  alt={t.name}
-                  className="object-contain shrink-0 size-[55px]"
-                />
-                <p
-                  className="font-['Avenir_LT_Pro:95_Black'] flex-[1_0_0] min-w-px text-[32px] leading-[39px]"
-                  style={t.nameStyle}
-                >
-                  {t.name}
-                </p>
-              </div>
-
-              {/* Inner card — fixed 500px, items spread via justify-between */}
-              <div className={`flex flex-1 flex-col gap-[20px] items-start justify-between p-[20px] rounded-[12px] w-full ${t.innerCls}`}>
-                {t.items.map((item) => (
-                  <div key={item.label} className="flex flex-wrap gap-[20px] items-center justify-center min-w-[160px] shrink-0 w-full">
-                    {/* Icon badge — StrokeIcon renders as <div>, NOT <img> */}
-                    <div
-                      className={`flex items-center justify-center rounded-[9999px] shrink-0 size-[60px] ${t.badgeCls}`}
-                      style={t.badgeStyle}
-                    >
-                      <StrokeIcon src={item.icon} color={t.iconColor} aspectW={item.aspectW} aspectH={item.aspectH} />
-                    </div>
-                    {/* Text block */}
-                    <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-px">
-                      <p
-                        className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] shrink-0 w-full"
-                        style={t.labelStyle}
-                      >
-                        {item.label}
-                      </p>
-                      <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#3e4650] shrink-0 w-full">
-                        {item.value}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Footer */}
-              <div className="flex items-center justify-center shrink-0 w-full">
-                <div className="flex flex-[1_0_0] flex-col items-start min-w-px">
-                  <p
-                    className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] shrink-0 text-center w-full"
-                    style={t.footerStyle ?? { color: "#3e4650" }}
-                  >
-                    {t.footer}
+          {/* Cards */}
+          <div className="flex flex-wrap gap-[20px] items-stretch justify-center w-full">
+            {tiers.map((tier) => (
+              <div
+                key={tier.name}
+                className={`flex flex-[1_0_0] flex-col gap-[25px] items-center min-h-[320px] min-w-[280px] px-[20px] py-[25px] rounded-[16px] ${tier.outerCls}`}
+                style={tier.name === "PLATINUM" ? { backgroundImage: "linear-gradient(92.97deg, #0233c3 6.19%, #9f3df5 93.35%)" } : undefined}
+              >
+                {/* Medal + tier name */}
+                <div className="flex gap-[20px] items-center justify-center px-[20px] shrink-0 w-full">
+                  <img src={tier.medal} alt={tier.name} className="object-contain shrink-0 size-[55px]" />
+                  <p className="font-['Avenir_LT_Pro:95_Black'] flex-[1_0_0] min-w-px text-[32px] leading-[39px]" style={tier.nameStyle}>
+                    {tier.name}
                   </p>
                 </div>
+
+                {/* Inner card */}
+                <div className={`flex flex-1 flex-col gap-[20px] items-start justify-between p-[20px] rounded-[12px] w-full ${tier.innerCls}`}>
+                  {tier.items.map((item) => (
+                    <div key={item.label} className="flex flex-wrap gap-[20px] items-center justify-center min-w-[160px] shrink-0 w-full">
+                      <div className={`flex items-center justify-center rounded-[9999px] shrink-0 size-[60px] ${tier.badgeCls}`} style={tier.badgeStyle}>
+                        <StrokeIcon src={item.icon} color={tier.iconColor} aspectW={item.aspectW} aspectH={item.aspectH} />
+                      </div>
+                      <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-px">
+                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] shrink-0 w-full" style={tier.labelStyle}>
+                          {item.label}
+                        </p>
+                        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#3e4650] shrink-0 w-full">
+                          {item.value}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Footer */}
+                <div className="flex items-center justify-center shrink-0 w-full">
+                  <p
+                    className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] shrink-0 text-center w-full"
+                    style={tier.footerStyle ?? { color: "#3e4650" }}
+                  >
+                    {tier.footer}
+                  </p>
+                </div>
+
+                {/* Partner button */}
+                <button
+                  onClick={() => setOpenModal(tier.key)}
+                  className={`flex items-center justify-center gap-[10px] min-h-[50px] px-[20px] py-[12px] rounded-[8px] w-full shrink-0 transition-opacity cursor-pointer ${tier.btnCls}`}
+                  style={tier.btnStyle}
+                >
+                  <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-center whitespace-nowrap">
+                    {btnLabel(tier.key)}
+                  </span>
+                </button>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Modal */}
+      {openModal && (
+        <PartnerModal
+          tier={openModal}
+          ft={ft}
+          onClose={() => setOpenModal(null)}
+        />
+      )}
+    </>
   );
 }
