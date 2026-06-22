@@ -61,9 +61,10 @@ type TierDef = {
   labelStyle:  React.CSSProperties;
   footer:      string;
   footerStyle?: React.CSSProperties;
-  btnCls:      string;
-  btnStyle?:   React.CSSProperties;
-  items:       TierItem[];
+  btnCls:       string;
+  btnStyle?:    React.CSSProperties;
+  btnTextStyle?: React.CSSProperties;
+  items:        TierItem[];
 };
 
 /* ── Platinum shared tokens ──────────────────────────────────────── */
@@ -737,8 +738,9 @@ export default function ModelosParceria() {
       labelStyle: platLabelStyle,
       footer: t.platFooter,
       footerStyle: { color: "white" },
-      btnCls: "hover:opacity-90 active:opacity-80 text-white",
-      btnStyle: { backgroundImage: "linear-gradient(90deg, #0233c3, #9f3df5)" },
+      btnCls: "hover:opacity-90 active:opacity-80",
+      btnStyle: { backgroundColor: "white" },
+      btnTextStyle: { backgroundImage: "linear-gradient(90deg, #0233c3, #9f3df5)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" },
       items: [
         { icon: svgUser,     label: t.plat.profile,   value: t.plat.profileVal },
         { icon: svgScale,    label: t.plat.howOp,     value: t.plat.howOpVal },
@@ -755,7 +757,7 @@ export default function ModelosParceria() {
 
   return (
     <>
-      <section className="bg-white flex flex-col gap-[40px] items-center justify-center px-[20px] py-[40px] w-full">
+      <section id="modelos-parceria" className="scroll-mt-[80px] bg-white flex flex-col gap-[40px] items-center justify-center px-[20px] py-[40px] w-full">
         <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
 
           {/* Header */}
@@ -815,7 +817,7 @@ export default function ModelosParceria() {
                   className={`flex items-center justify-center gap-[10px] min-h-[50px] px-[20px] py-[12px] rounded-[8px] w-full shrink-0 transition-opacity cursor-pointer ${tier.btnCls}`}
                   style={tier.btnStyle}
                 >
-                  <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-center whitespace-nowrap">
+                  <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-center whitespace-nowrap" style={tier.btnTextStyle}>
                     {btnLabel(tier.key)}
                   </span>
                 </button>
