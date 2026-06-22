@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Header from "@/components/Header";
 import BannerCentralSuporte from "@/components/BannerCentralSuporte";
 import FaleComEquipeSuporte from "@/components/FaleComEquipeSuporte";
-import BaseConhecimentoSuporte from "@/components/BaseConhecimentoSuporte";
 import DiferenciaisSuporte from "@/components/DiferenciaisSuporte";
 import Footer from "@/components/Footer";
 
@@ -18,7 +17,6 @@ export default function CentralDeSuportePage() {
       <main>
         <BannerCentralSuporte />
         <FaleComEquipeSuporte />
-        <BaseConhecimentoSuporte />
         <DiferenciaisSuporte />
       </main>
       <Footer />
