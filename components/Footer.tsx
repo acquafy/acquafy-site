@@ -11,6 +11,7 @@ const imgX         = "/figma-assets/icon-x-twitter.svg";
 const imgLinkedin  = "/figma-assets/icon-linkedin.svg";
 const imgYoutube   = "/figma-assets/icon-youtube.svg";
 const imgFacebook  = "/figma-assets/icon-facebook.svg";
+const imgArrowBullet = "/figma-assets/icon-arrow-bullet.svg";
 const imgGlobe     = "/figma-assets/icon-globe-planetweb-30px.svg";
 const imgChat      = "/figma-assets/icon-chat-large.svg";
 const imgLocation  = "/figma-assets/icon-location-b.svg";
@@ -53,9 +54,10 @@ const T: Record<Lang, {
     desc: "Acquafy Platform + App + AI + IoT para Gestão Global Inteligente de Água.",
     nav: [
       { title: "Plataforma", links: [
-        { label: "Plataforma Acquafy",            href: "/plataforma" },
-        { label: "App + AI + IoT",                href: "/app-ai-iot" },
-        { label: "Tecnologia & Sustentabilidade", href: "/tecnologia" },
+        { label: "Plataforma Acquafy",            href: "/plataforma"          },
+        { label: "App + AI + IoT",                href: "/app-ai-iot"          },
+        { label: "Central de Suporte",            href: "/central-de-suporte"  },
+        { label: "Tecnologia & Sustentabilidade", href: "/tecnologia"          },
       ]},
       { title: "Produtos", links: [
         { label: "Linha Neo",            href: "/linha-neo" },
@@ -86,9 +88,10 @@ const T: Record<Lang, {
     desc: "Acquafy Platform + Aplicação + AI + IoT para Gestão Global Inteligente da Água.",
     nav: [
       { title: "Plataforma", links: [
-        { label: "Plataforma Acquafy",            href: "/plataforma" },
-        { label: "App + AI + IoT",                href: "/app-ai-iot" },
-        { label: "Tecnologia & Sustentabilidade", href: "/tecnologia" },
+        { label: "Plataforma Acquafy",            href: "/plataforma"          },
+        { label: "App + AI + IoT",                href: "/app-ai-iot"          },
+        { label: "Central de Suporte",            href: "/central-de-suporte"  },
+        { label: "Tecnologia & Sustentabilidade", href: "/tecnologia"          },
       ]},
       { title: "Produtos", links: [
         { label: "Linha Neo",            href: "/linha-neo" },
@@ -119,9 +122,10 @@ const T: Record<Lang, {
     desc: "Acquafy Platform + App + AI + IoT for Global Intelligent Water Management.",
     nav: [
       { title: "Platform", links: [
-        { label: "Acquafy Platform",            href: "/plataforma" },
-        { label: "App + AI + IoT",              href: "/app-ai-iot" },
-        { label: "Technology & Sustainability", href: "/tecnologia" },
+        { label: "Acquafy Platform",          href: "/plataforma"         },
+        { label: "App + AI + IoT",            href: "/app-ai-iot"         },
+        { label: "Support Center",            href: "/central-de-suporte" },
+        { label: "Technology & Sustainability", href: "/tecnologia"       },
       ]},
       { title: "Products", links: [
         { label: "Neo Line",              href: "/linha-neo" },
@@ -152,9 +156,10 @@ const T: Record<Lang, {
     desc: "Acquafy Platform + App + IA + IoT para la Gestión Global Inteligente del Agua.",
     nav: [
       { title: "Plataforma", links: [
-        { label: "Plataforma Acquafy",          href: "/plataforma" },
-        { label: "App + IA + IoT",              href: "/app-ai-iot" },
-        { label: "Tecnología & Sostenibilidad", href: "/tecnologia" },
+        { label: "Plataforma Acquafy",         href: "/plataforma"         },
+        { label: "App + IA + IoT",             href: "/app-ai-iot"         },
+        { label: "Central de Soporte",         href: "/central-de-suporte" },
+        { label: "Tecnología & Sostenibilidad", href: "/tecnologia"        },
       ]},
       { title: "Productos", links: [
         { label: "Línea Neo",            href: "/linha-neo" },
@@ -185,9 +190,10 @@ const T: Record<Lang, {
     desc: "Acquafy Platform + App + AI + IoT pour la Gestion Mondiale Intelligente de l'Eau.",
     nav: [
       { title: "Plateforme", links: [
-        { label: "Plateforme Acquafy",       href: "/plataforma" },
-        { label: "App + AI + IoT",           href: "/app-ai-iot" },
-        { label: "Technologie & Durabilité", href: "/tecnologia" },
+        { label: "Plateforme Acquafy",          href: "/plataforma"         },
+        { label: "App + AI + IoT",              href: "/app-ai-iot"         },
+        { label: "Centre de Support",           href: "/central-de-suporte" },
+        { label: "Technologie & Durabilité",    href: "/tecnologia"         },
       ]},
       { title: "Produits", links: [
         { label: "Gamme Neo",             href: "/linha-neo" },
@@ -218,9 +224,10 @@ const T: Record<Lang, {
     desc: "Acquafy Platform + App + AI + IoT für globales intelligentes Wassermanagement.",
     nav: [
       { title: "Plattform", links: [
-        { label: "Acquafy Plattform",            href: "/plataforma" },
-        { label: "App + AI + IoT",               href: "/app-ai-iot" },
-        { label: "Technologie & Nachhaltigkeit", href: "/tecnologia" },
+        { label: "Acquafy Plattform",            href: "/plataforma"         },
+        { label: "App + AI + IoT",               href: "/app-ai-iot"         },
+        { label: "Support-Center",               href: "/central-de-suporte" },
+        { label: "Technologie & Nachhaltigkeit", href: "/tecnologia"         },
       ]},
       { title: "Produkte", links: [
         { label: "Neo-Linie",            href: "/linha-neo" },
@@ -251,9 +258,10 @@ const T: Record<Lang, {
     desc: "Acquafy Platform + App + AI + IoT per la Gestione Globale Intelligente dell'Acqua.",
     nav: [
       { title: "Piattaforma", links: [
-        { label: "Piattaforma Acquafy",        href: "/plataforma" },
-        { label: "App + AI + IoT",             href: "/app-ai-iot" },
-        { label: "Tecnologia & Sostenibilità", href: "/tecnologia" },
+        { label: "Piattaforma Acquafy",         href: "/plataforma"         },
+        { label: "App + AI + IoT",              href: "/app-ai-iot"         },
+        { label: "Centro Assistenza",           href: "/central-de-suporte" },
+        { label: "Tecnologia & Sostenibilità",  href: "/tecnologia"         },
       ]},
       { title: "Prodotti", links: [
         { label: "Linea Neo",          href: "/linha-neo" },
@@ -284,9 +292,10 @@ const T: Record<Lang, {
     desc: "Acquafy Platform + App + AI + IoT，实现全球智能水务管理。",
     nav: [
       { title: "平台", links: [
-        { label: "Acquafy 平台",    href: "/plataforma" },
-        { label: "App + AI + IoT", href: "/app-ai-iot" },
-        { label: "技术与可持续发展", href: "/tecnologia" },
+        { label: "Acquafy 平台",    href: "/plataforma"         },
+        { label: "App + AI + IoT", href: "/app-ai-iot"         },
+        { label: "支持中心",        href: "/central-de-suporte" },
+        { label: "技术与可持续发展", href: "/tecnologia"         },
       ]},
       { title: "产品", links: [
         { label: "Neo 系列",   href: "/linha-neo" },
@@ -317,9 +326,10 @@ const T: Record<Lang, {
     desc: "Acquafy Platform + App + AI + IoT によるグローバル・スマート水管理。",
     nav: [
       { title: "プラットフォーム", links: [
-        { label: "Acquafy プラットフォーム",  href: "/plataforma" },
-        { label: "App + AI + IoT",           href: "/app-ai-iot" },
-        { label: "テクノロジー & 持続可能性", href: "/tecnologia" },
+        { label: "Acquafy プラットフォーム",  href: "/plataforma"         },
+        { label: "App + AI + IoT",           href: "/app-ai-iot"         },
+        { label: "サポートセンター",           href: "/central-de-suporte" },
+        { label: "テクノロジー & 持続可能性", href: "/tecnologia"         },
       ]},
       { title: "製品", links: [
         { label: "Neo ライン",              href: "/linha-neo" },
@@ -350,9 +360,10 @@ const T: Record<Lang, {
     desc: "Acquafy Platform + App + AI + IoT로 글로벌 지능형 수자원 관리를 실현합니다.",
     nav: [
       { title: "플랫폼", links: [
-        { label: "Acquafy 플랫폼",    href: "/plataforma" },
-        { label: "App + AI + IoT",   href: "/app-ai-iot" },
-        { label: "기술 & 지속 가능성", href: "/tecnologia" },
+        { label: "Acquafy 플랫폼",   href: "/plataforma"         },
+        { label: "App + AI + IoT",  href: "/app-ai-iot"         },
+        { label: "지원 센터",        href: "/central-de-suporte" },
+        { label: "기술 & 지속 가능성", href: "/tecnologia"        },
       ]},
       { title: "제품", links: [
         { label: "Neo 라인",         href: "/linha-neo" },
@@ -383,6 +394,21 @@ const T: Record<Lang, {
 
 const gradientLine = { backgroundImage: "linear-gradient(146.8deg, #3447d2 4.03%, #0035c1 124%)" };
 
+function ArrowBullet() {
+  return (
+    <div className="flex h-[12px] items-center justify-center shrink-0 w-[6px]">
+      <div className="-rotate-90 flex-none">
+        <div className="flex flex-col h-[6px] items-start w-[12px]">
+          <div className="relative shrink-0 w-full" style={{ aspectRatio: "226.27/113.14" }}>
+            <div className="absolute inset-[-12.5%_-6.25%]">
+              <img alt="" className="block max-w-none size-full" src={imgArrowBullet} />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function SocialCircle({ src, alt, aspectW, aspectH }: { src: string; alt: string; aspectW: number; aspectH: number }) {
   const isSquare = Math.abs(aspectW - aspectH) < 1;
@@ -422,6 +448,7 @@ function MobileNavSection({
         <div className="flex flex-col gap-[30px] items-start pb-[24px]">
           {col.links.map((link) => (
             <div key={link.href} className="flex gap-[10px] items-center w-full">
+              <ArrowBullet />
               <a href={link.href} className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#2a2a2b] flex-[1_0_0] min-w-px hover:text-[#0233c3] transition-colors">
                 {link.label}
               </a>
@@ -473,6 +500,7 @@ export default function Footer() {
               <div className="flex flex-col gap-[30px] items-start w-full">
                 {col.links.map((link) => (
                   <div key={link.href} className="flex gap-[10px] items-center w-full">
+                    <ArrowBullet />
                     <a href={link.href} className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#2a2a2b] flex-[1_0_0] min-w-px hover:text-[#0233c3] transition-colors">
                       {link.label}
                     </a>
