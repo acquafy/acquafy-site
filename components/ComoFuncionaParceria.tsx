@@ -157,14 +157,6 @@ export default function ComoFuncionaParceria() {
                 {s.desc}
               </p>
 
-              {/* seta conectora (exceto último card) */}
-              {i < steps.length - 1 && (
-                <div className="-translate-y-1/2 absolute h-0 right-[-12px] top-[calc(50%+0.5px)] w-[12px] pointer-events-none">
-                  <div className="absolute" style={{ inset: "-7.36px -8.33% -7.36px 0" }}>
-                    <img src={imgArrow} alt="" className="block max-w-none size-full" />
-                  </div>
-                </div>
-              )}
             </div>
           ))}
         </div>
