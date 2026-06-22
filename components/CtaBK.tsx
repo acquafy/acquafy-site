@@ -246,19 +246,6 @@ export default function CtaBK() {
 
         {/* CTA Buttons row */}
         <div className="flex flex-wrap gap-[16px] items-center justify-center w-full">
-          <a
-            href="/central-de-suporte"
-            className="bg-white hover:bg-[#f0f4ff] active:bg-[#e5ebff] transition-colors
-              flex gap-[10px] items-center justify-center
-              min-h-[54px] min-w-[200px] overflow-hidden px-[28px] py-[12px] rounded-[8px] cursor-pointer shrink-0
-              shadow-[0_2px_12px_0_rgba(255,255,255,0.15)] no-underline"
-          >
-            <span className="font-['Articulat_CF:Bold'] text-[16px] text-[#0233c3] flex-1 text-center leading-normal">
-              {t.btnOpenTicket}
-            </span>
-            <FigmaIcon src={imgArrowBlue} size={9} aspectW={11.2} aspectH={8.84} />
-          </a>
-
           <a href="/contato" className="group border-2 border-white hover:bg-white active:bg-[#f0f4ff] transition-colors
             flex gap-[10px] items-center justify-center
             min-h-[54px] min-w-[200px] overflow-hidden px-[28px] py-[12px] rounded-[8px] cursor-pointer shrink-0">
