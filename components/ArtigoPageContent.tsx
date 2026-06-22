@@ -187,10 +187,6 @@ export default function ArtigoPageContent({ artigo, cat, relacionados, popularAr
 
             {/* Breadcrumb */}
             <nav className="flex flex-wrap gap-[6px] items-center">
-              <Link href="/base-de-conhecimento" className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-white/40 hover:text-white/70 transition-colors no-underline">
-                {ui.baseConhecimento}
-              </Link>
-              <span className="text-white/25 text-[12px]">/</span>
               <Link href="/artigos" className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-white/40 hover:text-white/70 transition-colors no-underline">
                 {ui.artigos}
               </Link>

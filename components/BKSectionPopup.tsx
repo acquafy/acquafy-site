@@ -1552,21 +1552,6 @@ export default function BKSectionPopup({ sectionId, onClose }: Props) {
           {sectionId === "politicas-garantias" && <SectionPoliticas t={t} />}
         </div>
 
-        {/* Footer */}
-        <div className="shrink-0 px-[24px] py-[16px] border-t border-[#e8edf5] flex items-center justify-end">
-          <Link
-            href={`/base-de-conhecimento${anchor}`}
-            onClick={onClose}
-            className="bg-[#0233c3] hover:bg-[#002ba8] transition-colors flex gap-[8px] items-center justify-center px-[20px] py-[10px] rounded-[8px] no-underline"
-          >
-            <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white whitespace-nowrap">
-              {t.ver_base}
-            </span>
-            <svg width="9" height="9" viewBox="0 0 11.2 8.84" fill="none">
-              <path d="M0 4.42h9.5M6.2 1l3.5 3.42L6.2 7.84" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </Link>
-        </div>
       </div>
     </div>
   );

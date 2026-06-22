@@ -473,13 +473,6 @@ export default function ArtigosContent() {
 
           {/* Eyebrow badge */}
           <div className="flex items-center gap-[8px] w-full">
-            <Link
-              href="/base-de-conhecimento"
-              className="font-['Avenir_LT_Pro:85_Heavy'] text-[11px] leading-[14px] tracking-[0.08em] uppercase text-white/50 hover:text-white/80 transition-colors no-underline"
-            >
-              {t.breadcrumbBase}
-            </Link>
-            <span className="text-white/30 text-[11px]">/</span>
             <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[11px] leading-[14px] tracking-[0.08em] uppercase text-[#0569ff]">
               {t.breadcrumbArtigos}
             </span>
