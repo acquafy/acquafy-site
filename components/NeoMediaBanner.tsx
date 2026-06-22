@@ -1,8 +1,10 @@
 ﻿"use client";
+import { useState } from "react";
 import FigmaIcon from "./FigmaIcon";
 import Link from "next/link";
 import { BtnAzulBaseArrow, BtnAzulOutArrow } from "./ui/Buttons";
 import { useLang, type Lang } from "@/context/LanguageContext";
+import { PartnerModal, FORM_T } from "./ModelosParceria";
 
 const imgBg     = "/figma-assets/bg-h.webp";
 const imgFrame  = "/figma-assets/frame-image.webp";
@@ -285,6 +287,7 @@ function CardItem({ c, fullWidth }: { c: CardItemData; fullWidth?: boolean }) {
 export default function NeoMediaBanner() {
   const { lang } = useLang();
   const t = T[lang];
+  const [modalOpen, setModalOpen] = useState(false);
 
   const stats = [
     { icon: imgPeople, aspectW: 40.69, aspectH: 40,  ...t.stats[0] },
@@ -328,7 +331,7 @@ export default function NeoMediaBanner() {
           {t.pMobile}
         </p>
         <div className="flex flex-wrap gap-[16px] items-center justify-center w-full">
-          <BtnAzulBaseArrow className="flex-[1_0_0] min-w-[190px] min-h-[50px] px-[20px]">
+          <BtnAzulBaseArrow className="flex-[1_0_0] min-w-[190px] min-h-[50px] px-[20px]" onClick={() => setModalOpen(true)}>
             {t.btnPrimary}
           </BtnAzulBaseArrow>
           <Link href="/contato" className="flex-[1_0_0] min-w-[190px]">
@@ -385,7 +388,7 @@ export default function NeoMediaBanner() {
             </p>
             {/* Botões — node 3258:5041 */}
             <div className="flex flex-wrap gap-[20px] items-center justify-center xl:justify-start w-full">
-              <BtnAzulBaseArrow className="min-h-[50px] px-[20px]">
+              <BtnAzulBaseArrow className="min-h-[50px] px-[20px]" onClick={() => setModalOpen(true)}>
                 {t.btnPrimary}
               </BtnAzulBaseArrow>
               <BtnAzulOutArrow className="min-h-[50px] px-[20px]">
@@ -415,6 +418,9 @@ export default function NeoMediaBanner() {
           </div>
         </div>
       </div>
+      {modalOpen && (
+        <PartnerModal tier="gold" ft={FORM_T[lang]} onClose={() => setModalOpen(false)} />
+      )}
     </section>
   );
 }
