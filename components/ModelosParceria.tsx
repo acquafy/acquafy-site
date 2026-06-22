@@ -375,7 +375,7 @@ const T: Record<Lang, {
 };
 
 /* ── Form translations ───────────────────────────────────────────── */
-type FormLang = {
+export type FormLang = {
   titleSilver: string; titleGold: string; titlePlatinum: string;
   labelNome: string; placeholderNome: string;
   labelEmail: string; placeholderEmail: string;
@@ -387,7 +387,7 @@ type FormLang = {
   privacyPre: string; privacyTerms: string; privacyMid: string; privacyPolicy: string; privacyPost: string;
 };
 
-const FORM_T: Record<Lang, FormLang> = {
+export const FORM_T: Record<Lang, FormLang> = {
   pt: {
     titleSilver: "Parceria Silver", titleGold: "Parceria Gold", titlePlatinum: "Parceria Platinum",
     labelNome: "Nome completo", placeholderNome: "Seu nome",
@@ -518,7 +518,7 @@ function FormField({ label, children }: { label: React.ReactNode; children: Reac
 }
 
 /* ── Partner Modal ───────────────────────────────────────────────── */
-function PartnerModal({ tier, ft, onClose }: {
+export function PartnerModal({ tier, ft, onClose }: {
   tier: "silver" | "gold" | "platinum";
   ft: FormLang;
   onClose: () => void;
