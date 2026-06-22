@@ -266,7 +266,7 @@ export default function BannerFiltros() {
       </div>
 
       {/* ─── Stats bar — pinada ao rodapé (último elemento do flex-col da section) */}
-      <div className="relative bg-white border border-[#cbd0d4] flex flex-wrap gap-y-[30px] items-center justify-center max-w-[1400px] min-h-[140px] overflow-hidden py-[25px] rounded-[16px] w-full">
+      <div className="relative bg-white flex flex-wrap gap-y-[30px] items-center justify-center max-w-[1400px] min-h-[140px] overflow-hidden py-[25px] rounded-[16px] w-full">
         {stats.map((s, i) => (
           <div
             key={i}

@@ -1,8 +1,6 @@
 "use client";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
-const imgArrow = "/figma-assets/icon-arrow-c.svg";
-
 type FilterCard = {
   num: string;
   title: string;
@@ -111,11 +109,11 @@ const T: Record<Lang, { h2: string; descs: string[] }> = {
   },
 };
 
-function FilterCardItem({ card, isLast }: { card: FilterCard; isLast: boolean }) {
+function FilterCardItem({ card }: { card: FilterCard }) {
   const isGrad = card.highlight && card.gradient;
   return (
     <div
-      className={`flex flex-[1_0_0] flex-col gap-[20px] items-start min-h-[210px] min-w-[200px] px-[20px] py-[25px] relative rounded-[16px] bg-[#f6f9fe]${card.highlight ? " border-2 border-[#0233c3]" : ""}`}
+      className={`flex flex-[1_0_0] flex-col gap-[20px] items-start min-h-[210px] min-w-[200px] px-[20px] py-[25px] rounded-[16px] bg-[#f6f9fe]${card.highlight ? " border-2 border-[#0233c3]" : ""}`}
     >
       <div className="flex flex-col gap-[10px] items-center w-full shrink-0">
         <div
@@ -132,13 +130,6 @@ function FilterCardItem({ card, isLast }: { card: FilterCard; isLast: boolean })
         </p>
       </div>
       <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#2a2a2b] flex-1 w-full">{card.desc}</p>
-      {!isLast && (
-        <div className="absolute -right-[10px] top-1/2 -translate-y-1/2 w-[10px] h-0 pointer-events-none">
-          <div className="absolute" style={{ inset: "-7.36px -10% -7.36px 0" }}>
-            <img alt="" className="block max-w-none size-full" src={imgArrow} />
-          </div>
-        </div>
-      )}
     </div>
   );
 }
@@ -159,7 +150,7 @@ export default function FiltrosPremium() {
         </h2>
         <div className="flex flex-wrap gap-[20px] items-stretch justify-center w-full">
           {cards.map((c, i) => (
-            <FilterCardItem key={i} card={c} isLast={i === cards.length - 1} />
+            <FilterCardItem key={i} card={c} />
           ))}
         </div>
       </div>

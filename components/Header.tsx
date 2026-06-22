@@ -25,29 +25,29 @@ const NAV_STRUCTURE = [
     href:  "/plataforma",
     extra: ["/app-ai-iot", "/central-de-suporte", "/tecnologia"],
     dropdown: [
-      { href: "/plataforma",         bg: "#d0dcfc", icon: "/figma-assets/icon-planetweb-a.svg"         },
-      { href: "/app-ai-iot",         bg: "#d0e8ff", icon: "/figma-assets/icon-ai-30px-a.svg"           },
-      { href: "/central-de-suporte", bg: "#c8f0fb", icon: "/figma-assets/icon-fone-30px.svg"           },
-      { href: "/tecnologia",         bg: "#d5d9ee", icon: "/figma-assets/icon-globe-sust.svg"          },
+      { href: "/plataforma",         bg: "#0569ff", icon: "/figma-assets/icon-planetweb-a.svg"         },
+      { href: "/app-ai-iot",         bg: "#6e54ef", icon: "/figma-assets/icon-ai-30px-e.svg"           },
+      { href: "/central-de-suporte", bg: "#ffa920", icon: "/figma-assets/icon-fone-30px.svg"           },
+      { href: "/tecnologia",         bg: "#36ae5c", icon: "/figma-assets/icon-globe-sust.svg"          },
     ],
   },
   {
     href:  "/linha-neo",
     extra: ["/neo-media", "/filtros", "/compare"],
     dropdown: [
-      { href: "/linha-neo", bg: "#d0dcfc", icon: "/figma-assets/icon-agua-pura-30px.svg"  },
-      { href: "/neo-media", bg: "#d5d9ee", icon: "/figma-assets/icon-media.svg"           },
-      { href: "/filtros",   bg: "#d0e8ff", icon: "/figma-assets/icon-filtros-40px.svg"   },
-      { href: "/compare",   bg: "#c8f0fb", icon: "/figma-assets/icon-check-30px.svg"     },
+      { href: "/linha-neo", bg: "#0569ff", icon: "/figma-assets/icon-agua-pura-30px.svg" },
+      { href: "/neo-media", bg: "#6e54ef", icon: "/figma-assets/icon-media.svg"          },
+      { href: "/filtros",   bg: "#ffa920", icon: "/figma-assets/icon-filtros-40px.svg"  },
+      { href: "/compare",   bg: "#36ae5c", icon: "/figma-assets/icon-check-30px.svg"    },
     ],
   },
   {
     href:  "/sobre",
     extra: ["/expansao-global", "/contato"],
     dropdown: [
-      { href: "/sobre",           bg: "#d0dcfc", icon: "/figma-assets/icon-pessoas-foco-cliente.svg" },
-      { href: "/expansao-global", bg: "#d5d9ee", icon: "/figma-assets/icon-globe-30px-b.svg"         },
-      { href: "/contato",         bg: "#c8f0fb", icon: "/figma-assets/icon-phone-a.svg"              },
+      { href: "/sobre",           bg: "#0569ff", icon: "/figma-assets/icon-pessoas-foco-cliente.svg" },
+      { href: "/expansao-global", bg: "#6e54ef", icon: "/figma-assets/icon-globe-30px-b.svg"         },
+      { href: "/contato",         bg: "#ffa920", icon: "/figma-assets/icon-phone-a.svg"              },
     ],
   },
   { href: "/checkin", extra: [], dropdown: [] },
@@ -339,7 +339,7 @@ function DropdownItemRow({ item }: { item: DropdownItem }) {
         className="flex items-center justify-center shrink-0 size-[50px] rounded-[8px]"
         style={{ background: item.bg }}
       >
-        <FigmaIcon src={item.icon} size={22} aspectW={item.iconAspectW} aspectH={item.iconAspectH} />
+        <FigmaIcon src={item.icon} size={22} aspectW={item.iconAspectW} aspectH={item.iconAspectH} className="brightness-0 invert" />
       </div>
       <div className="flex flex-col gap-[5px] flex-1 min-w-0">
         <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#07235c] group-hover:text-[#0233c3] transition-colors">

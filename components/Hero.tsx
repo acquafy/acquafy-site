@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import FigmaIcon from "./FigmaIcon";
 import { DotAtivo, DotInativo } from "./ui/SlideDot";
 import { useLang, type Lang } from "@/context/LanguageContext";
@@ -492,11 +492,22 @@ function GiftCard({ earn, inText }: { earn: string; inText: string }) {
 
 export default function Hero() {
   const [slide, setSlide] = useState(0);
+  const [hovered, setHovered] = useState(false);
   const { lang } = useLang();
+
+  useEffect(() => {
+    if (hovered) return;
+    const id = setInterval(() => setSlide((s) => (s + 1) % 2), 5000);
+    return () => clearInterval(id);
+  }, [hovered, slide]);
   const t = T[lang];
 
   return (
-    <section className={`relative flex flex-col gap-[20px] items-center px-[20px] py-[40px] w-full overflow-hidden xl:h-[calc(100vh-80px)] ${slide === 1 ? "xl:bg-transparent bg-gradient-to-b from-[#fafbff] to-[#e8f1f8]" : ""}`}>
+    <section
+      className={`relative flex flex-col gap-[20px] items-center px-[20px] py-[40px] w-full overflow-hidden xl:h-[calc(100vh-80px)] ${slide === 1 ? "xl:bg-transparent bg-gradient-to-b from-[#fafbff] to-[#e8f1f8]" : ""}`}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
 
       {/* Backgrounds */}
       {slide === 0 && <img src={imgBg1} alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none" />}
@@ -632,7 +643,7 @@ export default function Hero() {
 
       {/* ══ DESKTOP LAYOUT (xl+) ══ */}
       <div
-        className="hidden xl:flex relative flex-1 flex-col gap-[20px] items-center justify-center w-full"
+        className="hidden xl:flex relative flex-1 flex-col gap-[20px] items-center justify-center w-full cursor-pointer"
         onClick={(e) => {
           const target = e.target as HTMLElement;
           if (!target.closest("button, a")) setSlide((s) => (s + 1) % 2);
