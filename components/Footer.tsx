@@ -66,10 +66,9 @@ const T: Record<Lang, {
         { label: "Compare Produtos",     href: "/compare"   },
       ]},
       { title: "Empresa", links: [
-        { label: "Sobre Nós",            href: "/sobre"                 },
-        { label: "Expansão Global",      href: "/expansao-global"       },
-        { label: "Base de Conhecimento", href: "/base-de-conhecimento"  },
-        { label: "Contatos",             href: "/contato"               },
+        { label: "Sobre Nós",       href: "/sobre"           },
+        { label: "Expansão Global", href: "/expansao-global" },
+        { label: "Contatos",        href: "/contato"         },
       ]},
     ],
     stats: [
@@ -100,10 +99,9 @@ const T: Record<Lang, {
         { label: "Comparar Produtos",    href: "/compare"   },
       ]},
       { title: "Empresa", links: [
-        { label: "Sobre Nós",            href: "/sobre"                 },
-        { label: "Expansão Global",      href: "/expansao-global"       },
-        { label: "Base de Conhecimento", href: "/base-de-conhecimento"  },
-        { label: "Contactos",            href: "/contato"               },
+        { label: "Sobre Nós",       href: "/sobre"           },
+        { label: "Expansão Global", href: "/expansao-global" },
+        { label: "Contactos",       href: "/contato"         },
       ]},
     ],
     stats: [
@@ -134,10 +132,9 @@ const T: Record<Lang, {
         { label: "Compare Products",      href: "/compare"   },
       ]},
       { title: "Company", links: [
-        { label: "About Us",         href: "/sobre"                },
-        { label: "Global Expansion", href: "/expansao-global"      },
-        { label: "Knowledge Base",   href: "/base-de-conhecimento" },
-        { label: "Contact",          href: "/contato"              },
+        { label: "About Us",         href: "/sobre"           },
+        { label: "Global Expansion", href: "/expansao-global" },
+        { label: "Contact",          href: "/contato"         },
       ]},
     ],
     stats: [
@@ -168,10 +165,9 @@ const T: Record<Lang, {
         { label: "Comparar Productos",   href: "/compare"   },
       ]},
       { title: "Empresa", links: [
-        { label: "Sobre Nosotros",       href: "/sobre"                },
-        { label: "Expansión Global",     href: "/expansao-global"      },
-        { label: "Base de Conocimiento", href: "/base-de-conhecimento" },
-        { label: "Contacto",             href: "/contato"              },
+        { label: "Sobre Nosotros",   href: "/sobre"           },
+        { label: "Expansión Global", href: "/expansao-global" },
+        { label: "Contacto",         href: "/contato"         },
       ]},
     ],
     stats: [
@@ -202,10 +198,9 @@ const T: Record<Lang, {
         { label: "Comparer les Produits", href: "/compare"   },
       ]},
       { title: "Entreprise", links: [
-        { label: "À propos",             href: "/sobre"                },
-        { label: "Expansion Mondiale",   href: "/expansao-global"      },
-        { label: "Base de Connaissance", href: "/base-de-conhecimento" },
-        { label: "Contact",              href: "/contato"              },
+        { label: "À propos",           href: "/sobre"           },
+        { label: "Expansion Mondiale", href: "/expansao-global" },
+        { label: "Contact",            href: "/contato"         },
       ]},
     ],
     stats: [
@@ -236,10 +231,9 @@ const T: Record<Lang, {
         { label: "Produkte vergleichen", href: "/compare"   },
       ]},
       { title: "Unternehmen", links: [
-        { label: "Über uns",         href: "/sobre"                },
-        { label: "Globale Expansion", href: "/expansao-global"     },
-        { label: "Wissensdatenbank", href: "/base-de-conhecimento" },
-        { label: "Kontakt",          href: "/contato"              },
+        { label: "Über uns",          href: "/sobre"           },
+        { label: "Globale Expansion", href: "/expansao-global" },
+        { label: "Kontakt",           href: "/contato"         },
       ]},
     ],
     stats: [
@@ -270,10 +264,9 @@ const T: Record<Lang, {
         { label: "Confronta Prodotti", href: "/compare"   },
       ]},
       { title: "Azienda", links: [
-        { label: "Chi siamo",          href: "/sobre"                },
-        { label: "Espansione Globale", href: "/expansao-global"      },
-        { label: "Knowledge Base",     href: "/base-de-conhecimento" },
-        { label: "Contatto",           href: "/contato"              },
+        { label: "Chi siamo",          href: "/sobre"           },
+        { label: "Espansione Globale", href: "/expansao-global" },
+        { label: "Contatto",           href: "/contato"         },
       ]},
     ],
     stats: [
@@ -304,10 +297,9 @@ const T: Record<Lang, {
         { label: "产品对比",   href: "/compare"   },
       ]},
       { title: "公司", links: [
-        { label: "关于我们", href: "/sobre"                },
-        { label: "全球扩张", href: "/expansao-global"      },
-        { label: "知识库",   href: "/base-de-conhecimento" },
-        { label: "联系我们", href: "/contato"              },
+        { label: "关于我们", href: "/sobre"           },
+        { label: "全球扩张", href: "/expansao-global" },
+        { label: "联系我们", href: "/contato"         },
       ]},
     ],
     stats: [
@@ -338,10 +330,9 @@ const T: Record<Lang, {
         { label: "製品を比較する",          href: "/compare"   },
       ]},
       { title: "企業情報", links: [
-        { label: "会社概要",     href: "/sobre"                },
-        { label: "グローバル展開", href: "/expansao-global"    },
-        { label: "ナレッジベース", href: "/base-de-conhecimento" },
-        { label: "お問い合わせ", href: "/contato"              },
+        { label: "会社概要",      href: "/sobre"           },
+        { label: "グローバル展開", href: "/expansao-global" },
+        { label: "お問い合わせ",  href: "/contato"         },
       ]},
     ],
     stats: [
@@ -372,10 +363,9 @@ const T: Record<Lang, {
         { label: "제품 비교",        href: "/compare"   },
       ]},
       { title: "회사", links: [
-        { label: "회사 소개",  href: "/sobre"                },
-        { label: "글로벌 확장", href: "/expansao-global"     },
-        { label: "지식 베이스", href: "/base-de-conhecimento" },
-        { label: "문의하기",   href: "/contato"              },
+        { label: "회사 소개",   href: "/sobre"           },
+        { label: "글로벌 확장", href: "/expansao-global" },
+        { label: "문의하기",   href: "/contato"         },
       ]},
     ],
     stats: [
