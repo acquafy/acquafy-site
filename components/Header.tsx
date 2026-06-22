@@ -12,42 +12,42 @@ const imgPartner = "/figma-assets/icon-partner-b.svg";
 // ── Types ────────────────────────────────────────────────────────────────────
 type DropdownItem = {
   label: string; href: string; desc: string; cta: string;
-  bg: string; light?: boolean;
+  bg: string; icon: string; iconAspectW?: number; iconAspectH?: number;
 };
 
 type NavItem = {
   label: string; href: string; extra: string[]; dropdown: DropdownItem[];
 };
 
-// ── Non-translatable nav structure (hrefs, bgs) ───────────────────────────
+// ── Non-translatable nav structure (hrefs, icon assets, icon bg) ─────────
 const NAV_STRUCTURE = [
   {
     href:  "/plataforma",
     extra: ["/app-ai-iot", "/central-de-suporte", "/tecnologia"],
     dropdown: [
-      { href: "/plataforma",         bg: "linear-gradient(135deg, #0233c3 0%, #0569ff 100%)" },
-      { href: "/app-ai-iot",         bg: "linear-gradient(135deg, #07235c 0%, #0233c3 100%)" },
-      { href: "/central-de-suporte", bg: "#f0f5ff", light: true },
-      { href: "/tecnologia",         bg: "linear-gradient(135deg, #0569ff 0%, #00b4d8 100%)" },
+      { href: "/plataforma",         bg: "#d0dcfc", icon: "/figma-assets/icon-planetweb-a.svg"         },
+      { href: "/app-ai-iot",         bg: "#d0e8ff", icon: "/figma-assets/icon-ai-30px-a.svg"           },
+      { href: "/central-de-suporte", bg: "#c8f0fb", icon: "/figma-assets/icon-fone-30px.svg"           },
+      { href: "/tecnologia",         bg: "#d5d9ee", icon: "/figma-assets/icon-globe-sust.svg"          },
     ],
   },
   {
     href:  "/linha-neo",
     extra: ["/neo-media", "/filtros", "/compare"],
     dropdown: [
-      { href: "/linha-neo", bg: "linear-gradient(135deg, #0233c3 0%, #0569ff 100%)" },
-      { href: "/neo-media", bg: "linear-gradient(135deg, #07235c 0%, #1f2e91 100%)" },
-      { href: "/filtros",   bg: "#f0f5ff", light: true },
-      { href: "/compare",   bg: "linear-gradient(135deg, #1f2e91 0%, #0569ff 100%)" },
+      { href: "/linha-neo", bg: "#d0dcfc", icon: "/figma-assets/icon-agua-pura-30px.svg"  },
+      { href: "/neo-media", bg: "#d5d9ee", icon: "/figma-assets/icon-media.svg"           },
+      { href: "/filtros",   bg: "#d0e8ff", icon: "/figma-assets/icon-filtros-40px.svg"   },
+      { href: "/compare",   bg: "#c8f0fb", icon: "/figma-assets/icon-check-30px.svg"     },
     ],
   },
   {
     href:  "/sobre",
     extra: ["/expansao-global", "/contato"],
     dropdown: [
-      { href: "/sobre",           bg: "linear-gradient(135deg, #0233c3 0%, #0569ff 100%)" },
-      { href: "/expansao-global", bg: "linear-gradient(135deg, #07235c 0%, #0233c3 100%)" },
-      { href: "/contato",         bg: "#f0f5ff", light: true },
+      { href: "/sobre",           bg: "#d0dcfc", icon: "/figma-assets/icon-pessoas-foco-cliente.svg" },
+      { href: "/expansao-global", bg: "#d5d9ee", icon: "/figma-assets/icon-globe-30px-b.svg"         },
+      { href: "/contato",         bg: "#c8f0fb", icon: "/figma-assets/icon-phone-a.svg"              },
     ],
   },
   { href: "/checkin", extra: [], dropdown: [] },
@@ -74,7 +74,7 @@ const NAV_TEXT: Record<Lang, NavTxt[]> = {
       { label: "Expansão Global", desc: "Operação 100% global com modelo de receita 100% recorrente.", cta: "Ver Expansão"   },
       { label: "Contatos",        desc: "Fale com nossa equipe e encontre o distribuidor mais próximo.", cta: "Falar Conosco" },
     ]},
-    { label: "Comprar agora", dd: [] },
+    { label: "Comprar Agora", dd: [] },
   ],
   "pt-pt": [
     { label: "Plataforma", dd: [
@@ -94,7 +94,7 @@ const NAV_TEXT: Record<Lang, NavTxt[]> = {
       { label: "Expansão Global", desc: "Operação 100% global com modelo de receita 100% recorrente.",          cta: "Ver Expansão"     },
       { label: "Contactos",       desc: "Fale com a nossa equipa e encontre o distribuidor mais próximo.",       cta: "Falar Connosco"   },
     ]},
-    { label: "Comprar agora", dd: [] },
+    { label: "Comprar Agora", dd: [] },
   ],
   en: [
     { label: "Platform", dd: [
@@ -329,39 +329,34 @@ function HamburgerIcon({ open }: { open: boolean }) {
   );
 }
 
-function ArrowRight({ color }: { color: string }) {
-  return (
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="shrink-0">
-      <path d="M3 7h8M8 3.5L11.5 7 8 10.5" stroke={color} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function DropdownCard({ item }: { item: DropdownItem }) {
-  const titleCls = item.light ? "text-[#07235c]" : "text-white";
-  const descCls  = item.light ? "text-[#4a5568]" : "text-white/75";
-  const ctaColor = item.light ? "#0233c3" : "#ffffff";
+function DropdownItemRow({ item }: { item: DropdownItem }) {
   return (
     <a
       href={item.href}
-      className="flex flex-[1_0_0] flex-col justify-between gap-[20px] min-w-[180px] p-[20px] rounded-[16px] min-h-[165px] transition-all duration-200 hover:-translate-y-[3px] hover:shadow-[0_10px_28px_0_rgba(0,0,0,0.16)]"
-      style={{ background: item.bg }}
+      className="flex gap-[14px] items-center px-[12px] py-[10px] rounded-[10px] hover:bg-[#f2f6fd] transition-colors group"
     >
-      <div className="flex flex-col gap-[8px]">
-        <p className={`font-['Avenir_LT_Pro:85_Heavy'] text-[15px] leading-[19px] ${titleCls}`}>{item.label}</p>
-        <p className={`font-['Avenir_LT_Pro:55_Roman'] text-[13px] leading-[17px] ${descCls}`}>{item.desc}</p>
+      <div
+        className="flex items-center justify-center shrink-0 size-[50px] rounded-[8px]"
+        style={{ background: item.bg }}
+      >
+        <FigmaIcon src={item.icon} size={22} aspectW={item.iconAspectW} aspectH={item.iconAspectH} />
       </div>
-      <span className="inline-flex items-center gap-[5px]">
-        <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] leading-[14px]" style={{ color: ctaColor }}>{item.cta}</span>
-        <ArrowRight color={ctaColor} />
-      </span>
+      <div className="flex flex-col gap-[5px] flex-1 min-w-0">
+        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#07235c] group-hover:text-[#0233c3] transition-colors">
+          {item.label}
+        </p>
+        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] leading-[15px] text-[#8a8f97]">
+          {item.desc}
+        </p>
+      </div>
     </a>
   );
 }
 
-function NavTrigger({ label, href, active, hasDropdown, open, onMouseEnter }: {
+function NavTrigger({ label, href, active, hasDropdown, open, onMouseEnter, dropdown }: {
   label: string; href: string; active: boolean;
   hasDropdown: boolean; open: boolean; onMouseEnter: () => void;
+  dropdown: DropdownItem[];
 }) {
   const highlighted = active || open;
   const textColor   = highlighted ? "#0233c3" : "#333";
@@ -386,6 +381,13 @@ function NavTrigger({ label, href, active, hasDropdown, open, onMouseEnter }: {
         ? <div className={`${cls} cursor-default`}>{inner}</div>
         : <a href={href} className={cls}>{inner}</a>
       }
+      {open && hasDropdown && (
+        <div className="absolute top-full left-0 bg-white border border-[#e6e6e6] rounded-[20px] shadow-[0_8px_32px_0_rgba(0,0,0,0.12)] z-50 overflow-hidden">
+          <div className="flex flex-col gap-[4px] p-[20px] w-[320px]">
+            {dropdown.map((item) => <DropdownItemRow key={item.href} item={item} />)}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -462,6 +464,7 @@ export default function Header() {
               hasDropdown={item.dropdown.length > 0}
               open={openDropdown === item.label}
               onMouseEnter={() => setOpenDropdown(item.dropdown.length > 0 ? item.label : null)}
+              dropdown={item.dropdown}
             />
           ))}
         </nav>
@@ -481,14 +484,6 @@ export default function Header() {
           </button>
         </div>
       </div>
-
-      {openDropdown && activeNav && activeNav.dropdown.length > 0 && (
-        <div className="hidden lg:flex absolute top-[80px] left-0 right-0 bg-white border-t border-[#cbd0d4] shadow-[0_8px_32px_0_rgba(0,0,0,0.10)] z-50 justify-center px-[20px] py-[20px]">
-          <div className="flex gap-[12px] max-w-[1400px] w-full">
-            {activeNav.dropdown.map((item) => <DropdownCard key={item.href} item={item} />)}
-          </div>
-        </div>
-      )}
 
       {menuOpen && (
         <div className="lg:hidden absolute top-[80px] left-0 right-0 bg-white border-t border-[#cbd0d4] shadow-lg z-50">

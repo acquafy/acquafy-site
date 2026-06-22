@@ -2,9 +2,7 @@
 
 import { useState } from "react";
 import FigmaIcon from "./FigmaIcon";
-import BKSectionPopup from "./BKSectionPopup";
 import { useChatWidget } from "./ChatWidget";
-import { quickItems } from "./AcessoRapidoBK";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
 // ── Assets ────────────────────────────────────────────────────────────────────
@@ -30,9 +28,10 @@ const T: Record<Lang, {
   btnChat: string;
   btnSpecialist: string;
   floatingCards: { title: string; desc: string | null }[];
-  quickTitle1: string;
-  quickTitle2: string;
-  quickItems: { title: string; desc: string }[];
+  unifiedHeading1: string;
+  unifiedHeading2: string;
+  quickLinks: { title: string; desc: string }[];
+  faqItems: { question: string; answer: string; cta: string }[];
   imgAlt: string;
 }> = {
   pt: {
@@ -50,14 +49,45 @@ const T: Record<Lang, {
       { title: "Base de conhecimento",        desc: "Tutoriais e artigos úteis." },
       { title: "Abrir chamado",               desc: "Receba suporte da nossa equipe." },
     ],
-    quickTitle1: "Acesso",
-    quickTitle2: "rápido",
-    quickItems: [
-      { title: "Meus produtos",        desc: "Conheça a linha completa de purificadores Neo." },
-      { title: "Downloads",            desc: "Manuais, guias rápidos, softwares e documentos." },
-      { title: "Tutoriais e vídeos",   desc: "Aprenda passo a passo com nossos tutoriais." },
-      { title: "Perguntas frequentes", desc: "Encontre respostas para as dúvidas mais comuns." },
+    unifiedHeading1: "Como",
+    unifiedHeading2: "podemos ajudar?",
+    quickLinks: [
+      { title: "Meus produtos",         desc: "Conheça a linha completa de purificadores Neo." },
+      { title: "App + AI + IoT",        desc: "Controle, automação e IA na palma da mão." },
+      { title: "Fale conosco",          desc: "Nossa equipe está pronta para ajudar você." },
       { title: "Políticas e garantias", desc: "Consulte nossas políticas, termos e garantias." },
+    ],
+    faqItems: [
+      {
+        question: "Produtos",
+        answer: "A Linha Neo inclui purificadores com Painel LED Touch, App, UV LED e filtros UF premium nos modelos SMART H2, TOUCH e outros. Consulte especificações, compatibilidade de filtros e compare os modelos disponíveis.",
+        cta: "Ver Linha Neo",
+      },
+      {
+        question: "App + AI + IoT",
+        answer: "O App Acquafy (iOS e Android) conecta seu purificador via Wi-Fi para monitoramento em tempo real, alertas de troca de filtro e controle remoto com IA integrada. Acesse a página do App para ver todas as funcionalidades.",
+        cta: "Conhecer o App",
+      },
+      {
+        question: "Media Network",
+        answer: "O Acquafy Media é a plataforma multimídia integrada ao purificador que exibe conteúdos, anúncios e QR Codes na tela do equipamento, gerando receita recorrente para parceiros e distribuidores.",
+        cta: "Saiba mais",
+      },
+      {
+        question: "Parceiros",
+        answer: "O Programa Acquafy Partner oferece suporte comercial, treinamento, materiais de marketing e comissões recorrentes. Para se tornar parceiro, preencha o formulário na página de parcerias.",
+        cta: "Seja um Parceiro",
+      },
+      {
+        question: "Faturamento",
+        answer: "Faturas, relatórios de comissão e histórico de pedidos são gerenciados no portal do parceiro. Para dúvidas sobre pagamentos, NFs ou comissões, entre em contato com nossa equipe de suporte.",
+        cta: "Contate o suporte",
+      },
+      {
+        question: "Instalação e Manutenção",
+        answer: "A instalação é feita por técnicos credenciados Acquafy. A manutenção preventiva — troca de filtros e verificação do UV LED — é monitorada automaticamente pelo App. Para agendar atendimento, fale com nossa equipe.",
+        cta: "Falar com suporte",
+      },
     ],
     imgAlt: "Central de Suporte Acquafy",
   },
@@ -76,14 +106,45 @@ const T: Record<Lang, {
       { title: "Base de conhecimento",        desc: "Tutoriais e artigos úteis." },
       { title: "Abrir chamado",               desc: "Receba suporte da nossa equipa." },
     ],
-    quickTitle1: "Acesso",
-    quickTitle2: "rápido",
-    quickItems: [
+    unifiedHeading1: "Como",
+    unifiedHeading2: "podemos ajudar?",
+    quickLinks: [
       { title: "Os meus produtos",      desc: "Conheça a linha completa de purificadores Neo." },
-      { title: "Transferências",        desc: "Manuais, guias rápidos, softwares e documentos." },
-      { title: "Tutoriais e vídeos",    desc: "Aprenda passo a passo com os nossos tutoriais." },
-      { title: "Perguntas frequentes",  desc: "Encontre respostas para as dúvidas mais comuns." },
+      { title: "App + AI + IoT",        desc: "Controlo, automatização e IA na palma da mão." },
+      { title: "Fale connosco",         desc: "A nossa equipa está pronta para ajudar." },
       { title: "Políticas e garantias", desc: "Consulte as nossas políticas, termos e garantias." },
+    ],
+    faqItems: [
+      {
+        question: "Produtos",
+        answer: "A Linha Neo inclui purificadores com Painel LED Touch, Aplicação, UV LED e filtros UF premium nos modelos SMART H2, TOUCH e outros. Consulte especificações, compatibilidade de filtros e compare os modelos disponíveis.",
+        cta: "Ver Linha Neo",
+      },
+      {
+        question: "App + AI + IoT",
+        answer: "A Aplicação Acquafy (iOS e Android) conecta o seu purificador via Wi-Fi para monitorização em tempo real, alertas de troca de filtro e controlo remoto com IA integrada.",
+        cta: "Conhecer a Aplicação",
+      },
+      {
+        question: "Media Network",
+        answer: "O Acquafy Media é a plataforma multimédia integrada ao purificador que exibe conteúdos, anúncios e QR Codes no ecrã do equipamento, gerando receita recorrente para parceiros e distribuidores.",
+        cta: "Saber mais",
+      },
+      {
+        question: "Parceiros",
+        answer: "O Programa Acquafy Partner oferece suporte comercial, formação, materiais de marketing e comissões recorrentes. Para se tornar parceiro, preencha o formulário na página de parcerias.",
+        cta: "Seja um Parceiro",
+      },
+      {
+        question: "Faturação",
+        answer: "Faturas, relatórios de comissão e histórico de encomendas são geridos no portal do parceiro. Para dúvidas sobre pagamentos ou comissões, entre em contacto com a nossa equipa de suporte.",
+        cta: "Contactar suporte",
+      },
+      {
+        question: "Instalação e Manutenção",
+        answer: "A instalação é realizada por técnicos credenciados Acquafy. A manutenção preventiva — troca de filtros e verificação do UV LED — é monitorizada automaticamente pela Aplicação.",
+        cta: "Falar com suporte",
+      },
     ],
     imgAlt: "Central de Suporte Acquafy",
   },
@@ -102,14 +163,45 @@ const T: Record<Lang, {
       { title: "Knowledge Base",         desc: "Tutorials and helpful articles." },
       { title: "Open a ticket",          desc: "Receive support from our team." },
     ],
-    quickTitle1: "Quick",
-    quickTitle2: "Access",
-    quickItems: [
-      { title: "My products",       desc: "Explore the complete Neo purifier lineup." },
-      { title: "Downloads",         desc: "Manuals, quick guides, software, and documents." },
-      { title: "Tutorials & videos", desc: "Learn step by step with our tutorials." },
-      { title: "FAQ",               desc: "Find answers to the most common questions." },
-      { title: "Policies & warranties", desc: "Review our policies, terms, and warranties." },
+    unifiedHeading1: "How Can",
+    unifiedHeading2: "We Help You?",
+    quickLinks: [
+      { title: "My products",           desc: "Explore the complete Neo purifier lineup." },
+      { title: "App + AI + IoT",        desc: "Control, automation and AI in the palm of your hand." },
+      { title: "Contact us",            desc: "Our team is ready to help you." },
+      { title: "Policies & warranties", desc: "Review our policies, terms and warranties." },
+    ],
+    faqItems: [
+      {
+        question: "Products",
+        answer: "The Neo Line includes purifiers with LED Touch Panel, App, UV LED and premium UF filters in SMART H2, TOUCH and other models. Check specifications, filter compatibility and compare available models.",
+        cta: "See Neo Line",
+      },
+      {
+        question: "App + AI + IoT",
+        answer: "The Acquafy App (iOS & Android) connects your purifier via Wi-Fi for real-time monitoring, filter replacement alerts and remote control with integrated AI. Visit the App page to see all features.",
+        cta: "Explore the App",
+      },
+      {
+        question: "Media Network",
+        answer: "Acquafy Media is the multimedia platform integrated into the purifier, displaying content, ads and QR Codes on the device screen, generating recurring revenue for Acquafy partners and distributors.",
+        cta: "Learn more",
+      },
+      {
+        question: "Partners",
+        answer: "The Acquafy Partner Program offers commercial support, training, marketing materials and recurring commissions. To become a partner, fill out the form on the partnerships page.",
+        cta: "Become a Partner",
+      },
+      {
+        question: "Billing",
+        answer: "Invoices, commission reports and order history are managed in the partner portal. For questions about payments, invoices or commissions, contact our support team.",
+        cta: "Contact support",
+      },
+      {
+        question: "Installation & Maintenance",
+        answer: "Installation is performed by Acquafy-certified technicians. Preventive maintenance — filter replacement and UV LED checks — is automatically monitored by the App. To schedule service, contact our team.",
+        cta: "Talk to support",
+      },
     ],
     imgAlt: "Acquafy Support Center",
   },
@@ -128,14 +220,45 @@ const T: Record<Lang, {
       { title: "Base de conocimiento",      desc: "Tutoriales y artículos útiles." },
       { title: "Abrir ticket",              desc: "Recibe soporte de nuestro equipo." },
     ],
-    quickTitle1: "Acceso",
-    quickTitle2: "Rápido",
-    quickItems: [
+    unifiedHeading1: "¿Cómo Podemos",
+    unifiedHeading2: "Ayudarte?",
+    quickLinks: [
       { title: "Mis productos",          desc: "Conoce la línea completa de purificadores Neo." },
-      { title: "Descargas",              desc: "Manuales, guías rápidas, software y documentos." },
-      { title: "Tutoriales y videos",    desc: "Aprende paso a paso con nuestros tutoriales." },
-      { title: "Preguntas frecuentes",   desc: "Encuentra respuestas a las dudas más comunes." },
+      { title: "App + AI + IoT",         desc: "Control, automatización e IA en la palma de tu mano." },
+      { title: "Contáctanos",            desc: "Nuestro equipo está listo para ayudarte." },
       { title: "Políticas y garantías",  desc: "Consulta nuestras políticas, términos y garantías." },
+    ],
+    faqItems: [
+      {
+        question: "Productos",
+        answer: "La Línea Neo incluye purificadores con Panel LED Touch, App, UV LED y filtros UF premium en los modelos SMART H2, TOUCH y otros. Consulta especificaciones, compatibilidad de filtros y compara modelos.",
+        cta: "Ver Línea Neo",
+      },
+      {
+        question: "App + AI + IoT",
+        answer: "La App Acquafy (iOS y Android) conecta tu purificador vía Wi-Fi para monitoreo en tiempo real, alertas de cambio de filtro y control remoto con IA integrada.",
+        cta: "Conocer la App",
+      },
+      {
+        question: "Media Network",
+        answer: "Acquafy Media es la plataforma multimedia integrada al purificador que muestra contenidos, anuncios y QR Codes en la pantalla, generando ingresos recurrentes para socios y distribuidores.",
+        cta: "Saber más",
+      },
+      {
+        question: "Socios",
+        answer: "El Programa Acquafy Partner ofrece soporte comercial, formación, materiales de marketing y comisiones recurrentes. Para convertirte en socio, rellena el formulario en la página de asociaciones.",
+        cta: "Ser un Socio",
+      },
+      {
+        question: "Facturación",
+        answer: "Facturas, informes de comisiones e historial de pedidos se gestionan en el portal del socio. Para dudas sobre pagos o comisiones, contacta a nuestro equipo de soporte.",
+        cta: "Contactar soporte",
+      },
+      {
+        question: "Instalación y Mantenimiento",
+        answer: "La instalación la realizan técnicos certificados Acquafy. El mantenimiento preventivo — cambio de filtros y verificación UV LED — se monitoriza automáticamente por la App.",
+        cta: "Hablar con soporte",
+      },
     ],
     imgAlt: "Centro de Soporte Acquafy",
   },
@@ -154,14 +277,45 @@ const T: Record<Lang, {
       { title: "Base de connaissances",              desc: "Tutoriels et articles utiles." },
       { title: "Ouvrir un ticket",                   desc: "Recevez le soutien de notre équipe." },
     ],
-    quickTitle1: "Accès",
-    quickTitle2: "rapide",
-    quickItems: [
-      { title: "Mes produits",           desc: "Découvrez la gamme complète de purificateurs Neo." },
-      { title: "Téléchargements",        desc: "Manuels, guides rapides, logiciels et documents." },
-      { title: "Tutoriels et vidéos",    desc: "Apprenez étape par étape avec nos tutoriels." },
-      { title: "FAQ",                    desc: "Trouvez des réponses aux questions les plus fréquentes." },
-      { title: "Politiques et garanties",desc: "Consultez nos politiques, conditions et garanties." },
+    unifiedHeading1: "Comment Pouvons-Nous",
+    unifiedHeading2: "Vous Aider ?",
+    quickLinks: [
+      { title: "Mes produits",            desc: "Découvrez la gamme complète de purificateurs Neo." },
+      { title: "App + AI + IoT",          desc: "Contrôle, automatisation et IA au bout des doigts." },
+      { title: "Nous contacter",          desc: "Notre équipe est prête à vous aider." },
+      { title: "Politiques et garanties", desc: "Consultez nos politiques, conditions et garanties." },
+    ],
+    faqItems: [
+      {
+        question: "Produits",
+        answer: "La Gamme Neo inclut des purificateurs avec panneau LED tactile, App, UV LED et filtres UF premium dans les modèles SMART H2, TOUCH et autres. Consultez les spécifications et comparez les modèles.",
+        cta: "Voir la Gamme Neo",
+      },
+      {
+        question: "App + AI + IoT",
+        answer: "L'App Acquafy (iOS et Android) connecte votre purificateur via Wi-Fi pour un monitoring en temps réel, des alertes de remplacement de filtre et un contrôle à distance avec IA intégrée.",
+        cta: "Découvrir l'App",
+      },
+      {
+        question: "Media Network",
+        answer: "Acquafy Media est la plateforme multimédia intégrée au purificateur qui affiche du contenu, des annonces et des QR Codes sur l'écran, générant des revenus récurrents pour les partenaires.",
+        cta: "En savoir plus",
+      },
+      {
+        question: "Partenaires",
+        answer: "Le Programme Acquafy Partner offre un soutien commercial, une formation, des matériaux marketing et des commissions récurrentes. Pour devenir partenaire, remplissez le formulaire sur la page partenariats.",
+        cta: "Devenir Partenaire",
+      },
+      {
+        question: "Facturation",
+        answer: "Les factures, rapports de commissions et historiques de commandes sont gérés dans le portail partenaire. Pour toute question sur les paiements ou commissions, contactez notre équipe de support.",
+        cta: "Contacter le support",
+      },
+      {
+        question: "Installation et Maintenance",
+        answer: "L'installation est réalisée par des techniciens certifiés Acquafy. La maintenance préventive — remplacement de filtres et vérification UV LED — est automatiquement surveillée par l'App.",
+        cta: "Parler au support",
+      },
     ],
     imgAlt: "Centre de Support Acquafy",
   },
@@ -180,14 +334,45 @@ const T: Record<Lang, {
       { title: "Wissensdatenbank",              desc: "Tutorials und hilfreiche Artikel." },
       { title: "Ticket erstellen",              desc: "Erhalten Sie Support von unserem Team." },
     ],
-    quickTitle1: "Schnell-",
-    quickTitle2: "zugriff",
-    quickItems: [
-      { title: "Meine Produkte",        desc: "Entdecken Sie die vollständige Neo-Purifier-Reihe." },
-      { title: "Downloads",             desc: "Handbücher, Schnellanleitungen, Software und Dokumente." },
-      { title: "Tutorials & Videos",    desc: "Lernen Sie Schritt für Schritt mit unseren Tutorials." },
-      { title: "FAQ",                   desc: "Finden Sie Antworten auf die häufigsten Fragen." },
-      { title: "Richtlinien & Garantien",desc: "Prüfen Sie unsere Richtlinien, Bedingungen und Garantien." },
+    unifiedHeading1: "Wie Können Wir",
+    unifiedHeading2: "Ihnen Helfen?",
+    quickLinks: [
+      { title: "Meine Produkte",          desc: "Entdecken Sie die vollständige Neo-Purifier-Reihe." },
+      { title: "App + AI + IoT",          desc: "Steuerung, Automatisierung und KI in Ihrer Hand." },
+      { title: "Kontakt aufnehmen",       desc: "Unser Team ist bereit, Ihnen zu helfen." },
+      { title: "Richtlinien & Garantien", desc: "Prüfen Sie unsere Richtlinien, Bedingungen und Garantien." },
+    ],
+    faqItems: [
+      {
+        question: "Produkte",
+        answer: "Die Neo-Linie umfasst Purifier mit LED-Touch-Panel, App, UV-LED und Premium-UF-Filtern in den Modellen SMART H2, TOUCH und weiteren. Vergleichen Sie Spezifikationen und Filterkompatibilität.",
+        cta: "Neo-Linie ansehen",
+      },
+      {
+        question: "App + AI + IoT",
+        answer: "Die Acquafy-App (iOS und Android) verbindet Ihren Purifier über Wi-Fi für Echtzeit-Monitoring, Filterwechsel-Erinnerungen und Fernsteuerung mit integrierter KI.",
+        cta: "App entdecken",
+      },
+      {
+        question: "Media Network",
+        answer: "Acquafy Media ist die ins Gerät integrierte Multimedia-Plattform, die Inhalte, Anzeigen und QR-Codes auf dem Display anzeigt und so für Partner und Händler wiederkehrende Einnahmen generiert.",
+        cta: "Mehr erfahren",
+      },
+      {
+        question: "Partner",
+        answer: "Das Acquafy-Partnerprogramm bietet kommerziellen Support, Schulungen, Marketingmaterialien und wiederkehrende Provisionen. Füllen Sie das Formular auf der Partnerseite aus, um Partner zu werden.",
+        cta: "Partner werden",
+      },
+      {
+        question: "Abrechnung",
+        answer: "Rechnungen, Provisionsberichte und Bestellhistorie werden im Partnerportal verwaltet. Bei Fragen zu Zahlungen oder Provisionen wenden Sie sich bitte an unser Support-Team.",
+        cta: "Support kontaktieren",
+      },
+      {
+        question: "Installation und Wartung",
+        answer: "Die Installation erfolgt durch zertifizierte Acquafy-Techniker. Die vorbeugende Wartung — Filterwechsel und UV-LED-Überprüfung — wird automatisch von der App überwacht.",
+        cta: "Support sprechen",
+      },
     ],
     imgAlt: "Acquafy Support-Center",
   },
@@ -206,14 +391,45 @@ const T: Record<Lang, {
       { title: "Base di conoscenza",      desc: "Tutorial e articoli utili." },
       { title: "Apri un ticket",          desc: "Ricevi supporto dal nostro team." },
     ],
-    quickTitle1: "Accesso",
-    quickTitle2: "rapido",
-    quickItems: [
-      { title: "I miei prodotti",          desc: "Scopri la linea completa di purificatori Neo." },
-      { title: "Download",                 desc: "Manuali, guide rapide, software e documenti." },
-      { title: "Tutorial e video",         desc: "Impara passo dopo passo con i nostri tutorial." },
-      { title: "Domande frequenti",        desc: "Trova risposte alle domande più comuni." },
-      { title: "Politiche e garanzie",     desc: "Consulta le nostre politiche, termini e garanzie." },
+    unifiedHeading1: "Come Possiamo",
+    unifiedHeading2: "Aiutarti?",
+    quickLinks: [
+      { title: "I miei prodotti",      desc: "Scopri la linea completa di purificatori Neo." },
+      { title: "App + AI + IoT",       desc: "Controllo, automazione e IA nel palmo della mano." },
+      { title: "Contattaci",           desc: "Il nostro team è pronto ad aiutarti." },
+      { title: "Politiche e garanzie", desc: "Consulta le nostre politiche, termini e garanzie." },
+    ],
+    faqItems: [
+      {
+        question: "Prodotti",
+        answer: "La Linea Neo include purificatori con pannello LED Touch, App, UV LED e filtri UF premium nei modelli SMART H2, TOUCH e altri. Consulta le specifiche e confronta i modelli disponibili.",
+        cta: "Vedi la Linea Neo",
+      },
+      {
+        question: "App + AI + IoT",
+        answer: "L'App Acquafy (iOS e Android) collega il tuo purificatore via Wi-Fi per il monitoraggio in tempo reale, avvisi di sostituzione filtro e controllo remoto con IA integrata.",
+        cta: "Scopri l'App",
+      },
+      {
+        question: "Media Network",
+        answer: "Acquafy Media è la piattaforma multimediale integrata nel purificatore che visualizza contenuti, annunci e QR Code sullo schermo, generando entrate ricorrenti per partner e distributori.",
+        cta: "Scopri di più",
+      },
+      {
+        question: "Partner",
+        answer: "Il Programma Acquafy Partner offre supporto commerciale, formazione, materiali di marketing e commissioni ricorrenti. Per diventare partner, compila il modulo nella pagina delle partnership.",
+        cta: "Diventa Partner",
+      },
+      {
+        question: "Fatturazione",
+        answer: "Fatture, report sulle commissioni e cronologia degli ordini sono gestiti nel portale partner. Per domande su pagamenti o commissioni, contatta il nostro team di supporto.",
+        cta: "Contatta il supporto",
+      },
+      {
+        question: "Installazione e Manutenzione",
+        answer: "L'installazione è eseguita da tecnici certificati Acquafy. La manutenzione preventiva — sostituzione filtri e verifica UV LED — è monitorata automaticamente dall'App.",
+        cta: "Parla con il supporto",
+      },
     ],
     imgAlt: "Centro Supporto Acquafy",
   },
@@ -232,14 +448,45 @@ const T: Record<Lang, {
       { title: "知识库",             desc: "教程与实用文章。" },
       { title: "提交工单",           desc: "获取我们团队的支持。" },
     ],
-    quickTitle1: "快速",
-    quickTitle2: "访问",
-    quickItems: [
-      { title: "我的产品",       desc: "探索完整的 Neo 净水器产品系列。" },
-      { title: "下载",           desc: "手册、快速指南、软件和文档。" },
-      { title: "教程与视频",     desc: "跟随我们的教程逐步学习。" },
-      { title: "常见问题",       desc: "查找最常见问题的解答。" },
-      { title: "政策与保修",     desc: "查阅我们的政策、条款和保修信息。" },
+    unifiedHeading1: "我们如何",
+    unifiedHeading2: "为您提供帮助？",
+    quickLinks: [
+      { title: "我的产品",   desc: "探索完整的 Neo 净水器产品系列。" },
+      { title: "App + AI + IoT", desc: "掌控自动化与人工智能，尽在掌中。" },
+      { title: "联系我们",   desc: "我们的团队随时准备为您提供帮助。" },
+      { title: "政策与保修", desc: "查阅我们的政策、条款和保修信息。" },
+    ],
+    faqItems: [
+      {
+        question: "产品",
+        answer: "Neo 系列包括配备 LED 触控面板、App、UV LED 和高级 UF 滤芯的净水器，提供 SMART H2、TOUCH 等多种型号。查看规格、滤芯兼容性并比较可用型号。",
+        cta: "查看 Neo 系列",
+      },
+      {
+        question: "App + AI + IoT",
+        answer: "Acquafy App（iOS 和 Android）通过 Wi-Fi 连接您的净水器，实现实时监控、滤芯更换提醒和集成 AI 的远程控制。",
+        cta: "了解 App",
+      },
+      {
+        question: "Media Network",
+        answer: "Acquafy Media 是集成于净水器的多媒体平台，可在设备屏幕上显示内容、广告和二维码，为合作伙伴和经销商带来持续收入。",
+        cta: "了解更多",
+      },
+      {
+        question: "合作伙伴",
+        answer: "Acquafy 合作伙伴计划提供商业支持、培训、营销材料和持续佣金。如需成为合作伙伴，请在合作页面填写申请表。",
+        cta: "成为合作伙伴",
+      },
+      {
+        question: "账单",
+        answer: "发票、佣金报告和订单历史记录均在合作伙伴门户中管理。如有付款或佣金方面的疑问，请联系我们的支持团队。",
+        cta: "联系支持",
+      },
+      {
+        question: "安装与维护",
+        answer: "安装由 Acquafy 认证技术人员进行。预防性维护（滤芯更换和 UV LED 检查）由 App 自动监控。如需安排服务，请联系我们的团队。",
+        cta: "联系支持",
+      },
     ],
     imgAlt: "Acquafy 支持中心",
   },
@@ -258,14 +505,45 @@ const T: Record<Lang, {
       { title: "ナレッジベース",           desc: "チュートリアルと役立つ記事。" },
       { title: "チケットを作成",           desc: "チームからサポートを受ける。" },
     ],
-    quickTitle1: "クイック",
-    quickTitle2: "アクセス",
-    quickItems: [
-      { title: "マイ製品",           desc: "Neo ピュリファイアーの完全なラインナップをご覧ください。" },
-      { title: "ダウンロード",       desc: "マニュアル、クイックガイド、ソフトウェア、ドキュメント。" },
-      { title: "チュートリアル＆動画",desc: "チュートリアルでステップごとに学習する。" },
-      { title: "よくある質問",       desc: "最もよくある質問への回答を見つける。" },
-      { title: "ポリシーと保証",     desc: "ポリシー、利用規約、保証を確認する。" },
+    unifiedHeading1: "どのように",
+    unifiedHeading2: "お役に立てますか？",
+    quickLinks: [
+      { title: "マイ製品",        desc: "Neo ピュリファイアーの完全なラインナップをご覧ください。" },
+      { title: "App + AI + IoT", desc: "制御、自動化、AIを手のひらで。" },
+      { title: "お問い合わせ",    desc: "私たちのチームがいつでもお手伝いします。" },
+      { title: "ポリシーと保証",  desc: "ポリシー、利用規約、保証を確認する。" },
+    ],
+    faqItems: [
+      {
+        question: "製品",
+        answer: "Neo ラインには、LED タッチパネル、App、UV LED、プレミアム UF フィルター搭載の浄水器が SMART H2、TOUCH などのモデルで揃っています。仕様とフィルター互換性を確認し、モデルを比較してください。",
+        cta: "Neo ラインを見る",
+      },
+      {
+        question: "App + AI + IoT",
+        answer: "Acquafy App（iOS・Android）は Wi-Fi 経由で浄水器に接続し、リアルタイム監視、フィルター交換アラート、AI 搭載のリモート操作を提供します。",
+        cta: "App を見る",
+      },
+      {
+        question: "Media Network",
+        answer: "Acquafy Media は浄水器に統合されたマルチメディアプラットフォームで、画面にコンテンツ、広告、QR コードを表示し、パートナーと販売代理店に継続収益をもたらします。",
+        cta: "詳しく見る",
+      },
+      {
+        question: "パートナー",
+        answer: "Acquafy パートナープログラムは、商業的サポート、トレーニング、マーケティング資料、継続的なコミッションを提供します。パートナーになるには、パートナーシップページのフォームにご記入ください。",
+        cta: "パートナーになる",
+      },
+      {
+        question: "請求",
+        answer: "請求書、コミッションレポート、注文履歴はパートナーポータルで管理されています。支払いやコミッションに関するご質問は、サポートチームにお問い合わせください。",
+        cta: "サポートに連絡",
+      },
+      {
+        question: "設置とメンテナンス",
+        answer: "設置は Acquafy 認定技術者が行います。予防保守（フィルター交換と UV LED 確認）は App が自動的に監視します。サービスのご予約はチームにご連絡ください。",
+        cta: "サポートに相談",
+      },
     ],
     imgAlt: "Acquafy サポートセンター",
   },
@@ -284,20 +562,51 @@ const T: Record<Lang, {
       { title: "지식 베이스",          desc: "튜토리얼과 유용한 문서." },
       { title: "티켓 열기",            desc: "저희 팀의 지원을 받으세요." },
     ],
-    quickTitle1: "빠른",
-    quickTitle2: "접속",
-    quickItems: [
-      { title: "내 제품",           desc: "Neo 정수기 전체 라인업을 살펴보세요." },
-      { title: "다운로드",          desc: "매뉴얼, 빠른 가이드, 소프트웨어 및 문서." },
-      { title: "튜토리얼 & 동영상", desc: "튜토리얼로 단계별 학습하기." },
-      { title: "자주 묻는 질문",    desc: "가장 자주 묻는 질문에 대한 답변 찾기." },
+    unifiedHeading1: "어떻게",
+    unifiedHeading2: "도와드릴까요?",
+    quickLinks: [
+      { title: "내 제품",          desc: "Neo 정수기 전체 라인업을 살펴보세요." },
+      { title: "App + AI + IoT",  desc: "제어, 자동화, AI를 손안에서." },
+      { title: "문의하기",          desc: "저희 팀이 언제든지 도움을 드립니다." },
       { title: "정책 및 보증",      desc: "정책, 약관 및 보증 정보를 확인하세요." },
+    ],
+    faqItems: [
+      {
+        question: "제품",
+        answer: "Neo 라인에는 LED 터치 패널, App, UV LED, 프리미엄 UF 필터가 장착된 SMART H2, TOUCH 등 다양한 모델의 정수기가 있습니다. 사양과 필터 호환성을 확인하고 모델을 비교하세요.",
+        cta: "Neo 라인 보기",
+      },
+      {
+        question: "App + AI + IoT",
+        answer: "Acquafy App(iOS 및 Android)은 Wi-Fi로 정수기에 연결하여 실시간 모니터링, 필터 교체 알림, AI 통합 원격 제어를 제공합니다.",
+        cta: "App 보기",
+      },
+      {
+        question: "Media Network",
+        answer: "Acquafy Media는 정수기에 통합된 멀티미디어 플랫폼으로, 화면에 콘텐츠, 광고, QR 코드를 표시하여 파트너와 유통업체에 지속적인 수익을 창출합니다.",
+        cta: "자세히 알아보기",
+      },
+      {
+        question: "파트너",
+        answer: "Acquafy 파트너 프로그램은 상업적 지원, 교육, 마케팅 자료 및 지속적인 커미션을 제공합니다. 파트너가 되려면 파트너십 페이지의 양식을 작성하세요.",
+        cta: "파트너 되기",
+      },
+      {
+        question: "청구",
+        answer: "청구서, 커미션 보고서, 주문 내역은 파트너 포털에서 관리됩니다. 결제나 커미션에 관한 문의는 지원 팀에 연락하세요.",
+        cta: "지원팀 연락",
+      },
+      {
+        question: "설치 및 유지보수",
+        answer: "설치는 Acquafy 인증 기술자가 진행합니다. 예방적 유지보수(필터 교체 및 UV LED 점검)는 App이 자동으로 모니터링합니다.",
+        cta: "지원팀과 상담",
+      },
     ],
     imgAlt: "Acquafy 고객 지원 센터",
   },
 };
 
-// ── Static card metadata (icons/sizes only) ───────────────────────────────────
+// ── Static metadata ───────────────────────────────────────────────────────────
 const floatingCardsMeta = [
   { icon: imgIconChat,    aspectW: 30, aspectH: 30   },
   { icon: imgIconCheckin, aspectW: 30, aspectH: 30   },
@@ -305,19 +614,26 @@ const floatingCardsMeta = [
   { icon: imgIconFone,    aspectW: 30, aspectH: 30   },
 ];
 
+const QUICK_LINKS_META = [
+  { icon: "/figma-assets/icon-agua-pura.svg",   aspectW: 642.7, aspectH: 630.7, href: "/linha-neo"             },
+  { icon: "/figma-assets/icon-mobile-b.svg",    aspectW: 21,    aspectH: 30,    href: "/app-ai-iot"            },
+  { icon: imgIconFone,                           aspectW: 30,    aspectH: 30,    href: "/contato"               },
+  { icon: "/figma-assets/icon-certificate.svg", aspectW: 14.17, aspectH: 21.5,  href: "/politicas-privacidade" },
+];
+
+const FAQ_META = [
+  { href: "/linha-neo"  },
+  { href: "/app-ai-iot" },
+  { href: "/neo-media"  },
+  { href: "/parceria"   },
+  { href: "/contato"    },
+  { href: "/contato"    },
+];
+
 // ── Componente ────────────────────────────────────────────────────────────────
-//
-//  Breakpoints (Figma nodes 3764-13853, 3772-13963, 3772-14308, 3772-14411):
-//  • default   (≤ 620px)  "620"  → col centrado; cards empilhados; imagem full-width abaixo
-//  • min-[621px] (621-767px) "767"  → col end; cards c/ mb-[-240px]; imagem 460×390 dir
-//  • md:       (≥ 768px)  "1280" → imagem 471×400 esq + cards grade 2×2 dir
-//  • xl:       (≥ 1280px) "TOTAL"→ texto esq + imagem flex + cards col 270px dir
-//
-//  Sem gap entre main-row e Acesso Rápido (section usa justify-center, sem gap).
-//
 export default function BannerCentralSuporte() {
   const { openChat } = useChatWidget();
-  const [openSection, setOpenSection] = useState<string | null>(null);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
   const { lang } = useLang();
   const t = T[lang];
 
@@ -332,18 +648,10 @@ export default function BannerCentralSuporte() {
       />
 
       {/* ── Linha principal ─────────────────────────────────────── */}
-      {/*
-       * ≤1279px: flex-col (texto em cima, imagem+cards abaixo)
-       * ≥1280px: flex-row flex-wrap (texto esq | imagem+cards dir), alinhados ao bottom
-       */}
       <div className="relative flex flex-col gap-[40px] items-center max-w-[1400px] w-full shrink-0
         xl:flex-row xl:flex-wrap xl:items-end xl:justify-center">
 
         {/* ── Coluna de texto ─────────────────────────────────── */}
-        {/*
-         * ≤1279px: centrado, largura total
-         * ≥1280px: flex-[1_0_0] max-w-[490px], alinhamento esquerdo, pb-[40px] pt-[20px]
-         */}
         <div className="flex flex-col gap-[20px] items-center w-full
           xl:flex-[1_0_0] xl:items-start xl:justify-center xl:self-center xl:max-w-[490px] xl:min-w-[280px] xl:pb-[40px] xl:pt-[20px]">
 
@@ -376,10 +684,6 @@ export default function BannerCentralSuporte() {
           </p>
 
           {/* Botões */}
-          {/*
-           * ≤1279px: justify-center (botões centrados)
-           * ≥1280px: justify-start (botões à esquerda)
-           */}
           <div className="flex flex-wrap gap-[20px] items-center justify-center w-full xl:justify-start">
             <button
               onClick={openChat}
@@ -411,30 +715,12 @@ export default function BannerCentralSuporte() {
         </div>
 
         {/* ── Imagem + Cards ──────────────────────────────────── */}
-        {/*
-         * ≤620px:    flex-col gap-[20px] items-center
-         *            → cards (order-1) acima, imagem (order-2) abaixo full-width
-         * 621-767px: flex-col items-end gap-0
-         *            → cards (order-1) c/ mb-[-240px], imagem (order-2) 460×390 alinhada dir
-         * ≥768px:    flex-row items-end justify-center
-         *            → imagem (order-1) 471×400 esq c/ mr-[-40px], cards (order-2) dir
-         * ≥1280px:   flex-row flex-[1_0_0] items-end max-w-[880px]
-         *            → imagem flex-[1_0_0] c/ mr-[-50px], cards col 270px self-stretch
-         */}
         <div className="flex flex-col gap-[20px] items-center justify-end w-full shrink-0 min-w-[280px]
           min-[621px]:items-end min-[621px]:gap-0
           md:flex-row md:items-end md:justify-center md:gap-0
           xl:flex-[1_0_0] xl:max-w-[880px] xl:min-w-[280px]">
 
           {/* ── Imagem ─────────────────────────────────────────── */}
-          {/*
-           * Container relativo com dimensões exatas do Figma:
-           * ≤620px:    order-2, w-full, aspect-[4096/3477] (preenchimento natural)
-           * 621-767px: order-2, 460×390 fixo (aspect é sobrescrito pelo h explícito)
-           * ≥768px:    order-1, 471×400 fixo, mr-[-40px] sobreposição
-           * ≥1280px:   order-1, flex-[1_0_0], h/w-auto volta ao aspect-ratio, mr-[-50px]
-           * Imagem preenche container com absolute inset-0 object-cover (sem corte)
-           */}
           <div className="relative order-2 w-full aspect-[4096/3477] shrink-0
             min-[621px]:w-[460px] min-[621px]:h-[390px] min-[621px]:max-w-[460px] min-[621px]:shrink-0
             md:order-1 md:w-[471px] md:h-[400px] md:max-w-[471px] md:shrink-0 md:mr-[-40px]
@@ -446,22 +732,11 @@ export default function BannerCentralSuporte() {
             />
           </div>
 
-          {/* ── Cards (self-stretch wrapper, ativo ≥768px) ─────── */}
-          {/*
-           * ≤767px: simples container block
-           * ≥768px: flex flex-[1_0_0] items-end self-stretch (iguala altura da imagem)
-           */}
+          {/* ── Cards wrapper ───────────────────────────────────── */}
           <div className="order-1 w-full
             md:order-2 md:relative md:z-[1] md:flex md:flex-[1_0_0] md:flex-row md:items-end md:self-stretch md:min-w-px
             xl:z-10 xl:max-w-[270px]">
 
-            {/* ── Cards (inner) ───────────────────────────────── */}
-            {/*
-             * ≤620px:    flex-col gap-[20px] w-full
-             * 621-767px: + mb-[-240px] (sobreposição com imagem)
-             * ≥768px:    flex-wrap h-full items-center justify-end pb-[20px] mb-0 (grade 2×2)
-             * ≥1280px:   flex-col flex-nowrap items-end justify-center max-w-[270px] pb-[20px]
-             */}
             <div className="flex flex-col gap-[20px] w-full
               min-[621px]:mb-[-240px]
               md:flex-[1_0_0] md:flex-row md:flex-wrap md:content-center md:h-full md:items-center md:justify-end md:pb-[20px] md:mb-0 md:min-w-px
@@ -500,81 +775,79 @@ export default function BannerCentralSuporte() {
         </div>
       </div>
 
-      {/* ── Acesso Rápido ───────────────────────────────────────── */}
-      {/* Sem gap acima: section usa justify-center (sem justify-between) */}
-      <div className="relative bg-white flex flex-col gap-[20px] items-center justify-center max-w-[1400px] p-[20px] rounded-[16px] w-full shrink-0">
+      {/* ── Seção unificada ─────────────────────────────────────── */}
+      <div className="relative bg-white flex flex-col gap-[32px] items-center justify-center max-w-[1400px] p-[20px] rounded-[16px] w-full shrink-0">
 
-        {/* Título */}
-        <div className="flex flex-col items-start w-full shrink-0">
-          <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] text-center w-full">
-            {t.quickTitle1}{" "}
-            <span className="text-[#0569ff]">{t.quickTitle2}</span>
-          </p>
-        </div>
+        {/* Heading */}
+        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] text-center w-full">
+          {t.unifiedHeading1}{" "}
+          <span className="text-[#0569ff]">{t.unifiedHeading2}</span>
+        </p>
 
-        {/* Grid de itens — links espelhados de AcessoRapidoBK */}
-        <div className="flex flex-wrap gap-[20px] items-start justify-center w-full shrink-0
-          xl:items-stretch">
-          {quickItems.map((item, i) => {
-            const tItem = t.quickItems[i];
-            const inner = (
-              <>
-                <div className="flex flex-col items-center justify-center shrink-0 size-[40px]">
-                  <FigmaIcon src={item.icon} size={30} aspectW={item.aspectW} aspectH={item.aspectH} />
-                </div>
-                <div className="flex flex-col gap-[10px] items-start text-center w-full flex-1">
-                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] w-full">
-                    {tItem.title}
-                  </p>
-                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#333] w-full">
-                    {tItem.desc}
-                  </p>
-                </div>
-                {!item.noPage && (
-                  <FigmaIcon src={imgArrowAccent} size={12} aspectW={11.2} aspectH={8.84} />
-                )}
-              </>
-            );
-
-            if (item.noPage) {
-              return (
-                <div
-                  key={item.href}
-                  className="bg-[#f6f9fe] opacity-60 cursor-default
-                    flex flex-[1_0_0] flex-col gap-[20px] items-center
-                    min-w-[180px] p-[20px] rounded-[16px]">
-                  {inner}
-                </div>
-              );
-            }
-            if (item.sectionId) {
-              return (
-                <button
-                  key={item.href}
-                  onClick={() => setOpenSection(item.sectionId!)}
-                  className="bg-[#f6f9fe] hover:bg-[#eaf0fd] transition-colors
-                    flex flex-[1_0_0] flex-col gap-[20px] items-center
-                    min-w-[180px] p-[20px] rounded-[16px] cursor-pointer text-left">
-                  {inner}
-                </button>
-              );
-            }
+        {/* Quick links */}
+        <div className="flex flex-wrap gap-[20px] items-stretch justify-center w-full">
+          {QUICK_LINKS_META.map((meta, i) => {
+            const link = t.quickLinks[i];
             return (
               <a
-                key={item.href}
-                href={item.href}
+                key={meta.href}
+                href={meta.href}
                 className="bg-[#f6f9fe] hover:bg-[#eaf0fd] transition-colors
                   flex flex-[1_0_0] flex-col gap-[20px] items-center
-                  min-w-[180px] p-[20px] rounded-[16px] cursor-pointer no-underline">
-                {inner}
+                  min-w-[180px] p-[20px] rounded-[16px] cursor-pointer no-underline"
+              >
+                <div className="flex flex-col items-center justify-center shrink-0 size-[40px]">
+                  <FigmaIcon src={meta.icon} size={30} aspectW={meta.aspectW} aspectH={meta.aspectH} />
+                </div>
+                <div className="flex flex-col gap-[10px] items-start text-center w-full flex-1">
+                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] w-full">{link.title}</p>
+                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#333] w-full">{link.desc}</p>
+                </div>
+                <FigmaIcon src={imgArrowAccent} size={12} aspectW={11.2} aspectH={8.84} />
               </a>
             );
           })}
         </div>
 
-      </div>
+        {/* FAQ accordion */}
+        <div className="flex flex-col w-full gap-[4px]">
+          {t.faqItems.map((item, i) => (
+            <div key={i} className="border border-[#e8edf5] rounded-[12px] overflow-hidden">
+              <button
+                onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                className="flex items-center justify-between gap-[16px] w-full px-[20px] py-[16px] text-left cursor-pointer hover:bg-[#f6f9fe] transition-colors"
+              >
+                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91]">
+                  {item.question}
+                </span>
+                <svg
+                  className={`shrink-0 transition-transform duration-150 ${openFaq === i ? "rotate-180" : ""}`}
+                  width="12" height="8" viewBox="0 0 12 8" fill="none"
+                >
+                  <path d="M1 1l5 5 5-5" stroke="#0233c3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </button>
+              {openFaq === i && (
+                <div className="px-[20px] pb-[20px] flex flex-col gap-[16px]">
+                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[15px] leading-[22px] text-[#333]">
+                    {item.answer}
+                  </p>
+                  <a
+                    href={FAQ_META[i].href}
+                    className="self-start bg-[#0233c3] hover:bg-[#002ba8] transition-colors
+                      flex gap-[8px] items-center justify-center
+                      h-[36px] overflow-hidden px-[16px] rounded-[8px] no-underline"
+                  >
+                    <span className="font-['Articulat_CF:Bold'] text-[13px] text-white leading-normal">{item.cta}</span>
+                    <FigmaIcon src={imgArrowWhite} size={8} aspectW={11.2} aspectH={8.84} />
+                  </a>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
 
-      <BKSectionPopup sectionId={openSection} onClose={() => setOpenSection(null)} />
+      </div>
 
     </section>
   );
