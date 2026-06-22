@@ -1393,7 +1393,7 @@ export default function TermosDeUsoConteudo() {
                 Acquafy Corporation
               </p>
               {[
-                ["E-mail", "legal@acquafy.com"],
+                ["E-mail", "info@acquafy.com"],
                 ["Website", "acquafy.com/contato"],
               ].map(([label, value]) => (
                 <div key={label} className="flex gap-[12px] items-center py-[8px] border-b border-[#e0e8ff] last:border-0">

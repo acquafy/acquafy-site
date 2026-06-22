@@ -90,7 +90,7 @@ const T: Record<Lang, {
     intro2: "Esta política está em conformidade com a Lei Geral de Proteção de Dados (LGPD — Lei nº 13.709/2018), o Regulamento Geral de Proteção de Dados da União Europeia (RGPD/GDPR) e demais legislações aplicáveis de privacidade e proteção de dados.",
     s1Title: "1. Controlador de Dados",
     s1Intro: "O controlador responsável pelo tratamento dos seus dados pessoais é:",
-    s1Labels: [["Empresa", "Acquafy Corporation"], ["E-mail", "privacidade@acquafy.com"], ["Website", "acquafy.com"]],
+    s1Labels: [["Empresa", "Acquafy Corporation"], ["E-mail", "info@acquafy.com"], ["Website", "acquafy.com"]],
     s2Title: "2. Dados Pessoais que Coletamos",
     s21Title: "2.1 Dados fornecidos por você",
     s21Items: [
@@ -207,7 +207,7 @@ const T: Record<Lang, {
     s13Title: "13. Contacto e Encarregado de Dados (DPO)",
     s13Intro: "Para quaisquer questões, pedidos ou reclamações relacionadas com esta Política de Privacidade ou com o tratamento dos seus dados pessoais, entre em contacto com o nosso Encarregado de Proteção de Dados:",
     s13DpoTitle: "Encarregado de Proteção de Dados (DPO)",
-    s13Labels: [["E-mail", "privacidade@acquafy.com"], ["Empresa", "Acquafy Corporation"], ["Website", "acquafy.com/contato"]],
+    s13Labels: [["E-mail", "info@acquafy.com"], ["Empresa", "Acquafy Corporation"], ["Website", "acquafy.com/contato"]],
     s13Outro: "Tem também o direito de apresentar reclamação à Autoridade Nacional de Proteção de Dados (ANPD) no Brasil ou à autoridade de supervisão competente no seu país de residência.",
   },
   "pt-pt": {
@@ -231,7 +231,7 @@ const T: Record<Lang, {
     intro2: "Esta política está em conformidade com o Regulamento Geral sobre a Protecção de Dados (RGPD — Regulamento UE 2016/679) e demais legislações aplicáveis de privacidade e protecção de dados.",
     s1Title: "1. Responsável pelo Tratamento",
     s1Intro: "O responsável pelo tratamento dos seus dados pessoais é:",
-    s1Labels: [["Empresa", "Acquafy Corporation"], ["E-mail", "privacidade@acquafy.com"], ["Website", "acquafy.com"]],
+    s1Labels: [["Empresa", "Acquafy Corporation"], ["E-mail", "info@acquafy.com"], ["Website", "acquafy.com"]],
     s2Title: "2. Dados Pessoais que Recolhemos",
     s21Title: "2.1 Dados fornecidos por si",
     s21Items: [
@@ -348,7 +348,7 @@ const T: Record<Lang, {
     s13Title: "13. Contacto e Encarregado de Protecção de Dados (DPO)",
     s13Intro: "Para quaisquer questões, pedidos ou reclamações relacionadas com esta Política de Privacidade ou com o tratamento dos seus dados pessoais, entre em contacto com o nosso Encarregado de Protecção de Dados:",
     s13DpoTitle: "Encarregado de Protecção de Dados (DPO)",
-    s13Labels: [["E-mail", "privacidade@acquafy.com"], ["Empresa", "Acquafy Corporation"], ["Website", "acquafy.com/contato"]],
+    s13Labels: [["E-mail", "info@acquafy.com"], ["Empresa", "Acquafy Corporation"], ["Website", "acquafy.com/contato"]],
     s13Outro: "Tem também o direito de apresentar reclamação à autoridade de controlo competente no seu país de residência, nomeadamente à Comissão Nacional de Protecção de Dados (CNPD) em Portugal.",
   },
   en: {
@@ -372,7 +372,7 @@ const T: Record<Lang, {
     intro2: "This policy complies with the Brazilian General Data Protection Law (LGPD — Law No. 13.709/2018), the European Union General Data Protection Regulation (GDPR) and other applicable privacy and data protection laws.",
     s1Title: "1. Data Controller",
     s1Intro: "The controller responsible for processing your personal data is:",
-    s1Labels: [["Company", "Acquafy Corporation"], ["E-mail", "privacidade@acquafy.com"], ["Website", "acquafy.com"]],
+    s1Labels: [["Company", "Acquafy Corporation"], ["E-mail", "info@acquafy.com"], ["Website", "acquafy.com"]],
     s2Title: "2. Personal Data We Collect",
     s21Title: "2.1 Data you provide",
     s21Items: [
@@ -489,7 +489,7 @@ const T: Record<Lang, {
     s13Title: "13. Contact and Data Protection Officer (DPO)",
     s13Intro: "For any questions, requests or complaints relating to this Privacy Policy or the processing of your personal data, please contact our Data Protection Officer:",
     s13DpoTitle: "Data Protection Officer (DPO)",
-    s13Labels: [["E-mail", "privacidade@acquafy.com"], ["Company", "Acquafy Corporation"], ["Website", "acquafy.com/contato"]],
+    s13Labels: [["E-mail", "info@acquafy.com"], ["Company", "Acquafy Corporation"], ["Website", "acquafy.com/contato"]],
     s13Outro: "You also have the right to lodge a complaint with the Brazilian National Data Protection Authority (ANPD) or the supervisory authority in your country of residence.",
   },
   es: {
@@ -513,7 +513,7 @@ const T: Record<Lang, {
     intro2: "Esta política cumple con la Ley General de Protección de Datos de Brasil (LGPD — Ley N.º 13.709/2018), el Reglamento General de Protección de Datos de la Unión Europea (RGPD/GDPR) y demás legislaciones aplicables de privacidad y protección de datos.",
     s1Title: "1. Responsable del Tratamiento",
     s1Intro: "El responsable del tratamiento de sus datos personales es:",
-    s1Labels: [["Empresa", "Acquafy Corporation"], ["E-mail", "privacidade@acquafy.com"], ["Sitio web", "acquafy.com"]],
+    s1Labels: [["Empresa", "Acquafy Corporation"], ["E-mail", "info@acquafy.com"], ["Sitio web", "acquafy.com"]],
     s2Title: "2. Datos Personales que Recopilamos",
     s21Title: "2.1 Datos proporcionados por usted",
     s21Items: [
@@ -630,7 +630,7 @@ const T: Record<Lang, {
     s13Title: "13. Contacto y Delegado de Protección de Datos (DPO)",
     s13Intro: "Para cualquier pregunta, solicitud o reclamación relacionada con esta Política de Privacidad o con el tratamiento de sus datos personales, póngase en contacto con nuestro Delegado de Protección de Datos:",
     s13DpoTitle: "Delegado de Protección de Datos (DPO)",
-    s13Labels: [["E-mail", "privacidade@acquafy.com"], ["Empresa", "Acquafy Corporation"], ["Sitio web", "acquafy.com/contato"]],
+    s13Labels: [["E-mail", "info@acquafy.com"], ["Empresa", "Acquafy Corporation"], ["Sitio web", "acquafy.com/contato"]],
     s13Outro: "También tiene derecho a presentar una reclamación ante la Autoridad Nacional de Protección de Datos (ANPD) de Brasil o ante la autoridad supervisora competente en su país de residencia.",
   },
   fr: {
@@ -654,7 +654,7 @@ const T: Record<Lang, {
     intro2: "Cette politique est conforme à la loi brésilienne de protection des données (LGPD — Loi n° 13.709/2018), au Règlement général sur la protection des données de l'Union européenne (RGPD/GDPR) et aux autres législations applicables en matière de protection des données.",
     s1Title: "1. Responsable du traitement",
     s1Intro: "Le responsable du traitement de vos données personnelles est :",
-    s1Labels: [["Entreprise", "Acquafy Corporation"], ["E-mail", "privacidade@acquafy.com"], ["Site web", "acquafy.com"]],
+    s1Labels: [["Entreprise", "Acquafy Corporation"], ["E-mail", "info@acquafy.com"], ["Site web", "acquafy.com"]],
     s2Title: "2. Données personnelles que nous collectons",
     s21Title: "2.1 Données que vous nous fournissez",
     s21Items: [
@@ -771,7 +771,7 @@ const T: Record<Lang, {
     s13Title: "13. Contact et Délégué à la protection des données (DPO)",
     s13Intro: "Pour toute question, demande ou réclamation relative à cette Politique de Confidentialité ou au traitement de vos données personnelles, veuillez contacter notre Délégué à la protection des données :",
     s13DpoTitle: "Délégué à la protection des données (DPO)",
-    s13Labels: [["E-mail", "privacidade@acquafy.com"], ["Entreprise", "Acquafy Corporation"], ["Site web", "acquafy.com/contato"]],
+    s13Labels: [["E-mail", "info@acquafy.com"], ["Entreprise", "Acquafy Corporation"], ["Site web", "acquafy.com/contato"]],
     s13Outro: "Vous avez également le droit de déposer une plainte auprès de l'Autorité nationale de protection des données (ANPD) du Brésil ou de l'autorité de contrôle compétente dans votre pays de résidence.",
   },
   de: {
@@ -795,7 +795,7 @@ const T: Record<Lang, {
     intro2: "Diese Richtlinie entspricht dem brasilianischen Datenschutzgesetz (LGPD — Gesetz Nr. 13.709/2018), der Datenschutz-Grundverordnung der Europäischen Union (DSGVO/GDPR) und anderen anwendbaren Datenschutzgesetzen.",
     s1Title: "1. Verantwortlicher",
     s1Intro: "Der Verantwortliche für die Verarbeitung Ihrer personenbezogenen Daten ist:",
-    s1Labels: [["Unternehmen", "Acquafy Corporation"], ["E-Mail", "privacidade@acquafy.com"], ["Website", "acquafy.com"]],
+    s1Labels: [["Unternehmen", "Acquafy Corporation"], ["E-Mail", "info@acquafy.com"], ["Website", "acquafy.com"]],
     s2Title: "2. Personenbezogene Daten, die wir erheben",
     s21Title: "2.1 Von Ihnen bereitgestellte Daten",
     s21Items: [
@@ -912,7 +912,7 @@ const T: Record<Lang, {
     s13Title: "13. Kontakt und Datenschutzbeauftragter (DSB)",
     s13Intro: "Bei Fragen, Anfragen oder Beschwerden zu dieser Datenschutzrichtlinie oder zur Verarbeitung Ihrer personenbezogenen Daten wenden Sie sich bitte an unseren Datenschutzbeauftragten:",
     s13DpoTitle: "Datenschutzbeauftragter (DSB)",
-    s13Labels: [["E-Mail", "privacidade@acquafy.com"], ["Unternehmen", "Acquafy Corporation"], ["Website", "acquafy.com/contato"]],
+    s13Labels: [["E-Mail", "info@acquafy.com"], ["Unternehmen", "Acquafy Corporation"], ["Website", "acquafy.com/contato"]],
     s13Outro: "Sie haben auch das Recht, eine Beschwerde bei der brasilianischen Nationalen Datenschutzbehörde (ANPD) oder der zuständigen Aufsichtsbehörde in Ihrem Wohnsitzland einzureichen.",
   },
   it: {
@@ -936,7 +936,7 @@ const T: Record<Lang, {
     intro2: "Questa informativa è conforme alla Legge Generale sulla Protezione dei Dati del Brasile (LGPD — Legge n. 13.709/2018), al Regolamento Generale sulla Protezione dei Dati dell'Unione Europea (RGPD/GDPR) e alle altre normative applicabili in materia di privacy e protezione dei dati.",
     s1Title: "1. Titolare del trattamento",
     s1Intro: "Il titolare responsabile del trattamento dei tuoi dati personali è:",
-    s1Labels: [["Azienda", "Acquafy Corporation"], ["E-mail", "privacidade@acquafy.com"], ["Sito web", "acquafy.com"]],
+    s1Labels: [["Azienda", "Acquafy Corporation"], ["E-mail", "info@acquafy.com"], ["Sito web", "acquafy.com"]],
     s2Title: "2. Dati personali che raccogliamo",
     s21Title: "2.1 Dati che fornisci tu",
     s21Items: [
@@ -1053,7 +1053,7 @@ const T: Record<Lang, {
     s13Title: "13. Contatto e Responsabile della Protezione dei Dati (DPO)",
     s13Intro: "Per qualsiasi domanda, richiesta o reclamo relativo a questa Informativa sulla Privacy o al trattamento dei tuoi dati personali, ti preghiamo di contattare il nostro Responsabile della Protezione dei Dati:",
     s13DpoTitle: "Responsabile della Protezione dei Dati (DPO)",
-    s13Labels: [["E-mail", "privacidade@acquafy.com"], ["Azienda", "Acquafy Corporation"], ["Sito web", "acquafy.com/contato"]],
+    s13Labels: [["E-mail", "info@acquafy.com"], ["Azienda", "Acquafy Corporation"], ["Sito web", "acquafy.com/contato"]],
     s13Outro: "Hai anche il diritto di presentare un reclamo all'Autorità Nazionale per la Protezione dei Dati (ANPD) del Brasile o all'autorità di vigilanza competente nel tuo paese di residenza.",
   },
   zh: {
@@ -1077,7 +1077,7 @@ const T: Record<Lang, {
     intro2: "本政策遵守巴西《通用数据保护法》（LGPD — 第13.709/2018号法律）、欧盟《通用数据保护条例》（GDPR）及其他适用的隐私和数据保护法律。",
     s1Title: "1. 数据控制者",
     s1Intro: "负责处理您个人数据的控制者为：",
-    s1Labels: [["公司", "Acquafy Corporation"], ["电子邮件", "privacidade@acquafy.com"], ["网站", "acquafy.com"]],
+    s1Labels: [["公司", "Acquafy Corporation"], ["电子邮件", "info@acquafy.com"], ["网站", "acquafy.com"]],
     s2Title: "2. 我们收集的个人数据",
     s21Title: "2.1 您主动提供的数据",
     s21Items: [
@@ -1194,7 +1194,7 @@ const T: Record<Lang, {
     s13Title: "13. 联系方式及数据保护官（DPO）",
     s13Intro: "如您对本隐私政策或个人数据处理有任何疑问、请求或投诉，请联系我们的数据保护官：",
     s13DpoTitle: "数据保护官（DPO）",
-    s13Labels: [["电子邮件", "privacidade@acquafy.com"], ["公司", "Acquafy Corporation"], ["网站", "acquafy.com/contato"]],
+    s13Labels: [["电子邮件", "info@acquafy.com"], ["公司", "Acquafy Corporation"], ["网站", "acquafy.com/contato"]],
     s13Outro: "您也有权向巴西国家数据保护局（ANPD）或您居住国的主管监管机构提出投诉。",
   },
   ja: {
@@ -1218,7 +1218,7 @@ const T: Record<Lang, {
     intro2: "本ポリシーは、ブラジルの個人情報保護法（LGPD — 法律第13.709/2018号）、欧州連合の一般データ保護規則（GDPR）、およびその他の適用されるプライバシーおよびデータ保護法に準拠しています。",
     s1Title: "1. データ管理者",
     s1Intro: "お客様の個人データの処理に責任を負うデータ管理者は以下の通りです：",
-    s1Labels: [["会社名", "Acquafy Corporation"], ["メール", "privacidade@acquafy.com"], ["ウェブサイト", "acquafy.com"]],
+    s1Labels: [["会社名", "Acquafy Corporation"], ["メール", "info@acquafy.com"], ["ウェブサイト", "acquafy.com"]],
     s2Title: "2. 収集する個人データ",
     s21Title: "2.1 お客様が提供するデータ",
     s21Items: [
@@ -1335,7 +1335,7 @@ const T: Record<Lang, {
     s13Title: "13. お問い合わせおよびデータ保護責任者（DPO）",
     s13Intro: "本プライバシーポリシーまたはお客様の個人データの処理に関するご質問、ご要望、苦情については、当社のデータ保護責任者にご連絡ください：",
     s13DpoTitle: "データ保護責任者（DPO）",
-    s13Labels: [["メール", "privacidade@acquafy.com"], ["会社名", "Acquafy Corporation"], ["ウェブサイト", "acquafy.com/contato"]],
+    s13Labels: [["メール", "info@acquafy.com"], ["会社名", "Acquafy Corporation"], ["ウェブサイト", "acquafy.com/contato"]],
     s13Outro: "ブラジルの国家データ保護局（ANPD）またはお客様のお住まいの国の監督当局に苦情を申し立てる権利もあります。",
   },
   ko: {
@@ -1359,7 +1359,7 @@ const T: Record<Lang, {
     intro2: "본 방침은 브라질 개인정보 보호법(LGPD — 법률 제13.709/2018호), 유럽연합 일반 데이터 보호 규정(GDPR) 및 기타 적용 가능한 개인정보 보호법을 준수합니다.",
     s1Title: "1. 데이터 컨트롤러",
     s1Intro: "귀하의 개인 데이터 처리를 책임지는 컨트롤러는 다음과 같습니다:",
-    s1Labels: [["회사", "Acquafy Corporation"], ["이메일", "privacidade@acquafy.com"], ["웹사이트", "acquafy.com"]],
+    s1Labels: [["회사", "Acquafy Corporation"], ["이메일", "info@acquafy.com"], ["웹사이트", "acquafy.com"]],
     s2Title: "2. 당사가 수집하는 개인 데이터",
     s21Title: "2.1 귀하가 제공하는 데이터",
     s21Items: [
@@ -1476,7 +1476,7 @@ const T: Record<Lang, {
     s13Title: "13. 연락처 및 개인정보 보호 책임자 (DPO)",
     s13Intro: "이 개인정보 처리방침 또는 귀하의 개인 데이터 처리와 관련된 질문, 요청 또는 불만이 있으시면 개인정보 보호 책임자에게 연락해 주세요:",
     s13DpoTitle: "개인정보 보호 책임자 (DPO)",
-    s13Labels: [["이메일", "privacidade@acquafy.com"], ["회사", "Acquafy Corporation"], ["웹사이트", "acquafy.com/contato"]],
+    s13Labels: [["이메일", "info@acquafy.com"], ["회사", "Acquafy Corporation"], ["웹사이트", "acquafy.com/contato"]],
     s13Outro: "브라질 국가 데이터 보호 당국(ANPD) 또는 거주 국가의 관할 감독 기관에 불만을 제기할 권리도 있습니다.",
   },
 };
@@ -1700,8 +1700,8 @@ export default function PoliticasPrivacidadeContent() {
             </div>
             <P>
               {t.s9Outro1}{" "}
-              <a href="mailto:privacidade@acquafy.com" className="text-[#0569ff] underline underline-offset-2">
-                privacidade@acquafy.com
+              <a href="mailto:info@acquafy.com" className="text-[#0569ff] underline underline-offset-2">
+                info@acquafy.com
               </a>
               {t.s9Outro2}
             </P>
@@ -1718,8 +1718,8 @@ export default function PoliticasPrivacidadeContent() {
             <P>{t.s11Text1}</P>
             <P>
               {t.s11Text2}{" "}
-              <a href="mailto:privacidade@acquafy.com" className="text-[#0569ff] underline underline-offset-2">
-                privacidade@acquafy.com
+              <a href="mailto:info@acquafy.com" className="text-[#0569ff] underline underline-offset-2">
+                info@acquafy.com
               </a>
               .
             </P>

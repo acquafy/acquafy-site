@@ -198,11 +198,11 @@ export default function FaleComEquipeSuporte() {
               </div>
             </div>
             <a
-              href="mailto:suporte@acquafy.com"
+              href="mailto:help@acquafy.com"
               className="mt-auto bg-white border border-[#0233c3] hover:bg-[#0233c3] group transition-colors flex items-center justify-center min-h-[30px] overflow-hidden px-[20px] py-[10px] rounded-[8px]"
             >
               <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] group-hover:text-white transition-colors text-center">
-                suporte@acquafy.com
+                help@acquafy.com
               </span>
             </a>
           </div>

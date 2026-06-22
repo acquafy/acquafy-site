@@ -215,8 +215,8 @@ export default function CtaBK() {
       title: t.emailTitle,
       desc: t.emailDesc,
       badge: null,
-      action: "suporte@acquafy.com",
-      href: "mailto:suporte@acquafy.com",
+      action: "help@acquafy.com",
+      href: "mailto:help@acquafy.com",
     },
     {
       icon: imgTimeIcon,
