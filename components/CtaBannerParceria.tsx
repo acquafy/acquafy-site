@@ -102,7 +102,7 @@ export default function CtaBannerParceria() {
               {t.btnPresentation}
             </BtnAzulOutArrow>
           </Link>
-          <Link href="/contato" className="flex-1 min-w-[200px]">
+          <Link href="#modelos-parceria" className="flex-1 min-w-[200px]">
             <BtnAzulBaseArrow className="w-full min-h-[56px]">
               {t.btnPartner}
             </BtnAzulBaseArrow>
