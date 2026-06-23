@@ -22,32 +22,32 @@ type NavItem = {
 // ── Non-translatable nav structure (hrefs, icon assets, icon bg) ─────────
 const NAV_STRUCTURE = [
   {
-    href:  "/plataforma",
-    extra: ["/app-ai-iot", "/central-de-suporte", "/tecnologia"],
+    href:  "/platform",
+    extra: ["/app-ai-iot", "/support-center", "/technology"],
     dropdown: [
-      { href: "/plataforma",         bg: "#0569ff", icon: "/figma-assets/icon-planetweb-a.svg"         },
-      { href: "/app-ai-iot",         bg: "#6e54ef", icon: "/figma-assets/icon-ai-30px-e.svg"           },
-      { href: "/central-de-suporte", bg: "#ffa920", icon: "/figma-assets/icon-fone-30px.svg"           },
-      { href: "/tecnologia",         bg: "#36ae5c", icon: "/figma-assets/icon-globe-sust.svg"          },
+      { href: "/platform",       bg: "#0569ff", icon: "/figma-assets/icon-planetweb-a.svg"         },
+      { href: "/app-ai-iot",     bg: "#6e54ef", icon: "/figma-assets/icon-ai-30px-e.svg"           },
+      { href: "/support-center", bg: "#ffa920", icon: "/figma-assets/icon-fone-30px.svg"           },
+      { href: "/technology",     bg: "#36ae5c", icon: "/figma-assets/icon-globe-sust.svg"          },
     ],
   },
   {
-    href:  "/linha-neo",
-    extra: ["/neo-media", "/filtros", "/compare"],
+    href:  "/neo-line",
+    extra: ["/neo-media", "/filters", "/compare"],
     dropdown: [
-      { href: "/linha-neo", bg: "#0569ff", icon: "/figma-assets/icon-agua-pura-30px.svg" },
+      { href: "/neo-line",  bg: "#0569ff", icon: "/figma-assets/icon-agua-pura-30px.svg" },
       { href: "/neo-media", bg: "#6e54ef", icon: "/figma-assets/icon-media.svg"          },
-      { href: "/filtros",   bg: "#ffa920", icon: "/figma-assets/icon-filtros-40px.svg"  },
+      { href: "/filters",   bg: "#ffa920", icon: "/figma-assets/icon-filtros-40px.svg"  },
       { href: "/compare",   bg: "#36ae5c", icon: "/figma-assets/icon-check-30px.svg"    },
     ],
   },
   {
-    href:  "/sobre",
-    extra: ["/expansao-global", "/contato"],
+    href:  "/about",
+    extra: ["/global-expansion", "/contact"],
     dropdown: [
-      { href: "/sobre",           bg: "#0569ff", icon: "/figma-assets/icon-pessoas-foco-cliente.svg" },
-      { href: "/expansao-global", bg: "#6e54ef", icon: "/figma-assets/icon-globe-30px-b.svg"         },
-      { href: "/contato",         bg: "#ffa920", icon: "/figma-assets/icon-phone-a.svg"              },
+      { href: "/about",            bg: "#0569ff", icon: "/figma-assets/icon-pessoas-foco-cliente.svg" },
+      { href: "/global-expansion", bg: "#6e54ef", icon: "/figma-assets/icon-globe-30px-b.svg"         },
+      { href: "/contact",          bg: "#ffa920", icon: "/figma-assets/icon-phone-a.svg"              },
     ],
   },
   { href: "/checkin", extra: [], dropdown: [] },
@@ -58,41 +58,41 @@ type NavTxt = { label: string; dd: { label: string; desc: string; cta: string }[
 const NAV_TEXT: Record<Lang, NavTxt[]> = {
   pt: [
     { label: "Plataforma", dd: [
-      { label: "Plataforma Acquafy",            desc: "Gestão inteligente da água com App, AI e IoT totalmente integrados.",       cta: "Conheça a Plataforma"  },
-      { label: "App + AI + IoT",                desc: "Controle remoto, automação e inteligência artificial na palma da mão.",     cta: "Ver o App"             },
-      { label: "Central de Suporte",            desc: "Suporte técnico especializado para manter sua Acquafy sempre operando.",    cta: "Acessar Suporte"       },
-      { label: "Tecnologia & Sustentabilidade", desc: "Inovação de ponta aliada a um impacto ambiental positivo.",                 cta: "Saiba mais"            },
+      { label: "Plataforma Acquafy",            desc: "Gestao inteligente da agua com App, AI e IoT totalmente integrados.",       cta: "Conheca a Plataforma"  },
+      { label: "App + AI + IoT",                desc: "Controle remoto, automacao e inteligencia artificial na palma da mao.",     cta: "Ver o App"             },
+      { label: "Central de Suporte",            desc: "Suporte tecnico especializado para manter sua Acquafy sempre operando.",    cta: "Acessar Suporte"       },
+      { label: "Tecnologia & Sustentabilidade", desc: "Inovacao de ponta aliada a um impacto ambiental positivo.",                 cta: "Saiba mais"            },
     ]},
     { label: "Produtos", dd: [
       { label: "Linha Neo",            desc: "Purificadores com Painel LED Touch, App, UV LED e filtros UF premium.",              cta: "Ver Linha Neo"   },
-      { label: "Acquafy Media",        desc: "Comunicação e conteúdo multimídia integrados ao purificador.",                       cta: "Ver Media"       },
-      { label: "Filtros & Acessórios", desc: "Reposição inteligente com rastreabilidade e qualidade garantida.",                   cta: "Ver Filtros"     },
+      { label: "Acquafy Media",        desc: "Comunicacao e conteudo multimidia integrados ao purificador.",                       cta: "Ver Media"       },
+      { label: "Filtros & Acessorios", desc: "Reposicao inteligente com rastreabilidade e qualidade garantida.",                   cta: "Ver Filtros"     },
       { label: "Compare Produtos",     desc: "Encontre o modelo ideal comparando specs, capacidade e tecnologia.",                 cta: "Comparar Agora"  },
     ]},
     { label: "Empresa", dd: [
-      { label: "Sobre Nós",       desc: "Fundada nos EUA em 2020 e presente em mais de 180 países.",   cta: "Nossa História" },
-      { label: "Expansão Global", desc: "Operação 100% global com modelo de receita 100% recorrente.", cta: "Ver Expansão"   },
-      { label: "Contatos",        desc: "Fale com nossa equipe e encontre o distribuidor mais próximo.", cta: "Falar Conosco" },
+      { label: "Sobre Nos",       desc: "Fundada nos EUA em 2020 e presente em mais de 180 paises.",   cta: "Nossa Historia" },
+      { label: "Expansao Global", desc: "Operacao 100% global com modelo de receita 100% recorrente.", cta: "Ver Expansao"   },
+      { label: "Contatos",        desc: "Fale com nossa equipe e encontre o distribuidor mais proximo.", cta: "Falar Conosco" },
     ]},
     { label: "Comprar Agora", dd: [] },
   ],
   "pt-pt": [
     { label: "Plataforma", dd: [
-      { label: "Plataforma Acquafy",            desc: "Gestão inteligente da água com Aplicação, IA e IoT totalmente integrados.",       cta: "Conheça a Plataforma"  },
-      { label: "App + AI + IoT",                desc: "Controlo remoto, automatização e inteligência artificial na palma da mão.",        cta: "Ver a Aplicação"       },
-      { label: "Central de Suporte",            desc: "Suporte técnico especializado para manter a sua Acquafy sempre em funcionamento.", cta: "Aceder ao Suporte"     },
-      { label: "Tecnologia & Sustentabilidade", desc: "Inovação de ponta aliada a um impacto ambiental positivo.",                        cta: "Saber mais"            },
+      { label: "Plataforma Acquafy",            desc: "Gestao inteligente da agua com Aplicacao, IA e IoT totalmente integrados.",       cta: "Conheca a Plataforma"  },
+      { label: "App + AI + IoT",                desc: "Controlo remoto, automatizacao e inteligencia artificial na palma da mao.",        cta: "Ver a Aplicacao"       },
+      { label: "Central de Suporte",            desc: "Suporte tecnico especializado para manter a sua Acquafy sempre em funcionamento.", cta: "Aceder ao Suporte"     },
+      { label: "Tecnologia & Sustentabilidade", desc: "Inovacao de ponta aliada a um impacto ambiental positivo.",                        cta: "Saber mais"            },
     ]},
     { label: "Produtos", dd: [
-      { label: "Linha Neo",            desc: "Purificadores com Painel LED Touch, Aplicação, UV LED e filtros UF premium.",              cta: "Ver Linha Neo"   },
-      { label: "Acquafy Media",        desc: "Comunicação e conteúdo multimédia integrados ao purificador.",                             cta: "Ver Media"       },
-      { label: "Filtros & Acessórios", desc: "Reposição inteligente com rastreabilidade e qualidade garantida.",                         cta: "Ver Filtros"     },
-      { label: "Comparar Produtos",    desc: "Encontre o modelo ideal comparando especificações, capacidade e tecnologia.",              cta: "Comparar Agora"  },
+      { label: "Linha Neo",            desc: "Purificadores com Painel LED Touch, Aplicacao, UV LED e filtros UF premium.",              cta: "Ver Linha Neo"   },
+      { label: "Acquafy Media",        desc: "Comunicacao e conteudo multimidia integrados ao purificador.",                             cta: "Ver Media"       },
+      { label: "Filtros & Acessorios", desc: "Reposicao inteligente com rastreabilidade e qualidade garantida.",                         cta: "Ver Filtros"     },
+      { label: "Comparar Produtos",    desc: "Encontre o modelo ideal comparando especificacoes, capacidade e tecnologia.",              cta: "Comparar Agora"  },
     ]},
     { label: "Empresa", dd: [
-      { label: "Sobre Nós",       desc: "Fundada nos EUA em 2020 e presente em mais de 180 países.",          cta: "A Nossa História" },
-      { label: "Expansão Global", desc: "Operação 100% global com modelo de receita 100% recorrente.",          cta: "Ver Expansão"     },
-      { label: "Contactos",       desc: "Fale com a nossa equipa e encontre o distribuidor mais próximo.",       cta: "Falar Connosco"   },
+      { label: "Sobre Nos",       desc: "Fundada nos EUA em 2020 e presente em mais de 180 paises.",          cta: "A Nossa Historia" },
+      { label: "Expansao Global", desc: "Operacao 100% global com modelo de receita 100% recorrente.",          cta: "Ver Expansao"     },
+      { label: "Contactos",       desc: "Fale com a nossa equipa e encontre o distribuidor mais proximo.",       cta: "Falar Connosco"   },
     ]},
     { label: "Comprar Agora", dd: [] },
   ],
@@ -116,63 +116,83 @@ const NAV_TEXT: Record<Lang, NavTxt[]> = {
     ]},
     { label: "Buy now", dd: [] },
   ],
+  "en-gb": [
+    { label: "Platform", dd: [
+      { label: "Acquafy Platform",          desc: "Intelligent water management with fully integrated App, AI and IoT.",               cta: "Explore the Platform" },
+      { label: "App + AI + IoT",            desc: "Remote control, automation and artificial intelligence in the palm of your hand.",  cta: "See the App"          },
+      { label: "Support Center",            desc: "Specialized technical support to keep your Acquafy always running.",                cta: "Access Support"       },
+      { label: "Technology & Sustainability", desc: "Cutting-edge innovation combined with a positive environmental impact.",          cta: "Learn more"           },
+    ]},
+    { label: "Products", dd: [
+      { label: "Neo Line",              desc: "Purifiers with LED Touch Panel, App, UV LED and premium UF filters.",                   cta: "See Neo Line"    },
+      { label: "Acquafy Media",         desc: "Multimedia communication and content integrated into the purifier.",                    cta: "See Media"       },
+      { label: "Filters & Accessories", desc: "Smart replacement with traceability and guaranteed quality.",                           cta: "See Filters"     },
+      { label: "Compare Products",      desc: "Find the ideal model by comparing specs, capacity and technology.",                     cta: "Compare Now"     },
+    ]},
+    { label: "Company", dd: [
+      { label: "About Us",        desc: "Founded in the USA in 2020 and present in more than 180 countries.", cta: "Our Story"    },
+      { label: "Global Expansion", desc: "100% global operation with a 100% recurring revenue model.",      cta: "See Expansion" },
+      { label: "Contact",         desc: "Talk to our team and find the nearest distributor.",               cta: "Talk to Us"   },
+    ]},
+    { label: "Buy now", dd: [] },
+  ],
   es: [
     { label: "Plataforma", dd: [
-      { label: "Plataforma Acquafy",         desc: "Gestión inteligente del agua con App, IA e IoT totalmente integrados.",            cta: "Conoce la Plataforma"  },
-      { label: "App + IA + IoT",             desc: "Control remoto, automatización e inteligencia artificial en la palma de tu mano.", cta: "Ver la App"             },
-      { label: "Central de Soporte",         desc: "Soporte técnico especializado para mantener tu Acquafy siempre operando.",         cta: "Acceder al Soporte"    },
-      { label: "Tecnología & Sostenibilidad", desc: "Innovación de vanguardia aliada a un impacto ambiental positivo.",               cta: "Saber más"              },
+      { label: "Plataforma Acquafy",         desc: "Gestion inteligente del agua con App, IA e IoT totalmente integrados.",            cta: "Conoce la Plataforma"  },
+      { label: "App + IA + IoT",             desc: "Control remoto, automatizacion e inteligencia artificial en la palma de tu mano.", cta: "Ver la App"             },
+      { label: "Central de Soporte",         desc: "Soporte tecnico especializado para mantener tu Acquafy siempre operando.",         cta: "Acceder al Soporte"    },
+      { label: "Tecnologia & Sostenibilidad", desc: "Innovacion de vanguardia aliada a un impacto ambiental positivo.",               cta: "Saber mas"              },
     ]},
     { label: "Productos", dd: [
-      { label: "Línea Neo",            desc: "Purificadores con Panel LED Touch, App, UV LED y filtros UF premium.",                   cta: "Ver Línea Neo"      },
-      { label: "Acquafy Media",        desc: "Comunicación y contenido multimedia integrados al purificador.",                         cta: "Ver Media"          },
-      { label: "Filtros y Accesorios", desc: "Reposición inteligente con trazabilidad y calidad garantizada.",                        cta: "Ver Filtros"        },
-      { label: "Comparar Productos",   desc: "Encuentra el modelo ideal comparando specs, capacidad y tecnología.",                   cta: "Comparar Ahora"     },
+      { label: "Linea Neo",            desc: "Purificadores con Panel LED Touch, App, UV LED y filtros UF premium.",                   cta: "Ver Linea Neo"      },
+      { label: "Acquafy Media",        desc: "Comunicacion y contenido multimedia integrados al purificador.",                         cta: "Ver Media"          },
+      { label: "Filtros y Accesorios", desc: "Reposicion inteligente con trazabilidad y calidad garantizada.",                        cta: "Ver Filtros"        },
+      { label: "Comparar Productos",   desc: "Encuentra el modelo ideal comparando specs, capacidad y tecnologia.",                   cta: "Comparar Ahora"     },
     ]},
     { label: "Empresa", dd: [
-      { label: "Sobre Nosotros",   desc: "Fundada en EE.UU. en 2020 y presente en más de 180 países.",        cta: "Nuestra Historia" },
-      { label: "Expansión Global", desc: "Operación 100% global con modelo de ingresos 100% recurrente.",   cta: "Ver Expansión"    },
-      { label: "Contacto",         desc: "Habla con nuestro equipo y encuentra el distribuidor más cercano.", cta: "Contáctanos"     },
+      { label: "Sobre Nosotros",   desc: "Fundada en EE.UU. en 2020 y presente en mas de 180 paises.",        cta: "Nuestra Historia" },
+      { label: "Expansion Global", desc: "Operacion 100% global con modelo de ingresos 100% recurrente.",   cta: "Ver Expansion"    },
+      { label: "Contacto",         desc: "Habla con nuestro equipo y encuentra el distribuidor mas cercano.", cta: "Contactanos"     },
     ]},
     { label: "Comprar ahora", dd: [] },
   ],
   fr: [
     { label: "Plateforme", dd: [
-      { label: "Plateforme Acquafy",          desc: "Gestion intelligente de l'eau avec App, IA et IoT entièrement intégrés.",              cta: "Découvrir la Plateforme" },
-      { label: "App + AI + IoT",              desc: "Contrôle à distance, automatisation et intelligence artificielle au bout des doigts.",  cta: "Voir l'App"              },
-      { label: "Centre de Support",           desc: "Assistance technique spécialisée pour que votre Acquafy fonctionne toujours.",         cta: "Accéder au Support"      },
-      { label: "Technologie & Durabilité",    desc: "Innovation de pointe alliée à un impact environnemental positif.",                     cta: "En savoir plus"          },
+      { label: "Plateforme Acquafy",          desc: "Gestion intelligente de l'eau avec App, IA et IoT entierement integres.",              cta: "Decouvrir la Plateforme" },
+      { label: "App + AI + IoT",              desc: "Controle a distance, automatisation et intelligence artificielle au bout des doigts.",  cta: "Voir l'App"              },
+      { label: "Centre de Support",           desc: "Assistance technique specialisee pour que votre Acquafy fonctionne toujours.",         cta: "Acceder au Support"      },
+      { label: "Technologie & Durabilite",    desc: "Innovation de pointe alliee a un impact environnemental positif.",                     cta: "En savoir plus"          },
     ]},
     { label: "Produits", dd: [
       { label: "Gamme Neo",               desc: "Purificateurs avec panneau LED tactile, App, UV LED et filtres UF premium.",               cta: "Voir la Gamme Neo"   },
-      { label: "Acquafy Media",           desc: "Communication multimédia et contenu intégrés au purificateur.",                            cta: "Voir Media"          },
-      { label: "Filtres & Accessoires",   desc: "Remplacement intelligent avec traçabilité et qualité garantie.",                           cta: "Voir les Filtres"    },
-      { label: "Comparer les Produits",   desc: "Trouvez le modèle idéal en comparant specs, capacité et technologie.",                    cta: "Comparer"            },
+      { label: "Acquafy Media",           desc: "Communication multimedia et contenu integres au purificateur.",                            cta: "Voir Media"          },
+      { label: "Filtres & Accessoires",   desc: "Remplacement intelligent avec tracabilite et qualite garantie.",                           cta: "Voir les Filtres"    },
+      { label: "Comparer les Produits",   desc: "Trouvez le modele ideal en comparant specs, capacite et technologie.",                    cta: "Comparer"            },
     ]},
     { label: "Entreprise", dd: [
-      { label: "À propos",           desc: "Fondée aux États-Unis en 2020 et présente dans plus de 180 pays.",    cta: "Notre Histoire"   },
-      { label: "Expansion Mondiale", desc: "Opération 100 % mondiale avec un modèle de revenus 100 % récurrent.", cta: "Voir l'Expansion" },
-      { label: "Contact",            desc: "Parlez à notre équipe et trouvez le distributeur le plus proche.",    cta: "Nous Contacter"   },
+      { label: "A propos",           desc: "Fondee aux Etats-Unis en 2020 et presente dans plus de 180 pays.",    cta: "Notre Histoire"   },
+      { label: "Expansion Mondiale", desc: "Operation 100 % mondiale avec un modele de revenus 100 % recurrent.", cta: "Voir l'Expansion" },
+      { label: "Contact",            desc: "Parlez a notre equipe et trouvez le distributeur le plus proche.",    cta: "Nous Contacter"   },
     ]},
     { label: "Acheter maintenant", dd: [] },
   ],
   de: [
     { label: "Plattform", dd: [
-      { label: "Acquafy Plattform",           desc: "Intelligentes Wassermanagement mit vollständig integrierter App, KI und IoT.",          cta: "Plattform entdecken"  },
-      { label: "App + AI + IoT",              desc: "Fernsteuerung, Automatisierung und künstliche Intelligenz in Ihrer Hand.",              cta: "App ansehen"          },
-      { label: "Support-Center",              desc: "Spezialisierter technischer Support, damit Ihr Acquafy immer läuft.",                   cta: "Support aufrufen"     },
+      { label: "Acquafy Plattform",           desc: "Intelligentes Wassermanagement mit vollstandig integrierter App, KI und IoT.",          cta: "Plattform entdecken"  },
+      { label: "App + AI + IoT",              desc: "Fernsteuerung, Automatisierung und kunstliche Intelligenz in Ihrer Hand.",              cta: "App ansehen"          },
+      { label: "Support-Center",              desc: "Spezialisierter technischer Support, damit Ihr Acquafy immer lauft.",                   cta: "Support aufrufen"     },
       { label: "Technologie & Nachhaltigkeit", desc: "Modernste Innovation kombiniert mit positivem Umwelteinfluss.",                       cta: "Mehr erfahren"        },
     ]},
     { label: "Produkte", dd: [
       { label: "Neo-Linie",              desc: "Purifier mit LED-Touch-Panel, App, UV-LED und Premium-UF-Filtern.",                          cta: "Neo-Linie ansehen"  },
       { label: "Acquafy Media",          desc: "Multimedia-Kommunikation und Inhalte, integriert in den Purifier.",                         cta: "Media ansehen"      },
-      { label: "Filter & Zubehör",       desc: "Intelligenter Austausch mit Rückverfolgbarkeit und garantierter Qualität.",                  cta: "Filter ansehen"     },
-      { label: "Produkte vergleichen",   desc: "Finden Sie das ideale Modell durch den Vergleich von Specs, Kapazität und Technologie.",    cta: "Jetzt vergleichen"  },
+      { label: "Filter & Zubehor",       desc: "Intelligenter Austausch mit Ruckverfolgbarkeit und garantierter Qualitat.",                  cta: "Filter ansehen"     },
+      { label: "Produkte vergleichen",   desc: "Finden Sie das ideale Modell durch den Vergleich von Specs, Kapazitat und Technologie.",    cta: "Jetzt vergleichen"  },
     ]},
     { label: "Unternehmen", dd: [
-      { label: "Über uns",          desc: "2020 in den USA gegründet und in mehr als 180 Ländern vertreten.",        cta: "Unsere Geschichte" },
+      { label: "Uber uns",          desc: "2020 in den USA gegrundet und in mehr als 180 Landern vertreten.",        cta: "Unsere Geschichte" },
       { label: "Globale Expansion", desc: "100 % globaler Betrieb mit einem 100 % wiederkehrenden Umsatzmodell.", cta: "Expansion ansehen" },
-      { label: "Kontakt",           desc: "Sprechen Sie mit unserem Team und finden Sie den nächstgelegenen Händler.", cta: "Kontakt aufnehmen" },
+      { label: "Kontakt",           desc: "Sprechen Sie mit unserem Team und finden Sie den nachstgelegenen Handler.", cta: "Kontakt aufnehmen" },
     ]},
     { label: "Jetzt kaufen", dd: [] },
   ],
@@ -181,18 +201,18 @@ const NAV_TEXT: Record<Lang, NavTxt[]> = {
       { label: "Piattaforma Acquafy",         desc: "Gestione intelligente dell'acqua con App, IA e IoT completamente integrati.",           cta: "Scopri la Piattaforma" },
       { label: "App + AI + IoT",              desc: "Controllo remoto, automazione e intelligenza artificiale nel palmo della mano.",        cta: "Vedi l'App"            },
       { label: "Centro Assistenza",           desc: "Supporto tecnico specializzato per mantenere il tuo Acquafy sempre operativo.",         cta: "Accedi all'Assistenza" },
-      { label: "Tecnologia & Sostenibilità",  desc: "Innovazione all'avanguardia unita a un impatto ambientale positivo.",                   cta: "Scopri di più"         },
+      { label: "Tecnologia & Sostenibilita",  desc: "Innovazione all'avanguardia unita a un impatto ambientale positivo.",                   cta: "Scopri di piu"         },
     ]},
     { label: "Prodotti", dd: [
       { label: "Linea Neo",              desc: "Purificatori con pannello LED Touch, App, UV LED e filtri UF premium.",                      cta: "Vedi la Linea Neo"  },
       { label: "Acquafy Media",          desc: "Comunicazione multimediale e contenuti integrati nel purificatore.",                        cta: "Vedi Media"         },
-      { label: "Filtri & Accessori",     desc: "Sostituzione intelligente con tracciabilità e qualità garantita.",                           cta: "Vedi i Filtri"      },
-      { label: "Confronta Prodotti",     desc: "Trova il modello ideale confrontando specs, capacità e tecnologia.",                        cta: "Confronta ora"      },
+      { label: "Filtri & Accessori",     desc: "Sostituzione intelligente con tracciabilita e qualita garantita.",                           cta: "Vedi i Filtri"      },
+      { label: "Confronta Prodotti",     desc: "Trova il modello ideale confrontando specs, capacita e tecnologia.",                        cta: "Confronta ora"      },
     ]},
     { label: "Azienda", dd: [
-      { label: "Chi siamo",          desc: "Fondata negli USA nel 2020 e presente in più di 180 paesi.",         cta: "La nostra storia"  },
+      { label: "Chi siamo",          desc: "Fondata negli USA nel 2020 e presente in piu di 180 paesi.",         cta: "La nostra storia"  },
       { label: "Espansione Globale", desc: "Operazione 100% globale con un modello di entrate 100% ricorrente.", cta: "Vedi l'Espansione" },
-      { label: "Contatto",           desc: "Parla con il nostro team e trova il distributore più vicino.",       cta: "Contattaci"        },
+      { label: "Contatto",           desc: "Parla con il nostro team e trova il distributore piu vicino.",       cta: "Contattaci"        },
     ]},
     { label: "Acquista ora", dd: [] },
   ],
@@ -224,7 +244,7 @@ const NAV_TEXT: Record<Lang, NavTxt[]> = {
       { label: "テクノロジー & 持続可能性", desc: "最先端のイノベーションとポジティブな環境インパクトの融合。",                                cta: "詳しく見る"            },
     ]},
     { label: "製品", dd: [
-      { label: "Neo ライン",             desc: "LED タッチパネル・App・UV LED・プレミアム UF フィルター搭載の浄水器。",                        cta: "Neo ラインを見る"  },
+      { label: "Neo ライン",             desc: "LED タッチパネル・App・UV LED・プレミアム UF フィルター搞載の浄水器。",                        cta: "Neo ラインを見る"  },
       { label: "Acquafy Media",         desc: "浄水器に統合されたマルチメディア通信とコンテンツ。",                                            cta: "Media を見る"      },
       { label: "フィルター & アクセサリ", desc: "トレーサビリティと品質保証を備えたスマート交換サービス。",                                    cta: "フィルターを見る"  },
       { label: "製品を比較する",          desc: "スペック・容量・テクノロジーを比較して最適なモデルを見つけよう。",                            cta: "今すぐ比較"        },
@@ -256,12 +276,113 @@ const NAV_TEXT: Record<Lang, NavTxt[]> = {
     ]},
     { label: "지금 구매", dd: [] },
   ],
+  sv: [
+    { label: "Plattform", dd: [
+      { label: "Acquafy Plattform",           desc: "Intelligent vattenhantering med fullt integrerad App, AI och IoT.",                    cta: "Utforska Plattformen" },
+      { label: "App + AI + IoT",              desc: "Fjarkontroll, automatisering och konstgjord intelligens i din hand.",                  cta: "Se Appen"            },
+      { label: "Supportcenter",               desc: "Specialiserat tekniskt stod for att halla din Acquafy alltid i gang.",                 cta: "Fa Support"          },
+      { label: "Teknik & Hallbarhet",         desc: "Banbrytande innovation kombinerat med positiv miljopaverkan.",                         cta: "Las mer"             },
+    ]},
+    { label: "Produkter", dd: [
+      { label: "Neo-linjen",              desc: "Reningsverk med LED-touchpanel, App, UV LED och premium UF-filter.",                        cta: "Se Neo-linjen"   },
+      { label: "Acquafy Media",           desc: "Multimediakommunikation och innehall integrerat i reningsverket.",                         cta: "Se Media"        },
+      { label: "Filter & Tillbehor",      desc: "Smart utbyte med sparbarhet och garanterad kvalitet.",                                     cta: "Se Filter"       },
+      { label: "Jamfor Produkter",        desc: "Hitta den ideala modellen genom att jamfora specs, kapacitet och teknik.",                  cta: "Jamfor Nu"       },
+    ]},
+    { label: "Foretag", dd: [
+      { label: "Om Oss",            desc: "Grundat i USA 2020 och narvarande i mer an 180 lander.",              cta: "Var Historia"    },
+      { label: "Global Expansion",  desc: "100% global verksamhet med en 100% aterkommande intaktsmodell.",      cta: "Se Expansion"    },
+      { label: "Kontakt",           desc: "Prata med vart team och hitta narmaste aterforsaljare.",               cta: "Kontakta Oss"    },
+    ]},
+    { label: "Kop Nu", dd: [] },
+  ],
+  fi: [
+    { label: "Alusta", dd: [
+      { label: "Acquafy-alusta",              desc: "Aly-vedenhallinnan alusta, jossa App, AI ja IoT ovat taysin integroituina.",           cta: "Tutki Alustaa"       },
+      { label: "App + AI + IoT",              desc: "Etaohjäus, automaatio ja tekoaly kamenässasi.",                             cta: "Katso Sovellus"      },
+      { label: "Tukikeskus",                  desc: "Erikoistunut tekninen tuki pitaaksesi Acquafysi aina toiminnassa.",                    cta: "Hanki Tuki"          },
+      { label: "Teknologia & Kestavä kehitys", desc: "Huipputeknologiaa yhdistettyna positiiviseen ymparistovaikutukseen.",           cta: "Lue lisaa"           },
+    ]},
+    { label: "Tuotteet", dd: [
+      { label: "Neo-linja",               desc: "Puhdistimet LED-kosketuspaneelilla, Appilla, UV LED:lla ja premium UF-suodattimilla.",     cta: "Katso Neo-linja"  },
+      { label: "Acquafy Media",           desc: "Multimediaviestinta ja sisalto integroituna puhdistimeen.",                               cta: "Katso Media"      },
+      { label: "Suodattimet & Tarvikkeet", desc: "Alykas vaihto jaljitettavyydella ja taatulla laadulla.",                                cta: "Katso Suodattimet"},
+      { label: "Vertaile Tuotteita",      desc: "Loyda ihanteellinen malli vertaamalla spekseja, kapasiteettia ja teknologiaa.",            cta: "Vertaile Nyt"     },
+    ]},
+    { label: "Yritys", dd: [
+      { label: "Tietoa Meista",     desc: "Perustettu USA:ssa vuonna 2020 ja lasnaolevana yli 180 maassa.",         cta: "Tarinamme"         },
+      { label: "Globaali Laajentuminen", desc: "100% globaali toiminta 100% toistuvilla tuloilla.",               cta: "Katso Laajentuminen" },
+      { label: "Yhteystiedot",      desc: "Ota yhteys tiimiimme ja loyda lahin jakelijamme.",                       cta: "Ota Yhteys"         },
+    ]},
+    { label: "Osta Nyt", dd: [] },
+  ],
+  ru: [
+    { label: "Платформа", dd: [
+      { label: "Платформа Acquafy",           desc: "Интеллектуальное управление водой с полностью интегрированными App, AI и IoT.",    cta: "Обзор платформы" },
+      { label: "App + AI + IoT",              desc: "Дистанционное управление, автоматизация и искусственный интеллект на ладони руки.",  cta: "Смотреть App"     },
+      { label: "Центр поддержки",           desc: "Специализированная техническая поддержка для бесперебойной работы Acquafy.",  cta: "Получить поддержку"  },
+      { label: "Технологии & Устойчивость",  desc: "Передовые инновации в сочетании с положительным влиянием на окружающую среду.",  cta: "Узнать больше"  },
+    ]},
+    { label: "Продукция", dd: [
+      { label: "Линейка Neo",              desc: "Очистители с LED-тачборным дисплеем, App, UV LED и премиум UF-фильтрами.",     cta: "См. линейку Neo"  },
+      { label: "Acquafy Media",        desc: "Мультимедийная коммуникация и контент, интегрированные в очиститель.",   cta: "См. Media"    },
+      { label: "Фильтры & Аксессуары",       desc: "Умная замена с отслеживаемостью и гарантированным качеством.",   cta: "См. фильтры"    },
+      { label: "Сравнить продукцию",       desc: "Найдите идеальную модель, сравнивая характеристики, емкость и технологии.",   cta: "Сравнить"   },
+    ]},
+    { label: "Компания", dd: [
+      { label: "О нас",          desc: "Основана в США в 2020 году и представлена в более 180 стран.",  cta: "Наша история"  },
+      { label: "Глобальное расширение", desc: "100% глобальная операция с полностью повторяющейся доходной моделью.",  cta: "Узнать о расширении" },
+      { label: "Контакты",          desc: "Свяжитесь с нашей командой и найдите ближайшего дистрибьютора.",  cta: "Связаться"   },
+    ]},
+    { label: "Купить сейчас", dd: [] },
+  ],
+  ro: [
+    { label: "Platforma", dd: [
+      { label: "Platforma Acquafy",           desc: "Management inteligent al apei cu App, AI si IoT complet integrate.",                   cta: "Exploreaza Platforma" },
+      { label: "App + AI + IoT",              desc: "Control de la distanta, automatizare si inteligenta artificiala in palma ta.",          cta: "Vezi Aplicatia"      },
+      { label: "Centrul de Suport",           desc: "Asistenta tehnica specializata pentru ca Acquafy-ul tau sa functioneze mereu.",         cta: "Acceseaza Suportul"  },
+      { label: "Tehnologie & Sustenabilitate", desc: "Inovatie de varf combinata cu un impact pozitiv asupra mediului.",                    cta: "Afla mai multe"      },
+    ]},
+    { label: "Produse", dd: [
+      { label: "Linia Neo",              desc: "Purificatoare cu panou LED Touch, App, UV LED si filtre UF premium.",                        cta: "Vezi Linia Neo"   },
+      { label: "Acquafy Media",          desc: "Comunicare multimedia si continut integrate in purificator.",                               cta: "Vezi Media"       },
+      { label: "Filtre & Accesorii",     desc: "Inlocuire inteligenta cu trasabilitate si calitate garantata.",                              cta: "Vezi Filtrele"    },
+      { label: "Compara Produse",        desc: "Gaseste modelul ideal comparand specificatii, capacitate si tehnologie.",                    cta: "Compara Acum"     },
+    ]},
+    { label: "Companie", dd: [
+      { label: "Despre Noi",       desc: "Fondata in SUA in 2020 si prezenta in peste 180 de tari.",              cta: "Povestea Noastra"  },
+      { label: "Expansiune Globala", desc: "Operatiune 100% globala cu un model de venituri 100% recurente.",    cta: "Vezi Expansiunea"  },
+      { label: "Contact",          desc: "Vorbeste cu echipa noastra si gaseste cel mai apropiat distribuitor.",   cta: "Contacteaza-ne"    },
+    ]},
+    { label: "Cumpara Acum", dd: [] },
+  ],
+  he: [
+    { label: "פלטפורמה", dd: [
+      { label: "פלטפורמת Acquafy",           desc: "ניהול מים חכם עם App, AI ו-IoT משולבים במלואם.",   cta: "גלות את הפלטפורמה" },
+      { label: "App + AI + IoT",              desc: "שליטה מרחוק, אוטומציה בינה מלאכותית בכף ידך.",  cta: "ראה את האפליקציה"  },
+      { label: "מרכז תמיכה",           desc: "תמיכה טכנית מתמחה כדי ש-Acquafy שלך יפעל תמיד.",   cta: "קבל תמיכה"  },
+      { label: "טכנולוגיה & קיימות",   desc: "חדשנות חודשנית בשילוב עם השפעה סביבתית חיובית.",   cta: "למד עוד"   },
+    ]},
+    { label: "מוצרים", dd: [
+      { label: "קו Neo",              desc: "מטהרי מים עם לוח LED עם מגע, App, UV LED ופילטרי UF פרמיום.",    cta: "ראה קו Neo"   },
+      { label: "Acquafy Media",        desc: "תקשורת מולטימדיה ותוכן משולבים במטהר המים.",   cta: "ראה Media"    },
+      { label: "פילטרים & אביזרים",       desc: "החלפה חכמה עם ניתנות מעקב ואיכות מובטחת.",   cta: "ראה פילטרים"   },
+      { label: "השווה מוצרים",       desc: "מצא את הדגם האידאלי בהשוואת מפרטים, קיבולת וטכנולוגיה.",   cta: "השווה עכשו"   },
+    ]},
+    { label: "חברה", dd: [
+      { label: "אודותנו",       desc: "נוסדה בארהב ב-2020 ופעילה ביותר מ-180 מדינות.",   cta: "הסיפור שלנו"  },
+      { label: "התרחבות גלובלית", desc: "פעילות 100% גלובלית עם מודל הכנסות 100% חוזר.",   cta: "ראה התרחבות"  },
+      { label: "צור קשר",          desc: "שוחח עם הצוות שלנו ומצא את המשווק הקרוב ביותר.",   cta: "צור קשר"    },
+    ]},
+    { label: "קנה עכשו", dd: [] },
+  ],
 };
 
 const PARTNER_BTN: Record<Lang, string> = {
   pt: "Seja um Parceiro",
   "pt-pt": "Seja um Parceiro",
   en: "Be a Partner",
+  "en-gb": "Be a Partner",
   es: "Ser un Socio",
   fr: "Devenir Partenaire",
   de: "Partner werden",
@@ -269,19 +390,30 @@ const PARTNER_BTN: Record<Lang, string> = {
   zh: "成为合作伙伴",
   ja: "パートナーになる",
   ko: "파트너 되기",
+  sv: "Bli Partner",
+  fi: "Tule Kumppaniksi",
+  ru: "Станьте партнёром",
+  ro: "Devino Partener",
+  he: "הפוך לשותף",
 };
 
 const ARIA_MENU: Record<Lang, { open: string; close: string }> = {
   pt: { open: "Abrir menu",  close: "Fechar menu"  },
   "pt-pt": { open: "Abrir menu",  close: "Fechar menu"  },
   en: { open: "Open menu",   close: "Close menu"   },
-  es: { open: "Abrir menú",  close: "Cerrar menú"  },
+  "en-gb": { open: "Open menu",   close: "Close menu"   },
+  es: { open: "Abrir menu",  close: "Cerrar menu"  },
   fr: { open: "Ouvrir le menu",  close: "Fermer le menu"  },
-  de: { open: "Menü öffnen",     close: "Menü schließen"  },
+  de: { open: "Menu offnen",     close: "Menu schliessen"  },
   it: { open: "Apri il menu",    close: "Chiudi il menu"  },
   zh: { open: "打开菜单",         close: "关闭菜单"          },
-  ja: { open: "メニューを開く",   close: "メニューを閉じる"  },
+  ja: { open: "メニューを開く",   close: "メニューを閃じる"  },
   ko: { open: "메뉴 열기",        close: "메뉴 닫기"         },
+  sv: { open: "Oppna menyn",     close: "Stang menyn"     },
+  fi: { open: "Avaa valikko",    close: "Sulje valikko"   },
+  ru: { open: "Открыть меню",    close: "Закрыть меню"   },
+  ro: { open: "Deschide meniul", close: "Inchide meniul"  },
+  he: { open: "פתח תפריט",    close: "סגור תפריט"   },
 };
 
 function buildNavItems(navT: NavTxt[]): NavItem[] {
@@ -382,8 +514,8 @@ function NavTrigger({ label, href, active, hasDropdown, open, onMouseEnter, drop
         : <a href={href} className={cls}>{inner}</a>
       }
       {open && hasDropdown && (
-        <div className="absolute top-full left-0 bg-white border border-[#e6e6e6] rounded-[20px] shadow-[0_8px_32px_0_rgba(0,0,0,0.12)] z-50 overflow-hidden">
-          <div className="flex flex-col gap-[4px] p-[20px] w-[320px]">
+        <div className="absolute top-full -mt-[5px] left-0 bg-white border border-[#e6e6e6] rounded-[20px] shadow-[0_8px_32px_0_rgba(0,0,0,0.12)] z-50 overflow-hidden">
+          <div className="flex flex-col gap-[20px] p-[20px] w-[320px]">
             {dropdown.map((item) => <DropdownItemRow key={item.href} item={item} />)}
           </div>
         </div>
@@ -414,10 +546,18 @@ function MobileNavLink({ label, href, active, dropdown, onClose }: {
         </a>
       )}
       {hasDropdown && expanded && (
-        <div className="flex flex-col pl-[24px] pb-[8px]">
+        <div className="flex flex-col pb-[8px]">
           {dropdown.map((item) => (
-            <a key={item.label} href={item.href} onClick={onClose} className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#333] hover:text-[#0233c3] py-[10px] pr-[10px] transition-colors">
-              {item.label}
+            <a key={item.label} href={item.href} onClick={onClose} className="flex gap-[12px] items-center px-[10px] py-[8px] rounded-[8px] hover:bg-[#f2f6fd] transition-colors group">
+              <div
+                className="flex items-center justify-center shrink-0 size-[36px] rounded-[8px]"
+                style={{ background: item.bg }}
+              >
+                <FigmaIcon src={item.icon} size={18} aspectW={item.iconAspectW} aspectH={item.iconAspectH} className="brightness-0 invert" />
+              </div>
+              <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#07235c] group-hover:text-[#0233c3] transition-colors">
+                {item.label}
+              </span>
             </a>
           ))}
         </div>
@@ -471,7 +611,7 @@ export default function Header() {
 
         <div className="flex gap-[10px] items-center justify-end shrink-0">
           <LanguageSelectorCompact />
-          <a href="/parceria" className="hidden lg:flex bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors gap-[10px] items-center justify-center h-[40px] overflow-hidden px-[20px] rounded-[8px] shrink-0 cursor-pointer">
+          <a href="/partnership" className="hidden lg:flex bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors gap-[10px] items-center justify-center h-[40px] overflow-hidden px-[20px] rounded-[8px] shrink-0 cursor-pointer">
             <FigmaIcon src={imgPartner} size={16} aspectW={41} aspectH={40} />
             <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white whitespace-nowrap">{partnerBtn}</span>
           </a>
@@ -499,7 +639,7 @@ export default function Header() {
               />
             ))}
             <div className="pt-[16px] pb-[10px]">
-              <a href="/parceria" className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex gap-[10px] items-center justify-center h-[48px] overflow-hidden px-[20px] rounded-[8px] w-full cursor-pointer">
+              <a href="/partnership" className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex gap-[10px] items-center justify-center h-[48px] overflow-hidden px-[20px] rounded-[8px] w-full cursor-pointer">
                 <FigmaIcon src={imgPartner} size={16} aspectW={41} aspectH={40} />
                 <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white whitespace-nowrap">{partnerBtn}</span>
               </a>

@@ -1,31 +1,33 @@
 "use client";
-import { useState } from "react";
 import FigmaIcon from "./FigmaIcon";
 import { BtnFalaAcquafy } from "./ui/Buttons";
 import { useLang, type Lang } from "@/context/LanguageContext";
-import { PartnerModal, FORM_T } from "./ModelosParceria";
 
-const imgPessoas = "/figma-assets/icon-pessoas-b.svg";
-
+const imgArrowWhite = "/figma-assets/icon-arrow-white-hover.svg";
 const imgBg = "/figma-assets/bg-o.webp";
 
-const T: Record<Lang, { title: string; btnGold: string }> = {
-  pt:      { title: "Leve a Acquafy para sua família, sua empresa ou seu país.",                    btnGold: "Quero ser parceiro Gold" },
-  "pt-pt": { title: "Leve a Acquafy para a sua família, a sua empresa ou o seu país.",             btnGold: "Quero ser parceiro Gold" },
-  en:      { title: "Bring Acquafy to your family, your company or your country.",                 btnGold: "I want to be a Gold Partner" },
-  es:      { title: "Lleva Acquafy a tu familia, tu empresa o tu país.",                           btnGold: "Quiero ser socio Gold" },
-  fr:      { title: "Amenez Acquafy dans votre famille, votre entreprise ou votre pays.",          btnGold: "Je veux être partenaire Gold" },
-  de:      { title: "Bringen Sie Acquafy in Ihre Familie, Ihr Unternehmen oder Ihr Land.",        btnGold: "Ich möchte Gold-Partner sein" },
-  it:      { title: "Porta Acquafy nella tua famiglia, nella tua azienda o nel tuo paese.",       btnGold: "Voglio essere partner Gold" },
-  zh:      { title: "将 Acquafy 带给您的家庭、企业或您的国家。",                                       btnGold: "成为 Gold 合作伙伴" },
-  ja:      { title: "Acquafy を、ご家族、企業、そして国へ。",                                          btnGold: "Gold パートナーになる" },
-  ko:      { title: "Acquafy를 당신의 가족, 기업, 그리고 나라에 데려오세요.",                           btnGold: "Gold 파트너 되기" },
+const T: Record<Lang, { title: string; btnBuy: string }> = {
+  pt:      { title: "Leve a Acquafy para sua família, sua empresa ou seu país.",                    btnBuy: "Comprar agora" },
+  "pt-pt": { title: "Leve a Acquafy para a sua família, a sua empresa ou o seu país.",             btnBuy: "Comprar agora" },
+  en:      { title: "Bring Acquafy to your family, your company or your country.",                 btnBuy: "Buy now" },
+  "en-gb": { title: "Bring Acquafy to your family, your company or your country.",                 btnBuy: "Buy now" },
+  es:      { title: "Lleva Acquafy a tu familia, tu empresa o tu país.",                           btnBuy: "Comprar ahora" },
+  fr:      { title: "Amenez Acquafy dans votre famille, votre entreprise ou votre pays.",          btnBuy: "Acheter maintenant" },
+  de:      { title: "Bringen Sie Acquafy in Ihre Familie, Ihr Unternehmen oder Ihr Land.",        btnBuy: "Jetzt kaufen" },
+  it:      { title: "Porta Acquafy nella tua famiglia, nella tua azienda o nel tuo paese.",       btnBuy: "Acquista ora" },
+  zh:      { title: "将 Acquafy 带给您的家庭、企业或您的国家。",                                       btnBuy: "立即购买" },
+  ja:      { title: "Acquafy を、ご家族、企業、そして国へ。",                                          btnBuy: "今すぐ購入" },
+  ko:      { title: "Acquafy를 당신의 가족, 기업, 그리고 나라에 데려오세요.",                           btnBuy: "지금 구매" },
+  sv:      { title: "Ta med Acquafy till din familj, ditt företag eller ditt land.",               btnBuy: "Köp nu" },
+  fi:      { title: "Tuo Acquafy perheellesi, yrityksellesi tai maallesi.",                        btnBuy: "Osta nyt" },
+  ru:      { title: "Принесите Acquafy своей семье, компании или стране.",                         btnBuy: "Купить сейчас" },
+  ro:      { title: "Aduci Acquafy familiei tale, companiei tale sau tarii tale.",                 btnBuy: "Cumpara acum" },
+  he:      { title: "הביאו את Acquafy למשפחה, לעסק או למדינה שלכם.",                              btnBuy: "קנה עכשיו" },
 };
 
 export default function CtaBanner() {
   const { lang } = useLang();
   const t = T[lang];
-  const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <section className="bg-white flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
@@ -44,22 +46,17 @@ export default function CtaBanner() {
 
         <div className="relative flex flex-1 flex-wrap gap-[10px] items-center justify-center xl:justify-end max-w-[500px] min-w-[240px]">
           <BtnFalaAcquafy className="flex-1 min-w-[200px]" />
-          <button
-            onClick={() => setModalOpen(true)}
-            className="flex gap-[10px] items-center justify-center min-h-[30px] overflow-hidden p-[20px] rounded-[8px] border border-white transition-colors cursor-pointer bg-[#9f3df5] hover:bg-[#7a16d2] active:bg-[#b25efb] flex-1 min-w-[200px]"
+          <a
+            href="/checkin"
+            className="flex gap-[10px] items-center justify-center min-h-[30px] overflow-hidden p-[20px] rounded-[8px] transition-colors cursor-pointer bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] flex-1 min-w-[200px] no-underline"
           >
-            <div className="flex flex-col items-center justify-center shrink-0 size-[16px]">
-              <FigmaIcon src={imgPessoas} size={16} aspectW={43.86} aspectH={40.5} />
-            </div>
             <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-center whitespace-nowrap shrink-0 text-white">
-              {t.btnGold}
+              {t.btnBuy}
             </span>
-          </button>
+            <FigmaIcon src={imgArrowWhite} size={9} aspectW={11} aspectH={9} />
+          </a>
         </div>
       </div>
-      {modalOpen && (
-        <PartnerModal tier="gold" ft={FORM_T[lang]} onClose={() => setModalOpen(false)} />
-      )}
     </section>
   );
 }

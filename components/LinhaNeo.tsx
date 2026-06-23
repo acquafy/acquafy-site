@@ -145,6 +145,56 @@ const T: Record<Lang, {
       ],
     },
   },
+  "en-gb": {
+    desc: "Affordable and smart line with LED Touch Panel 10.1, App, UV LED, Wi-Fi 5, Bluetooth 5.3 and high-performance UF filters.",
+    waterHeader: ["Water types from ", "Neo Essentials", " products, the perfect water for every moment"],
+    waterTypes: [
+      { label: "Natural Water",       sub: "In all models" },
+      { label: "Cold Water",          sub: "In all" },
+      { label: "45°C Warm Milk",      sub: "In all" },
+      { label: "65°C Tea",            sub: "In all" },
+      { label: "85°C Coffee",         sub: "In all" },
+      { label: "100°C Hot Water",     sub: "In all" },
+      { label: "Sparkling Water",     sub: "7 & 8 in 1 Only" },
+      { label: "Hydrogen Water",      sub: "8 in 1 & Smart Only" },
+    ],
+    subNatural: "Natural Only",
+    sub6: "6 in 1", sub7: "7 in 1", sub8: "8 in 1",
+    tank400: "400 ml Tank", tank800: "800 ml Tank",
+    tank1500: "1500 ml Tank", tank3l: "3L Tank",
+    panel: {
+      title1: "Smart LED ", title2: "Touch Panel",
+      checks: [
+        "365-day countdown to filter replacement",
+        "Digital clock and date",
+        "Real-time water status",
+        "Full communication with App + AI",
+        "Smart Alerts",
+      ],
+    },
+    ai: {
+      title: "Acquafy AI in the App",
+      sub: "Artificial intelligence that learns, analyzes and cares for your water.",
+      checks: [
+        "Smart support 24/7",
+        "Filter alerts",
+        "Personalized recommendations",
+        "Consumption and hydration analysis",
+        "Equipment monitoring",
+        "AI-connected experience",
+      ],
+    },
+    ctrl: {
+      title: "Control everything via Acquafy App",
+      checks: [
+        "Filter lifespan",
+        "Connected devices",
+        "Fast and direct support",
+        "Global operation",
+        "Multi Language",
+      ],
+    },
+  },
   es: {
     desc: "Línea accesible e inteligente con Panel LED Touch 10.1, App, UV LED, Wi-Fi 5, Bluetooth 5.3 y filtros UF de alto rendimiento.",
     waterHeader: ["Tipos de agua de los productos ", "Neo Essentials", ", el agua perfecta para cada momento"],
@@ -495,6 +545,256 @@ const T: Record<Lang, {
       ],
     },
   },
+  sv: {
+    desc: "Prisvärd och smart serie med LED-touchpanel 10.1, App, UV LED, Wi-Fi 5, Bluetooth 5.3 och högpresterande UF-filter.",
+    waterHeader: ["Vattentyper från ", "Neo Essentials", "-produkter, det perfekta vattnet för varje tillfälle"],
+    waterTypes: [
+      { label: "Naturligt Vatten",       sub: "I alla modeller" },
+      { label: "Kallt Vatten",           sub: "I alla" },
+      { label: "45°C Varm Mjölk",        sub: "I alla" },
+      { label: "65°C Te",                sub: "I alla" },
+      { label: "85°C Kaffe",             sub: "I alla" },
+      { label: "100°C Hett Vatten",      sub: "I alla" },
+      { label: "Kolsyrat Vatten",        sub: "Endast 7 & 8 i 1" },
+      { label: "Vätevatten",             sub: "Endast 8 i 1 & Smart" },
+    ],
+    subNatural: "Endast Naturligt",
+    sub6: "6 i 1", sub7: "7 i 1", sub8: "8 i 1",
+    tank400: "400 ml Tank", tank800: "800 ml Tank",
+    tank1500: "1500 ml Tank", tank3l: "3L Tank",
+    panel: {
+      title1: "Smart LED ", title2: "Touchpanel",
+      checks: [
+        "365-dagars nedräkning till filterbyte",
+        "Digital klocka och datum",
+        "Realtidsstatus för vatten",
+        "Full kommunikation med App + AI",
+        "Smarta varningar",
+      ],
+    },
+    ai: {
+      title: "Acquafy AI i Appen",
+      sub: "Artificiell intelligens som lär sig, analyserar och tar hand om ditt vatten.",
+      checks: [
+        "Smart support 24/7",
+        "Filtervarningar",
+        "Personliga rekommendationer",
+        "Analys av förbrukning och hydrering",
+        "Utrustningsövervakning",
+        "AI-ansluten upplevelse",
+      ],
+    },
+    ctrl: {
+      title: "Kontrollera allt via Acquafy-appen",
+      checks: [
+        "Filterlivslängd",
+        "Anslutna enheter",
+        "Snabb och direkt support",
+        "Global drift",
+        "Flerspråkig",
+      ],
+    },
+  },
+  fi: {
+    desc: "Edullinen ja älykäs sarja LED-kosketuspaneelilla 10.1, sovelluksella, UV LED:llä, Wi-Fi 5:llä, Bluetooth 5.3:lla ja korkean suorituskyvyn UF-suodattimilla.",
+    waterHeader: ["Vesityypit ", "Neo Essentials", "-tuotteista, täydellinen vesi jokaiseen hetkeen"],
+    waterTypes: [
+      { label: "Luonnonvesi",            sub: "Kaikissa malleissa" },
+      { label: "Kylmä Vesi",             sub: "Kaikissa" },
+      { label: "45°C Lämmin Maito",      sub: "Kaikissa" },
+      { label: "65°C Tee",               sub: "Kaikissa" },
+      { label: "85°C Kahvi",             sub: "Kaikissa" },
+      { label: "100°C Kuuma Vesi",       sub: "Kaikissa" },
+      { label: "Hiilihapollinen Vesi",   sub: "Vain 7 & 8 in 1" },
+      { label: "Vetyvesi",               sub: "Vain 8 in 1 & Smart" },
+    ],
+    subNatural: "Vain Luonnollinen",
+    sub6: "6 in 1", sub7: "7 in 1", sub8: "8 in 1",
+    tank400: "400 ml Säiliö", tank800: "800 ml Säiliö",
+    tank1500: "1500 ml Säiliö", tank3l: "3L Säiliö",
+    panel: {
+      title1: "Älykäs LED ", title2: "Kosketuspaneeli",
+      checks: [
+        "365 päivän lähtölaskenta suodattimen vaihtoon",
+        "Digitaalinen kello ja päivämäärä",
+        "Reaaliaikainen veden tila",
+        "Täysi yhteys sovellukseen + AI",
+        "Älykkäät hälytykset",
+      ],
+    },
+    ai: {
+      title: "Acquafy AI sovelluksessa",
+      sub: "Tekoäly, joka oppii, analysoi ja huolehtii vedestäsi.",
+      checks: [
+        "Älykäs tuki 24/7",
+        "Suodatinhälytykset",
+        "Henkilökohtaiset suositukset",
+        "Kulutuksen ja nesteytyksen analyysi",
+        "Laitteen seuranta",
+        "AI-yhdistetty kokemus",
+      ],
+    },
+    ctrl: {
+      title: "Hallitse kaikkea Acquafy-sovelluksella",
+      checks: [
+        "Suodattimen elinikä",
+        "Yhdistetyt laitteet",
+        "Nopea ja suora tuki",
+        "Globaali toiminta",
+        "Monikielinen",
+      ],
+    },
+  },
+  ru: {
+    desc: "Доступная и умная линейка с LED-сенсорной панелью 10.1, приложением, UV LED, Wi-Fi 5, Bluetooth 5.3 и высокопроизводительными UF-фильтрами.",
+    waterHeader: ["Типы воды продуктов ", "Neo Essentials", ", идеальная вода для каждого момента"],
+    waterTypes: [
+      { label: "Природная Вода",         sub: "Во всех моделях" },
+      { label: "Холодная Вода",          sub: "Во всех" },
+      { label: "45°C Тёплое Молоко",     sub: "Во всех" },
+      { label: "65°C Чай",               sub: "Во всех" },
+      { label: "85°C Кофе",              sub: "Во всех" },
+      { label: "100°C Горячая Вода",     sub: "Во всех" },
+      { label: "Газированная Вода",      sub: "Только 7 и 8 в 1" },
+      { label: "Водородная Вода",        sub: "Только 8 в 1 и Smart" },
+    ],
+    subNatural: "Только Природная",
+    sub6: "6 в 1", sub7: "7 в 1", sub8: "8 в 1",
+    tank400: "Резервуар 400 мл", tank800: "Резервуар 800 мл",
+    tank1500: "Резервуар 1500 мл", tank3l: "Резервуар 3 л",
+    panel: {
+      title1: "Умная LED ", title2: "Сенсорная Панель",
+      checks: [
+        "Обратный отсчёт 365 дней до замены фильтра",
+        "Цифровые часы и дата",
+        "Состояние воды в реальном времени",
+        "Полная связь с приложением + ИИ",
+        "Умные оповещения",
+      ],
+    },
+    ai: {
+      title: "Acquafy ИИ в приложении",
+      sub: "Искусственный интеллект, который учится, анализирует и заботится о вашей воде.",
+      checks: [
+        "Умная поддержка 24/7",
+        "Оповещения о фильтрах",
+        "Персонализированные рекомендации",
+        "Анализ потребления и гидратации",
+        "Мониторинг оборудования",
+        "Опыт с подключённым ИИ",
+      ],
+    },
+    ctrl: {
+      title: "Управляйте всем через приложение Acquafy",
+      checks: [
+        "Срок службы фильтров",
+        "Подключённые устройства",
+        "Быстрая и прямая поддержка",
+        "Глобальная работа",
+        "Многоязычный",
+      ],
+    },
+  },
+  ro: {
+    desc: "Linie accesibila si inteligenta cu panou LED Touch 10.1, aplicatie, UV LED, Wi-Fi 5, Bluetooth 5.3 si filtre UF de inalta performanta.",
+    waterHeader: ["Tipuri de apa ale produselor ", "Neo Essentials", ", apa perfecta pentru fiecare moment"],
+    waterTypes: [
+      { label: "Apa Naturala",           sub: "In toate modelele" },
+      { label: "Apa Rece",               sub: "In toate" },
+      { label: "45°C Lapte Cald",        sub: "In toate" },
+      { label: "65°C Ceai",              sub: "In toate" },
+      { label: "85°C Cafea",             sub: "In toate" },
+      { label: "100°C Apa Fierbinte",    sub: "In toate" },
+      { label: "Apa Carbogazoasa",       sub: "Doar 7 si 8 in 1" },
+      { label: "Apa cu Hidrogen",        sub: "Doar 8 in 1 si Smart" },
+    ],
+    subNatural: "Doar Naturala",
+    sub6: "6 in 1", sub7: "7 in 1", sub8: "8 in 1",
+    tank400: "Rezervor 400 ml", tank800: "Rezervor 800 ml",
+    tank1500: "Rezervor 1500 ml", tank3l: "Rezervor 3L",
+    panel: {
+      title1: "Panou LED ", title2: "Touch Inteligent",
+      checks: [
+        "Numaratoare inversa de 365 de zile pana la schimbarea filtrelor",
+        "Ceas digital si data",
+        "Starea apei in timp real",
+        "Comunicare totala cu App + IA",
+        "Alerte Inteligente",
+      ],
+    },
+    ai: {
+      title: "Acquafy IA in Aplicatie",
+      sub: "Inteligenta artificiala care invata, analizeaza si are grija de apa ta.",
+      checks: [
+        "Suport inteligent 24/7",
+        "Alerte filtre",
+        "Recomandari personalizate",
+        "Analiza consumului si hidratarii",
+        "Monitorizarea echipamentului",
+        "Experienta conectata cu IA",
+      ],
+    },
+    ctrl: {
+      title: "Controleaza totul prin aplicatia Acquafy",
+      checks: [
+        "Durata de viata a filtrelor",
+        "Dispozitive conectate",
+        "Suport rapid si direct",
+        "Operare globala",
+        "Multilingv",
+      ],
+    },
+  },
+  he: {
+    desc: "סדרה נגישה וחכמה עם לוח LED מגע 10.1, אפליקציה, UV LED, Wi-Fi 5, Bluetooth 5.3 ומסננים בעלי ביצועים גבוהים מסוג UF.",
+    waterHeader: ["סוגי המים של מוצרי ", "Neo Essentials", ", המים המושלמים לכל רגע"],
+    waterTypes: [
+      { label: "מים טבעיים",             sub: "בכל הדגמים" },
+      { label: "מים קרים",               sub: "בכל הדגמים" },
+      { label: "45°C חלב חם",            sub: "בכל הדגמים" },
+      { label: "65°C תה",                sub: "בכל הדגמים" },
+      { label: "85°C קפה",               sub: "בכל הדגמים" },
+      { label: "100°C מים רותחים",       sub: "בכל הדגמים" },
+      { label: "מים מוגזים",             sub: "רק 7 ו-8 ב-1" },
+      { label: "מים עשירים במימן",       sub: "רק 8 ב-1 ו-Smart" },
+    ],
+    subNatural: "טבעי בלבד",
+    sub6: "6 ב-1", sub7: "7 ב-1", sub8: "8 ב-1",
+    tank400: "מיכל 400 מ\"ל", tank800: "מיכל 800 מ\"ל",
+    tank1500: "מיכל 1500 מ\"ל", tank3l: "מיכל 3 ליטר",
+    panel: {
+      title1: "לוח LED ", title2: "מגע חכם",
+      checks: [
+        "ספירה לאחור של 365 יום עד להחלפת הפילטרים",
+        "שעון דיגיטלי ותאריך",
+        "סטטוס המים בזמן אמת",
+        "תקשורת מלאה עם האפליקציה + AI",
+        "התראות חכמות",
+      ],
+    },
+    ai: {
+      title: "Acquafy AI באפליקציה",
+      sub: "בינה מלאכותית שלומדת, מנתחת ודואגת למים שלך.",
+      checks: [
+        "תמיכה חכמה 24/7",
+        "התראות פילטר",
+        "המלצות מותאמות אישית",
+        "ניתוח צריכה והידרציה",
+        "ניטור הציוד",
+        "חוויה מחוברת עם AI",
+      ],
+    },
+    ctrl: {
+      title: "שלוט בהכל דרך אפליקציית Acquafy",
+      checks: [
+        "אורך חיי הפילטרים",
+        "מכשירים מחוברים",
+        "תמיכה מהירה וישירה",
+        "פעולה גלובלית",
+        "רב-לשוני",
+      ],
+    },
+  },
   "pt-pt": {
     desc: "Linha acessível e inteligente com Painel LED Touch 10.1, App, UV LED, Wi-Fi 5, Bluetooth 5.3 e filtros de alta performance UF.",
     waterHeader: ["Tipos de água dos produtos ", "Neo Essentials", ", a água perfeita para cada momento"],
@@ -547,6 +847,25 @@ const T: Record<Lang, {
   },
 };
 
+const BUY_NOW: Record<Lang, string> = {
+  pt: "Comprar Agora",
+  en: "Buy Now",
+  "en-gb": "Buy Now",
+  es: "Comprar Ahora",
+  fr: "Acheter maintenant",
+  de: "Jetzt kaufen",
+  it: "Acquista ora",
+  zh: "立即购买",
+  ja: "今すぐ購入",
+  ko: "지금 구매",
+  sv: "Köp Nu",
+  fi: "Osta Nyt",
+  ru: "Купить Сейчас",
+  ro: "Cumpara Acum",
+  he: "קנה עכשיו",
+  "pt-pt": "Comprar Agora",
+};
+
 function CardImage({ src }: { src: string }) {
   return (
     <div className="flex items-center justify-center h-[220px] w-full min-w-[120px] max-w-[170px] overflow-hidden relative shrink-0">
@@ -556,6 +875,7 @@ function CardImage({ src }: { src: string }) {
 }
 
 function ProductCard({ product }: { product: Product }) {
+  const { lang } = useLang();
   return (
     <div className="bg-white flex flex-[1_0_0] flex-col gap-[10px] items-center min-h-[335px] min-w-[180px] overflow-hidden p-[20px] rounded-[12px]">
       <div className="w-full h-[220px] shrink-0">
@@ -571,13 +891,13 @@ function ProductCard({ product }: { product: Product }) {
       <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] text-center w-full">
         {product.sub}
       </p>
-      {product.tank && (
-        <div className="bg-[#f6f9fe] border border-[#0569ff] flex flex-col items-center justify-center px-[5px] py-[10px] rounded-[12px] w-full shrink-0">
-          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] text-center w-full">
-            {product.tank}
-          </p>
-        </div>
-      )}
+      <a
+        href="/checkin"
+        className="flex items-center justify-center min-h-[40px] px-[10px] py-[8px] rounded-[8px] w-full shrink-0 font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white hover:opacity-90 active:opacity-80 transition-opacity no-underline"
+        style={{ backgroundImage: "linear-gradient(90deg, #0233c3, #0569ff)" }}
+      >
+        {BUY_NOW[lang]}
+      </a>
     </div>
   );
 }

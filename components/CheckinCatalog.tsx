@@ -1,13 +1,74 @@
 "use client";
 
 import Link from "next/link";
-import { CHECKIN_FAMILIES } from "@/lib/checkin-products";
-import { formatBRL } from "@/lib/products";
+import { CHECKIN_FAMILIES, type CheckinFamily, type CheckinVariant } from "@/lib/checkin-products";
+
+function getFamily(slug: string): CheckinFamily {
+  return CHECKIN_FAMILIES.find((f) => f.slug === slug)!;
+}
+
+const BLUE_GRAD   = "linear-gradient(90deg, #0233c3, #0569ff)";
+const PURPLE_GRAD = "linear-gradient(90deg, #0233c3, #9f3df5)";
+
+function ProductCard({ variant, family }: { variant: CheckinVariant; family: CheckinFamily }) {
+  const grad       = family.isPremium ? PURPLE_GRAD : BLUE_GRAD;
+  const nameColor  = family.isPremium ? "#6e0cc3" : "#0233c3";
+
+  return (
+    <div className="bg-white flex flex-[1_0_0] flex-col gap-[10px] items-center min-h-[310px] min-w-[160px] overflow-hidden p-[20px] rounded-[12px]">
+      <div className="w-full h-[180px] shrink-0">
+        <img
+          alt=""
+          className="w-full h-full object-contain pointer-events-none"
+          src={variant.img}
+        />
+      </div>
+      <p
+        className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-center w-full min-h-[44px] flex items-center justify-center"
+        style={{ color: nameColor }}
+      >
+        {variant.name}
+      </p>
+      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] leading-[17px] text-center w-full" style={{ color: nameColor }}>
+        {variant.desc}
+      </p>
+      <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] leading-[15px] text-[#9ca3af] text-center w-full">
+        {variant.formato}
+      </p>
+      <Link
+        href={`/checkin/${family.slug}`}
+        className="flex items-center justify-center min-h-[40px] px-[10px] py-[8px] rounded-[8px] w-full shrink-0 font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white hover:opacity-90 active:opacity-80 transition-opacity mt-auto"
+        style={{ backgroundImage: grad }}
+      >
+        Comprar
+      </Link>
+    </div>
+  );
+}
+
+function ProductRow({ families }: { families: CheckinFamily[] }) {
+  const items = families.flatMap((f) => f.variants.map((v) => ({ variant: v, family: f })));
+  return (
+    <div className="flex flex-wrap gap-[15px] items-stretch justify-center w-full">
+      {items.map(({ variant, family }) => (
+        <ProductCard key={variant.id} variant={variant} family={family} />
+      ))}
+    </div>
+  );
+}
 
 export default function CheckinCatalog() {
+  const neoUp         = getFamily("neo-up");
+  const neoEssentials = getFamily("neo-essentials");
+  const neoUltra      = getFamily("neo-ultra");
+  const neoMax        = getFamily("neo-max");
+  const neoInfinity   = getFamily("neo-infinity");
+  const neoPrestige   = getFamily("neo-prestige");
+  const neoPrime      = getFamily("neo-prime");
+
   return (
-    <section className="w-full bg-white pt-[120px] pb-[100px] px-[24px]">
-      <div className="max-w-[1280px] mx-auto flex flex-col gap-[64px]">
+    <section className="w-full bg-white pt-[120px] pb-[100px] px-[20px]">
+      <div className="max-w-[1400px] mx-auto flex flex-col gap-[40px]">
 
         {/* Header */}
         <div className="flex flex-col gap-[10px] text-center">
@@ -19,63 +80,20 @@ export default function CheckinCatalog() {
           </p>
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-[24px] gap-y-[40px]">
-          {CHECKIN_FAMILIES.map((family) => {
-            const lowestPrice = Math.min(...family.variants.map((v) => v.price));
-            const coverImg = family.variants[0].img;
-            const accentGrad = family.isPremium
-              ? "linear-gradient(135deg, #0233c3, #9f3df5)"
-              : "linear-gradient(135deg, #0233c3, #0569ff)";
-
-            return (
-              <div
-                key={family.slug}
-                className="flex flex-col items-center gap-[16px]"
-              >
-                {/* Image */}
-                <div className="w-full h-[160px] xl:h-[200px] flex items-center justify-center">
-                  <img
-                    src={coverImg}
-                    alt={family.title}
-                    className="max-h-[200px] max-w-[200px] w-auto object-contain"
-                  />
-                </div>
-
-                {/* Info */}
-                <div className="flex flex-col items-center gap-[4px] text-center">
-                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[17px] text-[#1f2e91]">
-                    {family.title}
-                  </p>
-                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#9ca3af]">
-                    {family.subtitle}
-                  </p>
-                  <p
-                    className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] mt-[2px]"
-                    style={{
-                      background: accentGrad,
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                    }}
-                  >
-                    A partir de {formatBRL(lowestPrice)}
-                  </p>
-                </div>
-
-                {/* CTA */}
-                <Link
-                  href={`/checkin/${family.slug}`}
-                  className="h-[44px] px-[28px] rounded-[10px] flex items-center justify-center font-['Avenir_LT_Pro:85_Heavy'] text-[14px] text-white transition-opacity hover:opacity-90"
-                  style={{ background: accentGrad }}
-                >
-                  Comprar
-                </Link>
-              </div>
-            );
-          })}
+        {/* Neo Essentials */}
+        <div className="bg-[#f6f9fe] flex flex-col gap-[20px] items-center justify-center p-[20px] rounded-[16px] w-full">
+          <ProductRow families={[neoUp, neoEssentials]} />
+          <ProductRow families={[neoUltra, neoMax]} />
         </div>
+
+        {/* Neo Premium */}
+        <div className="bg-[#f6f9fe] flex flex-col gap-[20px] items-center justify-center p-[20px] rounded-[16px] w-full">
+          <ProductRow families={[neoInfinity]} />
+          <ProductRow families={[neoPrestige]} />
+          <ProductRow families={[neoPrime]} />
+        </div>
+
       </div>
     </section>
   );
 }
-
