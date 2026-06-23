@@ -1,10 +1,10 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, type ReactNode } from "react";
+import { createContext, useContext, useState, type ReactNode } from "react";
 
-export type Lang = "pt" | "pt-pt" | "en" | "es" | "fr" | "de" | "it" | "zh" | "ja" | "ko";
+export type Lang = "pt" | "pt-pt" | "en" | "en-gb" | "es" | "fr" | "de" | "it" | "zh" | "ja" | "ko" | "sv" | "fi" | "ru" | "ro" | "he";
 
-const ALL_LANGS: Lang[] = ["pt", "pt-pt", "en", "es", "fr", "de", "it", "zh", "ja", "ko"];
+const ALL_LANGS: Lang[] = ["pt", "pt-pt", "en", "en-gb", "es", "fr", "de", "it", "zh", "ja", "ko", "sv", "fi", "ru", "ro", "he"];
 
 const Ctx = createContext<{ lang: Lang; setLang: (l: Lang) => void }>({
   lang: "pt",
@@ -28,11 +28,10 @@ function detectLang(): Lang {
 }
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [lang, setLang] = useState<Lang>("pt");
-
-  useEffect(() => {
-    setLang(detectLang());
-  }, []);
+  const [lang, setLang] = useState<Lang>(() => {
+    if (typeof window === "undefined") return "pt";
+    return detectLang();
+  });
 
   function changeLang(l: Lang) {
     setLang(l);
