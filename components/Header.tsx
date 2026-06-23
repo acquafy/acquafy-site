@@ -589,8 +589,8 @@ export default function Header() {
     >
       <div className="flex h-[80px] items-center justify-between gap-[20px] max-w-[1400px] w-full">
         <a href="/" className="flex flex-col items-start shrink-0">
-          <div className="relative h-[34px] w-[160px]">
-            <img alt="Acquafy" className="absolute inset-0 w-full h-full object-contain" src={imgLogo} />
+          <div className="relative h-[30px]" style={{ aspectRatio: "1133.84/187.34" }}>
+            <img alt="Acquafy" className="absolute block inset-0 max-w-none size-full" src={imgLogo} />
           </div>
         </a>
 
