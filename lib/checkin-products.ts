@@ -1,4 +1,4 @@
-﻿import { PRODUCT_IMAGES, PRODUCT_PRICES_BRL } from "./products";
+import { PRODUCT_IMAGES, PRODUCT_PRICES_BRL } from "./products";
 
 export type ProductScene = {
   img: string;
@@ -9,6 +9,8 @@ export type CheckinVariant = {
   id: string;
   name: string;
   subLabel: string;
+  desc: string;
+  formato: string;
   price: number;
   img: string;
 };
@@ -22,89 +24,89 @@ export type CheckinFamily = {
   scenes: ProductScene[];
 };
 
-function v(id: string, name: string, subLabel: string): CheckinVariant {
-  return { id, name, subLabel, price: PRODUCT_PRICES_BRL[id] ?? 0, img: PRODUCT_IMAGES[id] ?? "" };
+function v(id: string, name: string, subLabel: string, desc: string, formato: string): CheckinVariant {
+  return { id, name, subLabel, desc, formato, price: PRODUCT_PRICES_BRL[id] ?? 0, img: PRODUCT_IMAGES[id] ?? "" };
 }
 
 export const CHECKIN_FAMILIES: CheckinFamily[] = [
   {
     slug: "neo-up",
     title: "Neo UP",
-    subtitle: "Purificador Natural",
+    subtitle: "Natural · Filtro UF",
     isPremium: false,
-    variants: [v("neo-up", "Neo UP", "Apenas Natural")],
+    variants: [v("neo-up", "Neo UP", "Apenas Natural", "Natural", "Bancada ou Parede")],
     scenes: [],
   },
   {
     slug: "neo-essentials",
-    title: "Neo Essentials",
-    subtitle: "Purificadores Multifuncionais 6 em 1",
+    title: "Neo Compact",
+    subtitle: "Multifuncional · até 7 em 1",
     isPremium: false,
     variants: [
-      v("neo-fit", "Neo FIT", "6 em 1"),
-      v("neo-smart-h2", "Neo SMART H₂", "7 em 1"),
-      v("neo-touch", "Neo TOUCH", "6 em 1"),
-      v("neo-plus", "Neo PLUS", "6 em 1"),
+      v("neo-fit",      "Neo FIT",      "6 em 1", "6 em 1",        "Bancada ou Parede"),
+      v("neo-smart-h2", "Neo SMART H₂", "7 em 1", "7 em 1 · H₂",  "Bancada"),
+      v("neo-touch",    "Neo TOUCH",    "6 em 1", "6 em 1",        "Bancada"),
+      v("neo-plus",     "Neo PLUS",     "6 em 1", "6 em 1",        "Bancada"),
     ],
     scenes: [],
   },
   {
     slug: "neo-ultra",
     title: "Neo ULTRA",
-    subtitle: "Purificador Multifuncional",
+    subtitle: "Alto Volume · até 8 em 1",
     isPremium: false,
     variants: [
-      v("neo-ultra", "Neo ULTRA", "6 em 1"),
-      v("neo-ultra-spark", "Neo ULTRA SPARK", "7 em 1"),
-      v("neo-ultra-spark-h2", "Neo ULTRA SPARK H₂", "8 em 1"),
+      v("neo-ultra",          "Neo ULTRA",          "6 em 1", "6 em 1",             "Bancada"),
+      v("neo-ultra-spark",    "Neo ULTRA SPARK",    "7 em 1", "7 em 1 · Gás",       "Bancada"),
+      v("neo-ultra-spark-h2", "Neo ULTRA SPARK H₂", "8 em 1", "8 em 1 · Gás + H₂", "Bancada"),
     ],
     scenes: [],
   },
   {
     slug: "neo-max",
     title: "Neo MAX",
-    subtitle: "Purificador Coluna",
+    subtitle: "Coluna · até 8 em 1",
     isPremium: false,
     variants: [
-      v("neo-max", "Neo MAX", "6 em 1"),
-      v("neo-max-spark", "Neo MAX SPARK", "7 em 1"),
-      v("neo-max-spark-h2", "Neo MAX SPARK H₂", "8 em 1"),
+      v("neo-max",          "Neo MAX",          "6 em 1", "6 em 1",             "Coluna"),
+      v("neo-max-spark",    "Neo MAX SPARK",    "7 em 1", "7 em 1 · Gás",       "Coluna"),
+      v("neo-max-spark-h2", "Neo MAX SPARK H₂", "8 em 1", "8 em 1 · Gás + H₂", "Coluna"),
     ],
     scenes: [],
   },
   {
     slug: "neo-prestige",
     title: "Neo PRESTIGE",
-    subtitle: "Purificador Premium Embutido",
+    subtitle: "Embutido · Osmose Reversa",
     isPremium: true,
     variants: [
-      v("neo-prestige", "Neo PRESTIGE", "6 em 1 · Aço inox"),
-      v("neo-prestige-spark", "Neo PRESTIGE SPARK", "7 em 1"),
-      v("neo-prestige-spark-h2", "Neo PRESTIGE SPARK H₂", "8 em 1"),
+      v("neo-prestige",          "Neo PRESTIGE",          "6 em 1", "6 em 1",             "Embutido"),
+      v("neo-prestige-spark",    "Neo PRESTIGE SPARK",    "7 em 1", "7 em 1 · Gás",       "Embutido"),
+      v("neo-prestige-spark-h2", "Neo PRESTIGE SPARK H₂", "8 em 1", "8 em 1 · Gás + H₂", "Embutido"),
     ],
     scenes: [],
   },
   {
     slug: "neo-prime",
     title: "Neo PRIME",
-    subtitle: "Purificador Premium",
+    subtitle: "Semi-Industrial · Osmose Reversa",
     isPremium: true,
     variants: [
-      v("neo-prime", "Neo PRIME", "6 em 1"),
-      v("neo-prime-spark", "Neo PRIME SPARK", "7 em 1"),
-      v("neo-prime-spark-h2", "Neo PRIME SPARK H₂", "8 em 1"),
+      v("neo-prime",          "Neo PRIME",          "6 em 1", "6 em 1",             "Bancada"),
+      v("neo-prime-spark",    "Neo PRIME SPARK",    "7 em 1", "7 em 1 · Gás",       "Bancada"),
+      v("neo-prime-spark-h2", "Neo PRIME SPARK H₂", "8 em 1", "8 em 1 · Gás + H₂", "Bancada"),
     ],
     scenes: [],
   },
   {
     slug: "neo-infinity",
     title: "Neo INFINITY",
-    subtitle: "Purificador Premium IPS 15,6\"",
+    subtitle: "IPS 15,6\" · Osmose Reversa",
     isPremium: true,
     variants: [
-      v("neo-infinity", "Neo INFINITY", "6 em 1 · IPS 15,6\""),
-      v("neo-infinity-spark", "Neo INFINITY SPARK", "7 em 1"),
-      v("neo-infinity-spark-h2", "Neo INFINITY SPARK H₂", "8 em 1"),
+      v("neo-infinity",          "Neo INFINITY",          "6 em 1", "6 em 1",             "Bancada"),
+      v("neo-infinity-spark",    "Neo INFINITY SPARK",    "7 em 1", "7 em 1 · Gás",       "Bancada"),
+      v("neo-infinity-spark-h2", "Neo INFINITY SPARK H₂", "8 em 1", "8 em 1 · Gás + H₂", "Bancada"),
     ],
     scenes: [],
   },

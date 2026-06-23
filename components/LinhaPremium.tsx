@@ -98,71 +98,95 @@ const T: Record<Lang, {
       { title: "Advanced IoT",          desc: "Real-time telemetry" },
     ],
   },
+  "en-gb": {
+    desc: "Sophisticated stainless steel models with LCD IPS Touch Panel 15.6, RO/Reverse Osmosis, App, UV LED, Wi-Fi 5, Bluetooth 5.3 and integrated premium experience.",
+    waterHeader: ["Water types from ", "Neo Premium", " products, the perfect water for every moment"],
+    waterTypes: [
+      { label: "Natural Water",      sub: "In all models" },
+      { label: "Cold Water",         sub: "In all" },
+      { label: "45°C Warm Milk",     sub: "In all" },
+      { label: "65°C Tea",           sub: "In all" },
+      { label: "85°C Coffee",        sub: "In all" },
+      { label: "100°C Hot Water",    sub: "In all" },
+      { label: "Sparkling Water",    sub: "7 & 8 in 1 Only" },
+      { label: "Hydrogen Water",     sub: "8 in 1 Only" },
+    ],
+    sub6: "6 in 1", sub7: "7 in 1", sub8: "8 in 1",
+    tankNote: "All models have a 3000ml Cold Water Tank.",
+    panelTitle: ["Premium Panel ", "with IPS Technology"],
+    panelSub: "Advanced technology for sophisticated environments and demanding users.",
+    features: [
+      { title: "LCD IPS / Total Touch", desc: "Navigation like iPhone / iPad" },
+      { title: "Premium Technology",    desc: "High-performance filters" },
+      { title: "Reverse Osmosis (RO)",  desc: "Pure alkaline water" },
+      { title: "Advanced IoT",          desc: "Real-time telemetry" },
+    ],
+  },
   es: {
-    desc: "Modelos sofisticados en acero inoxidable con Panel LCD IPS Touch 15.6, RO/Ósmosis Inversa, App, UV LED, Wi-Fi 5, Bluetooth 5.3 y experiencia premium integrada.",
+    desc: "Modelos sofisticados en acero inoxidable con Panel LCD IPS Touch 15.6, RO/Osmosis Inversa, App, UV LED, Wi-Fi 5, Bluetooth 5.3 y experiencia premium integrada.",
     waterHeader: ["Tipos de agua de los productos ", "Neo Premium", ", el agua perfecta para cada momento"],
     waterTypes: [
       { label: "Agua Natural",          sub: "En todos los modelos" },
-      { label: "Agua Fría",             sub: "En todos" },
+      { label: "Agua Fria",             sub: "En todos" },
       { label: "45°C Leche Caliente",   sub: "En todos" },
-      { label: "65°C Té",               sub: "En todos" },
-      { label: "85°C Café",             sub: "En todos" },
+      { label: "65°C Te",               sub: "En todos" },
+      { label: "85°C Cafe",             sub: "En todos" },
       { label: "100°C Agua Caliente",   sub: "En todos" },
       { label: "Agua con Gas",          sub: "Solo 7 y 8 en 1" },
       { label: "Agua Hidrogenada",      sub: "Solo 8 en 1" },
     ],
     sub6: "6 en 1", sub7: "7 en 1", sub8: "8 en 1",
-    tankNote: "Todos tienen Depósito de Agua Fría de 3000ml.",
-    panelTitle: ["Panel Premium ", "con Tecnología IPS"],
-    panelSub: "Tecnología avanzada para entornos sofisticados y usuarios exigentes.",
+    tankNote: "Todos tienen Deposito de Agua Fria de 3000ml.",
+    panelTitle: ["Panel Premium ", "con Tecnologia IPS"],
+    panelSub: "Tecnologia avanzada para entornos sofisticados y usuarios exigentes.",
     features: [
-      { title: "LCD IPS / Total Touch", desc: "Navegación como iPhone / iPad" },
-      { title: "Tecnología Premium",    desc: "Filtros de alto rendimiento" },
-      { title: "Ósmosis Inversa (RO)",  desc: "Agua alcalina pura" },
-      { title: "IoT Avanzado",          desc: "Telemetría en tiempo real" },
+      { title: "LCD IPS / Total Touch", desc: "Navegacion como iPhone / iPad" },
+      { title: "Tecnologia Premium",    desc: "Filtros de alto rendimiento" },
+      { title: "Osmosis Inversa (RO)",  desc: "Agua alcalina pura" },
+      { title: "IoT Avanzado",          desc: "Telemetria en tiempo real" },
     ],
   },
   fr: {
-    desc: "Modèles sophistiqués en acier inoxydable avec panneau LCD IPS Touch 15.6, RO/Osmose Inverse, App, UV LED, Wi-Fi 5, Bluetooth 5.3 et expérience premium intégrée.",
+    desc: "Modeles sophistiques en acier inoxydable avec panneau LCD IPS Touch 15.6, RO/Osmose Inverse, App, UV LED, Wi-Fi 5, Bluetooth 5.3 et experience premium integree.",
     waterHeader: ["Types d'eau des produits ", "Neo Premium", ", l'eau parfaite pour chaque instant"],
     waterTypes: [
-      { label: "Eau Naturelle",          sub: "Dans tous les modèles" },
+      { label: "Eau Naturelle",          sub: "Dans tous les modeles" },
       { label: "Eau Froide",             sub: "Dans tous" },
       { label: "45°C Lait Chaud",        sub: "Dans tous" },
-      { label: "65°C Thé",               sub: "Dans tous" },
-      { label: "85°C Café",              sub: "Dans tous" },
+      { label: "65°C The",               sub: "Dans tous" },
+      { label: "85°C Cafe",              sub: "Dans tous" },
       { label: "100°C Eau Chaude",       sub: "Dans tous" },
       { label: "Eau Gazeuse",            sub: "Solo 7 & 8 en 1" },
-      { label: "Eau Hydrogénée",         sub: "Seulement 8 en 1" },
+      { label: "Eau Hydrogenee",         sub: "Seulement 8 en 1" },
     ],
     sub6: "6 en 1", sub7: "7 en 1", sub8: "8 en 1",
-    tankNote: "Tous les modèles disposent d'un réservoir d'eau froide de 3000 ml.",
+    tankNote: "Tous les modeles disposent d'un reservoir d'eau froide de 3000 ml.",
     panelTitle: ["Panneau Premium ", "avec Technologie IPS"],
-    panelSub: "Technologie avancée pour des environnements sophistiqués et des utilisateurs exigeants.",
+    panelSub: "Technologie avancee pour des environnements sophistiques et des utilisateurs exigeants.",
     features: [
       { title: "LCD IPS / Total Touch", desc: "Navigation comme iPhone / iPad" },
       { title: "Technologie Premium",   desc: "Filtres haute performance" },
       { title: "Osmose Inverse (RO)",   desc: "Eau alcaline pure" },
-      { title: "IoT Avancé",            desc: "Télémétrie en temps réel" },
+      { title: "IoT Avance",            desc: "Telemetrie en temps reel" },
     ],
   },
   de: {
     desc: "Hochwertige Edelstahlmodelle mit LCD-IPS-Touchpanel 15.6, RO/Umkehrosmose, App, UV-LED, Wi-Fi 5, Bluetooth 5.3 und integriertem Premium-Erlebnis.",
-    waterHeader: ["Wassertypen der Produkte ", "Neo Premium", ", das perfekte Wasser für jeden Moment"],
+    waterHeader: ["Wassertypen der Produkte ", "Neo Premium", ", das perfekte Wasser fur jeden Moment"],
     waterTypes: [
-      { label: "Natürliches Wasser",     sub: "In allen Modellen" },
+      { label: "Naturliches Wasser",     sub: "In allen Modellen" },
       { label: "Kaltes Wasser",          sub: "In allen" },
       { label: "45°C Warme Milch",       sub: "In allen" },
       { label: "65°C Tee",               sub: "In allen" },
       { label: "85°C Kaffee",            sub: "In allen" },
-      { label: "100°C Heißes Wasser",    sub: "In allen" },
+      { label: "100°C Heisses Wasser",   sub: "In allen" },
       { label: "Sprudelwasser",          sub: "Nur 7 & 8 in 1" },
       { label: "Wasserstoffwasser",      sub: "Nur 8 in 1" },
     ],
     sub6: "6 in 1", sub7: "7 in 1", sub8: "8 in 1",
-    tankNote: "Alle Modelle verfügen über einen 3000 ml Kaltwassertank.",
+    tankNote: "Alle Modelle verfugen uber einen 3000 ml Kaltwassertank.",
     panelTitle: ["Premium-Panel ", "mit IPS-Technologie"],
-    panelSub: "Fortschrittliche Technologie für anspruchsvolle Umgebungen und anspruchsvolle Nutzer.",
+    panelSub: "Fortschrittliche Technologie fur anspruchsvolle Umgebungen und anspruchsvolle Nutzer.",
     features: [
       { title: "LCD IPS / Total Touch", desc: "Navigation wie iPhone / iPad" },
       { title: "Premium-Technologie",   desc: "Hochleistungsfilter" },
@@ -177,8 +201,8 @@ const T: Record<Lang, {
       { label: "Acqua Naturale",         sub: "In tutti i modelli" },
       { label: "Acqua Fredda",           sub: "In tutti" },
       { label: "45°C Latte Caldo",       sub: "In tutti" },
-      { label: "65°C Tè",                sub: "In tutti" },
-      { label: "85°C Caffè",             sub: "In tutti" },
+      { label: "65°C Te",                sub: "In tutti" },
+      { label: "85°C Caffe",             sub: "In tutti" },
       { label: "100°C Acqua Calda",      sub: "In tutti" },
       { label: "Acqua Frizzante",        sub: "Solo 7 & 8 in 1" },
       { label: "Acqua Idrogenata",       sub: "Solo 8 in 1" },
@@ -266,6 +290,126 @@ const T: Record<Lang, {
       { title: "고급 IoT",          desc: "실시간 원격 측정" },
     ],
   },
+  sv: {
+    desc: "Sofistikerade modeller i rostfritt stal med LCD IPS Touch-panel 15.6, RO/omvand osmos, app, UV LED, Wi-Fi 5, Bluetooth 5.3 och integrerad premiumupplevelse.",
+    waterHeader: ["Vattentyper fran ", "Neo Premium", "-produkter, det perfekta vattnet for varje ogonblick"],
+    waterTypes: [
+      { label: "Naturligt vatten",      sub: "I alla modeller" },
+      { label: "Kallt vatten",          sub: "I alla" },
+      { label: "45°C Varm mjolk",       sub: "I alla" },
+      { label: "65°C Te",               sub: "I alla" },
+      { label: "85°C Kaffe",            sub: "I alla" },
+      { label: "100°C Hett vatten",     sub: "I alla" },
+      { label: "Kolsyrat vatten",       sub: "Endast 7 & 8 i 1" },
+      { label: "Vatevatten",            sub: "Endast 8 i 1" },
+    ],
+    sub6: "6 i 1", sub7: "7 i 1", sub8: "8 i 1",
+    tankNote: "Alla modeller har en 3000ml kallvattentank.",
+    panelTitle: ["Premiumpanel ", "med IPS-teknik"],
+    panelSub: "Avancerad teknik for sofistikerade miljoer och kravande anvandare.",
+    features: [
+      { title: "LCD IPS / Total Touch", desc: "Navigation som iPhone / iPad" },
+      { title: "Premiumteknik",         desc: "Hogprestandafilter" },
+      { title: "Omvand osmos (RO)",     desc: "Rent alkaliskt vatten" },
+      { title: "Avancerad IoT",         desc: "Realtidstelemetri" },
+    ],
+  },
+  fi: {
+    desc: "Hienostuneet ruostumattomasta teraksesta valmistetut mallit, joissa on LCD IPS Touch -paneeli 15.6, RO/kaanteisosmoosi, sovellus, UV LED, Wi-Fi 5, Bluetooth 5.3 ja integroitu premium-kokemus.",
+    waterHeader: ["Vesityypit ", "Neo Premium", " -tuotteista, taydellinen vesi jokaiseen hetkeen"],
+    waterTypes: [
+      { label: "Luonnonvesi",           sub: "Kaikissa malleissa" },
+      { label: "Kylma vesi",            sub: "Kaikissa" },
+      { label: "45°C Lammin maito",     sub: "Kaikissa" },
+      { label: "65°C Tee",              sub: "Kaikissa" },
+      { label: "85°C Kahvi",            sub: "Kaikissa" },
+      { label: "100°C Kuuma vesi",      sub: "Kaikissa" },
+      { label: "Kivennaisvesi",         sub: "Vain 7 & 8 in 1" },
+      { label: "Vetyvesi",              sub: "Vain 8 in 1" },
+    ],
+    sub6: "6 in 1", sub7: "7 in 1", sub8: "8 in 1",
+    tankNote: "Kaikissa malleissa on 3000 ml:n kylmavesisailio.",
+    panelTitle: ["Premium-paneeli ", "IPS-teknologialla"],
+    panelSub: "Edistynyt teknologia hienostuneisiin ymparistoihin ja vaativille kayttajille.",
+    features: [
+      { title: "LCD IPS / Total Touch", desc: "Navigointi kuten iPhone / iPad" },
+      { title: "Premium-teknologia",    desc: "Korkean suorituskyvyn suodattimet" },
+      { title: "Kaanteisosmoosi (RO)",  desc: "Puhdas emaksinen vesi" },
+      { title: "Edistynyt IoT",         desc: "Reaaliaikainen telemetria" },
+    ],
+  },
+  ru: {
+    desc: "Sophisticirovannye modeli iz nerzhaveyuschey stali s LCD IPS Touch-panelyu 15.6, RO/obratnym osmosom, prilozheniem, UV LED, Wi-Fi 5, Bluetooth 5.3 i integrirovannoy premium-ekspiriyentsiey.",
+    waterHeader: ["Tipy vody produktov ", "Neo Premium", ", idealnaya voda dlya kazhdogo momenta"],
+    waterTypes: [
+      { label: "Prirodnaya voda",       sub: "Vo vsekh modelyakh" },
+      { label: "Kholodnaya voda",       sub: "Vo vsekh" },
+      { label: "45°C Teploe moloko",    sub: "Vo vsekh" },
+      { label: "65°C Chay",             sub: "Vo vsekh" },
+      { label: "85°C Kofe",             sub: "Vo vsekh" },
+      { label: "100°C Goryachaya voda", sub: "Vo vsekh" },
+      { label: "Gazirovannaya voda",    sub: "Tolko 7 i 8 v 1" },
+      { label: "Vodorodnaya voda",      sub: "Tolko 8 v 1" },
+    ],
+    sub6: "6 v 1", sub7: "7 v 1", sub8: "8 v 1",
+    tankNote: "Vse modeli imeyut bak dlya kholodnoy vody na 3000 ml.",
+    panelTitle: ["Premium-panel ", "s IPS-tekhnologiyey"],
+    panelSub: "Peredovye tekhnologii dlya izyshchennykh sred i trebovatel'nykh pol'zovateley.",
+    features: [
+      { title: "LCD IPS / Total Touch", desc: "Navigatsiya kak iPhone / iPad" },
+      { title: "Premium-tekhnologiya",  desc: "Vysokoproizvoditel'nye fil'try" },
+      { title: "Obratnyy osmos (RO)",   desc: "Chistaya shchelochnaya voda" },
+      { title: "Prodvinutyy IoT",       desc: "Telemetriya v real'nom vremeni" },
+    ],
+  },
+  ro: {
+    desc: "Modele sofisticate din otel inoxidabil cu panou LCD IPS Touch 15.6, RO/Osmoza Inversa, App, UV LED, Wi-Fi 5, Bluetooth 5.3 si experienta premium integrata.",
+    waterHeader: ["Tipuri de apa ale produselor ", "Neo Premium", ", apa perfecta pentru fiecare moment"],
+    waterTypes: [
+      { label: "Apa Naturala",          sub: "In toate modelele" },
+      { label: "Apa Rece",              sub: "In toate" },
+      { label: "45°C Lapte Cald",       sub: "In toate" },
+      { label: "65°C Ceai",             sub: "In toate" },
+      { label: "85°C Cafea",            sub: "In toate" },
+      { label: "100°C Apa Fierbinte",   sub: "In toate" },
+      { label: "Apa Carbogazoasa",      sub: "Doar 7 si 8 in 1" },
+      { label: "Apa Hidrogenata",       sub: "Doar 8 in 1" },
+    ],
+    sub6: "6 in 1", sub7: "7 in 1", sub8: "8 in 1",
+    tankNote: "Toate modelele au un rezervor de apa rece de 3000 ml.",
+    panelTitle: ["Panou Premium ", "cu Tehnologie IPS"],
+    panelSub: "Tehnologie avansata pentru medii sofisticate si utilizatori pretentiosi.",
+    features: [
+      { title: "LCD IPS / Total Touch", desc: "Navigare ca iPhone / iPad" },
+      { title: "Tehnologie Premium",    desc: "Filtre de inalta performanta" },
+      { title: "Osmoza Inversa (RO)",   desc: "Apa alcalina pura" },
+      { title: "IoT Avansat",           desc: "Telemetrie in timp real" },
+    ],
+  },
+  he: {
+    desc: "דגמים מתוחכמים מנירוסטה עם לוח LCD IPS Touch 15.6, RO/אוסמוזה הפוכה, אפליקציה, UV LED, Wi-Fi 5, Bluetooth 5.3 וחוויה פרימיום משולבת.",
+    waterHeader: ["סוגי המים של מוצרי ", "Neo Premium", ", המים המושלמים לכל רגע"],
+    waterTypes: [
+      { label: "מים טבעיים",            sub: "בכל הדגמים" },
+      { label: "מים קרים",              sub: "בכולם" },
+      { label: "45°C חלב חם",           sub: "בכולם" },
+      { label: "65°C תה",               sub: "בכולם" },
+      { label: "85°C קפה",              sub: "בכולם" },
+      { label: "100°C מים חמים",        sub: "בכולם" },
+      { label: "מים מוגזים",            sub: "רק 7 ו-8 ב-1" },
+      { label: "מים מימניים",           sub: "רק 8 ב-1" },
+    ],
+    sub6: "6 ב-1", sub7: "7 ב-1", sub8: "8 ב-1",
+    tankNote: "כל הדגמים כוללים מיכל מים קרים של 3000 מ\"ל.",
+    panelTitle: ["לוח פרימיום ", "עם טכנולוגיית IPS"],
+    panelSub: "טכנולוגיה מתקדמת לסביבות מתוחכמות ומשתמשים דורשניים.",
+    features: [
+      { title: "LCD IPS / Total Touch", desc: "ניווט כמו iPhone / iPad" },
+      { title: "טכנולוגיה פרימיום",     desc: "פילטרים בביצועים גבוהים" },
+      { title: "אוסמוזה הפוכה (RO)",    desc: "מים אלקליים טהורים" },
+      { title: "IoT מתקדם",             desc: "טלמטריה בזמן אמת" },
+    ],
+  },
   "pt-pt": {
     desc: "Modelos sofisticados em aço inox com Painel LCD IPS Touch 15.6, RO/Osmose Inversa, App, UV LED, Wi-Fi 5, Bluetooth 5.3 e experiência premium integrada.",
     waterHeader: ["Tipos de água dos produtos ", "Neo Premium", ", a água perfeita para cada momento"],
@@ -292,6 +436,25 @@ const T: Record<Lang, {
   },
 };
 
+const BUY_NOW: Record<Lang, string> = {
+  pt: "Comprar Agora",
+  en: "Buy Now",
+  "en-gb": "Buy Now",
+  es: "Comprar Ahora",
+  fr: "Acheter maintenant",
+  de: "Jetzt kaufen",
+  it: "Acquista ora",
+  zh: "立即购买",
+  ja: "今すぐ購入",
+  ko: "지금 구매",
+  sv: "Kop nu",
+  fi: "Osta nyt",
+  ru: "Kupit' seychas",
+  ro: "Cumpara acum",
+  he: "קנה עכשיו",
+  "pt-pt": "Comprar Agora",
+};
+
 function ProductImage({ src }: { src: string }) {
   return (
     <div className="w-full h-[220px] shrink-0">
@@ -301,6 +464,7 @@ function ProductImage({ src }: { src: string }) {
 }
 
 function PremiumCard({ product, color = "#6e0cc3" }: { product: Product; color?: string }) {
+  const { lang } = useLang();
   return (
     <div className="bg-white flex flex-[1_0_0] flex-col gap-[10px] items-center min-h-[290px] min-w-[180px] overflow-hidden p-[20px] rounded-[12px]">
       <ProductImage src={product.img} />
@@ -310,6 +474,13 @@ function PremiumCard({ product, color = "#6e0cc3" }: { product: Product; color?:
       <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] text-center w-full">
         {product.sub}
       </p>
+      <a
+        href="/checkin"
+        className="flex items-center justify-center min-h-[40px] px-[10px] py-[8px] rounded-[8px] w-full shrink-0 font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white hover:opacity-90 active:opacity-80 transition-opacity no-underline"
+        style={{ backgroundImage: "linear-gradient(90deg, #0233c3, #0569ff)" }}
+      >
+        {BUY_NOW[lang]}
+      </a>
     </div>
   );
 }
@@ -325,7 +496,7 @@ function PanelSlideshow() {
         role="button"
         tabIndex={0}
         onKeyDown={(e) => e.key === "Enter" && setActive((active + 1) % panelSlideSrcs.length)}
-        aria-label="Próximo slide"
+        aria-label="Proximo slide"
       >
         <img
           alt="Painel Premium"
@@ -424,9 +595,6 @@ export default function LinhaPremium() {
             <div className="flex flex-wrap gap-[15px] items-stretch w-full">
               {rowPrime.map((p, i) => <PremiumCard key={i} product={p} />)}
             </div>
-            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#333] text-center w-full">
-              {t.tankNote}
-            </p>
           </div>
 
           <div className="flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-w-[240px]">
