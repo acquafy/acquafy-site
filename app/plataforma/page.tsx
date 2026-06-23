@@ -5,6 +5,7 @@ import PlatformFeatures from "@/components/PlatformFeatures";
 import PlatformExperience from "@/components/PlatformExperience";
 import PlatformAppAiIot from "@/components/PlatformAppAiIot";
 import PlatformGlobal from "@/components/PlatformGlobal";
+import IdiomasGrid from "@/components/IdiomasGrid";
 import PlatformProfiles from "@/components/PlatformProfiles";
 import PlatformEcosystem from "@/components/PlatformEcosystem";
 import PlatformCta from "@/components/PlatformCta";
@@ -24,6 +25,11 @@ export default function PlataformaPage() {
         <PlatformExperience />
         <PlatformAppAiIot />
         <PlatformGlobal />
+        <section className="bg-white w-full px-[20px] py-[40px]">
+          <div className="max-w-[1400px] mx-auto w-full">
+            <IdiomasGrid />
+          </div>
+        </section>
         <PlatformProfiles />
         <PlatformEcosystem />
         <PlatformCta />
