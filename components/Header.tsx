@@ -6,7 +6,7 @@ import FigmaIcon from "./FigmaIcon";
 import { LanguageSelectorCompact } from "./ui/LanguageSelector";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
-const imgLogo    = "/figma-assets/logo-acquafy.svg";
+const imgLogo    = "/figma-assets/logo-b.svg";
 const imgPartner = "/figma-assets/icon-partner-b.svg";
 
 // ── Types ────────────────────────────────────────────────────────────────────
@@ -38,7 +38,7 @@ const NAV_STRUCTURE = [
       { href: "/neo-line",  bg: "#0569ff", icon: "/figma-assets/icon-agua-pura-30px.svg" },
       { href: "/neo-media", bg: "#6e54ef", icon: "/figma-assets/icon-media.svg"          },
       { href: "/filters",   bg: "#ffa920", icon: "/figma-assets/icon-filtros-40px.svg"  },
-      { href: "/compare",   bg: "#36ae5c", icon: "/figma-assets/icon-check-30px.svg"    },
+      { href: "/compare",   bg: "#36ae5c", icon: "/figma-assets/icon-check-a.svg"        },
     ],
   },
   {
@@ -50,7 +50,7 @@ const NAV_STRUCTURE = [
       { href: "/contact",          bg: "#ffa920", icon: "/figma-assets/icon-phone-a.svg"              },
     ],
   },
-  { href: "/checkin", extra: [], dropdown: [] },
+  { href: "/buy", extra: [], dropdown: [] },
 ];
 
 type NavTxt = { label: string; dd: { label: string; desc: string; cta: string }[] };
@@ -120,7 +120,7 @@ const NAV_TEXT: Record<Lang, NavTxt[]> = {
     { label: "Platform", dd: [
       { label: "Acquafy Platform",          desc: "Intelligent water management with fully integrated App, AI and IoT.",               cta: "Explore the Platform" },
       { label: "App + AI + IoT",            desc: "Remote control, automation and artificial intelligence in the palm of your hand.",  cta: "See the App"          },
-      { label: "Support Center",            desc: "Specialized technical support to keep your Acquafy always running.",                cta: "Access Support"       },
+      { label: "Support Centre",            desc: "Specialised technical support to keep your Acquafy always running.",                cta: "Access Support"       },
       { label: "Technology & Sustainability", desc: "Cutting-edge innovation combined with a positive environmental impact.",          cta: "Learn more"           },
     ]},
     { label: "Products", dd: [
@@ -447,14 +447,14 @@ function HamburgerIcon({ open }: { open: boolean }) {
     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden>
       {open ? (
         <>
-          <line x1="3" y1="3"  x2="19" y2="19" stroke="#333" strokeWidth="2" strokeLinecap="round" />
-          <line x1="19" y1="3" x2="3"  y2="19" stroke="#333" strokeWidth="2" strokeLinecap="round" />
+          <line x1="3" y1="3"  x2="19" y2="19" stroke="#333" strokeWidth="1.5" strokeLinecap="round" />
+          <line x1="19" y1="3" x2="3"  y2="19" stroke="#333" strokeWidth="1.5" strokeLinecap="round" />
         </>
       ) : (
         <>
-          <line x1="3" y1="5"  x2="19" y2="5"  stroke="#333" strokeWidth="2" strokeLinecap="round" />
-          <line x1="3" y1="11" x2="19" y2="11" stroke="#333" strokeWidth="2" strokeLinecap="round" />
-          <line x1="3" y1="17" x2="19" y2="17" stroke="#333" strokeWidth="2" strokeLinecap="round" />
+          <line x1="3" y1="5"  x2="19" y2="5"  stroke="#333" strokeWidth="1.5" strokeLinecap="round" />
+          <line x1="3" y1="11" x2="19" y2="11" stroke="#333" strokeWidth="1.5" strokeLinecap="round" />
+          <line x1="3" y1="17" x2="19" y2="17" stroke="#333" strokeWidth="1.5" strokeLinecap="round" />
         </>
       )}
     </svg>
