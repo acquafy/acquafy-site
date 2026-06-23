@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
@@ -89,6 +89,24 @@ const T: Record<Lang, {
       { title: "Sustainability",        description: "Positive impact for people, communities and the planet" },
     ],
   },
+  "en-gb": {
+    headingPrefix: "About ",
+    para1: "Our mission is to transform access to quality water and improve lives.",
+    para2: "Acquafy combines technology, artificial intelligence, connectivity and premium design to offer modern solutions for water purification, management and experience for homes, businesses and global operations.",
+    pillItems: [
+      { sub: "100% American",      title: "Founded in the USA in 2020" },
+      { sub: "Part of",            title: "Interfy Group" },
+      { sub: "Global presence with", title: "App + IoT + Acquafy AI" },
+    ],
+    btn1: "Our Story",
+    btn2: "Talk to Our Team",
+    bottomFeatures: [
+      { title: "Technology + AI",     description: "Artificial intelligence applied to the water experience" },
+      { title: "Premium Purification", description: "Pure, safe water of superior quality" },
+      { title: "Global Connectivity",  description: "Smart solutions with IoT and real-time management" },
+      { title: "Sustainability",        description: "Positive impact for people, communities and the planet" },
+    ],
+  },
   es: {
     headingPrefix: "Sobre ",
     para1: "Nuestra misión es transformar el acceso al agua de calidad y mejorar vidas.",
@@ -108,21 +126,21 @@ const T: Record<Lang, {
     ],
   },
   fr: {
-    headingPrefix: "À propos d'",
-    para1: "Notre mission est de transformer l'accès à l'eau de qualité et d'améliorer les vies.",
-    para2: "Acquafy allie technologie, intelligence artificielle, connectivité et design premium pour offrir des solutions modernes de purification, de gestion et d'expérience de l'eau pour les foyers, les entreprises et les opérations mondiales.",
+    headingPrefix: "A propos d'",
+    para1: "Notre mission est de transformer l'acces a l'eau de qualite et d'ameliorer les vies.",
+    para2: "Acquafy allie technologie, intelligence artificielle, connectivite et design premium pour offrir des solutions modernes de purification, de gestion et d'experience de l'eau pour les foyers, les entreprises et les operations mondiales.",
     pillItems: [
-      { sub: "100% américaine",       title: "Fondée aux États-Unis en 2020" },
+      { sub: "100% americaine",       title: "Fondee aux Etats-Unis en 2020" },
       { sub: "Membre du",             title: "Interfy Group" },
-      { sub: "Présence mondiale avec", title: "App + IoT + Acquafy AI" },
+      { sub: "Presence mondiale avec", title: "App + IoT + Acquafy AI" },
     ],
     btn1: "Notre Histoire",
-    btn2: "Parler à Notre Équipe",
+    btn2: "Parler a Notre Equipe",
     bottomFeatures: [
-      { title: "Technologie + IA",     description: "Intelligence artificielle appliquée à l'expérience de l'eau" },
-      { title: "Purification premium", description: "Eau pure, sûre et de qualité supérieure" },
-      { title: "Connectivité mondiale", description: "Solutions intelligentes avec IoT et gestion en temps réel" },
-      { title: "Durabilité",           description: "Impact positif pour les personnes, les communautés et la planète" },
+      { title: "Technologie + IA",     description: "Intelligence artificielle appliquee a l'experience de l'eau" },
+      { title: "Purification premium", description: "Eau pure, sure et de qualite superieure" },
+      { title: "Connectivite mondiale", description: "Solutions intelligentes avec IoT et gestion en temps reel" },
+      { title: "Durabilite",           description: "Impact positif pour les personnes, les communautes et la planete" },
     ],
   },
   de: {
@@ -215,6 +233,96 @@ const T: Record<Lang, {
       { title: "지속 가능성",        description: "사람, 커뮤니티, 지구에 긍정적인 영향" },
     ],
   },
+  sv: {
+    headingPrefix: "Om ",
+    para1: "Vår mission är att förändra tillgången till kvalitetsvatten och förbättra liv.",
+    para2: "Acquafy kombinerar teknik, artificiell intelligens, anslutning och premiumdesign för att erbjuda moderna lösningar för vattenrening, -hantering och -upplevelse för hem, företag och globala verksamheter.",
+    pillItems: [
+      { sub: "100% amerikanskt",      title: "Grundat i USA 2020" },
+      { sub: "Del av",                title: "Interfy Group" },
+      { sub: "Global närvaro med",    title: "App + IoT + Acquafy AI" },
+    ],
+    btn1: "Vår Historia",
+    btn2: "Prata med Vårt Team",
+    bottomFeatures: [
+      { title: "Teknik + AI",          description: "Artificiell intelligens tillämpad på vattenupplevelsen" },
+      { title: "Premiumrening",        description: "Rent, säkert vatten av överlägsen kvalitet" },
+      { title: "Global anslutning",    description: "Smarta lösningar med IoT och realtidshantering" },
+      { title: "Hållbarhet",           description: "Positiv inverkan för människor, samhällen och planeten" },
+    ],
+  },
+  fi: {
+    headingPrefix: "Tietoa ",
+    para1: "Missiomme on muuttaa laadukkaan veden saatavuutta ja parantaa elamaa.",
+    para2: "Acquafy yhdistaa teknologian, tekoalyn, yhteydet ja premium-muotoilun tarjotakseen moderneja ratkaisuja veden puhdistukseen, hallintaan ja kokemukseen kodeille, yrityksille ja globaaleille toiminnoille.",
+    pillItems: [
+      { sub: "100% amerikkalainen",   title: "Perustettu USA:ssa 2020" },
+      { sub: "Osa",                   title: "Interfy Groupia" },
+      { sub: "Globaali laeisnaolo",   title: "App + IoT + Acquafy AI" },
+    ],
+    btn1: "Tarinamme",
+    btn2: "Ota yhteyttä tiimiimme",
+    bottomFeatures: [
+      { title: "Teknologia + AI",      description: "Tekoaly sovellettuna vesikokemukseen" },
+      { title: "Premium-puhdistus",    description: "Puhdas, turvallinen vesi erinomaista laadusta" },
+      { title: "Globaali yhteys",      description: "Alaykkaita ratkaisuja IoT:lla ja reaaliaikaisella hallinnalla" },
+      { title: "Kestava kehitys",      description: "Positiivinen vaikutus ihmisille, yhteisöille ja planeetalle" },
+    ],
+  },
+  ru: {
+    headingPrefix: "O kompanii ",
+    para1: "Nasha missiya — preobrazovat dostup k kachestvennoj vode i uluchshat zhizn lyudej.",
+    para2: "Acquafy ob'edinyaet tekhnologii, iskusstvennyj intellekt, svyaznost i premium-dizajn dlya predlozheniya sovremennykh reshenij po ochistke, upravleniyu i opyte vody dlya domov, predpriyatij i globalnykh operacij.",
+    pillItems: [
+      { sub: "100% amerikanskij",     title: "Osnovana v SShA v 2020 g." },
+      { sub: "Chast",                 title: "Interfy Group" },
+      { sub: "Globalnoe prisutstvie", title: "App + IoT + Acquafy AI" },
+    ],
+    btn1: "Nasha istoriya",
+    btn2: "Svyazatsya s nashej komandoj",
+    bottomFeatures: [
+      { title: "Tekhnologii + ИИ",    description: "Iskusstvennyj intellekt v opyte vody" },
+      { title: "Premium-ochistka",    description: "Chistaya, bezopasnaya voda prevoskhodnogo kachestva" },
+      { title: "Globalnaya svyaz",    description: "Umnye resheniya s IoT i upravleniem v realnom vremeni" },
+      { title: "Ustojchivost",        description: "Polozhitelnoye vozdejstvie na lyudej, soobshchestva i planetu" },
+    ],
+  },
+  ro: {
+    headingPrefix: "Despre ",
+    para1: "Misiunea noastra este sa transformam accesul la apa de calitate si sa imbunatatim vietile.",
+    para2: "Acquafy combina tehnologia, inteligenta artificiala, conectivitatea si designul premium pentru a oferi solutii moderne de purificare, gestionare si experienta a apei pentru case, companii si operatiuni globale.",
+    pillItems: [
+      { sub: "100% americana",        title: "Fondata in SUA in 2020" },
+      { sub: "Parte din",             title: "Interfy Group" },
+      { sub: "Prezenta globala cu",   title: "App + IoT + Acquafy AI" },
+    ],
+    btn1: "Povestea noastra",
+    btn2: "Vorbeste cu echipa noastra",
+    bottomFeatures: [
+      { title: "Tehnologie + IA",      description: "Inteligenta artificiala aplicata experientei apei" },
+      { title: "Purificare premium",   description: "Apa pura, sigura si de calitate superioara" },
+      { title: "Conectivitate globala", description: "Solutii inteligente cu IoT si management in timp real" },
+      { title: "Sustenabilitate",      description: "Impact pozitiv pentru oameni, comunitati si planeta" },
+    ],
+  },
+  he: {
+    headingPrefix: "אודות ",
+    para1: "המשימה שלנו היא לשנות את הגישה למים איכותיים ולשפר חיים.",
+    para2: "Acquafy משלבת טכנולוגיה, בינה מלאכותית, קישוריות ועיצוב פרמיום כדי להציע פתרונות מודרניים לטיהור, ניהול וחוויית מים לבתים, עסקים ופעולות גלובליות.",
+    pillItems: [
+      { sub: "100% אמריקאי",          title: "נוסדה בארה\"ב ב-2020" },
+      { sub: "חלק מ-",                title: "Interfy Group" },
+      { sub: "נוכחות גלובלית עם",     title: "App + IoT + Acquafy AI" },
+    ],
+    btn1: "הסיפור שלנו",
+    btn2: "דבר עם הצוות שלנו",
+    bottomFeatures: [
+      { title: "טכנולוגיה + AI",       description: "בינה מלאכותית מיושמת על חוויית המים" },
+      { title: "טיהור פרמיום",         description: "מים נקיים, בטוחים ובאיכות מעולה" },
+      { title: "קישוריות גלובלית",     description: "פתרונות חכמים עם IoT וניהול בזמן אמת" },
+      { title: "קיימות",               description: "השפעה חיובית על אנשים, קהילות והפלנטה" },
+    ],
+  },
 };
 
 // ── Static pill icon/alt data (no translation needed) ─────────────────────────
@@ -284,7 +392,7 @@ function CTAButtons({ stretch = false, btn1, btn2 }: { stretch?: boolean; btn1: 
         </span>
         <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
       </a>
-      <a href="/contato" className={`group flex gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors cursor-pointer no-underline ${stretch ? "flex-[1_0_0]" : "shrink-0"}`}>
+      <a href="/contact" className={`group flex gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors cursor-pointer no-underline ${stretch ? "flex-[1_0_0]" : "shrink-0"}`}>
         <span className="font-['Articulat_CF:Bold'] text-[16px] leading-normal text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">
           {btn2}
         </span>

@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
@@ -38,6 +38,19 @@ const T: Record<Lang, {
       { title: "Advanced Purification",   description: "Multi-stage filtration systems that remove impurities, odors, heavy metals and microorganisms, ensuring pure and alkaline water." },
       { title: "Artificial Intelligence", description: "Integrated AI for water monitoring, predictive maintenance, optimized usage and insights for operation and performance." },
       { title: "IoT Connectivity",        description: "Devices connected in real time, with remote monitoring, updates and centralized management via the Acquafy platform." },
+      { title: "Smart Interface",         description: "LCD IPS Touch screens with an intuitive experience, real-time information, ads and interactivity for brand users." },
+      { title: "Total Security",          description: "Data protection, access control, encryption and compliance with the leading international security and privacy standards." },
+      { title: "Data & Performance",      description: "Complete dashboards with usage indicators, water quality, revenue and impact for data-driven strategic decisions." },
+    ],
+  },
+  "en-gb": {
+    heading1: "Technology",
+    heading2: " that makes a difference",
+    subtitle: "We develop complete solutions that combine advanced hardware, intelligent software and connectivity to deliver the best experience in water purification and impact management.",
+    features: [
+      { title: "Advanced Purification",   description: "Multi-stage filtration systems that remove impurities, odours, heavy metals and microorganisms, ensuring pure and alkaline water." },
+      { title: "Artificial Intelligence", description: "Integrated AI for water monitoring, predictive maintenance, optimised usage and insights for operation and performance." },
+      { title: "IoT Connectivity",        description: "Devices connected in real time, with remote monitoring, updates and centralised management via the Acquafy platform." },
       { title: "Smart Interface",         description: "LCD IPS Touch screens with an intuitive experience, real-time information, ads and interactivity for brand users." },
       { title: "Total Security",          description: "Data protection, access control, encryption and compliance with the leading international security and privacy standards." },
       { title: "Data & Performance",      description: "Complete dashboards with usage indicators, water quality, revenue and impact for data-driven strategic decisions." },
@@ -132,6 +145,71 @@ const T: Record<Lang, {
       { title: "스마트 인터페이스", description: "직관적인 경험, 실시간 정보, 광고, 브랜드 사용자 상호작용을 갖춘 LCD IPS 터치 스크린." },
       { title: "완전한 보안",       description: "데이터 보호, 접근 제어, 암호화 및 주요 국제 보안·개인정보 보호 표준 준수." },
       { title: "데이터 & 성능",     description: "사용 지표, 수질, 수익 및 영향을 포함한 완전한 대시보드로 데이터 기반 전략적 의사결정 지원." },
+    ],
+  },
+  sv: {
+    heading1: "Teknik",
+    heading2: " som gör skillnad",
+    subtitle: "Vi utvecklar kompletta lösningar som kombinerar avancerad hårdvara, intelligent mjukvara och uppkoppling för att leverera den bästa upplevelsen inom vattenrening och påverkanshantering.",
+    features: [
+      { title: "Avancerad Rening",          description: "Flerstegs filtreringssystem som tar bort föroreningar, lukter, tungmetaller och mikroorganismer och säkerställer rent och alkaliskt vatten." },
+      { title: "Artificiell Intelligens",   description: "Integrerad AI för övervakning av vatten, prediktivt underhåll, optimerad användning och insikter för drift och prestanda." },
+      { title: "IoT-uppkoppling",           description: "Enheter uppkopplade i realtid med fjärrövervakning, uppdateringar och centraliserad hantering via Acquafy-plattformen." },
+      { title: "Smart Gränssnitt",          description: "LCD IPS Touch-skärmar med intuitiv upplevelse, realtidsinformation, annonser och interaktivitet för varumärkesanvändare." },
+      { title: "Total Säkerhet",            description: "Dataskydd, åtkomstkontroll, kryptering och efterlevnad av ledande internationella säkerhets- och integritetsstandarder." },
+      { title: "Data & Prestanda",          description: "Kompletta instrumentpaneler med användningsindikatorer, vattenkvalitet, intäkter och påverkan för datadrivna strategiska beslut." },
+    ],
+  },
+  fi: {
+    heading1: "Teknologia",
+    heading2: ", joka tekee eron",
+    subtitle: "Kehitämme täydellisiä ratkaisuja, jotka yhdistävät edistyneen laitteiston, älykkään ohjelmiston ja yhteydet tarjotakseen parhaan kokemuksen vedenpuhdistuksessa ja vaikutustenhallinnassa.",
+    features: [
+      { title: "Edistynyt Puhdistus",       description: "Monivaiheinen suodatusjärjestelmä, joka poistaa epäpuhtaudet, hajut, raskasmetallit ja mikro-organismit varmistaen puhtaan ja alkalisen veden." },
+      { title: "Tekoäly",                   description: "Integroitu tekoäly vedenlaadun tarkkailuun, ennakoivaan huoltoon, optimoituun käyttöön sekä toiminnan ja suorituskyvyn tietoihin." },
+      { title: "IoT-yhteys",               description: "Reaaliaikaisesti yhdistetyt laitteet etävalvonnalla, päivityksillä ja keskitetyllä hallinnalla Acquafy-alustan kautta." },
+      { title: "Älykäs Käyttöliittymä",   description: "LCD IPS Touch -näytöillä intuitiivinen kokemus, reaaliaikaiset tiedot, mainokset ja interaktiivisuus brandi-käyttäjille." },
+      { title: "Kokonaisturvallisuus",      description: "Tietosuoja, pääsynhallinta, salaus ja vaatimustenmukaisuus johtavien kansainvälisten turvallisuus- ja yksityisyysstandardien kanssa." },
+      { title: "Data & Suorituskyky",       description: "Täysimääräiset kojelaudat käyttöindikaattoreilla, vedenlaadulla, tuloilla ja vaikutuksilla dataohjattuja strategisia päätöksiä varten." },
+    ],
+  },
+  ru: {
+    heading1: "Технология",
+    heading2: ", которая меняет всё",
+    subtitle: "Мы разрабатываем комплексные решения, сочетающие передовое аппаратное обеспечение, интеллектуальное программное обеспечение и подключение для обеспечения лучшего опыта в очистке воды и управлении воздействием.",
+    features: [
+      { title: "Расширенная очистка",    description: "Многоступенчатые системы фильтрации, удаляющие примеси, запахи, тяжёлые металлы и микроорганизмы, обеспечивая чистую и щелочную воду." },
+      { title: "Искусственный интеллект", description: "Интегрированный ИИ для мониторинга воды, предиктивного техобслуживания, оптимизированного использования и аналитики для эксплуатации и производительности." },
+      { title: "IoT-подключение",             description: "Устройства, подключенные в режиме реального времени, с дистанционным мониторингом, обновлениями и централизованным управлением через платформу Acquafy." },
+      { title: "Умный интерфейс",       description: "Экраны LCD IPS Touch с интуитивным интерфейсом, информацией в режиме реального времени, рекламой и интерактивностью для пользователей бренда." },
+      { title: "Полная безопасность",             description: "Защита данных, контроль доступа, шифрование и соответствие ведущим международным стандартам безопасности и конфиденциальности." },
+      { title: "Данные & Производительность",           description: "Полные дашборды с показателями использования, качеством воды, доходом и воздействием для принятия стратегических решений на основе данных." },
+    ],
+  },
+  ro: {
+    heading1: "Tehnologie",
+    heading2: " care face diferenţa",
+    subtitle: "Dezvoltăm soluţii complete care combină hardware avansat, software inteligent şi conectivitate pentru a oferi cea mai bună experienţă în purificarea apei şi gestionarea impactului.",
+    features: [
+      { title: "Purificare Avansată",       description: "Sisteme de filtrare în mai multe etape care elimină impurităţile, mirosurile, metalele grele şi microorganismele, garantând apă pură şi alcalină." },
+      { title: "Inteligenţă Artificială",   description: "IA integrată pentru monitorizarea apei, întreţinere predictivă, utilizare optimizată şi informaţii pentru operaţiuni şi performanţă." },
+      { title: "Conectivitate IoT",         description: "Dispozitive conectate în timp real, cu monitorizare la distanţă, actualizări şi gestionare centralizată prin platforma Acquafy." },
+      { title: "Interfaţă Inteligentă",     description: "Ecrane LCD IPS Touch cu experienţă intuitivă, informaţii în timp real, reclame şi interactivitate pentru utilizatorii de brand." },
+      { title: "Securitate Totală",         description: "Protecţia datelor, controlul accesului, criptare şi conformitate cu principalele standarde internaţionale de securitate şi confidenţialitate." },
+      { title: "Date & Performanţă",        description: "Tablouri de bord complete cu indicatori de utilizare, calitatea apei, venituri şi impact pentru decizii strategice bazate pe date." },
+    ],
+  },
+  he: {
+    heading1: "טכנולוגיה",
+    heading2: " שעושה את ההבדל",
+    subtitle: "אנו מפתחים פתרונות מלאים המשלבים חומרה מתקדמת, תוכנה חכמה וקישוריות למתן את החווייה הטובה ביותר בטיהרת מים וניהול השפעה.",
+    features: [
+      { title: "טיהור מתקדם",    description: "מערכות סינון רב-שלביות המסירות זיהומים, ריחות, מתכות כבדות ומיקרואורגניזמים, ומבטיחות מים טהור ואלקלי." },
+      { title: "בינה מלאכותית", description: "בינה מלאכותית משולבת לניטור מים, תחזוקה חזייתית, שימוש מיטבי ותובנות לתפעול וביצועים." },
+      { title: "קישוריות IoT",        description: "התקנים מחוברים בזמן אמת, עם ניטור מרחוק, עדכונים וניהול מרכזי דרך פלטפורמת Acquafy." },
+      { title: "ממשק חכם",   description: "מסכי LCD IPS Touch עם חווייה אינטואיטיבית, מידע בזמן אמת, פרסומות ואינטראקטיביות למשתמשי המברנד." },
+      { title: "אבטחה מלאה",         description: "הגנת נתונים, בקרת גישה, הצפנה ועמידה בתקני אבטחה ופרטיות בינלאומיים מובילים." },
+      { title: "נתונים & ביצועים",     description: "לוחות בקרה מלאים עם מדדי שימוש, איכות המים, הכנסות והשפעה לקבלת החלטות אסטרטגיות מבוססות נתונים." },
     ],
   },
   "pt-pt": {

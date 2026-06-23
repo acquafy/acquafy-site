@@ -47,7 +47,7 @@ export default function CtaBanner() {
         <div className="relative flex flex-1 flex-wrap gap-[10px] items-center justify-center xl:justify-end max-w-[500px] min-w-[240px]">
           <BtnFalaAcquafy className="flex-1 min-w-[200px]" />
           <a
-            href="/checkin"
+            href="/buy"
             className="flex gap-[10px] items-center justify-center min-h-[30px] overflow-hidden p-[20px] rounded-[8px] transition-colors cursor-pointer bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] flex-1 min-w-[200px] no-underline"
           >
             <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-center whitespace-nowrap shrink-0 text-white">

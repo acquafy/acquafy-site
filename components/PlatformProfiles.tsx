@@ -42,6 +42,16 @@ const T: Record<Lang, {
       { title: "Advertiser",       desc: "Campaign and media creation and management." },
     ],
   },
+  "en-gb": {
+    heading: "Access profiles",
+    profiles: [
+      { title: "Admin Acquafy",    desc: "Full platform access and global management." },
+      { title: "Silver Partner",   desc: "Sales, commissions and tracking." },
+      { title: "Gold Partner",     desc: "Team management, sales, commissions and reports." },
+      { title: "Platinum Partner", desc: "Advanced management, FOB rules and performance." },
+      { title: "Advertiser",       desc: "Campaign and media creation and management." },
+    ],
+  },
   es: {
     heading: "Perfiles de acceso",
     profiles: [
@@ -110,6 +120,56 @@ const T: Record<Lang, {
       { title: "Gold 파트너",      desc: "팀 관리, 판매, 커미션 및 보고서." },
       { title: "Platinum 파트너",  desc: "고급 관리, FOB 규칙 및 성과." },
       { title: "광고주",            desc: "캠페인 및 미디어 생성과 관리." },
+    ],
+  },
+  sv: {
+    heading: "Åtkomstprofiler",
+    profiles: [
+      { title: "Admin Acquafy",    desc: "Full plattformsåtkomst och global hantering." },
+      { title: "Silver Partner",   desc: "Försäljning, provisioner och uppföljning." },
+      { title: "Gold Partner",     desc: "Teamhantering, försäljning, provisioner och rapporter." },
+      { title: "Platinum Partner", desc: "Avancerad hantering, FOB-regler och prestanda." },
+      { title: "Annonsör",         desc: "Skapande och hantering av kampanjer och media." },
+    ],
+  },
+  fi: {
+    heading: "Käyttöprofiilit",
+    profiles: [
+      { title: "Admin Acquafy",    desc: "Täysi pääsy alustalle ja globaali hallinta." },
+      { title: "Silver-kumppani",  desc: "Myynti, provisiot ja seuranta." },
+      { title: "Gold-kumppani",    desc: "Tiimin hallinta, myynti, provisiot ja raportit." },
+      { title: "Platinum-kumppani", desc: "Edistynyt hallinta, FOB-säännöt ja suorituskyky." },
+      { title: "Mainostaja",       desc: "Kampanjoiden ja median luominen ja hallinta." },
+    ],
+  },
+  ru: {
+    heading: "Профили доступа",
+    profiles: [
+      { title: "Admin Acquafy",    desc: "Полный доступ к платформе и глобальное управление." },
+      { title: "Silver партнёр",   desc: "Продажи, комиссии и отслеживание." },
+      { title: "Gold партнёр",     desc: "Управление командой, продажи, комиссии и отчёты." },
+      { title: "Platinum партнёр", desc: "Расширенное управление, правила FOB и производительность." },
+      { title: "Рекламодатель",    desc: "Создание и управление кампаниями и медиа." },
+    ],
+  },
+  ro: {
+    heading: "Profiluri de acces",
+    profiles: [
+      { title: "Admin Acquafy",    desc: "Acces complet la platformă și management global." },
+      { title: "Partener Silver",  desc: "Vânzări, comisioane și urmărire." },
+      { title: "Partener Gold",    desc: "Managementul echipei, vânzări, comisioane și rapoarte." },
+      { title: "Partener Platinum", desc: "Management avansat, reguli FOB și performanță." },
+      { title: "Anunțător",        desc: "Creare și gestionare de campanii și media." },
+    ],
+  },
+  he: {
+    heading: "פרופילי גישה",
+    profiles: [
+      { title: "Admin Acquafy",    desc: "גישה מלאה לפלטפורמה וניהול גלובלי." },
+      { title: "שותף Silver",      desc: "מכירות, עמלות ומעקב." },
+      { title: "שותף Gold",        desc: "ניהול צוות, מכירות, עמלות ודוחות." },
+      { title: "שותף Platinum",    desc: "ניהול מתקדם, כללי FOB וביצועים." },
+      { title: "מפרסם",            desc: "יצירה וניהול של קמפיינים ומדיה." },
     ],
   },
 };

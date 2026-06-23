@@ -73,6 +73,22 @@ const T: Record<Lang, {
       { number: "Expansion", label: "continuous",         sub: "new markets every week" },
     ],
   },
+  "en-gb": {
+    badge: "NEW GLOBAL PHASE",
+    title: "Global",
+    titleHighlight: "Expansion",
+    subtitle: "Bringing smart water management and opportunities to every continent.",
+    desc1: "Acquafy is building the world's largest network of smart hydration, digital media and sustainable solutions.",
+    desc2: "With scalable technology and strategic partners, we are transforming how the world accesses pure water, information and well-being.",
+    btn1: "Become a partner",
+    btn2: "Talk to a specialist",
+    stats: [
+      { number: "16",        label: "languages",          sub: "with active presence" },
+      { number: "+150",      label: "partners",           sub: "distributors and integrators" },
+      { number: "+2,000",    label: "installed points",   sub: "in operation" },
+      { number: "Expansion", label: "continuous",         sub: "new markets every week" },
+    ],
+  },
   es: {
     badge: "NUEVA FASE GLOBAL",
     title: "Expansión",
@@ -185,6 +201,86 @@ const T: Record<Lang, {
       { number: "지속적", label: "확장",      sub: "매주 새로운 시장 개척" },
     ],
   },
+  sv: {
+    badge: "NY GLOBAL FAS",
+    title: "Global",
+    titleHighlight: "Expansion",
+    subtitle: "Ger smart vattenhantering och möjligheter till alla kontinenter.",
+    desc1: "Acquafy bygger världens största nätverk för smart hydrering, digitala medier och hållbara lösningar.",
+    desc2: "Med skalbar teknik och strategiska partners förändrar vi hur världen får tillgång till rent vatten, information och välmående.",
+    btn1: "Bli en partner",
+    btn2: "Prata med en specialist",
+    stats: [
+      { number: "16",        label: "språk",              sub: "med aktiv närvaro" },
+      { number: "+150",      label: "partners",            sub: "distributörer och integratörer" },
+      { number: "+2 000",    label: "installerade punkter",sub: "i drift" },
+      { number: "Expansion", label: "kontinuerlig",        sub: "nya marknader varje vecka" },
+    ],
+  },
+  fi: {
+    badge: "UUSI GLOBAALI VAIHE",
+    title: "Globaali",
+    titleHighlight: "Laajentuminen",
+    subtitle: "Tuomme älykkään vedenhallinnon ja mahdollisuudet kaikille mantereille.",
+    desc1: "Acquafy rakentaa maailman suurinta älykkään nesteytykseen, digitaalisen median ja kestävien ratkaisujen verkostoa.",
+    desc2: "Skaalautuvan teknologian ja strategisten kumppaneiden avulla muutamme tapaa, jolla maailma pääsee käsiksi puhtaaseen veteen, tietoon ja hyvinvointiin.",
+    btn1: "Tule kumppaniksi",
+    btn2: "Puhu asiantuntijan kanssa",
+    stats: [
+      { number: "16",          label: "kielta",              sub: "aktiivisella läsnäololla" },
+      { number: "+150",        label: "kumppania",           sub: "jakelijat ja integraattorit" },
+      { number: "+2 000",      label: "asennuspistettä",     sub: "toiminnassa" },
+      { number: "Jatkuva",     label: "laajentuminen",       sub: "uusia markkinoita joka viikko" },
+    ],
+  },
+  ru: {
+    badge: "НОВЫЙ ГЛОБАЛЬНЫЙ ЭТАП",
+    title: "Глобальное",
+    titleHighlight: "расширение",
+    subtitle: "Bringing умное управление водой и возможности на все континенты.",
+    desc1: "Acquafy строит крупнейшую в мире сеть интеллектуального водоснабжения, цифровых медиа и устойчивых решений.",
+    desc2: "С масштабируемыми технологиями и стратегическими партнёрами мы меняем то, как мир получает доступ к чистой воде, информации и благополучию.",
+    btn1: "Стать партнёром",
+    btn2: "Поговорить со специалистом",
+    stats: [
+      { number: "16",          label: "языков",              sub: "с активным присутствием" },
+      { number: "+150",        label: "партнёров",           sub: "дистрибьюторы и интеграторы" },
+      { number: "+2 000",      label: "установленных точек", sub: "в эксплуатации" },
+      { number: "Постоянное",  label: "расширение",          sub: "новые рынки каждую неделю" },
+    ],
+  },
+  ro: {
+    badge: "NOUA FAZA GLOBALA",
+    title: "Expansiune",
+    titleHighlight: "Globala",
+    subtitle: "Aducem gestionarea inteligenta a apei si oportunitati pe toate continentele.",
+    desc1: "Acquafy construieste cea mai mare retea globala de hidratare inteligenta, media digitala si solutii sustenabile.",
+    desc2: "Cu tehnologie scalabila si parteneri strategici, transformam modul in care lumea acceseaza apa pura, informatia si bunastarea.",
+    btn1: "Devino partener",
+    btn2: "Vorbeste cu un specialist",
+    stats: [
+      { number: "16",          label: "limbi",               sub: "cu prezenta activa" },
+      { number: "+150",        label: "parteneri",           sub: "distribuitori si integratori" },
+      { number: "+2.000",      label: "puncte instalate",    sub: "in operatiune" },
+      { number: "Expansiune",  label: "continua",            sub: "piete noi in fiecare saptamana" },
+    ],
+  },
+  he: {
+    badge: "שלב גלובלי חדש",
+    title: "התרחבות",
+    titleHighlight: "גלובלית",
+    subtitle: "מביאים ניהול מים חכם והזדמנויות לכל היבשות.",
+    desc1: "Acquafy בונה את רשת ההידרציה החכמה, המדיה הדיגיטלית והפתרונות הברי-קיימא הגדולה בעולם.",
+    desc2: "עם טכנולוגיה ניתנת להרחבה ושותפים אסטרטגיים, אנו משנים את האופן שבו העולם ניגש למים נקיים, מידע ורווחה.",
+    btn1: "הפוך לשותף",
+    btn2: "דבר עם מומחה",
+    stats: [
+      { number: "16",          label: "שפות",                sub: "עם נוכחות פעילה" },
+      { number: "+150",        label: "שותפים",              sub: "מפיצים ואינטגרטורים" },
+      { number: "+2,000",      label: "נקודות מותקנות",      sub: "בפעולה" },
+      { number: "התרחבות",    label: "מתמשכת",              sub: "שווקים חדשים כל שבוע" },
+    ],
+  },
 };
 
 export default function ExpansaoGlobalBanner() {
@@ -245,7 +341,7 @@ export default function ExpansaoGlobalBanner() {
                 {t.btn1}
               </BtnAzulBaseArrow>
             </Link>
-            <Link href="/contato" className="flex-[1_0_0] min-w-[190px]">
+            <Link href="/contact" className="flex-[1_0_0] min-w-[190px]">
               <BtnAzulOutArrow className="w-full min-h-[50px]">
                 {t.btn2}
               </BtnAzulOutArrow>

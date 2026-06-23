@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
@@ -22,6 +22,11 @@ const T: Record<Lang, {
     btn2: "Falar com especialista",
   },
   en: {
+    heading: "Bring the power of the Acquafy App + AI to your life or your business.",
+    btn1: "Request a Demo",
+    btn2: "Talk to a Specialist",
+  },
+  "en-gb": {
     heading: "Bring the power of the Acquafy App + AI to your life or your business.",
     btn1: "Request a Demo",
     btn2: "Talk to a Specialist",
@@ -61,6 +66,31 @@ const T: Record<Lang, {
     btn1: "데모 요청",
     btn2: "전문가와 상담",
   },
+  sv: {
+    heading: "Ta kraften i Acquafy App + AI till ditt liv eller ditt företag.",
+    btn1: "Begär en demo",
+    btn2: "Prata med en specialist",
+  },
+  fi: {
+    heading: "Tuo Acquafy App + AI:n voima elämääsi tai liiketoimintaasi.",
+    btn1: "Pyydä demo",
+    btn2: "Puhu asiantuntijan kanssa",
+  },
+  ru: {
+    heading: "Принесите мощь Acquafy App + AI в вашу жизнь или бизнес.",
+    btn1: "Запросить демонстрацию",
+    btn2: "Поговорить со специалистом",
+  },
+  ro: {
+    heading: "Aduceți puterea Acquafy App + AI în viața sau afacerea dvs.",
+    btn1: "Solicitați o demonstrație",
+    btn2: "Vorbiti cu un specialist",
+  },
+  he: {
+    heading: "הביאו את עוצמת Acquafy App + AI לחיים שלכם או לעסק שלכם.",
+    btn1: "בקש הדגמה",
+    btn2: "דבר עם מומחה",
+  },
 };
 
 export default function CtaBannerAppAiIot() {
@@ -90,7 +120,7 @@ export default function CtaBannerAppAiIot() {
         <div className="relative flex flex-[1_0_0] flex-wrap gap-[10px] items-center justify-center xl:justify-end min-w-[240px] pb-[20px]">
 
           {/* Outline — Solicitar demonstração */}
-          <a href="/contato" className="group bg-white border border-[#0233c3] flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[56px] min-w-[200px] overflow-clip px-[20px] py-[10px] rounded-[8px] cursor-pointer hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors">
+          <a href="/contact" className="group bg-white border border-[#0233c3] flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[56px] min-w-[200px] overflow-clip px-[20px] py-[10px] rounded-[8px] cursor-pointer hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors">
             <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors text-center whitespace-nowrap shrink-0">
               {t.btn1}
             </span>
@@ -112,7 +142,7 @@ export default function CtaBannerAppAiIot() {
 
           {/* Gradiente — Falar com especialista */}
           <a
-            href="/contato"
+            href="/contact"
             className="border border-white flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[56px] min-w-[200px] overflow-clip p-[20px] rounded-[8px] cursor-pointer hover:opacity-90 active:opacity-80 transition-opacity"
             style={{ backgroundImage: "linear-gradient(112.26deg, #0233c3 6.19%, #9f3df5 93.35%)" }}
           >

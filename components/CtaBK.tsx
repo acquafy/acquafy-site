@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import FigmaIcon from "./FigmaIcon";
 import { useChatWidget } from "./ChatWidget";
 import { useLang, type Lang } from "@/context/LanguageContext";
@@ -59,6 +59,22 @@ const T: Record<Lang, {
     hoursAction: "8h às 18h (EST)",
   },
   en: {
+    heading: "Didn't find what you were looking for?",
+    subheading: "Our team is ready to help. Choose the best support channel.",
+    btnOpenTicket: "Open a ticket",
+    btnTalkSpecialist: "Talk to a specialist",
+    chatTitle: "Live Chat",
+    chatDesc: "Talk now with a specialist in real time.",
+    chatAction: "Start Chat",
+    chatBadgeAvailable: "Available",
+    chatBadgeUnavailable: "Unavailable",
+    emailTitle: "E-mail",
+    emailDesc: "Send your question and we will reply shortly.",
+    hoursTitle: "Support Hours",
+    hoursDesc: "Monday to Friday",
+    hoursAction: "8am to 6pm (EST)",
+  },
+  "en-gb": {
     heading: "Didn't find what you were looking for?",
     subheading: "Our team is ready to help. Choose the best support channel.",
     btnOpenTicket: "Open a ticket",
@@ -186,6 +202,86 @@ const T: Record<Lang, {
     hoursDesc: "월요일~금요일",
     hoursAction: "오전 8시~오후 6시 (EST)",
   },
+  sv: {
+    heading: "Hittade du inte vad du letade efter?",
+    subheading: "Vårt team är redo att hjälpa dig. Välj den bästa supportkanalen.",
+    btnOpenTicket: "Öppna ett ärende",
+    btnTalkSpecialist: "Prata med en specialist",
+    chatTitle: "Livechatt",
+    chatDesc: "Prata nu med en specialist i realtid.",
+    chatAction: "Starta chatt",
+    chatBadgeAvailable: "Tillgänglig",
+    chatBadgeUnavailable: "Inte tillgänglig",
+    emailTitle: "E-post",
+    emailDesc: "Skicka din fråga och vi svarar inom kort.",
+    hoursTitle: "Supporttider",
+    hoursDesc: "Måndag till fredag",
+    hoursAction: "8–18 (EST)",
+  },
+  fi: {
+    heading: "Etkö löytänyt etsimääsi?",
+    subheading: "Tiimimme on valmis auttamaan. Valitse paras tukikanava.",
+    btnOpenTicket: "Avaa tiketti",
+    btnTalkSpecialist: "Puhu asiantuntijan kanssa",
+    chatTitle: "Live-chat",
+    chatDesc: "Puhu nyt asiantuntijan kanssa reaaliajassa.",
+    chatAction: "Aloita chat",
+    chatBadgeAvailable: "Saatavilla",
+    chatBadgeUnavailable: "Ei saatavilla",
+    emailTitle: "Sähköposti",
+    emailDesc: "Lähetä kysymyksesi ja vastaamme pian.",
+    hoursTitle: "Tukiajat",
+    hoursDesc: "Maanantaista perjantaihin",
+    hoursAction: "8–18 (EST)",
+  },
+  ru: {
+    heading: "Не нашли то, что искали?",
+    subheading: "Наша команда готова помочь. Выберите наиболее удобный канал поддержки.",
+    btnOpenTicket: "Открыть заявку",
+    btnTalkSpecialist: "Поговорить со специалистом",
+    chatTitle: "Живой чат",
+    chatDesc: "Пообщайтесь со специалистом прямо сейчас в режиме реального времени.",
+    chatAction: "Начать чат",
+    chatBadgeAvailable: "Доступен",
+    chatBadgeUnavailable: "Недоступен",
+    emailTitle: "Эл. почта",
+    emailDesc: "Отправьте вопрос, и мы ответим вам в ближайшее время.",
+    hoursTitle: "Часы поддержки",
+    hoursDesc: "Понедельник — пятница",
+    hoursAction: "8:00–18:00 (EST)",
+  },
+  ro: {
+    heading: "Nu ai gasit ce cautai?",
+    subheading: "Echipa noastra este gata sa te ajute. Alege cel mai bun canal de suport.",
+    btnOpenTicket: "Deschide un tichet",
+    btnTalkSpecialist: "Vorbeste cu un specialist",
+    chatTitle: "Chat live",
+    chatDesc: "Vorbeste acum cu un specialist in timp real.",
+    chatAction: "Incepe chat-ul",
+    chatBadgeAvailable: "Disponibil",
+    chatBadgeUnavailable: "Indisponibil",
+    emailTitle: "E-mail",
+    emailDesc: "Trimite intrebarea ta si iti vom raspunde in curand.",
+    hoursTitle: "Program de suport",
+    hoursDesc: "Luni pana vineri",
+    hoursAction: "8:00–18:00 (EST)",
+  },
+  he: {
+    heading: "לא מצאת את מה שחיפשת?",
+    subheading: "הצוות שלנו מוכן לעזור. בחר את ערוץ התמיכה הטוב ביותר.",
+    btnOpenTicket: "פתח פנייה",
+    btnTalkSpecialist: "דבר עם מומחה",
+    chatTitle: "צ'אט חי",
+    chatDesc: "שוחח עכשיו עם מומחה בזמן אמת.",
+    chatAction: "התחל צ'אט",
+    chatBadgeAvailable: "זמין",
+    chatBadgeUnavailable: "לא זמין",
+    emailTitle: "דוא\"ל",
+    emailDesc: "שלח את שאלתך ונחזור אליך בקרוב.",
+    hoursTitle: "שעות תמיכה",
+    hoursDesc: "שני עד שישי",
+    hoursAction: "8:00–18:00 (EST)",
+  },
 };
 
 export default function CtaBK() {
@@ -259,7 +355,7 @@ export default function CtaBK() {
             <FigmaIcon src={imgArrowBlue} size={9} aspectW={11.2} aspectH={8.84} />
           </a>
 
-          <a href="/contato" className="group border-2 border-white hover:bg-white active:bg-[#f0f4ff] transition-colors
+          <a href="/contact" className="group border-2 border-white hover:bg-white active:bg-[#f0f4ff] transition-colors
             flex gap-[10px] items-center justify-center
             min-h-[54px] min-w-[200px] overflow-hidden px-[28px] py-[12px] rounded-[8px] cursor-pointer shrink-0">
             <span className="font-['Articulat_CF:Bold'] text-[16px] text-white group-hover:text-[#0233c3] transition-colors flex-1 text-center leading-normal">

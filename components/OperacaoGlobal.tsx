@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useLang, type Lang } from "@/context/LanguageContext";
 
@@ -44,6 +44,18 @@ const T: Record<Lang, {
     features: [
       { icon: imgCloud,  title: "Cloud Platform",      desc: "Secure, scalable infrastructure, always available." },
       { icon: imgQR,     title: "QR Codes & Links",    desc: "Generate custom links and QR Codes for sales and media." },
+      { icon: imgMoney,  title: "Sales & Commissions", desc: "Track sales, commissions and real-time reports." },
+      { icon: imgMobile, title: "App + AI + IoT",      desc: "Full control, smart data and device management." },
+      { icon: imgMedia,  title: "Media Network",       desc: "Content and value network for your operation." },
+      { icon: imgPlanet, title: "Cloud Platform",      desc: "Secure, scalable infrastructure, always available." },
+    ],
+  },
+  "en-gb": {
+    headingA: "One operation — ",
+    headingB: "global, simple and smart",
+    features: [
+      { icon: imgCloud,  title: "Cloud Platform",      desc: "Secure, scalable infrastructure, always available." },
+      { icon: imgQR,     title: "QR Codes & Links",    desc: "Generate customised links and QR Codes for sales and media." },
       { icon: imgMoney,  title: "Sales & Commissions", desc: "Track sales, commissions and real-time reports." },
       { icon: imgMobile, title: "App + AI + IoT",      desc: "Full control, smart data and device management." },
       { icon: imgMedia,  title: "Media Network",       desc: "Content and value network for your operation." },
@@ -132,6 +144,66 @@ const T: Record<Lang, {
       { icon: imgMobile, title: "App + AI + IoT",     desc: "완전한 제어, 스마트 데이터, 기기 관리." },
       { icon: imgMedia,  title: "Media Network",      desc: "운영을 위한 콘텐츠 및 가치 네트워크." },
       { icon: imgPlanet, title: "Cloud Platform",     desc: "안전하고 확장 가능하며 항상 사용 가능한 인프라." },
+    ],
+  },
+  sv: {
+    headingA: "En verksamhet — ",
+    headingB: "global, enkel och smart",
+    features: [
+      { icon: imgCloud,  title: "Cloud Platform",        desc: "Säker, skalbar infrastruktur, alltid tillgänglig." },
+      { icon: imgQR,     title: "QR-koder & Länkar",     desc: "Generera anpassade länkar och QR-koder för försäljning och media." },
+      { icon: imgMoney,  title: "Försäljning & Provision", desc: "Spåra försäljning, provision och realtidsrapporter." },
+      { icon: imgMobile, title: "App + AI + IoT",        desc: "Full kontroll, smarta data och enhetshantering." },
+      { icon: imgMedia,  title: "Media Network",         desc: "Innehålls- och värdenätverk för din verksamhet." },
+      { icon: imgPlanet, title: "Cloud Platform",        desc: "Säker, skalbar infrastruktur, alltid tillgänglig." },
+    ],
+  },
+  fi: {
+    headingA: "Yksi toiminta — ",
+    headingB: "globaali, yksinkertainen ja älykäs",
+    features: [
+      { icon: imgCloud,  title: "Cloud Platform",        desc: "Turvallinen, skaalautuva infrastruktuuri, aina saatavilla." },
+      { icon: imgQR,     title: "QR-koodit & Linkit",    desc: "Luo mukautettuja linkkejä ja QR-koodeja myyntiin ja mediaan." },
+      { icon: imgMoney,  title: "Myynti & Provisiot",    desc: "Seuraa myyntejä, provisioita ja reaaliaikaisia raportteja." },
+      { icon: imgMobile, title: "App + AI + IoT",        desc: "Täysi hallinta, älykäs data ja laitteiden hallinta." },
+      { icon: imgMedia,  title: "Media Network",         desc: "Sisältö- ja arvoverkosto toiminnallesi." },
+      { icon: imgPlanet, title: "Cloud Platform",        desc: "Turvallinen, skaalautuva infrastruktuuri, aina saatavilla." },
+    ],
+  },
+  ru: {
+    headingA: "Одна операция — ",
+    headingB: "глобальная, простая и умная",
+    features: [
+      { icon: imgCloud,  title: "Cloud Platform",        desc: "Безопасная, масштабируемая инфраструктура, всегда доступная." },
+      { icon: imgQR,     title: "QR-коды и ссылки",      desc: "Создавайте пользовательские ссылки и QR-коды для продаж и медиа." },
+      { icon: imgMoney,  title: "Продажи и комиссии",    desc: "Отслеживайте продажи, комиссии и отчёты в реальном времени." },
+      { icon: imgMobile, title: "App + AI + IoT",        desc: "Полный контроль, умные данные и управление устройствами." },
+      { icon: imgMedia,  title: "Media Network",         desc: "Сеть контента и ценности для вашей операции." },
+      { icon: imgPlanet, title: "Cloud Platform",        desc: "Безопасная, масштабируемая инфраструктура, всегда доступная." },
+    ],
+  },
+  ro: {
+    headingA: "O operatiune — ",
+    headingB: "globala, simpla si inteligenta",
+    features: [
+      { icon: imgCloud,  title: "Cloud Platform",        desc: "Infrastructura sigura, scalabila si mereu disponibila." },
+      { icon: imgQR,     title: "Coduri QR & Linkuri",   desc: "Genereaza linkuri si coduri QR personalizate pentru vanzari si media." },
+      { icon: imgMoney,  title: "Vanzari & Comisioane",  desc: "Urmareste vanzarile, comisioanele si rapoartele in timp real." },
+      { icon: imgMobile, title: "App + AI + IoT",        desc: "Control total, date inteligente si gestionarea dispozitivelor." },
+      { icon: imgMedia,  title: "Media Network",         desc: "Retea de continut si valoare pentru operatiunea ta." },
+      { icon: imgPlanet, title: "Cloud Platform",        desc: "Infrastructura sigura, scalabila si mereu disponibila." },
+    ],
+  },
+  he: {
+    headingA: "פעולה אחת — ",
+    headingB: "גלובלית, פשוטה וחכמה",
+    features: [
+      { icon: imgCloud,  title: "Cloud Platform",        desc: "תשתית מאובטחת, ניתנת להרחבה ותמיד זמינה." },
+      { icon: imgQR,     title: "קודי QR וקישורים",      desc: "צור קישורים וקודי QR מותאמים אישית למכירות ומדיה." },
+      { icon: imgMoney,  title: "מכירות ועמלות",          desc: "עקוב אחר מכירות, עמלות ודוחות בזמן אמת." },
+      { icon: imgMobile, title: "App + AI + IoT",        desc: "שליטה מלאה, נתונים חכמים וניהול מכשירים." },
+      { icon: imgMedia,  title: "Media Network",         desc: "רשת תוכן וערך לפעילות שלך." },
+      { icon: imgPlanet, title: "Cloud Platform",        desc: "תשתית מאובטחת, ניתנת להרחבה ותמיד זמינה." },
     ],
   },
 };

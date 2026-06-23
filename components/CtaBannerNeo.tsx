@@ -18,6 +18,10 @@ const T: Record<Lang, { heading: string; sub: string }> = {
     heading: "Choose the ideal Neo for your routine",
     sub: "Explore the full line and find the perfect purifier for you.",
   },
+  "en-gb": {
+    heading: "Choose the ideal Neo for your routine",
+    sub: "Explore the full line and find the perfect purifier for you.",
+  },
   es: {
     heading: "Elige el Neo ideal para tu rutina",
     sub: "Conoce toda la línea y encuentra el purificador perfecto para ti.",
@@ -45,6 +49,26 @@ const T: Record<Lang, { heading: string; sub: string }> = {
   ko: {
     heading: "당신의 일상에 맞는 이상적인 Neo를 선택하세요",
     sub: "전체 라인업을 살펴보고 당신에게 완벽한 정수기를 찾아보세요.",
+  },
+  sv: {
+    heading: "Välj den ideala Neo för din vardag",
+    sub: "Utforska hela sortimentet och hitta den perfekta reningaren för dig.",
+  },
+  fi: {
+    heading: "Valitse ideaalinen Neo arkeesi",
+    sub: "Tutustu koko valikoimaan ja löydä sinulle täydellinen puhdistin.",
+  },
+  ru: {
+    heading: "Выберите идеальный Neo для вашей повседневной жизни",
+    sub: "Ознакомьтесь со всей линейкой и найдите идеальный очиститель для вас.",
+  },
+  ro: {
+    heading: "Alege Neo-ul ideal pentru rutina ta",
+    sub: "Explorează întreaga gamă și găsește purificatorul perfect pentru tine.",
+  },
+  he: {
+    heading: "בחר את ה-Neo האידיאלי לשגרת יומך",
+    sub: "גלה את הקו המלא ומצא את המטהר המושלם עבורך.",
   },
 };
 

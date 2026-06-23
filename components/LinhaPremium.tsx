@@ -60,8 +60,8 @@ const T: Record<Lang, {
       { label: "65ºC Chá",          sub: "Em todos" },
       { label: "85ºC Café",         sub: "Em todos" },
       { label: "100ºC Água Quente", sub: "Em todos" },
-      { label: "Água com Gás",      sub: "7 e 8 em 1 Apenas" },
-      { label: "Água Hidrogenada",  sub: "8 em 1 Apenas" },
+      { label: "Água com Gás",      sub: "Modelos SPARK" },
+      { label: "Água Hidrogenada",  sub: "Modelos H₂" },
     ],
     sub6: "6 em 1", sub7: "7 em 1", sub8: "8 em 1",
     tankNote: "Todos possuem Tanque de Água Gelada com 3000ml.",
@@ -84,8 +84,8 @@ const T: Record<Lang, {
       { label: "65°C Tea",           sub: "In all" },
       { label: "85°C Coffee",        sub: "In all" },
       { label: "100°C Hot Water",    sub: "In all" },
-      { label: "Sparkling Water",    sub: "7 & 8 in 1 Only" },
-      { label: "Hydrogen Water",     sub: "8 in 1 Only" },
+      { label: "Sparkling Water",    sub: "SPARK models" },
+      { label: "Hydrogen Water",     sub: "H₂ models" },
     ],
     sub6: "6 in 1", sub7: "7 in 1", sub8: "8 in 1",
     tankNote: "All models have a 3000ml Cold Water Tank.",
@@ -108,8 +108,8 @@ const T: Record<Lang, {
       { label: "65°C Tea",           sub: "In all" },
       { label: "85°C Coffee",        sub: "In all" },
       { label: "100°C Hot Water",    sub: "In all" },
-      { label: "Sparkling Water",    sub: "7 & 8 in 1 Only" },
-      { label: "Hydrogen Water",     sub: "8 in 1 Only" },
+      { label: "Sparkling Water",    sub: "SPARK models" },
+      { label: "Hydrogen Water",     sub: "H₂ models" },
     ],
     sub6: "6 in 1", sub7: "7 in 1", sub8: "8 in 1",
     tankNote: "All models have a 3000ml Cold Water Tank.",
@@ -132,8 +132,8 @@ const T: Record<Lang, {
       { label: "65°C Te",               sub: "En todos" },
       { label: "85°C Cafe",             sub: "En todos" },
       { label: "100°C Agua Caliente",   sub: "En todos" },
-      { label: "Agua con Gas",          sub: "Solo 7 y 8 en 1" },
-      { label: "Agua Hidrogenada",      sub: "Solo 8 en 1" },
+      { label: "Agua con Gas",          sub: "Modelos SPARK" },
+      { label: "Agua Hidrogenada",      sub: "Modelos H₂" },
     ],
     sub6: "6 en 1", sub7: "7 en 1", sub8: "8 en 1",
     tankNote: "Todos tienen Deposito de Agua Fria de 3000ml.",
@@ -156,8 +156,8 @@ const T: Record<Lang, {
       { label: "65°C The",               sub: "Dans tous" },
       { label: "85°C Cafe",              sub: "Dans tous" },
       { label: "100°C Eau Chaude",       sub: "Dans tous" },
-      { label: "Eau Gazeuse",            sub: "Solo 7 & 8 en 1" },
-      { label: "Eau Hydrogenee",         sub: "Seulement 8 en 1" },
+      { label: "Eau Gazeuse",            sub: "Modèles SPARK" },
+      { label: "Eau Hydrogenee",         sub: "Modèles H₂" },
     ],
     sub6: "6 en 1", sub7: "7 en 1", sub8: "8 en 1",
     tankNote: "Tous les modeles disposent d'un reservoir d'eau froide de 3000 ml.",
@@ -180,8 +180,8 @@ const T: Record<Lang, {
       { label: "65°C Tee",               sub: "In allen" },
       { label: "85°C Kaffee",            sub: "In allen" },
       { label: "100°C Heisses Wasser",   sub: "In allen" },
-      { label: "Sprudelwasser",          sub: "Nur 7 & 8 in 1" },
-      { label: "Wasserstoffwasser",      sub: "Nur 8 in 1" },
+      { label: "Sprudelwasser",          sub: "SPARK-Modelle" },
+      { label: "Wasserstoffwasser",      sub: "H₂-Modelle" },
     ],
     sub6: "6 in 1", sub7: "7 in 1", sub8: "8 in 1",
     tankNote: "Alle Modelle verfugen uber einen 3000 ml Kaltwassertank.",
@@ -204,8 +204,8 @@ const T: Record<Lang, {
       { label: "65°C Te",                sub: "In tutti" },
       { label: "85°C Caffe",             sub: "In tutti" },
       { label: "100°C Acqua Calda",      sub: "In tutti" },
-      { label: "Acqua Frizzante",        sub: "Solo 7 & 8 in 1" },
-      { label: "Acqua Idrogenata",       sub: "Solo 8 in 1" },
+      { label: "Acqua Frizzante",        sub: "Modelli SPARK" },
+      { label: "Acqua Idrogenata",       sub: "Modelli H₂" },
     ],
     sub6: "6 in 1", sub7: "7 in 1", sub8: "8 in 1",
     tankNote: "Tutti i modelli hanno un serbatoio dell'acqua fredda da 3000 ml.",
@@ -228,8 +228,8 @@ const T: Record<Lang, {
       { label: "65°C茶水",  sub: "所有型号均有" },
       { label: "85°C咖啡",  sub: "所有型号均有" },
       { label: "100°C热水", sub: "所有型号均有" },
-      { label: "气泡水",    sub: "仅限7合1和8合1" },
-      { label: "富氢水",    sub: "仅限8合1" },
+      { label: "气泡水",    sub: "SPARK型号" },
+      { label: "富氢水",    sub: "H₂型号" },
     ],
     sub6: "六合一", sub7: "七合一", sub8: "八合一",
     tankNote: "所有型号均配备3000ml冷水箱。",
@@ -252,8 +252,8 @@ const T: Record<Lang, {
       { label: "65°Cお茶",             sub: "全モデル共通" },
       { label: "85°Cコーヒー",          sub: "全モデル共通" },
       { label: "100°Cお湯",            sub: "全モデル共通" },
-      { label: "炭酸水",                sub: "7・8in1のみ" },
-      { label: "水素水",                sub: "8in1のみ" },
+      { label: "炭酸水",                sub: "SPARKモデル" },
+      { label: "水素水",                sub: "H₂モデル" },
     ],
     sub6: "6 in 1", sub7: "7 in 1", sub8: "8 in 1",
     tankNote: "全モデルに3000ml冷水タンクを搭載。",
@@ -276,8 +276,8 @@ const T: Record<Lang, {
       { label: "65°C 차",          sub: "모든 모델" },
       { label: "85°C 커피",        sub: "모든 모델" },
       { label: "100°C 온수",       sub: "모든 모델" },
-      { label: "탄산수",           sub: "7 & 8 in 1 전용" },
-      { label: "수소수",           sub: "8 in 1 전용" },
+      { label: "탄산수",           sub: "SPARK 모델" },
+      { label: "수소수",           sub: "H₂ 모델" },
     ],
     sub6: "6 in 1", sub7: "7 in 1", sub8: "8 in 1",
     tankNote: "모든 모델에 3000ml 냉수 탱크가 포함됩니다.",
@@ -300,8 +300,8 @@ const T: Record<Lang, {
       { label: "65°C Te",               sub: "I alla" },
       { label: "85°C Kaffe",            sub: "I alla" },
       { label: "100°C Hett vatten",     sub: "I alla" },
-      { label: "Kolsyrat vatten",       sub: "Endast 7 & 8 i 1" },
-      { label: "Vatevatten",            sub: "Endast 8 i 1" },
+      { label: "Kolsyrat vatten",       sub: "SPARK-modeller" },
+      { label: "Vatevatten",            sub: "H₂-modeller" },
     ],
     sub6: "6 i 1", sub7: "7 i 1", sub8: "8 i 1",
     tankNote: "Alla modeller har en 3000ml kallvattentank.",
@@ -324,8 +324,8 @@ const T: Record<Lang, {
       { label: "65°C Tee",              sub: "Kaikissa" },
       { label: "85°C Kahvi",            sub: "Kaikissa" },
       { label: "100°C Kuuma vesi",      sub: "Kaikissa" },
-      { label: "Kivennaisvesi",         sub: "Vain 7 & 8 in 1" },
-      { label: "Vetyvesi",              sub: "Vain 8 in 1" },
+      { label: "Kivennaisvesi",         sub: "SPARK-mallit" },
+      { label: "Vetyvesi",              sub: "H₂-mallit" },
     ],
     sub6: "6 in 1", sub7: "7 in 1", sub8: "8 in 1",
     tankNote: "Kaikissa malleissa on 3000 ml:n kylmavesisailio.",
@@ -348,8 +348,8 @@ const T: Record<Lang, {
       { label: "65°C Chay",             sub: "Vo vsekh" },
       { label: "85°C Kofe",             sub: "Vo vsekh" },
       { label: "100°C Goryachaya voda", sub: "Vo vsekh" },
-      { label: "Gazirovannaya voda",    sub: "Tolko 7 i 8 v 1" },
-      { label: "Vodorodnaya voda",      sub: "Tolko 8 v 1" },
+      { label: "Gazirovannaya voda",    sub: "Modeli SPARK" },
+      { label: "Vodorodnaya voda",      sub: "Modeli H₂" },
     ],
     sub6: "6 v 1", sub7: "7 v 1", sub8: "8 v 1",
     tankNote: "Vse modeli imeyut bak dlya kholodnoy vody na 3000 ml.",
@@ -372,8 +372,8 @@ const T: Record<Lang, {
       { label: "65°C Ceai",             sub: "In toate" },
       { label: "85°C Cafea",            sub: "In toate" },
       { label: "100°C Apa Fierbinte",   sub: "In toate" },
-      { label: "Apa Carbogazoasa",      sub: "Doar 7 si 8 in 1" },
-      { label: "Apa Hidrogenata",       sub: "Doar 8 in 1" },
+      { label: "Apa Carbogazoasa",      sub: "Modele SPARK" },
+      { label: "Apa Hidrogenata",       sub: "Modele H₂" },
     ],
     sub6: "6 in 1", sub7: "7 in 1", sub8: "8 in 1",
     tankNote: "Toate modelele au un rezervor de apa rece de 3000 ml.",
@@ -396,8 +396,8 @@ const T: Record<Lang, {
       { label: "65°C תה",               sub: "בכולם" },
       { label: "85°C קפה",              sub: "בכולם" },
       { label: "100°C מים חמים",        sub: "בכולם" },
-      { label: "מים מוגזים",            sub: "רק 7 ו-8 ב-1" },
-      { label: "מים מימניים",           sub: "רק 8 ב-1" },
+      { label: "מים מוגזים",            sub: "דגמי SPARK" },
+      { label: "מים מימניים",           sub: "דגמי H₂" },
     ],
     sub6: "6 ב-1", sub7: "7 ב-1", sub8: "8 ב-1",
     tankNote: "כל הדגמים כוללים מיכל מים קרים של 3000 מ\"ל.",
@@ -420,8 +420,8 @@ const T: Record<Lang, {
       { label: "65ºC Chá",          sub: "Em todos" },
       { label: "85ºC Café",         sub: "Em todos" },
       { label: "100ºC Água Quente", sub: "Em todos" },
-      { label: "Água com Gás",      sub: "7 e 8 em 1 Apenas" },
-      { label: "Água Hidrogenada",  sub: "8 em 1 Apenas" },
+      { label: "Água com Gás",      sub: "Modelos SPARK" },
+      { label: "Água Hidrogenada",  sub: "Modelos H₂" },
     ],
     sub6: "6 em 1", sub7: "7 em 1", sub8: "8 em 1",
     tankNote: "Todos possuem Reservatório de Água Gelada com 3000ml.",
@@ -468,14 +468,11 @@ function PremiumCard({ product, color = "#6e0cc3" }: { product: Product; color?:
   return (
     <div className="bg-white flex flex-[1_0_0] flex-col gap-[10px] items-center min-h-[290px] min-w-[180px] overflow-hidden p-[20px] rounded-[12px]">
       <ProductImage src={product.img} />
-      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-center w-full min-h-[55px] flex items-center justify-center" style={{ color }}>
+      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-center w-full min-h-[55px] flex flex-col items-center justify-center" style={{ color }}>
         {product.name}
       </p>
-      <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] text-center w-full">
-        {product.sub}
-      </p>
       <a
-        href="/checkin"
+        href="/buy"
         className="flex items-center justify-center min-h-[40px] px-[10px] py-[8px] rounded-[8px] w-full shrink-0 font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white hover:opacity-90 active:opacity-80 transition-opacity no-underline"
         style={{ backgroundImage: "linear-gradient(90deg, #0233c3, #0569ff)" }}
       >
@@ -525,18 +522,18 @@ export default function LinhaPremium() {
 
   const rowInfinity: Product[] = [
     { img: imgInfinity,        name: "Neo INFINITY",                                     sub: t.sub6 },
-    { img: imgInfinitySpark,   name: "Neo INFINITY SPARK",                               sub: t.sub7 },
-    { img: imgInfinitySparkH2, name: <span>Neo INFINITY SPARK H<sub>2</sub></span>,      sub: t.sub8 },
+    { img: imgInfinitySpark,   name: <><span>Neo INFINITY</span><span>SPARK</span></>,              sub: t.sub7 },
+    { img: imgInfinitySparkH2, name: <><span>Neo INFINITY</span><span>SPARK H<sub>2</sub></span></>, sub: t.sub8 },
   ];
   const rowPrestige: Product[] = [
     { img: imgPrestige,        name: "Neo PRESTIGE",                                     sub: t.sub6 },
-    { img: imgPrestigeSpark,   name: "Neo PRESTIGE SPARK",                               sub: t.sub7 },
-    { img: imgPrestigeSparkH2, name: <span>Neo PRESTIGE SPARK H<sub>2</sub></span>,      sub: t.sub8 },
+    { img: imgPrestigeSpark,   name: <><span>Neo PRESTIGE</span><span>SPARK</span></>,              sub: t.sub7 },
+    { img: imgPrestigeSparkH2, name: <><span>Neo PRESTIGE</span><span>SPARK H<sub>2</sub></span></>, sub: t.sub8 },
   ];
   const rowPrime: Product[] = [
     { img: imgPrime,        name: "Neo PRIME",                                           sub: t.sub6 },
-    { img: imgPrimeSpark,   name: "Neo PRIME SPARK",                                     sub: t.sub7 },
-    { img: imgPrimeSparkH2, name: <span>Neo PRIME SPARK H<sub>2</sub></span>,            sub: t.sub8 },
+    { img: imgPrimeSpark,   name: <><span>Neo PRIME</span><span>SPARK</span></>,              sub: t.sub7 },
+    { img: imgPrimeSparkH2, name: <><span>Neo PRIME</span><span>SPARK H<sub>2</sub></span></>, sub: t.sub8 },
   ];
 
   const panelFeatures = PANEL_ICONS.map((icon, i) => ({ icon, ...t.features[i] }));

@@ -24,6 +24,12 @@ const T: Record<Lang, {
     readArticle:      "Read article",
     viewKnowledgeBase:"View Knowledge Base",
   },
+  "en-gb": {
+    closeLabel:       "Close",
+    articleCount:     (n) => `${n} article${n !== 1 ? "s" : ""} in this category`,
+    readArticle:      "Read article",
+    viewKnowledgeBase:"View Knowledge Base",
+  },
   es: {
     closeLabel:       "Cerrar",
     articleCount:     (n) => `${n} artículo${n !== 1 ? "s" : ""} en esta categoría`,
@@ -65,6 +71,36 @@ const T: Record<Lang, {
     articleCount:     (n) => `이 카테고리에 ${n}개의 문서가 있습니다`,
     readArticle:      "문서 읽기",
     viewKnowledgeBase:"지식 베이스 보기",
+  },
+  sv: {
+    closeLabel:       "Stäng",
+    articleCount:     (n) => `${n} artikel${n !== 1 ? "ar" : ""} i denna kategori`,
+    readArticle:      "Läs artikel",
+    viewKnowledgeBase:"Visa kunskapsbas",
+  },
+  fi: {
+    closeLabel:       "Sulje",
+    articleCount:     (n) => `${n} artikkeli${n !== 1 ? "a" : ""} tässä kategoriassa`,
+    readArticle:      "Lue artikkeli",
+    viewKnowledgeBase:"Näytä tietopankki",
+  },
+  ru: {
+    closeLabel:       "Закрыть",
+    articleCount:     (n) => `${n} статей в этой категории`,
+    readArticle:      "Читать статью",
+    viewKnowledgeBase:"Открыть базу знаний",
+  },
+  ro: {
+    closeLabel:       "Inchide",
+    articleCount:     (n) => `${n} articol${n !== 1 ? "e" : ""} in aceasta categorie`,
+    readArticle:      "Citeste articolul",
+    viewKnowledgeBase:"Vezi baza de cunostinte",
+  },
+  he: {
+    closeLabel:       "סגור",
+    articleCount:     (n) => `${n} מאמרים בקטגוריה זו`,
+    readArticle:      "קרא מאמר",
+    viewKnowledgeBase:"צפה בבסיס הידע",
   },
 
   "pt-pt": {

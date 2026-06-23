@@ -43,6 +43,16 @@ const T: Record<Lang, {
       { title: "Sustainable impact",     desc: "We promote health, inclusion, income and environmental preservation through access to clean and conscious water." },
     ],
   },
+  "en-gb": {
+    heading: "Our pillars for expansion",
+    pillars: [
+      { title: "Strategic partnerships", desc: "We work with distributors, integrators and investors who share our vision of impact and growth." },
+      { title: "Scalable model",         desc: "Proprietary technology, standardised operations and full support to ensure consistent and profitable growth." },
+      { title: "Local adaptation",       desc: "Flexible solutions that adapt to the culture, needs and regulations of each market." },
+      { title: "Continuous training",    desc: "Training, marketing and technical support to empower our partners and ensure operational success." },
+      { title: "Sustainable impact",     desc: "We promote health, inclusion, income and environmental preservation through access to clean and conscious water." },
+    ],
+  },
   es: {
     heading: "Nuestros pilares para la expansión",
     pillars: [
@@ -111,6 +121,56 @@ const T: Record<Lang, {
       { title: "현지화 적응",       desc: "각 시장의 문화, 요구 사항 및 규정에 맞는 유연한 솔루션을 제공합니다." },
       { title: "지속적인 교육",     desc: "교육, 마케팅 및 기술 지원으로 파트너를 강화하고 운영 성공을 보장합니다." },
       { title: "지속 가능한 영향", desc: "순수한 물에 대한 접근을 통해 건강, 포용, 소득 창출 및 환경 보전을 촉진합니다." },
+    ],
+  },
+  sv: {
+    heading: "Vara pelare for expansion",
+    pillars: [
+      { title: "Strategiska partnerskap",  desc: "Vi arbetar med distributorer, integratorer och investerare som delar var vision om genomslagskraft och tillvaxt." },
+      { title: "Skalbar modell",           desc: "Egen teknik, standardiserade processer och fullstandigt stod for att sakerstalla konsekvent och lonsam tillvaxt." },
+      { title: "Lokal anpassning",         desc: "Flexibla losningar som anpassar sig till kulturen, behoven och reglerna pa varje marknad." },
+      { title: "Kontinuerlig utbildning",  desc: "Utbildning, marknadsforing och teknisk support for att starka vara partners och sakerstalla operativ framgang." },
+      { title: "Hallbart genomslag",       desc: "Vi frамjar halsa, inkludering, inkomst och miljoskydd genom tillgang till rent och medvetet vatten." },
+    ],
+  },
+  fi: {
+    heading: "Laajenemisen pilareimme",
+    pillars: [
+      { title: "Strategiset kumppanuudet", desc: "Teemme tyota jakelijoiden, integraattorien ja sijoittajien kanssa, jotka jakavat visiomme vaikuttavuudesta ja kasvusta." },
+      { title: "Skaalautuva malli",        desc: "Oma teknologia, standardoitu toiminta ja taydellinen tuki varmistavat johdonmukaisen ja kannattavan kasvun." },
+      { title: "Paikallinen sopeutuminen", desc: "Joustavat ratkaisut, jotka sopeutuvat kunkin markkinan kulttuuriin, tarpeisiin ja saantelyyn." },
+      { title: "Jatkuva koulutus",         desc: "Koulutus, markkinointi ja tekninen tuki kumppaneidemme vahvistamiseksi ja operatiivisen menestyksen varmistamiseksi." },
+      { title: "Kestava vaikutus",         desc: "Edistamme terveytta, osallisuutta, tuloja ja ymparistonsuojelua puhtaan ja tietoisen veden saannin avulla." },
+    ],
+  },
+  ru: {
+    heading: "Nashi osnovy dlya rasshireniya",
+    pillars: [
+      { title: "Strategicheskie partnerstva", desc: "My sotrudnichaem s distributorami, integratorami i investorami, kotorye razdelyayut nashu vidieniyu vliyaniya i rosta." },
+      { title: "Masshtabiruyemaya model",     desc: "Sobstvennye tekhnologii, standartizirovannye operatsii i polnaya podderzhka dlya stabilnogo i pribylnogo rosta." },
+      { title: "Mestnaya adaptatsiya",        desc: "Gibkie resheniya, adaptiruyushchiesya k kulture, potrebnostyam i regulirovaniyam kazhdogo rynka." },
+      { title: "Nepreryvnoe obuchenie",       desc: "Obuchenie, marketing i tekhnicheskaya podderzhka dlya usileniya nashikh partnerov i obespecheniya operativnogo uspekha." },
+      { title: "Ustojchivoe vozdejstvie",     desc: "My sposobstvuem zdorovyu, vklyucheniyu, dokhodu i sokhraneniyu okruzhayushchej sredy cherez dostup k chistoj vode." },
+    ],
+  },
+  ro: {
+    heading: "Pilonii nostri pentru expansiune",
+    pillars: [
+      { title: "Parteneriate strategice",  desc: "Lucram cu distribuitori, integratori si investitori care impartasesc viziunea noastra de impact si crestere." },
+      { title: "Model scalabil",           desc: "Tehnologie proprie, operatiuni standardizate si suport complet pentru a asigura o crestere consistenta si profitabila." },
+      { title: "Adaptare locala",          desc: "Solutii flexibile care se adapteaza la cultura, nevoile si reglementarile fiecarei piete." },
+      { title: "Formare continua",         desc: "Formare, marketing si suport tehnic pentru a imputernici partenerii nostri si a asigura succesul operational." },
+      { title: "Impact sustenabil",        desc: "Promovam sanatatea, incluziunea, venitul si protectia mediului prin accesul la apa pura si constienta." },
+    ],
+  },
+  he: {
+    heading: "העמודים שלנו להתרחבות",
+    pillars: [
+      { title: "שותפויות אסטרטגיות",  desc: "אנו עובדים עם מפיצים, אינטגרטורים ומשקיעים החולקים את חזוננו להשפעה וצמיחה." },
+      { title: "מודל מדרגי",           desc: "טכנולוגיה קניינית, פעילות מתוקננת ותמיכה מלאה להבטחת צמיחה עקבית ורווחית." },
+      { title: "התאמה מקומית",         desc: "פתרונות גמישים המתאימים לתרבות, לצרכים ולרגולציות של כל שוק." },
+      { title: "הכשרה מתמשכת",         desc: "הדרכה, שיווק ותמיכה טכנית לחיזוק שותפינו והבטחת הצלחה תפעולית." },
+      { title: "השפעה בת-קיימא",       desc: "אנו מקדמים בריאות, הכלה, הכנסה ושימור הסביבה באמצעות גישה למים נקיים ומודעים." },
     ],
   },
 };

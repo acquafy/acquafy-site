@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
@@ -21,23 +21,23 @@ const T: Record<Lang, {
   items: { phase: string; description: string }[];
 }> = {
   pt: {
-    heading: "Nossa História",
+    heading: "Nossa Historia",
     items: [
-      { phase: "Fundação",        description: "A Acquafy é fundada nos EUA com o propósito de transformar e formar como o mundo cuida da água." },
-      { phase: "Desenvolvimento", description: "Desenvolvimento da linha inicial de produtos e da plataforma de gestão inteligente." },
-      { phase: "Ecossistema Neo", description: "Lançamento do ecossistema Neo e do Acquafy Media Network para educação, conteúdo e engajamento." },
-      { phase: "Conectividade",   description: "Expansão da plataforma com App + IA + IoT conectando dispositivos e pessoas." },
-      { phase: "Nova fase global",description: "Nova fase de crescimento com presença global escalável e expansão da rede de parceiros." },
+      { phase: "Fundacao",        description: "A Acquafy e fundada nos EUA com o proposito de transformar e formar como o mundo cuida da agua." },
+      { phase: "Desenvolvimento", description: "Desenvolvimento da linha inicial de produtos e da plataforma de gestao inteligente." },
+      { phase: "Ecossistema Neo", description: "Lancamento do ecossistema Neo e do Acquafy Media Network para educacao, conteudo e engajamento." },
+      { phase: "Conectividade",   description: "Expansao da plataforma com App + IA + IoT conectando dispositivos e pessoas." },
+      { phase: "Nova fase global",description: "Nova fase de crescimento com presenca global escalavel e expansao da rede de parceiros." },
     ],
   },
   "pt-pt": {
-    heading: "A Nossa História",
+    heading: "A Nossa Historia",
     items: [
-      { phase: "Fundação",        description: "A Acquafy é fundada nos EUA com o propósito de transformar a forma como o mundo cuida da água." },
-      { phase: "Desenvolvimento", description: "Desenvolvimento da linha inicial de produtos e da plataforma de gestão inteligente." },
-      { phase: "Ecossistema Neo", description: "Lançamento do ecossistema Neo e do Acquafy Media Network para educação, conteúdo e envolvimento." },
-      { phase: "Conectividade",   description: "Expansão da plataforma com App + IA + IoT a ligar dispositivos e pessoas." },
-      { phase: "Nova fase global",description: "Nova fase de crescimento com presença global escalável e expansão da rede de parceiros." },
+      { phase: "Fundacao",        description: "A Acquafy e fundada nos EUA com o proposito de transformar a forma como o mundo cuida da agua." },
+      { phase: "Desenvolvimento", description: "Desenvolvimento da linha inicial de produtos e da plataforma de gestao inteligente." },
+      { phase: "Ecossistema Neo", description: "Lancamento do ecossistema Neo e do Acquafy Media Network para educacao, conteudo e envolvimento." },
+      { phase: "Conectividade",   description: "Expansao da plataforma com App + IA + IoT a ligar dispositivos e pessoas." },
+      { phase: "Nova fase global",description: "Nova fase de crescimento com presenca global escalavel e expansao da rede de parceiros." },
     ],
   },
   en: {
@@ -50,34 +50,44 @@ const T: Record<Lang, {
       { phase: "New global phase",description: "New growth phase with scalable global presence and expansion of the partner network." },
     ],
   },
+  "en-gb": {
+    heading: "Our History",
+    items: [
+      { phase: "Foundation",      description: "Acquafy is founded in the USA with the purpose of transforming how the world cares for water." },
+      { phase: "Development",     description: "Development of the initial product line and the intelligent management platform." },
+      { phase: "Neo Ecosystem",   description: "Launch of the Neo ecosystem and Acquafy Media Network for education, content and engagement." },
+      { phase: "Connectivity",    description: "Platform expansion with App + AI + IoT connecting devices and people." },
+      { phase: "New global phase",description: "New growth phase with scalable global presence and expansion of the partner network." },
+    ],
+  },
   es: {
     heading: "Nuestra Historia",
     items: [
-      { phase: "Fundación",        description: "Acquafy es fundada en EE.UU. con el propósito de transformar la manera en que el mundo cuida el agua." },
-      { phase: "Desarrollo",       description: "Desarrollo de la línea inicial de productos y de la plataforma de gestión inteligente." },
-      { phase: "Ecosistema Neo",   description: "Lanzamiento del ecosistema Neo y del Acquafy Media Network para educación, contenido y engagement." },
-      { phase: "Conectividad",     description: "Expansión de la plataforma con App + IA + IoT conectando dispositivos y personas." },
-      { phase: "Nueva fase global",description: "Nueva fase de crecimiento con presencia global escalable y expansión de la red de socios." },
+      { phase: "Fundacion",        description: "Acquafy es fundada en EE.UU. con el proposito de transformar la manera en que el mundo cuida el agua." },
+      { phase: "Desarrollo",       description: "Desarrollo de la linea inicial de productos y de la plataforma de gestion inteligente." },
+      { phase: "Ecosistema Neo",   description: "Lanzamiento del ecosistema Neo y del Acquafy Media Network para educacion, contenido y engagement." },
+      { phase: "Conectividad",     description: "Expansion de la plataforma con App + IA + IoT conectando dispositivos y personas." },
+      { phase: "Nueva fase global",description: "Nueva fase de crecimiento con presencia global escalable y expansion de la red de socios." },
     ],
   },
   fr: {
     heading: "Notre Histoire",
     items: [
-      { phase: "Fondation",          description: "Acquafy est fondée aux États-Unis avec pour mission de transformer la façon dont le monde prend soin de l'eau." },
-      { phase: "Développement",      description: "Développement de la gamme initiale de produits et de la plateforme de gestion intelligente." },
-      { phase: "Écosystème Neo",     description: "Lancement de l'écosystème Neo et du Acquafy Media Network pour l'éducation, le contenu et l'engagement." },
-      { phase: "Connectivité",       description: "Expansion de la plateforme avec App + IA + IoT connectant appareils et personnes." },
-      { phase: "Nouvelle phase mondiale", description: "Nouvelle phase de croissance avec une présence mondiale évolutive et l'expansion du réseau de partenaires." },
+      { phase: "Fondation",          description: "Acquafy est fondee aux Etats-Unis avec pour mission de transformer la facon dont le monde prend soin de l'eau." },
+      { phase: "Developpement",      description: "Developpement de la gamme initiale de produits et de la plateforme de gestion intelligente." },
+      { phase: "Ecosysteme Neo",     description: "Lancement de l'ecosysteme Neo et du Acquafy Media Network pour l'education, le contenu et l'engagement." },
+      { phase: "Connectivite",       description: "Expansion de la plateforme avec App + IA + IoT connectant appareils et personnes." },
+      { phase: "Nouvelle phase mondiale", description: "Nouvelle phase de croissance avec une presence mondiale evolutive et l'expansion du reseau de partenaires." },
     ],
   },
   de: {
     heading: "Unsere Geschichte",
     items: [
-      { phase: "Gründung",           description: "Acquafy wird in den USA gegründet mit dem Ziel, die Art und Weise zu verändern, wie die Welt mit Wasser umgeht." },
+      { phase: "Grundung",           description: "Acquafy wird in den USA gegrundet mit dem Ziel, die Art und Weise zu verandern, wie die Welt mit Wasser umgeht." },
       { phase: "Entwicklung",        description: "Entwicklung der ersten Produktlinie und der intelligenten Managementplattform." },
-      { phase: "Neo-Ökosystem",      description: "Launch des Neo-Ökosystems und des Acquafy Media Network für Bildung, Content und Engagement." },
-      { phase: "Konnektivität",      description: "Plattformerweiterung mit App + KI + IoT, die Geräte und Menschen verbindet." },
-      { phase: "Neue globale Phase", description: "Neue Wachstumsphase mit skalierbarer globaler Präsenz und Ausbau des Partnernetzwerks." },
+      { phase: "Neo-Okosystem",      description: "Launch des Neo-Okosystems und des Acquafy Media Network fur Bildung, Content und Engagement." },
+      { phase: "Konnektivitat",      description: "Plattformerweiterung mit App + KI + IoT, die Gerate und Menschen verbindet." },
+      { phase: "Neue globale Phase", description: "Neue Wachstumsphase mit skalierbarer globaler Prasenz und Ausbau des Partnernetzwerks." },
     ],
   },
   it: {
@@ -86,7 +96,7 @@ const T: Record<Lang, {
       { phase: "Fondazione",         description: "Acquafy viene fondata negli USA con lo scopo di trasformare il modo in cui il mondo si prende cura dell'acqua." },
       { phase: "Sviluppo",           description: "Sviluppo della linea iniziale di prodotti e della piattaforma di gestione intelligente." },
       { phase: "Ecosistema Neo",     description: "Lancio dell'ecosistema Neo e di Acquafy Media Network per educazione, contenuti e engagement." },
-      { phase: "Connettività",       description: "Espansione della piattaforma con App + IA + IoT che collegano dispositivi e persone." },
+      { phase: "Connettivita",       description: "Espansione della piattaforma con App + IA + IoT che collegano dispositivi e persone." },
       { phase: "Nuova fase globale", description: "Nuova fase di crescita con presenza globale scalabile ed espansione della rete di partner." },
     ],
   },
@@ -118,6 +128,56 @@ const T: Record<Lang, {
       { phase: "Neo 생태계",    description: "교육, 콘텐츠, 참여를 위한 Neo 생태계 및 Acquafy Media Network 런칭." },
       { phase: "연결성",        description: "App + AI + IoT로 기기와 사람을 연결하는 플랫폼 확장." },
       { phase: "새로운 글로벌 단계", description: "확장 가능한 글로벌 존재감과 파트너 네트워크 확대를 통한 새로운 성장 단계." },
+    ],
+  },
+  sv: {
+    heading: "Var historia",
+    items: [
+      { phase: "Grundande",          description: "Acquafy grundas i USA med syftet att forandras hur varlden tar hand om vatten." },
+      { phase: "Utveckling",         description: "Utveckling av den initiala produktlinjen och den intelligenta hanteringsplattformen." },
+      { phase: "Neo-ekosystem",      description: "Lansering av Neo-ekosystemet och Acquafy Media Network for utbildning, innehall och engagemang." },
+      { phase: "Uppkoppling",        description: "Plattformsutbyggnad med App + AI + IoT som kopplar samman enheter och manniskor." },
+      { phase: "Ny global fas",      description: "Ny tillvaxtfas med skalbar global narvaro och expansion av partnernatverket." },
+    ],
+  },
+  fi: {
+    heading: "Historiamme",
+    items: [
+      { phase: "Perustaminen",        description: "Acquafy perustetaan Yhdysvalloissa tarkoituksena muuttaa tapaa, jolla maailma huolehtii vedesta." },
+      { phase: "Kehitys",             description: "Alkuperaisen tuotesarjan ja alykkaan hallinta-alustan kehittaminen." },
+      { phase: "Neo-ekosysteemi",     description: "Neo-ekosysteemin ja Acquafy Media Networkin lanseeraus koulutusta, sisaltoa ja sitoutumista varten." },
+      { phase: "Yhdistyvyys",         description: "Alustan laajentaminen App + AI + IoT:lla yhdistamalla laitteet ja ihmiset." },
+      { phase: "Uusi globaali vaihe", description: "Uusi kasvuvaihe skaalautuvalla globaalilla lasnaololla ja kumppaniverkoston laajentamisella." },
+    ],
+  },
+  ru: {
+    heading: "Nasha istoriya",
+    items: [
+      { phase: "Osnovanie",              description: "Acquafy osnovana v SShA s tselyu izmenit to, kak mir zabotitsya o vode." },
+      { phase: "Razrabotka",             description: "Razrabotka pervonachalnoy lineyky produktov i intellektualnoy platformy upravleniya." },
+      { phase: "Ekosistema Neo",         description: "Zapusk ekosistemy Neo i Acquafy Media Network dlya obrazovaniya, kontenta i vovlechennosti." },
+      { phase: "Podklyuchennost",        description: "Rasshireniye platformy s pomoshchyu App + iskusstvennyy intellekt + IoT, soyedinyayushchikh ustroystva i lyudey." },
+      { phase: "Novyy globalnyy etap",   description: "Novyy etap rosta s masshtabiruyemym globalnym prisutstviyem i rasshireniyem partnerskoy seti." },
+    ],
+  },
+  ro: {
+    heading: "Istoria noastra",
+    items: [
+      { phase: "Infiintare",         description: "Acquafy este infiintata in SUA cu scopul de a transforma modul in care lumea are grija de apa." },
+      { phase: "Dezvoltare",         description: "Dezvoltarea liniei initiale de produse si a platformei de management inteligent." },
+      { phase: "Ecosistem Neo",      description: "Lansarea ecosistemului Neo si a Acquafy Media Network pentru educatie, continut si implicare." },
+      { phase: "Conectivitate",      description: "Extinderea platformei cu App + IA + IoT conectand dispozitive si oameni." },
+      { phase: "Noua faza globala",  description: "Noua faza de crestere cu prezenta globala scalabila si extinderea retelei de parteneri." },
+    ],
+  },
+  he: {
+    heading: "ההיסטוריה שלנו",
+    items: [
+      { phase: "יסוד",               description: "Acquafy הוקמת בארצות הברית במטרה לשנות את האופן שבו העולם דואג למים." },
+      { phase: "פיתוח",              description: "פיתוח קו המוצרים הראשוני ופלטפורמת הניהול החכם." },
+      { phase: "מערכת Neo",          description: "השקת מערכת Neo ושל Acquafy Media Network לחינוך, תוכן ומעורבות." },
+      { phase: "קישוריות",           description: "הרחבת הפלטפורמה עם App + בינה מלאכותית + IoT המחברים מכשירים ואנשים." },
+      { phase: "שלב גלובלי חדש",    description: "שלב צמיחה חדש עם נוכחות גלובלית ניתנת להרחבה והרחבת רשת השותפים." },
     ],
   },
 };

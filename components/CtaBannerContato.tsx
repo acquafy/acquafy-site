@@ -23,6 +23,11 @@ const T: Record<Lang, { heading: string; btnNeo: string; btnMedia: string }> = {
     btnNeo: "Discover the NEO Line",
     btnMedia: "Discover Acquafy Media",
   },
+  "en-gb": {
+    heading: "Let's together transform access to water and people's lives.",
+    btnNeo: "Discover the NEO Line",
+    btnMedia: "Discover Acquafy Media",
+  },
   es: {
     heading: "Juntos transformemos el acceso al agua y la vida de las personas.",
     btnNeo: "Conoce la Línea NEO",
@@ -57,6 +62,31 @@ const T: Record<Lang, { heading: string; btnNeo: string; btnMedia: string }> = {
     heading: "함께 물에 대한 접근성과 사람들의 삶을 변화시켜 나갑시다.",
     btnNeo: "NEO 라인 알아보기",
     btnMedia: "Acquafy Media 알아보기",
+  },
+  sv: {
+    heading: "Låt oss tillsammans förändra tillgången till vatten och människors liv.",
+    btnNeo: "Utforska NEO-linjen",
+    btnMedia: "Utforska Acquafy Media",
+  },
+  fi: {
+    heading: "Muutetaan yhdessä ihmisten vedenjakelu ja elämä paremmaksi.",
+    btnNeo: "Tutustu NEO-sarjaan",
+    btnMedia: "Tutustu Acquafy Mediaan",
+  },
+  ru: {
+    heading: "Давайте вместе изменим доступ к воде и жизнь людей.",
+    btnNeo: "Узнать о линейке NEO",
+    btnMedia: "Узнать об Acquafy Media",
+  },
+  ro: {
+    heading: "Sa transformam impreuna accesul la apa si viata oamenilor.",
+    btnNeo: "Descopera Linia NEO",
+    btnMedia: "Descopera Acquafy Media",
+  },
+  he: {
+    heading: "בואו נשנה יחד את הגישה למים ואת חיי האנשים.",
+    btnNeo: "גלה את קו NEO",
+    btnMedia: "גלה את Acquafy Media",
   },
 };
 

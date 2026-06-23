@@ -53,21 +53,21 @@ const T: Record<Lang, {
     desc: "Acquafy Platform + App + AI + IoT para Gestão Global Inteligente de Água.",
     nav: [
       { title: "Plataforma", links: [
-        { label: "Plataforma Acquafy",            href: "/plataforma"          },
+        { label: "Plataforma Acquafy",            href: "/platform"          },
         { label: "App + AI + IoT",                href: "/app-ai-iot"          },
-        { label: "Central de Suporte",            href: "/central-de-suporte"  },
-        { label: "Tecnologia & Sustentabilidade", href: "/tecnologia"          },
+        { label: "Central de Suporte",            href: "/support-center"  },
+        { label: "Tecnologia & Sustentabilidade", href: "/technology"          },
       ]},
       { title: "Produtos", links: [
-        { label: "Linha Neo",            href: "/linha-neo" },
+        { label: "Linha Neo",            href: "/neo-line" },
         { label: "Acquafy Media",        href: "/neo-media" },
-        { label: "Filtros & Acessórios", href: "/filtros"   },
+        { label: "Filtros & Acessórios", href: "/filters"   },
         { label: "Compare Produtos",     href: "/compare"   },
       ]},
       { title: "Empresa", links: [
-        { label: "Sobre Nós",       href: "/sobre"           },
-        { label: "Expansão Global", href: "/expansao-global" },
-        { label: "Contatos",        href: "/contato"         },
+        { label: "Sobre Nós",       href: "/about"           },
+        { label: "Expansão Global", href: "/global-expansion" },
+        { label: "Contatos",        href: "/contact"         },
       ]},
     ],
     stats: [
@@ -86,21 +86,21 @@ const T: Record<Lang, {
     desc: "Acquafy Platform + Aplicação + AI + IoT para Gestão Global Inteligente da Água.",
     nav: [
       { title: "Plataforma", links: [
-        { label: "Plataforma Acquafy",            href: "/plataforma"          },
+        { label: "Plataforma Acquafy",            href: "/platform"          },
         { label: "App + AI + IoT",                href: "/app-ai-iot"          },
-        { label: "Central de Suporte",            href: "/central-de-suporte"  },
-        { label: "Tecnologia & Sustentabilidade", href: "/tecnologia"          },
+        { label: "Central de Suporte",            href: "/support-center"  },
+        { label: "Tecnologia & Sustentabilidade", href: "/technology"          },
       ]},
       { title: "Produtos", links: [
-        { label: "Linha Neo",            href: "/linha-neo" },
+        { label: "Linha Neo",            href: "/neo-line" },
         { label: "Acquafy Media",        href: "/neo-media" },
-        { label: "Filtros & Acessórios", href: "/filtros"   },
+        { label: "Filtros & Acessórios", href: "/filters"   },
         { label: "Comparar Produtos",    href: "/compare"   },
       ]},
       { title: "Empresa", links: [
-        { label: "Sobre Nós",       href: "/sobre"           },
-        { label: "Expansão Global", href: "/expansao-global" },
-        { label: "Contactos",       href: "/contato"         },
+        { label: "Sobre Nós",       href: "/about"           },
+        { label: "Expansão Global", href: "/global-expansion" },
+        { label: "Contactos",       href: "/contact"         },
       ]},
     ],
     stats: [
@@ -119,21 +119,54 @@ const T: Record<Lang, {
     desc: "Acquafy Platform + App + AI + IoT for Global Intelligent Water Management.",
     nav: [
       { title: "Platform", links: [
-        { label: "Acquafy Platform",          href: "/plataforma"         },
+        { label: "Acquafy Platform",          href: "/platform"         },
         { label: "App + AI + IoT",            href: "/app-ai-iot"         },
-        { label: "Support Center",            href: "/central-de-suporte" },
-        { label: "Technology & Sustainability", href: "/tecnologia"       },
+        { label: "Support Center",            href: "/support-center" },
+        { label: "Technology & Sustainability", href: "/technology"       },
       ]},
       { title: "Products", links: [
-        { label: "Neo Line",              href: "/linha-neo" },
+        { label: "Neo Line",              href: "/neo-line" },
         { label: "Acquafy Media",         href: "/neo-media" },
-        { label: "Filters & Accessories", href: "/filtros"   },
+        { label: "Filters & Accessories", href: "/filters"   },
         { label: "Compare Products",      href: "/compare"   },
       ]},
       { title: "Company", links: [
-        { label: "About Us",         href: "/sobre"           },
-        { label: "Global Expansion", href: "/expansao-global" },
-        { label: "Contact",          href: "/contato"         },
+        { label: "About Us",         href: "/about"           },
+        { label: "Global Expansion", href: "/global-expansion" },
+        { label: "Contact",          href: "/contact"         },
+      ]},
+    ],
+    stats: [
+      { sub: "Present in",     main: "180+ countries"    },
+      { sub: "Available in",   main: "16 languages"      },
+      { sub: "Operation",      main: "100% global"       },
+      { sub: "Revenue model",  main: "100% recurring"    },
+    ],
+    founded:        "Founded in the USA in 2020",
+    globalPlatform: "Global Smart Water Platform",
+    copyright:      "Acquafy Corporation © 2026. All rights reserved.",
+    terms:          "Terms of Use",
+    privacy:        "Privacy Policy",
+  },
+  "en-gb": {
+    desc: "Acquafy Platform + App + AI + IoT for Global Intelligent Water Management.",
+    nav: [
+      { title: "Platform", links: [
+        { label: "Acquafy Platform",          href: "/platform"         },
+        { label: "App + AI + IoT",            href: "/app-ai-iot"         },
+        { label: "Support Centre",            href: "/support-center" },
+        { label: "Technology & Sustainability", href: "/technology"       },
+      ]},
+      { title: "Products", links: [
+        { label: "Neo Line",              href: "/neo-line" },
+        { label: "Acquafy Media",         href: "/neo-media" },
+        { label: "Filters & Accessories", href: "/filters"   },
+        { label: "Compare Products",      href: "/compare"   },
+      ]},
+      { title: "Company", links: [
+        { label: "About Us",         href: "/about"           },
+        { label: "Global Expansion", href: "/global-expansion" },
+        { label: "Contact",          href: "/contact"         },
       ]},
     ],
     stats: [
@@ -152,21 +185,21 @@ const T: Record<Lang, {
     desc: "Acquafy Platform + App + IA + IoT para la Gestión Global Inteligente del Agua.",
     nav: [
       { title: "Plataforma", links: [
-        { label: "Plataforma Acquafy",         href: "/plataforma"         },
+        { label: "Plataforma Acquafy",         href: "/platform"         },
         { label: "App + IA + IoT",             href: "/app-ai-iot"         },
-        { label: "Central de Soporte",         href: "/central-de-suporte" },
-        { label: "Tecnología & Sostenibilidad", href: "/tecnologia"        },
+        { label: "Central de Soporte",         href: "/support-center" },
+        { label: "Tecnología & Sostenibilidad", href: "/technology"        },
       ]},
       { title: "Productos", links: [
-        { label: "Línea Neo",            href: "/linha-neo" },
+        { label: "Línea Neo",            href: "/neo-line" },
         { label: "Acquafy Media",        href: "/neo-media" },
-        { label: "Filtros y Accesorios", href: "/filtros"   },
+        { label: "Filtros y Accesorios", href: "/filters"   },
         { label: "Comparar Productos",   href: "/compare"   },
       ]},
       { title: "Empresa", links: [
-        { label: "Sobre Nosotros",   href: "/sobre"           },
-        { label: "Expansión Global", href: "/expansao-global" },
-        { label: "Contacto",         href: "/contato"         },
+        { label: "Sobre Nosotros",   href: "/about"           },
+        { label: "Expansión Global", href: "/global-expansion" },
+        { label: "Contacto",         href: "/contact"         },
       ]},
     ],
     stats: [
@@ -185,21 +218,21 @@ const T: Record<Lang, {
     desc: "Acquafy Platform + App + AI + IoT pour la Gestion Mondiale Intelligente de l'Eau.",
     nav: [
       { title: "Plateforme", links: [
-        { label: "Plateforme Acquafy",          href: "/plataforma"         },
+        { label: "Plateforme Acquafy",          href: "/platform"         },
         { label: "App + AI + IoT",              href: "/app-ai-iot"         },
-        { label: "Centre de Support",           href: "/central-de-suporte" },
-        { label: "Technologie & Durabilité",    href: "/tecnologia"         },
+        { label: "Centre de Support",           href: "/support-center" },
+        { label: "Technologie & Durabilité",    href: "/technology"         },
       ]},
       { title: "Produits", links: [
-        { label: "Gamme Neo",             href: "/linha-neo" },
+        { label: "Gamme Neo",             href: "/neo-line" },
         { label: "Acquafy Media",         href: "/neo-media" },
-        { label: "Filtres & Accessoires", href: "/filtros"   },
+        { label: "Filtres & Accessoires", href: "/filters"   },
         { label: "Comparer les Produits", href: "/compare"   },
       ]},
       { title: "Entreprise", links: [
-        { label: "À propos",           href: "/sobre"           },
-        { label: "Expansion Mondiale", href: "/expansao-global" },
-        { label: "Contact",            href: "/contato"         },
+        { label: "À propos",           href: "/about"           },
+        { label: "Expansion Mondiale", href: "/global-expansion" },
+        { label: "Contact",            href: "/contact"         },
       ]},
     ],
     stats: [
@@ -218,21 +251,21 @@ const T: Record<Lang, {
     desc: "Acquafy Platform + App + AI + IoT für globales intelligentes Wassermanagement.",
     nav: [
       { title: "Plattform", links: [
-        { label: "Acquafy Plattform",            href: "/plataforma"         },
+        { label: "Acquafy Plattform",            href: "/platform"         },
         { label: "App + AI + IoT",               href: "/app-ai-iot"         },
-        { label: "Support-Center",               href: "/central-de-suporte" },
-        { label: "Technologie & Nachhaltigkeit", href: "/tecnologia"         },
+        { label: "Support-Center",               href: "/support-center" },
+        { label: "Technologie & Nachhaltigkeit", href: "/technology"         },
       ]},
       { title: "Produkte", links: [
-        { label: "Neo-Linie",            href: "/linha-neo" },
+        { label: "Neo-Linie",            href: "/neo-line" },
         { label: "Acquafy Media",        href: "/neo-media" },
-        { label: "Filter & Zubehör",     href: "/filtros"   },
+        { label: "Filter & Zubehör",     href: "/filters"   },
         { label: "Produkte vergleichen", href: "/compare"   },
       ]},
       { title: "Unternehmen", links: [
-        { label: "Über uns",          href: "/sobre"           },
-        { label: "Globale Expansion", href: "/expansao-global" },
-        { label: "Kontakt",           href: "/contato"         },
+        { label: "Über uns",          href: "/about"           },
+        { label: "Globale Expansion", href: "/global-expansion" },
+        { label: "Kontakt",           href: "/contact"         },
       ]},
     ],
     stats: [
@@ -251,21 +284,21 @@ const T: Record<Lang, {
     desc: "Acquafy Platform + App + AI + IoT per la Gestione Globale Intelligente dell'Acqua.",
     nav: [
       { title: "Piattaforma", links: [
-        { label: "Piattaforma Acquafy",         href: "/plataforma"         },
+        { label: "Piattaforma Acquafy",         href: "/platform"         },
         { label: "App + AI + IoT",              href: "/app-ai-iot"         },
-        { label: "Centro Assistenza",           href: "/central-de-suporte" },
-        { label: "Tecnologia & Sostenibilità",  href: "/tecnologia"         },
+        { label: "Centro Assistenza",           href: "/support-center" },
+        { label: "Tecnologia & Sostenibilità",  href: "/technology"         },
       ]},
       { title: "Prodotti", links: [
-        { label: "Linea Neo",          href: "/linha-neo" },
+        { label: "Linea Neo",          href: "/neo-line" },
         { label: "Acquafy Media",      href: "/neo-media" },
-        { label: "Filtri & Accessori", href: "/filtros"   },
+        { label: "Filtri & Accessori", href: "/filters"   },
         { label: "Confronta Prodotti", href: "/compare"   },
       ]},
       { title: "Azienda", links: [
-        { label: "Chi siamo",          href: "/sobre"           },
-        { label: "Espansione Globale", href: "/expansao-global" },
-        { label: "Contatto",           href: "/contato"         },
+        { label: "Chi siamo",          href: "/about"           },
+        { label: "Espansione Globale", href: "/global-expansion" },
+        { label: "Contatto",           href: "/contact"         },
       ]},
     ],
     stats: [
@@ -284,21 +317,21 @@ const T: Record<Lang, {
     desc: "Acquafy Platform + App + AI + IoT，实现全球智能水务管理。",
     nav: [
       { title: "平台", links: [
-        { label: "Acquafy 平台",    href: "/plataforma"         },
+        { label: "Acquafy 平台",    href: "/platform"         },
         { label: "App + AI + IoT", href: "/app-ai-iot"         },
-        { label: "支持中心",        href: "/central-de-suporte" },
-        { label: "技术与可持续发展", href: "/tecnologia"         },
+        { label: "支持中心",        href: "/support-center" },
+        { label: "技术与可持续发展", href: "/technology"         },
       ]},
       { title: "产品", links: [
-        { label: "Neo 系列",   href: "/linha-neo" },
+        { label: "Neo 系列",   href: "/neo-line" },
         { label: "Acquafy Media", href: "/neo-media" },
-        { label: "滤芯与配件", href: "/filtros"   },
+        { label: "滤芯与配件", href: "/filters"   },
         { label: "产品对比",   href: "/compare"   },
       ]},
       { title: "公司", links: [
-        { label: "关于我们", href: "/sobre"           },
-        { label: "全球扩张", href: "/expansao-global" },
-        { label: "联系我们", href: "/contato"         },
+        { label: "关于我们", href: "/about"           },
+        { label: "全球扩张", href: "/global-expansion" },
+        { label: "联系我们", href: "/contact"         },
       ]},
     ],
     stats: [
@@ -317,21 +350,21 @@ const T: Record<Lang, {
     desc: "Acquafy Platform + App + AI + IoT によるグローバル・スマート水管理。",
     nav: [
       { title: "プラットフォーム", links: [
-        { label: "Acquafy プラットフォーム",  href: "/plataforma"         },
+        { label: "Acquafy プラットフォーム",  href: "/platform"         },
         { label: "App + AI + IoT",           href: "/app-ai-iot"         },
-        { label: "サポートセンター",           href: "/central-de-suporte" },
-        { label: "テクノロジー & 持続可能性", href: "/tecnologia"         },
+        { label: "サポートセンター",           href: "/support-center" },
+        { label: "テクノロジー & 持続可能性", href: "/technology"         },
       ]},
       { title: "製品", links: [
-        { label: "Neo ライン",              href: "/linha-neo" },
+        { label: "Neo ライン",              href: "/neo-line" },
         { label: "Acquafy Media",          href: "/neo-media" },
-        { label: "フィルター & アクセサリ", href: "/filtros"   },
+        { label: "フィルター & アクセサリ", href: "/filters"   },
         { label: "製品を比較する",          href: "/compare"   },
       ]},
       { title: "企業情報", links: [
-        { label: "会社概要",      href: "/sobre"           },
-        { label: "グローバル展開", href: "/expansao-global" },
-        { label: "お問い合わせ",  href: "/contato"         },
+        { label: "会社概要",      href: "/about"           },
+        { label: "グローバル展開", href: "/global-expansion" },
+        { label: "お問い合わせ",  href: "/contact"         },
       ]},
     ],
     stats: [
@@ -350,21 +383,21 @@ const T: Record<Lang, {
     desc: "Acquafy Platform + App + AI + IoT로 글로벌 지능형 수자원 관리를 실현합니다.",
     nav: [
       { title: "플랫폼", links: [
-        { label: "Acquafy 플랫폼",   href: "/plataforma"         },
+        { label: "Acquafy 플랫폼",   href: "/platform"         },
         { label: "App + AI + IoT",  href: "/app-ai-iot"         },
-        { label: "지원 센터",        href: "/central-de-suporte" },
-        { label: "기술 & 지속 가능성", href: "/tecnologia"        },
+        { label: "지원 센터",        href: "/support-center" },
+        { label: "기술 & 지속 가능성", href: "/technology"        },
       ]},
       { title: "제품", links: [
-        { label: "Neo 라인",         href: "/linha-neo" },
+        { label: "Neo 라인",         href: "/neo-line" },
         { label: "Acquafy Media",   href: "/neo-media" },
-        { label: "필터 & 액세서리",  href: "/filtros"   },
+        { label: "필터 & 액세서리",  href: "/filters"   },
         { label: "제품 비교",        href: "/compare"   },
       ]},
       { title: "회사", links: [
-        { label: "회사 소개",   href: "/sobre"           },
-        { label: "글로벌 확장", href: "/expansao-global" },
-        { label: "문의하기",   href: "/contato"         },
+        { label: "회사 소개",   href: "/about"           },
+        { label: "글로벌 확장", href: "/global-expansion" },
+        { label: "문의하기",   href: "/contact"         },
       ]},
     ],
     stats: [
@@ -378,6 +411,171 @@ const T: Record<Lang, {
     copyright:      "Acquafy Corporation © 2026. All rights reserved.",
     terms:          "이용약관",
     privacy:        "개인정보 처리방침",
+  },
+  sv: {
+    desc: "Acquafy Platform + App + AI + IoT för global intelligent vattenhantering.",
+    nav: [
+      { title: "Plattform", links: [
+        { label: "Acquafy Plattform",          href: "/platform"         },
+        { label: "App + AI + IoT",             href: "/app-ai-iot"         },
+        { label: "Supportcenter",              href: "/support-center" },
+        { label: "Teknologi & Hållbarhet",     href: "/technology"         },
+      ]},
+      { title: "Produkter", links: [
+        { label: "Neo-linjen",           href: "/neo-line" },
+        { label: "Acquafy Media",        href: "/neo-media" },
+        { label: "Filter & Tillbehör",   href: "/filters"   },
+        { label: "Jämför Produkter",     href: "/compare"   },
+      ]},
+      { title: "Företag", links: [
+        { label: "Om Oss",            href: "/about"           },
+        { label: "Global Expansion",  href: "/global-expansion" },
+        { label: "Kontakt",           href: "/contact"         },
+      ]},
+    ],
+    stats: [
+      { sub: "Närvarande i",    main: "180+ länder"       },
+      { sub: "Tillgänglig på",  main: "16 språk"          },
+      { sub: "Verksamhet",      main: "100% global"       },
+      { sub: "Intäktsmodell",   main: "100% återkommande" },
+    ],
+    founded:        "Grundat i USA 2020",
+    globalPlatform: "Global Smart Water Platform",
+    copyright:      "Acquafy Corporation © 2026. Alla rättigheter förbehållna.",
+    terms:          "Användarvillkor",
+    privacy:        "Integritetspolicy",
+  },
+  fi: {
+    desc: "Acquafy Platform + App + AI + IoT globaaliin älykkääseen vedenhallintaan.",
+    nav: [
+      { title: "Alusta", links: [
+        { label: "Acquafy-alusta",              href: "/platform"         },
+        { label: "App + AI + IoT",              href: "/app-ai-iot"         },
+        { label: "Tukikeskus",                  href: "/support-center" },
+        { label: "Teknologia & Kestävyys",      href: "/technology"         },
+      ]},
+      { title: "Tuotteet", links: [
+        { label: "Neo-linja",            href: "/neo-line" },
+        { label: "Acquafy Media",        href: "/neo-media" },
+        { label: "Suodattimet & Lisäosat", href: "/filters" },
+        { label: "Vertaile Tuotteita",   href: "/compare"   },
+      ]},
+      { title: "Yritys", links: [
+        { label: "Tietoa Meistä",     href: "/about"           },
+        { label: "Globaali Laajentuminen", href: "/global-expansion" },
+        { label: "Yhteystiedot",      href: "/contact"         },
+      ]},
+    ],
+    stats: [
+      { sub: "Läsnä",           main: "180+ maassa"       },
+      { sub: "Saatavilla",      main: "16 kielellä"       },
+      { sub: "Toiminta",        main: "100% globaali"     },
+      { sub: "Tulomalli",       main: "100% toistuva"     },
+    ],
+    founded:        "Perustettu USA:ssa vuonna 2020",
+    globalPlatform: "Global Smart Water Platform",
+    copyright:      "Acquafy Corporation © 2026. Kaikki oikeudet pidätetään.",
+    terms:          "Käyttöehdot",
+    privacy:        "Tietosuojakäytäntö",
+  },
+  ru: {
+    desc: "Acquafy Platform + App + AI + IoT для глобального интеллектуального управления водными ресурсами.",
+    nav: [
+      { title: "Платформа", links: [
+        { label: "Платформа Acquafy",           href: "/platform"         },
+        { label: "App + AI + IoT",              href: "/app-ai-iot"         },
+        { label: "Центр поддержки",             href: "/support-center" },
+        { label: "Технологии & Устойчивость",   href: "/technology"         },
+      ]},
+      { title: "Продукты", links: [
+        { label: "Линейка Neo",          href: "/neo-line" },
+        { label: "Acquafy Media",        href: "/neo-media" },
+        { label: "Фильтры & Аксессуары", href: "/filters"   },
+        { label: "Сравнить продукты",    href: "/compare"   },
+      ]},
+      { title: "Компания", links: [
+        { label: "О нас",               href: "/about"           },
+        { label: "Глобальное расширение", href: "/global-expansion" },
+        { label: "Контакты",            href: "/contact"         },
+      ]},
+    ],
+    stats: [
+      { sub: "Присутствие в",    main: "180+ странах"      },
+      { sub: "Доступно на",      main: "16 языках"         },
+      { sub: "Операции",         main: "100% глобальные"   },
+      { sub: "Модель дохода",    main: "100% повторяющийся" },
+    ],
+    founded:        "Основана в США в 2020 году",
+    globalPlatform: "Global Smart Water Platform",
+    copyright:      "Acquafy Corporation © 2026. Все права защищены.",
+    terms:          "Условия использования",
+    privacy:        "Политика конфиденциальности",
+  },
+  ro: {
+    desc: "Acquafy Platform + App + AI + IoT pentru Managementul Global Inteligent al Apei.",
+    nav: [
+      { title: "Platforma", links: [
+        { label: "Platforma Acquafy",           href: "/platform"         },
+        { label: "App + AI + IoT",              href: "/app-ai-iot"         },
+        { label: "Centrul de Suport",           href: "/support-center" },
+        { label: "Tehnologie & Sustenabilitate", href: "/technology"        },
+      ]},
+      { title: "Produse", links: [
+        { label: "Linia Neo",            href: "/neo-line" },
+        { label: "Acquafy Media",        href: "/neo-media" },
+        { label: "Filtre & Accesorii",   href: "/filters"   },
+        { label: "Compara Produse",      href: "/compare"   },
+      ]},
+      { title: "Companie", links: [
+        { label: "Despre Noi",        href: "/about"           },
+        { label: "Expansiune Globala", href: "/global-expansion" },
+        { label: "Contact",           href: "/contact"         },
+      ]},
+    ],
+    stats: [
+      { sub: "Prezenti in",      main: "180+ tari"         },
+      { sub: "Disponibil in",    main: "16 limbi"          },
+      { sub: "Operatiune",       main: "100% globala"      },
+      { sub: "Model de venituri", main: "100% recurent"    },
+    ],
+    founded:        "Fondata in SUA in 2020",
+    globalPlatform: "Global Smart Water Platform",
+    copyright:      "Acquafy Corporation © 2026. Toate drepturile rezervate.",
+    terms:          "Termeni de Utilizare",
+    privacy:        "Politica de Confidentialitate",
+  },
+  he: {
+    desc: "Acquafy Platform + App + AI + IoT לניהול מים גלובלי חכם.",
+    nav: [
+      { title: "פלטפורמה", links: [
+        { label: "פלטפורמת Acquafy",         href: "/platform"         },
+        { label: "App + AI + IoT",           href: "/app-ai-iot"         },
+        { label: "מרכז תמיכה",               href: "/support-center" },
+        { label: "טכנולוגיה וקיימות",         href: "/technology"         },
+      ]},
+      { title: "מוצרים", links: [
+        { label: "קו Neo",              href: "/neo-line" },
+        { label: "Acquafy Media",       href: "/neo-media" },
+        { label: "מסננים ואביזרים",     href: "/filters"   },
+        { label: "השווה מוצרים",        href: "/compare"   },
+      ]},
+      { title: "חברה", links: [
+        { label: "אודותינו",         href: "/about"           },
+        { label: "התרחבות גלובלית", href: "/global-expansion" },
+        { label: "צור קשר",          href: "/contact"         },
+      ]},
+    ],
+    stats: [
+      { sub: "נוכחות ב",        main: "180+ מדינות"      },
+      { sub: "זמין ב",          main: "16 שפות"          },
+      { sub: "פעילות",          main: "100% גלובלית"     },
+      { sub: "מודל הכנסות",     main: "100% חוזר"        },
+    ],
+    founded:        "נוסדה בארה\"ב ב-2020",
+    globalPlatform: "Global Smart Water Platform",
+    copyright:      "Acquafy Corporation © 2026. כל הזכויות שמורות.",
+    terms:          "תנאי שימוש",
+    privacy:        "מדיניות פרטיות",
   },
 };
 
@@ -559,8 +757,8 @@ export default function Footer() {
             {t.copyright}
           </p>
           <div className="flex gap-[20px] items-center shrink-0">
-            <a href="/termos-de-uso" className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#07235c] hover:text-[#0233c3] transition-colors">{t.terms}</a>
-            <a href="/politicas-privacidade" className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#07235c] hover:text-[#0233c3] transition-colors">{t.privacy}</a>
+            <a href="/terms-of-use" className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#07235c] hover:text-[#0233c3] transition-colors">{t.terms}</a>
+            <a href="/privacy-policy" className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#07235c] hover:text-[#0233c3] transition-colors">{t.privacy}</a>
           </div>
         </div>
       </div>

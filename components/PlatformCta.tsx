@@ -23,6 +23,11 @@ const T: Record<Lang, { heading: string; btnDemo: string; btnSpecialist: string 
     btnDemo: "Request a demo",
     btnSpecialist: "Talk to a specialist",
   },
+  "en-gb": {
+    heading: "Ready to operate the new generation of smart water?",
+    btnDemo: "Request a demo",
+    btnSpecialist: "Talk to a specialist",
+  },
   es: {
     heading: "¿Listo para operar la nueva generación de agua inteligente?",
     btnDemo: "Solicitar demostración",
@@ -58,6 +63,31 @@ const T: Record<Lang, { heading: string; btnDemo: string; btnSpecialist: string 
     btnDemo: "데모 신청",
     btnSpecialist: "전문가와 상담",
   },
+  sv: {
+    heading: "Redo att driva nästa generation av smart vatten?",
+    btnDemo: "Begär en demo",
+    btnSpecialist: "Prata med en specialist",
+  },
+  fi: {
+    heading: "Valmis hallinnoimaan älykkään veden uutta sukupolvea?",
+    btnDemo: "Pyydä demo",
+    btnSpecialist: "Puhu asiantuntijan kanssa",
+  },
+  ru: {
+    heading: "Готовы управлять новым поколением интеллектуального водоснабжения?",
+    btnDemo: "Запросить демо",
+    btnSpecialist: "Поговорить со специалистом",
+  },
+  ro: {
+    heading: "Esti gata sa operezi noua generatie de apa inteligenta?",
+    btnDemo: "Solicita o demonstratie",
+    btnSpecialist: "Vorbeste cu un specialist",
+  },
+  he: {
+    heading: "מוכנים להפעיל את הדור הבא של המים החכמים?",
+    btnDemo: "בקש הדגמה",
+    btnSpecialist: "דבר עם מומחה",
+  },
 };
 
 export default function PlatformCta() {
@@ -81,7 +111,7 @@ export default function PlatformCta() {
         </div>
 
         <div className="relative flex flex-[1_0_0] flex-wrap gap-[10px] items-center justify-center xl:justify-end min-w-[240px] pb-[20px]">
-          <a href="/contato" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[56px] min-w-[200px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
+          <a href="/contact" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[56px] min-w-[200px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
             <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors text-center whitespace-nowrap">
               {t.btnDemo}
             </span>
@@ -91,7 +121,7 @@ export default function PlatformCta() {
           </a>
 
           <a
-            href="/contato"
+            href="/contact"
             className="flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[56px] min-w-[200px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer"
             style={{ backgroundImage: "linear-gradient(112deg, #0233c3 6.19%, #9f3df5 93.35%)" }}
           >

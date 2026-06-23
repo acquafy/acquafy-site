@@ -20,6 +20,7 @@ export const PRODUCT_PRICES_BRL: Record<string, number> = {
   "neo-prime":                7990,
   "neo-prime-spark":          8490,
   "neo-prime-spark-h2":       8990,
+  "acquafy-media":            0,
 };
 
 export function formatBRL(cents: number) {
@@ -38,9 +39,9 @@ export type ProductBasic = {
 export const PRODUCT_CATALOG: ProductBasic[] = [
   { id: "neo-up",                  label: "Neo UP",                   img: "/figma-assets/neo-up-catalog.webp",              linha: "Essentials" },
   { id: "neo-fit",                 label: "Neo FIT",                  img: "/figma-assets/neo-fit.webp",              linha: "Essentials" },
-  { id: "neo-smart-h2",            label: "Neo SMART H₂",             img: "/figma-assets/neo-smart-h2.webp",            linha: "Essentials" },
   { id: "neo-touch",               label: "Neo TOUCH",                img: "/figma-assets/neo-touch.webp",            linha: "Essentials" },
   { id: "neo-plus",                label: "Neo PLUS",                 img: "/figma-assets/neo-plus.webp",             linha: "Essentials" },
+  { id: "neo-smart-h2",            label: "Neo SMART H₂",             img: "/figma-assets/neo-smart-h2.webp",            linha: "Essentials" },
   { id: "neo-ultra",               label: "Neo ULTRA",                img: "/figma-assets/neo-ultra.webp",            linha: "Essentials" },
   { id: "neo-ultra-spark",         label: "Neo ULTRA SPARK",          img: "/figma-assets/neo-ultra-spark.webp",      linha: "Essentials" },
   { id: "neo-ultra-spark-h2",      label: "Neo ULTRA SPARK H₂",       img: "/figma-assets/neo-ultra-spark-h2.webp",   linha: "Essentials" },
@@ -56,6 +57,7 @@ export const PRODUCT_CATALOG: ProductBasic[] = [
   { id: "neo-prime",               label: "Neo PRIME",                img: "/figma-assets/premium-prime-catalog.webp",               linha: "Premium" },
   { id: "neo-prime-spark",         label: "Neo PRIME SPARK",          img: "/figma-assets/premium-prime-spark-catalog.webp",         linha: "Premium" },
   { id: "neo-prime-spark-h2",      label: "Neo PRIME SPARK H₂",       img: "/figma-assets/premium-prime-spark-h2-catalog.webp",      linha: "Premium" },
+  { id: "acquafy-media",           label: "Acquafy Media",            img: "/figma-assets/acquafy-media-totem.webp",                 linha: "Premium" },
 ];
 
 /** Lookup rápido: id do produto → caminho da imagem (fonte única) */

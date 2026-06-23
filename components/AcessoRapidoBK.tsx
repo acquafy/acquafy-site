@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
@@ -38,7 +38,7 @@ export const quickItems: QuickItem[] = [
     icon: "/figma-assets/icon-fone-list.svg",
     aspectW: 30,
     aspectH: 30,
-    href: "/contato",
+    href: "/contact",
   },
   {
     icon: "/figma-assets/icon-certificate.svg",
@@ -78,6 +78,16 @@ const T: Record<Lang, {
     title1: "Quick", title2: "Access",
     items: [
       { title: "My products",          desc: "Explore the complete Neo purifier lineup." },
+      { title: "Downloads",            desc: "Manuals, quick guides, software, and documents." },
+      { title: "Tutorials & videos",   desc: "Learn step by step with our tutorials." },
+      { title: "FAQ",                  desc: "Find answers to the most common questions." },
+      { title: "Policies & warranties",desc: "Review our policies, terms, and warranties." },
+    ],
+  },
+  "en-gb": {
+    title1: "Quick", title2: "Access",
+    items: [
+      { title: "My products",          desc: "Explore the complete Neo purifier range." },
       { title: "Downloads",            desc: "Manuals, quick guides, software, and documents." },
       { title: "Tutorials & videos",   desc: "Learn step by step with our tutorials." },
       { title: "FAQ",                  desc: "Find answers to the most common questions." },
@@ -152,6 +162,56 @@ const T: Record<Lang, {
       { title: "튜토리얼 & 동영상",desc: "튜토리얼로 단계별 학습하기." },
       { title: "자주 묻는 질문",   desc: "가장 자주 묻는 질문에 대한 답변 찾기." },
       { title: "정책 및 보증",     desc: "정책, 약관 및 보증 정보를 확인하세요." },
+    ],
+  },
+  sv: {
+    title1: "Snabb", title2: "åtkomst",
+    items: [
+      { title: "Mina produkter",          desc: "Utforska hela Neo-reningslinjens sortiment." },
+      { title: "Nedladdningar",           desc: "Manualer, snabbguider, programvara och dokument." },
+      { title: "Handledningar & videor",  desc: "Lär dig steg för steg med våra handledningar." },
+      { title: "Vanliga frågor",          desc: "Hitta svar på de vanligaste frågorna." },
+      { title: "Policyer & garantier",    desc: "Granska våra policyer, villkor och garantier." },
+    ],
+  },
+  fi: {
+    title1: "Pikakäyttö", title2: "",
+    items: [
+      { title: "Omat tuotteet",           desc: "Tutustu Neo-puhdistimien täydelliseen valikoimaan." },
+      { title: "Lataukset",               desc: "Käyttöohjeet, pikaohjeet, ohjelmistot ja asiakirjat." },
+      { title: "Opetusvideot & videot",   desc: "Opi askel askeleelta opetusvideoidemme avulla." },
+      { title: "Usein kysytyt kysymykset",desc: "Löydä vastaukset yleisimpiin kysymyksiin." },
+      { title: "Käytännöt & takuut",      desc: "Tutustu käytäntöihimme, ehtoihimme ja takuihimme." },
+    ],
+  },
+  ru: {
+    title1: "Быстрый", title2: "доступ",
+    items: [
+      { title: "Мои продукты",            desc: "Ознакомьтесь с полной линейкой очистителей Neo." },
+      { title: "Загрузки",                desc: "Руководства, краткие инструкции, программы и документы." },
+      { title: "Руководства и видео",     desc: "Учитесь шаг за шагом с нашими руководствами." },
+      { title: "Часто задаваемые вопросы",desc: "Найдите ответы на самые распространённые вопросы." },
+      { title: "Политики и гарантии",     desc: "Ознакомьтесь с нашими политиками, условиями и гарантиями." },
+    ],
+  },
+  ro: {
+    title1: "Acces", title2: "rapid",
+    items: [
+      { title: "Produsele mele",          desc: "Explorați gama completa de purificatoare Neo." },
+      { title: "Descărcări",              desc: "Manuale, ghiduri rapide, software și documente." },
+      { title: "Tutoriale și videoclipuri",desc: "Învățați pas cu pas cu tutorialele noastre." },
+      { title: "Întrebări frecvente",     desc: "Găsiți răspunsuri la cele mai comune întrebări." },
+      { title: "Politici și garanții",    desc: "Consultați politicile, termenii și garanțiile noastre." },
+    ],
+  },
+  he: {
+    title1: "גישה", title2: "מהירה",
+    items: [
+      { title: "המוצרים שלי",             desc: "גלה את מגוון מטהרי Neo המלא." },
+      { title: "הורדות",                  desc: "מדריכים, מדריכים מהירים, תוכנות ומסמכים." },
+      { title: "מדריכים וסרטונים",        desc: "למד צעד אחר צעד עם המדריכים שלנו." },
+      { title: "שאלות נפוצות",            desc: "מצא תשובות לשאלות הנפוצות ביותר." },
+      { title: "מדיניות ואחריות",         desc: "עיין במדיניות, בתנאים ובאחריות שלנו." },
     ],
   },
 };

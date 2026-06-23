@@ -35,6 +35,14 @@ const T: Record<Lang, {
       { title: "Global support",         desc: "Service for clients and partners in 16 languages." },
     ],
   },
+  "en-gb": {
+    diferenciais: [
+      { title: "Specialised support",    desc: "Trained and certified team to provide the best support." },
+      { title: "Fast responses",         desc: "Agile service and efficient solutions." },
+      { title: "Guaranteed satisfaction", desc: "Commitment to your satisfaction and success." },
+      { title: "Global support",         desc: "Service for clients and partners in 16 languages." },
+    ],
+  },
   es: {
     diferenciais: [
       { title: "Atención especializada", desc: "Equipo capacitado y certificado para ofrecer el mejor soporte." },
@@ -89,6 +97,46 @@ const T: Record<Lang, {
       { title: "빠른 응답",     desc: "신속한 서비스와 효율적인 솔루션." },
       { title: "만족도 보장",   desc: "고객의 만족과 성공에 대한 헌신." },
       { title: "글로벌 지원",   desc: "16개 언어로 고객과 파트너에게 서비스 제공." },
+    ],
+  },
+  sv: {
+    diferenciais: [
+      { title: "Specialiserad support",    desc: "Utbildat och certifierat team för att ge det bästa stödet." },
+      { title: "Snabba svar",              desc: "Snabb service och effektiva lösningar." },
+      { title: "Garanterad nöjdhet",       desc: "Engagemang för din tillfredställelse och framgång." },
+      { title: "Globalt stöd",             desc: "Service för kunder och partners på 16 språk." },
+    ],
+  },
+  fi: {
+    diferenciais: [
+      { title: "Erikoistunut tuki",        desc: "Koulutettu ja sertifioitu tiimi parhaaseen tukeen." },
+      { title: "Nopeat vastaukset",        desc: "Ketterä palvelu ja tehokkaat ratkaisut." },
+      { title: "Taattu tyytyväisyys",      desc: "Sitoutuminen tyytyväisyyteesi ja menestykseesi." },
+      { title: "Globaali tuki",            desc: "Palvelu asiakkaille ja kumppaneille 16 kielellä." },
+    ],
+  },
+  ru: {
+    diferenciais: [
+      { title: "Специализированная поддержка", desc: "Обученная и сертифицированная команда для лучшей поддержки." },
+      { title: "Быстрые ответы",               desc: "Оперативное обслуживание и эффективные решения." },
+      { title: "Гарантированное удовлетворение", desc: "Приверженность вашему удовлетворению и успеху." },
+      { title: "Глобальная поддержка",          desc: "Обслуживание клиентов и партнёров на 16 языках." },
+    ],
+  },
+  ro: {
+    diferenciais: [
+      { title: "Suport specializat",       desc: "Echipa instruita si certificata pentru cel mai bun suport." },
+      { title: "Raspunsuri rapide",        desc: "Servicii agile si solutii eficiente." },
+      { title: "Satisfactie garantata",    desc: "Angajament fata de satisfactia si succesul tau." },
+      { title: "Suport global",            desc: "Servicii pentru clienti si parteneri in 16 limbi." },
+    ],
+  },
+  he: {
+    diferenciais: [
+      { title: "תמיכה מתמחה",             desc: "צוות מאומן ומוסמך לספק את התמיכה הטובה ביותר." },
+      { title: "תגובות מהירות",           desc: "שירות זריז ופתרונות יעילים." },
+      { title: "שביעות רצון מובטחת",      desc: "מחויבות לשביעות רצונך ולהצלחתך." },
+      { title: "תמיכה גלובלית",           desc: "שירות ללקוחות ושותפים ב-16 שפות." },
     ],
   },
 };

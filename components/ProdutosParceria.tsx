@@ -1,4 +1,4 @@
-﻿'use client'
+'use client'
 import { useRef } from 'react'
 import { PRODUCT_IMAGES } from "@/lib/products";
 import { useLang, type Lang } from "@/context/LanguageContext";
@@ -117,9 +117,9 @@ function EssentialsProductRow() {
       <ProductItem src={imgNeoMaxSpark}     name="Neo MAX SPARK"       variant="essentials" />
       <ProductItem src={imgNeoUltra}        name="Neo ULTRA"           variant="essentials" />
       <ProductItem src={imgNeoMax}          name="Neo MAX"             variant="essentials" />
+      <ProductItem src={imgNeoSmartH2}      name="Neo SMART H2"        variant="essentials" sub2 />
       <ProductItem src={imgNeoPlus}         name="Neo PLUS"            variant="essentials" />
       <ProductItem src={imgNeoTouch}        name="Neo TOUCH"           variant="essentials" />
-      <ProductItem src={imgNeoSmartH2}      name="Neo SMART H2"        variant="essentials" sub2 />
       <ProductItem src={imgNeoFit}          name="Neo FIT"             variant="essentials" />
       <ProductItem src={imgNeoUp}           name="Neo UP"              variant="essentials" />
     </div>
@@ -182,6 +182,16 @@ const T: Record<Lang, {
     premiumSub:      "Silver and Gold sell. Platinum distributes.",
     mediaTitle:      "Acquafy Media",
     mediaSub:        "Gold operates and monetizes. Ideal for media and hydration.",
+  },
+  "en-gb": {
+    heading:         "Products for each ",
+    headingHL:       "partnership model",
+    essentialsTitle: "Essentials Line",
+    essentialsSub:   "Silver can refer and sell the entire Neo line",
+    premiumTitle:    "Neo Premium Line",
+    premiumSub:      "Silver and Gold sell. Platinum distributes.",
+    mediaTitle:      "Acquafy Media",
+    mediaSub:        "Gold operates and monetises. Ideal for media and hydration.",
   },
   es: {
     heading:         "Productos para cada ",
@@ -252,6 +262,56 @@ const T: Record<Lang, {
     premiumSub:      "Silver와 Gold가 판매. Platinum이 유통.",
     mediaTitle:      "Acquafy Media",
     mediaSub:        "Gold가 운영하고 수익화. 미디어 및 수분 보충에 이상적.",
+  },
+  sv: {
+    heading:         "Produkter för varje ",
+    headingHL:       "partnerskapsmodell",
+    essentialsTitle: "Essentials-linjen",
+    essentialsSub:   "Silver kan rekommendera och sälja hela Neo-linjen",
+    premiumTitle:    "Neo Premium-linjen",
+    premiumSub:      "Silver och Gold säljer. Platinum distribuerar.",
+    mediaTitle:      "Acquafy Media",
+    mediaSub:        "Gold driver och monetiserar. Perfekt för media och hydrering.",
+  },
+  fi: {
+    heading:         "Tuotteet jokaiseen ",
+    headingHL:       "kumppanuusmalliin",
+    essentialsTitle: "Essentials-linja",
+    essentialsSub:   "Silver voi suositella ja myydä koko Neo-linjan",
+    premiumTitle:    "Neo Premium -linja",
+    premiumSub:      "Silver ja Gold myyvät. Platinum jakaa.",
+    mediaTitle:      "Acquafy Media",
+    mediaSub:        "Gold operoi ja monetisoi. Ihanteellinen mediaan ja nesteyttämiseen.",
+  },
+  ru: {
+    heading:         "Продукты для каждой ",
+    headingHL:       "модели партнёрства",
+    essentialsTitle: "Линейка Essentials",
+    essentialsSub:   "Silver может рекомендовать и продавать всю линейку Neo",
+    premiumTitle:    "Линейка Neo Premium",
+    premiumSub:      "Silver и Gold продают. Platinum распространяет.",
+    mediaTitle:      "Acquafy Media",
+    mediaSub:        "Gold управляет и монетизирует. Идеально для медиа и гидратации.",
+  },
+  ro: {
+    heading:         "Produse pentru fiecare ",
+    headingHL:       "model de parteneriat",
+    essentialsTitle: "Linia Essentials",
+    essentialsSub:   "Silver poate recomanda si vinde intreaga linie Neo",
+    premiumTitle:    "Linia Neo Premium",
+    premiumSub:      "Silver si Gold vand. Platinum distribuie.",
+    mediaTitle:      "Acquafy Media",
+    mediaSub:        "Gold opereaza si monetizeaza. Ideal pentru media si hidratare.",
+  },
+  he: {
+    heading:         "מוצרים לכל ",
+    headingHL:       "מודל שותפות",
+    essentialsTitle: "קו Essentials",
+    essentialsSub:   "Silver יכול להפנות ולמכור את כל קו Neo",
+    premiumTitle:    "קו Neo Premium",
+    premiumSub:      "Silver ו-Gold מוכרים. Platinum מפיץ.",
+    mediaTitle:      "Acquafy Media",
+    mediaSub:        "Gold מפעיל וממניה. אידיאלי למדיה ולהידרציה.",
   },
 };
 

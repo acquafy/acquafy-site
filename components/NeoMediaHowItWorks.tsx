@@ -54,6 +54,16 @@ const T: Record<Lang, {
       { title: "Generate revenue with media and sales", desc: "Earn from advertising campaigns and commissions on Neo line sales." },
     ],
   },
+  "en-gb": {
+    heading1: "How it works",
+    heading2: " in practice",
+    steps: [
+      { title: "Install Acquafy Media",               desc: "Quick installation and integration with the Acquafy Platform." },
+      { title: "Display campaigns and QR Codes",      desc: "Show ads, offers and QR Codes to the audience intelligently." },
+      { title: "Capture data and monitor with AI",    desc: "Track usage, engagement and performance with artificial intelligence." },
+      { title: "Generate revenue with media and sales", desc: "Earn from advertising campaigns and commissions on Neo line sales." },
+    ],
+  },
   es: {
     heading1: "Cómo funciona",
     heading2: " en la práctica",
@@ -122,6 +132,56 @@ const T: Record<Lang, {
       { title: "캠페인과 QR Code 표시",                    desc: "광고, 오퍼 및 QR Code를 대중에게 스마트하게 표시." },
       { title: "AI로 데이터 수집 및 모니터링",              desc: "인공지능으로 사용량, 참여도 및 성과를 추적." },
       { title: "미디어와 판매로 수익 창출",                 desc: "광고 캠페인 수익과 Neo 라인 판매 커미션을 획득." },
+    ],
+  },
+  sv: {
+    heading1: "Hur det fungerar",
+    heading2: " i praktiken",
+    steps: [
+      { title: "Installera Acquafy Media",                  desc: "Snabb installation och integration med Acquafy-plattformen." },
+      { title: "Visa kampanjer och QR-koder",               desc: "Visa annonser, erbjudanden och QR-koder till publiken på ett smart sätt." },
+      { title: "Samla data och övervaka med AI",             desc: "Spåra användning, engagemang och prestanda med artificiell intelligens." },
+      { title: "Generera intäkter med media och försäljning", desc: "Tjäna på reklamkampanjer och provisioner på Neo-linjens försäljning." },
+    ],
+  },
+  fi: {
+    heading1: "Miten se toimii",
+    heading2: " käytännössä",
+    steps: [
+      { title: "Asenna Acquafy Media",                      desc: "Nopea asennus ja integrointi Acquafy-alustaan." },
+      { title: "Näytä kampanjoita ja QR-koodeja",           desc: "Esitä mainoksia, tarjouksia ja QR-koodeja yleisölle älykkäästi." },
+      { title: "Kerää dataa ja seuraa tekoälyllä",          desc: "Seuraa käyttöä, sitoutumista ja suorituskykyä tekoälyn avulla." },
+      { title: "Luo tuloja medialla ja myynnillä",          desc: "Ansaitse mainoskaampanjoista ja provisioista Neo-linjan myynnistä." },
+    ],
+  },
+  ru: {
+    heading1: "Как это работает",
+    heading2: " на практике",
+    steps: [
+      { title: "Установите Acquafy Media",                  desc: "Быстрая установка и интеграция с платформой Acquafy." },
+      { title: "Показывайте кампании и QR-коды",            desc: "Демонстрируйте рекламу, предложения и QR-коды аудитории разумно." },
+      { title: "Собирайте данные и следите с ИИ",           desc: "Отслеживайте использование, вовлеченность и эффективность с помощью искусственного интеллекта." },
+      { title: "Генерируйте доход через медиа и продажи",   desc: "Зарабатывайте на рекламных кампаниях и комиссионных с продаж линейки Neo." },
+    ],
+  },
+  ro: {
+    heading1: "Cum functioneaza",
+    heading2: " in practica",
+    steps: [
+      { title: "Instaleaza Acquafy Media",                  desc: "Instalare rapida si integrare cu Platforma Acquafy." },
+      { title: "Afiseaza campanii si QR Codes",             desc: "Arata reclame, oferte si QR Codes publicului in mod inteligent." },
+      { title: "Capteaza date si monitorizeaza cu IA",      desc: "Urmareste utilizarea, implicarea si performanta cu inteligenta artificiala." },
+      { title: "Genereaza venituri cu media si vanzari",    desc: "Castiga din campanii publicitare si comisioane pe vanzarile liniei Neo." },
+    ],
+  },
+  he: {
+    heading1: "איך זה עובד",
+    heading2: " בפועל",
+    steps: [
+      { title: "התקן את Acquafy Media",                    desc: "התקנה מהירה ואינטגרציה עם פלטפורמת Acquafy." },
+      { title: "הצג קמפיינים וקודי QR",                   desc: "הצג מודעות, הצעות וקודי QR לקהל באופן חכם." },
+      { title: "אסוף נתונים ועקוב עם בינה מלאכותית",     desc: "עקוב אחר שימוש, מעורבות וביצועים עם בינה מלאכותית." },
+      { title: "יצור הכנסות עם מדיה ומכירות",             desc: "הרווח מקמפיינים פרסומיים ועמלות על מכירות קו Neo." },
     ],
   },
 };

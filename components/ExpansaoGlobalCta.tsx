@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { BtnAzulOutArrow, BtnAzulBaseArrow } from "./ui/Buttons";
@@ -20,6 +20,12 @@ const T: Record<Lang, { heading: string; sub: string; btnPartner: string; btnSpe
     btnSpecialist: "Fale com um especialista",
   },
   en: {
+    heading: "Join the global Acquafy network",
+    sub: "Together we can transform millions of lives, create opportunities and build a healthier, more sustainable future.",
+    btnPartner: "Become a partner",
+    btnSpecialist: "Talk to a specialist",
+  },
+  "en-gb": {
     heading: "Join the global Acquafy network",
     sub: "Together we can transform millions of lives, create opportunities and build a healthier, more sustainable future.",
     btnPartner: "Become a partner",
@@ -67,6 +73,36 @@ const T: Record<Lang, { heading: string; sub: string; btnPartner: string; btnSpe
     btnPartner: "파트너 되기",
     btnSpecialist: "전문가와 상담",
   },
+  sv: {
+    heading: "Bli en del av Acquafys globala natverk",
+    sub: "Tillsammans kan vi forandra miljontals liv, skapa mojligheter och bygga en halsosam och hallbar framtid.",
+    btnPartner: "Bli partner",
+    btnSpecialist: "Tala med en specialist",
+  },
+  fi: {
+    heading: "Liity Acquafyn globaaliin verkostoon",
+    sub: "Yhdessa voimme muuttaa miljoonien ihmisten elamaa, luoda mahdollisuuksia ja rakentaa terveempaa ja kestavampaa tulevaisuutta.",
+    btnPartner: "Tule kumppaniksi",
+    btnSpecialist: "Puhu asiantuntijan kanssa",
+  },
+  ru: {
+    heading: "Присоединяйтесь к глобальной сети Acquafy",
+    sub: "Вместе мы можем изменить жизнь миллионов людей, создать возможности и построить более здоровое и устойчивое будущее.",
+    btnPartner: "Стать партнером",
+    btnSpecialist: "Поговорить со специалистом",
+  },
+  ro: {
+    heading: "Fii parte din reteaua globala Acquafy",
+    sub: "Impreuna putem transforma milioane de vieti, crea oportunitati si construi un viitor mai sanatos si mai sustenabil.",
+    btnPartner: "Devino partener",
+    btnSpecialist: "Vorbeste cu un specialist",
+  },
+  he: {
+    heading: "הצטרף לרשת הגלובלית של Acquafy",
+    sub: "יחד נוכל לשנות את חייהם של מיליונים, ליצור הזדמנויות ולבנות עתיד בריא וקיים יותר.",
+    btnPartner: "הפוך לשותף",
+    btnSpecialist: "דבר עם מומחה",
+  },
 };
 
 export default function ExpansaoGlobalCta() {
@@ -100,7 +136,7 @@ export default function ExpansaoGlobalCta() {
               {t.btnPartner}
             </BtnAzulOutArrow>
           </Link>
-          <Link href="/contato" className="flex-1 min-w-[200px]">
+          <Link href="/contact" className="flex-1 min-w-[200px]">
             <BtnAzulBaseArrow className="w-full min-h-[56px]">
               {t.btnSpecialist}
             </BtnAzulBaseArrow>

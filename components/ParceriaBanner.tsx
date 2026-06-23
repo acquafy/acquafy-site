@@ -33,6 +33,13 @@ const T: Record<Lang, {
     cta:      "Talk to a specialist",
     imgAlt:   "Acquafy Product",
   },
+  "en-gb": {
+    pill:     "NEW GLOBAL PHASE",
+    title:    "Acquafy Global Partnership Programme",
+    subtitle: "Three levels to grow with the brand on a global scale: refer, operate, or distribute.",
+    cta:      "Talk to a specialist",
+    imgAlt:   "Acquafy Product",
+  },
   es: {
     pill:     "NUEVA FASE GLOBAL",
     title:    "Programa de Asociación Global Acquafy",
@@ -81,6 +88,41 @@ const T: Record<Lang, {
     subtitle: "글로벌 규모로 브랜드와 함께 성장하는 3가지 레벨: 추천, 운영 또는 유통.",
     cta:      "전문가와 상담하기",
     imgAlt:   "Acquafy 제품",
+  },
+  sv: {
+    pill:     "NY GLOBAL FAS",
+    title:    "Acquafy Globalt Partnerschaftsprogram",
+    subtitle: "Tre nivaer for att vaxa med varumärket i global skala: rekommendera, driva eller distribuera.",
+    cta:      "Prata med en specialist",
+    imgAlt:   "Acquafy Produkt",
+  },
+  fi: {
+    pill:     "UUSI GLOBAALI VAIHE",
+    title:    "Acquafy Globaali Kumppanuusohjelma",
+    subtitle: "Kolme tasoa kasvaa brändin kanssa globaalissa mittakaavassa: suosittele, operoi tai jaa.",
+    cta:      "Puhu asiantuntijan kanssa",
+    imgAlt:   "Acquafy Tuote",
+  },
+  ru: {
+    pill:     "NOVYY GLOBALNYY ETAP",
+    title:    "Globalnaya programma partnerstva Acquafy",
+    subtitle: "Tri urovnya dlya rosta vmeste s brendom v globalnom masshtabe: rekomendovat, upravljat ili raspredelyat.",
+    cta:      "Peregovorit so specialistom",
+    imgAlt:   "Produkt Acquafy",
+  },
+  ro: {
+    pill:     "NOUA FAZA GLOBALA",
+    title:    "Programul Global de Parteneriat Acquafy",
+    subtitle: "Trei niveluri pentru a creste impreuna cu brandul la scara globala: recomanda, opereaza sau distribuie.",
+    cta:      "Vorbeste cu un specialist",
+    imgAlt:   "Produs Acquafy",
+  },
+  he: {
+    pill:     "SHAV GLOBAL HADASH",
+    title:    "Tochnit Shutafut Globalit shel Acquafy",
+    subtitle: "Shlosha ravakim litzmicha im hamarka biqneh olami: lehamlitz, lehafil o levazek.",
+    cta:      "Daber im mutcheh",
+    imgAlt:   "Mutzar Acquafy",
   },
 };
 
@@ -171,7 +213,7 @@ export default function ParceriaBanner() {
 
           {/* CTAs */}
           <div className="flex flex-wrap gap-[20px] items-center justify-center xl:justify-start w-full">
-            <Link href="/contato">
+            <Link href="/contact">
               <BtnAzulOutArrow className="min-h-[50px]">
                 {t.cta}
               </BtnAzulOutArrow>

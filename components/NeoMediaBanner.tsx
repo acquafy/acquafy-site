@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useState } from "react";
 import FigmaIcon from "./FigmaIcon";
 import Link from "next/link";
@@ -84,6 +84,28 @@ const T: Record<Lang, {
     btnSecondary: "Talk to a specialist",
     stats: [
       { title: "High traffic",    sub: "of people" },
+      { title: "Water",           sub: "Premium" },
+      { title: "43\" screen",     sub: "high visibility" },
+      { title: "Revenue",         sub: "Recurring" },
+      { title: "Management",      sub: "via App" },
+      { title: "Installation",    sub: "Strategic" },
+    ],
+    cards: [
+      { label: "Media Network" },
+      { label: "QR Code" },
+      { label: "AI" },
+      { label: "Recurring revenue" },
+      { label: "App + IoT" },
+    ],
+  },
+  "en-gb": {
+    h2: "Smart Water Platform + Digital Media + Recurring Revenue.",
+    pMobile: "Acquafy Media transforms public spaces into hydration, visibility, and business hubs. Combine free water, ads, QR Codes, and Neo line sales to generate recurring revenue.",
+    pDesktop: "Acquafy Media transforms public spaces into hydration, visibility, and business hubs. Combine free and accessible water supply, ad display, QR Codes, and Neo line sales to continuously generate value for your operation and brands.",
+    btnPrimary: "I want Acquafy Media",
+    btnSecondary: "Speak to a specialist",
+    stats: [
+      { title: "High footfall",   sub: "of people" },
       { title: "Water",           sub: "Premium" },
       { title: "43\" screen",     sub: "high visibility" },
       { title: "Revenue",         sub: "Recurring" },
@@ -252,6 +274,116 @@ const T: Record<Lang, {
       { label: "App + IoT" },
     ],
   },
+  sv: {
+    h2: "Smart vattenplattform + digital media + återkommande intäkter.",
+    pMobile: "Acquafy Media omvandlar offentliga platser till hydrerings-, synlighets- och affärspunkter. Kombinera gratis vatten, annonser, QR-koder och Neo-linjeförsäljning för att generera återkommande intäkter.",
+    pDesktop: "Acquafy Media omvandlar offentliga platser till hydrerings-, synlighets- och affärspunkter. Kombinera gratis och tillgänglig vattenförsörjning, annonsvisning, QR-koder och Neo-linjeförsäljning för att kontinuerligt skapa värde för din verksamhet och varumärken.",
+    btnPrimary: "Jag vill ha Acquafy Media",
+    btnSecondary: "Prata med en specialist",
+    stats: [
+      { title: "Hög trafik",      sub: "av människor" },
+      { title: "Vatten",          sub: "Premium" },
+      { title: "43\"-skärm",      sub: "hög synlighet" },
+      { title: "Intäkter",        sub: "Återkommande" },
+      { title: "Hantering",       sub: "via App" },
+      { title: "Installation",    sub: "Strategisk" },
+    ],
+    cards: [
+      { label: "Media Network" },
+      { label: "QR Code" },
+      { label: "AI" },
+      { label: "Återkommande intäkter" },
+      { label: "App + IoT" },
+    ],
+  },
+  fi: {
+    h2: "Älykäs vesiympäristö + digitaalinen media + toistuva tuotto.",
+    pMobile: "Acquafy Media muuttaa julkiset tilat nesteytys-, näkyvyys- ja liiketoimintapisteiksi. Yhdistä ilmainen vesi, mainokset, QR-koodit ja Neo-linjamyynti toistuvien tuottojen luomiseksi.",
+    pDesktop: "Acquafy Media muuttaa julkiset tilat nesteytys-, näkyvyys- ja liiketoimintapisteiksi. Yhdistä ilmainen ja helposti saatavilla oleva vedentoimitus, mainosnäyttö, QR-koodit ja Neo-linjamyynti jatkuvan arvon luomiseksi toiminnallesi ja brändeille.",
+    btnPrimary: "Haluan Acquafy Median",
+    btnSecondary: "Puhu asiantuntijan kanssa",
+    stats: [
+      { title: "Korkea liikenne",  sub: "ihmisiä" },
+      { title: "Vesi",             sub: "Premium" },
+      { title: "43\"-näyttö",      sub: "korkea näkyvyys" },
+      { title: "Tuotot",           sub: "Toistuvat" },
+      { title: "Hallinta",         sub: "App:n kautta" },
+      { title: "Asennus",          sub: "Strateginen" },
+    ],
+    cards: [
+      { label: "Media Network" },
+      { label: "QR Code" },
+      { label: "AI" },
+      { label: "Toistuvat tuotot" },
+      { label: "App + IoT" },
+    ],
+  },
+  ru: {
+    h2: "Умная водная платформа + цифровые медиа + регулярный доход.",
+    pMobile: "Acquafy Media превращает общественные пространства в точки гидратации, видимости и бизнеса. Объедините бесплатную воду, рекламу, QR-коды и продажи линейки Neo для получения регулярного дохода.",
+    pDesktop: "Acquafy Media превращает общественные пространства в точки гидратации, видимости и бизнеса. Объедините бесплатное и доступное водоснабжение, показ рекламы, QR-коды и продажи линейки Neo для постоянного создания ценности для вашей операции и брендов.",
+    btnPrimary: "Хочу Acquafy Media",
+    btnSecondary: "Поговорить со специалистом",
+    stats: [
+      { title: "Высокий поток",   sub: "людей" },
+      { title: "Вода",            sub: "Premium" },
+      { title: "Экран 43\"",      sub: "высокая видимость" },
+      { title: "Доход",           sub: "Регулярный" },
+      { title: "Управление",      sub: "через App" },
+      { title: "Установка",       sub: "Стратегическая" },
+    ],
+    cards: [
+      { label: "Media Network" },
+      { label: "QR Code" },
+      { label: "AI" },
+      { label: "Регулярный доход" },
+      { label: "App + IoT" },
+    ],
+  },
+  ro: {
+    h2: "Platformă inteligentă de apă + media digitală + venituri recurente.",
+    pMobile: "Acquafy Media transformă spațiile publice în puncte de hidratare, vizibilitate şi afaceri. Combină apă gratuită, reclame, coduri QR şi vânzări din linia Neo pentru a genera venituri recurente.",
+    pDesktop: "Acquafy Media transformă spațiile publice în puncte de hidratare, vizibilitate şi afaceri. Combină furnizarea de apă gratuită şi accesibilă, afişarea reclamelor, coduri QR şi vânzări din linia Neo pentru a genera valoare continuă pentru operațiunea ta şi pentru branduri.",
+    btnPrimary: "Vreau Acquafy Media",
+    btnSecondary: "Vorbeşte cu un specialist",
+    stats: [
+      { title: "Trafic ridicat",   sub: "de persoane" },
+      { title: "Apă",              sub: "Premium" },
+      { title: "Ecran de 43\"",    sub: "vizibilitate ridicată" },
+      { title: "Venituri",         sub: "Recurente" },
+      { title: "Gestionare",       sub: "prin App" },
+      { title: "Instalare",        sub: "Strategică" },
+    ],
+    cards: [
+      { label: "Media Network" },
+      { label: "QR Code" },
+      { label: "AI" },
+      { label: "Venituri recurente" },
+      { label: "App + IoT" },
+    ],
+  },
+  he: {
+    h2: "פלטפורמת מים חכמה + מדיה דיגיטלית + הכנסה חוזרת.",
+    pMobile: "Acquafy Media הופכת מרחבים ציבוריים לנקודות הידרציה, נראות ועסקים. שלבו מים חינם, מודעות, קודי QR ומכירות קו Neo כדי לייצר הכנסה חוזרת.",
+    pDesktop: "Acquafy Media הופכת מרחבים ציבוריים לנקודות הידרציה, נראות ועסקים. שלבו אספקת מים חינמית ונגישה, הצגת מודעות, קודי QR ומכירות קו Neo כדי לייצר ערך מתמשך לפעילות שלכם ולמותגים.",
+    btnPrimary: "אני רוצה את Acquafy Media",
+    btnSecondary: "דבר עם מומחה",
+    stats: [
+      { title: "תנועה גבוהה",     sub: "של אנשים" },
+      { title: "מים",              sub: "Premium" },
+      { title: "מסך 43\"",        sub: "נראות גבוהה" },
+      { title: "הכנסה",           sub: "חוזרת" },
+      { title: "ניהול",            sub: "דרך App" },
+      { title: "התקנה",           sub: "אסטרטגית" },
+    ],
+    cards: [
+      { label: "Media Network" },
+      { label: "QR Code" },
+      { label: "AI" },
+      { label: "הכנסה חוזרת" },
+      { label: "App + IoT" },
+    ],
+  },
 };
 
 const titleGradient = "linear-gradient(130.89deg, #0233c3 6.2%, #9f3df5 93.4%)";
@@ -334,7 +466,7 @@ export default function NeoMediaBanner() {
           <BtnAzulBaseArrow className="flex-[1_0_0] min-w-[190px] min-h-[50px] px-[20px]" onClick={() => setModalOpen(true)}>
             {t.btnPrimary}
           </BtnAzulBaseArrow>
-          <Link href="/contato" className="flex-[1_0_0] min-w-[190px]">
+          <Link href="/contact" className="flex-[1_0_0] min-w-[190px]">
             <BtnAzulOutArrow className="w-full min-h-[50px] px-[20px]">
               {t.btnSecondary}
             </BtnAzulOutArrow>

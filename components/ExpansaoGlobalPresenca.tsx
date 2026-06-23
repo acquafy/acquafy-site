@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import Link from "next/link";
 import FigmaIcon from "./FigmaIcon";
 import { BtnAzulOutArrow } from "./ui/Buttons";
@@ -63,6 +63,22 @@ const T: Record<Lang, {
     ],
     cardTitle: "New markets, new opportunities",
     cardDesc: "We seek visionary partners to bring the Acquafy Platform to even more cities and communities, offering real impact and sustainable returns.",
+    cta: "Explore opportunities",
+  },
+  "en-gb": {
+    heading1: "Global presence",
+    heading2: " in growth",
+    subtitle: "A solid international network, connecting people, technology and opportunities.",
+    regionsTitle: "Expanding regions",
+    regions: [
+      { name: "North America",          countries: "USA • Canada • Mexico" },
+      { name: "South America",          countries: "Brazil • Argentina • Colombia • Chile • Peru and others" },
+      { name: "Europe",                 countries: "UK • Spain • France • Germany • Italy and others" },
+      { name: "Africa & Middle East",   countries: "UAE • Saudi Arabia • South Africa and others" },
+      { name: "Asia Pacific",           countries: "Australia • Singapore • India • Japan and others" },
+    ],
+    cardTitle: "New markets, new opportunities",
+    cardDesc: "We are seeking visionary partners to bring the Acquafy Platform to even more cities and communities, offering real impact and sustainable returns.",
     cta: "Explore opportunities",
   },
   es: {
@@ -176,6 +192,86 @@ const T: Record<Lang, {
     cardTitle: "새로운 시장, 새로운 기회",
     cardDesc: "더 많은 도시와 커뮤니티에 Acquafy 플랫폼을 전달하고 실질적인 영향과 지속 가능한 수익을 제공할 비전 있는 파트너를 찾고 있습니다.",
     cta: "기회 탐색하기",
+  },
+  sv: {
+    heading1: "Global närvaro",
+    heading2: " i tillväxt",
+    subtitle: "Ett stabilt internationellt nätverk som förbinder människor, teknik och möjligheter.",
+    regionsTitle: "Expanderande regioner",
+    regions: [
+      { name: "Nordamerika",             countries: "USA • Kanada • Mexiko" },
+      { name: "Sydamerika",              countries: "Brasilien • Argentina • Colombia • Chile • Peru och andra" },
+      { name: "Europa",                  countries: "Storbritannien • Spanien • Frankrike • Tyskland • Italien och andra" },
+      { name: "Afrika och Mellanöstern", countries: "Förenade Arabemiraten • Saudiarabien • Sydafrika och andra" },
+      { name: "Asien och Stillahavsområdet", countries: "Australien • Singapore • Indien • Japan och andra" },
+    ],
+    cardTitle: "Nya marknader, nya möjligheter",
+    cardDesc: "Vi söker visionära partners för att föra Acquafy-plattformen till ännu fler städer och samhällen, och erbjuda verklig påverkan och hållbar avkastning.",
+    cta: "Utforska möjligheter",
+  },
+  fi: {
+    heading1: "Globaali läsnäolo",
+    heading2: " kasvussa",
+    subtitle: "Vahva kansainvälinen verkosto, joka yhdistää ihmiset, teknologian ja mahdollisuudet.",
+    regionsTitle: "Laajenevat alueet",
+    regions: [
+      { name: "Pohjois-Amerikka",        countries: "USA • Kanada • Meksiko" },
+      { name: "Etelä-Amerikka",          countries: "Brasilia • Argentiina • Kolumbia • Chile • Peru ja muut" },
+      { name: "Eurooppa",                countries: "Iso-Britannia • Espanja • Ranska • Saksa • Italia ja muut" },
+      { name: "Afrikka ja Lähi-itä",     countries: "Arabiemiirikunnat • Saudi-Arabia • Etelä-Afrikka ja muut" },
+      { name: "Aasia ja Tyynenmeri",     countries: "Australia • Singapore • Intia • Japani ja muut" },
+    ],
+    cardTitle: "Uudet markkinat, uudet mahdollisuudet",
+    cardDesc: "Etsimme visionäärisiä kumppaneita tuodaksemme Acquafy-alustan yhä useampiin kaupunkeihin ja yhteisöihin, tarjoten todellista vaikutusta ja kestävää tuottoa.",
+    cta: "Tutki mahdollisuuksia",
+  },
+  ru: {
+    heading1: "Глобальное присутствие",
+    heading2: " в росте",
+    subtitle: "Прочная международная сеть, объединяющая людей, технологии и возможности.",
+    regionsTitle: "Расширяющиеся регионы",
+    regions: [
+      { name: "Северная Америка",        countries: "США • Канада • Мексика" },
+      { name: "Южная Америка",           countries: "Бразилия • Аргентина • Колумбия • Чили • Перу и другие" },
+      { name: "Европа",                  countries: "Великобритания • Испания • Франция • Германия • Италия и другие" },
+      { name: "Африка и Ближний Восток", countries: "ОАЭ • Саудовская Аравия • ЮАР и другие" },
+      { name: "Азиатско-Тихоокеанский регион", countries: "Австралия • Сингапур • Индия • Япония и другие" },
+    ],
+    cardTitle: "Новые рынки, новые возможности",
+    cardDesc: "Мы ищем дальновидных партнёров, чтобы привести платформу Acquafy в ещё большее количество городов и сообществ, обеспечивая реальный эффект и устойчивую отдачу.",
+    cta: "Исследовать возможности",
+  },
+  ro: {
+    heading1: "Prezenta globala",
+    heading2: " in crestere",
+    subtitle: "O retea internationala solida, care conecteaza oameni, tehnologie si oportunitati.",
+    regionsTitle: "Regiuni in expansiune",
+    regions: [
+      { name: "America de Nord",         countries: "SUA • Canada • Mexic" },
+      { name: "America de Sud",          countries: "Brazilia • Argentina • Columbia • Chile • Peru si altele" },
+      { name: "Europa",                  countries: "Regatul Unit • Spania • Franta • Germania • Italia si altele" },
+      { name: "Africa si Orientul Mijlociu", countries: "EAU • Arabia Saudita • Africa de Sud si altele" },
+      { name: "Asia-Pacific",            countries: "Australia • Singapore • India • Japonia si altele" },
+    ],
+    cardTitle: "Piete noi, oportunitati noi",
+    cardDesc: "Cautam parteneri vizionari pentru a aduce Platforma Acquafy in si mai multe orase si comunitati, oferind impact real si randamente sustenabile.",
+    cta: "Exploreaza oportunitatile",
+  },
+  he: {
+    heading1: "נוכחות גלובלית",
+    heading2: " בצמיחה",
+    subtitle: "רשת בינלאומית איתנה המחברת אנשים, טכנולוגיה והזדמנויות.",
+    regionsTitle: "אזורים בהתרחבות",
+    regions: [
+      { name: "צפון אמריקה",             countries: "ארה\"ב • קנדה • מקסיקו" },
+      { name: "דרום אמריקה",             countries: "ברזיל • ארגנטינה • קולומביה • צ'ילה • פרו ואחרים" },
+      { name: "אירופה",                  countries: "בריטניה • ספרד • צרפת • גרמניה • איטליה ואחרים" },
+      { name: "אפריקה והמזרח התיכון",    countries: "איחוד האמירויות • ערב הסעודית • דרום אפריקה ואחרים" },
+      { name: "אסיה-פסיפיק",             countries: "אוסטרליה • סינגפור • הודו • יפן ואחרים" },
+    ],
+    cardTitle: "שווקים חדשים, הזדמנויות חדשות",
+    cardDesc: "אנו מחפשים שותפים בעלי חזון להביא את פלטפורמת Acquafy לעוד ערים וקהילות, תוך הצעת השפעה אמיתית ותשואה בת-קיימא.",
+    cta: "גלה הזדמנויות",
   },
 };
 

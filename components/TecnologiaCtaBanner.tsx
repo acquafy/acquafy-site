@@ -19,6 +19,10 @@ const T: Record<Lang, {
     heading: "Innovation that cares for people and the planet at the same time.",
     cta: "Be part of this transformation",
   },
+  "en-gb": {
+    heading: "Innovation that cares for people and the planet at the same time.",
+    cta: "Be part of this transformation",
+  },
   es: {
     heading: "Innovación que cuida a las personas y al planeta al mismo tiempo.",
     cta: "Sé parte de esta transformación",
@@ -46,6 +50,26 @@ const T: Record<Lang, {
   ko: {
     heading: "사람과 지구를 동시에 돌보는 혁신.",
     cta: "이 변화의 일원이 되세요",
+  },
+  sv: {
+    heading: "Innovation som tar hand om människor och planeten samtidigt.",
+    cta: "Bli en del av denna transformation",
+  },
+  fi: {
+    heading: "Innovaatio, joka huolehtii ihmisista ja planeetasta samaan aikaan.",
+    cta: "Ole osa tata muutosta",
+  },
+  ru: {
+    heading: "Innovatsii, kotorye zabotjatsja o ljudjakh i planete odnovremenno.",
+    cta: "Staните chast'ju etoj transformatsii",
+  },
+  ro: {
+    heading: "Inovatie care are grija de oameni si de planeta in acelasi timp.",
+    cta: "Fii parte din aceasta transformare",
+  },
+  he: {
+    heading: "חדשנות שדואגת לאנשים ולכדור הארץ בו-זמנית.",
+    cta: "היה חלק מהשינוי הזה",
   },
   "pt-pt": {
     heading: "Inovação que cuida das pessoas e do planeta ao mesmo tempo.",

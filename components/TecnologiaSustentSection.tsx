@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import Link from "next/link";
 import FigmaIcon from "./FigmaIcon";
@@ -65,6 +65,25 @@ const T: Record<Lang, {
     ctaTitle: "Innovation that takes care of people and the planet at the same time.",
     ctaBtn: "Be part of this transformation",
   },
+  "en-gb": {
+    infoTitle: "Sustainability in every drop",
+    infoParagraph: "We believe technology must go hand in hand with environmental responsibility. That is why our solutions are designed to reduce resource consumption, eliminate disposable plastics and generate real positive impact.",
+    infoCta: "Discover our sustainable initiatives",
+    sustCards: [
+      { icon: imgPlastico, aspectW: 405, aspectH: 643, title: "Less disposable plastic", description: "We reduce millions of plastic bottles by offering accessible pure water in strategic locations." },
+      { icon: imgEnergia, aspectW: 492, aspectH: 492, title: "Conscious energy consumption", description: "Efficient and intelligent equipment that optimises energy consumption." },
+      { icon: imgReciclavel, aspectW: 30, aspectH: 30, title: "Recyclable and durable materials", description: "High-quality recyclable components designed for a long service life." },
+      { icon: imgPreservAgua, aspectW: 643, aspectH: 631, title: "Water preservation", description: "Technologies that save water at every stage of the purification process." },
+    ],
+    stats: [
+      { value: "+50M",          label: "people positively impacted",             icon: imgStatsPessoas,   aspectW: 43.86,  aspectH: 40.50  },
+      { value: "+2,000",        label: "tonnes of plastic avoided per year",      icon: imgStatsAgua,      aspectW: 40,     aspectH: 40     },
+      { value: "+15M",          label: "litres of water saved per year",          icon: imgStatsPlanta,    aspectW: 335.36, aspectH: 361.50 },
+      { value: "+180 countries", label: "impacted and expanding",                 icon: imgStatsPlanetWeb, aspectW: 30,     aspectH: 30     },
+    ],
+    ctaTitle: "Innovation that takes care of people and the planet at the same time.",
+    ctaBtn: "Be part of this transformation",
+  },
   es: {
     infoTitle: "Sostenibilidad en cada gota",
     infoParagraph: "Creemos que la tecnología debe ir de la mano con la responsabilidad ambiental. Por eso, nuestras soluciones están diseñadas para reducir el consumo de recursos, eliminar plásticos desechables y generar un impacto positivo real.",
@@ -82,7 +101,7 @@ const T: Record<Lang, {
       { value: "+180 países",   label: "impactados y en expansión",               icon: imgStatsPlanetWeb, aspectW: 30,     aspectH: 30     },
     ],
     ctaTitle: "Innovación que cuida a las personas y al planeta al mismo tiempo.",
-    ctaBtn: "Sé parte de esta transformación",
+    ctaBtn: "Se parte de esta transformacion",
   },
   fr: {
     infoTitle: "La durabilité dans chaque goutte",
@@ -197,6 +216,101 @@ const T: Record<Lang, {
     ],
     ctaTitle: "사람과 지구를 동시에 돌보는 혁신.",
     ctaBtn: "이 변화의 일원이 되세요",
+  },
+  sv: {
+    infoTitle: "Hallbarhet i varje droppe",
+    infoParagraph: "Vi tror att teknologi maste ga hand i hand med miljoansvar. Darfor ar vara losningar utformade for att minska resursforbrukning, eliminera engangsmaterial av plast och skapa verklig positiv paverkan.",
+    infoCta: "Utforska vara hallbara initiativ",
+    sustCards: [
+      { icon: imgPlastico, aspectW: 405, aspectH: 643, title: "Mindre engangsmaterial av plast", description: "Vi minskar miljontals plastflaskor genom att erbjuda tillgangligt rent vatten pa strategiska platser." },
+      { icon: imgEnergia, aspectW: 492, aspectH: 492, title: "Medveten energiforbrukning", description: "Effektiva och intelligenta apparater som optimerar energiforbrukningen." },
+      { icon: imgReciclavel, aspectW: 30, aspectH: 30, title: "Atervinnbara och hallbara material", description: "Hogkvalitativa atervinnbara komponenter utformade for lang livslangd." },
+      { icon: imgPreservAgua, aspectW: 643, aspectH: 631, title: "Vattenbevaring", description: "Teknik som sparar vatten i varje steg av reningsprocessen." },
+    ],
+    stats: [
+      { value: "+50M",          label: "positivt paverkade manniskor",            icon: imgStatsPessoas,   aspectW: 43.86,  aspectH: 40.50  },
+      { value: "+2 000",        label: "ton plast undvikt per ar",                icon: imgStatsAgua,      aspectW: 40,     aspectH: 40     },
+      { value: "+15M",          label: "liter vatten sparat per ar",              icon: imgStatsPlanta,    aspectW: 335.36, aspectH: 361.50 },
+      { value: "+180 lander",   label: "paverkade och i expansion",               icon: imgStatsPlanetWeb, aspectW: 30,     aspectH: 30     },
+    ],
+    ctaTitle: "Innovation som tar hand om manniskor och planeten samtidigt.",
+    ctaBtn: "Bli en del av denna transformation",
+  },
+  fi: {
+    infoTitle: "Kestavyys jokaisessa pisarassa",
+    infoParagraph: "Uskomme, etta teknologian on kuljettava kasi kadessa ymparistovastuun kanssa. Siksi ratkaisumme on suunniteltu vahentamaan resurssien kulutusta, poistamaan kertakayttoiset muovit ja luomaan todellisia positiivisia vaikutuksia.",
+    infoCta: "Tutustu kestaviin aloitteisiimme",
+    sustCards: [
+      { icon: imgPlastico, aspectW: 405, aspectH: 643, title: "Vahemman kertakayttomuovia", description: "Vahennomme miljoonia muovipulloja tarjoamalla puhdasta vetta strategisissa paikoissa." },
+      { icon: imgEnergia, aspectW: 492, aspectH: 492, title: "Tietoinen energiankulutus", description: "Tehokkaat ja aly kkaät laitteet, jotka optimoivat energiankulutuksen." },
+      { icon: imgReciclavel, aspectW: 30, aspectH: 30, title: "Kierratyskelpoiset ja kestavat materiaalit", description: "Korkealaatuiset kierratyskelpoiset komponentit, jotka on suunniteltu pitkalle kayttoialle." },
+      { icon: imgPreservAgua, aspectW: 643, aspectH: 631, title: "Veden suojelu", description: "Teknologiat, jotka saastevat vetta jokaisessa puhdistusprosessin vaiheessa." },
+    ],
+    stats: [
+      { value: "+50M",          label: "positiivisesti vaikutettuihin ihmisiin",  icon: imgStatsPessoas,   aspectW: 43.86,  aspectH: 40.50  },
+      { value: "+2 000",        label: "tonnia muovia valtetty vuodessa",          icon: imgStatsAgua,      aspectW: 40,     aspectH: 40     },
+      { value: "+15M",          label: "litraa vetta saastetty vuodessa",          icon: imgStatsPlanta,    aspectW: 335.36, aspectH: 361.50 },
+      { value: "+180 maata",    label: "vaikutettu ja laajenemassa",               icon: imgStatsPlanetWeb, aspectW: 30,     aspectH: 30     },
+    ],
+    ctaTitle: "Innovaatio, joka huolehtii ihmisista ja planeetasta samanaikaisesti.",
+    ctaBtn: "Ole osa tata muutosta",
+  },
+  ru: {
+    infoTitle: "Ustojchivost v kazhdoj kaple",
+    infoParagraph: "My verim, chto tekhnologii dolzhny idti ruka ob ruku s ekologicheskoj otvetstvennostyu. Poetomu nashi resheniya razrabotany dlya snizheniya potrebleniya resursov, ustranjeniya odnorazovogo plastika i sozdaniya realnogo polozhitelnogo vliyaniya.",
+    infoCta: "Uznajte o nashikh ustojchivykh initsiativakh",
+    sustCards: [
+      { icon: imgPlastico, aspectW: 405, aspectH: 643, title: "Menshe odnorazovogo plastika", description: "My sokraschaem milliony plastikovykh butylok, predlagaya dostupnuyu chistuyu vodu v strategicheskikh mestakh." },
+      { icon: imgEnergia, aspectW: 492, aspectH: 492, title: "Osoznannoe energopotreblenie", description: "Effektivnoe i intellektualnoe oborudovanie, optimiziruyuschee potreblenie energii." },
+      { icon: imgReciclavel, aspectW: 30, aspectH: 30, title: "Pererabatyvayemsye i prochnyye materialy", description: "Vysokokachestvennyye pererabatyvayemsye komponenty, razrabotannyye dlya dlitelnogo sroka sluzhby." },
+      { icon: imgPreservAgua, aspectW: 643, aspectH: 631, title: "Sokhranenie vody", description: "Tekhnologii, ekonomyaschie vodu na kazhdом etape processa ochistki." },
+    ],
+    stats: [
+      { value: "+50M",          label: "lyudej pozitivno zatronutykh",            icon: imgStatsPessoas,   aspectW: 43.86,  aspectH: 40.50  },
+      { value: "+2 000",        label: "tonn plastika predotvrascheno v god",      icon: imgStatsAgua,      aspectW: 40,     aspectH: 40     },
+      { value: "+15M",          label: "litrov vody syekonomleno v god",           icon: imgStatsPlanta,    aspectW: 335.36, aspectH: 361.50 },
+      { value: "+180 stran",    label: "okhranyayetsya i rasshiryayetsya",         icon: imgStatsPlanetWeb, aspectW: 30,     aspectH: 30     },
+    ],
+    ctaTitle: "Innovatsii, kotoryye zabotlyatsya o lyudyakh i planete odnovremenno.",
+    ctaBtn: "Stante chastyu etoj transformatsii",
+  },
+  ro: {
+    infoTitle: "Sustenabilitate in fiecare picatura",
+    infoParagraph: "Credem ca tehnologia trebuie sa mearga mana in mana cu responsabilitatea fata de mediu. De aceea, solutiile noastre sunt concepute pentru a reduce consumul de resurse, a elimina plasticul de unica folosinta si a genera un impact pozitiv real.",
+    infoCta: "Descopera initiativele noastre sustenabile",
+    sustCards: [
+      { icon: imgPlastico, aspectW: 405, aspectH: 643, title: "Mai putin plastic de unica folosinta", description: "Reducem milioane de sticle de plastic oferind apa pura accesibila in locatii strategice." },
+      { icon: imgEnergia, aspectW: 492, aspectH: 492, title: "Consum constient de energie", description: "Echipamente eficiente si inteligente care optimizeaza consumul de energie." },
+      { icon: imgReciclavel, aspectW: 30, aspectH: 30, title: "Materiale reciclabile si durabile", description: "Componente de inalta calitate reciclabile si proiectate pentru o durata lunga de viata." },
+      { icon: imgPreservAgua, aspectW: 643, aspectH: 631, title: "Conservarea apei", description: "Tehnologii care economisesc apa la fiecare etapa a procesului de purificare." },
+    ],
+    stats: [
+      { value: "+50M",          label: "persoane impactate pozitiv",              icon: imgStatsPessoas,   aspectW: 43.86,  aspectH: 40.50  },
+      { value: "+2.000",        label: "tone de plastic evitate pe an",            icon: imgStatsAgua,      aspectW: 40,     aspectH: 40     },
+      { value: "+15M",          label: "litri de apa economisiti pe an",           icon: imgStatsPlanta,    aspectW: 335.36, aspectH: 361.50 },
+      { value: "+180 tari",     label: "impactate si in expansiune",               icon: imgStatsPlanetWeb, aspectW: 30,     aspectH: 30     },
+    ],
+    ctaTitle: "Inovatie care are grija de oameni si de planeta in acelasi timp.",
+    ctaBtn: "Fii parte din aceasta transformare",
+  },
+  he: {
+    infoTitle: "Kiyumiyut bekhol tipa",
+    infoParagraph: "Anu maaminim shehateknologiya tzrikha lalehet yad beyad im ahrayut svivatit. Lekhen, hapitronot shelanu mutkhanim lehafkhit et tzrikhat hamashahim, lehasir plastik khad-pami uliytsor hashpa'a khiyuvit amitit.",
+    infoCta: "Gal et hayozamot hakkiyumiyot shelanu",
+    sustCards: [
+      { icon: imgPlastico, aspectW: 405, aspectH: 643, title: "Pakhot plastik khad-pami", description: "Anu mefarkim milyonim shel bakbukim mipplastik al yedey hatzaat mayim nekiyim negiishim bemkomot estrategiyim." },
+      { icon: imgEnergia, aspectW: 492, aspectH: 492, title: "Tzrikhat energiya meudaat", description: "Tziyud yael veinteligentti hamayil et tzrikhat haenergiya." },
+      { icon: imgReciclavel, aspectW: 30, aspectH: 30, title: "Khomrim beni-mikhur veavirim", description: "Rakhivim beaykut gvoha beni-mikhur hamutkanim lkhayim arukhim." },
+      { icon: imgPreservAgua, aspectW: 643, aspectH: 631, title: "Shimur hamayim", description: "Tekhnoloigot hamakhnekot mayim bekhol shlavey takhlit hataharur." },
+    ],
+    stats: [
+      { value: "+50M",          label: "anashim sheushpa'u lehatova",             icon: imgStatsPessoas,   aspectW: 43.86,  aspectH: 40.50  },
+      { value: "+2,000",        label: "ton plastik shenekhsakh leshana",         icon: imgStatsAgua,      aspectW: 40,     aspectH: 40     },
+      { value: "+15M",          label: "liter mayim shenukhku leshana",           icon: imgStatsPlanta,    aspectW: 335.36, aspectH: 361.50 },
+      { value: "+180 aratzot",  label: "sheushpa'u umitrahavot",                  icon: imgStatsPlanetWeb, aspectW: 30,     aspectH: 30     },
+    ],
+    ctaTitle: "Khidush hadomeg le'anashim ulkduret beeytzev akhat.",
+    ctaBtn: "Heyeh khellek min hashinnui haze",
   },
   "pt-pt": {
     infoTitle: "Sustentabilidade em cada gota",

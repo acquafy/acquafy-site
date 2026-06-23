@@ -47,6 +47,18 @@ const T: Record<Lang, { labels: string[] }> = {
       "App for Neo and Acquafy Media devices",
     ],
   },
+  "en-gb": {
+    labels: [
+      "Real-time monitoring",
+      "Filter status",
+      "365-day countdown",
+      "Water quality",
+      "Automatic alerts",
+      "Preventive maintenance",
+      "Acquafy AI Insights",
+      "App for Neo and Acquafy Media devices",
+    ],
+  },
   es: {
     labels: [
       "Monitoreo en tiempo real",
@@ -129,6 +141,66 @@ const T: Record<Lang, { labels: string[] }> = {
       "예방 유지보수",
       "Acquafy AI Insights",
       "Neo 및 Acquafy Media 기기용 App",
+    ],
+  },
+  sv: {
+    labels: [
+      "Realtidsövervakning",
+      "Filterstatus",
+      "365-dagars nedräkning",
+      "Vattenkvalitet",
+      "Automatiska varningar",
+      "Förebyggande underhåll",
+      "Acquafy AI Insights",
+      "App för Neo- och Acquafy Media-enheter",
+    ],
+  },
+  fi: {
+    labels: [
+      "Reaaliaikainen seuranta",
+      "Suodattimen tila",
+      "365 päivän lähtölaskenta",
+      "Vedenlaatuvalvonta",
+      "Automaattiset hälytykset",
+      "Ennaltaehkäisevä huolto",
+      "Acquafy AI Insights",
+      "Sovellus Neo- ja Acquafy Media -laitteille",
+    ],
+  },
+  ru: {
+    labels: [
+      "Мониторинг в реальном времени",
+      "Состояние фильтров",
+      "Обратный отсчёт 365 дней",
+      "Качество воды",
+      "Автоматические оповещения",
+      "Профилактическое обслуживание",
+      "Acquafy AI Insights",
+      "Приложение для устройств Neo и Acquafy Media",
+    ],
+  },
+  ro: {
+    labels: [
+      "Monitorizare în timp real",
+      "Starea filtrelor",
+      "Numărătoare inversă 365 de zile",
+      "Calitatea apei",
+      "Alerte automate",
+      "Întreținere preventivă",
+      "Acquafy AI Insights",
+      "Aplicație pentru dispozitivele Neo și Acquafy Media",
+    ],
+  },
+  he: {
+    labels: [
+      "ניטור בזמן אמת",
+      "סטטוס המסננים",
+      "ספירה לאחור 365 יום",
+      "איכות המים",
+      "התראות אוטומטיות",
+      "תחזוקה מונעת",
+      "Acquafy AI Insights",
+      "אפליקציה למכשירי Neo ו-Acquafy Media",
     ],
   },
   "pt-pt": {

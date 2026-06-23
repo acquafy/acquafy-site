@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
@@ -56,6 +56,20 @@ const T: Record<Lang, {
     ],
   },
   en: {
+    title1: "Filters & ",
+    title2: "Accessories",
+    subtitle: "Performance, quality and protection for every drop",
+    desc: "Acquafy filters and accessories are designed to keep water always pure, safe and at peak performance across all Acquafy equipment.",
+    btn1: "Discover the filters",
+    btn2: "Talk to a specialist",
+    stats: [
+      { title: "Pure and safe water",              desc: "More health and well-being for you and your family." },
+      { title: "Advanced technology",              desc: "High-performance filters with maximum efficiency" },
+      { title: "Easy installation and maintenance",desc: "Convenience for everyday life and greater durability." },
+      { title: "Acquafy product compatibility",    desc: "Developed for total performance of your equipment." },
+    ],
+  },
+  "en-gb": {
     title1: "Filters & ",
     title2: "Accessories",
     subtitle: "Performance, quality and protection for every drop",
@@ -167,6 +181,76 @@ const T: Record<Lang, {
       { title: "Acquafy 제품과의 호환성",    desc: "장비의 완전한 성능을 위해 개발되었습니다." },
     ],
   },
+  sv: {
+    title1: "Filter & ",
+    title2: "Tillbehör",
+    subtitle: "Prestanda, kvalitet och skydd för varje droppe",
+    desc: "Acquafy filter och tillbehör är utformade för att hålla vattnet alltid rent, säkert och med maximal prestanda i all Acquafy-utrustning.",
+    btn1: "Utforska filtren",
+    btn2: "Prata med en specialist",
+    stats: [
+      { title: "Rent och säkert vatten",            desc: "Bättre hälsa och välbefinnande för dig och din familj." },
+      { title: "Avancerad teknik",                   desc: "Högpresterande filter med maximal effektivitet" },
+      { title: "Enkel installation och underhåll",  desc: "Bekvämlighet i vardagen och längre hållbarhet." },
+      { title: "Kompatibilitet med Acquafy-produkter", desc: "Utvecklade för full prestanda hos din utrustning." },
+    ],
+  },
+  fi: {
+    title1: "Suodattimet & ",
+    title2: "Tarvikkeet",
+    subtitle: "Suorituskykyä, laatua ja suojaa jokaiselle pisaralle",
+    desc: "Acquafy-suodattimet ja -tarvikkeet on suunniteltu pitämään vesi aina puhtaana, turvallisena ja huippusuorituskykyisenä kaikissa Acquafy-laitteissa.",
+    btn1: "Tutustu suodattimiin",
+    btn2: "Puhu asiantuntijan kanssa",
+    stats: [
+      { title: "Puhdas ja turvallinen vesi",          desc: "Enemmän terveyttä ja hyvinvointia sinulle ja perheellesi." },
+      { title: "Edistynyt teknologia",                 desc: "Korkean suorituskyvyn suodattimet maksimitehokkuudella" },
+      { title: "Helppo asennus ja huolto",             desc: "Mukavuutta arkeen ja pidempi kestävyys." },
+      { title: "Yhteensopivuus Acquafy-tuotteiden kanssa", desc: "Kehitetty laitteesi täyden suorituskyvyn takaamiseksi." },
+    ],
+  },
+  ru: {
+    title1: "Фильтры & ",
+    title2: "Аксессуары",
+    subtitle: "Производительность, качество и защита для каждой капли",
+    desc: "Фильтры и аксессуары Acquafy разработаны для поддержания воды всегда чистой, безопасной и с максимальной производительностью во всём оборудовании Acquafy.",
+    btn1: "Узнать о фильтрах",
+    btn2: "Поговорить со специалистом",
+    stats: [
+      { title: "Чистая и безопасная вода",           desc: "Больше здоровья и благополучия для вас и вашей семьи." },
+      { title: "Передовые технологии",                desc: "Высокопроизводительные фильтры с максимальной эффективностью" },
+      { title: "Простая установка и обслуживание",   desc: "Удобство в повседневной жизни и большая долговечность." },
+      { title: "Совместимость с продуктами Acquafy", desc: "Разработаны для полной производительности вашего оборудования." },
+    ],
+  },
+  ro: {
+    title1: "Filtre & ",
+    title2: "Accesorii",
+    subtitle: "Performanta, calitate si protectie pentru fiecare picatura",
+    desc: "Filtrele si accesoriile Acquafy sunt proiectate pentru a mentine apa intotdeauna pura, sigura si la performanta maxima pe toate echipamentele Acquafy.",
+    btn1: "Descopera filtrele",
+    btn2: "Vorbeste cu un specialist",
+    stats: [
+      { title: "Apa pura si sigura",                  desc: "Mai multa sanatate si bunastare pentru tine si familia ta." },
+      { title: "Tehnologie avansata",                 desc: "Filtre de inalta performanta si eficienta maxima" },
+      { title: "Instalare si intretinere usoare",     desc: "Confort in viata de zi cu zi si durabilitate mai mare." },
+      { title: "Compatibilitate cu produsele Acquafy",desc: "Dezvoltate pentru performanta totala a echipamentului tau." },
+    ],
+  },
+  he: {
+    title1: "מסננים & ",
+    title2: "אביזרים",
+    subtitle: "ביצועים, איכות והגנה לכל טיפה",
+    desc: "מסנני ואביזרי Acquafy מתוכננים לשמור על המים תמיד טהורים, בטוחים ובביצועים מרביים בכל ציוד Acquafy.",
+    btn1: "גלה את המסננים",
+    btn2: "דבר עם מומחה",
+    stats: [
+      { title: "מים טהורים ובטוחים",          desc: "יותר בריאות ורווחה עבורך ומשפחתך." },
+      { title: "טכנולוגיה מתקדמת",             desc: "מסננים בעלי ביצועים גבוהים ויעילות מרבית" },
+      { title: "התקנה ותחזוקה קלות",           desc: "נוחות לחיי היומיום ועמידות גבוהה יותר." },
+      { title: "תאימות למוצרי Acquafy",        desc: "פותחו לביצועים מלאים של הציוד שלך." },
+    ],
+  },
 };
 
 export default function BannerFiltros() {
@@ -229,7 +313,7 @@ export default function BannerFiltros() {
               <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
             </a>
             {/* BT AZUL OUT ARROW */}
-            <a href="/contato" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex w-full md:flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] md:min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
+            <a href="/contact" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex w-full md:flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] md:min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
               <span className="font-['Articulat_CF:Bold'] text-[16px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">{t.btn2}</span>
               <div className="relative shrink-0" style={{ width: 9, height: 9 }}>
                 <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0 group-active:opacity-0">

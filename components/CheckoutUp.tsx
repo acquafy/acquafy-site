@@ -146,6 +146,78 @@ const T: Record<Lang, {
     bannerTitle: "깨끗한 물은 특권이 되어서는 안 됩니다.",
     bannerSub1: "", bannerSub2: "을 통해 가족 모두에게 더 건강한 삶을 선물하세요.",
   },
+  "en-gb": {
+    badge: "SECURE CHECKOUT",
+    h2a: "Your old purifier is worth", h2b: "an UP!",
+    bonus1: "Earn ", bonus2: " in bonus on the purchase of the Acquafy Neo UP Essentials.",
+    trust: [
+      { title: "100% secure purchase",  sub: "Your data is protected" },
+      { title: "Product with warranty", sub: "Acquafy Quality" },
+      { title: "Specialised support",   sub: "Before and after your purchase" },
+    ],
+    bannerTitle: "Quality water shouldn't be a privilege.",
+    bannerSub1: "Do an ", bannerSub2: " and bring more health to you and your family.",
+  },
+  sv: {
+    badge: "SÄKER UTCHECKNING",
+    h2a: "Din gamla renare är värd", h2b: "ett UP!",
+    bonus1: "Tjäna ", bonus2: " i bonus vid köp av Acquafy Neo UP Essentials.",
+    trust: [
+      { title: "100% säkert köp",       sub: "Dina uppgifter är skyddade" },
+      { title: "Produkt med garanti",    sub: "Acquafy-kvalitet" },
+      { title: "Specialiserat stöd",     sub: "Före och efter ditt köp" },
+    ],
+    bannerTitle: "Kvalitetsvatten borde inte vara ett privilegium.",
+    bannerSub1: "Gör ett ", bannerSub2: " och ge dig och din familj mer hälsa.",
+  },
+  fi: {
+    badge: "TURVALLINEN KASSA",
+    h2a: "Vanha puhdistimesi on", h2b: "UP:n arvoinen!",
+    bonus1: "Ansaitse ", bonus2: " bonusta Acquafy Neo UP Essentialsin ostosta.",
+    trust: [
+      { title: "100% turvallinen osto",  sub: "Tietosi ovat suojattuja" },
+      { title: "Takuullinen tuote",       sub: "Acquafy-laatu" },
+      { title: "Erikoistunut tuki",       sub: "Ennen ja jälkeen ostoksesi" },
+    ],
+    bannerTitle: "Laadukas vesi ei saa olla etuoikeus.",
+    bannerSub1: "Tee ", bannerSub2: " ja tuo enemmän terveyttä sinulle ja perheellesi.",
+  },
+  ru: {
+    badge: "БЕЗОПАСНАЯ ОПЛАТА",
+    h2a: "Ваш старый очиститель стоит", h2b: "апгрейда!",
+    bonus1: "Получите ", bonus2: " бонуса при покупке Acquafy Neo UP Essentials.",
+    trust: [
+      { title: "100% безопасная покупка", sub: "Ваши данные защищены" },
+      { title: "Продукт с гарантией",     sub: "Качество Acquafy" },
+      { title: "Специализированная поддержка", sub: "До и после покупки" },
+    ],
+    bannerTitle: "Качественная вода не должна быть привилегией.",
+    bannerSub1: "Сделайте ", bannerSub2: " и подарите себе и семье больше здоровья.",
+  },
+  ro: {
+    badge: "PLATA SECURIZATA",
+    h2a: "Purificatorul tau vechi valoreaza", h2b: "un UP!",
+    bonus1: "Castiga ", bonus2: " bonus la cumpararea Acquafy Neo UP Essentials.",
+    trust: [
+      { title: "Cumparare 100% sigura",  sub: "Datele tale sunt protejate" },
+      { title: "Produs cu garantie",     sub: "Calitate Acquafy" },
+      { title: "Suport specializat",     sub: "Inainte si dupa cumparatura" },
+    ],
+    bannerTitle: "Apa de calitate nu trebuie sa fie un privilegiu.",
+    bannerSub1: "Fa un ", bannerSub2: " si aduce mai multa sanatate tie si familiei tale.",
+  },
+  he: {
+    badge: "תשלום מאובטח",
+    h2a: "המטהר הישן שלך שווה", h2b: "שדרוג!",
+    bonus1: "קבל ", bonus2: " בונוס ברכישת Acquafy Neo UP Essentials.",
+    trust: [
+      { title: "רכישה 100% מאובטחת",    sub: "הנתונים שלך מוגנים" },
+      { title: "מוצר עם אחריות",         sub: "איכות Acquafy" },
+      { title: "תמיכה מתמחה",            sub: "לפני ואחרי הרכישה" },
+    ],
+    bannerTitle: "מים איכותיים לא צריכים להיות זכות יתר.",
+    bannerSub1: "עשה ", bannerSub2: " והבא יותר בריאות לך ולמשפחתך.",
+  },
 };
 
 export default function CheckoutUp() {

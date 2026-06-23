@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description: "Escolha o seu purificador Acquafy.",
 };
 
-export default function CheckinPage() {
+export default function BuyPage() {
   return (
     <>
       <Header />

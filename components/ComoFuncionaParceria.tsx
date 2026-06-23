@@ -42,6 +42,16 @@ const T: Record<Lang, {
       { num: "04", title: "Scale with the Acquafy Platform", desc: "Track results, expand your network and grow with the global ecosystem." },
     ],
   },
+  "en-gb": {
+    heading1: "How the ",
+    heading2: "Global Partnership Programme works",
+    steps: [
+      { num: "01", title: "Choose your level", desc: "Select the partnership model that best fits your profile and strategy." },
+      { num: "02", title: "Receive digital structure", desc: "Access to the App, materials, training, links, QR Codes and multilingual support." },
+      { num: "03", title: "Activate media sales or distribution", desc: "Refer, operate Acquafy Media or distribute the Neo line in your region." },
+      { num: "04", title: "Scale with the Acquafy Platform", desc: "Track results, expand your network and grow with the global ecosystem." },
+    ],
+  },
   es: {
     heading1: "Cómo funciona el ",
     heading2: "Programa de Asociación Global",
@@ -110,6 +120,56 @@ const T: Record<Lang, {
       { num: "02", title: "디지털 구조 제공", desc: "앱, 자료, 교육, 링크, QR 코드 및 다국어 지원에 액세스하세요." },
       { num: "03", title: "미디어 판매 또는 유통 활성화", desc: "추천, Acquafy Media 운영 또는 귀하의 지역에서 Neo 라인을 유통하세요." },
       { num: "04", title: "Acquafy 플랫폼으로 확장", desc: "결과를 추적하고, 네트워크를 확장하여 글로벌 생태계와 함께 성장하세요." },
+    ],
+  },
+  sv: {
+    heading1: "Hur ",
+    heading2: "Globalt Partnerprogram fungerar",
+    steps: [
+      { num: "01", title: "Välj din nivå", desc: "Välj den partnerskapsmodell som bäst passar din profil och strategi." },
+      { num: "02", title: "Ta emot digital struktur", desc: "Tillgång till appen, material, utbildningar, länkar, QR-koder och flerspråkig support." },
+      { num: "03", title: "Aktivera medieförsäljning eller distribution", desc: "Rekommendera, driv Acquafy Media eller distribuera Neo-linjen i din region." },
+      { num: "04", title: "Skala med Acquafy-plattformen", desc: "Följ resultaten, expandera ditt nätverk och väx med det globala ekosystemet." },
+    ],
+  },
+  fi: {
+    heading1: "Miten ",
+    heading2: "Globaali kumppanuusohjelma toimii",
+    steps: [
+      { num: "01", title: "Valitse tasosi", desc: "Valitse kumppanuusmalli, joka sopii parhaiten profiiliisi ja strategiaasi." },
+      { num: "02", title: "Vastaanota digitaalinen rakenne", desc: "Pääsy sovellukseen, materiaaleihin, koulutuksiin, linkkeihin, QR-koodeihin ja monikieliseen tukeen." },
+      { num: "03", title: "Aktivoi mediamyynti tai jakelu", desc: "Suosittele, hallinnoi Acquafy Mediaa tai jaa Neo-linja alueellasi." },
+      { num: "04", title: "Skaalaudu Acquafy-alustan avulla", desc: "Seuraa tuloksia, laajenna verkostoasi ja kasva globaalin ekosysteemin mukana." },
+    ],
+  },
+  ru: {
+    heading1: "Как работает ",
+    heading2: "Глобальная партнерская программа",
+    steps: [
+      { num: "01", title: "Выберите свой уровень", desc: "Выберите модель партнерства, которая лучше всего соответствует вашему профилю и стратегии." },
+      { num: "02", title: "Получите цифровую структуру", desc: "Доступ к приложению, материалам, обучению, ссылкам, QR-кодам и многоязычной поддержке." },
+      { num: "03", title: "Активируйте медиапродажи или дистрибуцию", desc: "Рекомендуйте, управляйте Acquafy Media или распространяйте линейку Neo в вашем регионе." },
+      { num: "04", title: "Масштабируйтесь с платформой Acquafy", desc: "Отслеживайте результаты, расширяйте сеть и развивайтесь вместе с глобальной экосистемой." },
+    ],
+  },
+  ro: {
+    heading1: "Cum functioneaza ",
+    heading2: "Programul Global de Parteneriat",
+    steps: [
+      { num: "01", title: "Alege nivelul tau", desc: "Selecteaza modelul de parteneriat care se potriveste cel mai bine profilului si strategiei tale." },
+      { num: "02", title: "Primeste structura digitala", desc: "Acces la aplicatie, materiale, traininguri, linkuri, coduri QR si suport multilingv." },
+      { num: "03", title: "Activeaza vanzarile media sau distributia", desc: "Recomanda, opereaza Acquafy Media sau distribuie linia Neo in regiunea ta." },
+      { num: "04", title: "Scalezi cu Platforma Acquafy", desc: "Urmareste rezultatele, extinde-ti reteaua si creste odata cu ecosistemul global." },
+    ],
+  },
+  he: {
+    heading1: "",
+    heading2: "איך עובד תוכנית השותפות הגלובלית",
+    steps: [
+      { num: "01", title: "בחר את הרמה שלך", desc: "בחר את מודל השותפות המתאים ביותר לפרופיל ולאסטרטגיה שלך." },
+      { num: "02", title: "קבל מבנה דיגיטלי", desc: "גישה לאפליקציה, חומרים, הדרכות, קישורים, קודי QR ותמיכה רב-לשונית." },
+      { num: "03", title: "הפעל מכירות מדיה או הפצה", desc: "המלץ, הפעל את Acquafy Media או הפץ את קו Neo באזורך." },
+      { num: "04", title: "הרחב עם פלטפורמת Acquafy", desc: "עקוב אחר התוצאות, הרחב את הרשת שלך וצמח עם המערכת האקולוגית הגלובלית." },
     ],
   },
 };

@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useLang, type Lang } from "@/context/LanguageContext";
 
@@ -59,6 +59,26 @@ const T: Record<Lang, {
     premium: [
       { num: "01", title: "PPF - Polypropilene Filter", desc: "Removes iodine, dirt, rust, filters impurities, chemical compounds, suspended particles, odors and flavors normally present in tap water." },
       { num: "02", title: "ACF - Anti-Scale Activated Block Carbon Filter", desc: "Removes chlorine, chemical compounds, suspended particles, odors and flavors normally present in tap water." },
+      { num: "03", title: "ROF - Reverse Osmose Filter", desc: "A system that produces water with 99% purity (free from viruses and bacteria up to 0.5 microns), developed for people who want or need extremely pure water.", highlight: true, gradient: true },
+      { num: "04", title: "AAF - Alkaline Antioxidant Filter", desc: "It adjusts the pH range of the water, making the filtered water alkaline with a pH above 9, antioxidant and hydrogen-rich." },
+    ],
+  },
+  "en-gb": {
+    essentialsHeading: "Essentials Line - High Performance Filtration System",
+    premiumHeading: "Premium Line - High Performance Filtration System",
+    phHeading: "pH Scale",
+    labelAcido: "Acid",
+    labelNeutro: "Neutral",
+    labelAlcalino: "Alkaline",
+    essentials: [
+      { num: "01", title: "PPF - Polypropilene Filter", desc: "Removes iodine, dirt, rust, filters impurities, chemical compounds, suspended particles, odours and flavours normally present in tap water." },
+      { num: "02", title: "ACF - Anti-Scale Activated Block Carbon Filter", desc: "Removes chlorine, chemical compounds, suspended particles, odours and flavours normally present in tap water." },
+      { num: "03", title: "UFF - Ultra Filtration Filter", desc: "With ultra-precision micropores, removes organisms, macromolecular substances, red worm, viruses and bacteria.", highlight: true },
+      { num: "04", title: "AAF - Alkaline Antioxidant Filter", desc: "It adjusts the pH range of the water, making the filtered water alkaline with a pH above 9, antioxidant and hydrogen-rich." },
+    ],
+    premium: [
+      { num: "01", title: "PPF - Polypropilene Filter", desc: "Removes iodine, dirt, rust, filters impurities, chemical compounds, suspended particles, odours and flavours normally present in tap water." },
+      { num: "02", title: "ACF - Anti-Scale Activated Block Carbon Filter", desc: "Removes chlorine, chemical compounds, suspended particles, odours and flavours normally present in tap water." },
       { num: "03", title: "ROF - Reverse Osmose Filter", desc: "A system that produces water with 99% purity (free from viruses and bacteria up to 0.5 microns), developed for people who want or need extremely pure water.", highlight: true, gradient: true },
       { num: "04", title: "AAF - Alkaline Antioxidant Filter", desc: "It adjusts the pH range of the water, making the filtered water alkaline with a pH above 9, antioxidant and hydrogen-rich." },
     ],
@@ -201,6 +221,106 @@ const T: Record<Lang, {
       { num: "02", title: "ACF - Anti-Scale Activated Block Carbon Filter", desc: "수돗물에 일반적으로 존재하는 염소, 화학 물질, 부유 입자, 냄새 및 맛을 제거합니다." },
       { num: "03", title: "ROF - Reverse Osmose Filter", desc: "99% 순도의 물을 생산하는 시스템(0.5마이크론까지의 바이러스 및 박테리아 제거)으로, 극도로 순수한 물을 원하거나 필요로 하는 사람들을 위해 개발되었습니다.", highlight: true, gradient: true },
       { num: "04", title: "AAF - Alkaline Antioxidant Filter", desc: "물의 pH 범위를 조절하여 여과된 물을 pH 9 이상의 알칼리성으로 만들고, 항산화 효과와 수소가 풍부한 물로 만듭니다." },
+    ],
+  },
+  sv: {
+    essentialsHeading: "Essentials-serien - Högpresterande filtreringssystem",
+    premiumHeading: "Premium-serien - Högpresterande filtreringssystem",
+    phHeading: "pH-skala",
+    labelAcido: "Surt",
+    labelNeutro: "Neutralt",
+    labelAlcalino: "Alkaliskt",
+    essentials: [
+      { num: "01", title: "PPF - Polypropilene Filter", desc: "Tar bort jod, smuts, rost, filtrerar orenheter, kemiska föreningar, suspenderade partiklar, lukter och smaker som normalt förekommer i kranvatten." },
+      { num: "02", title: "ACF - Anti-Scale Activated Block Carbon Filter", desc: "Tar bort klor, kemiska föreningar, suspenderade partiklar, lukter och smaker som normalt förekommer i kranvatten." },
+      { num: "03", title: "UFF - Ultra Filtration Filter", desc: "Med ultraprecisa mikroporer avlägsnas organismer, makromolekylära ämnen, röda maskar, virus och bakterier.", highlight: true },
+      { num: "04", title: "AAF - Alkaline Antioxidant Filter", desc: "Det justerar vattnets pH-område och gör det filtrerade vattnet alkaliskt med ett pH över 9, antioxidant och väterikt." },
+    ],
+    premium: [
+      { num: "01", title: "PPF - Polypropilene Filter", desc: "Tar bort jod, smuts, rost, filtrerar orenheter, kemiska föreningar, suspenderade partiklar, lukter och smaker som normalt förekommer i kranvatten." },
+      { num: "02", title: "ACF - Anti-Scale Activated Block Carbon Filter", desc: "Tar bort klor, kemiska föreningar, suspenderade partiklar, lukter och smaker som normalt förekommer i kranvatten." },
+      { num: "03", title: "ROF - Reverse Osmose Filter", desc: "Ett system som producerar vatten med 99% renhet (fritt från virus och bakterier upp till 0,5 mikron), utvecklat för personer som vill eller behöver dricka extremt rent vatten.", highlight: true, gradient: true },
+      { num: "04", title: "AAF - Alkaline Antioxidant Filter", desc: "Det justerar vattnets pH-område och gör det filtrerade vattnet alkaliskt med ett pH över 9, antioxidant och väterikt." },
+    ],
+  },
+  fi: {
+    essentialsHeading: "Essentials-sarja - Korkean suorituskyvyn suodatusjärjestelmä",
+    premiumHeading: "Premium-sarja - Korkean suorituskyvyn suodatusjärjestelmä",
+    phHeading: "pH-asteikko",
+    labelAcido: "Hapan",
+    labelNeutro: "Neutraali",
+    labelAlcalino: "Emäksinen",
+    essentials: [
+      { num: "01", title: "PPF - Polypropilene Filter", desc: "Poistaa jodin, lian, ruosteen, suodattaa epäpuhtaudet, kemialliset yhdisteet, suspendoituneet hiukkaset, hajut ja maut, joita yleensä esiintyy hanavedessä." },
+      { num: "02", title: "ACF - Anti-Scale Activated Block Carbon Filter", desc: "Poistaa kloorin, kemialliset yhdisteet, suspendoituneet hiukkaset, hajut ja maut, joita yleensä esiintyy hanavedessä." },
+      { num: "03", title: "UFF - Ultra Filtration Filter", desc: "Ultratarkoilla mikrohuokosilla poistetaan organismit, makromolekyyliset aineet, punaiset madot, virukset ja bakteerit.", highlight: true },
+      { num: "04", title: "AAF - Alkaline Antioxidant Filter", desc: "Se säätää veden pH-aluetta, tehden suodatetusta vedestä emäksistä pH-arvolla yli 9, antioksidanttista ja vetypitoista." },
+    ],
+    premium: [
+      { num: "01", title: "PPF - Polypropilene Filter", desc: "Poistaa jodin, lian, ruosteen, suodattaa epäpuhtaudet, kemialliset yhdisteet, suspendoituneet hiukkaset, hajut ja maut, joita yleensä esiintyy hanavedessä." },
+      { num: "02", title: "ACF - Anti-Scale Activated Block Carbon Filter", desc: "Poistaa kloorin, kemialliset yhdisteet, suspendoituneet hiukkaset, hajut ja maut, joita yleensä esiintyy hanavedessä." },
+      { num: "03", title: "ROF - Reverse Osmose Filter", desc: "Järjestelmä, joka tuottaa vettä 99% puhtaudella (vapaana viruksista ja bakteereista enintään 0,5 mikronia), kehitetty henkilöille, jotka haluavat tai tarvitsevat erittäin puhdasta vettä.", highlight: true, gradient: true },
+      { num: "04", title: "AAF - Alkaline Antioxidant Filter", desc: "Se säätää veden pH-aluetta, tehden suodatetusta vedestä emäksistä pH-arvolla yli 9, antioksidanttista ja vetypitoista." },
+    ],
+  },
+  ru: {
+    essentialsHeading: "Линейка Essentials - Высокопроизводительная система фильтрации",
+    premiumHeading: "Линейка Premium - Высокопроизводительная система фильтрации",
+    phHeading: "Шкала pH",
+    labelAcido: "Кислотный",
+    labelNeutro: "Нейтральный",
+    labelAlcalino: "Щелочной",
+    essentials: [
+      { num: "01", title: "PPF - Polypropilene Filter", desc: "Удаляет йод, грязь, ржавчину, фильтрует примеси, химические соединения, взвешенные частицы, запахи и привкусы, обычно присутствующие в водопроводной воде." },
+      { num: "02", title: "ACF - Anti-Scale Activated Block Carbon Filter", desc: "Удаляет хлор, химические соединения, взвешенные частицы, запахи и привкусы, обычно присутствующие в водопроводной воде." },
+      { num: "03", title: "UFF - Ultra Filtration Filter", desc: "Благодаря ультраточным микропорам удаляет организмы, макромолекулярные вещества, красных червей, вирусы и бактерии.", highlight: true },
+      { num: "04", title: "AAF - Alkaline Antioxidant Filter", desc: "Регулирует диапазон pH воды, делая отфильтрованную воду щелочной с pH выше 9, антиоксидантной и богатой водородом." },
+    ],
+    premium: [
+      { num: "01", title: "PPF - Polypropilene Filter", desc: "Удаляет йод, грязь, ржавчину, фильтрует примеси, химические соединения, взвешенные частицы, запахи и привкусы, обычно присутствующие в водопроводной воде." },
+      { num: "02", title: "ACF - Anti-Scale Activated Block Carbon Filter", desc: "Удаляет хлор, химические соединения, взвешенные частицы, запахи и привкусы, обычно присутствующие в водопроводной воде." },
+      { num: "03", title: "ROF - Reverse Osmose Filter", desc: "Система, производящая воду с чистотой 99% (без вирусов и бактерий размером до 0,5 микрон), разработана для людей, желающих или нуждающихся в потреблении исключительно чистой воды.", highlight: true, gradient: true },
+      { num: "04", title: "AAF - Alkaline Antioxidant Filter", desc: "Регулирует диапазон pH воды, делая отфильтрованную воду щелочной с pH выше 9, антиоксидантной и богатой водородом." },
+    ],
+  },
+  ro: {
+    essentialsHeading: "Linia Essentials - Sistem de Filtrare de Inalta Performanta",
+    premiumHeading: "Linia Premium - Sistem de Filtrare de Inalta Performanta",
+    phHeading: "Scala pH",
+    labelAcido: "Acid",
+    labelNeutro: "Neutru",
+    labelAlcalino: "Alcalin",
+    essentials: [
+      { num: "01", title: "PPF - Polypropilene Filter", desc: "Elimina iodul, murdaria, rugina, filtreaza impuritatile, compusii chimici, particulele suspendate, mirosurile si gusturile prezente in mod normal in apa de la robinet." },
+      { num: "02", title: "ACF - Anti-Scale Activated Block Carbon Filter", desc: "Elimina clorul, compusii chimici, particulele suspendate, mirosurile si gusturile prezente in mod normal in apa de la robinet." },
+      { num: "03", title: "UFF - Ultra Filtration Filter", desc: "Cu micropori de ultraprecizie, elimina organismele, substantele macromoleculare, viermii rosii, virusurile si bacteriile.", highlight: true },
+      { num: "04", title: "AAF - Alkaline Antioxidant Filter", desc: "Ajusteaza intervalul de pH al apei, facand apa filtrata alcalina cu pH peste 9, antioxidanta si bogata in hidrogen." },
+    ],
+    premium: [
+      { num: "01", title: "PPF - Polypropilene Filter", desc: "Elimina iodul, murdaria, rugina, filtreaza impuritatile, compusii chimici, particulele suspendate, mirosurile si gusturile prezente in mod normal in apa de la robinet." },
+      { num: "02", title: "ACF - Anti-Scale Activated Block Carbon Filter", desc: "Elimina clorul, compusii chimici, particulele suspendate, mirosurile si gusturile prezente in mod normal in apa de la robinet." },
+      { num: "03", title: "ROF - Reverse Osmose Filter", desc: "Sistem care produce apa cu puritate de 99% (lipsita de virusuri si bacterii de pana la 0,5 microni), dezvoltat pentru persoanele care doresc sau au nevoie de apa extrem de pura.", highlight: true, gradient: true },
+      { num: "04", title: "AAF - Alkaline Antioxidant Filter", desc: "Ajusteaza intervalul de pH al apei, facand apa filtrata alcalina cu pH peste 9, antioxidanta si bogata in hidrogen." },
+    ],
+  },
+  he: {
+    essentialsHeading: "קו Essentials - מערכת סינון בעלת ביצועים גבוהים",
+    premiumHeading: "קו Premium - מערכת סינון בעלת ביצועים גבוהים",
+    phHeading: "סולם pH",
+    labelAcido: "חומצי",
+    labelNeutro: "נייטרלי",
+    labelAlcalino: "בסיסי",
+    essentials: [
+      { num: "01", title: "PPF - Polypropilene Filter", desc: "מסיר יוד, לכלוך, חלודה, מסנן אי-ניקיון, תרכובות כימיות, חלקיקים מרחפים, ריחות וטעמים הנמצאים בדרך כלל במי ברז." },
+      { num: "02", title: "ACF - Anti-Scale Activated Block Carbon Filter", desc: "מסיר כלור, תרכובות כימיות, חלקיקים מרחפים, ריחות וטעמים הנמצאים בדרך כלל במי ברז." },
+      { num: "03", title: "UFF - Ultra Filtration Filter", desc: "באמצעות מיקרו-נקבוביות בדיוק גבוה, מסיר אורגניזמים, חומרים מקרומולקולריים, תולעים אדומים, וירוסים ובקטריות.", highlight: true },
+      { num: "04", title: "AAF - Alkaline Antioxidant Filter", desc: "הוא מכוון את טווח ה-pH של המים, הופך את המים המסוננים לבסיסיים עם pH מעל 9, נוגד חמצון ועשיר במימן." },
+    ],
+    premium: [
+      { num: "01", title: "PPF - Polypropilene Filter", desc: "מסיר יוד, לכלוך, חלודה, מסנן אי-ניקיון, תרכובות כימיות, חלקיקים מרחפים, ריחות וטעמים הנמצאים בדרך כלל במי ברז." },
+      { num: "02", title: "ACF - Anti-Scale Activated Block Carbon Filter", desc: "מסיר כלור, תרכובות כימיות, חלקיקים מרחפים, ריחות וטעמים הנמצאים בדרך כלל במי ברז." },
+      { num: "03", title: "ROF - Reverse Osmose Filter", desc: "מערכת המייצרת מים בטוהר 99% (ללא וירוסים ובקטריות עד 0.5 מיקרון), פותחה עבור אנשים הרוצים או הזקוקים לצריכת מים טהורים במיוחד.", highlight: true, gradient: true },
+      { num: "04", title: "AAF - Alkaline Antioxidant Filter", desc: "הוא מכוון את טווח ה-pH של המים, הופך את המים המסוננים לבסיסיים עם pH מעל 9, נוגד חמצון ועשיר במימן." },
     ],
   },
   "pt-pt": {

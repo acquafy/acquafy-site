@@ -51,6 +51,22 @@ const T: Record<Lang, {
       "Complete premium experience",
     ],
   },
+  "en-gb": {
+    essentialsFeatures: [
+      "10.1 LED Touch Panel",
+      "4 High-Performance UF Filters",
+      "Options from 1 to 7 functions",
+      "Tanks: 400ml, 800ml, 1500ml and 3000ml",
+      "Focus on practicality and variety for daily use",
+    ],
+    premiumFeatures: [
+      "15.6 IPS LCD Touch Panel",
+      "Reverse Osmosis (RO)",
+      "Stainless steel and sophisticated design",
+      "Integrated Mini Media Network",
+      "Complete premium experience",
+    ],
+  },
   es: {
     essentialsFeatures: [
       "Panel LED Touch 10,1",
@@ -161,6 +177,86 @@ const T: Record<Lang, {
       "스테인리스 스틸과 정교한 디자인",
       "미니 미디어 네트워크 통합",
       "완전한 프리미엄 경험",
+    ],
+  },
+  sv: {
+    essentialsFeatures: [
+      "LED Touch-panel 10,1",
+      "4 högpresterande UF-filter",
+      "Alternativ från 1 till 7 funktioner",
+      "Tankar: 400ml, 800ml, 1500ml och 3000ml",
+      "Fokus på praktisk och varierad daglig användning",
+    ],
+    premiumFeatures: [
+      "LCD IPS Touch-panel 15.6",
+      "Omvänd osmos (RO)",
+      "Rostfritt stål och sofistikerad design",
+      "Integrerat Mini Media Network",
+      "Komplett premiumupplevelse",
+    ],
+  },
+  fi: {
+    essentialsFeatures: [
+      "LED-kosketusnäyttö 10,1",
+      "4 tehokas UF-suodatin",
+      "Vaihtoehdot 1–7 toimintoa",
+      "Säiliöt: 400ml, 800ml, 1500ml ja 3000ml",
+      "Käytännöllisyys ja monipuolisuus päivittäiseen käyttöön",
+    ],
+    premiumFeatures: [
+      "LCD IPS -kosketusnäyttö 15.6",
+      "Käänteisosmosis (RO)",
+      "Ruostumaton teräs ja hienostunut muotoilu",
+      "Integroitu Mini Media Network",
+      "Täydellinen premium-kokemus",
+    ],
+  },
+  ru: {
+    essentialsFeatures: [
+      "LED сенсорная панель 10,1",
+      "4 высокопроизводительных UF-фильтра",
+      "Варианты от 1 до 7 функций",
+      "Баки: 400мл, 800мл, 1500мл и 3000мл",
+      "Акцент на практичность и разнообразие для ежедневного использования",
+    ],
+    premiumFeatures: [
+      "LCD IPS сенсорная панель 15.6",
+      "Обратный осмос (RO)",
+      "Нержавеющая сталь и изысканный дизайн",
+      "Встроенная Mini Media Network",
+      "Полноценный премиальный опыт",
+    ],
+  },
+  ro: {
+    essentialsFeatures: [
+      "Panou LED Touch 10,1",
+      "4 filtre UF de inalta performanta",
+      "Optiuni de la 1 la 7 functii",
+      "Rezervoare: 400ml, 800ml, 1500ml si 3000ml",
+      "Accent pe practicitate si varietate pentru uz zilnic",
+    ],
+    premiumFeatures: [
+      "Panou LCD IPS Touch 15.6",
+      "Osmoza inversa (RO)",
+      "Otel inoxidabil si design sofisticat",
+      "Mini Media Network integrat",
+      "Experienta premium completa",
+    ],
+  },
+  he: {
+    essentialsFeatures: [
+      "לוח LED מגע 10.1",
+      "4 מסנני UF בעלי ביצועים גבוהים",
+      "אפשרויות מ-1 עד 7 פונקציות",
+      "מיכלים: 400 מ\"ל, 800 מ\"ל, 1500 מ\"ל ו-3000 מ\"ל",
+      "דגש על נוחות ומגוון לשימוש יומיומי",
+    ],
+    premiumFeatures: [
+      "לוח LCD IPS מגע 15.6",
+      "אוסמוזה הפוכה (RO)",
+      "נירוסטה ועיצוב מתוחכם",
+      "Mini Media Network משולב",
+      "חוויית פרימיום מלאה",
     ],
   },
   "pt-pt": {
