@@ -6,7 +6,6 @@ const imgLocation  = "/figma-assets/icon-location-a.svg";
 const imgLanguage  = "/figma-assets/icon-language-b.svg";
 const imgEcossist  = "/figma-assets/icon-ecossistema.svg";
 const imgMoney     = "/figma-assets/icon-money-e.svg";
-const imgCountries = "/figma-assets/icon-countries.svg";
 const imgMap       = "/figma-assets/map-image.webp";
 
 const statIcons = [
@@ -14,7 +13,6 @@ const statIcons = [
   { icon: imgLanguage,  iconW: 70,    iconH: 70, value: "16"   },
   { icon: imgEcossist,  iconW: 38,    iconH: 40, value: "100%" },
   { icon: imgMoney,     iconW: 33.33, iconH: 30, value: "100%" },
-  { icon: imgCountries, iconW: 42,    iconH: 42, value: "Multi" },
 ];
 
 const T: Record<Lang, {
@@ -30,7 +28,6 @@ const T: Record<Lang, {
       "Disponível em 16 idiomas",
       "Operação 100% global",
       "Modelo de receita 100% recorrente",
-      "Gestão multi-região e multi-moeda",
     ],
   },
   "pt-pt": {
@@ -41,7 +38,6 @@ const T: Record<Lang, {
       "Disponível em 16 idiomas",
       "Operação 100% global",
       "Modelo de receita 100% recorrente",
-      "Gestão multi-região e multi-moeda",
     ],
   },
   en: {
@@ -52,7 +48,16 @@ const T: Record<Lang, {
       "Available in 16 languages",
       "100% global operation",
       "100% recurring revenue model",
-      "Multi-region and multi-currency management",
+    ],
+  },
+  "en-gb": {
+    heading1: "Global and ",
+    heading2: "scalable operation",
+    descs: [
+      "Present in 180+ countries",
+      "Available in 16 languages",
+      "100% global operation",
+      "100% recurring revenue model",
     ],
   },
   es: {
@@ -63,7 +68,6 @@ const T: Record<Lang, {
       "Disponible en 16 idiomas",
       "Operación 100% global",
       "Modelo de ingresos 100% recurrente",
-      "Gestión multi-región y multi-moneda",
     ],
   },
   fr: {
@@ -74,7 +78,6 @@ const T: Record<Lang, {
       "Disponible en 16 langues",
       "Opération 100% mondiale",
       "Modèle de revenus 100% récurrent",
-      "Gestion multi-région et multi-devise",
     ],
   },
   de: {
@@ -85,7 +88,6 @@ const T: Record<Lang, {
       "Verfügbar in 16 Sprachen",
       "100% globaler Betrieb",
       "100% wiederkehrendes Umsatzmodell",
-      "Multi-Region- und Multi-Währungs-Management",
     ],
   },
   it: {
@@ -96,7 +98,6 @@ const T: Record<Lang, {
       "Disponibile in 16 lingue",
       "Operazione 100% globale",
       "Modello di ricavi 100% ricorrente",
-      "Gestione multi-regione e multi-valuta",
     ],
   },
   zh: {
@@ -107,7 +108,6 @@ const T: Record<Lang, {
       "支持 16 种语言",
       "100% 全球化运营",
       "100% 经常性收入模式",
-      "多区域、多货币管理",
     ],
   },
   ja: {
@@ -118,7 +118,6 @@ const T: Record<Lang, {
       "16言語対応",
       "100%グローバル運営",
       "100%リカーリング収益モデル",
-      "マルチリージョン・マルチ通貨管理",
     ],
   },
   ko: {
@@ -129,7 +128,56 @@ const T: Record<Lang, {
       "16개 언어 지원",
       "100% 글로벌 운영",
       "100% 반복 수익 모델",
-      "다지역 및 다통화 관리",
+    ],
+  },
+  sv: {
+    heading1: "Global och ",
+    heading2: "skalbar verksamhet",
+    descs: [
+      "Närvarande i 180+ länder",
+      "Tillgänglig på 16 språk",
+      "100% global verksamhet",
+      "100% återkommande intäktsmodell",
+    ],
+  },
+  fi: {
+    heading1: "Globaali ja ",
+    heading2: "skaalautuva toiminta",
+    descs: [
+      "Läsnä yli 180 maassa",
+      "Saatavilla 16 kielellä",
+      "100% globaali toiminta",
+      "100% toistuva tuottomalli",
+    ],
+  },
+  ru: {
+    heading1: "Глобальная и ",
+    heading2: "масштабируемая работа",
+    descs: [
+      "Присутствие в 180+ странах",
+      "Доступно на 16 языках",
+      "100% глобальная работа",
+      "100% модель повторяющегося дохода",
+    ],
+  },
+  ro: {
+    heading1: "Operatiune ",
+    heading2: "globala si scalabila",
+    descs: [
+      "Prezent in 180+ tari",
+      "Disponibil in 16 limbi",
+      "Operatiune 100% globala",
+      "Model de venituri 100% recurente",
+    ],
+  },
+  he: {
+    heading1: "פעולה ",
+    heading2: "גלובלית וניתנת להרחבה",
+    descs: [
+      "נוכחות ב-180+ מדינות",
+      "זמין ב-16 שפות",
+      "פעולה 100% גלובלית",
+      "מודל הכנסה חוזרת 100%",
     ],
   },
 };
