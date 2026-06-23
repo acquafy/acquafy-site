@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
@@ -37,6 +37,16 @@ const T: Record<Lang, {
     card2ImgAlt: "Suporte Acquafy",
   },
   en: {
+    card1Title: "Knowledge base",
+    card1Desc: "Access our complete library of articles, tutorials and guides to make the most of your Acquafy experience.",
+    card1Btn: "Access knowledge base",
+    card1ImgAlt: "Acquafy knowledge base",
+    card2Title: "Didn't find what you're looking for?",
+    card2Desc: "Our team is ready to help you with any question or specific need.",
+    card2Btn: "Open a ticket",
+    card2ImgAlt: "Acquafy support",
+  },
+  "en-gb": {
     card1Title: "Knowledge base",
     card1Desc: "Access our complete library of articles, tutorials and guides to make the most of your Acquafy experience.",
     card1Btn: "Access knowledge base",
@@ -116,6 +126,56 @@ const T: Record<Lang, {
     card2Btn: "티켓 열기",
     card2ImgAlt: "Acquafy 지원",
   },
+  sv: {
+    card1Title: "Kunskapsbas",
+    card1Desc: "Få tillgång till vårt kompletta bibliotek med artiklar, handledningar och guider för att få ut det mesta av din Acquafy-upplevelse.",
+    card1Btn: "Gå till kunskapsbasen",
+    card1ImgAlt: "Acquafy kunskapsbas",
+    card2Title: "Hittade du inte vad du letar efter?",
+    card2Desc: "Vårt team är redo att hjälpa dig med alla frågor eller specifika behov.",
+    card2Btn: "Öppna ett ärende",
+    card2ImgAlt: "Acquafy support",
+  },
+  fi: {
+    card1Title: "Tietopankki",
+    card1Desc: "Käytä kattavaa artikkelien, opetusohjelmien ja oppaiden kirjastoamme saadaksesi kaiken irti Acquafy-kokemuksestasi.",
+    card1Btn: "Siirry tietopankkiin",
+    card1ImgAlt: "Acquafy tietopankki",
+    card2Title: "Etkö löytänyt etsimääsi?",
+    card2Desc: "Tiimimme on valmis auttamaan sinua kaikissa kysymyksissä tai erityistarpeissa.",
+    card2Btn: "Avaa tiketti",
+    card2ImgAlt: "Acquafy tuki",
+  },
+  ru: {
+    card1Title: "База знаний",
+    card1Desc: "Получите доступ к нашей полной библиотеке статей, учебных пособий и руководств, чтобы максимально использовать возможности Acquafy.",
+    card1Btn: "Перейти в базу знаний",
+    card1ImgAlt: "База знаний Acquafy",
+    card2Title: "Не нашли то, что искали?",
+    card2Desc: "Наша команда готова помочь вам с любым вопросом или конкретной потребностью.",
+    card2Btn: "Открыть заявку",
+    card2ImgAlt: "Поддержка Acquafy",
+  },
+  ro: {
+    card1Title: "Baza de cunostinte",
+    card1Desc: "Accesati biblioteca noastra completa de articole, tutoriale si ghiduri pentru a profita la maximum de experienta Acquafy.",
+    card1Btn: "Accesati baza de cunostinte",
+    card1ImgAlt: "Baza de cunostinte Acquafy",
+    card2Title: "Nu ati gasit ce cautati?",
+    card2Desc: "Echipa noastra este pregatita sa va ajute cu orice intrebare sau nevoie specifica.",
+    card2Btn: "Deschideti un tichet",
+    card2ImgAlt: "Suport Acquafy",
+  },
+  he: {
+    card1Title: "בסיס ידע",
+    card1Desc: "גש לספריה המלאה שלנו של מאמרים, מדריכים והוראות כדי להפיק את המרב מהחוויה שלך עם Acquafy.",
+    card1Btn: "גש לבסיס הידע",
+    card1ImgAlt: "בסיס ידע Acquafy",
+    card2Title: "לא מצאת את מה שחיפשת?",
+    card2Desc: "הצוות שלנו מוכן לעזור לך בכל שאלה או צורך ספציפי.",
+    card2Btn: "פתח קריאה",
+    card2ImgAlt: "תמיכה של Acquafy",
+  },
 };
 
 export default function BaseConhecimentoSuporte() {
@@ -169,7 +229,7 @@ export default function BaseConhecimentoSuporte() {
             <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#2a2a2b]">
               {t.card2Desc}
             </p>
-            <a href="/contato" className="bg-white border border-[#0233c3] hover:bg-[#0233c3] group transition-colors flex gap-[10px] items-center justify-center min-h-[30px] overflow-hidden px-[20px] py-[10px] rounded-[8px] shrink-0">
+            <a href="/contact" className="bg-white border border-[#0233c3] hover:bg-[#0233c3] group transition-colors flex gap-[10px] items-center justify-center min-h-[30px] overflow-hidden px-[20px] py-[10px] rounded-[8px] shrink-0">
               <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] group-hover:text-white transition-colors text-center whitespace-nowrap">
                 {t.card2Btn}
               </span>

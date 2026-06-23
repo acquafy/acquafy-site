@@ -57,6 +57,17 @@ const T: Record<Lang, {
       { alt: "Global expansion", title: "Global expansion", description: "We bring smart solutions to the entire world." },
     ],
   },
+  "en-gb": {
+    heading: "Our Values",
+    values: [
+      { alt: "Innovation",       title: "Innovation",       description: "We create solutions that anticipate the future and solve real problems." },
+      { alt: "Integrity",        title: "Integrity",        description: "We act with ethics, transparency and responsibility." },
+      { alt: "Customer focus",   title: "Customer focus",   description: "We understand needs and deliver exceptional experiences." },
+      { alt: "Sustainability",   title: "Sustainability",   description: "We develop technologies that protect water and promote life." },
+      { alt: "Partnership",      title: "Partnership",      description: "We believe that together we go further and generate more impact." },
+      { alt: "Global expansion", title: "Global expansion", description: "We bring smart solutions to the whole world." },
+    ],
+  },
   es: {
     heading: "Nuestros Valores",
     values: [
@@ -132,6 +143,61 @@ const T: Record<Lang, {
       { alt: "지속 가능성",    title: "지속 가능성",    description: "물을 보호하고 생명을 증진하는 기술을 개발합니다." },
       { alt: "파트너십",       title: "파트너십",       description: "함께하면 더 멀리 가고 더 큰 영향을 만들 수 있다고 믿습니다." },
       { alt: "글로벌 확장",    title: "글로벌 확장",    description: "스마트 솔루션을 전 세계에 전달합니다." },
+    ],
+  },
+  sv: {
+    heading: "Våra Värderingar",
+    values: [
+      { alt: "Innovation",        title: "Innovation",        description: "Vi skapar lösningar som förutser framtiden och löser verkliga problem." },
+      { alt: "Integritet",        title: "Integritet",        description: "Vi agerar med etik, transparens och ansvar." },
+      { alt: "Kundfokus",         title: "Kundfokus",         description: "Vi förstår behov och levererar exceptionella upplevelser." },
+      { alt: "Hållbarhet",        title: "Hållbarhet",        description: "Vi utvecklar teknologier som skyddar vatten och främjar liv." },
+      { alt: "Partnerskap",       title: "Partnerskap",       description: "Vi tror att vi tillsammans går längre och skapar större påverkan." },
+      { alt: "Global expansion",  title: "Global expansion",  description: "Vi för smarta lösningar till hela världen." },
+    ],
+  },
+  fi: {
+    heading: "Arvomme",
+    values: [
+      { alt: "Innovaatio",        title: "Innovaatio",        description: "Luomme ratkaisuja, jotka ennakoivat tulevaisuutta ja ratkaisevat todellisia ongelmia." },
+      { alt: "Eheys",             title: "Eheys",             description: "Toimimme etiikan, läpinäkyvyyden ja vastuullisuuden mukaisesti." },
+      { alt: "Asiakaslähtöisyys", title: "Asiakaslähtöisyys", description: "Ymmärrämme tarpeet ja tarjoamme poikkeuksellisia kokemuksia." },
+      { alt: "Kestävyys",         title: "Kestävyys",         description: "Kehitämme teknologioita, jotka suojelevat vettä ja edistävät elämää." },
+      { alt: "Kumppanuus",        title: "Kumppanuus",        description: "Uskomme, että yhdessä menemme pidemmälle ja luomme suurempaa vaikutusta." },
+      { alt: "Globaali laajentuminen", title: "Globaali laajentuminen", description: "Viemme älykkäät ratkaisut koko maailmaan." },
+    ],
+  },
+  ru: {
+    heading: "Наши Ценности",
+    values: [
+      { alt: "Инновации",         title: "Инновации",         description: "Мы создаём решения, которые предвосхищают будущее и решают реальные проблемы." },
+      { alt: "Честность",         title: "Честность",         description: "Мы действуем с этикой, прозрачностью и ответственностью." },
+      { alt: "Клиентоориентированность", title: "Клиентоориентированность", description: "Мы понимаем потребности и обеспечиваем исключительный опыт." },
+      { alt: "Устойчивость",      title: "Устойчивость",      description: "Мы разрабатываем технологии, которые защищают воду и способствуют жизни." },
+      { alt: "Партнёрство",       title: "Партнёрство",       description: "Мы верим, что вместе мы идём дальше и создаём больше пользы." },
+      { alt: "Глобальное расширение", title: "Глобальное расширение", description: "Мы несём умные решения всему миру." },
+    ],
+  },
+  ro: {
+    heading: "Valorile Noastre",
+    values: [
+      { alt: "Inovatie",          title: "Inovatie",          description: "Cream solutii care anticipeaza viitorul si rezolva probleme reale." },
+      { alt: "Integritate",       title: "Integritate",       description: "Actionam cu etica, transparenta si responsabilitate." },
+      { alt: "Orientare catre client", title: "Orientare catre client", description: "Intelegem nevoile si oferim experiente exceptionale." },
+      { alt: "Sustenabilitate",   title: "Sustenabilitate",   description: "Dezvoltam tehnologii care protejeaza apa si promoveaza viata." },
+      { alt: "Parteneriat",       title: "Parteneriat",       description: "Credem ca impreuna mergem mai departe si generam mai mult impact." },
+      { alt: "Expansiune globala", title: "Expansiune globala", description: "Aducem solutii inteligente in intreaga lume." },
+    ],
+  },
+  he: {
+    heading: "הערכים שלנו",
+    values: [
+      { alt: "חדשנות",            title: "חדשנות",            description: "אנו יוצרים פתרונות שמקדימים את העתיד ופותרים בעיות אמיתיות." },
+      { alt: "יושרה",             title: "יושרה",             description: "אנו פועלים באתיקה, שקיפות ואחריות." },
+      { alt: "מיקוד בלקוח",       title: "מיקוד בלקוח",       description: "אנו מבינים צרכים ומספקים חוויות יוצאות דופן." },
+      { alt: "קיימות",            title: "קיימות",            description: "אנו מפתחים טכנולוגיות המגנות על המים ומקדמות חיים." },
+      { alt: "שותפות",            title: "שותפות",            description: "אנו מאמינים שיחד נגיע רחוק יותר ונייצר השפעה גדולה יותר." },
+      { alt: "התרחבות גלובלית",   title: "התרחבות גלובלית",   description: "אנו מביאים פתרונות חכמים לכל העולם." },
     ],
   },
 };

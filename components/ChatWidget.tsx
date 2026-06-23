@@ -1,5 +1,6 @@
-"use client";
+﻿"use client";
 import { createContext, useContext, useState, useEffect, type ReactNode } from "react";
+import { usePathname } from "next/navigation";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
 // ── Plugin configuration ───────────────────────────────────────────────────────
@@ -39,6 +40,16 @@ const T: Record<Lang, {
     close: "Fechar",
   },
   en: {
+    fabLabel: "Open Chat",
+    fabText: "Open Chat",
+    headerTitle: "Acquafy Chat",
+    headerStatus: "Online Support",
+    closeLabel: "Close chat",
+    bodyMessage: "Live chat will be enabled once a support plugin or API is configured.",
+    sendMessage: "Send a message",
+    close: "Close",
+  },
+  "en-gb": {
     fabLabel: "Open Chat",
     fabText: "Open Chat",
     headerTitle: "Acquafy Chat",
@@ -118,6 +129,56 @@ const T: Record<Lang, {
     sendMessage: "메시지 보내기",
     close: "닫기",
   },
+  sv: {
+    fabLabel: "Öppna chatt",
+    fabText: "Öppna chatt",
+    headerTitle: "Acquafy Chatt",
+    headerStatus: "Online-support",
+    closeLabel: "Stäng chatt",
+    bodyMessage: "Livechatten aktiveras när ett supportplugin eller API har konfigurerats.",
+    sendMessage: "Skicka ett meddelande",
+    close: "Stäng",
+  },
+  fi: {
+    fabLabel: "Avaa chat",
+    fabText: "Avaa chat",
+    headerTitle: "Acquafy Chat",
+    headerStatus: "Online-tuki",
+    closeLabel: "Sulje chat",
+    bodyMessage: "Live-chat aktivoituu, kun tukiplugin tai API on määritetty.",
+    sendMessage: "Lähetä viesti",
+    close: "Sulje",
+  },
+  ru: {
+    fabLabel: "Открыть чат",
+    fabText: "Открыть чат",
+    headerTitle: "Чат Acquafy",
+    headerStatus: "Онлайн-поддержка",
+    closeLabel: "Закрыть чат",
+    bodyMessage: "Онлайн-чат будет доступен после настройки плагина или API поддержки.",
+    sendMessage: "Отправить сообщение",
+    close: "Закрыть",
+  },
+  ro: {
+    fabLabel: "Deschide chat",
+    fabText: "Deschide chat",
+    headerTitle: "Chat Acquafy",
+    headerStatus: "Suport online",
+    closeLabel: "Inchide chat",
+    bodyMessage: "Chatul live va fi activat odata ce un plugin sau API de suport este configurat.",
+    sendMessage: "Trimite un mesaj",
+    close: "Inchide",
+  },
+  he: {
+    fabLabel: "פתח צ'אט",
+    fabText: "פתח צ'אט",
+    headerTitle: "צ'אט Acquafy",
+    headerStatus: "תמיכה מקוונת",
+    closeLabel: "סגור צ'אט",
+    bodyMessage: "הצ'אט החי יופעל לאחר הגדרת תוסף או API של תמיכה.",
+    sendMessage: "שלח הודעה",
+    close: "סגור",
+  },
 
   "pt-pt": {
     fabLabel: "Abrir chat",
@@ -146,6 +207,8 @@ export function ChatProvider({ children }: { children: ReactNode }) {
   const [isOpen, setIsOpen] = useState(false);
   const [extraBottom, setExtraBottom] = useState(0);
   const [pastBanner, setPastBanner] = useState(false);
+  const [isWideScreen, setIsWideScreen] = useState(false);
+  const pathname = usePathname();
   const { lang } = useLang();
   const t = T[lang];
 
@@ -172,6 +235,13 @@ export function ChatProvider({ children }: { children: ReactNode }) {
     return () => window.removeEventListener("scroll", check);
   }, []);
 
+  useEffect(() => {
+    const check = () => setIsWideScreen(window.innerWidth >= 1600);
+    window.addEventListener("resize", check, { passive: true });
+    check();
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   function openChat() {
     if (CHAT_AVAILABLE) {
       openChatWindow();
@@ -185,13 +255,13 @@ export function ChatProvider({ children }: { children: ReactNode }) {
       {children}
 
       {/* ── FAB — bottom-left chat bubble ── */}
-      {!isOpen && pastBanner && (
+      {!isOpen && (pastBanner || pathname.startsWith('/buy') || isWideScreen) && (
         <button
           onClick={openChat}
           aria-label={t.fabLabel}
           suppressHydrationWarning
           className="fixed right-[24px] z-[9998] flex items-center gap-[10px] px-[18px] py-[13px] rounded-full shadow-[0_4px_20px_0_rgba(2,51,195,0.35)] hover:shadow-[0_6px_28px_0_rgba(2,51,195,0.45)] hover:scale-[1.04] active:scale-[0.97] transition-all duration-200"
-          style={{ backgroundImage: "linear-gradient(112deg, #0233c3 6.19%, #9f3df5 93.35%)", bottom: 24 + extraBottom }}
+          style={{ backgroundImage: "linear-gradient(112deg, #0233c3 6.19%, #9f3df5 93.35%)", bottom: 24 + extraBottom + (pathname.startsWith('/buy/') ? 80 : 0) }}
         >
           <svg viewBox="0 0 24 24" fill="none" className="size-[20px] shrink-0" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
@@ -244,7 +314,7 @@ export function ChatProvider({ children }: { children: ReactNode }) {
                 {t.bodyMessage}
               </p>
               <a
-                href="/contato"
+                href="/contact"
                 className="flex items-center justify-center min-h-[44px] w-full rounded-[8px] overflow-hidden px-[20px] py-[10px] text-white font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] hover:opacity-90 transition-opacity"
                 style={{ backgroundImage: "linear-gradient(112deg, #0233c3 6.19%, #9f3df5 93.35%)" }}
               >

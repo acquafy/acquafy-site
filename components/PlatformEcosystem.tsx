@@ -54,6 +54,17 @@ const T: Record<Lang, { heading: string; labels: string[] }> = {
       "Commissions + Global Operation",
     ],
   },
+  "en-gb": {
+    heading: "How the platform connects the ecosystem",
+    labels: [
+      "Neo Products / Acquafy Media",
+      "App + IoT",
+      "Cloud Platform",
+      "AI Insights",
+      "QR Codes + Sales",
+      "Commissions + Global Operation",
+    ],
+  },
   es: {
     heading: "Cómo la plataforma conecta el ecosistema",
     labels: [
@@ -129,6 +140,61 @@ const T: Record<Lang, { heading: string; labels: string[] }> = {
       "AI Insights",
       "QR 코드 + 판매",
       "커미션 + 글로벌 운영",
+    ],
+  },
+  sv: {
+    heading: "Hur plattformen kopplar samman ekosystemet",
+    labels: [
+      "Neo-produkter / Acquafy Media",
+      "App + IoT",
+      "Molnplattform",
+      "AI Insights",
+      "QR-koder + Försäljning",
+      "Provisioner + Global drift",
+    ],
+  },
+  fi: {
+    heading: "Miten alusta yhdistää ekosysteemin",
+    labels: [
+      "Neo-tuotteet / Acquafy Media",
+      "App + IoT",
+      "Pilvialusta",
+      "AI Insights",
+      "QR-koodit + Myynti",
+      "Provisiot + Globaali toiminta",
+    ],
+  },
+  ru: {
+    heading: "Как платформа связывает экосистему",
+    labels: [
+      "Продукты Neo / Acquafy Media",
+      "App + IoT",
+      "Облачная платформа",
+      "AI Insights",
+      "QR-коды + Продажи",
+      "Комиссии + Глобальная операция",
+    ],
+  },
+  ro: {
+    heading: "Cum platforma conectează ecosistemul",
+    labels: [
+      "Produse Neo / Acquafy Media",
+      "App + IoT",
+      "Platformă Cloud",
+      "AI Insights",
+      "Coduri QR + Vânzări",
+      "Comisioane + Operațiune Globală",
+    ],
+  },
+  he: {
+    heading: "איך הפלטפורמה מחברת את המוסד",
+    labels: [
+      "מוצרי Neo / Acquafy Media",
+      "App + IoT",
+      "פלטפורמת ענן",
+      "AI Insights",
+      "קודי QR + מכירות",
+      "עמלות + פעילות גלובלית",
     ],
   },
 };

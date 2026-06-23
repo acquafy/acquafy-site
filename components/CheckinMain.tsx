@@ -49,9 +49,9 @@ const PRODUCT_GROUPS: ProductGroup[] = [
     products: [
       { id: "neo-up",               img: "/figma-assets/neo-up-catalog.webp",      name: "Neo UP",              sub: "Apenas Natural",        tank: "—",            price: 1490 },
       { id: "neo-fit",              img: "/figma-assets/neo-fit.webp",             name: "Neo FIT",             sub: "6 em 1",                tank: "Tanque 400ml", price: 1990, badge: "Mais Vendido" },
-      { id: "neo-smart-h2",         img: "/figma-assets/neo-smart-h2.webp",        name: "Neo SMART H₂",        sub: "7 em 1 + Hidrogenada",  tank: "Tanque 800ml", price: 2490, h2: true },
       { id: "neo-touch",            img: "/figma-assets/neo-touch.webp",           name: "Neo TOUCH",           sub: "6 em 1",                tank: "Tanque 800ml", price: 2990 },
       { id: "neo-plus",             img: "/figma-assets/neo-plus.webp",            name: "Neo PLUS",            sub: "6 em 1",                tank: "Tanque 1500ml",price: 3490 },
+      { id: "neo-smart-h2",         img: "/figma-assets/neo-smart-h2.webp",        name: "Neo SMART H₂",        sub: "7 em 1 + Hidrogenada",  tank: "Tanque 800ml", price: 2490, h2: true },
       { id: "neo-ultra",            img: "/figma-assets/neo-ultra.webp",           name: "Neo ULTRA",           sub: "6 em 1",                tank: "Tanque 3L",    price: 3990 },
       { id: "neo-ultra-spark",      img: "/figma-assets/neo-ultra-spark.webp",     name: "Neo ULTRA SPARK",     sub: "7 em 1 + Gás",          tank: "Tanque 3L",    price: 4490, gas: true },
       { id: "neo-ultra-spark-h2",   img: "/figma-assets/neo-ultra-spark-h2.webp",  name: "Neo ULTRA SPARK H₂",  sub: "8 em 1 + Gás + H₂",    tank: "Tanque 3L",    price: 4990, gas: true, h2: true },
@@ -1856,7 +1856,6 @@ export default function CheckinMain() {
                                   <p className={`font-['Avenir_LT_Pro:85_Heavy'] text-[12px] text-center leading-tight w-full`} style={{ color: selected ? accent : "#1f2e91" }}>
                                     {p.name}
                                   </p>
-                                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[10px] text-[#777] text-center w-full">{p.sub}</p>
                                   <p className="font-['Avenir_LT_Pro:95_Black'] text-[13px] text-center w-full" style={{ color: accent }}>{formatBRL(p.price)}</p>
                                 </button>
                                 {/* Qty controls (only when in cart) */}
@@ -2237,7 +2236,6 @@ export default function CheckinMain() {
                           </div>
                           <div className="flex-1 min-w-0 flex flex-col gap-[4px]">
                             <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-tight" style={{ color: "#1f2e91" }}>{p.name}</p>
-                            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#777]">{p.sub}</p>
                             <p className="font-['Avenir_LT_Pro:95_Black'] text-[14px]" style={{ color: accent }}>{formatBRL(p.price)}</p>
                             <div className="flex items-center gap-[6px] mt-[4px]">
                               <button type="button" onClick={() => updateQty(p.id, -1)}

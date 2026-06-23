@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
 // ── Ícones dos cartões ────────────────────────────────────────────────────────
@@ -76,6 +76,26 @@ const T: Record<Lang, {
         title: "Global Operations",
         subtitle: "Standardization, scalability and centralized data",
         desc: "Manage multiple units and markets with unified data and standardized processes.",
+      },
+    ],
+  },
+  "en-gb": {
+    heading: "Benefits for customers, partners and operators",
+    cards: [
+      {
+        title: "Consumer",
+        subtitle: "Ease, control and peace of mind",
+        desc: "Take full control of your purifier, receive alerts and ensure pure water with greater comfort and safety.",
+      },
+      {
+        title: "Partner",
+        subtitle: "Visibility, support and connected operations",
+        desc: "Monitor your customers, receive insights and offer faster, more efficient service.",
+      },
+      {
+        title: "Global Operations",
+        subtitle: "Standardisation, scalability and centralised data",
+        desc: "Manage multiple units and markets with unified data and standardised processes.",
       },
     ],
   },
@@ -216,6 +236,106 @@ const T: Record<Lang, {
         title: "글로벌 운영",
         subtitle: "표준화, 확장성 및 중앙 집중식 데이터",
         desc: "통합된 데이터와 표준화된 프로세스로 여러 단위와 시장을 관리하세요.",
+      },
+    ],
+  },
+  sv: {
+    heading: "Fördelar för kunder, partners och operatörer",
+    cards: [
+      {
+        title: "Konsument",
+        subtitle: "Enkelhet, kontroll och sinnesro",
+        desc: "Ta full kontroll över din reningsapparat, ta emot varningar och säkerställ rent vatten med större komfort och säkerhet.",
+      },
+      {
+        title: "Partner",
+        subtitle: "Synlighet, support och sammankopplade operationer",
+        desc: "Övervaka dina kunder, ta emot insikter och erbjud snabbare och mer effektiv service.",
+      },
+      {
+        title: "Global Verksamhet",
+        subtitle: "Standardisering, skalbarhet och centraliserad data",
+        desc: "Hantera flera enheter och marknader med enhetliga data och standardiserade processer.",
+      },
+    ],
+  },
+  fi: {
+    heading: "Hyödyt asiakkaille, kumppaneille ja operaattoreille",
+    cards: [
+      {
+        title: "Kuluttaja",
+        subtitle: "Helppous, hallinta ja mielenrauha",
+        desc: "Hallitse puhdistintasi täysin, vastaanota hälytyksiä ja varmista puhdas vesi suuremmalla mukavuudella ja turvallisuudella.",
+      },
+      {
+        title: "Kumppani",
+        subtitle: "Näkyvyys, tuki ja yhdistetyt toiminnot",
+        desc: "Seuraa asiakkaitasi, vastaanota oivalluksia ja tarjoa nopeampaa ja tehokkaampaa palvelua.",
+      },
+      {
+        title: "Globaali Toiminta",
+        subtitle: "Standardointi, skaalautuvuus ja keskitetty data",
+        desc: "Hallitse useita yksiköitä ja markkinoita yhtenäisellä datalla ja standardoiduilla prosesseilla.",
+      },
+    ],
+  },
+  ru: {
+    heading: "Преимущества для клиентов, партнёров и операторов",
+    cards: [
+      {
+        title: "Потребитель",
+        subtitle: "Простота, контроль и спокойствие",
+        desc: "Полностью контролируйте свой очиститель, получайте оповещения и обеспечивайте чистую воду с большим комфортом и безопасностью.",
+      },
+      {
+        title: "Партнёр",
+        subtitle: "Видимость, поддержка и связанные операции",
+        desc: "Отслеживайте своих клиентов, получайте аналитику и предоставляйте более быстрый и эффективный сервис.",
+      },
+      {
+        title: "Глобальная Операция",
+        subtitle: "Стандартизация, масштабируемость и централизованные данные",
+        desc: "Управляйте несколькими подразделениями и рынками с единой базой данных и стандартизированными процессами.",
+      },
+    ],
+  },
+  ro: {
+    heading: "Beneficii pentru clienti, parteneri si operatori",
+    cards: [
+      {
+        title: "Consumator",
+        subtitle: "Usurinta, control si liniste sufleteasca",
+        desc: "Preia controlul deplin asupra purificatorului tau, primeste alerte si asigura apa pura cu mai mult confort si siguranta.",
+      },
+      {
+        title: "Partener",
+        subtitle: "Vizibilitate, suport si operatiuni conectate",
+        desc: "Monitorizeaza-ti clientii, primeste informatii valoroase si ofera servicii mai rapide si mai eficiente.",
+      },
+      {
+        title: "Operatiuni Globale",
+        subtitle: "Standardizare, scalabilitate si date centralizate",
+        desc: "Gestioneaza mai multe unitati si piete cu date unificate si procese standardizate.",
+      },
+    ],
+  },
+  he: {
+    heading: "יתרונות ללקוחות, שותפים ומפעילים",
+    cards: [
+      {
+        title: "צרכן",
+        subtitle: "קלות, שליטה ושקט נפשי",
+        desc: "קח שליטה מלאה על המטהר שלך, קבל התראות והבטח מים טהורים עם נוחות ובטיחות רבה יותר.",
+      },
+      {
+        title: "שותף",
+        subtitle: "נראות, תמיכה ופעילות מחוברת",
+        desc: "עקוב אחר לקוחותיך, קבל תובנות והצע שירות מהיר ויעיל יותר.",
+      },
+      {
+        title: "פעילות גלובלית",
+        subtitle: "סטנדרטיזציה, מדרגיות ונתונים מרכזיים",
+        desc: "נהל יחידות ושווקים מרובים עם נתונים מאוחדים ותהליכים מתוקננים.",
       },
     ],
   },

@@ -51,6 +51,17 @@ const T: Record<Lang, {
     ],
     imgAlt: "Neo Acquafy Line",
   },
+  "en-gb": {
+    heading1: "Talk to ",
+    heading2: "Acquafy",
+    body: "Have questions, want to learn more about our solutions or become a partner? We're ready to listen and find the best solution together.",
+    features: [
+      { title: "Specialised support",  description: "Our team is ready to help you." },
+      { title: "Quick response",       description: "We get back to you as fast as possible." },
+      { title: "Global reach",         description: "Present in more than 16 languages with local support." },
+    ],
+    imgAlt: "Neo Acquafy Line",
+  },
   es: {
     heading1: "Habla con ",
     heading2: "Acquafy",
@@ -127,6 +138,61 @@ const T: Record<Lang, {
       { title: "글로벌 서비스", description: "16개 이상의 언어로 로컬 지원을 제공합니다." },
     ],
     imgAlt: "Acquafy Neo 라인",
+  },
+  sv: {
+    heading1: "Prata med ",
+    heading2: "Acquafy",
+    body: "Har du frågor, vill du veta mer om våra lösningar eller bli partner? Vi är redo att lyssna och hitta den bästa lösningen tillsammans.",
+    features: [
+      { title: "Specialiserat stöd",  description: "Vårt team är redo att hjälpa dig." },
+      { title: "Snabbt svar",         description: "Vi återkommer till dig så snabbt som möjligt." },
+      { title: "Global räckvidd",     description: "Närvarande på mer än 16 språk med lokalt stöd." },
+    ],
+    imgAlt: "Acquafy Neo-linjen",
+  },
+  fi: {
+    heading1: "Ota yhteyttä ",
+    heading2: "Acquafy",
+    body: "Onko sinulla kysyttävää, haluatko tietää enemmän ratkaisuistamme tai tulla kumppaniksi? Olemme valmiita kuuntelemaan ja löytämään parhaan ratkaisun yhdessä.",
+    features: [
+      { title: "Erikoistunut tuki",   description: "Tiimimme on valmis auttamaan sinua." },
+      { title: "Nopea vastaus",       description: "Palaamme sinulle mahdollisimman pian." },
+      { title: "Globaali kattavuus",  description: "Läsnä yli 16 kielellä paikallisen tuen kera." },
+    ],
+    imgAlt: "Acquafy Neo -linja",
+  },
+  ru: {
+    heading1: "Свяжитесь с ",
+    heading2: "Acquafy",
+    body: "Есть вопросы, хотите узнать больше о наших решениях или стать партнёром? Мы готовы выслушать вас и вместе найти лучшее решение.",
+    features: [
+      { title: "Специализированная поддержка", description: "Наша команда готова помочь вам." },
+      { title: "Быстрый ответ",                description: "Мы свяжемся с вами как можно скорее." },
+      { title: "Глобальное присутствие",       description: "Доступно более чем на 16 языках с локальной поддержкой." },
+    ],
+    imgAlt: "Линейка Acquafy Neo",
+  },
+  ro: {
+    heading1: "Vorbeste cu ",
+    heading2: "Acquafy",
+    body: "Ai intrebari, vrei sa afli mai multe despre solutiile noastre sau sa devii partener? Suntem gata sa te ascultam si sa gasim impreuna cea mai buna solutie.",
+    features: [
+      { title: "Suport specializat",  description: "Echipa noastra este gata sa te ajute." },
+      { title: "Raspuns rapid",       description: "Iti raspundem cat mai curand posibil." },
+      { title: "Acoperire globala",   description: "Prezenti in peste 16 limbi cu suport local." },
+    ],
+    imgAlt: "Linia Neo Acquafy",
+  },
+  he: {
+    heading1: "דברו עם ",
+    heading2: "Acquafy",
+    body: "יש לכם שאלות, רוצים לדעת יותר על הפתרונות שלנו או להפוך לשותפים? אנחנו מוכנים להקשיב ולמצוא יחד את הפתרון הטוב ביותר.",
+    features: [
+      { title: "תמיכה מקצועית",    description: "הצוות שלנו מוכן לעזור לכם." },
+      { title: "מענה מהיר",        description: "נחזור אליכם בהקדם האפשרי." },
+      { title: "כיסוי גלובלי",     description: "נוכחים ביותר מ-16 שפות עם תמיכה מקומית." },
+    ],
+    imgAlt: "קו Neo Acquafy",
   },
 };
 

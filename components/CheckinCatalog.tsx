@@ -29,14 +29,8 @@ function ProductCard({ variant, family }: { variant: CheckinVariant; family: Che
       >
         {variant.name}
       </p>
-      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] leading-[17px] text-center w-full" style={{ color: nameColor }}>
-        {variant.desc}
-      </p>
-      <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] leading-[15px] text-[#9ca3af] text-center w-full">
-        {variant.formato}
-      </p>
       <Link
-        href={`/checkin/${family.slug}`}
+        href={`/buy/checkin-${family.slug}`}
         className="flex items-center justify-center min-h-[40px] px-[10px] py-[8px] rounded-[8px] w-full shrink-0 font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white hover:opacity-90 active:opacity-80 transition-opacity mt-auto"
         style={{ backgroundImage: grad }}
       >
@@ -57,6 +51,17 @@ function ProductRow({ families }: { families: CheckinFamily[] }) {
   );
 }
 
+function ProductGrid5({ families }: { families: CheckinFamily[] }) {
+  const items = families.flatMap((f) => f.variants.map((v) => ({ variant: v, family: f })));
+  return (
+    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-[15px] w-full">
+      {items.map(({ variant, family }) => (
+        <ProductCard key={variant.id} variant={variant} family={family} />
+      ))}
+    </div>
+  );
+}
+
 export default function CheckinCatalog() {
   const neoUp         = getFamily("neo-up");
   const neoEssentials = getFamily("neo-essentials");
@@ -65,6 +70,7 @@ export default function CheckinCatalog() {
   const neoInfinity   = getFamily("neo-infinity");
   const neoPrestige   = getFamily("neo-prestige");
   const neoPrime      = getFamily("neo-prime");
+  const acquafyMedia  = getFamily("acquafy-media");
 
   return (
     <section className="w-full bg-white pt-[120px] pb-[100px] px-[20px]">
@@ -87,10 +93,8 @@ export default function CheckinCatalog() {
         </div>
 
         {/* Neo Premium */}
-        <div className="bg-[#f6f9fe] flex flex-col gap-[20px] items-center justify-center p-[20px] rounded-[16px] w-full">
-          <ProductRow families={[neoInfinity]} />
-          <ProductRow families={[neoPrestige]} />
-          <ProductRow families={[neoPrime]} />
+        <div className="bg-[#f6f9fe] p-[20px] rounded-[16px] w-full">
+          <ProductGrid5 families={[acquafyMedia, neoInfinity, neoPrestige, neoPrime]} />
         </div>
 
       </div>

@@ -34,6 +34,15 @@ const T: Record<Lang, { h2: string; descs: string[] }> = {
       "It adjusts the pH range of the water, making the filtered water alkaline with a pH above 9, antioxidant and hydrogen-rich.",
     ],
   },
+  "en-gb": {
+    h2: "Essentials Line - High Performance Filtration System",
+    descs: [
+      "Removes iodine, dirt, rust, filters impurities, chemical compounds, suspended particles, odours and flavours normally present in tap water.",
+      "Removes chlorine, chemical compounds, suspended particles, odours and flavours normally present in tap water.",
+      "With ultra-precision micropores, removes organisms, macromolecular substances, red worm, viruses and bacteria.",
+      "It adjusts the pH range of the water, making the filtered water alkaline with a pH above 9, antioxidant and hydrogen-rich.",
+    ],
+  },
   es: {
     h2: "Línea Essentials - Sistema de Filtración de Alto Rendimiento",
     descs: [
@@ -95,6 +104,51 @@ const T: Record<Lang, { h2: string; descs: string[] }> = {
       "수돗물에 일반적으로 존재하는 염소, 화학 물질, 부유 입자, 냄새 및 맛을 제거합니다.",
       "초정밀 마이크로포어로 유기물, 고분자 물질, 붉은 벌레, 바이러스 및 박테리아를 제거합니다.",
       "물의 pH 범위를 조절하여 여과된 물을 pH 9 이상의 알칼리성으로 만들고, 항산화 효과와 수소가 풍부한 물로 만듭니다.",
+    ],
+  },
+  sv: {
+    h2: "Essentials-linjen - Högpresterande filtreringssystem",
+    descs: [
+      "Tar bort jod, smuts, rost, filtrerar föroreningar, kemiska föreningar, suspenderade partiklar, lukter och smaker som normalt finns i kranvatten.",
+      "Tar bort klor, kemiska föreningar, suspenderade partiklar, lukter och smaker som normalt finns i kranvatten.",
+      "Med ultraprecisa mikroporerna avlägsnas organismer, makromolekylära ämnen, röda maskar, virus och bakterier.",
+      "Den justerar vattnets pH-intervall och gör det filtrerade vattnet alkaliskt med ett pH över 9, antioxidant och rikt på väte.",
+    ],
+  },
+  fi: {
+    h2: "Essentials-linja - Korkean suorituskyvyn suodatusjärjestelmä",
+    descs: [
+      "Poistaa jodin, lian, ruosteen, suodattaa epäpuhtauksia, kemiallisia yhdisteitä, suspendoituneita hiukkasia, hajuja ja makuja, joita yleensä esiintyy vesijohtvedessä.",
+      "Poistaa kloorin, kemialliset yhdisteet, suspendoituneet hiukkaset, hajut ja maut, joita yleensä esiintyy vesijohtvedessä.",
+      "Ultratarkoilla mikrohuokosilla poistetaan organismit, makromolekyyliset aineet, punamadot, virukset ja bakteerit.",
+      "Se säätää veden pH-aluetta, tehden suodatetusta vedestä emäksistä pH-arvolla yli 9, antioksidanttista ja runsaasti vetyä sisältävää.",
+    ],
+  },
+  ru: {
+    h2: "Линейка Essentials - Высокопроизводительная система фильтрации",
+    descs: [
+      "Удаляет йод, грязь, ржавчину, фильтрует примеси, химические соединения, взвешенные частицы, запахи и привкусы, обычно присутствующие в водопроводной воде.",
+      "Удаляет хлор, химические соединения, взвешенные частицы, запахи и привкусы, обычно присутствующие в водопроводной воде.",
+      "С помощью ультраточных микропор удаляются организмы, макромолекулярные вещества, красные черви, вирусы и бактерии.",
+      "Регулирует диапазон pH воды, делая отфильтрованную воду щелочной с pH выше 9, антиоксидантной и богатой водородом.",
+    ],
+  },
+  ro: {
+    h2: "Linia Essentials - Sistem de Filtrare de Inalta Performanta",
+    descs: [
+      "Elimina iodul, murdaria, rugina, filtreaza impuritatile, compusii chimici, particulele in suspensie, mirosurile si gusturile prezente in mod obisnuit in apa de la robinet.",
+      "Elimina clorul, compusii chimici, particulele in suspensie, mirosurile si gusturile prezente in mod obisnuit in apa de la robinet.",
+      "Cu micropori de ultraprecizie, elimina organismele, substantele macromoleculare, viermii rosii, virusurile si bacteriile.",
+      "Regleaza intervalul de pH al apei, facand apa filtrata alcalina cu un pH peste 9, antioxidanta si bogata in hidrogen.",
+    ],
+  },
+  he: {
+    h2: "קו Essentials - מערכת סינון בביצועים גבוהים",
+    descs: [
+      "מסיר יוד, לכלוך, חלודה, מסנן זיהומים, תרכובות כימיות, חלקיקים מרחפים, ריחות וטעמים הנמצאים בדרך כלל במי הברז.",
+      "מסיר כלור, תרכובות כימיות, חלקיקים מרחפים, ריחות וטעמים הנמצאים בדרך כלל במי הברז.",
+      "באמצעות מיקרו-נקבוביות בדיוק-על, מסיר אורגניזמים, חומרים מקרומולקולריים, תולעים אדומות, וירוסים וחיידקים.",
+      "הוא מכוונן את טווח ה-pH של המים, הופך את המים המסוננים לאלקליניים עם pH מעל 9, נוגד חמצון ועשיר במימן.",
     ],
   },
   "pt-pt": {

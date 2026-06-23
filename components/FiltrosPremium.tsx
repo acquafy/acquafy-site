@@ -35,6 +35,15 @@ const T: Record<Lang, { h2: string; descs: string[] }> = {
       "It adjusts the pH range of the water, making the filtered water alkaline with a pH above 9, antioxidant and hydrogen-rich.",
     ],
   },
+  "en-gb": {
+    h2: "Premium Line - High Performance Filtration System",
+    descs: [
+      "Removes iodine, dirt, rust, filters impurities, chemical compounds, suspended particles, odours and flavours normally present in tap water.",
+      "Removes chlorine, chemical compounds, suspended particles, odours and flavours normally present in tap water.",
+      "System that produces water with 99% purity (free of viruses and bacteria down to 0.5 microns), developed for people who want or need to consume extremely pure water.",
+      "It adjusts the pH range of the water, making the filtered water alkaline with a pH above 9, antioxidant and hydrogen-rich.",
+    ],
+  },
   es: {
     h2: "Línea Premium - Sistema de Filtración de Alto Rendimiento",
     descs: [
@@ -96,6 +105,51 @@ const T: Record<Lang, { h2: string; descs: string[] }> = {
       "수돗물에 일반적으로 존재하는 염소, 화학 물질, 부유 입자, 냄새 및 맛을 제거합니다.",
       "99% 순도의 물을 생산하는 시스템(0.5마이크론까지의 바이러스 및 박테리아 제거)으로, 극도로 순수한 물을 원하거나 필요로 하는 사람들을 위해 개발되었습니다.",
       "물의 pH 범위를 조절하여 여과된 물을 pH 9 이상의 알칼리성으로 만들고, 항산화 효과와 수소가 풍부한 물로 만듭니다.",
+    ],
+  },
+  sv: {
+    h2: "Premium-linjen - Högpresterande filtressionssystem",
+    descs: [
+      "Tar bort jod, smuts, rost, filtrerar orenheter, kemiska föreningar, suspenderade partiklar, lukter och smaker som normalt finns i kranvatten.",
+      "Tar bort klor, kemiska föreningar, suspenderade partiklar, lukter och smaker som normalt finns i kranvatten.",
+      "System som producerar vatten med 99% renhet (fritt från virus och bakterier ned till 0,5 mikron), utvecklat för personer som vill eller behöver konsumera extremt rent vatten.",
+      "Det justerar vattnets pH-intervall och gör det filtrerade vattnet alkaliskt med ett pH över 9, antioxidant och väterikt.",
+    ],
+  },
+  fi: {
+    h2: "Premium-linja - Korkean suorituskyvyn suodatusjärjestelmä",
+    descs: [
+      "Poistaa jodin, lian, ruosteen, suodattaa epäpuhtaudet, kemialliset yhdisteet, leijuvat hiukkaset, hajut ja maut, joita normaalisti esiintyy hanavedessä.",
+      "Poistaa kloorin, kemialliset yhdisteet, leijuvat hiukkaset, hajut ja maut, joita normaalisti esiintyy hanavedessä.",
+      "Järjestelmä, joka tuottaa vettä 99 %:n puhtaudella (vapaa viruksista ja bakteereista 0,5 mikrometriin asti), kehitetty henkilöille, jotka haluavat tai tarvitsevat äärimmäisen puhdasta vettä.",
+      "Se säätää veden pH-aluetta tehden suodatetusta vedestä alkalisen pH-arvolla yli 9, antioksidantti- ja vetypitoiseksi.",
+    ],
+  },
+  ru: {
+    h2: "Премиум-линия - Высокопроизводительная система фильтрации",
+    descs: [
+      "Удаляет йод, грязь, ржавчину, фильтрует примеси, химические соединения, взвешенные частицы, запахи и привкусы, обычно присутствующие в водопроводной воде.",
+      "Удаляет хлор, химические соединения, взвешенные частицы, запахи и привкусы, обычно присутствующие в водопроводной воде.",
+      "Система, производящая воду с чистотой 99% (свободную от вирусов и бактерий размером до 0,5 микрон), разработана для людей, которые хотят или нуждаются в потреблении исключительно чистой воды.",
+      "Регулирует диапазон pH воды, делая отфильтрованную воду щелочной с pH выше 9, антиоксидантной и богатой водородом.",
+    ],
+  },
+  ro: {
+    h2: "Linia Premium - Sistem de filtrare de inalta performanta",
+    descs: [
+      "Elimina iodul, murdaria, rugina, filtreaza impuritatile, compusii chimici, particulele in suspensie, mirosurile si gusturile prezente in mod normal in apa de la robinet.",
+      "Elimina clorul, compusii chimici, particulele in suspensie, mirosurile si gusturile prezente in mod normal in apa de la robinet.",
+      "Sistem care produce apa cu o puritate de 99% (lipsita de virusi si bacterii pana la 0,5 microni), dezvoltat pentru persoanele care doresc sau au nevoie sa consume apa extrem de pura.",
+      "Regleaza intervalul de pH al apei, facand apa filtrata alcalina cu un pH peste 9, antioxidanta si bogata in hidrogen.",
+    ],
+  },
+  he: {
+    h2: "קו פרמיום - מערכת סינון בעלת ביצועים גבוהים",
+    descs: [
+      "מסיר יוד, לכלוך, חלודה, מסנן אי-נקיות, תרכובות כימיות, חלקיקים מרחפים, ריחות וטעמים הנמצאים בדרך כלל במי הברז.",
+      "מסיר כלור, תרכובות כימיות, חלקיקים מרחפים, ריחות וטעמים הנמצאים בדרך כלל במי הברז.",
+      "מערכת המייצרת מים בטוהר של 99% (נקיים מווירוסים וחיידקים עד 0.5 מיקרון), פותחה עבור אנשים שרוצים או זקוקים לצריכת מים טהורים במיוחד.",
+      "היא מכוונת את טווח ה-pH של המים, הופכת את המים המסוננים לאלקליים עם pH מעל 9, נוגדי חמצון ועשירים במימן.",
     ],
   },
   "pt-pt": {

@@ -1,6 +1,8 @@
-"use client";
+﻿"use client";
+import { useState } from "react";
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
+import { PartnerModal, FORM_T } from "./ModelosParceria";
 
 const imgBg          = "/figma-assets/bg-c.webp";
 const imgProduct     = "/figma-assets/acquafy-media-totem.webp";
@@ -37,14 +39,14 @@ const BOTTOM_ICONS = [
 
 const T: Record<Lang, {
   descLine1: string; descLine2: string;
-  btnInvest: string;
+  btnInvest: string; btnBuy: string;
   benefits: { title: string; desc: string }[];
   bottomFeatures: { title: string; desc: string }[];
 }> = {
   pt: {
     descLine1: "Plataforma Inteligente de Água + Media Digital + Receita Recorrente.",
     descLine2: "Transforme locais públicos em pontos de hidratação, mídia e negócios. Ganhe com anúncios e venda dos produtos Acquafy Neo.",
-    btnInvest: "Quero investir no Media Network",
+    btnInvest: "Quero investir no Media Network", btnBuy: "Comprar Acquafy Media",
     benefits: [
       { title: "Receita com Anúncios",    desc: "Monetize com companhias de alta viabilidade e marcas relevantes." },
       { title: "Dashboard do Operador",   desc: "Gestão completa de campanhas, usuários, vendas e indicadores." },
@@ -62,7 +64,7 @@ const T: Record<Lang, {
   "pt-pt": {
     descLine1: "Plataforma Inteligente de Água + Media Digital + Receita Recorrente.",
     descLine2: "Transforme locais públicos em pontos de hidratação, média e negócios. Ganhe com anúncios e venda dos produtos Acquafy Neo.",
-    btnInvest: "Quero investir no Media Network",
+    btnInvest: "Quero investir no Media Network", btnBuy: "Comprar Acquafy Media",
     benefits: [
       { title: "Receita com Anúncios",    desc: "Monetize com empresas de alta viabilidade e marcas relevantes." },
       { title: "Dashboard do Operador",   desc: "Gestão completa de campanhas, utilizadores, vendas e indicadores." },
@@ -80,7 +82,7 @@ const T: Record<Lang, {
   en: {
     descLine1: "Smart Water + Digital Media + Recurring Revenue Platform.",
     descLine2: "Transform public spaces into hydration, media and business hubs. Earn with ads and sales of Acquafy Neo products.",
-    btnInvest: "I want to invest in Media Network",
+    btnInvest: "I want to invest in Media Network", btnBuy: "Buy Acquafy Media",
     benefits: [
       { title: "Ad Revenue",            desc: "Monetize with high-viability companies and relevant brands." },
       { title: "Operator Dashboard",    desc: "Full management of campaigns, users, sales and indicators." },
@@ -95,10 +97,28 @@ const T: Record<Lang, {
       { title: "Data Security",         desc: "Compliance and GDPR" },
     ],
   },
+  "en-gb": {
+    descLine1: "Smart Water + Digital Media + Recurring Revenue Platform.",
+    descLine2: "Transform public spaces into hydration, media and business hubs. Earn with ads and sales of Acquafy Neo products.",
+    btnInvest: "I want to invest in Media Network", btnBuy: "Buy Acquafy Media",
+    benefits: [
+      { title: "Ad Revenue",            desc: "Monetise with high-viability companies and relevant brands." },
+      { title: "Operator Dashboard",    desc: "Full management of campaigns, users, sales and indicators." },
+      { title: "AI + Operational Data", desc: "Smart insights for maintenance, performance and expansion." },
+      { title: "Recurring Revenue",     desc: "Continuous revenue model with media and water sales." },
+      { title: "Ideal Locations",       desc: "Airports, shopping centres, hospitals, businesses, universities and much more." },
+    ],
+    bottomFeatures: [
+      { title: "Advanced Connectivity", desc: "4G/5G + Wi-Fi" },
+      { title: "24h Support",           desc: "Dedicated service" },
+      { title: "Smart Monitoring",      desc: "Usage, filters and consumption" },
+      { title: "Data Security",         desc: "Compliance and GDPR" },
+    ],
+  },
   es: {
     descLine1: "Plataforma Inteligente de Agua + Media Digital + Ingresos Recurrentes.",
     descLine2: "Transforma espacios públicos en puntos de hidratación, medios y negocios. Gana con anuncios y venta de productos Acquafy Neo.",
-    btnInvest: "Quiero invertir en Media Network",
+    btnInvest: "Quiero invertir en Media Network", btnBuy: "Comprar Acquafy Media",
     benefits: [
       { title: "Ingresos por Anuncios",  desc: "Monetiza con empresas de alta viabilidad y marcas relevantes." },
       { title: "Panel del Operador",     desc: "Gestión completa de campañas, usuarios, ventas e indicadores." },
@@ -116,7 +136,7 @@ const T: Record<Lang, {
   fr: {
     descLine1: "Plateforme intelligente Eau + Médias Digitaux + Revenus Récurrents.",
     descLine2: "Transformez les espaces publics en points d'hydratation, de médias et d'affaires. Gagnez avec des publicités et la vente de produits Acquafy Neo.",
-    btnInvest: "Je veux investir dans Media Network",
+    btnInvest: "Je veux investir dans Media Network", btnBuy: "Acheter Acquafy Media",
     benefits: [
       { title: "Revenus Publicitaires",   desc: "Monétisez avec des entreprises à forte viabilité et des marques pertinentes." },
       { title: "Tableau de Bord Opérateur", desc: "Gestion complète des campagnes, utilisateurs, ventes et indicateurs." },
@@ -134,7 +154,7 @@ const T: Record<Lang, {
   de: {
     descLine1: "Intelligente Wasser + Digitale Medien + Wiederkehrende Einnahmen Plattform.",
     descLine2: "Verwandeln Sie öffentliche Räume in Hydrations-, Medien- und Geschäftszentren. Verdienen Sie mit Werbung und dem Verkauf von Acquafy Neo-Produkten.",
-    btnInvest: "Ich möchte in Media Network investieren",
+    btnInvest: "Ich möchte in Media Network investieren", btnBuy: "Acquafy Media kaufen",
     benefits: [
       { title: "Werbeeinnahmen",          desc: "Monetarisieren Sie mit hochrentablen Unternehmen und relevanten Marken." },
       { title: "Betreiber-Dashboard",     desc: "Vollständige Verwaltung von Kampagnen, Nutzern, Verkäufen und Kennzahlen." },
@@ -152,7 +172,7 @@ const T: Record<Lang, {
   it: {
     descLine1: "Piattaforma intelligente Acqua + Media Digitali + Ricavi Ricorrenti.",
     descLine2: "Trasforma gli spazi pubblici in punti di idratazione, media e business. Guadagna con annunci e vendita di prodotti Acquafy Neo.",
-    btnInvest: "Voglio investire in Media Network",
+    btnInvest: "Voglio investire in Media Network", btnBuy: "Acquista Acquafy Media",
     benefits: [
       { title: "Ricavi Pubblicitari",     desc: "Monetizza con aziende ad alta redditività e brand rilevanti." },
       { title: "Dashboard dell'Operatore", desc: "Gestione completa di campagne, utenti, vendite e indicatori." },
@@ -170,7 +190,7 @@ const T: Record<Lang, {
   zh: {
     descLine1: "智能水 + 数字媒体 + 经常性收入平台。",
     descLine2: "将公共空间转变为补水、媒体和商业枢纽。通过广告和销售 Acquafy Neo 产品获得收益。",
-    btnInvest: "我想投资 Media Network",
+    btnInvest: "我想投资 Media Network", btnBuy: "购买 Acquafy Media",
     benefits: [
       { title: "广告收入",               desc: "与高可行性企业和相关品牌合作变现。" },
       { title: "运营商仪表板",           desc: "全面管理活动、用户、销售和指标。" },
@@ -188,7 +208,7 @@ const T: Record<Lang, {
   ja: {
     descLine1: "スマートウォーター + デジタルメディア + 継続的収益プラットフォーム。",
     descLine2: "公共スペースを水分補給・メディア・ビジネスのハブに変えましょう。広告と Acquafy Neo 製品の販売で収益を得てください。",
-    btnInvest: "Media Network に投資したい",
+    btnInvest: "Media Network に投資したい", btnBuy: "Acquafy Media を購入",
     benefits: [
       { title: "広告収益",               desc: "高い実行可能性を持つ企業や関連ブランドで収益化。" },
       { title: "オペレーターダッシュボード", desc: "キャンペーン、ユーザー、売上、指標の一元管理。" },
@@ -206,7 +226,7 @@ const T: Record<Lang, {
   ko: {
     descLine1: "스마트 워터 + 디지털 미디어 + 반복 수익 플랫폼.",
     descLine2: "공공 공간을 수분 보충, 미디어 및 비즈니스 허브로 변환하세요. 광고와 Acquafy Neo 제품 판매로 수익을 창출하세요.",
-    btnInvest: "Media Network에 투자하고 싶습니다",
+    btnInvest: "Media Network에 투자하고 싶습니다", btnBuy: "Acquafy Media 구매",
     benefits: [
       { title: "광고 수익",               desc: "높은 실행 가능성을 가진 기업과 관련 브랜드로 수익화." },
       { title: "운영자 대시보드",          desc: "캠페인, 사용자, 판매 및 지표의 완전한 관리." },
@@ -221,6 +241,96 @@ const T: Record<Lang, {
       { title: "데이터 보안",              desc: "컴플라이언스 및 GDPR" },
     ],
   },
+  sv: {
+    descLine1: "Smart vatten + Digital media + Plattform för återkommande intäkter.",
+    descLine2: "Förvandla offentliga platser till nav för hydrering, media och affärer. Tjäna pengar på annonser och försäljning av Acquafy Neo-produkter.",
+    btnInvest: "Jag vill investera i Media Network", btnBuy: "Köp Acquafy Media",
+    benefits: [
+      { title: "Annonsintäkter",          desc: "Monetisera med högpresterande företag och relevanta varumärken." },
+      { title: "Operatörspanel",          desc: "Fullständig hantering av kampanjer, användare, försäljning och indikatorer." },
+      { title: "AI + Driftsdata",         desc: "Smarta insikter för underhåll, prestanda och expansion." },
+      { title: "Återkommande Intäkter",   desc: "Kontinuerlig intäktsmodell med media och vattenförsäljning." },
+      { title: "Idealiska Platser",       desc: "Flygplatser, köpcentrum, sjukhus, företag, universitet och mycket mer." },
+    ],
+    bottomFeatures: [
+      { title: "Avancerad Anslutning",    desc: "4G/5G + Wi-Fi" },
+      { title: "Stöd 24h",               desc: "Dedikerad service" },
+      { title: "Smart Övervakning",       desc: "Användning, filter och förbrukning" },
+      { title: "Datasäkerhet",            desc: "Efterlevnad och GDPR" },
+    ],
+  },
+  fi: {
+    descLine1: "Älykäs vesi + Digitaalinen media + Toistuvan tuoton alusta.",
+    descLine2: "Muuta julkiset tilat nesteytys-, media- ja liiketoimintakeskuksiksi. Ansaitse mainoksilla ja Acquafy Neo -tuotteiden myynnillä.",
+    btnInvest: "Haluan sijoittaa Media Networkiin", btnBuy: "Osta Acquafy Media",
+    benefits: [
+      { title: "Mainostuotot",            desc: "Monetisoi korkean elinkelpoisuuden yritysten ja relevanttien brändien kanssa." },
+      { title: "Operaattorin kojelauta",  desc: "Kampanjoiden, käyttäjien, myynnin ja indikaattorien täydellinen hallinta." },
+      { title: "AI + Toimintadata",       desc: "Älykkäät oivallukset ylläpitoon, suorituskykyyn ja laajentumiseen." },
+      { title: "Toistuva Tuotto",         desc: "Jatkuva tuottomalli median ja vedenmyynnin avulla." },
+      { title: "Ihanteelliset Sijainnit", desc: "Lentokentät, ostoskeskukset, sairaalat, yritykset, yliopistot ja paljon muuta." },
+    ],
+    bottomFeatures: [
+      { title: "Edistynyt Yhteys",        desc: "4G/5G + Wi-Fi" },
+      { title: "Tuki 24h",               desc: "Omistettu palvelu" },
+      { title: "Älykäs Seuranta",         desc: "Käyttö, suodattimet ja kulutus" },
+      { title: "Tietoturva",              desc: "Vaatimustenmukaisuus ja GDPR" },
+    ],
+  },
+  ru: {
+    descLine1: "Умная вода + Цифровые медиа + Платформа регулярного дохода.",
+    descLine2: "Превратите общественные места в центры гидратации, медиа и бизнеса. Зарабатывайте на рекламе и продаже продуктов Acquafy Neo.",
+    btnInvest: "Хочу инвестировать в Media Network", btnBuy: "Купить Acquafy Media",
+    benefits: [
+      { title: "Доход от рекламы",        desc: "Монетизируйте с компаниями высокой жизнеспособности и релевантными брендами." },
+      { title: "Панель оператора",        desc: "Полное управление кампаниями, пользователями, продажами и показателями." },
+      { title: "ИИ + Операционные данные", desc: "Умные инсайты для обслуживания, производительности и расширения." },
+      { title: "Регулярный доход",        desc: "Непрерывная модель дохода с медиа и продажей воды." },
+      { title: "Идеальные местоположения", desc: "Аэропорты, торговые центры, больницы, предприятия, университеты и многое другое." },
+    ],
+    bottomFeatures: [
+      { title: "Расширенное подключение", desc: "4G/5G + Wi-Fi" },
+      { title: "Поддержка 24ч",           desc: "Выделенный сервис" },
+      { title: "Умный мониторинг",        desc: "Использование, фильтры и потребление" },
+      { title: "Безопасность данных",     desc: "Соответствие требованиям и GDPR" },
+    ],
+  },
+  ro: {
+    descLine1: "Platforma inteligenta Apa + Media Digitala + Venituri Recurente.",
+    descLine2: "Transforma spatiile publice in centre de hidratare, media si afaceri. Castiga din reclame si vanzarea produselor Acquafy Neo.",
+    btnInvest: "Vreau sa investesc in Media Network", btnBuy: "Cumpara Acquafy Media",
+    benefits: [
+      { title: "Venituri din Reclame",    desc: "Monetizeaza cu companii de inalta viabilitate si branduri relevante." },
+      { title: "Tabloul de Bord al Operatorului", desc: "Gestionare completa a campaniilor, utilizatorilor, vanzarilor si indicatorilor." },
+      { title: "AI + Date Operationale",  desc: "Informatii inteligente pentru intretinere, performanta si expansiune." },
+      { title: "Venituri Recurente",      desc: "Model de venituri continue cu media si vanzare de apa." },
+      { title: "Locatii Ideale",          desc: "Aeroporturi, centre comerciale, spitale, companii, universitati si mult mai mult." },
+    ],
+    bottomFeatures: [
+      { title: "Conectivitate Avansata",  desc: "4G/5G + Wi-Fi" },
+      { title: "Suport 24h",             desc: "Serviciu dedicat" },
+      { title: "Monitorizare Inteligenta", desc: "Utilizare, filtre si consum" },
+      { title: "Securitatea Datelor",     desc: "Conformitate si GDPR" },
+    ],
+  },
+  he: {
+    descLine1: "פלטפורמת מים חכמים + מדיה דיגיטלית + הכנסה חוזרת.",
+    descLine2: "הפוך מרחבים ציבוריים למרכזי הידרציה, מדיה ועסקים. הרוויח מפרסומות ומכירת מוצרי Acquafy Neo.",
+    btnInvest: "אני רוצה להשקיע ב-Media Network", btnBuy: "רכוש Acquafy Media",
+    benefits: [
+      { title: "הכנסות מפרסום",           desc: "מונטיזציה עם חברות בעלות כדאיות גבוהה ומותגים רלוונטיים." },
+      { title: "לוח מחוונים של המפעיל",    desc: "ניהול מלא של קמפיינים, משתמשים, מכירות ומדדים." },
+      { title: "AI + נתוני תפעול",         desc: "תובנות חכמות לתחזוקה, ביצועים והרחבה." },
+      { title: "הכנסה חוזרת",             desc: "מודל הכנסה רציף עם מדיה ומכירת מים." },
+      { title: "מיקומים אידיאליים",        desc: "שדות תעופה, קניונים, בתי חולים, חברות, אוניברסיטאות ועוד הרבה." },
+    ],
+    bottomFeatures: [
+      { title: "קישוריות מתקדמת",         desc: "4G/5G + Wi-Fi" },
+      { title: "תמיכה 24 שעות",           desc: "שירות ייעודי" },
+      { title: "ניטור חכם",               desc: "שימוש, מסננים וצריכה" },
+      { title: "אבטחת מידע",              desc: "עמידה בתקנות ו-GDPR" },
+    ],
+  },
 };
 
 function BenefitIcon({ icon, aspectW, aspectH }: { icon: string; aspectW: number; aspectH: number }) {
@@ -233,8 +343,10 @@ function BenefitIcon({ icon, aspectW, aspectH }: { icon: string; aspectW: number
 export default function NeoMedia() {
   const { lang } = useLang();
   const t = T[lang];
+  const [modalOpen, setModalOpen] = useState(false);
 
   return (
+    <>
     <section className="bg-white relative flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
       <div className="
         border border-[#cbd0d4] flex max-w-[1400px] p-[20px] relative rounded-[16px] w-full overflow-hidden
@@ -261,29 +373,35 @@ export default function NeoMedia() {
                   {t.descLine2}
                 </p>
 
-                <a href="/contato" className="
-                  group bg-white border border-[#0233c3]
-                  hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors
-                  flex gap-[10px] items-center justify-center
-                  min-h-[30px] px-[20px] py-[10px] rounded-[8px] shrink-0
-                  w-full lg:w-fit cursor-pointer
-                ">
-                  <span className="
-                    font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px]
-                    text-[#0233c3] group-hover:text-white group-active:text-white
-                    transition-colors text-center
-                  ">
-                    {t.btnInvest}
-                  </span>
-                  <div className="relative shrink-0" style={{ width: 9, height: 9 }}>
-                    <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0 group-active:opacity-0">
-                      <FigmaIcon src={imgArrowBlue} size={9} aspectW={11.2} aspectH={8.84} />
+                <div className="flex flex-wrap gap-[10px] w-full lg:w-fit">
+                  <button
+                    onClick={() => setModalOpen(true)}
+                    className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex gap-[10px] items-center justify-center min-h-[30px] px-[20px] py-[10px] rounded-[8px] shrink-0 w-full lg:w-fit cursor-pointer"
+                  >
+                    <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors text-center">
+                      {t.btnInvest}
+                    </span>
+                    <div className="relative shrink-0" style={{ width: 9, height: 9 }}>
+                      <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0 group-active:opacity-0">
+                        <FigmaIcon src={imgArrowBlue} size={9} aspectW={11.2} aspectH={8.84} />
+                      </div>
+                      <div className="absolute inset-0 transition-opacity duration-150 opacity-0 group-hover:opacity-100 group-active:opacity-100">
+                        <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
+                      </div>
                     </div>
-                    <div className="absolute inset-0 transition-opacity duration-150 opacity-0 group-hover:opacity-100 group-active:opacity-100">
+                  </button>
+                  <a
+                    href="/checkin"
+                    className="group bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex gap-[10px] items-center justify-center min-h-[30px] px-[20px] py-[10px] rounded-[8px] shrink-0 w-full lg:w-fit cursor-pointer"
+                  >
+                    <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white text-center">
+                      {t.btnBuy}
+                    </span>
+                    <div className="relative shrink-0" style={{ width: 9, height: 9 }}>
                       <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
                     </div>
-                  </div>
-                </a>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -343,5 +461,10 @@ export default function NeoMedia() {
 
       </div>
     </section>
+
+    {modalOpen && (
+      <PartnerModal tier="gold" ft={FORM_T[lang]} onClose={() => setModalOpen(false)} />
+    )}
+    </>
   );
 }

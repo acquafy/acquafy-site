@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import FigmaIcon from "./FigmaIcon";
@@ -205,22 +205,79 @@ const T: Record<Lang, {
     ],
     imgAlt: "Acquafy Support Center",
   },
+  "en-gb": {
+    label: "ACQUAFY DIGITAL ECOSYSTEM",
+    h1Line1: "Acquafy",
+    h1Brand: "Support Centre",
+    subtitle: "We are here to help.",
+    description:
+      "Our team and resources are ready to provide the best experience with Acquafy products and solutions. Find answers, tutorials, and specialised support whenever you need.",
+    btnChat: "Open chat",
+    btnSpecialist: "Talk to a specialist",
+    floatingCards: [
+      { title: "How can we help you?",   desc: null },
+      { title: "System Status",          desc: "Check the operation of services" },
+      { title: "Knowledge Base",         desc: "Tutorials and helpful articles." },
+      { title: "Open a ticket",          desc: "Receive support from our team." },
+    ],
+    unifiedHeading1: "How Can",
+    unifiedHeading2: "We Help You?",
+    quickLinks: [
+      { title: "My products",           desc: "Explore the complete Neo purifier lineup." },
+      { title: "App + AI + IoT",        desc: "Control, automation and AI in the palm of your hand." },
+      { title: "Contact us",            desc: "Our team is ready to help you." },
+      { title: "Policies & warranties", desc: "Review our policies, terms and warranties." },
+    ],
+    faqItems: [
+      {
+        question: "Products",
+        answer: "The Neo Line includes purifiers with LED Touch Panel, App, UV LED and premium UF filters in SMART H2, TOUCH and other models. Check specifications, filter compatibility and compare available models.",
+        cta: "See Neo Line",
+      },
+      {
+        question: "App + AI + IoT",
+        answer: "The Acquafy App (iOS & Android) connects your purifier via Wi-Fi for real-time monitoring, filter replacement alerts and remote control with integrated AI. Visit the App page to see all features.",
+        cta: "Explore the App",
+      },
+      {
+        question: "Media Network",
+        answer: "Acquafy Media is the multimedia platform integrated into the purifier, displaying content, ads and QR Codes on the device screen, generating recurring revenue for Acquafy partners and distributors.",
+        cta: "Learn more",
+      },
+      {
+        question: "Partners",
+        answer: "The Acquafy Partner Programme offers commercial support, training, marketing materials and recurring commissions. To become a partner, fill in the form on the partnerships page.",
+        cta: "Become a Partner",
+      },
+      {
+        question: "Billing",
+        answer: "Invoices, commission reports and order history are managed in the partner portal. For questions about payments, invoices or commissions, contact our support team.",
+        cta: "Contact support",
+      },
+      {
+        question: "Installation & Maintenance",
+        answer: "Installation is performed by Acquafy-certified technicians. Preventive maintenance — filter replacement and UV LED checks — is automatically monitored by the App. To arrange service, contact our team.",
+        cta: "Talk to support",
+      },
+    ],
+    imgAlt: "Acquafy Support Centre",
+  },
   es: {
     label: "ECOSISTEMA DIGITAL ACQUAFY",
     h1Line1: "Centro de",
     h1Brand: "Soporte Acquafy",
-    subtitle: "Estamos aquí para ayudarte.",
+    subtitle: "Estamos aqui para ayudarte.",
     description:
       "Nuestro equipo y recursos están listos para ofrecer la mejor experiencia con los productos y soluciones Acquafy. Encuentra respuestas, tutoriales y soporte especializado siempre que lo necesites.",
     btnChat: "Abrir chat",
     btnSpecialist: "Habla con un especialista",
     floatingCards: [
-      { title: "¿Cómo podemos ayudarte?",  desc: null },
+      { title: "Como podemos ayudarte?",  desc: null },
       { title: "Estado del Sistema",        desc: "Verifica la operación de los servicios" },
       { title: "Base de conocimiento",      desc: "Tutoriales y artículos útiles." },
       { title: "Abrir ticket",              desc: "Recibe soporte de nuestro equipo." },
     ],
-    unifiedHeading1: "¿Cómo Podemos",
+    unifiedHeading1: "Como Podemos",
     unifiedHeading2: "Ayudarte?",
     quickLinks: [
       { title: "Mis productos",          desc: "Conoce la línea completa de purificadores Neo." },
@@ -263,7 +320,7 @@ const T: Record<Lang, {
     imgAlt: "Centro de Soporte Acquafy",
   },
   fr: {
-    label: "ÉCOSYSTÈME DIGITAL ACQUAFY",
+    label: "ECOSYSTEME DIGITAL ACQUAFY",
     h1Line1: "Centre de",
     h1Brand: "Support Acquafy",
     subtitle: "Nous sommes là pour vous aider.",
@@ -320,7 +377,7 @@ const T: Record<Lang, {
     imgAlt: "Centre de Support Acquafy",
   },
   de: {
-    label: "ACQUAFY DIGITAL-ÖKOSYSTEM",
+    label: "ACQUAFY DIGITAL-OKOSYSTEM",
     h1Line1: "Acquafy",
     h1Brand: "Support-Center",
     subtitle: "Wir sind hier, um Ihnen zu helfen.",
@@ -604,6 +661,291 @@ const T: Record<Lang, {
     ],
     imgAlt: "Acquafy 고객 지원 센터",
   },
+  sv: {
+    label: "ACQUAFY DIGITALT EKOSYSTEM",
+    h1Line1: "Acquafy",
+    h1Brand: "Supportcenter",
+    subtitle: "Vi finns här för att hjälpa dig.",
+    description:
+      "Vårt team och våra resurser är redo att ge dig den bästa upplevelsen med Acquafys produkter och lösningar. Hitta svar, guider och specialiserat stöd när du behöver det.",
+    btnChat: "Öppna chatt",
+    btnSpecialist: "Prata med en specialist",
+    floatingCards: [
+      { title: "Hur kan vi hjälpa dig?",    desc: null },
+      { title: "Systemstatus",              desc: "Kontrollera tjänsternas driftstatus" },
+      { title: "Kunskapsbas",               desc: "Guider och användbara artiklar." },
+      { title: "Öppna ett ärende",          desc: "Få support från vårt team." },
+    ],
+    unifiedHeading1: "Hur Kan Vi",
+    unifiedHeading2: "Hjälpa Dig?",
+    quickLinks: [
+      { title: "Mina produkter",        desc: "Utforska hela Neo-sortimentet av vattenrenare." },
+      { title: "App + AI + IoT",        desc: "Kontroll, automatisering och AI i din hand." },
+      { title: "Kontakta oss",          desc: "Vårt team är redo att hjälpa dig." },
+      { title: "Policyer och garantier", desc: "Läs våra policyer, villkor och garantier." },
+    ],
+    faqItems: [
+      {
+        question: "Produkter",
+        answer: "Neo-serien inkluderar vattenrenare med LED-touchpanel, App, UV LED och premium UF-filter i modellerna SMART H2, TOUCH och andra. Kontrollera specifikationer, filterkompatibilitet och jämför tillgängliga modeller.",
+        cta: "Se Neo-serien",
+      },
+      {
+        question: "App + AI + IoT",
+        answer: "Acquafy App (iOS och Android) ansluter din vattenrenare via Wi-Fi för realtidsövervakning, filterbytesvarnare och fjärrstyrning med integrerad AI.",
+        cta: "Utforska appen",
+      },
+      {
+        question: "Media Network",
+        answer: "Acquafy Media är multimediaplattformen integrerad i vattenrenaren som visar innehåll, annonser och QR-koder på enhetens skärm, och genererar återkommande intäkter för partners och distributörer.",
+        cta: "Läs mer",
+      },
+      {
+        question: "Partners",
+        answer: "Acquafy Partner-programmet erbjuder kommersiellt stöd, utbildning, marknadsföringsmaterial och återkommande provisioner. För att bli partner, fyll i formuläret på partnerskapssidan.",
+        cta: "Bli partner",
+      },
+      {
+        question: "Fakturering",
+        answer: "Fakturor, provisionsrapporter och orderhistorik hanteras i partnerportalen. Vid frågor om betalningar eller provisioner, kontakta vårt supportteam.",
+        cta: "Kontakta support",
+      },
+      {
+        question: "Installation och underhåll",
+        answer: "Installation utförs av Acquafy-certifierade tekniker. Förebyggande underhåll — filterbyte och UV LED-kontroll — övervakas automatiskt av appen.",
+        cta: "Prata med support",
+      },
+    ],
+    imgAlt: "Acquafy Supportcenter",
+  },
+  fi: {
+    label: "ACQUAFY DIGITAALINEN EKOSYSTEEMI",
+    h1Line1: "Acquafy",
+    h1Brand: "Tukikeskus",
+    subtitle: "Olemme täällä auttamassa sinua.",
+    description:
+      "Tiimimme ja resurssimme ovat valmiita tarjoamaan parhaan kokemuksen Acquafyn tuotteiden ja ratkaisujen kanssa. Löydä vastauksia, oppaita ja erikoistunutta tukea aina tarvittaessa.",
+    btnChat: "Avaa chat",
+    btnSpecialist: "Puhu asiantuntijan kanssa",
+    floatingCards: [
+      { title: "Kuinka voimme auttaa sinua?", desc: null },
+      { title: "Järjestelmän tila",            desc: "Tarkista palveluiden toiminta" },
+      { title: "Tietopohja",                   desc: "Oppaat ja hyödylliset artikkelit." },
+      { title: "Avaa tiketti",                 desc: "Saa tukea tiimiltämme." },
+    ],
+    unifiedHeading1: "Kuinka Voimme",
+    unifiedHeading2: "Auttaa Sinua?",
+    quickLinks: [
+      { title: "Omat tuotteet",        desc: "Tutustu Neo-vedenpuhdistimien koko valikoimaan." },
+      { title: "App + AI + IoT",       desc: "Hallinta, automaatio ja tekoäly kämmenelläsi." },
+      { title: "Ota yhteyttä",         desc: "Tiimimme on valmis auttamaan sinua." },
+      { title: "Käytännöt ja takuut",  desc: "Lue käytäntömme, ehtomme ja takuumme." },
+    ],
+    faqItems: [
+      {
+        question: "Tuotteet",
+        answer: "Neo-sarja sisältää vedenpuhdistimia, joissa on LED-kosketuspaneeli, sovellus, UV LED ja premium UF -suodattimet malleissa SMART H2, TOUCH ja muissa. Tarkista tekniset tiedot, suodatinyhteensopivuus ja vertaa saatavilla olevia malleja.",
+        cta: "Katso Neo-sarja",
+      },
+      {
+        question: "App + AI + IoT",
+        answer: "Acquafy-sovellus (iOS ja Android) yhdistää vedenpuhdistimesi Wi-Fi:n kautta reaaliaikaiseen seurantaan, suodattimen vaihtomuistutuksiin ja etähallintaan integroidulla tekoälyllä.",
+        cta: "Tutustu sovellukseen",
+      },
+      {
+        question: "Media Network",
+        answer: "Acquafy Media on vedenpuhdistimeen integroitu multimediaplatform, joka näyttää sisältöä, mainoksia ja QR-koodeja laitteen näytöllä tuottaen toistuvia tuloja kumppaneille ja jakelijoille.",
+        cta: "Lue lisää",
+      },
+      {
+        question: "Kumppanit",
+        answer: "Acquafy-kumppaniohjelma tarjoaa kaupallista tukea, koulutusta, markkinointimateriaalia ja toistuvia provisioita. Tullaksesi kumppaniksi täytä lomake kumppanuussivulla.",
+        cta: "Tule kumppaniksi",
+      },
+      {
+        question: "Laskutus",
+        answer: "Laskut, provisioraportit ja tilaushistoria hallitaan kumppaniportaalissa. Maksuja tai provisioita koskeviin kysymyksiin voit ottaa yhteyttä tukitiimiimme.",
+        cta: "Ota yhteyttä tukeen",
+      },
+      {
+        question: "Asennus ja huolto",
+        answer: "Asennuksen suorittavat Acquafy-sertifioidut teknikot. Ehkäisevä huolto — suodattimen vaihto ja UV LED -tarkistus — seurataan automaattisesti sovelluksella.",
+        cta: "Puhu tuen kanssa",
+      },
+    ],
+    imgAlt: "Acquafy Tukikeskus",
+  },
+  ru: {
+    label: "ЦИФРОВАЯ ЭКОСИСТЕМА ACQUAFY",
+    h1Line1: "Acquafy",
+    h1Brand: "Центр поддержки",
+    subtitle: "Мы здесь, чтобы помочь вам.",
+    description:
+      "Наша команда и ресурсы готовы обеспечить наилучший опыт использования продуктов и решений Acquafy. Найдите ответы, руководства и специализированную поддержку в любое время.",
+    btnChat: "Открыть чат",
+    btnSpecialist: "Поговорить со специалистом",
+    floatingCards: [
+      { title: "Чем мы можем вам помочь?", desc: null },
+      { title: "Статус системы",            desc: "Проверьте работу сервисов" },
+      { title: "База знаний",               desc: "Руководства и полезные статьи." },
+      { title: "Создать заявку",            desc: "Получите поддержку от нашей команды." },
+    ],
+    unifiedHeading1: "Как Мы Можем",
+    unifiedHeading2: "Помочь Вам?",
+    quickLinks: [
+      { title: "Мои продукты",         desc: "Изучите полную линейку очистителей Neo." },
+      { title: "App + AI + IoT",       desc: "Управление, автоматизация и ИИ на ладони." },
+      { title: "Связаться с нами",     desc: "Наша команда готова помочь вам." },
+      { title: "Политики и гарантии",  desc: "Ознакомьтесь с нашими политиками, условиями и гарантиями." },
+    ],
+    faqItems: [
+      {
+        question: "Продукты",
+        answer: "Линейка Neo включает очистители с LED-сенсорной панелью, приложением, UV LED и премиальными UF-фильтрами в моделях SMART H2, TOUCH и других. Ознакомьтесь со спецификациями, совместимостью фильтров и сравните доступные модели.",
+        cta: "Посмотреть линейку Neo",
+      },
+      {
+        question: "App + AI + IoT",
+        answer: "Приложение Acquafy (iOS и Android) подключает ваш очиститель через Wi-Fi для мониторинга в реальном времени, напоминаний о замене фильтра и дистанционного управления с интегрированным ИИ.",
+        cta: "Узнать о приложении",
+      },
+      {
+        question: "Media Network",
+        answer: "Acquafy Media — это мультимедийная платформа, интегрированная в очиститель, которая отображает контент, рекламу и QR-коды на экране устройства, генерируя регулярный доход для партнёров и дистрибьюторов.",
+        cta: "Узнать больше",
+      },
+      {
+        question: "Партнёры",
+        answer: "Партнёрская программа Acquafy предлагает коммерческую поддержку, обучение, маркетинговые материалы и регулярные комиссии. Чтобы стать партнёром, заполните форму на странице партнёрства.",
+        cta: "Стать партнёром",
+      },
+      {
+        question: "Выставление счетов",
+        answer: "Счета, отчёты о комиссиях и история заказов управляются в партнёрском портале. По вопросам оплат или комиссий обращайтесь в нашу службу поддержки.",
+        cta: "Связаться с поддержкой",
+      },
+      {
+        question: "Установка и обслуживание",
+        answer: "Установку выполняют сертифицированные специалисты Acquafy. Профилактическое обслуживание — замена фильтров и проверка UV LED — автоматически контролируется приложением.",
+        cta: "Написать в поддержку",
+      },
+    ],
+    imgAlt: "Acquafy Центр поддержки",
+  },
+  ro: {
+    label: "ECOSISTEMUL DIGITAL ACQUAFY",
+    h1Line1: "Acquafy",
+    h1Brand: "Centrul de Suport",
+    subtitle: "Suntem aici pentru a va ajuta.",
+    description:
+      "Echipa si resursele noastre sunt pregatite sa ofere cea mai buna experienta cu produsele si solutiile Acquafy. Gasiti raspunsuri, tutoriale si suport specializat oricand aveti nevoie.",
+    btnChat: "Deschide chat",
+    btnSpecialist: "Vorbiti cu un specialist",
+    floatingCards: [
+      { title: "Cum va putem ajuta?",       desc: null },
+      { title: "Starea sistemului",         desc: "Verificati functionarea serviciilor" },
+      { title: "Baza de cunostinte",        desc: "Tutoriale si articole utile." },
+      { title: "Deschide un tichet",        desc: "Primiti suport din partea echipei noastre." },
+    ],
+    unifiedHeading1: "Cum Va Putem",
+    unifiedHeading2: "Ajuta?",
+    quickLinks: [
+      { title: "Produsele mele",         desc: "Explorati gama completa de purificatoare Neo." },
+      { title: "App + AI + IoT",         desc: "Control, automatizare si IA in palma mainii." },
+      { title: "Contactati-ne",          desc: "Echipa noastra este pregatita sa va ajute." },
+      { title: "Politici si garantii",   desc: "Consultati politicile, termenii si garantiile noastre." },
+    ],
+    faqItems: [
+      {
+        question: "Produse",
+        answer: "Linia Neo include purificatoare cu panou LED Touch, aplicatie, UV LED si filtre UF premium in modelele SMART H2, TOUCH si altele. Verificati specificatiile, compatibilitatea filtrelor si comparati modelele disponibile.",
+        cta: "Vezi Linia Neo",
+      },
+      {
+        question: "App + AI + IoT",
+        answer: "Aplicatia Acquafy (iOS si Android) conecteaza purificatorul dvs. prin Wi-Fi pentru monitorizare in timp real, alerte de schimbare a filtrului si control de la distanta cu IA integrata.",
+        cta: "Descopera aplicatia",
+      },
+      {
+        question: "Media Network",
+        answer: "Acquafy Media este platforma multimedia integrata in purificator care afiseaza continut, reclame si coduri QR pe ecranul dispozitivului, generand venituri recurente pentru parteneri si distribuitori.",
+        cta: "Afla mai multe",
+      },
+      {
+        question: "Parteneri",
+        answer: "Programul Acquafy Partner ofera suport comercial, instruire, materiale de marketing si comisioane recurente. Pentru a deveni partener, completati formularul de pe pagina de parteneriate.",
+        cta: "Devino partener",
+      },
+      {
+        question: "Facturare",
+        answer: "Facturile, rapoartele de comisioane si istoricul comenzilor sunt gestionate in portalul partenerului. Pentru intrebari despre plati sau comisioane, contactati echipa noastra de suport.",
+        cta: "Contactati suportul",
+      },
+      {
+        question: "Instalare si Intretinere",
+        answer: "Instalarea este efectuata de tehnicieni certificati Acquafy. Intretinerea preventiva — schimbarea filtrelor si verificarea UV LED — este monitorizata automat de aplicatie.",
+        cta: "Vorbiti cu suportul",
+      },
+    ],
+    imgAlt: "Acquafy Centrul de Suport",
+  },
+  he: {
+    label: "ACQUAFY - ECOSISTEM DIGITAL",
+    h1Line1: "Acquafy",
+    h1Brand: "מרכז התמיכה",
+    subtitle: "אנחנו כאן כדי לעזור לך.",
+    description:
+      "הצוות והמשאבים שלנו מוכנים לספק את החוויה הטובה ביותר עם מוצרי ופתרונות Acquafy. מצא תשובות, הדרכות ותמיכה מקצועית בכל עת שתזדקק לה.",
+    btnChat: "פתח צ'אט",
+    btnSpecialist: "דבר עם מומחה",
+    floatingCards: [
+      { title: "כיצד נוכל לעזור לך?",    desc: null },
+      { title: "מצב המערכת",              desc: "בדוק את תפקוד השירותים" },
+      { title: "בסיס ידע",                desc: "מדריכים ומאמרים שימושיים." },
+      { title: "פתח כרטיס תמיכה",        desc: "קבל תמיכה מהצוות שלנו." },
+    ],
+    unifiedHeading1: "כיצד נוכל",
+    unifiedHeading2: "לעזור לך?",
+    quickLinks: [
+      { title: "המוצרים שלי",         desc: "גלה את מגוון מטהרי Neo המלא." },
+      { title: "App + AI + IoT",      desc: "שליטה, אוטומציה ובינה מלאכותית בכף ידך." },
+      { title: "צור קשר",             desc: "הצוות שלנו מוכן לעזור לך." },
+      { title: "מדיניות ואחריות",     desc: "עיין במדיניות, בתנאים ובאחריות שלנו." },
+    ],
+    faqItems: [
+      {
+        question: "מוצרים",
+        answer: "סדרת Neo כוללת מטהרי מים עם לוח LED מגע, אפליקציה, UV LED ופילטרי UF פרמיום בדגמי SMART H2, TOUCH ואחרים. בדוק מפרטים, תאימות פילטרים והשווה דגמים זמינים.",
+        cta: "ראה סדרת Neo",
+      },
+      {
+        question: "App + AI + IoT",
+        answer: "אפליקציית Acquafy (iOS ו-Android) מחברת את המטהר שלך דרך Wi-Fi למעקב בזמן אמת, התראות החלפת פילטר ושליטה מרחוק עם בינה מלאכותית משולבת.",
+        cta: "גלה את האפליקציה",
+      },
+      {
+        question: "Media Network",
+        answer: "Acquafy Media היא פלטפורמת המולטימדיה המשולבת במטהר, המציגה תכנים, מודעות וקודי QR על מסך המכשיר, ומייצרת הכנסה חוזרת לשותפים ולמפיצים.",
+        cta: "קרא עוד",
+      },
+      {
+        question: "שותפים",
+        answer: "תוכנית Acquafy Partner מציעה תמיכה מסחרית, הכשרה, חומרי שיווק ועמלות חוזרות. כדי להפוך לשותף, מלא את הטופס בדף השותפויות.",
+        cta: "הפוך לשותף",
+      },
+      {
+        question: "חיוב",
+        answer: "חשבוניות, דוחות עמלות והיסטוריית הזמנות מנוהלים בפורטל השותפים. לשאלות בנוגע לתשלומים או עמלות, צור קשר עם צוות התמיכה שלנו.",
+        cta: "צור קשר עם התמיכה",
+      },
+      {
+        question: "התקנה ותחזוקה",
+        answer: "ההתקנה מבוצעת על ידי טכנאים מוסמכים של Acquafy. תחזוקה מונעת — החלפת פילטרים ובדיקת UV LED — מנוטרת אוטומטית על ידי האפליקציה.",
+        cta: "דבר עם התמיכה",
+      },
+    ],
+    imgAlt: "Acquafy מרכז התמיכה",
+  },
 };
 
 // ── Static metadata ───────────────────────────────────────────────────────────
@@ -617,7 +959,7 @@ const floatingCardsMeta = [
 const QUICK_LINKS_META = [
   { icon: "/figma-assets/icon-agua-pura.svg",   aspectW: 642.7, aspectH: 630.7, href: "/linha-neo"             },
   { icon: "/figma-assets/icon-mobile-b.svg",    aspectW: 21,    aspectH: 30,    href: "/app-ai-iot"            },
-  { icon: imgIconFone,                           aspectW: 30,    aspectH: 30,    href: "/contato"               },
+  { icon: imgIconFone,                           aspectW: 30,    aspectH: 30,    href: "/contact"               },
   { icon: "/figma-assets/icon-certificate.svg", aspectW: 14.17, aspectH: 21.5,  href: "/politicas-privacidade" },
 ];
 
@@ -626,8 +968,8 @@ const FAQ_META = [
   { href: "/app-ai-iot" },
   { href: "/neo-media"  },
   { href: "/parceria"   },
-  { href: "/contato"    },
-  { href: "/contato"    },
+  { href: "/contact"    },
+  { href: "/contact"    },
 ];
 
 // ── Componente ────────────────────────────────────────────────────────────────
@@ -696,7 +1038,7 @@ export default function BannerCentralSuporte() {
               <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
             </button>
 
-            <a href="/contato" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors
+            <a href="/contact" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors
               flex gap-[10px] items-center justify-center
               min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer shrink-0">
               <span className="font-['Articulat_CF:Bold'] text-[16px] text-[#0233c3] group-hover:text-white transition-colors flex-1 text-center leading-normal">

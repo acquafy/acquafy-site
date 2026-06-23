@@ -30,6 +30,13 @@ const T: Record<Lang, {
     sub: "Please read carefully the terms and conditions governing the use of our website and our products and services.",
     lastUpdate: "Last updated: June 16, 2026",
   },
+  "en-gb": {
+    badge: "Legal Information",
+    headingMain: "Terms of",
+    headingHighlight: "Use",
+    sub: "Please read carefully the terms and conditions governing the use of our website and our products and services.",
+    lastUpdate: "Last updated: 16 June 2026",
+  },
   es: {
     badge: "Información Legal",
     headingMain: "Términos de",
@@ -78,6 +85,41 @@ const T: Record<Lang, {
     headingHighlight: "약관",
     sub: "당사 웹사이트 및 제품과 서비스의 이용을 규정하는 이용 약관을 주의 깊게 읽어 주세요.",
     lastUpdate: "최종 업데이트: 2026년 6월 16일",
+  },
+  sv: {
+    badge: "Juridisk Information",
+    headingMain: "Användnings-",
+    headingHighlight: "villkor",
+    sub: "Läs noggrant de villkor som styr användningen av vår webbplats samt våra produkter och tjänster.",
+    lastUpdate: "Senast uppdaterad: 16 juni 2026",
+  },
+  fi: {
+    badge: "Oikeudellinen Tieto",
+    headingMain: "Käyttö-",
+    headingHighlight: "ehdot",
+    sub: "Lue huolellisesti ehdot, jotka säätelevät verkkosivustomme sekä tuotteidemme ja palveluidemme käyttöä.",
+    lastUpdate: "Viimeksi päivitetty: 16. kesäkuuta 2026",
+  },
+  ru: {
+    badge: "Правовая Информация",
+    headingMain: "Условия",
+    headingHighlight: "Использования",
+    sub: "Пожалуйста, внимательно прочитайте условия и положения, регулирующие использование нашего сайта, продуктов и услуг.",
+    lastUpdate: "Последнее обновление: 16 июня 2026 г.",
+  },
+  ro: {
+    badge: "Informații Legale",
+    headingMain: "Termeni de",
+    headingHighlight: "Utilizare",
+    sub: "Vă rugăm să citiți cu atenție termenii și condițiile care reglementează utilizarea site-ului nostru și a produselor și serviciilor noastre.",
+    lastUpdate: "Ultima actualizare: 16 iunie 2026",
+  },
+  he: {
+    badge: "מידע משפטי",
+    headingMain: "תנאי",
+    headingHighlight: "שימוש",
+    sub: "אנא קראו בעיון את התנאים וההגבלות המסדירים את השימוש באתר שלנו ובמוצרים ובשירותים שלנו.",
+    lastUpdate: "עדכון אחרון: 16 ביוני 2026",
   },
 };
 

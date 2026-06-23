@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
@@ -28,6 +28,13 @@ const T: Record<Lang, {
     sub2: "Join and compete for an ",
     sub3: " every month!",
     btn: "I want to participate",
+  },
+  "en-gb": {
+    title: "ACQUAFY TRANSFORMS LIVES CAMPAIGN",
+    sub1: "From July to December, 1 purifier per month.",
+    sub2: "Join and enter for an ",
+    sub3: " every month!",
+    btn: "I want to take part",
   },
   es: {
     title: "CAMPAÑA ACQUAFY TRANSFORMA VIDAS",
@@ -78,6 +85,41 @@ const T: Record<Lang, {
     sub3: " 을 매달 받아가세요!",
     btn: "참여하고 싶어요",
   },
+  sv: {
+    title: "ACQUAFY FÖRÄNDRAR LIV KAMPANJ",
+    sub1: "Från juli till december, 1 vattenrenare per månad.",
+    sub2: "Delta och tävla om en ",
+    sub3: " varje månad!",
+    btn: "Jag vill delta",
+  },
+  fi: {
+    title: "ACQUAFY MUUTTAA ELÄMÄÄ -KAMPANJA",
+    sub1: "Heinäkuusta joulukuuhun, 1 vedenpuhdistin kuukaudessa.",
+    sub2: "Osallistu ja kilpaile ",
+    sub3: " joka kuukausi!",
+    btn: "Haluan osallistua",
+  },
+  ru: {
+    title: "КАМПАНИЯ ACQUAFY МЕНЯЕТ ЖИЗНИ",
+    sub1: "С июля по декабрь, 1 очиститель воды в месяц.",
+    sub2: "Участвуйте и борьтесь за ",
+    sub3: " каждый месяц!",
+    btn: "Хочу участвовать",
+  },
+  ro: {
+    title: "CAMPANIA ACQUAFY TRANSFORMA VIETILE",
+    sub1: "Din iulie pana in decembrie, 1 purificator pe luna.",
+    sub2: "Participa si concureaza pentru un ",
+    sub3: " in fiecare luna!",
+    btn: "Vreau sa particip",
+  },
+  he: {
+    title: "קמפיין ACQUAFY משנה חיים",
+    sub1: "מיולי עד דצמבר, מטהר מים אחד בחודש.",
+    sub2: "הצטרפו והתחרו על ",
+    sub3: " כל חודש!",
+    btn: "אני רוצה להשתתף",
+  },
   "pt-pt": {
     title: "CAMPANHA ACQUAFY TRANSFORMA VIDAS",
     sub1: "De julho a dezembro, 1 purificador por mês.",
@@ -126,7 +168,7 @@ function CampaignText({ centered, t }: { centered?: boolean; t: typeof T["pt"] }
 
 function ParticipateButton({ label }: { label: string }) {
   return (
-    <a href="/contato" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex gap-[10px] items-center justify-center min-h-[30px] overflow-hidden px-[20px] py-[10px] rounded-[8px] shrink-0 cursor-pointer">
+    <a href="/contact" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex gap-[10px] items-center justify-center min-h-[30px] overflow-hidden px-[20px] py-[10px] rounded-[8px] shrink-0 cursor-pointer">
       <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors text-center whitespace-nowrap">
         {label}
       </span>

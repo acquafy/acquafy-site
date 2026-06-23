@@ -1,9 +1,10 @@
 ﻿"use client";
 
 import { useRef, useState, useCallback, useEffect } from "react";
-import type { CheckinFamily } from "@/lib/checkin-products";
-import { formatBRL } from "@/lib/products";
+import { CHECKIN_FAMILIES, type CheckinFamily } from "@/lib/checkin-products";
+import { formatBRL, PRODUCT_PRICES_BRL, PRODUCT_IMAGES } from "@/lib/products";
 import FigmaIcon from "@/components/FigmaIcon";
+import { useCart } from "@/components/CartProvider";
 
 type Props = { family: CheckinFamily };
 
@@ -42,12 +43,15 @@ const imgCheck    = "/figma-assets/icon-check-a.svg";
 const imgNegative = "/figma-assets/icon-negative.svg";
 
 /* ── Essentials color options (5 colors, same for all Essentials families) ── */
+// Color swatches — images live on each variant (variant.slides[colorIdx][slideIdx])
+// File convention: /images/checkin/[family-slug]/[variant-id]/[color-slug]/01.jpg … 10.jpg
+// Positions: 0–6 = rotation views, 7–9 = detail close-ups
 const ESSENTIALS_COLORS = [
-  { gradient: "linear-gradient(133deg, #fcfcfb 8%, #dfe0db 89%)", name: "Pearl White", img: "" },
-  { gradient: "linear-gradient(180deg, #626970, #2a3035)",         name: "Dark Gray",   img: "" },
-  { gradient: "linear-gradient(133deg, #cddedf 8%, #969ea3 89%)", name: "Silver Gray", img: "" },
-  { gradient: "linear-gradient(133deg, #e7eff5 8%, #aec0cd 89%)", name: "Slate Blue",  img: "" },
-  { gradient: "linear-gradient(133deg, #ffffff 8%, #bac1c8 89%)", name: "Silver",      img: "" },
+  { gradient: "linear-gradient(133deg, #fcfcfb 8%, #dfe0db 89%)", name: "Pearl White", slug: "pearl-white" },
+  { gradient: "linear-gradient(180deg, #626970, #2a3035)",         name: "Dark Gray",   slug: "dark-gray"   },
+  { gradient: "linear-gradient(133deg, #cddedf 8%, #969ea3 89%)", name: "Silver Gray", slug: "silver-gray" },
+  { gradient: "linear-gradient(133deg, #e7eff5 8%, #aec0cd 89%)", name: "Slate Blue",  slug: "slate-blue"  },
+  { gradient: "linear-gradient(133deg, #ffffff 8%, #bac1c8 89%)", name: "Silver",      slug: "silver"      },
 ];
 
 /* ── Filter data ───────────────────────────────────────────────────────────── */
@@ -378,6 +382,7 @@ const PHONE_COUNTRIES: PhoneCountry[] = [
 ];
 
 export default function CheckinProduct({ family }: Props) {
+  const { addToCart, cart } = useCart();
   const scrollRef = useRef<HTMLDivElement>(null);
   const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const [activeVariantIdx, setActiveVariantIdx] = useState(0);
@@ -388,14 +393,25 @@ export default function CheckinProduct({ family }: Props) {
   const [filterOpen, setFilterOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("produto");
   const [hoverSection, setHoverSection] = useState<string | null>(null);
-  const displaySection = hoverSection ?? activeSection;
 
-  // Slide state
-  const slideImages = family.variants.map(v => v.img);
+  // Unified slide state — shared across Produto + Cores, never resets on variant/color change
   const [slideIdx, setSlideIdx] = useState(0);
   const [imageHovered, setImageHovered] = useState(false);
 
-  useEffect(() => { setSlideIdx(activeVariantIdx); }, [activeVariantIdx]);
+  // Freeze display while mouse is over the left-panel image (prevents section-row hover-leave from snapping back to activeSection).
+  // lastRowHoverRef tracks the last explicitly hovered section row. prevActiveSectionRef resets it when the scroll-spy advances,
+  // so wheel-scrolling from the left panel correctly follows activeSection even with imageHovered = true.
+  const lastRowHoverRef = useRef<string | null>(null);
+  const prevActiveSectionRef = useRef<string>(activeSection);
+  if (prevActiveSectionRef.current !== activeSection) {
+    prevActiveSectionRef.current = activeSection;
+    lastRowHoverRef.current = null;
+  }
+  if (hoverSection !== null) lastRowHoverRef.current = hoverSection;
+  const displaySection = imageHovered && lastRowHoverRef.current !== null
+    ? lastRowHoverRef.current
+    : hoverSection ?? activeSection;
+
 
   // Form state
   const [fv, setFv] = useState<Record<string, string>>({ cep: "", nome: "", email: "", email2: "", tel: "" });
@@ -469,7 +485,18 @@ export default function CheckinProduct({ family }: Props) {
     setField("tel", country.fmt(d));
   };
 
+  const isFormValid =
+    /^\d{5}-\d{3}$/.test(fv.cep) &&
+    fv.nome.trim().split(/\s+/).length >= 2 &&
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fv.email) &&
+    fv.email2 === fv.email &&
+    fv.tel.replace(/\D/g, "").length >= 8 &&
+    termsChecked;
+
   const activeVariant = family.variants[activeVariantIdx];
+  // Active image set: variant's slides for selected color, fallback to single hero img
+  const activeColorImages = activeVariant.slides?.[activeColorIdx] ?? [];
+  const slideCount = activeColorImages.length > 0 ? activeColorImages.length : 1;
   const specs = SPECS[activeVariant.id] ?? SPECS["neo-fit"]!;
   const accent = family.isPremium ? "#9f3df5" : "#0233c3";
   const accentGrad = family.isPremium
@@ -532,35 +559,27 @@ export default function CheckinProduct({ family }: Props) {
           onMouseLeave={() => setImageHovered(false)}
         >
 
-          {/* ── PRODUTO: slide between variant images ─────────────────────── */}
-          <div className={`absolute inset-0 transition-opacity duration-500 ${displaySection === "produto" ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+          {/* ── PRODUTO / CORES: unified color+variant slide ───────────────── */}
+          <div className={`absolute inset-0 transition-opacity duration-500 ${displaySection === "produto" || displaySection === "cores" ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
             {family.scenes.length > 0 ? (
               family.scenes.map((scene, i) => (
                 <img key={i} src={scene.img} alt=""
                   className={`absolute inset-0 w-full h-full object-contain p-[24px] md:p-[60px] transition-opacity duration-500 ${i === activeSceneIdx ? "opacity-100" : "opacity-0"}`}
                 />
               ))
-            ) : (
-              slideImages.map((img, i) => (
-                <img key={img + i} src={img} alt={family.variants[i]?.name ?? ""}
+            ) : activeColorImages.length > 0 ? (
+              activeColorImages.map((img, i) => (
+                <img key={i} src={img}
+                  alt={`${activeVariant.name} – ${ESSENTIALS_COLORS[activeColorIdx]?.name ?? ""} – ${i + 1}`}
                   className={`absolute inset-0 w-full h-full object-contain p-[24px] md:p-[60px] transition-opacity duration-500 ${i === slideIdx ? "opacity-100" : "opacity-0"}`}
                 />
               ))
+            ) : (
+              <img src={activeVariant.img} alt={activeVariant.name}
+                className="absolute inset-0 w-full h-full object-contain p-[24px] md:p-[60px]"
+              />
             )}
           </div>
-
-          {/* ── CORES: color-specific product image ───────────────────────── */}
-          {!family.isPremium && (
-            <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ${displaySection === "cores" ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
-              {ESSENTIALS_COLORS.map((color, i) => (
-                <img key={color.name}
-                  src={color.img || activeVariant.img}
-                  alt={color.name}
-                  className={`absolute inset-0 w-full h-full object-contain p-[24px] md:p-[60px] transition-opacity duration-500 ${i === activeColorIdx ? "opacity-100" : "opacity-0"}`}
-                />
-              ))}
-            </div>
-          )}
 
           {/* ── FILTROS: filter banner ─────────────────────────────────────── */}
           <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ${displaySection === "filtros" ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
@@ -614,13 +633,13 @@ export default function CheckinProduct({ family }: Props) {
             />
           </div>
 
-          {/* ── Slide arrows (produto only, fade on hover) ─────────────────── */}
-          {family.scenes.length === 0 && slideImages.length > 1 && (
+          {/* ── Slide arrows (produto + cores unified, fade on hover) ─────── */}
+          {family.scenes.length === 0 && slideCount > 1 && (
             <>
               <button
                 aria-label="Imagem anterior"
-                className={`absolute left-[12px] top-1/2 -translate-y-1/2 z-10 size-[38px] rounded-full bg-white/90 backdrop-blur-sm border border-[#e8ecf4] flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 ${displaySection === "produto" && imageHovered ? "opacity-100" : "opacity-0 pointer-events-none"}`}
-                onClick={() => setSlideIdx(n => (n - 1 + slideImages.length) % slideImages.length)}
+                className={`absolute left-[12px] top-1/2 -translate-y-1/2 z-10 size-[38px] rounded-full bg-white/90 backdrop-blur-sm border border-[#e8ecf4] flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 ${(displaySection === "produto" || displaySection === "cores") && imageHovered ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+                onClick={() => setSlideIdx(n => (n - 1 + slideCount) % slideCount)}
               >
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                   <path d="M9 11L5 7l4-4" stroke="#1f2e91" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
@@ -628,8 +647,8 @@ export default function CheckinProduct({ family }: Props) {
               </button>
               <button
                 aria-label="Próxima imagem"
-                className={`absolute right-[12px] top-1/2 -translate-y-1/2 z-10 size-[38px] rounded-full bg-white/90 backdrop-blur-sm border border-[#e8ecf4] flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 ${displaySection === "produto" && imageHovered ? "opacity-100" : "opacity-0 pointer-events-none"}`}
-                onClick={() => setSlideIdx(n => (n + 1) % slideImages.length)}
+                className={`absolute right-[12px] top-1/2 -translate-y-1/2 z-10 size-[38px] rounded-full bg-white/90 backdrop-blur-sm border border-[#e8ecf4] flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 ${(displaySection === "produto" || displaySection === "cores") && imageHovered ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+                onClick={() => setSlideIdx(n => (n + 1) % slideCount)}
               >
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                   <path d="M5 3l4 4-4 4" stroke="#1f2e91" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
@@ -747,7 +766,6 @@ export default function CheckinProduct({ family }: Props) {
               {/* Collapsible rows */}
               {fichaTecnicaOpen && (
                 <>
-                  <SpecRow label="Funções"                 value={specs.funcoes}   isPremium={family.isPremium} />
                   <SpecRow label="Painel"                  value={specs.painel}    isPremium={family.isPremium} />
                   <SpecRow label="App"                     value={specs.app}  isBool isPremium={family.isPremium} />
                   <SpecRow label="AI + IoT"                value={specs.iot}  isBool isPremium={family.isPremium} />
@@ -960,9 +978,6 @@ export default function CheckinProduct({ family }: Props) {
                   </p>
                 )}
               </div>
-              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#6b7280] text-center">
-                Frete grátis para compras acima de R$ 500,00. Entrega em todo o Brasil.
-              </p>
             </div>
 
             <Sep />
@@ -1118,8 +1133,8 @@ export default function CheckinProduct({ family }: Props) {
                   </p>
                 </div>
                 {/* Terms checkbox */}
-                <div className="flex items-start gap-[10px] select-none">
-                  <div className={`shrink-0 size-[18px] mt-[1px] rounded-[5px] border-2 flex items-center justify-center transition-colors cursor-pointer ${termsChecked ? "border-[#0233c3] bg-[#0233c3]" : "border-[#d1d5db] bg-white"}`} onClick={() => setTermsChecked(v => !v)}>
+                <div className="flex items-center gap-[10px] select-none">
+                  <div className={`shrink-0 size-[18px] rounded-[5px] border-2 flex items-center justify-center transition-colors cursor-pointer ${termsChecked ? "border-[#0233c3] bg-[#0233c3]" : "border-[#d1d5db] bg-white"}`} onClick={() => setTermsChecked(v => !v)}>
                     {termsChecked && (
                       <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
                         <path d="M1.5 5l2.5 2.5L8.5 2" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
@@ -1195,17 +1210,55 @@ export default function CheckinProduct({ family }: Props) {
                   </svg>
                 </div>
                 <div className="flex flex-col items-center gap-[4px]">
-                  <p className="font-['Avenir_LT_Pro:95_Black'] text-[20px] text-[#1f2e91] text-center">Pedido confirmado!</p>
+                  <p className="font-['Avenir_LT_Pro:95_Black'] text-[20px] text-[#1f2e91] text-center">Adicionado ao carrinho!</p>
                   <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#6b7280] text-center">
                     {activeVariant.name} · {formatBRL(activeVariant.price)}
                   </p>
                 </div>
               </div>
+              {/* Cart items with images */}
+              {cart.length > 0 && (
+                <div className="px-[24px] py-[14px] border-b border-[#e8ecf4] flex flex-col gap-[10px] max-h-[220px] overflow-y-auto">
+                  {cart.map(item => {
+                    let variantName = item.id;
+                    let variantImg = PRODUCT_IMAGES[item.id] ?? "";
+                    for (const fam of CHECKIN_FAMILIES) {
+                      const v = fam.variants.find(v => v.id === item.id);
+                      if (v) { variantName = v.name; variantImg = v.img || variantImg; break; }
+                    }
+                    const price = PRODUCT_PRICES_BRL[item.id] ?? 0;
+                    return (
+                      <div key={item.id} className="flex items-center gap-[12px]">
+                        {variantImg && (
+                          <div className="size-[52px] rounded-[10px] bg-[#f6f9fe] shrink-0 overflow-hidden flex items-center justify-center">
+                            <img src={variantImg} alt={variantName} className="w-full h-full object-contain" />
+                          </div>
+                        )}
+                        <div className="flex-1 min-w-0 flex flex-col gap-[2px]">
+                          <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#1f2e91] truncate">
+                            {variantName}{item.qty > 1 ? ` × ${item.qty}` : ""}
+                          </span>
+                          <span className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#6b7280]">
+                            {formatBRL(price * item.qty)}
+                          </span>
+                        </div>
+                      </div>
+                    );
+                  })}
+                  <div className="flex items-center justify-between pt-[8px] border-t border-[#e8ecf4]">
+                    <span className="font-['Avenir_LT_Pro:55_Roman'] text-[11px] text-[#9ca3af] uppercase tracking-[0.05em]">Total</span>
+                    <span className="font-['Avenir_LT_Pro:95_Black'] text-[16px] leading-none" style={{ background: accentGrad, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+                      {formatBRL(cart.reduce((sum, i) => sum + (PRODUCT_PRICES_BRL[i.id] ?? 0) * i.qty, 0))}
+                    </span>
+                  </div>
+                </div>
+              )}
               {/* Actions */}
-              <div className="px-[24px] py-[24px] flex flex-col gap-[10px]">
+              <div className="px-[24px] py-[24px] flex flex-col gap-[12px]">
+                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] text-[#9ca3af] uppercase tracking-[0.06em] text-center">Precisa de mais algo?</p>
                 <div className="grid grid-cols-2 gap-[10px]">
                   <a
-                    href="/checkin"
+                    href="/compare"
                     className="h-[46px] rounded-[12px] border border-[#e8ecf4] flex items-center justify-center font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#1f2e91] hover:bg-[#f6f9fe] transition-colors text-center px-[8px]"
                   >
                     Compare produtos
@@ -1222,13 +1275,13 @@ export default function CheckinProduct({ family }: Props) {
                   >
                     Seja um Parceiro
                   </a>
-                  <button
-                    onClick={() => setOrderConfirmOpen(false)}
-                    className="h-[46px] rounded-[12px] font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-white transition-opacity hover:opacity-90"
+                  <a
+                    href="/buy"
+                    className="h-[46px] rounded-[12px] flex items-center justify-center font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-white transition-opacity hover:opacity-90"
                     style={{ background: accentGrad }}
                   >
                     Comprar outro?
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>
@@ -1251,9 +1304,16 @@ export default function CheckinProduct({ family }: Props) {
             </span>
           </div>
           <button
-            onClick={() => setOrderConfirmOpen(true)}
+            onClick={() => {
+              if (!isFormValid) {
+                touchField("cep"); touchField("nome"); touchField("email"); touchField("email2"); touchField("tel");
+                return;
+              }
+              addToCart(activeVariant.id, activeVariant.name, true);
+              setOrderConfirmOpen(true);
+            }}
             className="h-[48px] px-[28px] rounded-[14px] font-['Avenir_LT_Pro:85_Heavy'] text-[14px] text-white shrink-0 transition-opacity hover:opacity-90"
-            style={{ background: accentGrad }}
+            style={{ background: accentGrad, opacity: isFormValid ? 1 : 0.5 }}
           >
             Encomendar
           </button>

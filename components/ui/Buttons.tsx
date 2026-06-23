@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { ReactNode, ButtonHTMLAttributes } from "react";
 import FigmaIcon from "../FigmaIcon";
@@ -421,7 +421,7 @@ export function BtnFalaAcquafy({ className = "", disabled, ...rest }: BtnNoChild
   const { lang } = useLang();
   return (
     <a
-      href="/contato"
+      href="/contact"
       className={`group flex gap-[10px] items-center justify-center min-h-[30px] overflow-hidden p-[20px] rounded-[8px] transition-colors cursor-pointer bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] ${className}`}
     >
       <IcoToggle defaultSrc={imgChatBlue} hoverSrc={imgChatWhite} />
@@ -436,7 +436,7 @@ export function BtnDistribuidor({ className = "", disabled, ...rest }: BtnNoChil
   const { lang } = useLang();
   return (
     <a
-      href="/contato"
+      href="/contact"
       className={`flex gap-[10px] items-center justify-center min-h-[30px] overflow-hidden p-[20px] rounded-[8px] border border-white transition-colors cursor-pointer bg-[#9f3df5] hover:bg-[#7a16d2] active:bg-[#b25efb] ${className}`}
     >
       <Ico src={imgPessoas} aspectW={43.86} aspectH={40.5} />

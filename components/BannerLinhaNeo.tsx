@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
@@ -61,6 +61,23 @@ const T: Record<Lang, {
     ],
   },
   en: {
+    desc: "Smart purifiers for every lifestyle, with global technology, App + AI + IoT and Essentials & Premium options.",
+    features: [
+      { title: "App Acquafy",       desc: "Full control from anywhere via the app." },
+      { title: "Acquafy AI",        desc: "Intelligence that learns your habits." },
+      { title: "Smart IoT",         desc: "Connectivity and real-time data." },
+      { title: "Personalised Water",desc: "Temperatures and functions for every moment." },
+      { title: "High Performance",  desc: "Global technology and latest-generation filters." },
+      { title: "Global Design",     desc: "Sophisticated, award-winning finish." },
+    ],
+    stats: [
+      { title: "Technology + AI",    desc: "Artificial intelligence applied to the water experience" },
+      { title: "Premium purification",desc: "Pure, safe, superior-quality water" },
+      { title: "Global connectivity", desc: "Smart solutions with IoT and real-time management" },
+      { title: "Sustainability",      desc: "Positive impact for people, communities and the planet" },
+    ],
+  },
+  "en-gb": {
     desc: "Smart purifiers for every lifestyle, with global technology, App + AI + IoT and Essentials & Premium options.",
     features: [
       { title: "App Acquafy",       desc: "Full control from anywhere via the app." },
@@ -194,6 +211,91 @@ const T: Record<Lang, {
       { title: "프리미엄 정수",   desc: "순수하고 안전하며 뛰어난 품질의 물" },
       { title: "글로벌 연결성",   desc: "IoT와 실시간 관리를 갖춘 스마트 솔루션" },
       { title: "지속 가능성",     desc: "사람, 커뮤니티, 지구에 긍정적인 영향" },
+    ],
+  },
+  sv: {
+    desc: "Smarta reningsverk för varje livsstil, med global teknik, App + AI + IoT och alternativen Essentials & Premium.",
+    features: [
+      { title: "App Acquafy",        desc: "Full kontroll varifrån som helst via appen." },
+      { title: "Acquafy AI",         desc: "Intelligens som lar sig dina vanor." },
+      { title: "Smart IoT",          desc: "Anslutning och realtidsdata." },
+      { title: "Personaliserat vatten", desc: "Temperaturer och funktioner for varje stund." },
+      { title: "Hog prestanda",      desc: "Global teknik och filter av senaste generationen." },
+      { title: "Globalt design",     desc: "Sofistikerad, prisbelont finish." },
+    ],
+    stats: [
+      { title: "Teknik + AI",        desc: "Artificiell intelligens tillampat pa vattenupplevelsen" },
+      { title: "Premium rening",     desc: "Rent, sakert vatten av overlegen kvalitet" },
+      { title: "Global anslutning",  desc: "Smarta losningar med IoT och realtidshantering" },
+      { title: "Hallbarhet",         desc: "Positiv inverkan pa manniskor, samhallen och planeten" },
+    ],
+  },
+  fi: {
+    desc: "Aly-vedenpuhdistimet jokaiseen elamantapaan, globaalilla teknologialla, App + AI + IoT seka Essentials & Premium -vaihtoehdoilla.",
+    features: [
+      { title: "App Acquafy",        desc: "Taysinen hallinta sovelluksesta mista tahansa." },
+      { title: "Acquafy AI",         desc: "Alykkyys, joka oppii tapasi." },
+      { title: "Aly-IoT",            desc: "Yhteydet ja reaaliaikaiset tiedot." },
+      { title: "Personoitu vesi",    desc: "Lampotilat ja toiminnot jokaiseen hetkeen." },
+      { title: "Korkea suorituskyky", desc: "Globaali teknologia ja uusimman sukupolven suodattimet." },
+      { title: "Globaali muotoilu",  desc: "Hienostunut, palkittu viimeistely." },
+    ],
+    stats: [
+      { title: "Teknologia + AI",    desc: "Tekoaly sovellettuna vesikokemukseen" },
+      { title: "Premium-puhdistus",  desc: "Puhdas, turvallinen ja korkealaatuinen vesi" },
+      { title: "Globaali yhteys",    desc: "Aly-ratkaisut IoT:lla ja reaaliaikaisella hallinnalla" },
+      { title: "Kestavyys",          desc: "Positiivinen vaikutus ihmisiin, yhteisoohin ja planeettaan" },
+    ],
+  },
+  ru: {
+    desc: "Umnie ochistitely vody dlya lyubogo stilya zhizni, s globalnoj texnologiej, App + AI + IoT i opciyami Essentials & Premium.",
+    features: [
+      { title: "App Acquafy",        desc: "Polnyj kontrol' cherez prilozhenie otkuda ugodno." },
+      { title: "Acquafy AI",         desc: "Intellekt, kotoryj uchitsya vashim privychkam." },
+      { title: "Umnyj IoT",          desc: "Podklyuchenie i dannye v realnom vremeni." },
+      { title: "Personal'naya voda", desc: "Temperatury i funkcii dlya kazhdogo momenta." },
+      { title: "Vysokaya effektivnost'", desc: "Global'nye texnologii i fil'try novejshego pokoleniya." },
+      { title: "Global'nyj dizajn",  desc: "Izyashchannaya, udostoemaya nagrazhdenie otdelka." },
+    ],
+    stats: [
+      { title: "Texnologii + ИИ",    desc: "Iskusstvennyj intellekt, primenenny k opyte s vodoj" },
+      { title: "Premium ochistka",   desc: "Chistaya, bezopasnaya voda prevosxodnego kachestva" },
+      { title: "Global'naya svyaz'", desc: "Umnye resheniya s IoT i upravleniem v realnom vremeni" },
+      { title: "Ustojchivost'",      desc: "Pozitivnoe vliyanie na lyudej, soobshchestva i planetu" },
+    ],
+  },
+  ro: {
+    desc: "Purificatoare inteligente pentru fiecare stil de viata, cu tehnologie globala, App + AI + IoT si optiunile Essentials & Premium.",
+    features: [
+      { title: "App Acquafy",        desc: "Control total prin aplicatie de oriunde." },
+      { title: "Acquafy AI",         desc: "Inteligenta care invata obiceiurile tale." },
+      { title: "IoT Inteligent",     desc: "Conectivitate si date in timp real." },
+      { title: "Apa Personalizata",  desc: "Temperaturi si functii pentru fiecare moment." },
+      { title: "Performanta inalta", desc: "Tehnologie globala si filtre de ultima generatie." },
+      { title: "Design Global",      desc: "Finisaj sofisticat si premiat." },
+    ],
+    stats: [
+      { title: "Tehnologie + AI",    desc: "Inteligenta artificiala aplicata experientei apei" },
+      { title: "Purificare premium", desc: "Apa pura, sigura si de calitate superioara" },
+      { title: "Conectivitate globala", desc: "Solutii inteligente cu IoT si gestionare in timp real" },
+      { title: "Durabilitate",       desc: "Impact pozitiv asupra oamenilor, comunitatilor si planetei" },
+    ],
+  },
+  he: {
+    desc: "Mataher mayim chachamim le-chol signon chayim, im technologia globalit, App + AI + IoT ve-optzyot Essentials & Premium.",
+    features: [
+      { title: "App Acquafy",        desc: "Shlitta mela'ah me-kol makom dere'ch ha-app." },
+      { title: "Acquafy AI",         desc: "Binah she-lomedet et ha-rhegim shelcha." },
+      { title: "IoT Chacham",        desc: "Kshirut ve-netunim be-zman amiti." },
+      { title: "Mayim Meokharim",    desc: "Temoratut u-functionot le-chol raga." },
+      { title: "Bidur Gavoha",       desc: "Technologia globalit ve-matahrim shel ha-dor ha-acharon." },
+      { title: "Itzuv Globia",       desc: "Gimir meukhar u-mezukeh be-prase." },
+    ],
+    stats: [
+      { title: "Technologia + AI",   desc: "Binah melakutit meyushemet le-nisuyon ha-mayim" },
+      { title: "Tithor Premium",     desc: "Mayim nakim, betukhim ve-be-eikhut meula" },
+      { title: "Kshirut Globalit",   desc: "Pitronot chachamim im IoT ve-nihul be-zman amiti" },
+      { title: "Kayamut",            desc: "Hashpa'ah chiyuvit al anashim, kehilot ve-ha-planeta" },
     ],
   },
 };

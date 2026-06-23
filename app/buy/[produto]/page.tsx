@@ -5,7 +5,7 @@ import CheckinProduct from "@/components/CheckinProduct";
 import { CHECKIN_FAMILIES } from "@/lib/checkin-products";
 
 export function generateStaticParams() {
-  return CHECKIN_FAMILIES.map((f) => ({ produto: f.slug }));
+  return CHECKIN_FAMILIES.map((f) => ({ produto: `checkin-${f.slug}` }));
 }
 
 export async function generateMetadata({
@@ -14,7 +14,8 @@ export async function generateMetadata({
   params: Promise<{ produto: string }>;
 }): Promise<Metadata> {
   const { produto } = await params;
-  const family = CHECKIN_FAMILIES.find((f) => f.slug === produto);
+  const slug = produto.replace(/^checkin-/, "");
+  const family = CHECKIN_FAMILIES.find((f) => f.slug === slug);
   if (!family) return {};
   return {
     title: `${family.title} — Acquafy`,
@@ -22,13 +23,14 @@ export async function generateMetadata({
   };
 }
 
-export default async function CheckinProdutoPage({
+export default async function BuyCheckinPage({
   params,
 }: {
   params: Promise<{ produto: string }>;
 }) {
   const { produto } = await params;
-  const family = CHECKIN_FAMILIES.find((f) => f.slug === produto);
+  const slug = produto.replace(/^checkin-/, "");
+  const family = CHECKIN_FAMILIES.find((f) => f.slug === slug);
   if (!family) notFound();
 
   return (

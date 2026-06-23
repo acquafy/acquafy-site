@@ -13,6 +13,9 @@ export type CheckinVariant = {
   formato: string;
   price: number;
   img: string;
+  // slides[colorIdx][slideIdx]: 5 colors × 10 positions (0–6 rotation, 7–9 detail)
+  // File convention: /images/checkin/[family-slug]/[variant-id]/[color-slug]/01.jpg … 10.jpg
+  slides?: string[][];
 };
 
 export type CheckinFamily = {
@@ -44,9 +47,9 @@ export const CHECKIN_FAMILIES: CheckinFamily[] = [
     isPremium: false,
     variants: [
       v("neo-fit",      "Neo FIT",      "6 em 1", "6 em 1",        "Bancada ou Parede"),
-      v("neo-smart-h2", "Neo SMART H₂", "7 em 1", "7 em 1 · H₂",  "Bancada"),
       v("neo-touch",    "Neo TOUCH",    "6 em 1", "6 em 1",        "Bancada"),
       v("neo-plus",     "Neo PLUS",     "6 em 1", "6 em 1",        "Bancada"),
+      v("neo-smart-h2", "Neo SMART H₂", "7 em 1", "7 em 1 · H₂",  "Bancada"),
     ],
     scenes: [],
   },
@@ -108,6 +111,14 @@ export const CHECKIN_FAMILIES: CheckinFamily[] = [
       v("neo-infinity-spark",    "Neo INFINITY SPARK",    "7 em 1", "7 em 1 · Gás",       "Bancada"),
       v("neo-infinity-spark-h2", "Neo INFINITY SPARK H₂", "8 em 1", "8 em 1 · Gás + H₂", "Bancada"),
     ],
+    scenes: [],
+  },
+  {
+    slug: "acquafy-media",
+    title: "Acquafy Media",
+    subtitle: "Totem Digital · Media Network",
+    isPremium: true,
+    variants: [v("acquafy-media", "Acquafy Media", "Totem Digital", "Totem Digital", "Totem")],
     scenes: [],
   },
 ];

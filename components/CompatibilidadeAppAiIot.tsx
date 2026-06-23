@@ -24,6 +24,15 @@ const T: Record<Lang, {
       { name: "Acquafy Media",  desc: "Connected to the media platform for campaigns and communications." },
     ],
   },
+  "en-gb": {
+    heading1: "Compatible with the entire ",
+    heading2: "Acquafy ecosystem",
+    products: [
+      { name: "Neo Essentials", desc: "Compatible with the entire Neo Essentials line for everyday use." },
+      { name: "Neo Premium",    desc: "Full integration with the high-performance Neo Premium line." },
+      { name: "Acquafy Media",  desc: "Connected to the media platform for campaigns and communications." },
+    ],
+  },
   es: {
     heading1: "Compatible con todo el ",
     heading2: "ecosistema Acquafy",
@@ -85,6 +94,51 @@ const T: Record<Lang, {
       { name: "Neo Essentials", desc: "일상적인 사용을 위한 전체 Neo Essentials 라인과 호환됩니다." },
       { name: "Neo Premium",    desc: "고성능 Neo Premium 라인과 완벽하게 통합됩니다." },
       { name: "Acquafy Media",  desc: "캠페인 및 커뮤니케이션을 위한 미디어 플랫폼에 연결됩니다." },
+    ],
+  },
+  sv: {
+    heading1: "Kompatibel med hela ",
+    heading2: "Acquafy-ekosystemet",
+    products: [
+      { name: "Neo Essentials", desc: "Kompatibel med hela Neo Essentials-serien för dagligt bruk." },
+      { name: "Neo Premium",    desc: "Full integration med den högpresterande Neo Premium-serien." },
+      { name: "Acquafy Media",  desc: "Ansluten till mediaplattformen för kampanjer och kommunikation." },
+    ],
+  },
+  fi: {
+    heading1: "Yhteensopiva koko ",
+    heading2: "Acquafy-ekosysteemin kanssa",
+    products: [
+      { name: "Neo Essentials", desc: "Yhteensopiva koko Neo Essentials -sarjan kanssa jokapäiväiseen käyttöön." },
+      { name: "Neo Premium",    desc: "Täydellinen integraatio suorituskykyisen Neo Premium -sarjan kanssa." },
+      { name: "Acquafy Media",  desc: "Yhdistetty mediapalveluun kampanjoita ja viestintää varten." },
+    ],
+  },
+  ru: {
+    heading1: "Совместимо со всей ",
+    heading2: "экосистемой Acquafy",
+    products: [
+      { name: "Neo Essentials", desc: "Совместимо со всей линейкой Neo Essentials для ежедневного использования." },
+      { name: "Neo Premium",    desc: "Полная интеграция с высокопроизводительной линейкой Neo Premium." },
+      { name: "Acquafy Media",  desc: "Подключено к медиаплатформе для кампаний и коммуникаций." },
+    ],
+  },
+  ro: {
+    heading1: "Compatibil cu întregul ",
+    heading2: "ecosistem Acquafy",
+    products: [
+      { name: "Neo Essentials", desc: "Compatibil cu întreaga linie Neo Essentials pentru utilizare zilnică." },
+      { name: "Neo Premium",    desc: "Integrare completă cu linia Neo Premium de înaltă performanță." },
+      { name: "Acquafy Media",  desc: "Conectat la platforma media pentru campanii și comunicări." },
+    ],
+  },
+  he: {
+    heading1: "תואם לכל ",
+    heading2: "המערכת האקולוגית של Acquafy",
+    products: [
+      { name: "Neo Essentials", desc: "תואם לכל קו Neo Essentials לשימוש יומיומי." },
+      { name: "Neo Premium",    desc: "אינטגרציה מלאה עם קו Neo Premium בעל הביצועים הגבוהים." },
+      { name: "Acquafy Media",  desc: "מחובר לפלטפורמת המדיה לקמפיינים ותקשורת." },
     ],
   },
   "pt-pt": {

@@ -8,7 +8,7 @@ type CartItem = { id: string; qty: number };
 
 interface CartContextValue {
   cart: CartItem[];
-  addToCart: (productId: string, label: string) => void;
+  addToCart: (productId: string, label: string, silent?: boolean) => void;
   openCart: () => void;
 }
 
@@ -209,6 +209,108 @@ const T: Record<Lang, {
     closeAriaLabel: "Fechar carrinho",
     titleFloatBtn: "Ver carrinho",
   },
+  "en-gb": {
+    cartTitle: "Basket",
+    toastAdded: "Added to basket!",
+    emptyTitle: "Your basket is empty",
+    emptySubtitle: "Explore our products and add them to your basket.",
+    emptyLinkNeo: "Discover the Neo Line →",
+    emptyLinkCompare: "Compare Products →",
+    emptyLinkBuy: "Choose and buy now →",
+    linhaNeo: "Neo Line",
+    total: "Total",
+    checkout: "Proceed to Checkout →",
+    continuar: "Continue",
+    verCarrinho: "View Basket",
+    remover: "×",
+    closeAriaLabel: "Close basket",
+    titleFloatBtn: "View Basket",
+  },
+  sv: {
+    cartTitle: "Varukorg",
+    toastAdded: "Lagd i varukorgen!",
+    emptyTitle: "Din varukorg är tom",
+    emptySubtitle: "Utforska våra produkter och lägg till dem i varukorgen.",
+    emptyLinkNeo: "Utforska Neo-linjen →",
+    emptyLinkCompare: "Jämför produkter →",
+    emptyLinkBuy: "Välj och köp nu →",
+    linhaNeo: "Neo-linjen",
+    total: "Totalt",
+    checkout: "Gå till kassan →",
+    continuar: "Fortsätt",
+    verCarrinho: "Visa varukorg",
+    remover: "×",
+    closeAriaLabel: "Stäng varukorgen",
+    titleFloatBtn: "Visa varukorg",
+  },
+  fi: {
+    cartTitle: "Ostoskori",
+    toastAdded: "Lisätty ostoskoriin!",
+    emptyTitle: "Ostoskorisi on tyhjä",
+    emptySubtitle: "Tutustu tuotteisiimme ja lisää ne ostoskoriin.",
+    emptyLinkNeo: "Tutustu Neo-linjaan →",
+    emptyLinkCompare: "Vertaile tuotteita →",
+    emptyLinkBuy: "Valitse ja osta nyt →",
+    linhaNeo: "Neo-linja",
+    total: "Yhteensä",
+    checkout: "Siirry kassalle →",
+    continuar: "Jatka",
+    verCarrinho: "Näytä ostoskori",
+    remover: "×",
+    closeAriaLabel: "Sulje ostoskori",
+    titleFloatBtn: "Näytä ostoskori",
+  },
+  ru: {
+    cartTitle: "Корзина",
+    toastAdded: "Добавлено в корзину!",
+    emptyTitle: "Ваша корзина пуста",
+    emptySubtitle: "Изучите наши продукты и добавьте их в корзину.",
+    emptyLinkNeo: "Откройте линейку Neo →",
+    emptyLinkCompare: "Сравнить продукты →",
+    emptyLinkBuy: "Выберите и купите сейчас →",
+    linhaNeo: "Линейка Neo",
+    total: "Итого",
+    checkout: "Оформить заказ →",
+    continuar: "Продолжить",
+    verCarrinho: "Посмотреть корзину",
+    remover: "×",
+    closeAriaLabel: "Закрыть корзину",
+    titleFloatBtn: "Посмотреть корзину",
+  },
+  ro: {
+    cartTitle: "Cos de cumparaturi",
+    toastAdded: "Adaugat in cos!",
+    emptyTitle: "Cosul tau este gol",
+    emptySubtitle: "Exploreaza produsele noastre si adauga-le in cos.",
+    emptyLinkNeo: "Descopera Linia Neo →",
+    emptyLinkCompare: "Compara produsele →",
+    emptyLinkBuy: "Alege si cumpara acum →",
+    linhaNeo: "Linia Neo",
+    total: "Total",
+    checkout: "Finalizeaza comanda →",
+    continuar: "Continua",
+    verCarrinho: "Vezi cosul",
+    remover: "×",
+    closeAriaLabel: "Inchide cosul",
+    titleFloatBtn: "Vezi cosul",
+  },
+  he: {
+    cartTitle: "עגלת קניות",
+    toastAdded: "נוסף לעגלה!",
+    emptyTitle: "עגלת הקניות שלך ריקה",
+    emptySubtitle: "גלה את המוצרים שלנו והוסף אותם לעגלה.",
+    emptyLinkNeo: "גלה את קו Neo →",
+    emptyLinkCompare: "השווה מוצרים →",
+    emptyLinkBuy: "בחר וקנה עכשיו →",
+    linhaNeo: "קו Neo",
+    total: "סה\"כ",
+    checkout: "לתשלום →",
+    continuar: "המשך",
+    verCarrinho: "צפה בעגלה",
+    remover: "×",
+    closeAriaLabel: "סגור עגלה",
+    titleFloatBtn: "צפה בעגלה",
+  },
 };
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
@@ -232,12 +334,13 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     }, 600);
   }, []);
 
-  const addToCart = useCallback((productId: string, label: string) => {
+  const addToCart = useCallback((productId: string, label: string, silent?: boolean) => {
     setCart(prev => {
       const existing = prev.find(i => i.id === productId);
       if (existing) return prev.map(i => i.id === productId ? { ...i, qty: i.qty + 1 } : i);
       return [...prev, { id: productId, qty: 1 }];
     });
+    if (silent) return;
     if (toastTimer.current) clearTimeout(toastTimer.current);
     if (toastFlyTimer.current) clearTimeout(toastFlyTimer.current);
     setToastFlyOut(false);
@@ -255,6 +358,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const [extraBottom, setExtraBottom] = useState(0);
   const [pastBanner, setPastBanner] = useState(false);
+  const [isWideScreen, setIsWideScreen] = useState(false);
 
   useEffect(() => {
     const footer = document.querySelector("footer");
@@ -279,6 +383,13 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     return () => window.removeEventListener("scroll", check);
   }, []);
 
+  useEffect(() => {
+    const check = () => setIsWideScreen(window.innerWidth >= 1600);
+    window.addEventListener("resize", check, { passive: true });
+    check();
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   const cartTotal = cart.reduce((sum, item) => sum + (PRODUCT_PRICES_BRL[item.id] ?? 0) * item.qty, 0);
   const cartCount = cart.reduce((s, i) => s + i.qty, 0);
 
@@ -287,12 +398,12 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       {children}
 
       {/* ── BOTÃO FLUTUANTE CARRINHO ── */}
-      {pathname !== '/checkin' && pastBanner && (
+      {(pastBanner || pathname.startsWith('/buy') || isWideScreen) && (
         <button
           onClick={() => setShowCartPanel(true)}
           suppressHydrationWarning
           className="fixed right-[20px] z-[9997] flex items-center justify-center rounded-full shadow-[0_4px_20px_rgba(2,51,195,0.30)] transition-transform hover:scale-110 cursor-pointer"
-          style={{ background: "linear-gradient(135deg, #0233c3, #0569ff)", width: 46, height: 46, bottom: 86 + extraBottom }}
+          style={{ background: "linear-gradient(135deg, #0233c3, #0569ff)", width: 46, height: 46, bottom: 86 + extraBottom + (pathname.startsWith('/buy/') ? 80 : 0) }}
           title={t.titleFloatBtn}
         >
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -404,7 +515,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
                     <a href="/compare" className="flex items-center justify-center gap-[8px] py-[11px] rounded-full font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#0233c3] border border-[#0233c3] hover:bg-[#f0f4ff] transition-colors">
                       {t.emptyLinkCompare}
                     </a>
-                    <a href="/checkin" className="flex items-center justify-center gap-[8px] py-[11px] rounded-full font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#555] border border-[#cbd0d4] hover:border-[#0233c3] hover:text-[#0233c3] transition-colors">
+                    <a href="/buy" className="flex items-center justify-center gap-[8px] py-[11px] rounded-full font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#555] border border-[#cbd0d4] hover:border-[#0233c3] hover:text-[#0233c3] transition-colors">
                       {t.emptyLinkBuy}
                     </a>
                   </div>
@@ -438,7 +549,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
                   <p className="font-['Avenir_LT_Pro:95_Black'] text-[20px] text-[#0233c3]">{formatBRL(cartTotal)}</p>
                 </div>
                 <a
-                  href={`/checkin?produtos=${encodeURIComponent(cart.map(i => `${i.id}:${i.qty}`).join(','))}`}
+                  href={`/buy?produtos=${encodeURIComponent(cart.map(i => `${i.id}:${i.qty}`).join(','))}`}
                   className="flex items-center justify-center gap-[8px] py-[14px] rounded-full font-['Avenir_LT_Pro:85_Heavy'] text-[14px] text-white cursor-pointer hover:opacity-85 transition-opacity"
                   style={{ background: "linear-gradient(135deg, #0233c3, #0569ff)" }}
                 >

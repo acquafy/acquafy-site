@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { BtnAzulOutArrow, BtnAzulBaseArrow } from "./ui/Buttons";
@@ -20,6 +20,12 @@ const T: Record<Lang, { heading: string; sub: string; btnPresentation: string; b
     btnPartner: "Quero ser parceiro",
   },
   en: {
+    heading: "Ready to grow with Acquafy?",
+    sub: "Join the fastest-growing smart water management ecosystem in the world.",
+    btnPresentation: "Request a presentation",
+    btnPartner: "I want to be a partner",
+  },
+  "en-gb": {
     heading: "Ready to grow with Acquafy?",
     sub: "Join the fastest-growing smart water management ecosystem in the world.",
     btnPresentation: "Request a presentation",
@@ -67,6 +73,36 @@ const T: Record<Lang, { heading: string; sub: string; btnPresentation: string; b
     btnPresentation: "프레젠테이션 요청",
     btnPartner: "파트너가 되고 싶습니다",
   },
+  sv: {
+    heading: "Redo att växa med Acquafy?",
+    sub: "Gå med i det snabbast växande ekosystemet för smart vattenhantering i världen.",
+    btnPresentation: "Begär en presentation",
+    btnPartner: "Jag vill bli partner",
+  },
+  fi: {
+    heading: "Valmiina kasvamaan Acquafyn kanssa?",
+    sub: "Liity maailman nopeimmin kasvavaan älykkään vedenhallinnnan ekosysteemiin.",
+    btnPresentation: "Pyydä esitys",
+    btnPartner: "Haluan tulla kumppaniksi",
+  },
+  ru: {
+    heading: "Готовы расти вместе с Acquafy?",
+    sub: "Присоединяйтесь к самой быстрорастущей экосистеме интеллектуального управления водными ресурсами в мире.",
+    btnPresentation: "Запросить презентацию",
+    btnPartner: "Хочу стать партнером",
+  },
+  ro: {
+    heading: "Gata sa cresti cu Acquafy?",
+    sub: "Alatura-te celui mai rapid ecosistem de management inteligent al apei din lume.",
+    btnPresentation: "Solicita o prezentare",
+    btnPartner: "Vreau sa fiu partener",
+  },
+  he: {
+    heading: "מוכן לצמוח עם Acquafy?",
+    sub: "הצטרף למערכת האקולוגית לניהול מים חכם הצומחת המהירה בעולם.",
+    btnPresentation: "בקש מצגת",
+    btnPartner: "אני רוצה להיות שותף",
+  },
 };
 
 export default function CtaBannerParceria() {
@@ -97,7 +133,7 @@ export default function CtaBannerParceria() {
 
         {/* botões direita */}
         <div className="relative flex flex-[1_0_0] flex-wrap gap-[10px] items-center justify-center xl:justify-end max-w-[500px] min-w-[240px]">
-          <Link href="/contato" className="flex-1 min-w-[200px]">
+          <Link href="/contact" className="flex-1 min-w-[200px]">
             <BtnAzulOutArrow className="w-full min-h-[56px]">
               {t.btnPresentation}
             </BtnAzulOutArrow>

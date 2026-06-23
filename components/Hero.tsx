@@ -173,7 +173,7 @@ const T: Record<Lang, {
     s2H1b: "should not be a privilege.",
     s2SubMobP1: "Acquafy combines technology, artificial intelligence, connectivity and sustainability to transform how people, businesses and communities access pure, quality water around the world.",
     s2SubMobP2: "Upgrade your old purifier to the new ",
-    s2SubDeskP1: "Acquafy makes pure water more accessible, with global technology, premium design and real benefits for your daily life.",
+    s2SubDeskP1: "Acquafy makes pure water more accessible, with global technology, premium design and real benefits for your everyday life.",
     s2SubDeskP2: "Upgrade your old purifier to the new ",
     s2Cards: [
       { label: "4 high-performance filters" },

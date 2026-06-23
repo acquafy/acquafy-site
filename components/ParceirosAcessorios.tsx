@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
@@ -51,6 +51,22 @@ const T: Record<Lang, {
     ],
     benefits: [
       { title: "Consistent Identity",       desc: "Global standardization with the Acquafy visual identity." },
+      { title: "Premium Quality",            desc: "Selected materials and excellent finishing." },
+      { title: "Strategic Merchandising",   desc: "Strengthens your brand at every touchpoint." },
+      { title: "Ideal for Showrooms",        desc: "Accessories that enhance the environment and experience." },
+      { title: "Event Activation",           desc: "Perfect for trade shows, promotional actions and activations." },
+    ],
+  },
+  "en-gb": {
+    heading:  "For partners, events and promotional actions",
+    subtitle: "Acquafy accessories can be used by Silver, Gold and Platinum partners at trade shows, showroom activations, product launches, acquisition campaigns and Media Network operations.",
+    tiers: [
+      { desc: "Essential accessories to present your brand with Acquafy quality." },
+      { desc: "Premium materials for experiences with differentiation and sophistication." },
+      { desc: "Exclusive solutions and customisations to highlight your market leadership." },
+    ],
+    benefits: [
+      { title: "Consistent Identity",       desc: "Global standardisation with the Acquafy visual identity." },
       { title: "Premium Quality",            desc: "Selected materials and excellent finishing." },
       { title: "Strategic Merchandising",   desc: "Strengthens your brand at every touchpoint." },
       { title: "Ideal for Showrooms",        desc: "Accessories that enhance the environment and experience." },
@@ -167,6 +183,86 @@ const T: Record<Lang, {
       { title: "전략적 머천다이징",            desc: "모든 접점에서 브랜드를 강화." },
       { title: "쇼룸에 이상적",               desc: "환경과 경험을 향상시키는 액세서리." },
       { title: "이벤트 활성화",               desc: "무역 박람회, 프로모션 활동 및 활성화에 완벽." },
+    ],
+  },
+  sv: {
+    heading:  "For partners, evenemang och kampanjaktioner",
+    subtitle: "Acquafy-tillbehor kan anvandas av Silver-, Gold- och Platinum-partners pa massor, showroom-aktiveringar, produktlanseringar, kundforvarvskampanjer och Media Network-operationer.",
+    tiers: [
+      { desc: "Viktiga tillbehor for att presentera ditt varumarke med Acquafy-kvalitet." },
+      { desc: "Premiummaterial for upplevelser med differentiering och sofistikering." },
+      { desc: "Exklusiva losningar och anpassningar for att framhava din marknadsledarskap." },
+    ],
+    benefits: [
+      { title: "Konsekvent identitet",        desc: "Global standardisering med Acquafys visuella identitet." },
+      { title: "Premiumkvalitet",             desc: "Utvalda material och utmarkt finish." },
+      { title: "Strategisk merchandising",    desc: "Starker ditt varumarke vid varje kontaktpunkt." },
+      { title: "Idealiskt for showrooms",     desc: "Tillbehor som forbattrar miljon och upplevelsen." },
+      { title: "Evenemangsaktivering",        desc: "Perfekt for massor, kampanjaktioner och aktiveringar." },
+    ],
+  },
+  fi: {
+    heading:  "Kumppaneille, tapahtumille ja kampanjatoimille",
+    subtitle: "Acquafy-tarvikkeita voivat kayttaa Silver-, Gold- ja Platinum-kumppanit messuilla, showroom-aktivoinneissa, tuotelanseerauksissa, asiakashankintakampanjoissa ja Media Network -toiminnoissa.",
+    tiers: [
+      { desc: "Valttamattomat tarvikkeet brандisi esittelemiseksi Acquafy-laadulla." },
+      { desc: "Premium-materiaalit kokemuksiin, joissa on erottuvuutta ja hienostuneisuutta." },
+      { desc: "Eksklusiiviset ratkaisut ja raataloinnnit markkina-johtajuutesi korostamiseksi." },
+    ],
+    benefits: [
+      { title: "Yhtenenainen identiteetti",   desc: "Globaali standardointi Acquafyn visuaalisella identiteetilla." },
+      { title: "Premiumlaatu",                desc: "Valitut materiaalit ja erinomainen viimeistely." },
+      { title: "Strateginen myynninedistaminen", desc: "Vahvistaa brandisi jokaisessa kontaktipisteessa." },
+      { title: "Ihanteellinen showroomeihin", desc: "Tarvikkeet, jotka parantavat ymparistoa ja kokemusta." },
+      { title: "Tapahtumaaktivointi",         desc: "Taydellinen messuille, kampanjatoimille ja aktivoinneille." },
+    ],
+  },
+  ru: {
+    heading:  "Dlya partnerov, meropriyatiy i promoactsiy",
+    subtitle: "Aksessuary Acquafy mogut ispolzovatsya partnerami Silver, Gold i Platinum na vystavkakh, aktivatsiyakh showroom, zapuskakh produktov, kampaniyakh privlecheniya klientov i operatsiyakh Media Network.",
+    tiers: [
+      { desc: "Neobkhodimye aksessuary dlya predstavleniya vashego brenda s kachestvom Acquafy." },
+      { desc: "Premium-materialy dlya vpechatleniy s differentsiatsiyey i izyskannostyu." },
+      { desc: "Eksklyuzivnye resheniya i nastroyki dlya podcherkivaniya vashego liderstva na rynke." },
+    ],
+    benefits: [
+      { title: "Posledovatelnaya identichnost",  desc: "Globalnaya standartizatsiya s vizualnoy identichnostyu Acquafy." },
+      { title: "Premium kachestvo",              desc: "Vybrannnye materialy i otlichnaya otdelka." },
+      { title: "Strategicheskiy merchandayzing", desc: "Ukreplyaet vash brend v kazhdoy tochke kontakta." },
+      { title: "Idealno dlya showrumov",         desc: "Aksessuary, kotorye uluchshayut sredu i opyt." },
+      { title: "Aktivatsiya meropriyatiy",       desc: "Idealno dlya vystavok, promoactsiy i aktivatsiy." },
+    ],
+  },
+  ro: {
+    heading:  "Pentru parteneri, evenimente si actiuni promotionale",
+    subtitle: "Accesoriile Acquafy pot fi utilizate de partenerii Silver, Gold si Platinum la targuri, activari de showroom, lansari de produse, campanii de achizitie si operatiuni Media Network.",
+    tiers: [
+      { desc: "Accesorii esentiale pentru a prezenta brandul dvs. cu calitatea Acquafy." },
+      { desc: "Materiale premium pentru experiente cu diferentiere si sofisticare." },
+      { desc: "Solutii exclusive si personalizari pentru a evidentia leadership-ul dvs. pe piata." },
+    ],
+    benefits: [
+      { title: "Identitate Consecventa",      desc: "Standardizare globala cu identitatea vizuala Acquafy." },
+      { title: "Calitate Premium",             desc: "Materiale selectate si finisaj de excelenta." },
+      { title: "Merchandising Strategic",     desc: "Intareste brandul dvs. la fiecare punct de contact." },
+      { title: "Ideal pentru Showroom-uri",   desc: "Accesorii care valorizeaza mediul si experienta." },
+      { title: "Activare de Evenimente",      desc: "Perfect pentru targuri, actiuni promotionale si activari." },
+    ],
+  },
+  he: {
+    heading:  "לשותפים, אירועים ופעולות קידום מכירות",
+    subtitle: "אביזרי Acquafy יכולים לשמש שותפי Silver, Gold ו-Platinum בתערוכות, הפעלות שורום, השקות מוצרים, קמפיינים לרכישת לקוחות ותפעול Media Network.",
+    tiers: [
+      { desc: "אביזרים חיוניים להצגת המותג שלך עם איכות Acquafy." },
+      { desc: "חומרים פרימיום לחוויות עם בידול ותחכום." },
+      { desc: "פתרונות בלעדיים והתאמות אישיות להדגשת המנהיגות שלך בשוק." },
+    ],
+    benefits: [
+      { title: "זהות עקבית",                  desc: "תקינה גלובלית עם הזהות החזותית של Acquafy." },
+      { title: "איכות פרימיום",               desc: "חומרים נבחרים וגימור מעולה." },
+      { title: "מרצ'נדייזינג אסטרטגי",        desc: "מחזק את המותג שלך בכל נקודת מגע." },
+      { title: "אידיאלי לשורומים",            desc: "אביזרים המשדרגים את הסביבה והחוויה." },
+      { title: "הפעלת אירועים",               desc: "מושלם לתערוכות, פעולות קידום מכירות והפעלות." },
     ],
   },
 };

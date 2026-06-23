@@ -30,6 +30,13 @@ const T: Record<Lang, {
     sub: "We value transparency in the handling of your personal data. Learn how we collect, use and protect your information in compliance with the LGPD and international privacy laws.",
     lastUpdate: "Last updated: June 16, 2026",
   },
+  "en-gb": {
+    badge: "Privacy & Transparency",
+    headingMain: "Privacy",
+    headingHighlight: "Policy",
+    sub: "We value transparency in the handling of your personal data. Learn how we collect, use and protect your information in compliance with the LGPD and international privacy laws.",
+    lastUpdate: "Last updated: 16 June 2026",
+  },
   es: {
     badge: "Privacidad y Transparencia",
     headingMain: "Políticas de",
@@ -78,6 +85,41 @@ const T: Record<Lang, {
     headingHighlight: "처리방침",
     sub: "당사는 귀하의 개인 데이터 처리에 있어 투명성을 중요시합니다. LGPD 및 국제 개인정보 보호법에 따라 정보를 수집, 사용 및 보호하는 방법을 확인하세요.",
     lastUpdate: "최종 업데이트: 2026년 6월 16일",
+  },
+  sv: {
+    badge: "Integritet & Transparens",
+    headingMain: "Integritets-",
+    headingHighlight: "policy",
+    sub: "Vi värdesätter transparens i hanteringen av dina personuppgifter. Lär dig hur vi samlar in, använder och skyddar din information i enlighet med LGPD och internationella integritetslagar.",
+    lastUpdate: "Senast uppdaterad: 16 juni 2026",
+  },
+  fi: {
+    badge: "Yksityisyys & Läpinäkyvyys",
+    headingMain: "Tietosuoja-",
+    headingHighlight: "käytäntö",
+    sub: "Arvostamme läpinäkyvyyttä henkilötietojesi käsittelyssä. Lue, miten keräämme, käytämme ja suojaamme tietojasi LGPD:n ja kansainvälisten tietosuojalakien mukaisesti.",
+    lastUpdate: "Viimeksi päivitetty: 16. kesäkuuta 2026",
+  },
+  ru: {
+    badge: "Конфиденциальность и прозрачность",
+    headingMain: "Политика",
+    headingHighlight: "конфиденциальности",
+    sub: "Мы ценим прозрачность в обработке ваших персональных данных. Узнайте, как мы собираем, используем и защищаем вашу информацию в соответствии с LGPD и международным законодательством о защите данных.",
+    lastUpdate: "Последнее обновление: 16 июня 2026 г.",
+  },
+  ro: {
+    badge: "Confidentialitate & Transparenta",
+    headingMain: "Politica de",
+    headingHighlight: "Confidentialitate",
+    sub: "Pretuim transparenta in gestionarea datelor dvs. personale. Aflati cum colectam, utilizam si protejam informatiile dvs. in conformitate cu LGPD si legislatiile internationale privind confidentialitatea.",
+    lastUpdate: "Ultima actualizare: 16 iunie 2026",
+  },
+  he: {
+    badge: "פרטיות ושקיפות",
+    headingMain: "מדיניות",
+    headingHighlight: "הפרטיות",
+    sub: "אנו מעריכים שקיפות בטיפול בנתונים האישיים שלך. למד כיצד אנו אוספים, משתמשים ומגנים על המידע שלך בהתאם ל-LGPD ולחוקי הפרטיות הבינלאומיים.",
+    lastUpdate: "עדכון אחרון: 16 ביוני 2026",
   },
 };
 
