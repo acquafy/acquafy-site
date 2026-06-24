@@ -38,8 +38,8 @@ type Language = {
 
 const LANGUAGES: Language[] = [
   { code: "pt-br", label: "Português (BR)",          flag: imgBR_Menu,aspectW: 512,   aspectH: 512,   langCode: "pt" },
-  { code: "en",    label: "English (England)",        flag: imgUSA, aspectW: 18, aspectH: 18, langCode: "en" },
-  { code: "en-gb", label: "English (Global)",         flag: imgGB,  aspectW: 20, aspectH: 20, langCode: "en-gb" },
+  { code: "en",    label: "English (England)",        flag: imgGB,  aspectW: 20, aspectH: 20, langCode: "en" },
+  { code: "en-gb", label: "English (USA)",            flag: imgUSA, aspectW: 18, aspectH: 18, langCode: "en-gb" },
   { code: "pt-pt", label: "Português (Portugal)",    flag: imgPT,     aspectW: 1,     aspectH: 1,     langCode: "pt-pt" },
   { code: "es",    label: "Español",                 flag: imgES,     aspectW: 22,    aspectH: 22,    langCode: "es" },
   { code: "fr",    label: "Français",                flag: imgFR,     aspectW: 30,    aspectH: 30,    langCode: "fr" },
@@ -62,8 +62,8 @@ const COMPACT_LABEL: Record<Lang, string> = { pt: "BR", "pt-pt": "PT", en: "EN",
 const FULL_INFO: Record<Lang, { flag: string; aspectW: number; aspectH: number; label: string }> = {
   pt:      { flag: imgBR_Menu, aspectW: 512,   aspectH: 512,   label: "Português (BR)" },
   "pt-pt": { flag: imgPT,     aspectW: 1,     aspectH: 1,     label: "Português (Portugal)" },
-  en:      { flag: imgUSA,    aspectW: 18,    aspectH: 18,    label: "English (England)" },
-  "en-gb": { flag: imgGB,    aspectW: 20,    aspectH: 20,    label: "English (Global)" },
+  en:      { flag: imgGB,     aspectW: 20,    aspectH: 20,    label: "English (England)" },
+  "en-gb": { flag: imgUSA,   aspectW: 18,    aspectH: 18,    label: "English (USA)" },
   es: { flag: imgES,      aspectW: 22,    aspectH: 22,    label: "Español" },
   fr: { flag: imgFR,      aspectW: 30,    aspectH: 30,    label: "Français" },
   de: { flag: imgDE,      aspectW: 306.6, aspectH: 306.7, label: "Deutsch" },

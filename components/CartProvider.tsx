@@ -317,10 +317,14 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const { lang } = useLang();
   const t = T[lang];
-  const [cart, setCart] = useState<CartItem[]>(() => {
-    if (typeof window === "undefined") return [];
-    try { return JSON.parse(localStorage.getItem("acquafy-cart") ?? "[]"); } catch { return []; }
-  });
+  const [cart, setCart] = useState<CartItem[]>([]);
+
+  useEffect(() => {
+    try {
+      const saved = JSON.parse(localStorage.getItem("acquafy-cart") ?? "[]");
+      if (Array.isArray(saved) && saved.length > 0) setCart(saved);
+    } catch {}
+  }, []);
   const [toast, setToast] = useState<{ id: string; label: string } | null>(null);
   const [toastFlyOut, setToastFlyOut] = useState(false);
   const [showCartPanel, setShowCartPanel] = useState(false);
