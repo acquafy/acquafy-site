@@ -2,6 +2,10 @@
 import { useState, useMemo, useRef, useEffect } from "react";
 import FigmaIcon from "./FigmaIcon";
 import { PRODUCT_PRICES_BRL, formatBRL, PRODUCT_IMAGES as productImages } from "@/lib/products";
+import { CHECKIN_FAMILIES } from "@/lib/checkin-products";
+
+const PRODUCT_TO_FAMILY: Record<string, string> = {};
+CHECKIN_FAMILIES.forEach(f => f.variants.forEach(v => { PRODUCT_TO_FAMILY[v.id] = f.slug; }));
 import { useCart } from "@/components/CartProvider";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
@@ -43,6 +47,7 @@ type Specs = {
   iot: boolean;
   wifi: boolean;
   uv: boolean;
+  compressor: boolean;
   filtragem: string;
   tanque: string;
   material: string;
@@ -65,129 +70,135 @@ const PRODUCTS: Product[] = [
     id: "neo-up", label: "Neo UP",
     nameParts: [{ text: "Neo " }, { text: "UP", highlight: true }],
     linha: "Essentials", categories: ["Bancada"],
-    specs: { formato: "Bancada ou Parede", funcoes: "—", temperaturas: "Natural", gas: false, h2: false, painel: "—", app: false, iot: false, wifi: false, uv: false, filtragem: "4 Filtros UF de Alta Performance", tanque: "—", material: "Acabamento premium", preco: "US$ 267.97" },
+    specs: { formato: "Bancada ou Parede", funcoes: "—", temperaturas: "Natural", gas: false, h2: false, painel: "—", app: false, iot: false, wifi: false, uv: false, compressor: false, filtragem: "4 Filtros UF de Alta Performance", tanque: "—", material: "Acabamento premium", preco: "US$ 257.97" },
   },
   {
     id: "neo-fit", label: "Neo FIT",
     nameParts: [{ text: "Neo " }, { text: "FIT", highlight: true }],
     linha: "Essentials", categories: ["Bancada"],
-    specs: { formato: "Bancada ou Parede", funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "400ml", material: "Acabamento premium", preco: "US$ 497.97" },
-  },
-  {
-    id: "neo-smart-h2", label: "Neo SMART H₂",
-    nameParts: [{ text: "Neo " }, { text: "SMART H", highlight: true }, { text: "2", highlight: true }],
-    linha: "Essentials", categories: ["Bancada", "Água Hidrogenada"],
-    specs: { formato: "Bancada", funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: true, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "800ml", material: "Acabamento premium", preco: "US$ 597.97" },
+    specs: { formato: "Bancada ou Parede", funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, compressor: false, filtragem: "4 Filtros UF de Alta Performance", tanque: "400ml", material: "Acabamento premium", preco: "US$ 397.97" },
   },
   {
     id: "neo-touch", label: "Neo TOUCH",
     nameParts: [{ text: "Neo " }, { text: "TOUCH", highlight: true }],
     linha: "Essentials", categories: ["Bancada"],
-    specs: { formato: "Bancada", funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "800ml", material: "Acabamento premium", preco: "US$ 697.97" },
+    specs: { formato: "Bancada", funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, compressor: false, filtragem: "4 Filtros UF de Alta Performance", tanque: "800ml", material: "Acabamento premium", preco: "US$ 447.97" },
   },
   {
     id: "neo-plus", label: "Neo PLUS",
     nameParts: [{ text: "Neo " }, { text: "PLUS", highlight: true }],
     linha: "Essentials", categories: ["Bancada"],
-    specs: { formato: "Bancada", funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "1500ml", material: "Acabamento premium", preco: "US$ 797.97" },
+    specs: { formato: "Bancada", funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, compressor: false, filtragem: "4 Filtros UF de Alta Performance", tanque: "1500ml", material: "Acabamento premium", preco: "US$ 697.97" },
+  },
+  {
+    id: "neo-smart-h2", label: "Neo SMART H₂",
+    nameParts: [{ text: "Neo " }, { text: "SMART H", highlight: true }, { text: "2", highlight: true }],
+    linha: "Essentials", categories: ["Bancada", "Água Hidrogenada"],
+    specs: { formato: "Bancada", funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: true, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, compressor: false, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "800ml", material: "Acabamento premium", preco: "US$ 697.97" },
   },
   {
     id: "neo-ultra", label: "Neo ULTRA",
     nameParts: [{ text: "Neo " }, { text: "ULTRA", highlight: true }],
     linha: "Essentials", categories: ["Bancada"],
-    specs: { formato: "Bancada", funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "3000ml", material: "Acabamento premium", preco: "US$ 897.97" },
+    specs: { formato: "Bancada", funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "3000ml", material: "Acabamento premium", preco: "US$ 997.97" },
   },
   {
     id: "neo-ultra-spark", label: "Neo ULTRA SPARK",
     nameParts: [{ text: "Neo " }, { text: "ULTRA SPARK", highlight: true }],
     linha: "Essentials", categories: ["Bancada", "Água com Gás"],
-    specs: { formato: "Bancada", funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 997.97" },
+    specs: { formato: "Bancada", funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "3000ml", material: "Acabamento premium", preco: "US$ 1,197.97" },
   },
   {
     id: "neo-ultra-spark-h2", label: "Neo ULTRA SPARK H₂",
     nameParts: [{ text: "Neo " }, { text: "ULTRA SPARK H", highlight: true }, { text: "2", highlight: true }],
     linha: "Essentials", categories: ["Bancada", "Água com Gás", "Água Hidrogenada"],
-    specs: { formato: "Bancada", funcoes: "8 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: true, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,197.97" },
+    specs: { formato: "Bancada", funcoes: "8 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: true, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Acabamento premium", preco: "US$ 1,397.97" },
   },
   {
     id: "neo-max", label: "Neo MAX",
     nameParts: [{ text: "Neo " }, { text: "MAX", highlight: true }],
     linha: "Essentials", categories: ["Coluna"],
-    specs: { formato: "Coluna", funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,097.97" },
+    specs: { formato: "Coluna", funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "3000ml", material: "Acabamento premium", preco: "US$ 1,197.97" },
   },
   {
     id: "neo-max-spark", label: "Neo MAX SPARK",
     nameParts: [{ text: "Neo " }, { text: "MAX SPARK", highlight: true }],
     linha: "Essentials", categories: ["Coluna", "Água com Gás"],
-    specs: { formato: "Coluna", funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,297.97" },
+    specs: { formato: "Coluna", funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "3000ml", material: "Acabamento premium", preco: "US$ 1,397.97" },
   },
   {
     id: "neo-max-spark-h2", label: "Neo MAX SPARK H₂",
     nameParts: [{ text: "Neo " }, { text: "MAX SPARK H", highlight: true }, { text: "2", highlight: true }],
     linha: "Essentials", categories: ["Coluna", "Água com Gás", "Água Hidrogenada"],
-    specs: { formato: "Coluna", funcoes: "8 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: true, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,397.97" },
+    specs: { formato: "Coluna", funcoes: "8 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: true, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Acabamento premium", preco: "US$ 1,597.97" },
+  },
+  // ── Acquafy Media ───────────────────────────────────────────────
+  {
+    id: "acquafy-media", label: "Acquafy Media",
+    nameParts: [{ text: "Acquafy " }, { text: "Media", highlight: true }],
+    linha: "Premium", categories: [],
+    specs: { formato: "Totem Digital", funcoes: "—", temperaturas: "Natural e Gelada", gas: false, h2: false, painel: "Samsung Business 43\" 24/7", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "5.000ml", material: "Aço inox", preco: "US$ 2,000.00" },
   },
   // ── Neo Premium ─────────────────────────────────────────────────
   {
     id: "neo-infinity", label: "Neo INFINITY",
     nameParts: [{ text: "Neo " }, { text: "INFINITY", highlight: true }],
     linha: "Premium", categories: ["Bancada"],
-    specs: { formato: "Bancada", funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,297.97" },
+    specs: { formato: "Bancada", funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,697.97" },
   },
   {
     id: "neo-infinity-spark", label: "Neo INFINITY SPARK",
     nameParts: [{ text: "Neo " }, { text: "INFINITY SPARK", highlight: true }],
     linha: "Premium", categories: ["Bancada", "Água com Gás"],
-    specs: { formato: "Bancada", funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: false, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,497.97" },
+    specs: { formato: "Bancada", funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: false, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,797.97" },
   },
   {
     id: "neo-infinity-spark-h2", label: "Neo INFINITY SPARK H₂",
     nameParts: [{ text: "Neo " }, { text: "INFINITY SPARK H", highlight: true }, { text: "2", highlight: true }],
     linha: "Premium", categories: ["Bancada", "Água com Gás", "Água Hidrogenada"],
-    specs: { formato: "Bancada", funcoes: "8 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: true, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,597.97" },
+    specs: { formato: "Bancada", funcoes: "8 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: true, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,897.97" },
   },
   {
     id: "neo-prestige", label: "Neo PRESTIGE",
     nameParts: [{ text: "Neo " }, { text: "PRESTIGE", highlight: true }],
     linha: "Premium", categories: ["Embutido"],
-    specs: { formato: "Embutido", funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,397.97" },
+    specs: { formato: "Embutido", funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,727.97" },
   },
   {
     id: "neo-prestige-spark", label: "Neo PRESTIGE SPARK",
     nameParts: [{ text: "Neo " }, { text: "PRESTIGE SPARK", highlight: true }],
     linha: "Premium", categories: ["Embutido", "Água com Gás"],
-    specs: { formato: "Embutido", funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: false, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,597.97" },
+    specs: { formato: "Embutido", funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: false, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,827.97" },
   },
   {
     id: "neo-prestige-spark-h2", label: "Neo PRESTIGE SPARK H₂",
     nameParts: [{ text: "Neo " }, { text: "PRESTIGE SPARK H", highlight: true }, { text: "2", highlight: true }],
     linha: "Premium", categories: ["Embutido", "Água com Gás", "Água Hidrogenada"],
-    specs: { formato: "Embutido", funcoes: "8 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: true, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,697.97" },
+    specs: { formato: "Embutido", funcoes: "8 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: true, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,927.97" },
   },
   {
     id: "neo-prime", label: "Neo PRIME",
     nameParts: [{ text: "Neo " }, { text: "PRIME", highlight: true }],
     linha: "Premium", categories: ["Bancada"],
-    specs: { formato: "Bancada", funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,497.97" },
+    specs: { formato: "Bancada", funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,697.97" },
   },
   {
     id: "neo-prime-spark", label: "Neo PRIME SPARK",
     nameParts: [{ text: "Neo " }, { text: "PRIME SPARK", highlight: true }],
     linha: "Premium", categories: ["Bancada", "Água com Gás"],
-    specs: { formato: "Bancada", funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: false, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,597.97" },
+    specs: { formato: "Bancada", funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: false, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,797.97" },
   },
   {
     id: "neo-prime-spark-h2", label: "Neo PRIME SPARK H₂",
     nameParts: [{ text: "Neo " }, { text: "PRIME SPARK H", highlight: true }, { text: "2", highlight: true }],
     linha: "Premium", categories: ["Bancada", "Água com Gás", "Água Hidrogenada"],
-    specs: { formato: "Bancada", funcoes: "8 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: true, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,697.97" },
+    specs: { formato: "Bancada", funcoes: "8 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: true, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,897.97" },
   },
 ];
 
 // ─── Spec Rows ────────────────────────────────────────────────────────────────
 const SPEC_ROWS: { key: keyof Specs; label: string; type: "text" | "bool" | "price" }[] = [
   { key: "formato",     label: "Formato",               type: "text"  },
-  { key: "funcoes",     label: "Funções",               type: "text"  },
   { key: "temperaturas",label: "Temperaturas",          type: "text"  },
   { key: "gas",         label: "Água com gás",          type: "bool"  },
   { key: "h2",          label: "Água hidrogenada",      type: "bool"  },
@@ -198,6 +209,7 @@ const SPEC_ROWS: { key: keyof Specs; label: string; type: "text" | "bool" | "pri
   { key: "uv",          label: "UV LED",                type: "bool"  },
   { key: "filtragem",   label: "Sistema de Filtragem",  type: "text"  },
   { key: "tanque",      label: "Tanque de água gelada", type: "text"  },
+  { key: "compressor",  label: "Compressor Inverter",   type: "bool"  },
   { key: "material",    label: "Material",              type: "text"  },
   { key: "preco",       label: "Preço BR",              type: "price" },
 ];
@@ -209,6 +221,21 @@ const SPEC_TRANSLATE: Partial<Record<Lang, Record<string, string>>> = {
     "Bancada": "Countertop",
     "Coluna": "Floor Stand",
     "Embutido": "Built-in",
+    "Totem Digital": "Digital Totem",
+    "Natural, Gelada e Quente": "Natural, Cold & Hot",
+    "Natural": "Natural",
+    "Acabamento premium": "Premium Finish",
+    "Aço inox": "Stainless Steel",
+    "4 Filtros UF de Alta Performance": "4 High-Performance UF Filters",
+    "4 Filtros RO / Osmose Reversa de Alta Performance": "4 High-Performance RO / Reverse Osmosis Filters",
+    "6 em 1": "6 in 1", "7 em 1": "7 in 1", "8 em 1": "8 in 1",
+  },
+  "en-gb": {
+    "Bancada ou Parede": "Countertop or Wall",
+    "Bancada": "Countertop",
+    "Coluna": "Floor Stand",
+    "Embutido": "Built-in",
+    "Totem Digital": "Digital Totem",
     "Natural, Gelada e Quente": "Natural, Cold & Hot",
     "Natural": "Natural",
     "Acabamento premium": "Premium Finish",
@@ -222,6 +249,7 @@ const SPEC_TRANSLATE: Partial<Record<Lang, Record<string, string>>> = {
     "Bancada": "Encimera",
     "Coluna": "Columna",
     "Embutido": "Empotrado",
+    "Totem Digital": "Tótem Digital",
     "Natural, Gelada e Quente": "Natural, Fría y Caliente",
     "Natural": "Natural",
     "Acabamento premium": "Acabado premium",
@@ -238,7 +266,7 @@ function translateSpec(val: string, lang: Lang): string {
 }
 
 // ─── Filters (PT keys used for logic) ─────────────────────────────────────────
-const FILTERS_PT = ["Todos", "Essentials", "Premium", "Bancada", "Coluna", "Embutido", "Água com Gás", "Água Hidrogenada"];
+const FILTERS_PT = ["Todos", "Essentials", "Media", "Premium", "Bancada", "Coluna", "Embutido", "Água com Gás", "Água Hidrogenada"];
 
 // ─── Translations ─────────────────────────────────────────────────────────────
 const T: Record<Lang, {
@@ -264,9 +292,10 @@ const T: Record<Lang, {
   trustItems: { title: string; desc: string }[];
   modalNone: string; modalSelected: string; modalCompare: string; modalClose: string;
   altYes: string; altNo: string;
+  mediaExtraTitle: string; mediaExtraItems: string[];
 }> = {
   pt: {
-    filters: ["Todos", "Essentials", "Premium", "Bancada", "Coluna", "Embutido", "Água com Gás", "Água Hidrogenada"],
+    filters: ["Todos", "Essentials", "Media", "Premium", "Bancada", "Coluna", "Embutido", "Água com Gás", "Água Hidrogenada"],
     badgeLabel: "Compare Produtos",
     h1Pre: "Compare os produtos ", h1Highlight: "Acquafy Neo",
     subtitle: "Compare as linhas Neo Essentials & Neo Premium e encontre o modelo ideal para você.",
@@ -278,7 +307,7 @@ const T: Record<Lang, {
     selectProduct: "Selecione um produto", removeLabel: "Remover",
     tableFeatures: "Características",
     linePrefix: "Linha Neo ",
-    specRowLabels: ["Formato", "Funções", "Temperaturas", "Água com gás", "Água hidrogenada", "Painel", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Sistema de Filtragem", "Tanque de água gelada", "Material", "Preço BR"],
+    specRowLabels: ["Formato", "Temperaturas", "Água com gás", "Água hidrogenada", "Painel", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Sistema de Filtragem", "Tanque de água gelada", "Compressor Inverter", "Material", "Preço BR"],
     acquireLabel: "Adquirir", buyNow: "Comprar Agora →",
     emptyTable: "Selecione ao menos um produto para comparar.",
     essentialsChecklist: ["Painel LED Touch 10,1", "App + AI + IoT", "4 Filtros UF de Alta Performance", "Modelos Bancada, Parede e Coluna", "Excelente custo-benefício"],
@@ -294,9 +323,11 @@ const T: Record<Lang, {
     ],
     modalNone: "Nenhum produto selecionado", modalSelected: " de 4 produto", modalCompare: "Comparar", modalClose: "Fechar",
     altYes: "Sim", altNo: "Não",
+    mediaExtraTitle: "Recursos exclusivos do Acquafy Media",
+    mediaExtraItems: ["Tanque de água natural: 10.000ml", "2 Sensores de aproximação de copos e garrafas", "Computador Ultra Rápido com Sistemas de Gestão de Mídia", "Plataforma de Mídia Digital + Receita Recorrente"],
   },
   "pt-pt": {
-    filters: ["Todos", "Essentials", "Premium", "Bancada", "Coluna", "Embutido", "Água com Gás", "Água Hidrogenada"],
+    filters: ["Todos", "Essentials", "Media", "Premium", "Bancada", "Coluna", "Embutido", "Água com Gás", "Água Hidrogenada"],
     badgeLabel: "Comparar Produtos",
     h1Pre: "Compare os produtos ", h1Highlight: "Acquafy Neo",
     subtitle: "Compare as linhas Neo Essentials & Neo Premium e encontre o modelo ideal para si.",
@@ -308,7 +339,7 @@ const T: Record<Lang, {
     selectProduct: "Selecione um produto", removeLabel: "Remover",
     tableFeatures: "Características",
     linePrefix: "Linha Neo ",
-    specRowLabels: ["Formato", "Funções", "Temperaturas", "Água com gás", "Água hidrogenada", "Painel", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Sistema de Filtragem", "Tanque de água gelada", "Material", "Preço BR"],
+    specRowLabels: ["Formato", "Temperaturas", "Água com gás", "Água hidrogenada", "Painel", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Sistema de Filtragem", "Tanque de água gelada", "Compressor Inverter", "Material", "Preço BR"],
     acquireLabel: "Adquirir", buyNow: "Comprar Agora →",
     emptyTable: "Selecione pelo menos um produto para comparar.",
     essentialsChecklist: ["Painel LED Touch 10,1", "App + AI + IoT", "4 Filtros UF de Alta Performance", "Modelos Bancada, Parede e Coluna", "Excelente relação qualidade-preço"],
@@ -324,9 +355,11 @@ const T: Record<Lang, {
     ],
     modalNone: "Nenhum produto selecionado", modalSelected: " de 4 produto", modalCompare: "Comparar", modalClose: "Fechar",
     altYes: "Sim", altNo: "Não",
+    mediaExtraTitle: "Recursos exclusivos do Acquafy Media",
+    mediaExtraItems: ["Tanque de água natural: 10.000ml", "2 Sensores de aproximação de copos e garrafas", "Computador Ultra Rápido com Sistemas de Gestão de Mídia", "Plataforma de Mídia Digital + Receita Recorrente"],
   },
   en: {
-    filters: ["All", "Essentials", "Premium", "Countertop", "Floor Stand", "Built-in", "Sparkling Water", "Hydrogen Water"],
+    filters: ["All", "Essentials", "Media", "Premium", "Countertop", "Floor Stand", "Built-in", "Sparkling Water", "Hydrogen Water"],
     badgeLabel: "Compare Products",
     h1Pre: "Compare ", h1Highlight: "Acquafy Neo",
     subtitle: "Compare the Neo Essentials & Neo Premium lines and find the ideal model for you.",
@@ -338,7 +371,7 @@ const T: Record<Lang, {
     selectProduct: "Select a product", removeLabel: "Remove",
     tableFeatures: "Features",
     linePrefix: "Neo Line ",
-    specRowLabels: ["Format", "Functions", "Temperatures", "Sparkling Water", "Hydrogen Water", "Panel", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Filtration System", "Cold Water Tank", "Material", "BR Price"],
+    specRowLabels: ["Format", "Temperatures", "Sparkling Water", "Hydrogen Water", "Panel", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Filtration System", "Cold Water Tank", "Inverter Compressor", "Material", "BR Price"],
     acquireLabel: "Buy", buyNow: "Buy Now →",
     emptyTable: "Select at least one product to compare.",
     essentialsChecklist: ["LED Touch Panel 10.1", "App + AI + IoT", "4 High-Performance UF Filters", "Countertop, Wall and Floor Stand Models", "Excellent value for money"],
@@ -354,9 +387,43 @@ const T: Record<Lang, {
     ],
     modalNone: "No product selected", modalSelected: " of 4 product", modalCompare: "Compare", modalClose: "Close",
     altYes: "Yes", altNo: "No",
+    mediaExtraTitle: "Acquafy Media Exclusive Features",
+    mediaExtraItems: ["Natural water tank: 10,000ml", "2 Cup and bottle proximity sensors", "Ultra-Fast Computer with Media Management Systems", "Digital Media Platform + Recurring Revenue"],
+  },
+  "en-gb": {
+    filters: ["All", "Essentials", "Media", "Premium", "Countertop", "Floor Stand", "Built-in", "Sparkling Water", "Hydrogen Water"],
+    badgeLabel: "Compare Products",
+    h1Pre: "Compare ", h1Highlight: "Acquafy Neo",
+    subtitle: "Compare the Neo Essentials & Neo Premium lines and find the ideal model for you.",
+    ctaSpecialist: "Talk to a Specialist",
+    pills: ["App + AI + IoT", "16 Languages", "Global Operation", "Smart Water Platform"],
+    selectorPre: "Select models to compare (", selector44: "/4)",
+    viewComparison: "View Comparison",
+    selectedBarTitle: "Selected Products", selectedBarSub: "Add or remove products to compare",
+    selectProduct: "Select a product", removeLabel: "Remove",
+    tableFeatures: "Features",
+    linePrefix: "Neo Line ",
+    specRowLabels: ["Format", "Temperatures", "Sparkling Water", "Hydrogen Water", "Panel", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Filtration System", "Cold Water Tank", "Inverter Compressor", "Material", "BR Price"],
+    acquireLabel: "Buy", buyNow: "Buy Now →",
+    emptyTable: "Select at least one product to compare.",
+    essentialsChecklist: ["LED Touch Panel 10.1", "App + AI + IoT", "4 High-Performance UF Filters", "Countertop, Wall and Floor Stand Models", "Excellent value for money"],
+    premiumChecklist: ["Stainless Steel", "LCD IPS Touch Panel 15.6", "Mini Media Network", "4 High-Performance RO / Reverse Osmosis Filters", "Premium and sophisticated proposition"],
+    priceRangesTitle: "Price Ranges in the US Market",
+    priceFrom: "from ", priceTo: " to ",
+    trustItems: [
+      { title: "Guaranteed Quality",  desc: "Certified products with the highest standards." },
+      { title: "Secure Delivery",     desc: "Reliable and secure delivery throughout Brazil." },
+      { title: "Technical Support",   desc: "Authorised service network throughout the country." },
+      { title: "Extended Warranty",   desc: "More peace of mind for you and your family." },
+      { title: "Sustainability",      desc: "Technology that cares for water and the planet." },
+    ],
+    modalNone: "No product selected", modalSelected: " of 4 product", modalCompare: "Compare", modalClose: "Close",
+    altYes: "Yes", altNo: "No",
+    mediaExtraTitle: "Acquafy Media Exclusive Features",
+    mediaExtraItems: ["Natural water tank: 10,000ml", "2 Cup and bottle proximity sensors", "Ultra-Fast Computer with Media Management Systems", "Digital Media Platform + Recurring Revenue"],
   },
   es: {
-    filters: ["Todos", "Essentials", "Premium", "Encimera", "Columna", "Empotrado", "Agua con Gas", "Agua Hidrogenada"],
+    filters: ["Todos", "Essentials", "Media", "Premium", "Encimera", "Columna", "Empotrado", "Agua con Gas", "Agua Hidrogenada"],
     badgeLabel: "Comparar Productos",
     h1Pre: "Compara los ", h1Highlight: "Acquafy Neo",
     subtitle: "Compara las líneas Neo Essentials & Neo Premium y encuentra el modelo ideal para ti.",
@@ -368,7 +435,7 @@ const T: Record<Lang, {
     selectProduct: "Selecciona un producto", removeLabel: "Eliminar",
     tableFeatures: "Características",
     linePrefix: "Línea Neo ",
-    specRowLabels: ["Formato", "Funciones", "Temperaturas", "Agua con Gas", "Agua Hidrogenada", "Panel", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Sistema de Filtración", "Depósito de Agua Fría", "Material", "Precio BR"],
+    specRowLabels: ["Formato", "Temperaturas", "Agua con Gas", "Agua Hidrogenada", "Panel", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Sistema de Filtración", "Depósito de Agua Fría", "Compresor Inverter", "Material", "Precio BR"],
     acquireLabel: "Adquirir", buyNow: "Comprar Ahora →",
     emptyTable: "Selecciona al menos un producto para comparar.",
     essentialsChecklist: ["Panel LED Touch 10.1", "App + AI + IoT", "4 Filtros UF de Alto Rendimiento", "Modelos Encimera, Pared y Columna", "Excelente relación calidad-precio"],
@@ -384,9 +451,11 @@ const T: Record<Lang, {
     ],
     modalNone: "Ningún producto seleccionado", modalSelected: " de 4 producto", modalCompare: "Comparar", modalClose: "Cerrar",
     altYes: "Sí", altNo: "No",
+    mediaExtraTitle: "Características exclusivas del Acquafy Media",
+    mediaExtraItems: ["Depósito de agua natural: 10.000ml", "2 Sensores de proximidad de vasos y botellas", "Ordenador ultrarrápido con sistemas de gestión de medios", "Plataforma de medios digitales + Ingresos recurrentes"],
   },
   fr: {
-    filters: ["Tous", "Essentials", "Premium", "Plan de travail", "Colonne", "Encastré", "Eau pétillante", "Eau hydrogénée"],
+    filters: ["Tous", "Essentials", "Media", "Premium", "Plan de travail", "Colonne", "Encastré", "Eau pétillante", "Eau hydrogénée"],
     badgeLabel: "Comparer les produits",
     h1Pre: "Comparez les ", h1Highlight: "Acquafy Neo",
     subtitle: "Comparez les gammes Neo Essentials & Neo Premium et trouvez le modèle idéal pour vous.",
@@ -398,7 +467,7 @@ const T: Record<Lang, {
     selectProduct: "Sélectionner un produit", removeLabel: "Supprimer",
     tableFeatures: "Caractéristiques",
     linePrefix: "Gamme Neo ",
-    specRowLabels: ["Format", "Fonctions", "Températures", "Eau pétillante", "Eau hydrogénée", "Panneau", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Système de filtration", "Réservoir d'eau froide", "Matériau", "Prix BR"],
+    specRowLabels: ["Format", "Températures", "Eau pétillante", "Eau hydrogénée", "Panneau", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Système de filtration", "Réservoir d'eau froide", "Compresseur Inverter", "Matériau", "Prix BR"],
     acquireLabel: "Acquérir", buyNow: "Acheter maintenant →",
     emptyTable: "Sélectionnez au moins un produit pour comparer.",
     essentialsChecklist: ["Panneau LED Touch 10,1", "App + AI + IoT", "4 filtres UF haute performance", "Modèles plan de travail, mural et colonne", "Excellent rapport qualité-prix"],
@@ -414,9 +483,11 @@ const T: Record<Lang, {
     ],
     modalNone: "Aucun produit sélectionné", modalSelected: " sur 4 produit", modalCompare: "Comparer", modalClose: "Fermer",
     altYes: "Oui", altNo: "Non",
+    mediaExtraTitle: "Fonctionnalités exclusives de l'Acquafy Media",
+    mediaExtraItems: ["Réservoir d'eau naturelle : 10 000 ml", "2 capteurs de proximité pour verres et bouteilles", "Ordinateur ultra-rapide avec systèmes de gestion des médias", "Plateforme de médias numériques + Revenus récurrents"],
   },
   de: {
-    filters: ["Alle", "Essentials", "Premium", "Tischgerät", "Standgerät", "Einbaugerät", "Sprudelwasser", "Wasserstoffwasser"],
+    filters: ["Alle", "Essentials", "Media", "Premium", "Tischgerät", "Standgerät", "Einbaugerät", "Sprudelwasser", "Wasserstoffwasser"],
     badgeLabel: "Produkte vergleichen",
     h1Pre: "Vergleichen Sie ", h1Highlight: "Acquafy Neo",
     subtitle: "Vergleichen Sie die Neo Essentials & Neo Premium Linien und finden Sie das ideale Modell für Sie.",
@@ -428,7 +499,7 @@ const T: Record<Lang, {
     selectProduct: "Produkt auswählen", removeLabel: "Entfernen",
     tableFeatures: "Eigenschaften",
     linePrefix: "Neo Linie ",
-    specRowLabels: ["Format", "Funktionen", "Temperaturen", "Sprudelwasser", "Wasserstoffwasser", "Bedienfeld", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Filtersystem", "Kaltwassertank", "Material", "BR Preis"],
+    specRowLabels: ["Format", "Temperaturen", "Sprudelwasser", "Wasserstoffwasser", "Bedienfeld", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Filtersystem", "Kaltwassertank", "Inverter-Kompressor", "Material", "BR Preis"],
     acquireLabel: "Kaufen", buyNow: "Jetzt kaufen →",
     emptyTable: "Wählen Sie mindestens ein Produkt zum Vergleichen aus.",
     essentialsChecklist: ["LED Touch Panel 10,1", "App + AI + IoT", "4 Hochleistungs-UF-Filter", "Tisch-, Wand- und Standmodelle", "Ausgezeichnetes Preis-Leistungs-Verhältnis"],
@@ -444,9 +515,11 @@ const T: Record<Lang, {
     ],
     modalNone: "Kein Produkt ausgewählt", modalSelected: " von 4 Produkt", modalCompare: "Vergleichen", modalClose: "Schließen",
     altYes: "Ja", altNo: "Nein",
+    mediaExtraTitle: "Exklusive Funktionen des Acquafy Media",
+    mediaExtraItems: ["Natürlicher Wassertank: 10.000 ml", "2 Näherungssensoren für Tassen und Flaschen", "Ultraschneller Computer mit Medienverwaltungssystemen", "Digitale Medienplattform + Wiederkehrende Einnahmen"],
   },
   it: {
-    filters: ["Tutti", "Essentials", "Premium", "Da banco", "A colonna", "Da incasso", "Acqua frizzante", "Acqua idrogenata"],
+    filters: ["Tutti", "Essentials", "Media", "Premium", "Da banco", "A colonna", "Da incasso", "Acqua frizzante", "Acqua idrogenata"],
     badgeLabel: "Confronta prodotti",
     h1Pre: "Confronta i ", h1Highlight: "Acquafy Neo",
     subtitle: "Confronta le linee Neo Essentials & Neo Premium e trova il modello ideale per te.",
@@ -458,7 +531,7 @@ const T: Record<Lang, {
     selectProduct: "Seleziona un prodotto", removeLabel: "Rimuovi",
     tableFeatures: "Caratteristiche",
     linePrefix: "Linea Neo ",
-    specRowLabels: ["Formato", "Funzioni", "Temperature", "Acqua frizzante", "Acqua idrogenata", "Pannello", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Sistema di filtrazione", "Serbatoio acqua fredda", "Materiale", "Prezzo BR"],
+    specRowLabels: ["Formato", "Temperature", "Acqua frizzante", "Acqua idrogenata", "Pannello", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Sistema di filtrazione", "Serbatoio acqua fredda", "Compressore Inverter", "Materiale", "Prezzo BR"],
     acquireLabel: "Acquista", buyNow: "Compra ora →",
     emptyTable: "Seleziona almeno un prodotto per confrontare.",
     essentialsChecklist: ["Pannello LED Touch 10,1", "App + AI + IoT", "4 filtri UF ad alte prestazioni", "Modelli da banco, parete e colonna", "Ottimo rapporto qualità-prezzo"],
@@ -474,9 +547,11 @@ const T: Record<Lang, {
     ],
     modalNone: "Nessun prodotto selezionato", modalSelected: " di 4 prodotto", modalCompare: "Confronta", modalClose: "Chiudi",
     altYes: "Sì", altNo: "No",
+    mediaExtraTitle: "Funzionalità esclusive di Acquafy Media",
+    mediaExtraItems: ["Serbatoio d'acqua naturale: 10.000 ml", "2 sensori di prossimità per tazze e bottiglie", "Computer ultra-veloce con sistemi di gestione dei media", "Piattaforma media digitale + Entrate ricorrenti"],
   },
   zh: {
-    filters: ["全部", "Essentials", "Premium", "台式", "立式", "嵌入式", "气泡水", "富氢水"],
+    filters: ["全部", "Essentials", "Media", "Premium", "台式", "立式", "嵌入式", "气泡水", "富氢水"],
     badgeLabel: "比较产品",
     h1Pre: "比较 ", h1Highlight: "Acquafy Neo",
     subtitle: "比较 Neo Essentials 和 Neo Premium 系列，找到最适合您的型号。",
@@ -488,7 +563,7 @@ const T: Record<Lang, {
     selectProduct: "选择产品", removeLabel: "移除",
     tableFeatures: "特性",
     linePrefix: "Neo 系列 ",
-    specRowLabels: ["外形", "功能", "温度", "气泡水", "富氢水", "面板", "App", "AI + IoT", "Wi-Fi + 蓝牙 5.3", "UV LED", "过滤系统", "冷水箱", "材质", "巴西价格"],
+    specRowLabels: ["外形", "温度", "气泡水", "富氢水", "面板", "App", "AI + IoT", "Wi-Fi + 蓝牙 5.3", "UV LED", "过滤系统", "冷水箱", "变频压缩机", "材质", "巴西价格"],
     acquireLabel: "购买", buyNow: "立即购买 →",
     emptyTable: "请至少选择一个产品进行比较。",
     essentialsChecklist: ["LED 触控面板 10.1", "App + AI + IoT", "4 个高性能 UF 滤芯", "台式、壁挂式和立式型号", "出色的性价比"],
@@ -504,9 +579,11 @@ const T: Record<Lang, {
     ],
     modalNone: "未选择任何产品", modalSelected: "（共4个产品，已选", modalCompare: "比较", modalClose: "关闭",
     altYes: "是", altNo: "否",
+    mediaExtraTitle: "Acquafy Media 专属功能",
+    mediaExtraItems: ["天然水箱：10,000ml", "2个杯瓶近感传感器", "超快计算机与媒体管理系统", "数字媒体平台 + 周期性收益"],
   },
   ja: {
-    filters: ["すべて", "Essentials", "Premium", "卓上型", "スタンド型", "ビルトイン", "スパークリング", "水素水"],
+    filters: ["すべて", "Essentials", "Media", "Premium", "卓上型", "スタンド型", "ビルトイン", "スパークリング", "水素水"],
     badgeLabel: "製品を比較",
     h1Pre: "比較する ", h1Highlight: "Acquafy Neo",
     subtitle: "Neo Essentials と Neo Premium ラインを比較して、あなたに最適なモデルを見つけましょう。",
@@ -518,7 +595,7 @@ const T: Record<Lang, {
     selectProduct: "製品を選択", removeLabel: "削除",
     tableFeatures: "特徴",
     linePrefix: "Neo ライン ",
-    specRowLabels: ["フォーム", "機能", "温度", "スパークリング", "水素水", "パネル", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "ろ過システム", "冷水タンク", "素材", "BRプライス"],
+    specRowLabels: ["フォーム", "温度", "スパークリング", "水素水", "パネル", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "ろ過システム", "冷水タンク", "インバーターコンプレッサー", "素材", "BRプライス"],
     acquireLabel: "購入", buyNow: "今すぐ購入 →",
     emptyTable: "比較するには少なくとも1つの製品を選択してください。",
     essentialsChecklist: ["LED タッチパネル 10.1", "App + AI + IoT", "4基の高性能UFフィルター", "卓上・壁掛け・スタンドモデル", "優れたコストパフォーマンス"],
@@ -534,9 +611,11 @@ const T: Record<Lang, {
     ],
     modalNone: "製品が選択されていません", modalSelected: "（4製品中 ", modalCompare: "比較", modalClose: "閉じる",
     altYes: "はい", altNo: "いいえ",
+    mediaExtraTitle: "Acquafy Media 専用機能",
+    mediaExtraItems: ["天然水タンク：10,000ml", "コップ・ボトル近接センサー×2", "メディア管理システム搭載の超高速コンピューター", "デジタルメディアプラットフォーム＋継続的収益"],
   },
   ko: {
-    filters: ["전체", "Essentials", "Premium", "카운터탑", "스탠드형", "빌트인", "탄산수", "수소수"],
+    filters: ["전체", "Essentials", "Media", "Premium", "카운터탑", "스탠드형", "빌트인", "탄산수", "수소수"],
     badgeLabel: "제품 비교",
     h1Pre: "비교하기 ", h1Highlight: "Acquafy Neo",
     subtitle: "Neo Essentials & Neo Premium 라인을 비교하고 나에게 맞는 이상적인 모델을 찾아보세요.",
@@ -548,7 +627,7 @@ const T: Record<Lang, {
     selectProduct: "제품 선택", removeLabel: "제거",
     tableFeatures: "특성",
     linePrefix: "Neo 라인 ",
-    specRowLabels: ["형태", "기능", "온도", "탄산수", "수소수", "패널", "앱", "AI + IoT", "Wi-Fi + 블루투스 5.3", "UV LED", "여과 시스템", "냉수 탱크", "소재", "브라질 가격"],
+    specRowLabels: ["형태", "온도", "탄산수", "수소수", "패널", "앱", "AI + IoT", "Wi-Fi + 블루투스 5.3", "UV LED", "여과 시스템", "냉수 탱크", "인버터 컴프레서", "소재", "브라질 가격"],
     acquireLabel: "구매", buyNow: "지금 구매 →",
     emptyTable: "비교하려면 최소 하나의 제품을 선택하세요.",
     essentialsChecklist: ["LED 터치 패널 10.1", "App + AI + IoT", "4개 고성능 UF 필터", "카운터탑, 벽걸이, 스탠드형 모델", "뛰어난 가성비"],
@@ -564,6 +643,168 @@ const T: Record<Lang, {
     ],
     modalNone: "선택된 제품 없음", modalSelected: "（4개 중 ", modalCompare: "비교", modalClose: "닫기",
     altYes: "예", altNo: "아니오",
+    mediaExtraTitle: "Acquafy Media 전용 기능",
+    mediaExtraItems: ["천연 물 탱크: 10,000ml", "컵 및 병 근접 센서 2개", "미디어 관리 시스템을 갖춘 초고속 컴퓨터", "디지털 미디어 플랫폼 + 반복 수익"],
+  },
+  sv: {
+    filters: ["Alla", "Essentials", "Media", "Premium", "Bänkskiva", "Golvmodell", "Inbyggd", "Kolsyrat vatten", "Vätgasvatten"],
+    badgeLabel: "Jamfor produkter",
+    h1Pre: "Jamfor ", h1Highlight: "Acquafy Neo",
+    subtitle: "Jamfor Neo Essentials och Neo Premium och hitta den ideala modellen for dig.",
+    ctaSpecialist: "Prata med en specialist",
+    pills: ["App + AI + IoT", "16 sprak", "Global drift", "Smart vattanplattform"],
+    selectorPre: "Valj modeller att jamfora (", selector44: "/4)",
+    viewComparison: "Se jamforelse",
+    selectedBarTitle: "Valda produkter", selectedBarSub: "Lagg till eller ta bort produkter for att jamfora",
+    selectProduct: "Valj en produkt", removeLabel: "Ta bort",
+    tableFeatures: "Egenskaper",
+    linePrefix: "Neo-linjen ",
+    specRowLabels: ["Format", "Temperaturer", "Kolsyrat vatten", "Vatgasvatten", "Panel", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Filtreringssystem", "Kallvattentank", "Inverterkompressor", "Material", "BR-pris"],
+    acquireLabel: "Kop", buyNow: "Kop nu →",
+    emptyTable: "Valj minst en produkt for att jamfora.",
+    essentialsChecklist: ["LED Touch-panel 10.1", "App + AI + IoT", "4 hogpresterande UF-filter", "Borkskiva-, vagg- och golvmodeller", "Utmarkt prisprestandafyrhallande"],
+    premiumChecklist: ["Rostfritt stal", "LCD IPS Touch-panel 15.6", "Mini Media Network", "4 hogpresterande RO / omvand osmosfilter", "Premium och sofistikerat erbjudande"],
+    priceRangesTitle: "Prissortiment pa den amerikanska marknaden",
+    priceFrom: "fran ", priceTo: " till ",
+    trustItems: [
+      { title: "Garanterad kvalitet",  desc: "Certifierade produkter med hogsta standarder." },
+      { title: "Saker leverans",       desc: "Palitlig och saker leverans over hela Brasilien." },
+      { title: "Teknisk support",      desc: "Auktoriserat servicenatverk over hela landet." },
+      { title: "Forlangd garanti",     desc: "Mer trygghet for dig och din familj." },
+      { title: "Hallbarhet",           desc: "Teknik som tar hand om vatten och planeten." },
+    ],
+    modalNone: "Ingen produkt vald", modalSelected: " av 4 produkt", modalCompare: "Jamfor", modalClose: "Stang",
+    altYes: "Ja", altNo: "Nej",
+    mediaExtraTitle: "Exklusiva funktioner i Acquafy Media",
+    mediaExtraItems: ["Naturlig vattentank: 10 000 ml", "2 narsensorer for muggar och flaskor", "Ultrasnabb dator med mediehanteringssystem", "Digital medieplattform + Återkommande intäkter"],
+  },
+  fi: {
+    filters: ["Kaikki", "Essentials", "Media", "Premium", "Tyotaso", "Lattiamallit", "Upotettu", "Hiilihapotettu vesi", "Vetypitoinen vesi"],
+    badgeLabel: "Vertaile tuotteita",
+    h1Pre: "Vertaile ", h1Highlight: "Acquafy Neo",
+    subtitle: "Vertaile Neo Essentials- ja Neo Premium -sarjoja ja loyda sinulle sopiva malli.",
+    ctaSpecialist: "Puhu asiantuntijan kanssa",
+    pills: ["App + AI + IoT", "16 kielta", "Globaali toiminta", "Aly vesilausta"],
+    selectorPre: "Valitse vertailtavat mallit (", selector44: "/4)",
+    viewComparison: "Nayta vertailu",
+    selectedBarTitle: "Valitut tuotteet", selectedBarSub: "Lisaa tai poista tuotteita vertailua varten",
+    selectProduct: "Valitse tuote", removeLabel: "Poista",
+    tableFeatures: "Ominaisuudet",
+    linePrefix: "Neo-sarja ",
+    specRowLabels: ["Muoto", "Lampotilat", "Hiilihapotettu vesi", "Vetypitoinen vesi", "Paneeli", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Suodatusjärjestelma", "Kylmavesisailio", "Invertteri-kompressori", "Materiaali", "BR-hinta"],
+    acquireLabel: "Osta", buyNow: "Osta nyt →",
+    emptyTable: "Valitse vahintaan yksi tuote vertailua varten.",
+    essentialsChecklist: ["LED Touch -paneeli 10.1", "App + AI + IoT", "4 suorituskykyista UF-suodatinta", "Tasomalli-, seinä- ja lattiamallit", "Erinomainen hinta-laatu-suhde"],
+    premiumChecklist: ["Ruostumaton teräs", "LCD IPS Touch -paneeli 15.6", "Mini Media Network", "4 suorituskykyista RO / kaanteisosmoossisuodatinta", "Premium ja hienostunut ehdotus"],
+    priceRangesTitle: "Hintahaarukat Yhdysvaltain markkinoilla",
+    priceFrom: "alkaen ", priceTo: " asti ",
+    trustItems: [
+      { title: "Taattu laatu",         desc: "Sertifioidut tuotteet korkeimpien standardien mukaisesti." },
+      { title: "Turvallinen toimitus", desc: "Luotettava ja turvallinen toimitus koko Brasiliaan." },
+      { title: "Tekninen tuki",        desc: "Valtuutettu huoltoverkosto kautta maan." },
+      { title: "Laajennettu takuu",    desc: "Enemman mielenrauhaa sinulle ja perheellesi." },
+      { title: "Kestavyys",            desc: "Teknologia, joka huolehtii vedesta ja planeetasta." },
+    ],
+    modalNone: "Ei valittua tuotetta", modalSelected: " / 4 tuote", modalCompare: "Vertaile", modalClose: "Sulje",
+    altYes: "Kylla", altNo: "Ei",
+    mediaExtraTitle: "Acquafy Median eksklusiiviset ominaisuudet",
+    mediaExtraItems: ["Luonnonvesisäiliö: 10 000 ml", "2 lähestymisanturia kuppeille ja pulloille", "Ultranopea tietokone medianhallintajärjestelmillä", "Digitaalinen mediaalusta + Toistuva tulo"],
+  },
+  ru: {
+    filters: ["Все", "Essentials", "Media", "Premium", "Настольный", "Напольный", "Встраиваемый", "Газированная вода", "Водородная вода"],
+    badgeLabel: "Сравнить продукты",
+    h1Pre: "Сравните ", h1Highlight: "Acquafy Neo",
+    subtitle: "Сравните линейки Neo Essentials и Neo Premium и найдите идеальную модель для вас.",
+    ctaSpecialist: "Поговорить со специалистом",
+    pills: ["App + AI + IoT", "16 языков", "Глобальная работа", "Умная водная платформа"],
+    selectorPre: "Выберите модели для сравнения (", selector44: "/4)",
+    viewComparison: "Посмотреть сравнение",
+    selectedBarTitle: "Выбранные продукты", selectedBarSub: "Добавьте или удалите продукты для сравнения",
+    selectProduct: "Выберите продукт", removeLabel: "Удалить",
+    tableFeatures: "Характеристики",
+    linePrefix: "Линейка Neo ",
+    specRowLabels: ["Формат", "Температуры", "Газированная вода", "Водородная вода", "Панель", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Система фильтрации", "Бак холодной воды", "Инверторный компрессор", "Материал", "Цена BR"],
+    acquireLabel: "Купить", buyNow: "Купить сейчас →",
+    emptyTable: "Выберите хотя бы один продукт для сравнения.",
+    essentialsChecklist: ["Сенсорная панель LED Touch 10.1", "App + AI + IoT", "4 высокопроизводительных UF-фильтра", "Настольные, настенные и напольные модели", "Отличное соотношение цены и качества"],
+    premiumChecklist: ["Нержавеющая сталь", "Сенсорная панель LCD IPS Touch 15.6", "Mini Media Network", "4 высокопроизводительных RO / фильтра обратного осмоса", "Премиальное и изысканное предложение"],
+    priceRangesTitle: "Диапазоны цен на американском рынке",
+    priceFrom: "от ", priceTo: " до ",
+    trustItems: [
+      { title: "Гарантированное качество",  desc: "Сертифицированная продукция по высшим стандартам." },
+      { title: "Безопасная доставка",       desc: "Надёжная и безопасная доставка по всей Бразилии." },
+      { title: "Техническая поддержка",   desc: "Авторизованная сервисная сеть по всей стране." },
+      { title: "Расширенная гарантия",   desc: "Больше спокойствия для вас и вашей семьи." },
+      { title: "Устойчивое развитие",          desc: "Технологии, которые заботятся о воде и планете." },
+    ],
+    modalNone: "Нет выбранных продуктов", modalSelected: " из 4 продукт", modalCompare: "Сравнить", modalClose: "Закрыть",
+    altYes: "Да", altNo: "Нет",
+    mediaExtraTitle: "Эксклюзивные возможности Acquafy Media",
+    mediaExtraItems: ["Бак природной воды: 10 000 мл", "2 датчика приближения стаканов и бутылок", "Сверхбыстрый компьютер с системами управления медиа", "Платформа цифровых медиа + Регулярный доход"],
+  },
+  ro: {
+    filters: ["Toate", "Essentials", "Media", "Premium", "Blat", "Coloana", "Incorporat", "Apa carbogazoasa", "Apa cu hidrogen"],
+    badgeLabel: "Compara produse",
+    h1Pre: "Compara ", h1Highlight: "Acquafy Neo",
+    subtitle: "Compara liniile Neo Essentials si Neo Premium si gaseste modelul ideal pentru tine.",
+    ctaSpecialist: "Vorbeste cu un specialist",
+    pills: ["App + AI + IoT", "16 limbi", "Operare globala", "Platforma inteligenta de apa"],
+    selectorPre: "Selecteaza modelele de comparat (", selector44: "/4)",
+    viewComparison: "Vezi comparatia",
+    selectedBarTitle: "Produse selectate", selectedBarSub: "Adauga sau elimina produse pentru a compara",
+    selectProduct: "Selecteaza un produs", removeLabel: "Elimina",
+    tableFeatures: "Caracteristici",
+    linePrefix: "Linia Neo ",
+    specRowLabels: ["Format", "Temperaturi", "Apa carbogazoasa", "Apa cu hidrogen", "Panou", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Sistem de filtrare", "Rezervor de apa rece", "Compresor Inverter", "Material", "Pret BR"],
+    acquireLabel: "Cumpara", buyNow: "Cumpara acum →",
+    emptyTable: "Selecteaza cel putin un produs pentru a compara.",
+    essentialsChecklist: ["Panou LED Touch 10.1", "App + AI + IoT", "4 filtre UF de inalta performanta", "Modele de blat, perete si coloana", "Excelent raport calitate-pret"],
+    premiumChecklist: ["Otel inoxidabil", "Panou LCD IPS Touch 15.6", "Mini Media Network", "4 filtre RO / Osmoza inversa de inalta performanta", "Propunere premium si sofisticata"],
+    priceRangesTitle: "Intervale de pret pe piata americana",
+    priceFrom: "de la ", priceTo: " pana la ",
+    trustItems: [
+      { title: "Calitate garantata",    desc: "Produse certificate cu cele mai inalte standarde." },
+      { title: "Livrare sigura",        desc: "Livrare fiabila si sigura in toata Brazilia." },
+      { title: "Asistenta tehnica",     desc: "Retea de service autorizata in toata tara." },
+      { title: "Garantie extinsa",      desc: "Mai multa liniste pentru tine si familia ta." },
+      { title: "Durabilitate",          desc: "Tehnologie care are grija de apa si planeta." },
+    ],
+    modalNone: "Niciun produs selectat", modalSelected: " din 4 produs", modalCompare: "Compara", modalClose: "Inchide",
+    altYes: "Da", altNo: "Nu",
+    mediaExtraTitle: "Funcționalități exclusive ale Acquafy Media",
+    mediaExtraItems: ["Rezervor de apă naturală: 10.000 ml", "2 senzori de proximitate pentru cești și sticle", "Calculator ultra-rapid cu sisteme de management media", "Platformă media digitală + Venit recurent"],
+  },
+  he: {
+    filters: ["הכל", "Essentials", "Media", "Premium", "שיפועי", "עמדתי", "מובנה", "מים מוגזים", "מים מועשרי במימן"],
+    badgeLabel: "השוואת מוצרים",
+    h1Pre: "השוואת ", h1Highlight: "Acquafy Neo",
+    subtitle: "השווו את סדרות Neo Essentials ו-Neo Premium ומצא את הדגם האידיאלי עבורך.",
+    ctaSpecialist: "דבר עם מומחה",
+    pills: ["App + AI + IoT", "16 שפות", "פעילות גלובלית", "פלטפורמת מים חכמה"],
+    selectorPre: "בחר דגמים להשוואה (", selector44: "/4)",
+    viewComparison: "צפה בהשוואה",
+    selectedBarTitle: "מוצרים שנבחרו", selectedBarSub: "הוסף או הסר מוצרים להשוואה",
+    selectProduct: "בחר מוצר", removeLabel: "הסר",
+    tableFeatures: "תכונות",
+    linePrefix: "סדרת Neo ",
+    specRowLabels: ["פורמט", "טמפרטורות", "מים מוגזים", "מים מועשרי במימן", "לוח", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "מערכת סננון", "מיכל מים קרים", "קומפרסור אינוורטר", "חומר", "מחיר BR"],
+    acquireLabel: "קנה", buyNow: "קנה עכשיו →",
+    emptyTable: "בחר לפחות מוצר אחד להשוואה.",
+    essentialsChecklist: ["לוח LED Touch 10.1", "App + AI + IoT", "4 מסנני UF בעלי ביצועים גבוהים", "דגמי שיפועי, קיר ועמדתי", "יחס מחיר-איכותממוצלן מצוין"],
+    premiumChecklist: ["פלדה אלחלדית", "לוח LCD IPS Touch 15.6", "Mini Media Network", "4 מסנני RO / אוסמוזה הפוכה בעלי ביצועים גבוהים", "הצעה פרמיום ומשוכללת"],
+    priceRangesTitle: "טווחי מחירים בשוק האמריקאי",
+    priceFrom: "מי ", priceTo: " עד ",
+    trustItems: [
+      { title: "איכותמובטחת",  desc: "מוצרים מוסמכים עם התקנים הגבוהים ביותר." },
+      { title: "משלוח בטוח",       desc: "משלוח אמין ובטוח לכל אזורי ברזיל." },
+      { title: "תמיכה טכנית",   desc: "רשת שירות מורשית בכל המדינה." },
+      { title: "אחריות מורחבת",   desc: "שקט נפשי רב יותר עבורך ולמשפחתך." },
+      { title: "קיימות",          desc: "טכנולוגיה שדואגת למים ולכדור הארץ." },
+    ],
+    modalNone: "אין מוצר שנבחר", modalSelected: " מתוך 4 מוצרים", modalCompare: "השווה", modalClose: "סגור",
+    altYes: "כן", altNo: "לא",
+    mediaExtraTitle: "תכונות בלעדיות של Acquafy Media",
+    mediaExtraItems: ["מיכל מים טבעי: 10,000 מ\"ל", "2 חיישני קרבה לכוסות ובקבוקים", "מחשב מהיר במיוחד עם מערכות ניהול מדיה", "פלטפורמת מדיה דיגיטלית + הכנסה חוזרת"],
   },
 };
 
@@ -724,8 +965,9 @@ export default function CompareProductos() {
 
   const filteredProducts = useMemo(() => {
     switch (activeFilter) {
+      case "Media":      return PRODUCTS.filter(p => p.id === "acquafy-media");
       case "Essentials": return PRODUCTS.filter(p => p.linha === "Essentials");
-      case "Premium":    return PRODUCTS.filter(p => p.linha === "Premium");
+      case "Premium":    return PRODUCTS.filter(p => p.linha === "Premium" && p.id !== "acquafy-media");
       case "Água com Gás":       return PRODUCTS.filter(p => p.specs.gas);
       case "Água Hidrogenada":   return PRODUCTS.filter(p => p.specs.h2);
       case "Todos": return PRODUCTS;
@@ -798,7 +1040,7 @@ export default function CompareProductos() {
 
               {/* CTA buttons */}
               <div className="flex gap-[20px] items-center justify-center 1024:justify-start w-full">
-                <a href="/contato" className="bg-white border border-[#0233c3] flex gap-[10px] items-center justify-center min-h-[50px] px-[20px] py-[10px] rounded-[8px] cursor-pointer hover:bg-[#f0f4ff] transition-colors no-underline">
+                <a href="/contact" className="bg-white border border-[#0233c3] flex gap-[10px] items-center justify-center min-h-[50px] px-[20px] py-[10px] rounded-[8px] cursor-pointer hover:bg-[#f0f4ff] transition-colors no-underline">
                   <span className="font-['Articulat_CF:Bold'] text-[16px] leading-normal text-[#0233c3]">
                     {t.ctaSpecialist}
                   </span>
@@ -872,7 +1114,7 @@ export default function CompareProductos() {
                     <div className="size-[80px] flex items-center justify-center shrink-0">
                       <img alt={product.label} className="max-w-full max-h-full object-contain pointer-events-none" src={productImages[product.id]} />
                     </div>
-                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#1f2e91] text-center break-words w-full h-[34px] overflow-hidden">
+                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#1f2e91] text-center break-words w-full min-h-[34px]">
                       <ProductName parts={product.nameParts} />
                     </p>
                   </button>
@@ -910,7 +1152,7 @@ export default function CompareProductos() {
                         <div className="size-[80px] flex items-center justify-center shrink-0">
                           <img alt={product.label} className="max-w-full max-h-full object-contain pointer-events-none" src={productImages[product.id]} />
                         </div>
-                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#1f2e91] text-center break-words w-full">
+                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#1f2e91] text-center break-words w-full min-h-[34px]">
                           <ProductName parts={product.nameParts} />
                         </p>
                       </button>
@@ -955,7 +1197,7 @@ export default function CompareProductos() {
                         <div className="size-[80px] flex items-center justify-center shrink-0">
                           <img alt={product.label} className="max-w-full max-h-full object-contain" src={productImages[product.id]} />
                         </div>
-                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#1f2e91] text-center break-words w-full">
+                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#1f2e91] text-center break-words w-full min-h-[34px]">
                           <ProductName parts={product.nameParts} />
                         </p>
                       </button>
@@ -995,11 +1237,8 @@ export default function CompareProductos() {
                   />
                 </div>
                 <div className="flex flex-col gap-[10px] items-center min-[1024px]:items-start flex-1 min-w-0 pb-[10px] min-[1024px]:pb-0 min-[1024px]:pt-[20px]">
-                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#1f2e91] text-center min-[1024px]:text-left">
+                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#1f2e91] text-center min-[1024px]:text-left min-h-[34px]">
                     <ProductName parts={product.nameParts} />
-                  </p>
-                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] leading-[13px] text-[#8a8f97]">
-                    {t.removeLabel}
                   </p>
                 </div>
                 {/* Remove button */}
@@ -1047,7 +1286,7 @@ export default function CompareProductos() {
             style={{ scrollbarWidth: "none" }}
           >
             {/* Inner wrapper ensures all rows have identical total width */}
-            <div style={{ minWidth: `${200 + selectedProducts.length * 200}px` }}>
+            <div style={{ minWidth: `${200 + selectedProducts.length * 260}px` }}>
 
               {/* ── Header row ── */}
               <div className="flex border-b border-[#cbd0d4]">
@@ -1057,7 +1296,7 @@ export default function CompareProductos() {
                   </p>
                 </div>
                 {selectedProducts.map(product => (
-                  <div key={product.id} className="flex flex-row gap-[10px] items-center flex-1 min-w-[200px] px-[16px] py-[12px] border-r border-[#cbd0d4] last:border-r-0">
+                  <div key={product.id} className="flex flex-row gap-[10px] items-center flex-1 min-w-[260px] px-[16px] py-[12px] border-r border-[#cbd0d4] last:border-r-0">
                     <div className="size-[60px] shrink-0 flex items-center justify-center">
                       <img alt={product.label} className="max-w-full max-h-full object-contain" src={productImages[product.id]} />
                     </div>
@@ -1084,12 +1323,14 @@ export default function CompareProductos() {
                   {selectedProducts.map(product => {
                     const val = product.specs[row.key];
                     return (
-                      <div key={product.id} className="flex items-center justify-center flex-1 min-w-[200px] px-[16px] py-[12px] border-r border-[#cbd0d4] last:border-r-0">
+                      <div key={product.id} className="flex items-center justify-center flex-1 min-w-[260px] px-[16px] py-[12px] border-r border-[#cbd0d4] last:border-r-0">
                         {row.type === "bool" ? (
                           <BoolCell value={val as boolean} altYes={t.altYes} altNo={t.altNo} />
                         ) : row.type === "price" ? (
                           <p className="font-['Avenir_LT_Pro:95_Black'] text-[16px] leading-[20px] text-[#0233c3] text-center">
-                            {formatBRL(PRODUCT_PRICES_BRL[product.id] ?? 0)}
+                            {lang === "pt" && PRODUCT_PRICES_BRL[product.id] > 0
+                            ? formatBRL(PRODUCT_PRICES_BRL[product.id])
+                            : product.specs.preco || "—"}
                           </p>
                         ) : val === "—" ? (
                           <BoolCell value={false} altYes={t.altYes} altNo={t.altNo} />
@@ -1110,13 +1351,13 @@ export default function CompareProductos() {
                   <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#555]">{t.acquireLabel}</p>
                 </div>
                 {selectedProducts.map(product => (
-                  <div key={product.id} className="flex items-center justify-center flex-1 min-w-[200px] px-[16px] py-[16px] border-r border-[#cbd0d4] last:border-r-0">
-                    <button
-                      onClick={() => addToCart(product)}
+                  <div key={product.id} className="flex items-center justify-center flex-1 min-w-[260px] px-[16px] py-[16px] border-r border-[#cbd0d4] last:border-r-0">
+                    <a
+                      href={`/buy/checkin-${PRODUCT_TO_FAMILY[product.id] ?? product.id}`}
                       className="flex items-center gap-[8px] px-[22px] py-[10px] rounded-full font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-white transition-opacity hover:opacity-85 whitespace-nowrap cursor-pointer"
                       style={{ background: product.linha === "Premium" ? "linear-gradient(135deg, #9f3df5, #0233c3)" : "linear-gradient(135deg, #0233c3, #0569ff)" }}>
                       {t.buyNow}
-                    </button>
+                    </a>
                   </div>
                 ))}
               </div>
@@ -1124,6 +1365,27 @@ export default function CompareProductos() {
           </div>
         )}
       </section>
+
+      {/* ── Acquafy Media: extra features ── */}
+      {selectedIds.includes("acquafy-media") && (
+        <section className="bg-[#f8f4ff] flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
+          <div className="flex flex-col gap-[24px] items-center max-w-[1400px] w-full">
+            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] text-center">
+              {t.mediaExtraTitle}
+            </p>
+            <div className="flex flex-wrap gap-[20px] items-stretch w-full">
+              {t.mediaExtraItems.map((item, i) => (
+                <div key={i} className="flex gap-[20px] items-center h-[80px] p-[20px] rounded-[16px] shadow-[0px_4px_8px_0px_rgba(0,0,0,0.25)] flex-1 min-w-[240px]" style={{ background: "linear-gradient(to right, white, rgba(255,255,255,0.8))" }}>
+                  <div className="flex items-center justify-center size-[40px] shrink-0">
+                    <FigmaIcon src={imgCheckinPurple} size={30} />
+                  </div>
+                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[20px] text-[#1f2e91] flex-1">{item}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ── 4. LINES OVERVIEW + PRICING ── */}
       <section className="bg-white flex flex-col gap-[40px] items-center justify-center px-[20px] py-[40px] w-full">
@@ -1181,7 +1443,7 @@ export default function CompareProductos() {
           </h2>
           <div className="flex flex-col gap-[40px] items-stretch justify-center w-full win-1024:flex-row win-1024:flex-wrap win-1024:items-start">
             {/* Essentials price range */}
-            <div className="border border-[#cbd0d4] flex flex-col gap-[20px] items-center flex-1 min-w-[240px] p-[20px] rounded-[16px] win-1024:flex-row win-1024:items-start">
+            <div className="border border-[#cbd0d4] flex flex-col gap-[20px] items-center flex-1 min-w-[240px] p-[20px] rounded-[16px]">
               <div className="bg-[#0569ff] flex items-center justify-center rounded-full shrink-0 size-[60px]">
                 <FigmaIcon src={imgMoney} size={30} />
               </div>
@@ -1193,15 +1455,25 @@ export default function CompareProductos() {
                 </div>
                 <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-center">
                   <span className="text-[#1f2e91]">{t.priceFrom}</span>
-                  <span className="text-[#0569ff]">US$ 267.97 </span>
-                  <span className="text-[#1f2e91]">{t.priceTo}</span>
-                  <span className="text-[#0569ff]">US$ 1,397.97</span>
+                  {lang === "pt" || lang === "pt-pt" ? (
+                    <>
+                      <span className="text-[#0569ff]">{formatBRL(1289.85)} </span>
+                      <span className="text-[#1f2e91]">{t.priceTo}</span>
+                      <span className="text-[#0569ff]">{formatBRL(7989.85)}</span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="text-[#0569ff]">US$ 257.97 </span>
+                      <span className="text-[#1f2e91]">{t.priceTo}</span>
+                      <span className="text-[#0569ff]">US$ 1,597.97</span>
+                    </>
+                  )}
                 </p>
               </div>
             </div>
 
             {/* Premium price range */}
-            <div className="border border-[#cbd0d4] flex flex-col gap-[20px] items-center flex-1 min-w-[240px] p-[20px] rounded-[16px] win-1024:flex-row win-1024:items-start">
+            <div className="border border-[#cbd0d4] flex flex-col gap-[20px] items-center flex-1 min-w-[240px] p-[20px] rounded-[16px]">
               <div className="bg-[#9f3df5] flex items-center justify-center rounded-full shrink-0 size-[60px]">
                 <FigmaIcon src={imgMoney} size={30} />
               </div>
@@ -1213,9 +1485,19 @@ export default function CompareProductos() {
                 </div>
                 <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-center">
                   <span className="text-[#1f2e91]">{t.priceFrom}</span>
-                  <span className="text-[#9f3df5]">US$ 1,297.97 </span>
-                  <span className="text-[#1f2e91]">{t.priceTo}</span>
-                  <span className="text-[#9f3df5]">US$ 1,697.97</span>
+                  {lang === "pt" || lang === "pt-pt" ? (
+                    <>
+                      <span className="text-[#9f3df5]">{formatBRL(8489.85)} </span>
+                      <span className="text-[#1f2e91]">{t.priceTo}</span>
+                      <span className="text-[#9f3df5]">{formatBRL(9639.85)}</span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="text-[#9f3df5]">US$ 1,697.97 </span>
+                      <span className="text-[#1f2e91]">{t.priceTo}</span>
+                      <span className="text-[#9f3df5]">US$ 1,927.97</span>
+                    </>
+                  )}
                 </p>
               </div>
             </div>
@@ -1322,7 +1604,7 @@ export default function CompareProductos() {
                         src={productImages[product.id]}
                       />
                     </div>
-                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] leading-[16px] text-[#1f2e91] text-center break-words w-full">
+                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] leading-[16px] text-[#1f2e91] text-center break-words w-full min-h-[32px]">
                       <ProductName parts={product.nameParts} />
                     </p>
                   </button>
@@ -1354,7 +1636,7 @@ export default function CompareProductos() {
                         src={productImages[product.id]}
                       />
                     </div>
-                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] leading-[16px] text-[#1f2e91] text-center break-words w-full">
+                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] leading-[16px] text-[#1f2e91] text-center break-words w-full min-h-[32px]">
                       <ProductName parts={product.nameParts} />
                     </p>
                   </button>
