@@ -9,7 +9,7 @@ const imgBg = "/figma-assets/bg-l.webp";
 
 const T: Record<Lang, { heading: string; btnNeo: string; btnMedia: string }> = {
   pt: {
-    heading: "Vamos juntos transformar o acesso a água e a vida das pessoas.",
+    heading: "Vamos juntos transformar o acesso à água e a vida das pessoas.",
     btnNeo: "Conheça Linha NEO",
     btnMedia: "Conheça o Acquafy Media",
   },

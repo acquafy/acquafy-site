@@ -163,7 +163,7 @@ const T: Record<Lang, {
       { title: "Sjukhus",                            desc: "Tillgänglig hydrering och välmående för patienter, besökare och personal." },
       { title: "Företag",                            desc: "Bättre hälsa och produktivitet för medarbetare och besökare." },
       { title: "Universitet",                        desc: "Ung och uppkopplad publik, idealisk för media och kampanjer." },
-      { title: "Offentliga nätverk och platser med hög trafik", desc: "Stationer, bussterminalер, torg och urbana rum med stort folkflöde." },
+      { title: "Offentliga nätverk och platser med hög trafik", desc: "Stationer, bussterminaler, torg och urbana rum med stort folkflöde." },
     ],
   },
   fi: {

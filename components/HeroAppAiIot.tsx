@@ -142,11 +142,11 @@ const T: Record<Lang, {
   },
   sv: {
     label: "ACQUAFY ANSLUTET EKOSYSTEM",
-    description: "Styr dina reningsfilter, overvaka enheter, ta emot smarta aviseringar och hantera hela driften i en integrerad upplevelse.",
+    description: "Styr dina reningsfilter, övervaka enheter, ta emot smarta aviseringar och hantera hela driften i en integrerad upplevelse.",
     badges: [
-      { title: "App Acquafy", desc: "Fjarrkontroll, utrustningsstatus och support i handflatan." },
-      { title: "Acquafy AI", desc: "Konstgjord intelligens for insikter, automatiseringar och snabbare beslut." },
-      { title: "IoT & Enheter", desc: "Sensorer, anslutning och overvakning i realtid." },
+      { title: "App Acquafy", desc: "Fjärrkontroll, utrustningsstatus och support i handflatan." },
+      { title: "Acquafy AI", desc: "Konstgjord intelligens för insikter, automatiseringar och snabbare beslut." },
+      { title: "IoT & Enheter", desc: "Sensorer, anslutning och övervakning i realtid." },
     ],
     btnPrimary: "Ladda ner appen",
     btnSecondary: "Utforska funktioner",
