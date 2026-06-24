@@ -36,8 +36,8 @@ const T: Record<Lang, {
     h2: "Plataforma Inteligente de Água + Mídia Digital + Receita Recorrente.",
     pMobile: "O Acquafy Media transforma locais públicos em pontos de hidratação, visibilidade e negócios. Combine água gratuita, anúncios, QR Codes e venda da linha Neo para gerar receita recorrente.",
     pDesktop: "O Acquafy Media transforma locais públicos em pontos de hidratação, visibilidade e negócios. Combine fornecimento de água gratuita e acessível, exibição de anúncios, QR Codes e venda da linha Neo para gerar valor contínuo para sua operação e para as marcas.",
-    btnPrimary: "Quero o Acquafy Media",
-    btnSecondary: "Falar com especialista",
+    btnPrimary: "Quero ser parceiro Gold",
+    btnSecondary: "Comprar o Neo Media",
     stats: [
       { title: "Alto fluxo",  sub: "de pessoas" },
       { title: "Água",        sub: "Premium" },
@@ -58,8 +58,8 @@ const T: Record<Lang, {
     h2: "Plataforma Inteligente de Água + Média Digital + Receita Recorrente.",
     pMobile: "O Acquafy Media transforma locais públicos em pontos de hidratação, visibilidade e negócios. Combine água gratuita, anúncios, QR Codes e venda da linha Neo para gerar receita recorrente.",
     pDesktop: "O Acquafy Media transforma locais públicos em pontos de hidratação, visibilidade e negócios. Combine fornecimento de água gratuita e acessível, exibição de anúncios, QR Codes e venda da linha Neo para gerar valor contínuo para a sua operação e para as marcas.",
-    btnPrimary: "Quero o Acquafy Media",
-    btnSecondary: "Falar com especialista",
+    btnPrimary: "Quero ser parceiro Gold",
+    btnSecondary: "Comprar o Neo Media",
     stats: [
       { title: "Alto fluxo",   sub: "de pessoas" },
       { title: "Água",         sub: "Premium" },
@@ -80,8 +80,8 @@ const T: Record<Lang, {
     h2: "Smart Water Platform + Digital Media + Recurring Revenue.",
     pMobile: "Acquafy Media transforms public spaces into hydration, visibility, and business hubs. Combine free water, ads, QR Codes, and Neo line sales to generate recurring revenue.",
     pDesktop: "Acquafy Media transforms public spaces into hydration, visibility, and business hubs. Combine free and accessible water supply, ad display, QR Codes, and Neo line sales to continuously generate value for your operation and brands.",
-    btnPrimary: "I want Acquafy Media",
-    btnSecondary: "Talk to a specialist",
+    btnPrimary: "Become a Gold Partner",
+    btnSecondary: "Buy Neo Media",
     stats: [
       { title: "High traffic",    sub: "of people" },
       { title: "Water",           sub: "Premium" },
@@ -102,8 +102,8 @@ const T: Record<Lang, {
     h2: "Smart Water Platform + Digital Media + Recurring Revenue.",
     pMobile: "Acquafy Media transforms public spaces into hydration, visibility, and business hubs. Combine free water, ads, QR Codes, and Neo line sales to generate recurring revenue.",
     pDesktop: "Acquafy Media transforms public spaces into hydration, visibility, and business hubs. Combine free and accessible water supply, ad display, QR Codes, and Neo line sales to continuously generate value for your operation and brands.",
-    btnPrimary: "I want Acquafy Media",
-    btnSecondary: "Speak to a specialist",
+    btnPrimary: "Become a Gold Partner",
+    btnSecondary: "Buy Neo Media",
     stats: [
       { title: "High footfall",   sub: "of people" },
       { title: "Water",           sub: "Premium" },
@@ -124,8 +124,8 @@ const T: Record<Lang, {
     h2: "Plataforma Inteligente de Agua + Medios Digitales + Ingresos Recurrentes.",
     pMobile: "Acquafy Media transforma espacios públicos en puntos de hidratación, visibilidad y negocios. Combina agua gratuita, anuncios, códigos QR y ventas de la línea Neo para generar ingresos recurrentes.",
     pDesktop: "Acquafy Media transforma espacios públicos en puntos de hidratación, visibilidad y negocios. Combina suministro de agua gratuita y accesible, exhibición de anuncios, códigos QR y ventas de la línea Neo para generar valor continuo para tu operación y las marcas.",
-    btnPrimary: "Quiero Acquafy Media",
-    btnSecondary: "Hablar con un especialista",
+    btnPrimary: "Quiero ser socio Gold",
+    btnSecondary: "Comprar Neo Media",
     stats: [
       { title: "Alto tráfico",    sub: "de personas" },
       { title: "Agua",            sub: "Premium" },
@@ -146,8 +146,8 @@ const T: Record<Lang, {
     h2: "Plateforme intelligente Eau + Médias Digitaux + Revenus Récurrents.",
     pMobile: "Acquafy Media transforme les espaces publics en points d'hydratation, de visibilité et d'affaires. Combinez eau gratuite, publicités, QR Codes et ventes de la gamme Neo pour générer des revenus récurrents.",
     pDesktop: "Acquafy Media transforme les espaces publics en points d'hydratation, de visibilité et d'affaires. Combinez fourniture d'eau gratuite et accessible, diffusion de publicités, QR Codes et ventes de la gamme Neo pour créer de la valeur continue pour votre opération et les marques.",
-    btnPrimary: "Je veux Acquafy Media",
-    btnSecondary: "Parler à un spécialiste",
+    btnPrimary: "Devenir partenaire Gold",
+    btnSecondary: "Acheter Neo Media",
     stats: [
       { title: "Fort trafic",     sub: "de personnes" },
       { title: "Eau",             sub: "Premium" },
@@ -168,8 +168,8 @@ const T: Record<Lang, {
     h2: "Intelligente Wasser + Digitale Medien + Wiederkehrende Einnahmen Plattform.",
     pMobile: "Acquafy Media verwandelt öffentliche Räume in Hydrations-, Sichtbarkeits- und Geschäftspunkte. Kombinieren Sie kostenloses Wasser, Werbung, QR Codes und Neo-Produktverkäufe, um wiederkehrende Einnahmen zu erzielen.",
     pDesktop: "Acquafy Media verwandelt öffentliche Räume in Hydrations-, Sichtbarkeits- und Geschäftspunkte. Kombinieren Sie kostenlosen und zugänglichen Wasserversorgung, Werbeanzeigen, QR Codes und Neo-Produktverkäufe, um kontinuierlichen Mehrwert für Ihren Betrieb und Marken zu schaffen.",
-    btnPrimary: "Ich möchte Acquafy Media",
-    btnSecondary: "Mit einem Experten sprechen",
+    btnPrimary: "Gold-Partner werden",
+    btnSecondary: "Neo Media kaufen",
     stats: [
       { title: "Hohes Aufkommen", sub: "von Personen" },
       { title: "Wasser",          sub: "Premium" },
@@ -190,8 +190,8 @@ const T: Record<Lang, {
     h2: "Piattaforma intelligente Acqua + Media Digitali + Ricavi Ricorrenti.",
     pMobile: "Acquafy Media trasforma gli spazi pubblici in punti di idratazione, visibilità e business. Combina acqua gratuita, annunci, QR Codes e vendite della linea Neo per generare ricavi ricorrenti.",
     pDesktop: "Acquafy Media trasforma gli spazi pubblici in punti di idratazione, visibilità e business. Combina fornitura d'acqua gratuita e accessibile, visualizzazione di annunci, QR Codes e vendite della linea Neo per generare valore continuo per la tua operazione e i brand.",
-    btnPrimary: "Voglio Acquafy Media",
-    btnSecondary: "Parla con uno specialista",
+    btnPrimary: "Diventa partner Gold",
+    btnSecondary: "Acquista Neo Media",
     stats: [
       { title: "Alto traffico",   sub: "di persone" },
       { title: "Acqua",           sub: "Premium" },
@@ -212,8 +212,8 @@ const T: Record<Lang, {
     h2: "智能水 + 数字媒体 + 经常性收入平台。",
     pMobile: "Acquafy Media 将公共空间转变为补水、可见度和商业节点。结合免费用水、广告、QR Code 和 Neo 系列销售，创造经常性收入。",
     pDesktop: "Acquafy Media 将公共空间转变为补水、可见度和商业节点。结合免费且便捷的供水、广告展示、QR Code 和 Neo 系列销售，为您的运营和品牌持续创造价值。",
-    btnPrimary: "我想要 Acquafy Media",
-    btnSecondary: "与专家交谈",
+    btnPrimary: "成为 Gold 合作伙伴",
+    btnSecondary: "购买 Neo Media",
     stats: [
       { title: "高流量",           sub: "人群" },
       { title: "水",               sub: "Premium" },
@@ -234,8 +234,8 @@ const T: Record<Lang, {
     h2: "スマートウォーター + デジタルメディア + 継続的収益プラットフォーム。",
     pMobile: "Acquafy Media は公共スペースを水分補給・視認性・ビジネスのポイントに変えます。無料の水、広告、QR Code、Neo ラインの販売を組み合わせて継続的な収益を生み出しましょう。",
     pDesktop: "Acquafy Media は公共スペースを水分補給・視認性・ビジネスのポイントに変えます。無料でアクセスしやすい給水、広告表示、QR Code、Neo ラインの販売を組み合わせて、あなたの事業とブランドに継続的な価値をもたらしましょう。",
-    btnPrimary: "Acquafy Media が欲しい",
-    btnSecondary: "専門家に相談する",
+    btnPrimary: "Gold パートナーになる",
+    btnSecondary: "Neo Media を購入する",
     stats: [
       { title: "高い交通量",       sub: "人々の" },
       { title: "ウォーター",       sub: "プレミアム" },
@@ -256,8 +256,8 @@ const T: Record<Lang, {
     h2: "스마트 워터 + 디지털 미디어 + 반복 수익 플랫폼.",
     pMobile: "Acquafy Media는 공공 공간을 수분 보충, 가시성 및 비즈니스 포인트로 변환합니다. 무료 물, 광고, QR Code, Neo 라인 판매를 결합하여 반복 수익을 창출하세요.",
     pDesktop: "Acquafy Media는 공공 공간을 수분 보충, 가시성 및 비즈니스 포인트로 변환합니다. 무료이고 접근 가능한 물 공급, 광고 표시, QR Code, Neo 라인 판매를 결합하여 운영 및 브랜드에 지속적인 가치를 창출하세요.",
-    btnPrimary: "Acquafy Media를 원합니다",
-    btnSecondary: "전문가와 상담하기",
+    btnPrimary: "Gold 파트너 되기",
+    btnSecondary: "Neo Media 구매하기",
     stats: [
       { title: "높은 유동인구", sub: "사람들의" },
       { title: "물",            sub: "Premium" },
@@ -278,8 +278,8 @@ const T: Record<Lang, {
     h2: "Smart vattenplattform + digital media + återkommande intäkter.",
     pMobile: "Acquafy Media omvandlar offentliga platser till hydrerings-, synlighets- och affärspunkter. Kombinera gratis vatten, annonser, QR-koder och Neo-linjeförsäljning för att generera återkommande intäkter.",
     pDesktop: "Acquafy Media omvandlar offentliga platser till hydrerings-, synlighets- och affärspunkter. Kombinera gratis och tillgänglig vattenförsörjning, annonsvisning, QR-koder och Neo-linjeförsäljning för att kontinuerligt skapa värde för din verksamhet och varumärken.",
-    btnPrimary: "Jag vill ha Acquafy Media",
-    btnSecondary: "Prata med en specialist",
+    btnPrimary: "Bli Gold-partner",
+    btnSecondary: "Köp Neo Media",
     stats: [
       { title: "Hög trafik",      sub: "av människor" },
       { title: "Vatten",          sub: "Premium" },
@@ -300,8 +300,8 @@ const T: Record<Lang, {
     h2: "Älykäs vesiympäristö + digitaalinen media + toistuva tuotto.",
     pMobile: "Acquafy Media muuttaa julkiset tilat nesteytys-, näkyvyys- ja liiketoimintapisteiksi. Yhdistä ilmainen vesi, mainokset, QR-koodit ja Neo-linjamyynti toistuvien tuottojen luomiseksi.",
     pDesktop: "Acquafy Media muuttaa julkiset tilat nesteytys-, näkyvyys- ja liiketoimintapisteiksi. Yhdistä ilmainen ja helposti saatavilla oleva vedentoimitus, mainosnäyttö, QR-koodit ja Neo-linjamyynti jatkuvan arvon luomiseksi toiminnallesi ja brändeille.",
-    btnPrimary: "Haluan Acquafy Median",
-    btnSecondary: "Puhu asiantuntijan kanssa",
+    btnPrimary: "Liity Gold-kumppaniksi",
+    btnSecondary: "Osta Neo Media",
     stats: [
       { title: "Korkea liikenne",  sub: "ihmisiä" },
       { title: "Vesi",             sub: "Premium" },
@@ -322,8 +322,8 @@ const T: Record<Lang, {
     h2: "Умная водная платформа + цифровые медиа + регулярный доход.",
     pMobile: "Acquafy Media превращает общественные пространства в точки гидратации, видимости и бизнеса. Объедините бесплатную воду, рекламу, QR-коды и продажи линейки Neo для получения регулярного дохода.",
     pDesktop: "Acquafy Media превращает общественные пространства в точки гидратации, видимости и бизнеса. Объедините бесплатное и доступное водоснабжение, показ рекламы, QR-коды и продажи линейки Neo для постоянного создания ценности для вашей операции и брендов.",
-    btnPrimary: "Хочу Acquafy Media",
-    btnSecondary: "Поговорить со специалистом",
+    btnPrimary: "Стать Gold-партнёром",
+    btnSecondary: "Купить Neo Media",
     stats: [
       { title: "Высокий поток",   sub: "людей" },
       { title: "Вода",            sub: "Premium" },
@@ -344,8 +344,8 @@ const T: Record<Lang, {
     h2: "Platformă inteligentă de apă + media digitală + venituri recurente.",
     pMobile: "Acquafy Media transformă spațiile publice în puncte de hidratare, vizibilitate şi afaceri. Combină apă gratuită, reclame, coduri QR şi vânzări din linia Neo pentru a genera venituri recurente.",
     pDesktop: "Acquafy Media transformă spațiile publice în puncte de hidratare, vizibilitate şi afaceri. Combină furnizarea de apă gratuită şi accesibilă, afişarea reclamelor, coduri QR şi vânzări din linia Neo pentru a genera valoare continuă pentru operațiunea ta şi pentru branduri.",
-    btnPrimary: "Vreau Acquafy Media",
-    btnSecondary: "Vorbeşte cu un specialist",
+    btnPrimary: "Devino partener Gold",
+    btnSecondary: "Cumpără Neo Media",
     stats: [
       { title: "Trafic ridicat",   sub: "de persoane" },
       { title: "Apă",              sub: "Premium" },
@@ -366,8 +366,8 @@ const T: Record<Lang, {
     h2: "פלטפורמת מים חכמה + מדיה דיגיטלית + הכנסה חוזרת.",
     pMobile: "Acquafy Media הופכת מרחבים ציבוריים לנקודות הידרציה, נראות ועסקים. שלבו מים חינם, מודעות, קודי QR ומכירות קו Neo כדי לייצר הכנסה חוזרת.",
     pDesktop: "Acquafy Media הופכת מרחבים ציבוריים לנקודות הידרציה, נראות ועסקים. שלבו אספקת מים חינמית ונגישה, הצגת מודעות, קודי QR ומכירות קו Neo כדי לייצר ערך מתמשך לפעילות שלכם ולמותגים.",
-    btnPrimary: "אני רוצה את Acquafy Media",
-    btnSecondary: "דבר עם מומחה",
+    btnPrimary: "הפוך לשותף Gold",
+    btnSecondary: "קנה Neo Media",
     stats: [
       { title: "תנועה גבוהה",     sub: "של אנשים" },
       { title: "מים",              sub: "Premium" },
@@ -466,7 +466,7 @@ export default function NeoMediaBanner() {
           <BtnAzulBaseArrow className="flex-[1_0_0] min-w-[190px] min-h-[50px] px-[20px]" onClick={() => setModalOpen(true)}>
             {t.btnPrimary}
           </BtnAzulBaseArrow>
-          <Link href="/contact" className="flex-[1_0_0] min-w-[190px]">
+          <Link href="/buy/checkin-acquafy-media" className="flex-[1_0_0] min-w-[190px]">
             <BtnAzulOutArrow className="w-full min-h-[50px] px-[20px]">
               {t.btnSecondary}
             </BtnAzulOutArrow>
@@ -523,9 +523,11 @@ export default function NeoMediaBanner() {
               <BtnAzulBaseArrow className="min-h-[50px] px-[20px]" onClick={() => setModalOpen(true)}>
                 {t.btnPrimary}
               </BtnAzulBaseArrow>
-              <BtnAzulOutArrow className="min-h-[50px] px-[20px]">
-                {t.btnSecondary}
-              </BtnAzulOutArrow>
+              <Link href="/buy/checkin-acquafy-media">
+                <BtnAzulOutArrow className="min-h-[50px] px-[20px]">
+                  {t.btnSecondary}
+                </BtnAzulOutArrow>
+              </Link>
             </div>
             {/* Stats — node 3410:13509 */}
             <div className="flex flex-wrap gap-[30px_0] items-center justify-center py-[25px] rounded-[16px] w-full">

@@ -1,30 +1,55 @@
-/** Preços BRL (centavos) — fonte única para CompareProductos e CheckinMain */
+/** Preços BRL — fonte única para CompareProductos e CheckinMain */
 export const PRODUCT_PRICES_BRL: Record<string, number> = {
-  "neo-up":                   1490,
-  "neo-fit":                  1990,
-  "neo-smart-h2":             2490,
-  "neo-touch":                2990,
-  "neo-plus":                 3490,
-  "neo-ultra":                3990,
-  "neo-ultra-spark":          4490,
-  "neo-ultra-spark-h2":       4990,
-  "neo-max":                  4990,
-  "neo-max-spark":            5490,
-  "neo-max-spark-h2":         5990,
-  "neo-infinity":             6990,
-  "neo-infinity-spark":       7490,
-  "neo-infinity-spark-h2":    7990,
-  "neo-prestige":             7490,
-  "neo-prestige-spark":       7990,
-  "neo-prestige-spark-h2":    8490,
-  "neo-prime":                7990,
-  "neo-prime-spark":          8490,
-  "neo-prime-spark-h2":       8990,
-  "acquafy-media":            0,
+  "neo-up":                   1289.85,
+  "neo-fit":                  1989.85,
+  "neo-smart-h2":             3489.85,
+  "neo-touch":                2239.85,
+  "neo-plus":                 3489.85,
+  "neo-ultra":                4989.85,
+  "neo-ultra-spark":          5989.85,
+  "neo-ultra-spark-h2":       6989.85,
+  "neo-max":                  5989.85,
+  "neo-max-spark":            6989.85,
+  "neo-max-spark-h2":         7989.85,
+  "neo-infinity":             8489.85,
+  "neo-infinity-spark":       8989.85,
+  "neo-infinity-spark-h2":    9489.85,
+  "neo-prestige":             8639.85,
+  "neo-prestige-spark":       9139.85,
+  "neo-prestige-spark-h2":    9639.85,
+  "neo-prime":                8489.85,
+  "neo-prime-spark":          8989.85,
+  "neo-prime-spark-h2":       9489.85,
+  "acquafy-media":            10000.00,
 };
 
-export function formatBRL(cents: number) {
-  return `R$ ${cents.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`;
+/** Preços USD — exibidos quando lang !== "pt" */
+export const PRODUCT_PRICES_USD: Record<string, string> = {
+  "neo-up":                   "US$ 257.97",
+  "neo-fit":                  "US$ 397.97",
+  "neo-smart-h2":             "US$ 697.97",
+  "neo-touch":                "US$ 447.97",
+  "neo-plus":                 "US$ 697.97",
+  "neo-ultra":                "US$ 997.97",
+  "neo-ultra-spark":          "US$ 1,197.97",
+  "neo-ultra-spark-h2":       "US$ 1,397.97",
+  "neo-max":                  "US$ 1,197.97",
+  "neo-max-spark":            "US$ 1,397.97",
+  "neo-max-spark-h2":         "US$ 1,597.97",
+  "neo-infinity":             "US$ 1,697.97",
+  "neo-infinity-spark":       "US$ 1,797.97",
+  "neo-infinity-spark-h2":    "US$ 1,897.97",
+  "neo-prestige":             "US$ 1,727.97",
+  "neo-prestige-spark":       "US$ 1,827.97",
+  "neo-prestige-spark-h2":    "US$ 1,927.97",
+  "neo-prime":                "US$ 1,697.97",
+  "neo-prime-spark":          "US$ 1,797.97",
+  "neo-prime-spark-h2":       "US$ 1,897.97",
+  "acquafy-media":            "US$ 2,000.00",
+};
+
+export function formatBRL(value: number) {
+  return `R$ ${value.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`;
 }
 
 export type ProductLinha = "Essentials" | "Premium";
