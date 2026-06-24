@@ -320,7 +320,7 @@ const T: Record<Lang, {
     imgAlt: "Centro de Soporte Acquafy",
   },
   fr: {
-    label: "ECOSYSTEME DIGITAL ACQUAFY",
+    label: "ÉCOSYSTÈME DIGITAL ACQUAFY",
     h1Line1: "Centre de",
     h1Brand: "Support Acquafy",
     subtitle: "Nous sommes là pour vous aider.",
@@ -377,7 +377,7 @@ const T: Record<Lang, {
     imgAlt: "Centre de Support Acquafy",
   },
   de: {
-    label: "ACQUAFY DIGITAL-OKOSYSTEM",
+    label: "ACQUAFY DIGITAL-ÖKOSYSTEM",
     h1Line1: "Acquafy",
     h1Brand: "Support-Center",
     subtitle: "Wir sind hier, um Ihnen zu helfen.",

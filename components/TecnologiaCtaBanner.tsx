@@ -56,8 +56,8 @@ const T: Record<Lang, {
     cta: "Bli en del av denna transformation",
   },
   fi: {
-    heading: "Innovaatio, joka huolehtii ihmisista ja planeetasta samaan aikaan.",
-    cta: "Ole osa tata muutosta",
+    heading: "Innovaatio, joka huolehtii ihmisistä ja planeetasta samaan aikaan.",
+    cta: "Ole osa tätä muutosta",
   },
   ru: {
     heading: "Innovatsii, kotorye zabotjatsja o ljudjakh i planete odnovremenno.",

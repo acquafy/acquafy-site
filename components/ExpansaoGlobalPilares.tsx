@@ -124,23 +124,23 @@ const T: Record<Lang, {
     ],
   },
   sv: {
-    heading: "Vara pelare for expansion",
+    heading: "Våra pelare för expansion",
     pillars: [
-      { title: "Strategiska partnerskap",  desc: "Vi arbetar med distributorer, integratorer och investerare som delar var vision om genomslagskraft och tillvaxt." },
-      { title: "Skalbar modell",           desc: "Egen teknik, standardiserade processer och fullstandigt stod for att sakerstalla konsekvent och lonsam tillvaxt." },
-      { title: "Lokal anpassning",         desc: "Flexibla losningar som anpassar sig till kulturen, behoven och reglerna pa varje marknad." },
-      { title: "Kontinuerlig utbildning",  desc: "Utbildning, marknadsforing och teknisk support for att starka vara partners och sakerstalla operativ framgang." },
-      { title: "Hallbart genomslag",       desc: "Vi frамjar halsa, inkludering, inkomst och miljoskydd genom tillgang till rent och medvetet vatten." },
+      { title: "Strategiska partnerskap",  desc: "Vi arbetar med distributorer, integratorer och investerare som delar vår vision om genomslagskraft och tillväxt." },
+      { title: "Skalbar modell",           desc: "Egen teknik, standardiserade processer och fullständigt stöd för att säkerställa konsekvent och lönsam tillväxt." },
+      { title: "Lokal anpassning",         desc: "Flexibla lösningar som anpassar sig till kulturen, behoven och reglerna på varje marknad." },
+      { title: "Kontinuerlig utbildning",  desc: "Utbildning, marknadsföring och teknisk support för att stärka våra partners och säkerställa operativ framgång." },
+      { title: "Hållbart genomslag",       desc: "Vi främjar hälsa, inkludering, inkomst och miljöskydd genom tillgång till rent och medvetet vatten." },
     ],
   },
   fi: {
     heading: "Laajenemisen pilareimme",
     pillars: [
-      { title: "Strategiset kumppanuudet", desc: "Teemme tyota jakelijoiden, integraattorien ja sijoittajien kanssa, jotka jakavat visiomme vaikuttavuudesta ja kasvusta." },
-      { title: "Skaalautuva malli",        desc: "Oma teknologia, standardoitu toiminta ja taydellinen tuki varmistavat johdonmukaisen ja kannattavan kasvun." },
-      { title: "Paikallinen sopeutuminen", desc: "Joustavat ratkaisut, jotka sopeutuvat kunkin markkinan kulttuuriin, tarpeisiin ja saantelyyn." },
+      { title: "Strategiset kumppanuudet", desc: "Teemme työtä jakelijoiden, integraattorien ja sijoittajien kanssa, jotka jakavat visiomme vaikuttavuudesta ja kasvusta." },
+      { title: "Skaalautuva malli",        desc: "Oma teknologia, standardoitu toiminta ja täydellinen tuki varmistavat johdonmukaisen ja kannattavan kasvun." },
+      { title: "Paikallinen sopeutuminen", desc: "Joustavat ratkaisut, jotka sopeutuvat kunkin markkinan kulttuuriin, tarpeisiin ja sääntelyyn." },
       { title: "Jatkuva koulutus",         desc: "Koulutus, markkinointi ja tekninen tuki kumppaneidemme vahvistamiseksi ja operatiivisen menestyksen varmistamiseksi." },
-      { title: "Kestava vaikutus",         desc: "Edistamme terveytta, osallisuutta, tuloja ja ymparistonsuojelua puhtaan ja tietoisen veden saannin avulla." },
+      { title: "Kestävä vaikutus",         desc: "Edistämme terveyttä, osallisuutta, tuloja ja ympäristönsuojelua puhtaan ja tietoisen veden saannin avulla." },
     ],
   },
   ru: {

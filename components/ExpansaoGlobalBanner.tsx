@@ -227,7 +227,7 @@ const T: Record<Lang, {
     btn1: "Tule kumppaniksi",
     btn2: "Puhu asiantuntijan kanssa",
     stats: [
-      { number: "16",          label: "kielta",              sub: "aktiivisella läsnäololla" },
+      { number: "16",          label: "kieltä",              sub: "aktiivisella läsnäololla" },
       { number: "+150",        label: "kumppania",           sub: "jakelijat ja integraattorit" },
       { number: "+2 000",      label: "asennuspistettä",     sub: "toiminnassa" },
       { number: "Jatkuva",     label: "laajentuminen",       sub: "uusia markkinoita joka viikko" },

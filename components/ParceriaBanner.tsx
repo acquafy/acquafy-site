@@ -92,7 +92,7 @@ const T: Record<Lang, {
   sv: {
     pill:     "NY GLOBAL FAS",
     title:    "Acquafy Globalt Partnerschaftsprogram",
-    subtitle: "Tre nivaer for att vaxa med varumärket i global skala: rekommendera, driva eller distribuera.",
+    subtitle: "Tre nivåer för att växa med varumärket i global skala: rekommendera, driva eller distribuera.",
     cta:      "Prata med en specialist",
     imgAlt:   "Acquafy Produkt",
   },

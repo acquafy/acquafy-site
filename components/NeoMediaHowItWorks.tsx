@@ -151,7 +151,7 @@ const T: Record<Lang, {
       { title: "Asenna Acquafy Media",                      desc: "Nopea asennus ja integrointi Acquafy-alustaan." },
       { title: "Näytä kampanjoita ja QR-koodeja",           desc: "Esitä mainoksia, tarjouksia ja QR-koodeja yleisölle älykkäästi." },
       { title: "Kerää dataa ja seuraa tekoälyllä",          desc: "Seuraa käyttöä, sitoutumista ja suorituskykyä tekoälyn avulla." },
-      { title: "Luo tuloja medialla ja myynnillä",          desc: "Ansaitse mainoskaampanjoista ja provisioista Neo-linjan myynnistä." },
+      { title: "Luo tuloja medialla ja myynnillä",          desc: "Ansaitse mainoskampanjoista ja provisioista Neo-linjan myynnistä." },
     ],
   },
   ru: {

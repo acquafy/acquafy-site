@@ -24,8 +24,8 @@ const T: Record<Lang, {
   premium: FilterCard[];
 }> = {
   pt: {
-    essentialsHeading: "Linha Essentials - Sistema de Filtração de Alta Performace",
-    premiumHeading: "Linha Premium - Sistema de Filtração de Alta Performace",
+    essentialsHeading: "Linha Essentials - Sistema de Filtração de Alta Performance",
+    premiumHeading: "Linha Premium - Sistema de Filtração de Alta Performance",
     phHeading: "Escala de pH",
     labelAcido: "Ácido",
     labelNeutro: "Neutro",

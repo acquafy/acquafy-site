@@ -74,14 +74,14 @@ const T: Record<Lang, { heading: string; sub: string; btnPartner: string; btnSpe
     btnSpecialist: "전문가와 상담",
   },
   sv: {
-    heading: "Bli en del av Acquafys globala natverk",
-    sub: "Tillsammans kan vi forandra miljontals liv, skapa mojligheter och bygga en halsosam och hallbar framtid.",
+    heading: "Bli en del av Acquafys globala nätverk",
+    sub: "Tillsammans kan vi förändra miljontals liv, skapa möjligheter och bygga en hälsosam och hållbar framtid.",
     btnPartner: "Bli partner",
     btnSpecialist: "Tala med en specialist",
   },
   fi: {
     heading: "Liity Acquafyn globaaliin verkostoon",
-    sub: "Yhdessa voimme muuttaa miljoonien ihmisten elamaa, luoda mahdollisuuksia ja rakentaa terveempaa ja kestavampaa tulevaisuutta.",
+    sub: "Yhdessä voimme muuttaa miljoonien ihmisten elämää, luoda mahdollisuuksia ja rakentaa terveempää ja kestävämpää tulevaisuutta.",
     btnPartner: "Tule kumppaniksi",
     btnSpecialist: "Puhu asiantuntijan kanssa",
   },

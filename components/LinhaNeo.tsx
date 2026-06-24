@@ -259,7 +259,7 @@ const T: Record<Lang, {
       { label: "Eau Gazeuse",            sub: "Modèles SPARK" },
       { label: "Eau Hydrogénée",         sub: "Modèles H₂" },
     ],
-    subNatural: "Nature Seulement",
+    subNatural: "Naturel Seulement",
     sub6: "6 en 1", sub7: "7 en 1", sub8: "8 en 1",
     tank400: "Réservoir 400 ml", tank800: "Réservoir 800 ml",
     tank1500: "Réservoir 1500 ml", tank3l: "Réservoir 3L",
