@@ -44,6 +44,7 @@ const T: Record<Lang, {
   labelEmail: string;
   placeholderEmail: string;
   labelAssunto: string;
+  placeholderAssunto: string;
   labelMensagem: string;
   placeholderMensagem: string;
   submitBtn: string;
@@ -71,6 +72,7 @@ const T: Record<Lang, {
     labelEmail: "E-mail",
     placeholderEmail: "seu@email.com",
     labelAssunto: "Assunto",
+    placeholderAssunto: "Digite o assunto",
     labelMensagem: "Mensagem",
     placeholderMensagem: "Como podemos ajudar você",
     submitBtn: "Enviar mensagem",
@@ -115,6 +117,7 @@ const T: Record<Lang, {
     labelEmail: "E-mail",
     placeholderEmail: "your@email.com",
     labelAssunto: "Subject",
+    placeholderAssunto: "Enter the subject",
     labelMensagem: "Message",
     placeholderMensagem: "How can we help you",
     submitBtn: "Send Message",
@@ -159,6 +162,7 @@ const T: Record<Lang, {
     labelEmail: "E-mail",
     placeholderEmail: "your@email.com",
     labelAssunto: "Subject",
+    placeholderAssunto: "Enter the subject",
     labelMensagem: "Message",
     placeholderMensagem: "How can we help you",
     submitBtn: "Send Message",
@@ -203,6 +207,7 @@ const T: Record<Lang, {
     labelEmail: "E-mail",
     placeholderEmail: "tu@email.com",
     labelAssunto: "Asunto",
+    placeholderAssunto: "Escribe el asunto",
     labelMensagem: "Mensaje",
     placeholderMensagem: "¿Cómo podemos ayudarte?",
     submitBtn: "Enviar Mensaje",
@@ -247,6 +252,7 @@ const T: Record<Lang, {
     labelEmail: "E-mail",
     placeholderEmail: "votre@email.com",
     labelAssunto: "Sujet",
+    placeholderAssunto: "Saisissez le sujet",
     labelMensagem: "Message",
     placeholderMensagem: "Comment pouvons-nous vous aider ?",
     submitBtn: "Envoyer le Message",
@@ -291,6 +297,7 @@ const T: Record<Lang, {
     labelEmail: "E-Mail",
     placeholderEmail: "ihre@email.com",
     labelAssunto: "Betreff",
+    placeholderAssunto: "Betreff eingeben",
     labelMensagem: "Nachricht",
     placeholderMensagem: "Wie können wir Ihnen helfen?",
     submitBtn: "Nachricht Senden",
@@ -335,6 +342,7 @@ const T: Record<Lang, {
     labelEmail: "E-mail",
     placeholderEmail: "tua@email.com",
     labelAssunto: "Oggetto",
+    placeholderAssunto: "Inserisci l'oggetto",
     labelMensagem: "Messaggio",
     placeholderMensagem: "Come possiamo aiutarti?",
     submitBtn: "Invia Messaggio",
@@ -379,6 +387,7 @@ const T: Record<Lang, {
     labelEmail: "电子邮件",
     placeholderEmail: "您的@邮箱.com",
     labelAssunto: "主题",
+    placeholderAssunto: "请输入主题",
     labelMensagem: "消息",
     placeholderMensagem: "我们如何为您提供帮助？",
     submitBtn: "发送消息",
@@ -423,6 +432,7 @@ const T: Record<Lang, {
     labelEmail: "メールアドレス",
     placeholderEmail: "your@email.com",
     labelAssunto: "件名",
+    placeholderAssunto: "件名を入力してください",
     labelMensagem: "メッセージ",
     placeholderMensagem: "どのようにお手伝いできますか？",
     submitBtn: "メッセージを送る",
@@ -467,6 +477,7 @@ const T: Record<Lang, {
     labelEmail: "이메일",
     placeholderEmail: "your@email.com",
     labelAssunto: "제목",
+    placeholderAssunto: "제목을 입력하세요",
     labelMensagem: "메시지",
     placeholderMensagem: "어떻게 도와드릴까요?",
     submitBtn: "메시지 보내기",
@@ -511,6 +522,7 @@ const T: Record<Lang, {
     labelEmail: "E-post",
     placeholderEmail: "din@email.com",
     labelAssunto: "Ämne",
+    placeholderAssunto: "Ange ämne",
     labelMensagem: "Meddelande",
     placeholderMensagem: "Hur kan vi hjälpa dig?",
     submitBtn: "Skicka Meddelande",
@@ -555,6 +567,7 @@ const T: Record<Lang, {
     labelEmail: "Sähköposti",
     placeholderEmail: "sinun@email.com",
     labelAssunto: "Aihe",
+    placeholderAssunto: "Anna aihe",
     labelMensagem: "Viesti",
     placeholderMensagem: "Kuinka voimme auttaa sinua?",
     submitBtn: "Lähetä Viesti",
@@ -599,6 +612,7 @@ const T: Record<Lang, {
     labelEmail: "Эл. почта",
     placeholderEmail: "ваш@email.com",
     labelAssunto: "Тема",
+    placeholderAssunto: "Введите тему",
     labelMensagem: "Сообщение",
     placeholderMensagem: "Как мы можем вам помочь?",
     submitBtn: "Отправить Сообщение",
@@ -643,6 +657,7 @@ const T: Record<Lang, {
     labelEmail: "E-mail",
     placeholderEmail: "tu@email.com",
     labelAssunto: "Subiect",
+    placeholderAssunto: "Introduceti subiectul",
     labelMensagem: "Mesaj",
     placeholderMensagem: "Cum te putem ajuta?",
     submitBtn: "Trimite Mesaj",
@@ -687,6 +702,7 @@ const T: Record<Lang, {
     labelEmail: "דוא\"ל",
     placeholderEmail: "שלך@email.com",
     labelAssunto: "נושא",
+    placeholderAssunto: "הזן נושא",
     labelMensagem: "הודעה",
     placeholderMensagem: "כיצד נוכל לעזור לך?",
     submitBtn: "שלח הודעה",
@@ -731,6 +747,7 @@ const T: Record<Lang, {
     labelEmail: "E-mail",
     placeholderEmail: "o.seu@email.com",
     labelAssunto: "Assunto",
+    placeholderAssunto: "Digite o assunto",
     labelMensagem: "Mensagem",
     placeholderMensagem: "Como podemos ajudá-lo",
     submitBtn: "Enviar mensagem",
@@ -781,28 +798,22 @@ export default function ContatoInfoForm() {
   const { lang } = useLang();
   const t = T[lang];
   const searchParams = useSearchParams();
-  const [nome, setNome]         = useState("");
-  const [email, setEmail]       = useState("");
-  const [assuntos, setAssuntos] = useState<string[]>(() => {
+  const [nome, setNome]       = useState("");
+  const [email, setEmail]     = useState("");
+  const [assunto, setAssunto] = useState<string>(() => {
     const param = searchParams.get("assunto");
-    return param && ASSUNTOS_PT.includes(param) ? [param] : [];
+    return param && ASSUNTOS_PT.includes(param) ? param : "";
   });
   const [mensagem, setMensagem] = useState("");
   const [aceito, setAceito]     = useState(false);
 
   useEffect(() => {
     function handler(e: CustomEvent<string>) {
-      setAssuntos((prev) => prev.includes(e.detail) ? prev : [...prev, e.detail]);
+      setAssunto(e.detail);
     }
     window.addEventListener("prefill-assunto", handler as EventListener);
     return () => window.removeEventListener("prefill-assunto", handler as EventListener);
   }, []);
-
-  function toggleAssunto(a: string) {
-    setAssuntos((prev) =>
-      prev.includes(a) ? prev.filter((x) => x !== a) : [...prev, a]
-    );
-  }
 
   return (
     <section id="contato-form" className="scroll-mt-[80px] bg-[#f6f9fe] flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
@@ -842,28 +853,15 @@ export default function ContatoInfoForm() {
               </FormField>
             </div>
 
-            {/* Assunto — multi-select chips */}
+            {/* Assunto — campo de texto */}
             <FormField label={<>{t.labelAssunto}<span className="text-[#d74b4d]">*</span></>}>
-              <div className="flex flex-wrap gap-[8px] w-full">
-                {ASSUNTOS_PT.map((pt, i) => {
-                  const selected = assuntos.includes(pt);
-                  const label = t.assuntos[i];
-                  return (
-                    <button
-                      key={pt}
-                      type="button"
-                      onClick={() => toggleAssunto(pt)}
-                      className={`px-[14px] py-[8px] rounded-[8px] border text-[14px] font-['Avenir_LT_Pro:85_Heavy'] leading-[18px] transition-colors cursor-pointer ${
-                        selected
-                          ? "bg-[#0233c3] border-[#0233c3] text-white"
-                          : "bg-white border-[#cbd0d4] text-[#333] hover:border-[#0233c3] hover:text-[#0233c3]"
-                      }`}
-                    >
-                      {label}
-                    </button>
-                  );
-                })}
-              </div>
+              <input
+                type="text"
+                placeholder={t.placeholderAssunto}
+                value={assunto}
+                onChange={(e) => setAssunto(e.target.value)}
+                className={inputCls}
+              />
             </FormField>
 
             {/* Mensagem */}
