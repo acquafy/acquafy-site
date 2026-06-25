@@ -696,7 +696,7 @@ export default function Footer() {
 
       {/* Stats card */}
       <div className="flex items-center justify-center px-[20px] w-full">
-        <div className="bg-white flex flex-[1_0_0] flex-wrap gap-[10px] items-center justify-center max-w-[1400px] min-w-px overflow-hidden pl-[10px] py-[10px] rounded-[20px]">
+        <div className="bg-white flex flex-[1_0_0] flex-wrap gap-x-[20px] gap-y-[10px] items-center justify-center max-w-[1400px] min-w-px overflow-hidden py-[10px] rounded-[20px]">
           {t.stats.map((s, i) => {
             const icons = [
               { src: imgGlobe,    aspectW: 30,    aspectH: 30    },
