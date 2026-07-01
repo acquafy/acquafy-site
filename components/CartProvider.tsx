@@ -560,7 +560,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
                   <p className="font-['Avenir_LT_Pro:95_Black'] text-[20px] text-[#0233c3]">{formatBRL(cartTotal)}</p>
                 </div>
                 <a
-                  href={`/buy?produtos=${encodeURIComponent(cart.map(i => `${i.id}:${i.qty}`).join(','))}`}
+                  href={`/checkout?produtos=${encodeURIComponent(cart.map(i => `${i.id}:${i.qty}`).join(','))}`}
                   className="flex items-center justify-center gap-[8px] py-[14px] rounded-full font-['Avenir_LT_Pro:85_Heavy'] text-[14px] text-white cursor-pointer hover:opacity-85 transition-opacity"
                   style={{ background: "linear-gradient(135deg, #0233c3, #0569ff)" }}
                 >

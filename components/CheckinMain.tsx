@@ -1755,8 +1755,8 @@ export default function CheckinMain() {
             const isDone = step > n;
             return (
               <button key={n} type="button"
-                onClick={() => { if (isDone) goToStep(n); }}
-                className={`flex-[1_0_0] min-w-[80px] flex flex-col items-center gap-[8px] py-[16px] border-b-[3px] transition-colors ${isActive || isDone ? "border-[#0233c3]" : "border-transparent"}`}>
+                onClick={() => goToStep(n)}
+                className={`flex-[1_0_0] min-w-[80px] flex flex-col items-center gap-[8px] py-[16px] border-b-[3px] transition-colors cursor-pointer ${isActive || isDone ? "border-[#0233c3]" : "border-transparent"}`}>
                 <div className={`w-[36px] h-[36px] rounded-full flex items-center justify-center transition-colors ${isActive ? "bg-[#0233c3]" : isDone ? "bg-[#36ae5c]" : "bg-[#e8ecf4]"}`}>
                   {isDone ? (
                     <svg width="16" height="12" viewBox="0 0 16 12" fill="none">
