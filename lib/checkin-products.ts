@@ -38,19 +38,6 @@ function v(id: string, name: string, subLabel: string, desc: string, formato: st
   return { id, name, subLabel, desc, formato, price: PRODUCT_PRICES_BRL[id] ?? 0, img: PRODUCT_IMAGES[id] ?? "" };
 }
 
-/* ── Ultra slides helper ─────────────────────────────────────────────────── */
-const _U  = "/images/checkin/neo-ultra";
-const _US = `${_U}/_shared`;
-
-function ultraSlides(variantId: string): string[][] {
-  const V = `${_U}/${variantId}`;
-  return ["ap", "cm", "cz", "bg", "wt"].map(c => {
-    const shared = c === "cm"
-      ? [`${_US}/cm/03.png`, `${_US}/cm/04.png`, `${_US}/cm/05.png`]
-      : [`${_US}/${c}/02.png`, `${_US}/${c}/03.png`, `${_US}/${c}/04.png`, `${_US}/${c}/05.png`];
-    return [`${V}/${c}/01.png`, ...shared, `${V}/${c}/06.png`, `${V}/${c}/00.png`];
-  });
-}
 
 export const ULTRA_COLORS: CheckinColor[] = [
   { gradient: "linear-gradient(133deg, #1a3d4d 8%, #0d2530 89%)", name: "Azul Petróleo",   slug: "ap" },
@@ -89,9 +76,9 @@ export const CHECKIN_FAMILIES: CheckinFamily[] = [
     isPremium: false,
     colors: ULTRA_COLORS,
     variants: [
-      { ...v("neo-ultra",          "Neo ULTRA",          "6 em 1", "6 em 1",             "Bancada"), slides: ultraSlides("neo-ultra")          },
-      { ...v("neo-ultra-spark",    "Neo ULTRA SPARK",    "7 em 1", "7 em 1 · Gás",       "Bancada"), slides: ultraSlides("neo-ultra-spark")    },
-      { ...v("neo-ultra-spark-h2", "Neo ULTRA SPARK H₂", "8 em 1", "8 em 1 · Gás + H₂", "Bancada"), slides: ultraSlides("neo-ultra-spark-h2") },
+      v("neo-ultra",          "Neo ULTRA",          "6 em 1", "6 em 1",             "Bancada"),
+      v("neo-ultra-spark",    "Neo ULTRA SPARK",    "7 em 1", "7 em 1 · Gás",       "Bancada"),
+      v("neo-ultra-spark-h2", "Neo ULTRA SPARK H₂", "8 em 1", "8 em 1 · Gás + H₂", "Bancada"),
     ],
     scenes: [],
   },

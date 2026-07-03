@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import FigmaIcon from "./FigmaIcon";
@@ -13,7 +13,7 @@ const imgCalendar  = "/figma-assets/icon-calendar-b.svg"; // 38×42      portrai
 const imgMail      = "/figma-assets/icon-mail-42px.svg"; // 42×34      landscape
 const imgArrowBlue = "/figma-assets/icon-arrow-blue-small.svg"; // 11.2×8.84  landscape
 
-const PHONE       = "+14072035669";
+const PHONE       = "+13218887963";
 const WHATSAPP    = `https://wa.me/${PHONE.replace("+", "")}`;
 
 // ── Translations ──────────────────────────────────────────────────────────────
@@ -566,3 +566,4 @@ export default function OutrosCanais() {
     </>
   );
 }
+

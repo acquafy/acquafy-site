@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import FigmaIcon from "./FigmaIcon";
@@ -372,7 +372,7 @@ export default function TecnologiaSustentSection() {
         {/* Top row: info card + sust cards */}
         <div className="flex flex-col gap-[20px] items-start w-full">
           {/* Info card */}
-          <div className="bg-white flex flex-col gap-[20px] items-start min-h-[235px] min-w-[280px] overflow-hidden p-[20px] rounded-[16px] w-full">
+          <div className="bg-white flex flex-col gap-[20px] items-start min-w-[280px] overflow-hidden p-[20px] rounded-[16px] w-full">
             <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#0b8650] text-center lg:text-left">
               {t.infoTitle}
             </h2>
@@ -380,11 +380,6 @@ export default function TecnologiaSustentSection() {
             <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-[#333] flex-1">
               {t.infoParagraph}
             </p>
-            <Link href="/tecnologia" className="max-w-[320px] w-full self-center lg:self-start">
-              <BtnVerdeOutArrow className="w-full">
-                {t.infoCta}
-              </BtnVerdeOutArrow>
-            </Link>
           </div>
 
           {/* Sustainability cards */}
@@ -445,3 +440,5 @@ export default function TecnologiaSustentSection() {
     </section>
   );
 }
+
+

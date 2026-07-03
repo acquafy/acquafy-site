@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import FigmaIcon from "./FigmaIcon";
 import { useChatWidget } from "./ChatWidget";
 import { useLang, type Lang } from "@/context/LanguageContext";
@@ -289,13 +289,13 @@ export default function FaleComEquipeSuporte() {
               </div>
             </div>
             <a
-              href="https://wa.me/14072035669"
+              href="https://wa.me/13218887963"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-auto bg-white border border-[#0233c3] hover:bg-[#0233c3] group transition-colors flex items-center justify-center min-h-[30px] overflow-hidden px-[20px] py-[10px] rounded-[8px]"
             >
               <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] group-hover:text-white transition-colors text-center">
-                +1 (407) 203-5669
+                +1 (321) 888-7963
               </span>
             </a>
           </div>
@@ -325,3 +325,4 @@ export default function FaleComEquipeSuporte() {
     </section>
   );
 }
+

@@ -6,7 +6,7 @@ import { useLang, type Lang } from "@/context/LanguageContext";
 
 const imgCheckin = "/figma-assets/icon-check-e.svg";
 
-const imgPanel      = "/images/painel-v3-eng.png";
+const imgPanel      = "/images/painel-v3-eng.webp";
 const imgHomeMob    = "/figma-assets/app-home-mobile.webp";
 const imgAppView    = "/figma-assets/app-view-screen.webp";
 const imgFeatCheck  = "/figma-assets/icon-check-30px.svg";
