@@ -13,7 +13,7 @@ const imgMarketing  = "/figma-assets/icon-marketing-landscape.svg";
 const imgDivLine1   = "/figma-assets/divider-line-1.svg";
 const imgDashboard  = "/figma-assets/icon-dashboard-large.svg";
 const imgDivLine2   = "/figma-assets/divider-line-2.svg";
-const imgAI         = "/figma-assets/icon-ai-30px-a.svg";
+const imgAI         = "/figma-assets/icon-ai-30px-e.svg";
 const imgMoney      = "/figma-assets/icon-money-large-a.svg";
 const imgLocations  = "/figma-assets/icon-locations.svg";
 

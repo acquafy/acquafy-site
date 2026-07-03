@@ -52,6 +52,12 @@ export function formatBRL(value: number) {
   return `R$ ${value.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`;
 }
 
+export function formatPrice(brl: number, lang: string): string {
+  if (lang === "pt" || lang === "pt-pt") return formatBRL(brl);
+  const usd = brl / 5;
+  return `US$ ${usd.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+}
+
 export type ProductLinha = "Essentials" | "Premium";
 
 export type ProductBasic = {

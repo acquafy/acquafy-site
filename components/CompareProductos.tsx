@@ -1,7 +1,7 @@
 ﻿"use client";
 import { useState, useMemo, useRef, useEffect } from "react";
 import FigmaIcon from "./FigmaIcon";
-import { PRODUCT_PRICES_BRL, formatBRL, PRODUCT_IMAGES as productImages } from "@/lib/products";
+import { PRODUCT_PRICES_BRL, formatPrice, PRODUCT_IMAGES as productImages } from "@/lib/products";
 import { CHECKIN_FAMILIES } from "@/lib/checkin-products";
 
 const PRODUCT_TO_FAMILY: Record<string, string> = {};
@@ -1328,9 +1328,9 @@ export default function CompareProductos() {
                           <BoolCell value={val as boolean} altYes={t.altYes} altNo={t.altNo} />
                         ) : row.type === "price" ? (
                           <p className="font-['Avenir_LT_Pro:95_Black'] text-[16px] leading-[20px] text-[#0233c3] text-center">
-                            {lang === "pt" && PRODUCT_PRICES_BRL[product.id] > 0
-                            ? formatBRL(PRODUCT_PRICES_BRL[product.id])
-                            : product.specs.preco || "—"}
+                            {PRODUCT_PRICES_BRL[product.id] > 0
+                            ? formatPrice(PRODUCT_PRICES_BRL[product.id], lang)
+                            : "—"}
                           </p>
                         ) : val === "—" ? (
                           <BoolCell value={false} altYes={t.altYes} altNo={t.altNo} />
@@ -1457,9 +1457,9 @@ export default function CompareProductos() {
                   <span className="text-[#1f2e91]">{t.priceFrom}</span>
                   {lang === "pt" || lang === "pt-pt" ? (
                     <>
-                      <span className="text-[#0569ff]">{formatBRL(1289.85)} </span>
+                      <span className="text-[#0569ff]">{formatPrice(1289.85, lang)} </span>
                       <span className="text-[#1f2e91]">{t.priceTo}</span>
-                      <span className="text-[#0569ff]">{formatBRL(7989.85)}</span>
+                      <span className="text-[#0569ff]">{formatPrice(7989.85, lang)}</span>
                     </>
                   ) : (
                     <>
@@ -1487,9 +1487,9 @@ export default function CompareProductos() {
                   <span className="text-[#1f2e91]">{t.priceFrom}</span>
                   {lang === "pt" || lang === "pt-pt" ? (
                     <>
-                      <span className="text-[#9f3df5]">{formatBRL(8489.85)} </span>
+                      <span className="text-[#9f3df5]">{formatPrice(8489.85, lang)} </span>
                       <span className="text-[#1f2e91]">{t.priceTo}</span>
-                      <span className="text-[#9f3df5]">{formatBRL(9639.85)}</span>
+                      <span className="text-[#9f3df5]">{formatPrice(9639.85, lang)}</span>
                     </>
                   ) : (
                     <>

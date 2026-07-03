@@ -8,7 +8,7 @@ const imgInterfyShopping = "/figma-assets/logo-interfy-shopping.svg";
 const imgInnovecar       = "/figma-assets/logo-innovecar.webp";
 const imgNeoai           = "/figma-assets/product-neoai.webp";
 const imgProcessdoc      = "/figma-assets/icon-processdoc.svg";
-const imgAcquafy         = "/figma-assets/logo-acquafy-alt.svg";
+const imgAcquafy         = "/figma-assets/logo-b.svg";
 const imgVisionfy        = "/figma-assets/logo-visionfy.svg";
 const imgMediafy         = "/figma-assets/logo-mediafy.svg";
 const imgDocsystem       = "/figma-assets/icon-docsystem.svg";
@@ -22,7 +22,7 @@ const brands = [
   { src: imgInnovecar,       alt: "Innovecar",         aw: 3040,     ah: 834     },
   { src: imgNeoai,           alt: "NeoAI",             aw: 180,      ah: 62.586  },
   { src: imgProcessdoc,      alt: "Processdoc",        aw: 219.673,  ah: 54.188  },
-  { src: imgAcquafy,         alt: "Acquafy",           aw: 1133.861, ah: 237.877 },
+  { src: imgAcquafy,         alt: "Acquafy",           aw: 200,      ah: 33.0452 },
   { src: imgVisionfy,        alt: "Visionfy",          aw: 219.536,  ah: 50.456  },
   { src: imgMediafy,         alt: "Mediafy",           aw: 206.800,  ah: 54.020  },
   { src: imgDocsystem,       alt: "Docsystem",         aw: 219.423,  ah: 55.768  },

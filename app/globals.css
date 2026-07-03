@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─── Snipcart — suppress default cart UI ─────────────────────────────────
+   Purchases go through the custom CartProvider + CheckinMain + Stripe flow.
+   Snipcart is loaded only so its price-verification crawler can read the
+   data-item-* attributes on product pages. The cart overlay must never show.
+   ────────────────────────────────────────────────────────────────────────── */
+#snipcart .snip-layout,
+#snipcart .snip-header__logo,
+.snipcart-checkout--outside {
+  display: none !important;
+}
+
 /* ─── Avenir LT Pro — via CDNFonts ────────────────────────────────── */
 /* Nomes mapeados exatamente ao que o Tailwind gera de cada classe      */
 /* font-['Avenir_LT_Pro:XX_YY'] → font-family: "Avenir LT Pro:XX YY"  */

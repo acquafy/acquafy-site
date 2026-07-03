@@ -2,7 +2,7 @@
 
 import { useRef, useState, useCallback, useEffect } from "react";
 import { CHECKIN_FAMILIES, type CheckinFamily } from "@/lib/checkin-products";
-import { formatBRL, PRODUCT_PRICES_BRL, PRODUCT_PRICES_USD, PRODUCT_IMAGES } from "@/lib/products";
+import { formatPrice, PRODUCT_PRICES_BRL, PRODUCT_IMAGES } from "@/lib/products";
 import FigmaIcon from "@/components/FigmaIcon";
 import { useCart } from "@/components/CartProvider";
 import { useLang } from "@/context/LanguageContext";
@@ -599,7 +599,15 @@ const ESSENTIALS_COLORS = [
 ];
 
 /* ── Filter data ───────────────────────────────────────────────────────────── */
-type FilterInfo = { title: string; desc: string };
+type FilterInfo = { title: string; desc: string; img?: string };
+
+const FILTER_IMGS: Record<"ppf"|"acf"|"uff"|"rof"|"aaf", string> = {
+  ppf: "/images/filters/PPF.png",
+  acf: "/images/filters/ACF.png",
+  uff: "/images/filters/UFF.png",
+  rof: "/images/filters/ROF.png",
+  aaf: "/images/filters/AAF.png",
+};
 type FilterSet  = {
   label: string;
   description: string;
@@ -971,11 +979,14 @@ const FILTER_DATA: Record<Lang, {
 
 function getFilterSet(lang: Lang, isRO: boolean): FilterSet {
   const d = FILTER_DATA[lang];
+  const wi = (f: FilterInfo, k: keyof typeof FILTER_IMGS): FilterInfo => ({ ...f, img: FILTER_IMGS[k] });
   return {
     label:       isRO ? d.ro_label : d.uf_label,
     description: isRO ? d.ro_desc  : d.uf_desc,
     bullets: d.bullets,
-    filters: isRO ? [d.ppf, d.acf, d.rof, d.aaf] : [d.ppf, d.acf, d.uff, d.aaf],
+    filters: isRO
+      ? [wi(d.ppf, "ppf"), wi(d.acf, "acf"), wi(d.rof, "rof"), wi(d.aaf, "aaf")]
+      : [wi(d.ppf, "ppf"), wi(d.acf, "acf"), wi(d.uff, "uff"), wi(d.aaf, "aaf")],
     props: d.props,
   };
 }
@@ -1386,6 +1397,7 @@ export default function CheckinProduct({ family }: Props) {
   const regionNames = new Intl.DisplayNames([LANG_TO_LOCALE[lang]], { type: "region" });
   const activeVariant = family.variants[activeVariantIdx];
   // Active image set: variant's slides for selected color, fallback to single hero img
+  const colorOptions = family.colors ?? ESSENTIALS_COLORS;
   const activeColorImages = activeVariant.slides?.[activeColorIdx] ?? [];
   const slideCount = activeColorImages.length > 0 ? activeColorImages.length : 1;
   const specs = SPECS[activeVariant.id] ?? SPECS["neo-fit"]!;
@@ -1400,21 +1412,21 @@ export default function CheckinProduct({ family }: Props) {
     const { scrollTop, clientHeight } = container;
     const containerTop = container.getBoundingClientRect().top;
 
-    // Scroll-spy: use getBoundingClientRect so the trigger is always relative to the
-    // actual visible area of the scroll container, regardless of offsetParent ancestry.
-    // A section activates when its top crosses 30% from the container's top edge.
-    const triggerLine = clientHeight * 0.3;
-    let best = "produto";
-    let bestVisualTop = -Infinity;
+    // Scroll-spy: pick the section whose top sits highest inside the visible area.
+    // Step 1 — any section whose top is in [0, clientHeight): pick the one with the smallest top.
+    // Step 2 (fallback) — if no section top is visible, pick the last one that scrolled past.
+    let step1Best: string | null = null, step1Top = Infinity;
+    let step2Best: string | null = null, step2Top = -Infinity;
     Object.entries(sectionRefs.current).forEach(([key, el]) => {
       if (!el) return;
-      const visualTop = el.getBoundingClientRect().top - containerTop;
-      if (visualTop <= triggerLine && visualTop > bestVisualTop) {
-        bestVisualTop = visualTop;
-        best = key;
+      const vt = el.getBoundingClientRect().top - containerTop;
+      if (vt >= 0 && vt < clientHeight) {
+        if (vt < step1Top) { step1Top = vt; step1Best = key; }
+      } else if (vt < 0) {
+        if (vt > step2Top) { step2Top = vt; step2Best = key; }
       }
     });
-    setActiveSection(best);
+    setActiveSection(step1Best ?? step2Best ?? "produto");
 
     // Scene transitions (when scenes are defined)
     if (family.scenes.length === 0) return;
@@ -1441,11 +1453,92 @@ export default function CheckinProduct({ family }: Props) {
     <div className="flex flex-col md:flex-row w-full h-[calc(100vh-80px)] overflow-hidden">
 
       {/* ── LEFT: Sticky image ───────────────────────────────────────────── */}
-      <div className="shrink-0 h-[260px] md:h-auto md:flex-1 bg-[#f6f9fe] flex flex-col overflow-hidden" onWheel={handleLeftWheel}>
+      <div className="shrink-0 h-[260px] md:h-auto md:flex-1 bg-[#f6f9fe] flex flex-col md:justify-center md:items-center overflow-hidden relative" onWheel={handleLeftWheel}>
+
+        {/* ── FILTROS / GARANTIAS: filter banner (fills full outer container) ── */}
+        <div className={`absolute inset-0 transition-opacity duration-500 z-10 ${displaySection === "filtros" || displaySection === "garantias" ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+          <img
+            src={specs.filtragem === "4 Filtros RO / Osmose Reversa"
+              ? "/images/checkin/banner-filtros-rof.png"
+              : "/images/checkin/banner-filtros-uff.png"}
+            alt={lb.filtrosBanner}
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        {/* ── CONTA: produto + filtros + mapa (fills full outer container) ── */}
+        <div className={`absolute inset-0 transition-opacity duration-500 z-10 ${displaySection === "conta" ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+          <div className="w-full h-full flex">
+            {/* Esquerda: produto */}
+            <div className="w-1/2 h-full flex items-center justify-center bg-[#f6f9fe]">
+              <img src={activeVariant.img} alt={activeVariant.name} className="w-full h-1/2 object-contain" />
+            </div>
+            {/* Direita: filtros (cima) + mapa (baixo) */}
+            <div className="w-1/2 h-full flex flex-col">
+              <div className="flex-1 overflow-hidden">
+                <img
+                  src={specs.filtragem === "4 Filtros RO / Osmose Reversa"
+                    ? "/images/checkin/banner-filtros-rof.png"
+                    : "/images/checkin/banner-filtros-uff.png"}
+                  alt={lb.filtrosBanner}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="flex-1 overflow-hidden">
+                {fv.cep.length === 9 ? (
+                  <iframe
+                    key={fv.cep}
+                    src={`https://www.google.com/maps?q=${encodeURIComponent(fv.cep + ", Brasil")}&output=embed`}
+                    className="w-full h-full border-0"
+                    loading="lazy"
+                    title={lb.mapaEntrega}
+                  />
+                ) : (
+                  <div className="w-full h-full flex flex-col items-center justify-center gap-[12px]"
+                    style={{ background: "linear-gradient(160deg, #eef2ff 0%, #f6f9fe 100%)" }}>
+                    <svg width="36" height="36" viewBox="0 0 48 48" fill="none">
+                      <circle cx="24" cy="22" r="10" stroke="#0233c3" strokeWidth="2.5"/>
+                      <path d="M24 12v-4M24 32v4M14 22H10M38 22h-4" stroke="#0233c3" strokeWidth="2" strokeLinecap="round" opacity="0.4"/>
+                      <circle cx="24" cy="22" r="3.5" fill="#0233c3"/>
+                      <path d="M16 36c0-4 3.6-7 8-7s8 3 8 7" stroke="#0233c3" strokeWidth="2.5" strokeLinecap="round" opacity="0.5"/>
+                    </svg>
+                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af] text-center px-[20px]">{lb.digitarCep}</p>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ── CEP: embedded map (fills full outer container) ─────────────── */}
+        <div className={`absolute inset-0 transition-opacity duration-500 z-10 ${displaySection === "cep" ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+          {fv.cep.length === 9 ? (
+            <iframe
+              key={fv.cep}
+              src={`https://www.google.com/maps?q=${encodeURIComponent(fv.cep + ", Brasil")}&output=embed`}
+              className="w-full h-full border-0"
+              loading="lazy"
+              title={lb.mapaEntrega}
+            />
+          ) : (
+            <div className="w-full h-full flex flex-col items-center justify-center gap-[16px] p-[40px]"
+              style={{ background: "linear-gradient(160deg, #eef2ff 0%, #f6f9fe 100%)" }}>
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                <circle cx="24" cy="22" r="10" stroke="#0233c3" strokeWidth="2.5"/>
+                <path d="M24 12v-4M24 32v4M14 22H10M38 22h-4" stroke="#0233c3" strokeWidth="2" strokeLinecap="round" opacity="0.4"/>
+                <circle cx="24" cy="22" r="3.5" fill="#0233c3"/>
+                <path d="M16 36c0-4 3.6-7 8-7s8 3 8 7" stroke="#0233c3" strokeWidth="2.5" strokeLinecap="round" opacity="0.5"/>
+              </svg>
+              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#9ca3af] text-center">
+                {lb.digitarCep}
+              </p>
+            </div>
+          )}
+        </div>
 
         {/* Image area */}
         <div
-          className="flex-1 relative flex items-center justify-center overflow-hidden"
+          className="flex-1 md:flex-none md:h-[700px] w-full md:max-w-[1400px] md:mx-auto relative flex items-center justify-center overflow-hidden"
           onMouseEnter={() => setImageHovered(true)}
           onMouseLeave={() => setImageHovered(false)}
         >
@@ -1455,106 +1548,53 @@ export default function CheckinProduct({ family }: Props) {
             {family.scenes.length > 0 ? (
               family.scenes.map((scene, i) => (
                 <img key={i} src={scene.img} alt=""
-                  className={`absolute inset-0 w-full h-full object-contain p-[24px] md:p-[60px] transition-opacity duration-500 ${i === activeSceneIdx ? "opacity-100" : "opacity-0"}`}
+                  className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-500 ${i === activeSceneIdx ? "opacity-100" : "opacity-0"}`}
                 />
               ))
             ) : activeColorImages.length > 0 ? (
+              <img src={activeVariant.img}
+                alt={activeVariant.name}
+                className="absolute inset-0 w-full h-full object-contain"
+              />
+            ) : (
+            /* BACKUP — slideshow completo, reativar quando imagens estiverem prontas
               activeColorImages.map((img, i) => (
                 <img key={i} src={img}
-                  alt={`${activeVariant.name} – ${ESSENTIALS_COLORS[activeColorIdx]?.name ?? ""} – ${i + 1}`}
-                  className={`absolute inset-0 w-full h-full object-contain p-[24px] md:p-[60px] transition-opacity duration-500 ${i === slideIdx ? "opacity-100" : "opacity-0"}`}
+                  alt={`${activeVariant.name} – ${colorOptions[activeColorIdx]?.name ?? ""} – ${i + 1}`}
+                  className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-500 ${i === slideIdx ? "opacity-100" : "opacity-0"}`}
                 />
               ))
-            ) : (
-              <img src={activeVariant.img} alt={activeVariant.name}
-                className="absolute inset-0 w-full h-full object-contain p-[24px] md:p-[60px]"
-              />
+            */
+              family.variants.map((v, i) => (
+                <img key={v.id} src={v.img} alt={v.name}
+                  className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-500 ${i === activeVariantIdx ? "opacity-100" : "opacity-0"}`}
+                />
+              ))
             )}
           </div>
 
-          {/* ── FILTROS: filter banner ─────────────────────────────────────── */}
-          <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ${displaySection === "filtros" ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
-            <div className="w-full h-full flex flex-col items-center justify-center gap-[16px] p-[40px]"
-              style={{ background: "linear-gradient(160deg, #eef2ff 0%, #f6f9fe 60%, #f0eeff 100%)" }}>
-              <div className="size-[64px] rounded-[20px] flex items-center justify-center"
-                style={{ background: "linear-gradient(135deg, #0233c3, #0569ff)" }}>
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-                  <path d="M6 8h20M10 14h12M14 20h4" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
-                </svg>
-              </div>
-              <div className="flex flex-col items-center gap-[6px]">
-                <p className="font-['Avenir_LT_Pro:95_Black'] text-[18px] text-[#1f2e91] text-center">{lb.filtrosBanner}</p>
-                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#6b7280] text-center leading-[1.5]">
-                  {lb.imagemBanner}
-                </p>
-              </div>
-            </div>
-          </div>
 
-          {/* ── CEP: embedded map ─────────────────────────────────────────── */}
-          <div className={`absolute inset-0 transition-opacity duration-500 ${displaySection === "cep" ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
-            {fv.cep.length === 9 ? (
-              <iframe
-                key={fv.cep}
-                src={`https://www.google.com/maps?q=${encodeURIComponent(fv.cep + ", Brasil")}&output=embed`}
-                className="w-full h-full border-0"
-                loading="lazy"
-                title={lb.mapaEntrega}
-              />
-            ) : (
-              <div className="w-full h-full flex flex-col items-center justify-center gap-[16px] p-[40px]"
-                style={{ background: "linear-gradient(160deg, #eef2ff 0%, #f6f9fe 100%)" }}>
-                <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                  <circle cx="24" cy="22" r="10" stroke="#0233c3" strokeWidth="2.5"/>
-                  <path d="M24 12v-4M24 32v4M14 22H10M38 22h-4" stroke="#0233c3" strokeWidth="2" strokeLinecap="round" opacity="0.4"/>
-                  <circle cx="24" cy="22" r="3.5" fill="#0233c3"/>
-                  <path d="M16 36c0-4 3.6-7 8-7s8 3 8 7" stroke="#0233c3" strokeWidth="2.5" strokeLinecap="round" opacity="0.5"/>
-                </svg>
-                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#9ca3af] text-center">
-                  {lb.digitarCep}
-                </p>
-              </div>
-            )}
-          </div>
 
-          {/* ── GARANTIAS / CONTA: product image (no arrows) ──────────────── */}
-          <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ${displaySection === "garantias" || displaySection === "conta" ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
-            <img src={activeVariant.img} alt={activeVariant.name}
-              className="w-full h-full object-contain p-[24px] md:p-[60px]"
-            />
-          </div>
 
-          {/* ── Slide arrows (produto + cores unified, fade on hover) ─────── */}
-          {family.scenes.length === 0 && slideCount > 1 && (
+          {/* BACKUP — setas do slide, reativar junto com o slideshow
+          {family.scenes.length === 0 && (activeColorImages.length > 0 ? slideCount > 1 : family.variants.length > 1) && (
             <>
-              <button
-                aria-label={lb.imagemAnterior}
+              <button aria-label={lb.imagemAnterior}
                 className={`absolute left-[12px] top-1/2 -translate-y-1/2 z-10 size-[38px] rounded-full bg-white/90 backdrop-blur-sm border border-[#e8ecf4] flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 ${(displaySection === "produto" || displaySection === "cores") && imageHovered ? "opacity-100" : "opacity-0 pointer-events-none"}`}
-                onClick={() => setSlideIdx(n => (n - 1 + slideCount) % slideCount)}
+                onClick={() => activeColorImages.length > 0 ? setSlideIdx(n => (n - 1 + slideCount) % slideCount) : setActiveVariantIdx(n => (n - 1 + family.variants.length) % family.variants.length)}
               >
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path d="M9 11L5 7l4-4" stroke="#1f2e91" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 11L5 7l4-4" stroke="#1f2e91" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </button>
-              <button
-                aria-label={lb.proximaImagem}
+              <button aria-label={lb.proximaImagem}
                 className={`absolute right-[12px] top-1/2 -translate-y-1/2 z-10 size-[38px] rounded-full bg-white/90 backdrop-blur-sm border border-[#e8ecf4] flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 ${(displaySection === "produto" || displaySection === "cores") && imageHovered ? "opacity-100" : "opacity-0 pointer-events-none"}`}
-                onClick={() => setSlideIdx(n => (n + 1) % slideCount)}
+                onClick={() => activeColorImages.length > 0 ? setSlideIdx(n => (n + 1) % slideCount) : setActiveVariantIdx(n => (n + 1) % family.variants.length)}
               >
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path d="M5 3l4 4-4 4" stroke="#1f2e91" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 3l4 4-4 4" stroke="#1f2e91" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </button>
             </>
           )}
+          */}
 
-          {/* Section indicator */}
-          <div className="absolute bottom-[16px] left-[16px] z-10 flex items-center gap-[6px] bg-white/90 backdrop-blur-sm rounded-full px-[10px] py-[5px] shadow-sm border border-[#e8ecf4] transition-all duration-300">
-            <div className="size-[6px] rounded-full transition-all duration-300" style={{ background: accentGrad }} />
-            <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[11px] text-[#1f2e91] transition-all duration-300">
-              {({ produto: lb.navProduto, cores: lb.navCores, filtros: lb.navFiltros, garantias: lb.navGarantias, cep: lb.navCep, conta: lb.navConta })[displaySection] ?? displaySection}
-            </span>
-          </div>
         </div>
       </div>
 
@@ -1605,11 +1645,9 @@ export default function CheckinProduct({ family }: Props) {
               onMouseLeave={() => setHoverSection(null)}>
               {family.variants.map((variant, i) => {
                 const isActive = i === activeVariantIdx;
-                const displayPrice = lang === "pt"
-                  ? payTab === "financiar"
-                    ? `${formatBRL(monthlyPrice(variant.price))}/mês`
-                    : formatBRL(variant.price)
-                  : (PRODUCT_PRICES_USD[variant.id] ?? formatBRL(variant.price));
+                const displayPrice = lang === "pt" && payTab === "financiar"
+                  ? `${formatPrice(monthlyPrice(variant.price), lang)}/mês`
+                  : formatPrice(variant.price, lang);
                 return (
                   <button key={variant.id} onClick={() => setActiveVariantIdx(i)}
                     className="flex items-center justify-between gap-[10px] px-[14px] py-[12px] rounded-[12px] text-left transition-all"
@@ -1699,11 +1737,11 @@ export default function CheckinProduct({ family }: Props) {
                   <div className="flex flex-col gap-[4px] items-center">
                     <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af] uppercase tracking-[0.06em]">{lb.coresLabel}</p>
                     <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] text-[#1f2e91] text-center">
-                      {ESSENTIALS_COLORS[activeColorIdx].name}
+                      {colorOptions[activeColorIdx]?.name ?? ""}
                     </p>
                   </div>
                   <div className="flex gap-[10px] items-center justify-center flex-wrap">
-                    {ESSENTIALS_COLORS.map((color, i) => {
+                    {colorOptions.map((color, i) => {
                       const isActive = i === activeColorIdx;
                       return (
                         <button key={i} onClick={() => setActiveColorIdx(i)}
@@ -1718,6 +1756,7 @@ export default function CheckinProduct({ family }: Props) {
                       );
                     })}
                   </div>
+                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af] text-center">Em breve</p>
                 </div>
               </>
             )}
@@ -2112,7 +2151,7 @@ export default function CheckinProduct({ family }: Props) {
                 <div className="flex flex-col items-center gap-[4px]">
                   <p className="font-['Avenir_LT_Pro:95_Black'] text-[20px] text-[#1f2e91] text-center">{lb.adicionadoCarrinho}</p>
                   <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#6b7280] text-center">
-                    {activeVariant.name} · {formatBRL(activeVariant.price)}
+                    {activeVariant.name} · {formatPrice(activeVariant.price, lang)}
                   </p>
                 </div>
               </div>
@@ -2139,7 +2178,7 @@ export default function CheckinProduct({ family }: Props) {
                             {variantName}{item.qty > 1 ? ` × ${item.qty}` : ""}
                           </span>
                           <span className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#6b7280]">
-                            {formatBRL(price * item.qty)}
+                            {formatPrice(price * item.qty, lang)}
                           </span>
                         </div>
                       </div>
@@ -2148,7 +2187,7 @@ export default function CheckinProduct({ family }: Props) {
                   <div className="flex items-center justify-between pt-[8px] border-t border-[#e8ecf4]">
                     <span className="font-['Avenir_LT_Pro:55_Roman'] text-[11px] text-[#9ca3af] uppercase tracking-[0.05em]">{lb.totalLabel}</span>
                     <span className="font-['Avenir_LT_Pro:95_Black'] text-[16px] leading-none" style={{ background: accentGrad, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
-                      {formatBRL(cart.reduce((sum, i) => sum + (PRODUCT_PRICES_BRL[i.id] ?? 0) * i.qty, 0))}
+                      {formatPrice(cart.reduce((sum, i) => sum + (PRODUCT_PRICES_BRL[i.id] ?? 0) * i.qty, 0), lang)}
                     </span>
                   </div>
                 </div>
@@ -2195,11 +2234,9 @@ export default function CheckinProduct({ family }: Props) {
               className="font-['Avenir_LT_Pro:95_Black'] text-[26px] leading-none"
               style={{ background: accentGrad, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
             >
-              {lang === "pt"
-                ? payTab === "financiar"
-                  ? `${formatBRL(monthlyPrice(activeVariant.price))}/mês`
-                  : formatBRL(activeVariant.price)
-                : (PRODUCT_PRICES_USD[activeVariant.id] ?? formatBRL(activeVariant.price))}
+              {lang === "pt" && payTab === "financiar"
+                ? `${formatPrice(monthlyPrice(activeVariant.price), lang)}/mês`
+                : formatPrice(activeVariant.price, lang)}
             </span>
             <span className="font-['Avenir_LT_Pro:55_Roman'] text-[11px] text-[#9ca3af] truncate">
               {payTab === "financiar" ? lb.semJuros : ""}{activeVariant.name}

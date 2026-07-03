@@ -483,6 +483,21 @@ function PremiumCard({ product, color = "#6e0cc3" }: { product: Product; color?:
 }
 
 function PanelSlideshow() {
+  return (
+    <div className="shrink-0 min-w-[240px] max-w-[249px] w-[240px]">
+      <div className="relative w-full" style={{ aspectRatio: "2309/3821" }}>
+        <img
+          alt="Painel Premium"
+          className="absolute inset-0 max-w-none object-cover pointer-events-none size-full"
+          src={panelSlideSrcs[0]}
+        />
+      </div>
+    </div>
+  );
+}
+
+/* BACKUP — slideshow completo, reativar quando imagens estiverem prontas
+function PanelSlideshowFull() {
   const [active, setActive] = useState(0);
   return (
     <div className="flex flex-col gap-[10px] items-center justify-center shrink-0 min-w-[240px] max-w-[249px] w-[240px]">
@@ -515,6 +530,7 @@ function PanelSlideshow() {
     </div>
   );
 }
+*/
 
 export default function LinhaPremium() {
   const { lang } = useLang();
