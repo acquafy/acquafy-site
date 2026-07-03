@@ -2,10 +2,9 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import CheckoutUp from "@/components/CheckoutUp";
 import LinhaNeo from "@/components/LinhaNeo";
-import FiltrosNeo from "@/components/FiltrosNeo";
+import LinhasFiltros from "@/components/LinhasFiltros";
 import TransformaVidas from "@/components/TransformaVidas";
 import LinhaPremium from "@/components/LinhaPremium";
-import FiltrosPremium from "@/components/FiltrosPremium";
 import NeoMedia from "@/components/NeoMedia";
 import Parceria from "@/components/Parceria";
 import CtaBanner from "@/components/CtaBanner";
@@ -19,10 +18,9 @@ export default function Home() {
         <Hero />
         <CheckoutUp />
         <LinhaNeo />
-        <FiltrosNeo />
         <TransformaVidas />
         <LinhaPremium />
-        <FiltrosPremium />
+        <LinhasFiltros showPh={false} />
         <NeoMedia />
         <Parceria />
         <CtaBanner />

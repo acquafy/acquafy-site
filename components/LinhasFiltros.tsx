@@ -383,7 +383,7 @@ function FilterCard({ card }: { card: FilterCard }) {
   );
 }
 
-export default function LinhasFiltros() {
+export default function LinhasFiltros({ showPh = true }: { showPh?: boolean }) {
   const { lang } = useLang();
   const t = T[lang];
   const essentials = t.essentials;
@@ -417,6 +417,7 @@ export default function LinhasFiltros() {
         </div>
 
         {/* Escala de pH */}
+        {showPh && (
         <div className="flex flex-col gap-[40px] items-center w-full">
           <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] text-center w-full">
             {t.phHeading}
@@ -457,6 +458,7 @@ export default function LinhasFiltros() {
             </div>
           </div>
         </div>
+        )}
 
       </div>
     </section>

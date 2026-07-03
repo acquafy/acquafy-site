@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { useEffect, useState, type ReactNode } from "react";
@@ -65,7 +65,7 @@ const T: Record<Lang, {
     infoTitle: "Informações de contato",
     sedeTitle: "Sede Global",
     phoneTitle: "Telefone / WhatsApp",
-    phoneLines: ["+1 (407) 203-5669", "Segunda a Sexta, 8h às 18h (EST)"],
+    phoneLines: ["+1 (321) 888-7963", "Segunda a Sexta, 8h às 18h (EST)"],
     presencaTitle: "Presença global",
     presencaLines: ["16 idiomas em operação ativa"],
     presencaCta: "Ver todas as regiões",
@@ -109,7 +109,7 @@ const T: Record<Lang, {
     infoTitle: "Contact Information",
     sedeTitle: "Global Headquarters",
     phoneTitle: "Phone / WhatsApp",
-    phoneLines: ["+1 (407) 203-5669", "Monday to Friday, 8am to 6pm (EST)"],
+    phoneLines: ["+1 (321) 888-7963", "Monday to Friday, 8am to 6pm (EST)"],
     presencaTitle: "Global Presence",
     presencaLines: ["16 languages in active operation"],
     presencaCta: "View All Regions",
@@ -153,7 +153,7 @@ const T: Record<Lang, {
     infoTitle: "Información de Contacto",
     sedeTitle: "Sede Global",
     phoneTitle: "Teléfono / WhatsApp",
-    phoneLines: ["+1 (407) 203-5669", "Lunes a Viernes, 8h a 18h (EST)"],
+    phoneLines: ["+1 (321) 888-7963", "Lunes a Viernes, 8h a 18h (EST)"],
     presencaTitle: "Presencia Global",
     presencaLines: ["16 idiomas en operación activa"],
     presencaCta: "Ver Todas las Regiones",
@@ -197,7 +197,7 @@ const T: Record<Lang, {
     infoTitle: "Informations de Contact",
     sedeTitle: "Siège Mondial",
     phoneTitle: "Téléphone / WhatsApp",
-    phoneLines: ["+1 (407) 203-5669", "Lundi au Vendredi, 8h à 18h (EST)"],
+    phoneLines: ["+1 (321) 888-7963", "Lundi au Vendredi, 8h à 18h (EST)"],
     presencaTitle: "Présence Mondiale",
     presencaLines: ["16 langues en opération active"],
     presencaCta: "Voir Toutes les Régions",
@@ -241,7 +241,7 @@ const T: Record<Lang, {
     infoTitle: "Kontaktinformationen",
     sedeTitle: "Globaler Hauptsitz",
     phoneTitle: "Telefon / WhatsApp",
-    phoneLines: ["+1 (407) 203-5669", "Montag bis Freitag, 8–18 Uhr (EST)"],
+    phoneLines: ["+1 (321) 888-7963", "Montag bis Freitag, 8–18 Uhr (EST)"],
     presencaTitle: "Globale Präsenz",
     presencaLines: ["16 Sprachen im aktiven Betrieb"],
     presencaCta: "Alle Regionen Anzeigen",
@@ -285,7 +285,7 @@ const T: Record<Lang, {
     infoTitle: "Informazioni di Contatto",
     sedeTitle: "Sede Globale",
     phoneTitle: "Telefono / WhatsApp",
-    phoneLines: ["+1 (407) 203-5669", "Lunedì al Venerdì, 8h alle 18h (EST)"],
+    phoneLines: ["+1 (321) 888-7963", "Lunedì al Venerdì, 8h alle 18h (EST)"],
     presencaTitle: "Presenza Globale",
     presencaLines: ["16 lingue in operazione attiva"],
     presencaCta: "Vedi Tutte le Regioni",
@@ -329,7 +329,7 @@ const T: Record<Lang, {
     infoTitle: "联系信息",
     sedeTitle: "全球总部",
     phoneTitle: "电话 / WhatsApp",
-    phoneLines: ["+1 (407) 203-5669", "周一至周五，上午8点至下午6点（EST）"],
+    phoneLines: ["+1 (321) 888-7963", "周一至周五，上午8点至下午6点（EST）"],
     presencaTitle: "全球覆盖",
     presencaLines: ["16种语言积极运营中"],
     presencaCta: "查看所有地区",
@@ -373,7 +373,7 @@ const T: Record<Lang, {
     infoTitle: "お問い合わせ情報",
     sedeTitle: "グローバル本社",
     phoneTitle: "電話 / WhatsApp",
-    phoneLines: ["+1 (407) 203-5669", "月曜〜金曜、午前8時〜午後6時（EST）"],
+    phoneLines: ["+1 (321) 888-7963", "月曜〜金曜、午前8時〜午後6時（EST）"],
     presencaTitle: "グローバルプレゼンス",
     presencaLines: ["16言語でアクティブ運用中"],
     presencaCta: "すべての地域を見る",
@@ -417,7 +417,7 @@ const T: Record<Lang, {
     infoTitle: "연락처 정보",
     sedeTitle: "글로벌 본사",
     phoneTitle: "전화 / WhatsApp",
-    phoneLines: ["+1 (407) 203-5669", "월요일~금요일, 오전 8시~오후 6시 (EST)"],
+    phoneLines: ["+1 (321) 888-7963", "월요일~금요일, 오전 8시~오후 6시 (EST)"],
     presencaTitle: "글로벌 진출",
     presencaLines: ["16개 언어로 활발히 운영 중"],
     presencaCta: "모든 지역 보기",
@@ -461,7 +461,7 @@ const T: Record<Lang, {
     infoTitle: "Informações de contacto",
     sedeTitle: "Sede Global",
     phoneTitle: "Telefone / WhatsApp",
-    phoneLines: ["+1 (407) 203-5669", "Segunda a Sexta, 8h às 18h (EST)"],
+    phoneLines: ["+1 (321) 888-7963", "Segunda a Sexta, 8h às 18h (EST)"],
     presencaTitle: "Presença global",
     presencaLines: ["16 idiomas em operação activa"],
     presencaCta: "Ver todas as regiões",
@@ -752,3 +752,4 @@ export default function ContatoInfoForm() {
     </section>
   );
 }
+

@@ -602,11 +602,11 @@ const ESSENTIALS_COLORS = [
 type FilterInfo = { title: string; desc: string; img?: string };
 
 const FILTER_IMGS: Record<"ppf"|"acf"|"uff"|"rof"|"aaf", string> = {
-  ppf: "/images/filters/PPF.png",
-  acf: "/images/filters/ACF.png",
-  uff: "/images/filters/UFF.png",
-  rof: "/images/filters/ROF.png",
-  aaf: "/images/filters/AAF.png",
+  ppf: "/images/filters/PPF.webp",
+  acf: "/images/filters/ACF.webp",
+  uff: "/images/filters/UFF.webp",
+  rof: "/images/filters/ROF.webp",
+  aaf: "/images/filters/AAF.webp",
 };
 type FilterSet  = {
   label: string;
@@ -1459,8 +1459,8 @@ export default function CheckinProduct({ family }: Props) {
         <div className={`absolute inset-0 transition-opacity duration-500 z-10 ${displaySection === "filtros" || displaySection === "garantias" ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
           <img
             src={specs.filtragem === "4 Filtros RO / Osmose Reversa"
-              ? "/images/checkin/banner-filtros-rof.png"
-              : "/images/checkin/banner-filtros-uff.png"}
+              ? "/images/checkin/banner-filtros-rof.webp"
+              : "/images/checkin/banner-filtros-uff.webp"}
             alt={lb.filtrosBanner}
             className="w-full h-full object-cover"
           />
@@ -1478,8 +1478,8 @@ export default function CheckinProduct({ family }: Props) {
               <div className="flex-1 overflow-hidden">
                 <img
                   src={specs.filtragem === "4 Filtros RO / Osmose Reversa"
-                    ? "/images/checkin/banner-filtros-rof.png"
-                    : "/images/checkin/banner-filtros-uff.png"}
+                    ? "/images/checkin/banner-filtros-rof.webp"
+                    : "/images/checkin/banner-filtros-uff.webp"}
                   alt={lb.filtrosBanner}
                   className="w-full h-full object-cover"
                 />
