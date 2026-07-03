@@ -20,7 +20,7 @@ const T: Record<Lang, {
     cards: [
       { title: "Modelo escalável",      desc: "Atue localmente com estrutura global e grande potencial de crescimento." },
       { title: "Receita recorrente",    desc: "Ganhos contínuos com vendas, mídia ou distribuição do ecossistema Neo." },
-      { title: "Expansão global",       desc: "Presença em até 180 países e 6 regiões comerciais." },
+      { title: "Expansão global",       desc: "Presença em + de 180 países e 6 regiões comerciais." },
       { title: "Tecnologia inteligente", desc: "Plataforma com App, IA e IoT para mais eficiência e controle total." },
       { title: "Produtos Premium",      desc: "Purificadores Neo de alta performance para todos os perfis de mercado." },
       { title: "Suporte comercial",     desc: "Acompanhamento global com materiais, treinamentos e suporte multilíngue." },
@@ -32,7 +32,7 @@ const T: Record<Lang, {
     cards: [
       { title: "Modelo escalável",      desc: "Actue localmente com estrutura global e grande potencial de crescimento." },
       { title: "Receita recorrente",    desc: "Ganhos contínuos com vendas, média ou distribuição do ecossistema Neo." },
-      { title: "Expansão global",       desc: "Presença em até 180 países e 6 regiões comerciais." },
+      { title: "Expansão global",       desc: "Presença em + de 180 países e 6 regiões comerciais." },
       { title: "Tecnologia inteligente", desc: "Plataforma com App, IA e IoT para mais eficiência e controlo total." },
       { title: "Produtos Premium",      desc: "Purificadores Neo de alta performance para todos os perfis de mercado." },
       { title: "Suporte comercial",     desc: "Acompanhamento global com materiais, formações e suporte multilingue." },
@@ -44,7 +44,7 @@ const T: Record<Lang, {
     cards: [
       { title: "Scalable model",        desc: "Act locally with a global structure and great growth potential." },
       { title: "Recurring revenue",     desc: "Continuous earnings from sales, media or distribution of the Neo ecosystem." },
-      { title: "Global expansion",      desc: "Presence in up to 180 countries and 6 commercial regions." },
+      { title: "Global expansion",      desc: "Presence in more than 180 countries and 6 commercial regions." },
       { title: "Smart technology",      desc: "Platform with App, AI and IoT for more efficiency and total control." },
       { title: "Premium products",      desc: "High-performance Neo purifiers for all market profiles." },
       { title: "Commercial support",    desc: "Global support with materials, training and multilingual assistance." },
@@ -56,7 +56,7 @@ const T: Record<Lang, {
     cards: [
       { title: "Scalable model",        desc: "Act locally with a global structure and great growth potential." },
       { title: "Recurring revenue",     desc: "Continuous earnings from sales, media or distribution of the Neo ecosystem." },
-      { title: "Global expansion",      desc: "Presence in up to 180 countries and 6 commercial regions." },
+      { title: "Global expansion",      desc: "Presence in more than 180 countries and 6 commercial regions." },
       { title: "Smart technology",      desc: "Platform with App, AI and IoT for greater efficiency and total control." },
       { title: "Premium products",      desc: "High-performance Neo purifiers for all market profiles." },
       { title: "Commercial support",    desc: "Global support with materials, training and multilingual assistance." },
@@ -68,7 +68,7 @@ const T: Record<Lang, {
     cards: [
       { title: "Modelo escalable",       desc: "Actúa localmente con estructura global y gran potencial de crecimiento." },
       { title: "Ingresos recurrentes",   desc: "Ganancias continuas con ventas, medios o distribución del ecosistema Neo." },
-      { title: "Expansión global",       desc: "Presencia en hasta 180 países y 6 regiones comerciales." },
+      { title: "Expansión global",       desc: "Presencia en + de 180 países y 6 regiones comerciales." },
       { title: "Tecnología inteligente", desc: "Plataforma con App, IA e IoT para más eficiencia y control total." },
       { title: "Productos Premium",      desc: "Purificadores Neo de alto rendimiento para todos los perfiles de mercado." },
       { title: "Soporte comercial",      desc: "Acompañamiento global con materiales, capacitaciones y soporte multilingüe." },
@@ -80,7 +80,7 @@ const T: Record<Lang, {
     cards: [
       { title: "Modèle évolutif",         desc: "Agissez localement avec une structure mondiale et un fort potentiel de croissance." },
       { title: "Revenus récurrents",       desc: "Gains continus grâce aux ventes, aux médias ou à la distribution de l'écosystème Neo." },
-      { title: "Expansion mondiale",       desc: "Présence dans jusqu'à 180 pays et 6 régions commerciales." },
+      { title: "Expansion mondiale",       desc: "Présence dans + de 180 pays et 6 régions commerciales." },
       { title: "Technologie intelligente", desc: "Plateforme avec App, IA et IoT pour plus d'efficacité et un contrôle total." },
       { title: "Produits Premium",         desc: "Purificateurs Neo haute performance pour tous les profils de marché." },
       { title: "Support commercial",       desc: "Accompagnement mondial avec supports, formations et assistance multilingue." },
@@ -92,7 +92,7 @@ const T: Record<Lang, {
     cards: [
       { title: "Skalierbares Modell",      desc: "Lokal agieren mit globaler Struktur und großem Wachstumspotenzial." },
       { title: "Wiederkehrende Einnahmen", desc: "Kontinuierliche Gewinne durch Verkäufe, Medien oder Vertrieb des Neo-Ökosystems." },
-      { title: "Globale Expansion",        desc: "Präsenz in bis zu 180 Ländern und 6 Handelsregionen." },
+      { title: "Globale Expansion",        desc: "Präsenz in mehr als 180 Ländern und 6 Handelsregionen." },
       { title: "Intelligente Technologie", desc: "Plattform mit App, KI und IoT für mehr Effizienz und totale Kontrolle." },
       { title: "Premium-Produkte",         desc: "Hochleistungs-Neo-Wasserfilter für alle Marktsegmente." },
       { title: "Kommerzieller Support",    desc: "Globale Begleitung mit Materialien, Schulungen und mehrsprachigem Support." },
@@ -104,7 +104,7 @@ const T: Record<Lang, {
     cards: [
       { title: "Modello scalabile",        desc: "Agisci localmente con una struttura globale e un grande potenziale di crescita." },
       { title: "Entrate ricorrenti",       desc: "Guadagni continui con vendite, media o distribuzione dell'ecosistema Neo." },
-      { title: "Espansione globale",       desc: "Presenza in fino a 180 paesi e 6 regioni commerciali." },
+      { title: "Espansione globale",       desc: "Presenza in + di 180 paesi e 6 regioni commerciali." },
       { title: "Tecnologia intelligente",  desc: "Piattaforma con App, IA e IoT per maggiore efficienza e controllo totale." },
       { title: "Prodotti Premium",         desc: "Purificatori Neo ad alte prestazioni per tutti i profili di mercato." },
       { title: "Supporto commerciale",     desc: "Accompagnamento globale con materiali, formazione e supporto multilingue." },
@@ -116,7 +116,7 @@ const T: Record<Lang, {
     cards: [
       { title: "可扩展模式",    desc: "依托全球化架构本地化运营，具备巨大的增长潜力。" },
       { title: "持续性收入",    desc: "通过 Neo 生态系统的销售、媒体或分销持续获利。" },
-      { title: "全球扩张",      desc: "覆盖多达180个国家和6个商业区域。" },
+      { title: "全球扩张",      desc: "覆盖超过180个国家和6个商业区域。" },
       { title: "智能技术",      desc: "集成应用、AI 和物联网的平台，实现更高效率与全面管控。" },
       { title: "高端产品",      desc: "适用于各类市场细分的 Neo 高性能净水器。" },
       { title: "商业支持",      desc: "提供全球性支持，包括资料、培训及多语言服务。" },
@@ -128,7 +128,7 @@ const T: Record<Lang, {
     cards: [
       { title: "スケーラブルなモデル",    desc: "グローバルな体制でローカルに活動し、大きな成長可能性を秘めています。" },
       { title: "継続的な収益",            desc: "Neoエコシステムの販売、メディア、または流通で継続的な利益を得られます。" },
-      { title: "グローバル展開",          desc: "最大180カ国、6つの商業地域でのプレゼンス。" },
+      { title: "グローバル展開",          desc: "180カ国以上、6つの商業地域でのプレゼンス。" },
       { title: "スマートテクノロジー",    desc: "App、AI、IoTを備えたプラットフォームで効率と完全なコントロールを実現。" },
       { title: "プレミアム製品",          desc: "あらゆる市場プロフィールに対応した高性能Neoピュリファイアー。" },
       { title: "商業サポート",            desc: "資料、トレーニング、多言語サポートによるグローバルな支援。" },
@@ -140,7 +140,7 @@ const T: Record<Lang, {
     cards: [
       { title: "확장 가능한 모델",    desc: "글로벌 구조로 로컬에서 활동하며 높은 성장 잠재력을 갖추고 있습니다." },
       { title: "반복 수익",           desc: "Neo 생태계의 판매, 미디어 또는 유통을 통한 지속적인 수익." },
-      { title: "글로벌 확장",         desc: "최대 180개국 및 6개 상업 지역에 진출." },
+      { title: "글로벌 확장",         desc: "180개국 이상 및 6개 상업 지역에 진출." },
       { title: "스마트 기술",         desc: "앱, AI 및 IoT를 갖춘 플랫폼으로 더 높은 효율성과 완전한 제어." },
       { title: "프리미엄 제품",       desc: "모든 시장 프로필을 위한 고성능 Neo 정수기." },
       { title: "상업적 지원",         desc: "자료, 교육 및 다국어 지원을 통한 글로벌 지원." },
@@ -152,7 +152,7 @@ const T: Record<Lang, {
     cards: [
       { title: "Skalbar modell",          desc: "Agera lokalt med en global struktur och stor tillväxtpotential." },
       { title: "Återkommande intäkter",   desc: "Kontinuerliga intäkter från försäljning, media eller distribution av Neo-ekosystemet." },
-      { title: "Global expansion",        desc: "Närvaro i upp till 180 länder och 6 kommersiella regioner." },
+      { title: "Global expansion",        desc: "Närvaro i + av 180 länder och 6 kommersiella regioner." },
       { title: "Smart teknologi",         desc: "Plattform med App, AI och IoT för ökad effektivitet och full kontroll." },
       { title: "Premiumprodukter",        desc: "Högpresterande Neo-reningsverk för alla marknadsprofiler." },
       { title: "Kommersiellt stöd",       desc: "Globalt stöd med material, utbildning och flerspråkig assistans." },
@@ -164,7 +164,7 @@ const T: Record<Lang, {
     cards: [
       { title: "Skaalautuva malli",       desc: "Toimi paikallisesti globaalilla rakenteella ja suurella kasvupotentiaalilla." },
       { title: "Toistuva tulonlähde",     desc: "Jatkuvat tulot Neo-ekosysteemin myynnistä, mediasta tai jakelusta." },
-      { title: "Globaali laajentuminen",  desc: "Läsnäolo jopa 180 maassa ja 6 kaupallisella alueella." },
+      { title: "Globaali laajentuminen",  desc: "Läsnäolo + kuin 180 maassa ja 6 kaupallisella alueella." },
       { title: "Älykäs teknologia",       desc: "Alusta, jossa on sovellus, tekoäly ja IoT tehostamaan toimintaa ja hallintaa." },
       { title: "Premium-tuotteet",        desc: "Tehokkaat Neo-puhdistajat kaikille markkinaprofiileille." },
       { title: "Kaupallinen tuki",        desc: "Globaali tuki materiaaleilla, koulutuksella ja monikielisellä avulla." },
@@ -176,7 +176,7 @@ const T: Record<Lang, {
     cards: [
       { title: "Масштабируемая модель",   desc: "Действуйте локально с глобальной структурой и огромным потенциалом роста." },
       { title: "Постоянный доход",        desc: "Непрерывная прибыль от продаж, медиа или дистрибуции экосистемы Neo." },
-      { title: "Глобальная экспансия",    desc: "Присутствие в до 180 странах и 6 коммерческих регионах." },
+      { title: "Глобальная экспансия",    desc: "Присутствие в + 180 странах и 6 коммерческих регионах." },
       { title: "Умные технологии",        desc: "Платформа с приложением, ИИ и IoT для большей эффективности и полного контроля." },
       { title: "Премиум-продукты",        desc: "Высокопроизводительные очистители Neo для всех сегментов рынка." },
       { title: "Коммерческая поддержка",  desc: "Глобальное сопровождение с материалами, обучением и многоязычной поддержкой." },
@@ -188,7 +188,7 @@ const T: Record<Lang, {
     cards: [
       { title: "Model scalabil",          desc: "Actioneaza local cu o structura globala si un potential de crestere ridicat." },
       { title: "Venituri recurente",      desc: "Castiguri continue din vanzari, media sau distributia ecosistemului Neo." },
-      { title: "Expansiune globala",      desc: "Prezenta in pana la 180 de tari si 6 regiuni comerciale." },
+      { title: "Expansiune globala",      desc: "Prezenta in + de 180 de tari si 6 regiuni comerciale." },
       { title: "Tehnologie inteligenta",  desc: "Platforma cu aplicatie, IA si IoT pentru eficienta sporita si control total." },
       { title: "Produse Premium",         desc: "Purificatoare Neo de inalta performanta pentru toate profilurile de piata." },
       { title: "Suport comercial",        desc: "Acompaniere globala cu materiale, training si asistenta multilingva." },

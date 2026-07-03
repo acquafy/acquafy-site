@@ -203,7 +203,7 @@ const T: Record<Lang, {
       ]},
     ],
     stats: [
-      { sub: "Presentes en",      main: "+180 países"      },
+      { sub: "Presentes en",      main: "+ de 180 países"  },
       { sub: "Disponible en",     main: "16 idiomas"       },
       { sub: "Operación",         main: "100% global"      },
       { sub: "Modelo de ingresos", main: "100% recurrente" },
@@ -236,7 +236,7 @@ const T: Record<Lang, {
       ]},
     ],
     stats: [
-      { sub: "Présent dans",     main: "+180 pays"        },
+      { sub: "Présent dans",     main: "+ de 180 pays"    },
       { sub: "Disponible en",    main: "16 langues"       },
       { sub: "Opération",        main: "100 % mondiale"   },
       { sub: "Modèle de revenu", main: "100 % récurrent"  },
