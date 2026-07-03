@@ -104,7 +104,7 @@ const T: Record<Lang, {
     ],
     giftEarn: "Ganhe", giftIn: "no Brasil",
     stats1: [
-      { top: "Até",  bottom: "180 países" },
+      { top: "+ de", bottom: "180 países" },
       { top: "16",   bottom: "idiomas" },
       { lines: ["App +", "Acquafy Ai"] },
       { lines: ["WiFi 5 +", "Bluetooth 5.3"] },
@@ -221,7 +221,7 @@ const T: Record<Lang, {
     ],
     giftEarn: "Gana", giftIn: "en Brasil",
     stats1: [
-      { top: "Hasta", bottom: "180 países" },
+      { top: "+ de",  bottom: "180 países" },
       { top: "16",    bottom: "idiomas" },
       { lines: ["App +", "Acquafy Ai"] },
       { lines: ["WiFi 5 +", "Bluetooth 5.3"] },
@@ -260,7 +260,7 @@ const T: Record<Lang, {
     ],
     giftEarn: "Gagnez", giftIn: "au Brésil",
     stats1: [
-      { top: "Jusqu'à", bottom: "180 pays" },
+      { top: "+ de",     bottom: "180 pays" },
       { top: "16",      bottom: "langues" },
       { lines: ["App +", "Acquafy Ai"] },
       { lines: ["WiFi 5 +", "Bluetooth 5.3"] },
@@ -338,7 +338,7 @@ const T: Record<Lang, {
     ],
     giftEarn: "Guadagna", giftIn: "in Brasile",
     stats1: [
-      { top: "Fino a", bottom: "180 paesi" },
+      { top: "+ di",   bottom: "180 paesi" },
       { top: "16",     bottom: "lingue" },
       { lines: ["App +", "Acquafy Ai"] },
       { lines: ["WiFi 5 +", "Bluetooth 5.3"] },
@@ -689,7 +689,7 @@ const T: Record<Lang, {
     ],
     giftEarn: "Ganhe", giftIn: "no Brasil",
     stats1: [
-      { top: "Até",  bottom: "180 países" },
+      { top: "+ de", bottom: "180 países" },
       { top: "16",   bottom: "idiomas" },
       { lines: ["App +", "Acquafy Ai"] },
       { lines: ["WiFi 5 +", "Bluetooth 5.3"] },
