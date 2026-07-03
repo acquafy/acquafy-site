@@ -6,7 +6,7 @@ import { useLang, type Lang } from "@/context/LanguageContext";
 
 const imgCheckin = "/figma-assets/icon-check-e.svg";
 
-const imgPanel      = "/figma-assets/panel-led.webp";
+const imgPanel      = "/images/painel-v3-eng.png";
 const imgHomeMob    = "/figma-assets/app-home-mobile.webp";
 const imgAppView    = "/figma-assets/app-view-screen.webp";
 const imgFeatCheck  = "/figma-assets/icon-check-30px.svg";
@@ -42,12 +42,12 @@ const T: Record<Lang, {
   subNatural: string;
   sub6: string; sub7: string; sub8: string;
   tank400: string; tank800: string; tank1500: string; tank3l: string;
-  panel: { title1: string; title2: string; checks: string[] };
+  panel: { title1: string; title2: string; sub: string; checks: string[] };
   ai: { title: string; sub: string; checks: string[] };
   ctrl: { title: string; checks: string[] };
 }> = {
   pt: {
-    desc: "Linha acessível e inteligente com Painel LED Touch 10.1, App, UV LED, Wi-Fi 5, Bluetooth 5.3 e filtros de alta performance UF.",
+    desc: "Linha acessível e inteligente com Painel LED Touch 10.1, App, UV LED, Wi-Fi 5, Bluetooth 5.3 e filtros de alta performance UF. Modelos H₂ utilizam Filtros de Alta Performance RO (Osmose Reversa).",
     waterHeader: ["Tipos de água dos produtos ", "Neo Essentials", ", a água perfeita para cada momento"],
     waterTypes: [
       { label: "Água Natural",      sub: "Presente em todos" },
@@ -65,6 +65,7 @@ const T: Record<Lang, {
     tank1500: "Tanque de 1500 ml", tank3l: "Tanque de 3L",
     panel: {
       title1: "Painel LED ", title2: "Touch Inteligente",
+      sub: "Tela touch de 10,1\" com conectividade total via Wi-Fi 5 e Bluetooth 5.3.",
       checks: [
         "Contagem regressiva de 365 dias até a troca dos filtros",
         "Relógio digital e data",
@@ -97,7 +98,7 @@ const T: Record<Lang, {
     },
   },
   en: {
-    desc: "Affordable and smart line with LED Touch Panel 10.1, App, UV LED, Wi-Fi 5, Bluetooth 5.3 and high-performance UF filters.",
+    desc: "Affordable and smart line with LED Touch Panel 10.1, App, UV LED, Wi-Fi 5, Bluetooth 5.3 and high-performance UF filters. H₂ models use High-Performance RO Filters (Reverse Osmosis).",
     waterHeader: ["Water types from ", "Neo Essentials", " products, the perfect water for every moment"],
     waterTypes: [
       { label: "Natural Water",       sub: "In all models" },
@@ -115,6 +116,7 @@ const T: Record<Lang, {
     tank1500: "1500 ml Tank", tank3l: "3L Tank",
     panel: {
       title1: "Smart LED ", title2: "Touch Panel",
+      sub: "10.1\" touch screen with full connectivity via Wi-Fi 5 and Bluetooth 5.3.",
       checks: [
         "365-day countdown to filter replacement",
         "Digital clock and date",
@@ -147,7 +149,7 @@ const T: Record<Lang, {
     },
   },
   "en-gb": {
-    desc: "Affordable and smart line with LED Touch Panel 10.1, App, UV LED, Wi-Fi 5, Bluetooth 5.3 and high-performance UF filters.",
+    desc: "Affordable and smart line with LED Touch Panel 10.1, App, UV LED, Wi-Fi 5, Bluetooth 5.3 and high-performance UF filters. H₂ models use High-Performance RO Filters (Reverse Osmosis).",
     waterHeader: ["Water types from ", "Neo Essentials", " products, the perfect water for every moment"],
     waterTypes: [
       { label: "Natural Water",       sub: "In all models" },
@@ -165,6 +167,7 @@ const T: Record<Lang, {
     tank1500: "1500 ml Tank", tank3l: "3L Tank",
     panel: {
       title1: "Smart LED ", title2: "Touch Panel",
+      sub: "10.1\" touch screen with full connectivity via Wi-Fi 5 and Bluetooth 5.3.",
       checks: [
         "365-day countdown to filter replacement",
         "Digital clock and date",
@@ -197,7 +200,7 @@ const T: Record<Lang, {
     },
   },
   es: {
-    desc: "Línea accesible e inteligente con Panel LED Touch 10.1, App, UV LED, Wi-Fi 5, Bluetooth 5.3 y filtros UF de alto rendimiento.",
+    desc: "Línea accesible e inteligente con Panel LED Touch 10.1, App, UV LED, Wi-Fi 5, Bluetooth 5.3 y filtros UF de alto rendimiento. Los modelos H₂ utilizan Filtros de Alta Performance RO (Ósmosis Inversa).",
     waterHeader: ["Tipos de agua de los productos ", "Neo Essentials", ", el agua perfecta para cada momento"],
     waterTypes: [
       { label: "Agua Natural",          sub: "En todos los modelos" },
@@ -215,6 +218,7 @@ const T: Record<Lang, {
     tank1500: "Depósito de 1500 ml", tank3l: "Depósito de 3L",
     panel: {
       title1: "Panel LED ", title2: "Touch Inteligente",
+      sub: "Pantalla táctil de 10,1\" con conectividad total vía Wi-Fi 5 y Bluetooth 5.3.",
       checks: [
         "Cuenta regresiva de 365 días hasta el cambio de filtros",
         "Reloj digital y fecha",
@@ -247,7 +251,7 @@ const T: Record<Lang, {
     },
   },
   fr: {
-    desc: "Gamme accessible et intelligente avec panneau LED Touch 10.1, application, UV LED, Wi-Fi 5, Bluetooth 5.3 et filtres UF haute performance.",
+    desc: "Gamme accessible et intelligente avec panneau LED Touch 10.1, application, UV LED, Wi-Fi 5, Bluetooth 5.3 et filtres UF haute performance. Les modèles H₂ utilisent les Filtres Haute Performance RO (Osmose Inverse).",
     waterHeader: ["Types d'eau des produits ", "Neo Essentials", ", l'eau parfaite pour chaque instant"],
     waterTypes: [
       { label: "Eau Naturelle",          sub: "Dans tous les modèles" },
@@ -265,6 +269,7 @@ const T: Record<Lang, {
     tank1500: "Réservoir 1500 ml", tank3l: "Réservoir 3L",
     panel: {
       title1: "Panneau LED ", title2: "Touch Intelligent",
+      sub: "Écran tactile 10,1\" avec connectivité totale via Wi-Fi 5 et Bluetooth 5.3.",
       checks: [
         "Compte à rebours de 365 jours jusqu'au remplacement des filtres",
         "Horloge numérique et date",
@@ -297,7 +302,7 @@ const T: Record<Lang, {
     },
   },
   de: {
-    desc: "Erschwingliche und intelligente Linie mit LED-Touch-Panel 10.1, App, UV-LED, Wi-Fi 5, Bluetooth 5.3 und Hochleistungs-UF-Filtern.",
+    desc: "Erschwingliche und intelligente Linie mit LED-Touch-Panel 10.1, App, UV-LED, Wi-Fi 5, Bluetooth 5.3 und Hochleistungs-UF-Filtern. H₂-Modelle verwenden Hochleistungs-RO-Filter (Umkehrosmose).",
     waterHeader: ["Wassertypen der Produkte ", "Neo Essentials", ", das perfekte Wasser für jeden Moment"],
     waterTypes: [
       { label: "Natürliches Wasser",     sub: "In allen Modellen" },
@@ -315,6 +320,7 @@ const T: Record<Lang, {
     tank1500: "1500 ml Tank", tank3l: "3L Tank",
     panel: {
       title1: "LED ", title2: "Touch-Panel Intelligent",
+      sub: "10,1\" Touchscreen mit vollständiger Konnektivität über Wi-Fi 5 und Bluetooth 5.3.",
       checks: [
         "365-Tage-Countdown bis zum Filterwechsel",
         "Digitale Uhr und Datum",
@@ -347,7 +353,7 @@ const T: Record<Lang, {
     },
   },
   it: {
-    desc: "Linea accessibile e intelligente con pannello LED Touch 10.1, App, UV LED, Wi-Fi 5, Bluetooth 5.3 e filtri UF ad alta prestazione.",
+    desc: "Linea accessibile e intelligente con pannello LED Touch 10.1, App, UV LED, Wi-Fi 5, Bluetooth 5.3 e filtri UF ad alta prestazione. I modelli H₂ utilizzano Filtri RO ad Alta Prestazione (Osmosi Inversa).",
     waterHeader: ["Tipi di acqua dei prodotti ", "Neo Essentials", ", l'acqua perfetta per ogni momento"],
     waterTypes: [
       { label: "Acqua Naturale",         sub: "In tutti i modelli" },
@@ -365,6 +371,7 @@ const T: Record<Lang, {
     tank1500: "Serbatoio 1500 ml", tank3l: "Serbatoio 3L",
     panel: {
       title1: "Pannello LED ", title2: "Touch Intelligente",
+      sub: "Schermo touch da 10,1\" con connettività completa tramite Wi-Fi 5 e Bluetooth 5.3.",
       checks: [
         "Conto alla rovescia di 365 giorni alla sostituzione dei filtri",
         "Orologio digitale e data",
@@ -397,7 +404,7 @@ const T: Record<Lang, {
     },
   },
   zh: {
-    desc: "经济实惠的智能系列，配备LED触控面板10.1、App、UV LED、Wi-Fi 5、蓝牙5.3和高性能UF滤芯。",
+    desc: "经济实惠的智能系列，配备LED触控面板10.1、App、UV LED、Wi-Fi 5、蓝牙5.3和高性能UF滤芯。H₂型号采用高性能RO滤芯（反渗透）。",
     waterHeader: ["", "Neo Essentials", "系列产品的水型，每个时刻都有完美的水"],
     waterTypes: [
       { label: "天然水",    sub: "所有型号均有" },
@@ -415,6 +422,7 @@ const T: Record<Lang, {
     tank1500: "1500 ml水箱", tank3l: "3L水箱",
     panel: {
       title1: "智能LED", title2: "触控面板",
+      sub: "10.1英寸触控屏，通过Wi-Fi 5和蓝牙5.3实现全面互联。",
       checks: [
         "365天滤芯更换倒计时",
         "数字时钟和日期",
@@ -447,7 +455,7 @@ const T: Record<Lang, {
     },
   },
   ja: {
-    desc: "LEDタッチパネル10.1、アプリ、UV LED、Wi-Fi 5、Bluetooth 5.3、高性能UFフィルター搭載の手頃でスマートなライン。",
+    desc: "LEDタッチパネル10.1、アプリ、UV LED、Wi-Fi 5、Bluetooth 5.3、高性能UFフィルター搭載の手頃でスマートなライン。H₂モデルは高性能ROフィルター（逆浸透）を使用します。",
     waterHeader: ["", "Neo Essentials", "製品のウォータータイプ、あらゆる場面に最適な水を"],
     waterTypes: [
       { label: "ナチュラルウォーター",   sub: "全モデル共通" },
@@ -465,6 +473,7 @@ const T: Record<Lang, {
     tank1500: "1500 mlタンク", tank3l: "3Lタンク",
     panel: {
       title1: "スマートLED", title2: "タッチパネル",
+      sub: "Wi-Fi 5とBluetooth 5.3で完全接続する10.1インチタッチスクリーン。",
       checks: [
         "フィルター交換まで365日カウントダウン",
         "デジタル時計と日付",
@@ -497,7 +506,7 @@ const T: Record<Lang, {
     },
   },
   ko: {
-    desc: "LED 터치 패널 10.1, 앱, UV LED, Wi-Fi 5, 블루투스 5.3 및 고성능 UF 필터를 갖춘 합리적이고 스마트한 라인.",
+    desc: "LED 터치 패널 10.1, 앱, UV LED, Wi-Fi 5, 블루투스 5.3 및 고성능 UF 필터를 갖춘 합리적이고 스마트한 라인. H₂ 모델은 고성능 RO 필터(역삼투)를 사용합니다.",
     waterHeader: ["", "Neo Essentials", " 제품의 물 유형, 모든 순간을 위한 완벽한 물"],
     waterTypes: [
       { label: "천연수",        sub: "모든 모델" },
@@ -515,6 +524,7 @@ const T: Record<Lang, {
     tank1500: "1500 ml 탱크", tank3l: "3L 탱크",
     panel: {
       title1: "스마트 LED ", title2: "터치 패널",
+      sub: "Wi-Fi 5 및 블루투스 5.3을 통한 완전한 연결을 갖춘 10.1\" 터치 스크린.",
       checks: [
         "필터 교체까지 365일 카운트다운",
         "디지털 시계 및 날짜",
@@ -547,7 +557,7 @@ const T: Record<Lang, {
     },
   },
   sv: {
-    desc: "Prisvärd och smart serie med LED-touchpanel 10.1, App, UV LED, Wi-Fi 5, Bluetooth 5.3 och högpresterande UF-filter.",
+    desc: "Prisvärd och smart serie med LED-touchpanel 10.1, App, UV LED, Wi-Fi 5, Bluetooth 5.3 och högpresterande UF-filter. H₂-modeller använder Högpresterande RO-filter (omvänd osmos).",
     waterHeader: ["Vattentyper från ", "Neo Essentials", "-produkter, det perfekta vattnet för varje tillfälle"],
     waterTypes: [
       { label: "Naturligt Vatten",       sub: "I alla modeller" },
@@ -565,6 +575,7 @@ const T: Record<Lang, {
     tank1500: "1500 ml Tank", tank3l: "3L Tank",
     panel: {
       title1: "Smart LED ", title2: "Touchpanel",
+      sub: "10,1\" pekskärm med full anslutning via Wi-Fi 5 och Bluetooth 5.3.",
       checks: [
         "365-dagars nedräkning till filterbyte",
         "Digital klocka och datum",
@@ -597,7 +608,7 @@ const T: Record<Lang, {
     },
   },
   fi: {
-    desc: "Edullinen ja älykäs sarja LED-kosketuspaneelilla 10.1, sovelluksella, UV LED:llä, Wi-Fi 5:llä, Bluetooth 5.3:lla ja korkean suorituskyvyn UF-suodattimilla.",
+    desc: "Edullinen ja älykäs sarja LED-kosketuspaneelilla 10.1, sovelluksella, UV LED:llä, Wi-Fi 5:llä, Bluetooth 5.3:lla ja korkean suorituskyvyn UF-suodattimilla. H₂-mallit käyttävät korkean suorituskyvyn RO-suodattimia (käänteisosmoosi).",
     waterHeader: ["Vesityypit ", "Neo Essentials", "-tuotteista, täydellinen vesi jokaiseen hetkeen"],
     waterTypes: [
       { label: "Luonnonvesi",            sub: "Kaikissa malleissa" },
@@ -615,6 +626,7 @@ const T: Record<Lang, {
     tank1500: "1500 ml Säiliö", tank3l: "3L Säiliö",
     panel: {
       title1: "Älykäs LED ", title2: "Kosketuspaneeli",
+      sub: "10,1\" kosketusnäyttö täydellä yhteydellä Wi-Fi 5:n ja Bluetooth 5.3:n kautta.",
       checks: [
         "365 päivän lähtölaskenta suodattimen vaihtoon",
         "Digitaalinen kello ja päivämäärä",
@@ -647,7 +659,7 @@ const T: Record<Lang, {
     },
   },
   ru: {
-    desc: "Доступная и умная линейка с LED-сенсорной панелью 10.1, приложением, UV LED, Wi-Fi 5, Bluetooth 5.3 и высокопроизводительными UF-фильтрами.",
+    desc: "Доступная и умная линейка с LED-сенсорной панелью 10.1, приложением, UV LED, Wi-Fi 5, Bluetooth 5.3 и высокопроизводительными UF-фильтрами. Модели H₂ используют высокопроизводительные RO-фильтры (обратный осмос).",
     waterHeader: ["Типы воды продуктов ", "Neo Essentials", ", идеальная вода для каждого момента"],
     waterTypes: [
       { label: "Природная Вода",         sub: "Во всех моделях" },
@@ -665,6 +677,7 @@ const T: Record<Lang, {
     tank1500: "Резервуар 1500 мл", tank3l: "Резервуар 3 л",
     panel: {
       title1: "Умная LED ", title2: "Сенсорная Панель",
+      sub: "10,1\" сенсорный экран с полным подключением через Wi-Fi 5 и Bluetooth 5.3.",
       checks: [
         "Обратный отсчёт 365 дней до замены фильтра",
         "Цифровые часы и дата",
@@ -697,7 +710,7 @@ const T: Record<Lang, {
     },
   },
   ro: {
-    desc: "Linie accesibila si inteligenta cu panou LED Touch 10.1, aplicatie, UV LED, Wi-Fi 5, Bluetooth 5.3 si filtre UF de inalta performanta.",
+    desc: "Linie accesibila si inteligenta cu panou LED Touch 10.1, aplicatie, UV LED, Wi-Fi 5, Bluetooth 5.3 si filtre UF de inalta performanta. Modelele H₂ folosesc Filtre RO de Înaltă Performanță (Osmoză Inversă).",
     waterHeader: ["Tipuri de apa ale produselor ", "Neo Essentials", ", apa perfecta pentru fiecare moment"],
     waterTypes: [
       { label: "Apa Naturala",           sub: "In toate modelele" },
@@ -715,6 +728,7 @@ const T: Record<Lang, {
     tank1500: "Rezervor 1500 ml", tank3l: "Rezervor 3L",
     panel: {
       title1: "Panou LED ", title2: "Touch Inteligent",
+      sub: "Ecran touch de 10,1\" cu conectivitate totala prin Wi-Fi 5 si Bluetooth 5.3.",
       checks: [
         "Numaratoare inversa de 365 de zile pana la schimbarea filtrelor",
         "Ceas digital si data",
@@ -747,7 +761,7 @@ const T: Record<Lang, {
     },
   },
   he: {
-    desc: "סדרה נגישה וחכמה עם לוח LED מגע 10.1, אפליקציה, UV LED, Wi-Fi 5, Bluetooth 5.3 ומסננים בעלי ביצועים גבוהים מסוג UF.",
+    desc: "סדרה נגישה וחכמה עם לוח LED מגע 10.1, אפליקציה, UV LED, Wi-Fi 5, Bluetooth 5.3 ומסננים בעלי ביצועים גבוהים מסוג UF. דגמי H₂ משתמשים במסננים בעלי ביצועים גבוהים RO (אוסמוזה הפוכה).",
     waterHeader: ["סוגי המים של מוצרי ", "Neo Essentials", ", המים המושלמים לכל רגע"],
     waterTypes: [
       { label: "מים טבעיים",             sub: "בכל הדגמים" },
@@ -765,6 +779,7 @@ const T: Record<Lang, {
     tank1500: "מיכל 1500 מ\"ל", tank3l: "מיכל 3 ליטר",
     panel: {
       title1: "לוח LED ", title2: "מגע חכם",
+      sub: "מסך מגע 10.1\" עם קישוריות מלאה דרך Wi-Fi 5 ו-Bluetooth 5.3.",
       checks: [
         "ספירה לאחור של 365 יום עד להחלפת הפילטרים",
         "שעון דיגיטלי ותאריך",
@@ -797,7 +812,7 @@ const T: Record<Lang, {
     },
   },
   "pt-pt": {
-    desc: "Linha acessível e inteligente com Painel LED Touch 10.1, App, UV LED, Wi-Fi 5, Bluetooth 5.3 e filtros de alta performance UF.",
+    desc: "Linha acessível e inteligente com Painel LED Touch 10.1, App, UV LED, Wi-Fi 5, Bluetooth 5.3 e filtros de alta performance UF. Os modelos H₂ utilizam Filtros de Alta Performance RO (Osmose Inversa).",
     waterHeader: ["Tipos de água dos produtos ", "Neo Essentials", ", a água perfeita para cada momento"],
     waterTypes: [
       { label: "Água Natural",      sub: "Presente em todos" },
@@ -815,6 +830,7 @@ const T: Record<Lang, {
     tank1500: "Reservatório de 1500 ml", tank3l: "Reservatório de 3L",
     panel: {
       title1: "Painel LED ", title2: "Touch Inteligente",
+      sub: "Ecrã touch de 10,1\" com conectividade total via Wi-Fi 5 e Bluetooth 5.3.",
       checks: [
         "Contagem decrescente de 365 dias até à troca dos filtros",
         "Relógio digital e data",
@@ -867,9 +883,9 @@ const BUY_NOW: Record<Lang, string> = {
   "pt-pt": "Comprar Agora",
 };
 
-function CardImage({ src }: { src: string }) {
+function CardImage({ src, maxW = "170px" }: { src: string; maxW?: string }) {
   return (
-    <div className="flex items-center justify-center h-[220px] w-full min-w-[120px] max-w-[170px] overflow-hidden relative shrink-0">
+    <div className="flex items-center justify-center h-[220px] w-full min-w-[120px] overflow-hidden relative shrink-0" style={{ maxWidth: maxW }}>
       <img alt="" className="max-h-full max-w-full object-contain pointer-events-none" src={src} />
     </div>
   );
@@ -903,6 +919,7 @@ function ProductCard({ product }: { product: Product }) {
 export default function LinhaNeo() {
   const { lang } = useLang();
   const t = T[lang];
+
 
   const row1: Product[] = [
     { img: imgNeoUp,    imgW: 3275, imgH: 4096, name: "Neo UP",                                        sub: t.subNatural,               slug: "neo-up" },
@@ -981,9 +998,12 @@ export default function LinhaNeo() {
                 <span className="text-[#0569ff]">{t.panel.title1}</span>
                 <span className="text-[#1f2e91]">{t.panel.title2}</span>
               </p>
-              <div className="flex flex-wrap justify-center gap-[20px] items-center min-h-[210px] w-full shrink-0">
-                <CardImage src={imgPanel} />
-                <div className="flex flex-1 flex-col gap-[20px] items-center min-w-[210px] win-1024:items-start">
+              <div className="flex flex-col gap-[20px] items-center w-full">
+                <CardImage src={imgPanel} maxW="300px" />
+                <div className="flex flex-col gap-[20px] items-center w-full win-1024:items-start">
+                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#1f2e91] text-center win-1024:text-left w-full">
+                    {t.panel.sub}
+                  </p>
                   <div className="flex flex-col h-[134px] items-start justify-between w-full shrink-0">
                     {t.panel.checks.map((check, i) => (
                       <div key={i} className="flex gap-[10px] items-center w-full">
@@ -1005,9 +1025,9 @@ export default function LinhaNeo() {
               <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#0569ff] text-center win-1024:text-left w-full">
                 {t.ai.title}
               </p>
-              <div className="flex flex-wrap justify-center gap-[20px] items-center min-h-[210px] w-full shrink-0">
+              <div className="flex flex-col gap-[20px] items-center w-full">
                 <CardImage src={imgHomeMob} />
-                <div className="flex flex-1 flex-col gap-[20px] items-center min-w-[210px] win-1024:items-start">
+                <div className="flex flex-col gap-[20px] items-center w-full win-1024:items-start">
                   <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#1f2e91] text-center win-1024:text-left w-full">
                     {t.ai.sub}
                   </p>
@@ -1032,9 +1052,9 @@ export default function LinhaNeo() {
               <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#0569ff] text-center win-1024:text-left w-full">
                 {t.ctrl.title}
               </p>
-              <div className="flex flex-wrap justify-center gap-[20px] items-center min-h-[210px] w-full shrink-0">
+              <div className="flex flex-col gap-[20px] items-center w-full">
                 <CardImage src={imgAppView} />
-                <div className="flex flex-1 flex-col gap-[20px] items-center min-w-[210px] win-1024:items-start">
+                <div className="flex flex-col gap-[20px] items-center w-full win-1024:items-start">
                   <div className="flex flex-col h-[134px] items-start justify-between w-full shrink-0">
                     {t.ctrl.checks.map((check, i) => (
                       <div key={i} className="flex gap-[10px] items-center w-full">

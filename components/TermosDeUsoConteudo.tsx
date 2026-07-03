@@ -46,7 +46,7 @@ const T: Record<Lang, {
       { id: "contato",          label: "14. Contato" },
     ],
     introP1: <>Bem-vindo ao site da <strong>Acquafy Corporation</strong> (&quot;Acquafy&quot;, &quot;nós&quot; ou &quot;nosso&quot;). Ao acessar ou utilizar nosso site, aplicativo, produtos ou serviços, você concorda com estes Termos de Uso. Se não concordar com qualquer parte destes termos, pedimos que não utilize nossos serviços.</>,
-    introP2: "Estes termos constituem um acordo legal entre você (o usuário) e a Acquafy Corporation, empresa constituída nos Estados Unidos e integrante do Interfy Group.",
+    introP2: "Estes termos constituem um acordo legal entre você (o usuário) e a Acquafy Corporation, empresa constituída nos Estados Unidos e integrante do Interfy Corp.",
     privacyPolicyLink: "Política de Privacidade",
     sections: {
       s1: {
@@ -57,7 +57,7 @@ const T: Record<Lang, {
       s2: {
         title: "2. Sobre a Acquafy",
         p1: "A Acquafy Corporation é uma empresa americana, fundada em 2020, especializada em soluções de purificação e gestão inteligente de água. A Acquafy desenvolve purificadores, filtros, garrafas alcalinas, uma plataforma digital (Acquafy Global Smart Water Platform) e um aplicativo integrado com tecnologia de IoT e inteligência artificial.",
-        p2: "A Acquafy faz parte do Interfy Group, grupo global de tecnologia com mais de 20 anos de atuação em inovação e transformação digital.",
+        p2: "A Acquafy faz parte do Interfy Corp, grupo global de tecnologia com mais de 20 anos de atuação em inovação e transformação digital.",
       },
       s3: {
         title: "3. Uso Permitido do Site",
@@ -160,7 +160,7 @@ const T: Record<Lang, {
       { id: "contato",          label: "14. Contacto" },
     ],
     introP1: <>Bem-vindo ao sítio da <strong>Acquafy Corporation</strong> (&quot;Acquafy&quot;, &quot;nós&quot; ou &quot;nosso&quot;). Ao aceder ou utilizar o nosso sítio, aplicação, produtos ou serviços, o utilizador aceita os presentes Termos de Utilização. Caso não concorde com qualquer parte destes termos, solicitamos que não utilize os nossos serviços.</>,
-    introP2: "Os presentes termos constituem um acordo legal entre o utilizador e a Acquafy Corporation, empresa constituída nos Estados Unidos e integrante do Interfy Group.",
+    introP2: "Os presentes termos constituem um acordo legal entre o utilizador e a Acquafy Corporation, empresa constituída nos Estados Unidos e integrante do Interfy Corp.",
     privacyPolicyLink: "Política de Privacidade",
     sections: {
       s1: {
@@ -171,7 +171,7 @@ const T: Record<Lang, {
       s2: {
         title: "2. Sobre a Acquafy",
         p1: "A Acquafy Corporation é uma empresa americana, fundada em 2020, especializada em soluções de purificação e gestão inteligente de água. A Acquafy desenvolve purificadores, filtros, garrafas alcalinas, uma plataforma digital (Acquafy Global Smart Water Platform) e uma aplicação integrada com tecnologia de IoT e inteligência artificial.",
-        p2: "A Acquafy faz parte do Interfy Group, grupo global de tecnologia com mais de 20 anos de atuação em inovação e transformação digital.",
+        p2: "A Acquafy faz parte do Interfy Corp, grupo global de tecnologia com mais de 20 anos de atuação em inovação e transformação digital.",
       },
       s3: {
         title: "3. Utilização Permitida do Sítio",
@@ -274,7 +274,7 @@ const T: Record<Lang, {
       { id: "contato",          label: "14. Contact" },
     ],
     introP1: <>Welcome to the <strong>Acquafy Corporation</strong> website (&quot;Acquafy&quot;, &quot;we&quot; or &quot;our&quot;). By accessing or using our website, app, products or services, you agree to these Terms of Use. If you do not agree with any part of these terms, please do not use our services.</>,
-    introP2: "These terms constitute a legal agreement between you (the user) and Acquafy Corporation, a company incorporated in the United States and part of the Interfy Group.",
+    introP2: "These terms constitute a legal agreement between you (the user) and Acquafy Corporation, a company incorporated in the United States and part of the Interfy Corp.",
     privacyPolicyLink: "Privacy Policy",
     sections: {
       s1: {
@@ -285,7 +285,7 @@ const T: Record<Lang, {
       s2: {
         title: "2. About Acquafy",
         p1: "Acquafy Corporation is an American company, founded in 2020, specializing in water purification and smart water management solutions. Acquafy develops purifiers, filters, alkaline bottles, a digital platform (Acquafy Global Smart Water Platform) and an app integrated with IoT technology and artificial intelligence.",
-        p2: "Acquafy is part of the Interfy Group, a global technology group with over 20 years of experience in innovation and digital transformation.",
+        p2: "Acquafy is part of the Interfy Corp, a global technology group with over 20 years of experience in innovation and digital transformation.",
       },
       s3: {
         title: "3. Permitted Use of the Site",
@@ -388,7 +388,7 @@ const T: Record<Lang, {
       { id: "contato",          label: "14. Contact" },
     ],
     introP1: <>Welcome to the <strong>Acquafy Corporation</strong> website (&quot;Acquafy&quot;, &quot;we&quot; or &quot;our&quot;). By accessing or using our website, app, products or services, you agree to these Terms of Use. If you do not agree with any part of these terms, please do not use our services.</>,
-    introP2: "These terms constitute a legal agreement between you (the user) and Acquafy Corporation, a company incorporated in the United States and part of the Interfy Group.",
+    introP2: "These terms constitute a legal agreement between you (the user) and Acquafy Corporation, a company incorporated in the United States and part of the Interfy Corp.",
     privacyPolicyLink: "Privacy Policy",
     sections: {
       s1: {
@@ -399,7 +399,7 @@ const T: Record<Lang, {
       s2: {
         title: "2. About Acquafy",
         p1: "Acquafy Corporation is an American company, founded in 2020, specialising in water purification and smart water management solutions. Acquafy develops purifiers, filters, alkaline bottles, a digital platform (Acquafy Global Smart Water Platform) and an app integrated with IoT technology and artificial intelligence.",
-        p2: "Acquafy is part of the Interfy Group, a global technology group with over 20 years of experience in innovation and digital transformation.",
+        p2: "Acquafy is part of the Interfy Corp, a global technology group with over 20 years of experience in innovation and digital transformation.",
       },
       s3: {
         title: "3. Permitted Use of the Site",
@@ -502,7 +502,7 @@ const T: Record<Lang, {
       { id: "contato",          label: "14. Contacto" },
     ],
     introP1: <>Bienvenido al sitio de <strong>Acquafy Corporation</strong> (&quot;Acquafy&quot;, &quot;nosotros&quot; o &quot;nuestro&quot;). Al acceder o utilizar nuestro sitio, aplicación, productos o servicios, usted acepta estos Términos de Uso. Si no está de acuerdo con alguna parte de estos términos, le pedimos que no utilice nuestros servicios.</>,
-    introP2: "Estos términos constituyen un acuerdo legal entre usted (el usuario) y Acquafy Corporation, empresa constituida en los Estados Unidos e integrante del Interfy Group.",
+    introP2: "Estos términos constituyen un acuerdo legal entre usted (el usuario) y Acquafy Corporation, empresa constituida en los Estados Unidos e integrante del Interfy Corp.",
     privacyPolicyLink: "Política de Privacidad",
     sections: {
       s1: {
@@ -513,7 +513,7 @@ const T: Record<Lang, {
       s2: {
         title: "2. Sobre Acquafy",
         p1: "Acquafy Corporation es una empresa estadounidense, fundada en 2020, especializada en soluciones de purificación y gestión inteligente del agua. Acquafy desarrolla purificadores, filtros, botellas alcalinas, una plataforma digital (Acquafy Global Smart Water Platform) y una aplicación integrada con tecnología IoT e inteligencia artificial.",
-        p2: "Acquafy forma parte del Interfy Group, grupo tecnológico global con más de 20 años de experiencia en innovación y transformación digital.",
+        p2: "Acquafy forma parte del Interfy Corp, grupo tecnológico global con más de 20 años de experiencia en innovación y transformación digital.",
       },
       s3: {
         title: "3. Uso Permitido del Sitio",
@@ -616,7 +616,7 @@ const T: Record<Lang, {
       { id: "contato",          label: "14. Contact" },
     ],
     introP1: <>Bienvenue sur le site d'<strong>Acquafy Corporation</strong> (&quot;Acquafy&quot;, &quot;nous&quot; ou &quot;notre&quot;). En accédant ou en utilisant notre site, notre application, nos produits ou nos services, vous acceptez les présentes Conditions d'Utilisation. Si vous n'acceptez pas l'une des dispositions de ces conditions, veuillez ne pas utiliser nos services.</>,
-    introP2: "Ces conditions constituent un accord juridique entre vous (l'utilisateur) et Acquafy Corporation, société constituée aux États-Unis et membre de l'Interfy Group.",
+    introP2: "Ces conditions constituent un accord juridique entre vous (l'utilisateur) et Acquafy Corporation, société constituée aux États-Unis et membre de l'Interfy Corp.",
     privacyPolicyLink: "Politique de Confidentialité",
     sections: {
       s1: {
@@ -627,7 +627,7 @@ const T: Record<Lang, {
       s2: {
         title: "2. À propos d'Acquafy",
         p1: "Acquafy Corporation est une entreprise américaine, fondée en 2020, spécialisée dans les solutions de purification et de gestion intelligente de l'eau. Acquafy développe des purificateurs, des filtres, des bouteilles alcalines, une plateforme numérique (Acquafy Global Smart Water Platform) et une application intégrée à la technologie IoT et à l'intelligence artificielle.",
-        p2: "Acquafy fait partie de l'Interfy Group, groupe technologique mondial fort de plus de 20 ans d'expérience dans l'innovation et la transformation numérique.",
+        p2: "Acquafy fait partie de l'Interfy Corp, groupe technologique mondial fort de plus de 20 ans d'expérience dans l'innovation et la transformation numérique.",
       },
       s3: {
         title: "3. Utilisation Autorisée du Site",
@@ -730,7 +730,7 @@ const T: Record<Lang, {
       { id: "contato",          label: "14. Kontakt" },
     ],
     introP1: <>Willkommen auf der Website der <strong>Acquafy Corporation</strong> (&quot;Acquafy&quot;, &quot;wir&quot; oder &quot;unser&quot;). Durch den Zugriff auf oder die Nutzung unserer Website, App, Produkte oder Dienste stimmen Sie diesen Nutzungsbedingungen zu. Wenn Sie mit einem Teil dieser Bedingungen nicht einverstanden sind, bitten wir Sie, unsere Dienste nicht zu nutzen.</>,
-    introP2: "Diese Bedingungen stellen eine rechtliche Vereinbarung zwischen Ihnen (dem Nutzer) und der Acquafy Corporation dar, einem in den Vereinigten Staaten gegründeten Unternehmen und Mitglied der Interfy Group.",
+    introP2: "Diese Bedingungen stellen eine rechtliche Vereinbarung zwischen Ihnen (dem Nutzer) und der Acquafy Corporation dar, einem in den Vereinigten Staaten gegründeten Unternehmen und Mitglied der Interfy Corp.",
     privacyPolicyLink: "Datenschutzrichtlinie",
     sections: {
       s1: {
@@ -741,7 +741,7 @@ const T: Record<Lang, {
       s2: {
         title: "2. Über Acquafy",
         p1: "Acquafy Corporation ist ein amerikanisches Unternehmen, gegründet im Jahr 2020, spezialisiert auf Lösungen zur Wasserreinigung und intelligenten Wasserverwaltung. Acquafy entwickelt Wasserreiniger, Filter, alkalische Flaschen, eine digitale Plattform (Acquafy Global Smart Water Platform) sowie eine App, die mit IoT-Technologie und künstlicher Intelligenz integriert ist.",
-        p2: "Acquafy ist Teil der Interfy Group, einer globalen Technologiegruppe mit über 20 Jahren Erfahrung in Innovation und digitaler Transformation.",
+        p2: "Acquafy ist Teil der Interfy Corp, einer globalen Technologiegruppe mit über 20 Jahren Erfahrung in Innovation und digitaler Transformation.",
       },
       s3: {
         title: "3. Zulässige Nutzung der Website",
@@ -844,7 +844,7 @@ const T: Record<Lang, {
       { id: "contato",          label: "14. Contatto" },
     ],
     introP1: <>Benvenuto nel sito di <strong>Acquafy Corporation</strong> (&quot;Acquafy&quot;, &quot;noi&quot; o &quot;nostro&quot;). Accedendo o utilizzando il nostro sito, l'applicazione, i prodotti o i servizi, l'utente accetta i presenti Termini di Utilizzo. In caso di disaccordo con qualsiasi parte di questi termini, si prega di non utilizzare i nostri servizi.</>,
-    introP2: "I presenti termini costituiscono un accordo legale tra l'utente e Acquafy Corporation, società costituita negli Stati Uniti e parte dell'Interfy Group.",
+    introP2: "I presenti termini costituiscono un accordo legale tra l'utente e Acquafy Corporation, società costituita negli Stati Uniti e parte dell'Interfy Corp.",
     privacyPolicyLink: "Informativa sulla Privacy",
     sections: {
       s1: {
@@ -855,7 +855,7 @@ const T: Record<Lang, {
       s2: {
         title: "2. Su Acquafy",
         p1: "Acquafy Corporation è un'azienda americana, fondata nel 2020, specializzata in soluzioni di purificazione e gestione intelligente dell'acqua. Acquafy sviluppa purificatori, filtri, bottiglie alcaline, una piattaforma digitale (Acquafy Global Smart Water Platform) e un'applicazione integrata con tecnologia IoT e intelligenza artificiale.",
-        p2: "Acquafy fa parte dell'Interfy Group, un gruppo tecnologico globale con oltre 20 anni di esperienza nell'innovazione e nella trasformazione digitale.",
+        p2: "Acquafy fa parte dell'Interfy Corp, un gruppo tecnologico globale con oltre 20 anni di esperienza nell'innovazione e nella trasformazione digitale.",
       },
       s3: {
         title: "3. Uso Consentito del Sito",
@@ -958,7 +958,7 @@ const T: Record<Lang, {
       { id: "contato",          label: "14. 联系我们" },
     ],
     introP1: <>欢迎访问 <strong>Acquafy Corporation</strong>（以下简称"Acquafy"、"我们"或"我方"）的网站。访问或使用我们的网站、应用程序、产品或服务，即表示您同意本使用条款。如果您不同意本条款的任何部分，请勿使用我们的服务。</>,
-    introP2: "本条款构成您（用户）与 Acquafy Corporation 之间的法律协议。Acquafy Corporation 是一家在美国注册成立的公司，隶属于 Interfy Group。",
+    introP2: "本条款构成您（用户）与 Acquafy Corporation 之间的法律协议。Acquafy Corporation 是一家在美国注册成立的公司，隶属于 Interfy Corp。",
     privacyPolicyLink: "隐私政策",
     sections: {
       s1: {
@@ -969,7 +969,7 @@ const T: Record<Lang, {
       s2: {
         title: "2. 关于 Acquafy",
         p1: "Acquafy Corporation 是一家美国公司，成立于 2020 年，专注于水净化和智能水管理解决方案。Acquafy 开发净水器、过滤器、碱性水瓶、数字平台（Acquafy Global Smart Water Platform）以及集成了 IoT 技术和人工智能的应用程序。",
-        p2: "Acquafy 是 Interfy Group 的成员，该集团是一个全球科技集团，在创新与数字化转型领域拥有逾 20 年的经验。",
+        p2: "Acquafy 是 Interfy Corp 的成员，该集团是一个全球科技集团，在创新与数字化转型领域拥有逾 20 年的经验。",
       },
       s3: {
         title: "3. 网站许可使用",
@@ -1072,7 +1072,7 @@ const T: Record<Lang, {
       { id: "contato",          label: "14. お問い合わせ" },
     ],
     introP1: <><strong>Acquafy Corporation</strong>（「Acquafy」、「当社」）のウェブサイトへようこそ。当サイト、アプリ、製品またはサービスにアクセスまたは使用することにより、お客様はこの利用規約に同意したものとみなされます。本規約のいずれかの部分に同意されない場合は、当社のサービスをご利用にならないようお願いいたします。</>,
-    introP2: "本規約は、お客様（ユーザー）と、米国に設立された Acquafy Corporation（Interfy Group の一員）との間の法的合意を構成します。",
+    introP2: "本規約は、お客様（ユーザー）と、米国に設立された Acquafy Corporation（Interfy Corp の一員）との間の法的合意を構成します。",
     privacyPolicyLink: "プライバシーポリシー",
     sections: {
       s1: {
@@ -1083,7 +1083,7 @@ const T: Record<Lang, {
       s2: {
         title: "2. Acquafy について",
         p1: "Acquafy Corporation は、2020 年に設立されたアメリカ企業で、水の浄化およびスマート水管理ソリューションを専門としています。Acquafy は、浄水器、フィルター、アルカリ水ボトル、デジタルプラットフォーム（Acquafy Global Smart Water Platform）、および IoT 技術と人工知能を統合したアプリを開発しています。",
-        p2: "Acquafy は、イノベーションとデジタル変革において 20 年以上の実績を持つグローバル技術グループ、Interfy Group の一員です。",
+        p2: "Acquafy は、イノベーションとデジタル変革において 20 年以上の実績を持つグローバル技術グループ、Interfy Corp の一員です。",
       },
       s3: {
         title: "3. サイトの許可される使用",
@@ -1186,7 +1186,7 @@ const T: Record<Lang, {
       { id: "contato",          label: "14. 문의하기" },
     ],
     introP1: <><strong>Acquafy Corporation</strong>（「Acquafy」, 「당사」）의 웹사이트에 오신 것을 환영합니다. 당사의 웹사이트, 앱, 제품 또는 서비스에 접속하거나 이용함으로써 귀하는 본 이용약관에 동의하는 것으로 간주됩니다. 본 약관의 어느 부분에도 동의하지 않으시면 당사의 서비스를 이용하지 마시기 바랍니다.</>,
-    introP2: "본 약관은 귀하（사용자）와 미국에 설립된 Acquafy Corporation（Interfy Group 소속）간의 법적 계약을 구성합니다.",
+    introP2: "본 약관은 귀하（사용자）와 미국에 설립된 Acquafy Corporation（Interfy Corp 소속）간의 법적 계약을 구성합니다.",
     privacyPolicyLink: "개인정보 처리방침",
     sections: {
       s1: {
@@ -1197,7 +1197,7 @@ const T: Record<Lang, {
       s2: {
         title: "2. Acquafy 소개",
         p1: "Acquafy Corporation은 2020년에 설립된 미국 기업으로, 수질 정화 및 스마트 수자원 관리 솔루션을 전문으로 합니다. Acquafy는 정수기, 필터, 알칼리수 병, 디지털 플랫폼（Acquafy Global Smart Water Platform）및 IoT 기술과 인공지능을 통합한 앱을 개발합니다.",
-        p2: "Acquafy는 혁신과 디지털 전환 분야에서 20년 이상의 경험을 보유한 글로벌 기술 그룹인 Interfy Group의 일원입니다.",
+        p2: "Acquafy는 혁신과 디지털 전환 분야에서 20년 이상의 경험을 보유한 글로벌 기술 그룹인 Interfy Corp의 일원입니다.",
       },
       s3: {
         title: "3. 사이트의 허용된 사용",
@@ -1300,7 +1300,7 @@ const T: Record<Lang, {
       { id: "contato",          label: "14. Kontakt" },
     ],
     introP1: <>Valkommen till <strong>Acquafy Corporations</strong> webbplats (&quot;Acquafy&quot;, &quot;vi&quot; eller &quot;var&quot;). Genom att ga in pa eller anvanda var webbplats, app, produkter eller tjanster godkanner du dessa anvandningsvillkor. Om du inte godkanner nagon del av dessa villkor ber vi dig att inte anvanda vara tjanster.</>,
-    introP2: "Dessa villkor utgors ett juridiskt avtal mellan dig (anvandaren) och Acquafy Corporation, ett foretag bildat i USA och en del av Interfy Group.",
+    introP2: "Dessa villkor utgors ett juridiskt avtal mellan dig (anvandaren) och Acquafy Corporation, ett foretag bildat i USA och en del av Interfy Corp.",
     privacyPolicyLink: "Integritetspolicy",
     sections: {
       s1: {
@@ -1311,7 +1311,7 @@ const T: Record<Lang, {
       s2: {
         title: "2. Om Acquafy",
         p1: "Acquafy Corporation ar ett amerikanskt foretag, grundat 2020, specialiserat pa losningar for vattenrening och smart vattenforvaltning. Acquafy utvecklar reningsanlaggningar, filter, alkaliska flaskor, en digital plattform (Acquafy Global Smart Water Platform) och en app integrerad med IoT-teknik och konstgjord intelligens.",
-        p2: "Acquafy ar en del av Interfy Group, en global teknikgrupp med over 20 ars erfarenhet av innovation och digital transformation.",
+        p2: "Acquafy ar en del av Interfy Corp, en global teknikgrupp med over 20 ars erfarenhet av innovation och digital transformation.",
       },
       s3: {
         title: "3. Tillaten anvandning av webbplatsen",
@@ -1414,7 +1414,7 @@ const T: Record<Lang, {
       { id: "contato",          label: "14. Yhteystiedot" },
     ],
     introP1: <>Tervetuloa <strong>Acquafy Corporationin</strong> verkkosivustolle (&quot;Acquafy&quot;, &quot;me&quot; tai &quot;meidanmme&quot;). Kayttamalla tai kaymmalla verkkosivustollamme, sovellusellamme, tuotteillamme tai palveluissamme hyvaksyt namat kayttoehdot. Jos et hyvaksy osaa naista ehdoista, pyydamme sinua olemaan kayttamatta palveluitamme.</>,
-    introP2: "Namat ehdot muodostavat oikeudellisen sopimuksen sinun (kayttajan) ja Acquafy Corporationin valilla, joka on Yhdysvalloissa perustettu yhtio ja osa Interfy Groupia.",
+    introP2: "Namat ehdot muodostavat oikeudellisen sopimuksen sinun (kayttajan) ja Acquafy Corporationin valilla, joka on Yhdysvalloissa perustettu yhtio ja osa Interfy Corpia.",
     privacyPolicyLink: "Tietosuojakaytanto",
     sections: {
       s1: {
@@ -1425,7 +1425,7 @@ const T: Record<Lang, {
       s2: {
         title: "2. Tietoa Acquafysta",
         p1: "Acquafy Corporation on amerikkalainen yhtio, perustettu vuonna 2020, erikoistunut veden puhdistus- ja aly-vesihallintaratkaisuihin. Acquafy kehittaa vedenpuhdistimia, suodattimia, alkaalisia pulloja, digitaalista alustaa (Acquafy Global Smart Water Platform) seka IoT-teknologian ja tekoalyn integroiman sovelluksen.",
-        p2: "Acquafy on osa Interfy Groupia, globaalia teknologiaryhmaa, jolla on yli 20 vuoden kokemus innovaatiosta ja digitaalisesta muutoksesta.",
+        p2: "Acquafy on osa Interfy Corpia, globaalia teknologiaryhmaa, jolla on yli 20 vuoden kokemus innovaatiosta ja digitaalisesta muutoksesta.",
       },
       s3: {
         title: "3. Verkkosivuston sallittu kaytto",
@@ -1528,7 +1528,7 @@ const T: Record<Lang, {
       { id: "contato",          label: "14. Kontakt" },
     ],
     introP1: <>Dobro pozhalovat na sayt <strong>Acquafy Corporation</strong> (&quot;Acquafy&quot;, &quot;my&quot; ili &quot;nashe&quot;). Polzuyas nashim saytom, prilozheniem, produktami ili uslugami, vy soglashaetes s nastoyashchimi Usloviyami ispolzovaniya. Esli vy ne soglasny s kakoy-libo chastyu etikh usloviy, pozhaluysta, ne polzuytes nashimi uslugami.</>,
-    introP2: "Nastoyashchie usloviya yavlyayutsya yuridicheskim soglasheniem mezhdu vami (polzovatelem) i Acquafy Corporation, kompaniey, zaregistrirovannoy v Soedinennykh Shtatakh i vkhodyashchey v sostav Interfy Group.",
+    introP2: "Nastoyashchie usloviya yavlyayutsya yuridicheskim soglasheniem mezhdu vami (polzovatelem) i Acquafy Corporation, kompaniey, zaregistrirovannoy v Soedinennykh Shtatakh i vkhodyashchey v sostav Interfy Corp.",
     privacyPolicyLink: "Politika konfidentsialnosti",
     sections: {
       s1: {
@@ -1539,7 +1539,7 @@ const T: Record<Lang, {
       s2: {
         title: "2. Ob Acquafy",
         p1: "Acquafy Corporation - amerikanskaya kompaniya, osnovannaya v 2020 godu, spetsializiruyushchayasya na resheniyakh dlya ochistki vody i intellektualnogo upravleniya vodoy. Acquafy razrabatyvaet ochristiteli vody, filtry, shchelochnye butylki, tsifrovuyu platformu (Acquafy Global Smart Water Platform) i prilozhenie, integrirovannoe s tekhnologiey IoT i iskusstvennym intellektom.",
-        p2: "Acquafy yavlyaetsya chastyu Interfy Group, globalnoy tekhnologicheskoy gruppy s bolee chem 20-letnim opytom v oblasti innovatsiy i tsifrovoy transformatsii.",
+        p2: "Acquafy yavlyaetsya chastyu Interfy Corp, globalnoy tekhnologicheskoy gruppy s bolee chem 20-letnim opytom v oblasti innovatsiy i tsifrovoy transformatsii.",
       },
       s3: {
         title: "3. Razreshyonnoe ispolzovanie sayta",
@@ -1642,7 +1642,7 @@ const T: Record<Lang, {
       { id: "contato",          label: "14. Contact" },
     ],
     introP1: <>Bun venit pe site-ul <strong>Acquafy Corporation</strong> (&quot;Acquafy&quot;, &quot;noi&quot; sau &quot;nostru&quot;). Accesand sau utilizand site-ul, aplicatia, produsele sau serviciile noastre, sunteti de acord cu acesti Termeni de Utilizare. Daca nu sunteti de acord cu nicio parte din acesti termeni, va rugam sa nu utilizati serviciile noastre.</>,
-    introP2: "Acesti termeni constituie un acord legal intre dumneavoastra (utilizatorul) si Acquafy Corporation, o companie inregistrata in Statele Unite si parte a Interfy Group.",
+    introP2: "Acesti termeni constituie un acord legal intre dumneavoastra (utilizatorul) si Acquafy Corporation, o companie inregistrata in Statele Unite si parte a Interfy Corp.",
     privacyPolicyLink: "Politica de Confidentialitate",
     sections: {
       s1: {
@@ -1653,7 +1653,7 @@ const T: Record<Lang, {
       s2: {
         title: "2. Despre Acquafy",
         p1: "Acquafy Corporation este o companie americana, infiintata in 2020, specializata in solutii de purificare si gestionare inteligenta a apei. Acquafy dezvolta purificatoare, filtre, sticle alcaline, o platforma digitala (Acquafy Global Smart Water Platform) si o aplicatie integrata cu tehnologie IoT si inteligenta artificiala.",
-        p2: "Acquafy face parte din Interfy Group, un grup tehnologic global cu peste 20 de ani de experienta in inovatie si transformare digitala.",
+        p2: "Acquafy face parte din Interfy Corp, un grup tehnologic global cu peste 20 de ani de experienta in inovatie si transformare digitala.",
       },
       s3: {
         title: "3. Utilizare Permisa a Site-ului",
@@ -1756,7 +1756,7 @@ const T: Record<Lang, {
       { id: "contato",          label: "14. Yetzira kontakt" },
     ],
     introP1: <>Bruchim habaim le-atar shel <strong>Acquafy Corporation</strong> (&quot;Acquafy&quot;, &quot;anachnu&quot; o &quot;shelanu&quot;). Al yedei gisha o shimush be-atar, ba-yissum, ba-mutzarim o ba-shrutim shelanu, atem mesikmim le-tnaim ele shel shimush. Im einechem mesikmim lechol chelek mihe-tnaim ha-elu, anachnu mevakim mikem shelo tishtemeshu ba-shrutim shelanu.</>,
-    introP2: "Tnaim elu mehavim heskem mishpati beinechem (hamishtatmash) u-vein Acquafy Corporation, chevra she-hukatah be-Artzot Habrit ve-chalakit shel Interfy Group.",
+    introP2: "Tnaim elu mehavim heskem mishpati beinechem (hamishtatmash) u-vein Acquafy Corporation, chevra she-hukatah be-Artzot Habrit ve-chalakit shel Interfy Corp.",
     privacyPolicyLink: "Mediniyut Pirtiyut",
     sections: {
       s1: {
@@ -1767,7 +1767,7 @@ const T: Record<Lang, {
       s2: {
         title: "2. Al Acquafy",
         p1: "Acquafy Corporation hi chevra amerikanit, she-nuseda be-2020, hamitamahelet be-pitronot letaharat mayim u-lenihal mayim chakim. Acquafy metapachat mataharey mayim, moshanim, bakbukey alkalaim, platforma digitalit (Acquafy Global Smart Water Platform) ve-yissum meshulav be-technologiyat IoT ve-binah melacutit.",
-        p2: "Acquafy hi chelek mi-Interfy Group, kviztza technologit globalit im yoter mi-20 shnot nision be-chiduv u-ve-transformatziya digitalit.",
+        p2: "Acquafy hi chelek mi-Interfy Corp, kviztza technologit globalit im yoter mi-20 shnot nision be-chiduv u-ve-transformatziya digitalit.",
       },
       s3: {
         title: "3. Shimush mutar ba-atar",

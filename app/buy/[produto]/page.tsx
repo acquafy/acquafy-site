@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import CheckinProduct from "@/components/CheckinProduct";
 import { CHECKIN_FAMILIES } from "@/lib/checkin-products";
+import { snipcartCrawlerProps } from "@/lib/snipcart";
 
 export function generateStaticParams() {
   return CHECKIN_FAMILIES.map((f) => ({ produto: `checkin-${f.slug}` }));
@@ -33,12 +34,28 @@ export default async function BuyCheckinPage({
   const family = CHECKIN_FAMILIES.find((f) => f.slug === slug);
   if (!family) notFound();
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+  if (!siteUrl) throw new Error("NEXT_PUBLIC_SITE_URL is not set — required for Snipcart price verification");
+
   return (
     <>
       <Header />
       <main>
         <CheckinProduct family={family} />
       </main>
+
+      {/* Snipcart price-verification elements — hidden, crawled by Snipcart to validate prices */}
+      <div aria-hidden="true" style={{ display: "none" }}>
+        {family.variants.map((variant) =>
+          snipcartCrawlerProps(variant.id, siteUrl).map((props) => (
+            <button
+              key={`${variant.id}-${props["data-item-currency"]}`}
+              className="snipcart-add-item"
+              {...props}
+            />
+          ))
+        )}
+      </div>
     </>
   );
 }

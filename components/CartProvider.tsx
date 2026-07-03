@@ -1,7 +1,7 @@
 "use client";
 import { createContext, useContext, useState, useEffect, useRef, useCallback } from "react";
 import { usePathname } from "next/navigation";
-import { PRODUCT_CATALOG, PRODUCT_PRICES_BRL, formatBRL } from "@/lib/products";
+import { PRODUCT_CATALOG, PRODUCT_PRICES_BRL, formatPrice } from "@/lib/products";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
 type CartItem = { id: string; qty: number };
@@ -9,12 +9,16 @@ type CartItem = { id: string; qty: number };
 interface CartContextValue {
   cart: CartItem[];
   addToCart: (productId: string, label: string, silent?: boolean) => void;
+  removeFromCart: (productId: string) => void;
+  updateQty: (productId: string, delta: number) => void;
   openCart: () => void;
 }
 
 const CartContext = createContext<CartContextValue>({
   cart: [],
   addToCart: () => {},
+  removeFromCart: () => {},
+  updateQty: () => {},
   openCart: () => {},
 });
 
@@ -367,6 +371,14 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const openCart = useCallback(() => setShowCartPanel(true), []);
 
+  const removeFromCart = useCallback((productId: string) => {
+    setCart(prev => prev.filter(i => i.id !== productId));
+  }, []);
+
+  const updateQty = useCallback((productId: string, delta: number) => {
+    setCart(prev => prev.map(i => i.id === productId ? { ...i, qty: Math.max(1, i.qty + delta) } : i));
+  }, []);
+
   const [extraBottom, setExtraBottom] = useState(0);
   const [pastBanner, setPastBanner] = useState(false);
   const [isWideScreen, setIsWideScreen] = useState(false);
@@ -405,7 +417,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const cartCount = cart.reduce((s, i) => s + i.qty, 0);
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, openCart }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateQty, openCart }}>
       {children}
 
       {/* ── BOTÃO FLUTUANTE CARRINHO ── */}
@@ -469,7 +481,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
                   <img src={product.img} alt={product.label} className="size-[40px] object-contain shrink-0" />
                   <div className="flex flex-col gap-[2px] flex-1 min-w-0">
                     <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] leading-[15px] text-[#1f2e91] truncate">{product.label}</p>
-                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] leading-[15px] text-[#0233c3]">{formatBRL(PRODUCT_PRICES_BRL[toast.id] ?? 0)}</p>
+                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] leading-[15px] text-[#0233c3]">{formatPrice(PRODUCT_PRICES_BRL[toast.id] ?? 0, lang)}</p>
                   </div>
                 </div>
               )}
@@ -540,14 +552,14 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
                     <div className="flex flex-col gap-[4px] flex-1 min-w-0">
                       <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] leading-[16px] text-[#1f2e91] truncate">{product.label}</p>
                       <p className="font-['Avenir_LT_Pro:55_Roman'] text-[11px] text-[#8a8f97]">{t.linhaNeo} {product.linha}</p>
-                      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#0233c3]">{formatBRL(PRODUCT_PRICES_BRL[item.id] ?? 0)}</p>
+                      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#0233c3]">{formatPrice(PRODUCT_PRICES_BRL[item.id] ?? 0, lang)}</p>
                     </div>
                     <div className="flex items-center gap-[6px]">
-                      <button onClick={() => setCart(prev => prev.map(i => i.id === item.id ? { ...i, qty: Math.max(1, i.qty - 1) } : i))} className="size-[26px] flex items-center justify-center rounded-full bg-white border border-[#cbd0d4] text-[#333] hover:border-[#0233c3] hover:text-[#0233c3] transition-colors cursor-pointer text-[14px] font-bold">−</button>
+                      <button onClick={() => updateQty(item.id, -1)} className="size-[26px] flex items-center justify-center rounded-full bg-white border border-[#cbd0d4] text-[#333] hover:border-[#0233c3] hover:text-[#0233c3] transition-colors cursor-pointer text-[14px] font-bold">−</button>
                       <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#2a2a2b] w-[20px] text-center">{item.qty}</span>
-                      <button onClick={() => setCart(prev => prev.map(i => i.id === item.id ? { ...i, qty: i.qty + 1 } : i))} className="size-[26px] flex items-center justify-center rounded-full bg-white border border-[#cbd0d4] text-[#333] hover:border-[#0233c3] hover:text-[#0233c3] transition-colors cursor-pointer text-[14px] font-bold">+</button>
+                      <button onClick={() => updateQty(item.id, +1)} className="size-[26px] flex items-center justify-center rounded-full bg-white border border-[#cbd0d4] text-[#333] hover:border-[#0233c3] hover:text-[#0233c3] transition-colors cursor-pointer text-[14px] font-bold">+</button>
                     </div>
-                    <button onClick={() => setCart(prev => prev.filter(i => i.id !== item.id))} aria-label={t.remover} className="text-[#8a8f97] hover:text-[#e53935] transition-colors cursor-pointer text-[18px] shrink-0 leading-none">×</button>
+                    <button onClick={() => removeFromCart(item.id)} aria-label={t.remover} className="text-[#8a8f97] hover:text-[#e53935] transition-colors cursor-pointer text-[18px] shrink-0 leading-none">×</button>
                   </div>
                 );
               })}
@@ -557,10 +569,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
               <div className="border-t border-[#e0e8f8] px-[24px] py-[20px] flex flex-col gap-[16px]">
                 <div className="flex items-center justify-between">
                   <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#555]">{t.total}</p>
-                  <p className="font-['Avenir_LT_Pro:95_Black'] text-[20px] text-[#0233c3]">{formatBRL(cartTotal)}</p>
+                  <p className="font-['Avenir_LT_Pro:95_Black'] text-[20px] text-[#0233c3]">{formatPrice(cartTotal, lang)}</p>
                 </div>
                 <a
-                  href={`/checkout?produtos=${encodeURIComponent(cart.map(i => `${i.id}:${i.qty}`).join(','))}`}
+                  href="/checkout"
                   className="flex items-center justify-center gap-[8px] py-[14px] rounded-full font-['Avenir_LT_Pro:85_Heavy'] text-[14px] text-white cursor-pointer hover:opacity-85 transition-opacity"
                   style={{ background: "linear-gradient(135deg, #0233c3, #0569ff)" }}
                 >
