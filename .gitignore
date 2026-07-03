@@ -27,3 +27,4 @@ public/images/checkin/neo-ultra/
 
 # Misc
 *.tmp
+.vercel
