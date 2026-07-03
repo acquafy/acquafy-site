@@ -35,7 +35,6 @@ export default async function BuyCheckinPage({
   if (!family) notFound();
 
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
-  if (!siteUrl) throw new Error("NEXT_PUBLIC_SITE_URL is not set — required for Snipcart price verification");
 
   return (
     <>
@@ -44,18 +43,19 @@ export default async function BuyCheckinPage({
         <CheckinProduct family={family} />
       </main>
 
-      {/* Snipcart price-verification elements — hidden, crawled by Snipcart to validate prices */}
-      <div aria-hidden="true" style={{ display: "none" }}>
-        {family.variants.map((variant) =>
-          snipcartCrawlerProps(variant.id, siteUrl).map((props) => (
-            <button
-              key={`${variant.id}-${props["data-item-currency"]}`}
-              className="snipcart-add-item"
-              {...props}
-            />
-          ))
-        )}
-      </div>
+      {siteUrl && (
+        <div aria-hidden="true" style={{ display: "none" }}>
+          {family.variants.map((variant) =>
+            snipcartCrawlerProps(variant.id, siteUrl).map((props) => (
+              <button
+                key={`${variant.id}-${props["data-item-currency"]}`}
+                className="snipcart-add-item"
+                {...props}
+              />
+            ))
+          )}
+        </div>
+      )}
     </>
   );
 }
