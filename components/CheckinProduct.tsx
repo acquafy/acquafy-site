@@ -1309,6 +1309,46 @@ const LANG_DEFAULT_COUNTRY: Record<Lang, string> = {
   ro:      "RO", he:      "IL",
 };
 
+const UF_LABEL: Record<Lang, string> = {
+  pt: "Filtro UF", "pt-pt": "Filtro UF",
+  en: "UF Filter", "en-gb": "UF Filter",
+  es: "Filtro UF", fr: "Filtre UF",
+  de: "UF-Filter", it: "Filtro UF",
+  zh: "UF过滤", ja: "UFフィルター",
+  ko: "UF 필터", sv: "UF-filter",
+  fi: "UF-suodatin", ru: "UF-фильтр",
+  ro: "Filtru UF", he: "פילטר UF",
+};
+
+const RO_LABEL: Record<Lang, string> = {
+  pt: "Osmose Reversa", "pt-pt": "Osmose Reversa",
+  en: "Reverse Osmosis", "en-gb": "Reverse Osmosis",
+  es: "Ósmosis Inversa", fr: "Osmose Inverse",
+  de: "Umkehrosmose", it: "Osmosi Inversa",
+  zh: "反渗透", ja: "逆浸透",
+  ko: "역삼투", sv: "Omvänd osmos",
+  fi: "Käänteisosmoosia", ru: "Обратный осмос",
+  ro: "Osmoză Inversă", he: "אוסמוזה הפוכה",
+};
+
+const COLOR_NAMES_I18N: Record<string, Record<Lang, string>> = {
+  ap: { pt: "Azul Petróleo", "pt-pt": "Azul Petróleo", en: "Petroleum Blue", "en-gb": "Petroleum Blue", es: "Azul Petróleo", fr: "Bleu Pétrole", de: "Petrolblau", it: "Blu Petrolio", zh: "石油蓝", ja: "ペトロールブルー", ko: "페트롤 블루", sv: "Petroleumblå", fi: "Petrolsininen", ru: "Нефтяной синий", ro: "Albastru Petrol", he: "כחול פטרול" },
+  cm: { pt: "Cinza Metrópole", "pt-pt": "Cinza Metrópole", en: "Metropolis Gray", "en-gb": "Metropolis Grey", es: "Gris Metrópoli", fr: "Gris Métropole", de: "Metropolgrau", it: "Grigio Metropoli", zh: "都市灰", ja: "メトロポリスグレー", ko: "메트로폴리스 그레이", sv: "Metropolgrå", fi: "Metropoliharmaa", ru: "Серый Мегаполис", ro: "Gri Metropolă", he: "אפור מטרופוליס" },
+  cz: { pt: "Cinza", "pt-pt": "Cinza", en: "Gray", "en-gb": "Grey", es: "Gris", fr: "Gris", de: "Grau", it: "Grigio", zh: "灰色", ja: "グレー", ko: "회색", sv: "Grå", fi: "Harmaa", ru: "Серый", ro: "Gri", he: "אפור" },
+  bg: { pt: "Branco Glacial", "pt-pt": "Branco Glacial", en: "Glacial White", "en-gb": "Glacial White", es: "Blanco Glacial", fr: "Blanc Glacial", de: "Glacialweiß", it: "Bianco Glaciale", zh: "冰川白", ja: "グレイシャルホワイト", ko: "글래시얼 화이트", sv: "Glacialvit", fi: "Jäinen Valkoinen", ru: "Ледниковый Белый", ro: "Alb Glaciar", he: "לבן קרחוני" },
+  wt: { pt: "Branco", "pt-pt": "Branco", en: "White", "en-gb": "White", es: "Blanco", fr: "Blanc", de: "Weiß", it: "Bianco", zh: "白色", ja: "ホワイト", ko: "화이트", sv: "Vit", fi: "Valkoinen", ru: "Белый", ro: "Alb", he: "לבן" },
+  "pearl-white": { pt: "Branco Pérola", "pt-pt": "Branco Pérola", en: "Pearl White", "en-gb": "Pearl White", es: "Blanco Perla", fr: "Blanc Nacré", de: "Perlweiß", it: "Bianco Perla", zh: "珍珠白", ja: "パールホワイト", ko: "펄 화이트", sv: "Pärlvit", fi: "Helmenvalkea", ru: "Жемчужный белый", ro: "Alb Perlat", he: "לבן פנינה" },
+  "dark-gray":   { pt: "Cinza Escuro", "pt-pt": "Cinza Escuro", en: "Dark Gray", "en-gb": "Dark Grey", es: "Gris Oscuro", fr: "Gris Foncé", de: "Dunkelgrau", it: "Grigio Scuro", zh: "深灰色", ja: "ダークグレー", ko: "다크 그레이", sv: "Mörkgrå", fi: "Tummanharmaa", ru: "Тёмно-серый", ro: "Gri Închis", he: "אפור כהה" },
+  "silver-gray": { pt: "Cinza Prata", "pt-pt": "Cinza Prata", en: "Silver Gray", "en-gb": "Silver Grey", es: "Gris Plata", fr: "Gris Argenté", de: "Silbergrau", it: "Grigio Argento", zh: "银灰色", ja: "シルバーグレー", ko: "실버 그레이", sv: "Silvergrå", fi: "Hopeianharmaa", ru: "Серебристо-серый", ro: "Gri Argintiu", he: "אפור כסוף" },
+  "slate-blue":  { pt: "Azul Ardósia", "pt-pt": "Azul Ardósia", en: "Slate Blue", "en-gb": "Slate Blue", es: "Azul Pizarra", fr: "Bleu Ardoise", de: "Schieferblau", it: "Blu Ardesia", zh: "石板蓝", ja: "スレートブルー", ko: "슬레이트 블루", sv: "Skiferblå", fi: "Liuskesininen", ru: "Сине-серый", ro: "Albastru Ardezie", he: "כחול ארדואה" },
+  "silver":      { pt: "Prata", "pt-pt": "Prata", en: "Silver", "en-gb": "Silver", es: "Plata", fr: "Argent", de: "Silber", it: "Argento", zh: "银色", ja: "シルバー", ko: "실버", sv: "Silver", fi: "Hopea", ru: "Серебряный", ro: "Argintiu", he: "כסף" },
+};
+
+function getColorName(slug: string | undefined, lang: Lang, fallback: string): string {
+  if (!slug) return fallback;
+  return COLOR_NAMES_I18N[slug]?.[lang] ?? fallback;
+}
+
 export default function CheckinProduct({ family, showSlide = false }: Props) {
   const { addToCart, cart } = useCart();
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -1787,7 +1827,7 @@ export default function CheckinProduct({ family, showSlide = false }: Props) {
                   <div className="flex flex-col gap-[4px] items-center">
                     <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af] uppercase tracking-[0.06em]">{lb.coresLabel}</p>
                     <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] text-[#1f2e91] text-center">
-                      {colorOptions[activeColorIdx]?.name ?? ""}
+                      {getColorName(colorOptions[activeColorIdx]?.slug, lang, colorOptions[activeColorIdx]?.name ?? "")}
                     </p>
                   </div>
                   <div className="flex gap-[10px] items-center justify-center flex-wrap">
@@ -2376,8 +2416,8 @@ export default function CheckinProduct({ family, showSlide = false }: Props) {
           </span>
           <span className="font-['Avenir_LT_Pro:55_Roman'] text-[11px] text-[#6b7280] leading-snug [overflow-wrap:anywhere]">
             {[
-              colorOptions[activeColorIdx]?.name,
-              specs.filtragem.includes("UF") ? "Filtro UF" : "Osmose Reversa",
+              getColorName(colorOptions[activeColorIdx]?.slug, lang, colorOptions[activeColorIdx]?.name ?? ""),
+              specs.filtragem.includes("UF") ? UF_LABEL[lang] : RO_LABEL[lang],
               specs.gas ? lb.gasLabel : null,
               specs.h2 ? lb.h2Label : null,
               specs.painel !== "—" ? specs.painel : null,
