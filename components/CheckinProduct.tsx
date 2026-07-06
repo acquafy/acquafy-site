@@ -1709,25 +1709,25 @@ export default function CheckinProduct({ family, showSlide = false }: Props) {
             {family.scenes.length > 0 ? (
               family.scenes.map((scene, i) => (
                 <img key={i} src={scene.img} alt=""
-                  className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-500 ${i === activeSceneIdx ? "opacity-100" : "opacity-0"}`}
+                  className={`absolute inset-x-0 top-1/2 -translate-y-1/2 max-h-[500px] w-full object-contain transition-opacity duration-500 ${i === activeSceneIdx ? "opacity-100" : "opacity-0"}`}
                 />
               ))
             ) : activeColorImages.length > 0 && showSlide ? (
               activeColorImages.map((img, i) => (
                 <img key={i} src={img}
                   alt={`${activeVariant.name} – ${colorOptions[activeColorIdx]?.name ?? ""} – ${i + 1}`}
-                  className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out ${i === slideIdx ? "opacity-100" : "opacity-0"}`}
+                  className={`absolute inset-x-0 top-1/2 -translate-y-1/2 max-h-[500px] w-full object-contain transition-opacity duration-700 ease-in-out ${i === slideIdx ? "opacity-100" : "opacity-0"}`}
                 />
               ))
             ) : activeColorImages.length > 0 ? (
               <img src={activeVariant.img}
                 alt={activeVariant.name}
-                className="absolute inset-0 w-full h-full object-contain"
+                className="absolute inset-x-0 top-1/2 -translate-y-1/2 max-h-[500px] w-full object-contain"
               />
             ) : (
               family.variants.map((v, i) => (
                 <img key={v.id} src={v.img} alt={v.name}
-                  className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-500 ${i === activeVariantIdx ? "opacity-100" : "opacity-0"}`}
+                  className={`absolute inset-x-0 top-1/2 -translate-y-1/2 max-h-[500px] w-full object-contain transition-opacity duration-500 ${i === activeVariantIdx ? "opacity-100" : "opacity-0"}`}
                 />
               ))
             )}
