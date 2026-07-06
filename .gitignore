@@ -22,9 +22,6 @@ Thumbs.db
 # Claude AI session data
 .claude/
 
-# Slide images (not yet in use)
-public/images/checkin/neo-ultra/
-
 # Misc
 *.tmp
 .vercel
