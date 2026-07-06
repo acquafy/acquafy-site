@@ -8,24 +8,27 @@ const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY 
 
 export type StripeFormHandle = {
   confirmPayment: (
-    amountBRL: number,
-    email?: string
+    amount: number,
+    email?: string,
+    currency?: string,
+    postalCode?: string
   ) => Promise<{ success: boolean; intentId?: string; error?: string }>;
 };
 
 type CardInnerProps = {
   processingLabel?: string;
+  billingPostalCode?: string;
 };
 
 const StripeCardInner = forwardRef<StripeFormHandle, CardInnerProps>(
-  function StripeCardInner({ processingLabel = "Processando pagamento..." }, ref) {
+  function StripeCardInner({ processingLabel = "Processando pagamento...", billingPostalCode }, ref) {
     const stripe = useStripe();
     const elements = useElements();
     const [cardError, setCardError] = useState<string | null>(null);
     const [processing, setProcessing] = useState(false);
 
     useImperativeHandle(ref, () => ({
-      async confirmPayment(amountBRL, email) {
+      async confirmPayment(amount, email, currency = "brl", postalCode) {
         if (!stripe || !elements) return { success: false, error: "Stripe não inicializado" };
 
         setProcessing(true);
@@ -35,7 +38,7 @@ const StripeCardInner = forwardRef<StripeFormHandle, CardInnerProps>(
           const res = await fetch("/api/create-payment-intent", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ amount: Math.round(amountBRL * 100), currency: "brl" }),
+            body: JSON.stringify({ amount: Math.round(amount * 100), currency }),
           });
 
           if (!res.ok) throw new Error("Falha ao iniciar pagamento");
@@ -45,10 +48,14 @@ const StripeCardInner = forwardRef<StripeFormHandle, CardInnerProps>(
           const card = elements.getElement(CardElement);
           if (!card) throw new Error("Campos do cartão não encontrados");
 
+          const zip = postalCode || billingPostalCode;
           const { paymentIntent, error: stripeErr } = await stripe.confirmCardPayment(clientSecret, {
             payment_method: {
               card,
-              billing_details: email ? { email } : undefined,
+              billing_details: {
+                ...(email ? { email } : {}),
+                ...(zip ? { address: { postal_code: zip } } : {}),
+              },
             },
           });
 
@@ -109,6 +116,7 @@ type StripePaymentFormProps = {
   formRef: React.RefObject<StripeFormHandle | null>;
   processingLabel?: string;
   locale?: string;
+  billingPostalCode?: string;
 };
 
 const STRIPE_LOCALE_MAP: Record<string, string> = {
@@ -120,11 +128,11 @@ const STRIPE_LOCALE_MAP: Record<string, string> = {
   ru: "ru", ro: "ro", he: "iw",
 };
 
-export default function StripePaymentForm({ formRef, processingLabel, locale }: StripePaymentFormProps) {
+export default function StripePaymentForm({ formRef, processingLabel, locale, billingPostalCode }: StripePaymentFormProps) {
   const stripeLocale = (locale ? STRIPE_LOCALE_MAP[locale] ?? "auto" : "auto") as "auto";
   return (
     <Elements stripe={stripePromise} options={{ locale: stripeLocale }}>
-      <StripeCardInner ref={formRef} processingLabel={processingLabel} />
+      <StripeCardInner ref={formRef} processingLabel={processingLabel} billingPostalCode={billingPostalCode} />
     </Elements>
   );
 }

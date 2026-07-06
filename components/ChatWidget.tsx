@@ -254,27 +254,32 @@ export function ChatProvider({ children }: { children: ReactNode }) {
     <ChatContext.Provider value={{ isAvailable: CHAT_AVAILABLE, openChat }}>
       {children}
 
-      {/* ── FAB — bottom-left chat bubble ── */}
-      {!isOpen && (pastBanner || pathname.startsWith('/buy') || isWideScreen) && (
-        <button
-          onClick={openChat}
-          aria-label={t.fabLabel}
-          suppressHydrationWarning
-          className="fixed right-[24px] z-[9998] flex items-center gap-[10px] px-[18px] py-[13px] rounded-full shadow-[0_4px_20px_0_rgba(2,51,195,0.35)] hover:shadow-[0_6px_28px_0_rgba(2,51,195,0.45)] hover:scale-[1.04] active:scale-[0.97] transition-all duration-200"
-          style={{ backgroundImage: "linear-gradient(112deg, #0233c3 6.19%, #9f3df5 93.35%)", bottom: 24 + extraBottom + (pathname.startsWith('/buy/') ? 80 : 0) }}
-        >
-          <svg viewBox="0 0 24 24" fill="none" className="size-[20px] shrink-0" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-          </svg>
-          <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white whitespace-nowrap">
-            {t.fabText}
-          </span>
-        </button>
-      )}
+      {/* ── FAB — chat bubble ── */}
+      {!isOpen && (pastBanner || pathname.startsWith('/buy') || isWideScreen) && (() => {
+        const isBuy = pathname.startsWith('/buy/');
+        return (
+          <button
+            onClick={openChat}
+            aria-label={t.fabLabel}
+            suppressHydrationWarning
+            className="fixed z-[9998] flex items-center justify-center rounded-full shadow-[0_4px_20px_0_rgba(2,51,195,0.35)] hover:shadow-[0_6px_28px_0_rgba(2,51,195,0.45)] hover:scale-[1.04] active:scale-[0.97] transition-all duration-200"
+            style={{
+              backgroundImage: "linear-gradient(112deg, #0233c3 6.19%, #9f3df5 93.35%)",
+              bottom: isBuy ? 108 : 24 + extraBottom,
+              ...(isBuy ? { left: 24 } : { right: 24 }),
+              width: 46, height: 46,
+            }}
+          >
+            <svg viewBox="0 0 24 24" fill="none" className="size-[20px] shrink-0" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+            </svg>
+          </button>
+        );
+      })()}
 
       {isOpen && (
         <div
-          className="fixed inset-0 z-[9999] flex items-end justify-end p-[20px]"
+          className={`fixed inset-0 z-[9999] flex items-end p-[20px] ${pathname.startsWith('/buy/') ? "justify-start" : "justify-end"}`}
           onClick={() => setIsOpen(false)}
         >
           <div

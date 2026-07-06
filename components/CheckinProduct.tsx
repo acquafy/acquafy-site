@@ -2,13 +2,14 @@
 
 import { useRef, useState, useCallback, useEffect } from "react";
 import { CHECKIN_FAMILIES, type CheckinFamily } from "@/lib/checkin-products";
-import { formatPrice, PRODUCT_PRICES_BRL, PRODUCT_IMAGES } from "@/lib/products";
+import StripePaymentForm, { type StripeFormHandle } from "@/components/StripePaymentForm";
+import { formatPrice, formatBRL, PRODUCT_PRICES_BRL, PRODUCT_IMAGES } from "@/lib/products";
 import FigmaIcon from "@/components/FigmaIcon";
 import { useCart } from "@/components/CartProvider";
 import { useLang } from "@/context/LanguageContext";
 import type { Lang } from "@/context/LanguageContext";
 
-type Props = { family: CheckinFamily };
+type Props = { family: CheckinFamily; showSlide?: boolean };
 
 /* ── Spec data per variant ─────────────────────────────────────────────────── */
 type VSpec = {
@@ -91,6 +92,7 @@ const LABELS: Record<Lang, {
   termosModalTitulo: string; termosIframe: string;
   adicionadoCarrinho: string; totalLabel: string;
   buscarPais: string; cepNaoEncontrado: string; erroCep: string;
+  zipDeliveryLabel: string; zipBillingLabel: string;
 }> = {
   pt: {
     formato: "Formato", filtragem: "Sistema de Filtragem", temperaturas: "Temperaturas",
@@ -121,6 +123,7 @@ const LABELS: Record<Lang, {
     termosModalTitulo: "Termos de Uso", termosIframe: "Termos de Uso",
     adicionadoCarrinho: "Adicionado ao carrinho!", totalLabel: "Total",
     buscarPais: "Buscar país...", cepNaoEncontrado: "CEP não encontrado.", erroCep: "Erro ao consultar CEP. Tente novamente.",
+    zipDeliveryLabel: "ZIP Code de Entrega", zipBillingLabel: "ZIP Code de Cobrança",
   },
   "pt-pt": {
     formato: "Formato", filtragem: "Sistema de Filtragem", temperaturas: "Temperaturas",
@@ -151,6 +154,7 @@ const LABELS: Record<Lang, {
     termosModalTitulo: "Termos de Utilização", termosIframe: "Termos de Utilização",
     adicionadoCarrinho: "Adicionado ao carrinho!", totalLabel: "Total",
     buscarPais: "Pesquisar país...", cepNaoEncontrado: "Código postal não encontrado.", erroCep: "Erro ao consultar o código postal. Tente novamente.",
+    zipDeliveryLabel: "Código Postal de Entrega", zipBillingLabel: "Código Postal de Faturação",
   },
   en: {
     formato: "Format", filtragem: "Filtration System", temperaturas: "Temperatures",
@@ -181,6 +185,7 @@ const LABELS: Record<Lang, {
     termosModalTitulo: "Terms of Use", termosIframe: "Terms of Use",
     adicionadoCarrinho: "Added to cart!", totalLabel: "Total",
     buscarPais: "Search country...", cepNaoEncontrado: "ZIP code not found.", erroCep: "Error looking up ZIP code. Please try again.",
+    zipDeliveryLabel: "Delivery ZIP Code", zipBillingLabel: "Billing ZIP Code",
   },
   "en-gb": {
     formato: "Format", filtragem: "Filtration System", temperaturas: "Temperatures",
@@ -211,6 +216,7 @@ const LABELS: Record<Lang, {
     termosModalTitulo: "Terms of Use", termosIframe: "Terms of Use",
     adicionadoCarrinho: "Added to basket!", totalLabel: "Total",
     buscarPais: "Search country...", cepNaoEncontrado: "Postcode not found.", erroCep: "Error looking up postcode. Please try again.",
+    zipDeliveryLabel: "Delivery Postcode", zipBillingLabel: "Billing Postcode",
   },
   es: {
     formato: "Formato", filtragem: "Sistema de Filtración", temperaturas: "Temperaturas",
@@ -241,6 +247,7 @@ const LABELS: Record<Lang, {
     termosModalTitulo: "Términos de Uso", termosIframe: "Términos de Uso",
     adicionadoCarrinho: "¡Añadido al carrito!", totalLabel: "Total",
     buscarPais: "Buscar país...", cepNaoEncontrado: "Código postal no encontrado.", erroCep: "Error al consultar el código postal. Inténtalo de nuevo.",
+    zipDeliveryLabel: "Código Postal de Envío", zipBillingLabel: "Código Postal de Facturación",
   },
   fr: {
     formato: "Format", filtragem: "Système de Filtration", temperaturas: "Températures",
@@ -271,6 +278,7 @@ const LABELS: Record<Lang, {
     termosModalTitulo: "Conditions d'utilisation", termosIframe: "Conditions d'utilisation",
     adicionadoCarrinho: "Ajouté au panier !", totalLabel: "Total",
     buscarPais: "Rechercher un pays...", cepNaoEncontrado: "Code postal introuvable.", erroCep: "Erreur lors de la consultation du code postal. Réessayez.",
+    zipDeliveryLabel: "Code Postal de Livraison", zipBillingLabel: "Code Postal de Facturation",
   },
   de: {
     formato: "Format", filtragem: "Filtersystem", temperaturas: "Temperaturen",
@@ -301,6 +309,7 @@ const LABELS: Record<Lang, {
     termosModalTitulo: "Nutzungsbedingungen", termosIframe: "Nutzungsbedingungen",
     adicionadoCarrinho: "Zum Warenkorb hinzugefügt!", totalLabel: "Gesamt",
     buscarPais: "Land suchen...", cepNaoEncontrado: "Postleitzahl nicht gefunden.", erroCep: "Fehler bei der Postleitzahlenabfrage. Bitte erneut versuchen.",
+    zipDeliveryLabel: "Lieferungs-PLZ", zipBillingLabel: "Rechnungs-PLZ",
   },
   it: {
     formato: "Formato", filtragem: "Sistema di Filtrazione", temperaturas: "Temperature",
@@ -331,6 +340,7 @@ const LABELS: Record<Lang, {
     termosModalTitulo: "Termini di Utilizzo", termosIframe: "Termini di Utilizzo",
     adicionadoCarrinho: "Aggiunto al carrello!", totalLabel: "Totale",
     buscarPais: "Cerca paese...", cepNaoEncontrado: "CAP non trovato.", erroCep: "Errore durante la ricerca del CAP. Riprova.",
+    zipDeliveryLabel: "CAP di Consegna", zipBillingLabel: "CAP di Fatturazione",
   },
   zh: {
     formato: "形式", filtragem: "过滤系统", temperaturas: "温度",
@@ -361,6 +371,7 @@ const LABELS: Record<Lang, {
     termosModalTitulo: "使用条款", termosIframe: "使用条款",
     adicionadoCarrinho: "已加入购物车！", totalLabel: "合计",
     buscarPais: "搜索国家...", cepNaoEncontrado: "未找到邮政编码。", erroCep: "查询邮政编码出错，请重试。",
+    zipDeliveryLabel: "收货邮政编码", zipBillingLabel: "账单邮政编码",
   },
   ja: {
     formato: "形式", filtragem: "浄水システム", temperaturas: "温度",
@@ -391,6 +402,7 @@ const LABELS: Record<Lang, {
     termosModalTitulo: "利用規約", termosIframe: "利用規約",
     adicionadoCarrinho: "カートに追加しました！", totalLabel: "合計",
     buscarPais: "国を検索...", cepNaoEncontrado: "郵便番号が見つかりません。", erroCep: "郵便番号の照会中にエラーが発生しました。もう一度お試しください。",
+    zipDeliveryLabel: "配送先郵便番号", zipBillingLabel: "請求先郵便番号",
   },
   ko: {
     formato: "형식", filtragem: "정수 시스템", temperaturas: "온도",
@@ -421,6 +433,7 @@ const LABELS: Record<Lang, {
     termosModalTitulo: "이용 약관", termosIframe: "이용 약관",
     adicionadoCarrinho: "장바구니에 추가되었습니다!", totalLabel: "합계",
     buscarPais: "국가 검색...", cepNaoEncontrado: "우편번호를 찾을 수 없습니다.", erroCep: "우편번호 조회 중 오류가 발생했습니다. 다시 시도해 주세요.",
+    zipDeliveryLabel: "배송 우편번호", zipBillingLabel: "청구 우편번호",
   },
   sv: {
     formato: "Format", filtragem: "Filtreringssystem", temperaturas: "Temperaturer",
@@ -451,6 +464,7 @@ const LABELS: Record<Lang, {
     termosModalTitulo: "Användarvillkor", termosIframe: "Användarvillkor",
     adicionadoCarrinho: "Tillagd i varukorgen!", totalLabel: "Totalt",
     buscarPais: "Sök land...", cepNaoEncontrado: "Postnummer hittades inte.", erroCep: "Fel vid postnummersökning. Försök igen.",
+    zipDeliveryLabel: "Leveranspostnummer", zipBillingLabel: "Faktureringspostnummer",
   },
   fi: {
     formato: "Muoto", filtragem: "Suodatusjärjestelmä", temperaturas: "Lämpötilat",
@@ -481,6 +495,7 @@ const LABELS: Record<Lang, {
     termosModalTitulo: "Käyttöehdot", termosIframe: "Käyttöehdot",
     adicionadoCarrinho: "Lisätty ostoskoriin!", totalLabel: "Yhteensä",
     buscarPais: "Etsi maata...", cepNaoEncontrado: "Postinumeroa ei löydy.", erroCep: "Virhe postinumeron haussa. Yritä uudelleen.",
+    zipDeliveryLabel: "Toimituspostinumero", zipBillingLabel: "Laskutuspostinumero",
   },
   ru: {
     formato: "Формат", filtragem: "Система фильтрации", temperaturas: "Температуры",
@@ -511,6 +526,7 @@ const LABELS: Record<Lang, {
     termosModalTitulo: "Условия использования", termosIframe: "Условия использования",
     adicionadoCarrinho: "Добавлено в корзину!", totalLabel: "Итого",
     buscarPais: "Поиск страны...", cepNaoEncontrado: "Индекс не найден.", erroCep: "Ошибка при запросе индекса. Повторите попытку.",
+    zipDeliveryLabel: "Индекс доставки", zipBillingLabel: "Платёжный индекс",
   },
   ro: {
     formato: "Format", filtragem: "Sistem de Filtrare", temperaturas: "Temperaturi",
@@ -541,6 +557,7 @@ const LABELS: Record<Lang, {
     termosModalTitulo: "Termenii de Utilizare", termosIframe: "Termenii de Utilizare",
     adicionadoCarrinho: "Adaugat in cos!", totalLabel: "Total",
     buscarPais: "Cautare tara...", cepNaoEncontrado: "Codul postal nu a fost gasit.", erroCep: "Eroare la interogarea codului postal. Incercati din nou.",
+    zipDeliveryLabel: "Cod Postal Livrare", zipBillingLabel: "Cod Postal Facturare",
   },
   he: {
     formato: "פורמט", filtragem: "מערכת סינון", temperaturas: "טמפרטורות",
@@ -571,6 +588,7 @@ const LABELS: Record<Lang, {
     termosModalTitulo: "תנאי שימוש", termosIframe: "תנאי שימוש",
     adicionadoCarrinho: "נוסף לעגלה!", totalLabel: "סה\"כ",
     buscarPais: "חפש מדינה...", cepNaoEncontrado: "מיקוד לא נמצא.", erroCep: "שגיאה בשאילתת המיקוד. נסה שוב.",
+    zipDeliveryLabel: "מיקוד משלוח", zipBillingLabel: "מיקוד חיוב",
   },
 };
 
@@ -1280,7 +1298,18 @@ const PHONE_COUNTRIES: PhoneCountry[] = [
   { code: "ZW", name: "Zimbábue",                  dial: "+263",  flag: "🇿🇼", maxDigits: 9,  placeholder: "99 999 9999",    fmt: fmtGen },
 ];
 
-export default function CheckinProduct({ family }: Props) {
+const LANG_DEFAULT_COUNTRY: Record<Lang, string> = {
+  pt:      "BR", "pt-pt": "PT",
+  en:      "US", "en-gb": "GB",
+  es:      "ES", fr:      "FR",
+  de:      "DE", it:      "IT",
+  zh:      "CN", ja:      "JP",
+  ko:      "KR", sv:      "SE",
+  fi:      "FI", ru:      "RU",
+  ro:      "RO", he:      "IL",
+};
+
+export default function CheckinProduct({ family, showSlide = false }: Props) {
   const { addToCart, cart } = useCart();
   const scrollRef = useRef<HTMLDivElement>(null);
   const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
@@ -1292,6 +1321,11 @@ export default function CheckinProduct({ family }: Props) {
   const [filterOpen, setFilterOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("produto");
   const [hoverSection, setHoverSection] = useState<string | null>(null);
+  const [pricingVisible, setPricingVisible] = useState(false);
+  const pricingCardRef = useRef<HTMLDivElement>(null);
+  const paymentBlockRef = useRef<HTMLDivElement>(null);
+  const stripeRef = useRef<StripeFormHandle | null>(null);
+  const [stripeProcessing, setStripeProcessing] = useState(false);
 
   // Unified slide state — shared across Produto + Cores, never resets on variant/color change
   const [slideIdx, setSlideIdx] = useState(0);
@@ -1313,7 +1347,7 @@ export default function CheckinProduct({ family }: Props) {
 
 
   // Form state
-  const [fv, setFv] = useState<Record<string, string>>({ cep: "", nome: "", email: "", email2: "", tel: "" });
+  const [fv, setFv] = useState<Record<string, string>>({ cep: "", nome: "", email: "", email2: "", tel: "", zipDelivery: "", zipBilling: "" });
   const [ft, setFt] = useState<Record<string, boolean>>({});
   const [phoneCountryIdx, setPhoneCountryIdx] = useState(0);
   const [phoneDropOpen, setPhoneDropOpen] = useState(false);
@@ -1338,6 +1372,17 @@ export default function CheckinProduct({ family }: Props) {
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
   }, [phoneDropOpen]);
+
+  useEffect(() => {
+    const el = paymentBlockRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setPricingVisible(entry.isIntersecting),
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const setField = (key: string, value: string) => setFv(v => ({ ...v, [key]: value }));
   const touchField = (key: string) => setFt(t => ({ ...t, [key]: true }));
@@ -1395,6 +1440,14 @@ export default function CheckinProduct({ family }: Props) {
   const { lang } = useLang();
   const lb = LABELS[lang];
   const regionNames = new Intl.DisplayNames([LANG_TO_LOCALE[lang]], { type: "region" });
+
+  useEffect(() => {
+    const code = LANG_DEFAULT_COUNTRY[lang];
+    const idx = PHONE_COUNTRIES.findIndex(c => c.code === code);
+    if (idx >= 0) setPhoneCountryIdx(idx);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const activeVariant = family.variants[activeVariantIdx];
   // Active image set: variant's slides for selected color, fallback to single hero img
   const colorOptions = family.colors ?? ESSENTIALS_COLORS;
@@ -1453,7 +1506,7 @@ export default function CheckinProduct({ family }: Props) {
     <div className="flex flex-col md:flex-row w-full h-[calc(100vh-80px)] overflow-hidden">
 
       {/* ── LEFT: Sticky image ───────────────────────────────────────────── */}
-      <div className="shrink-0 h-[260px] md:h-auto md:flex-1 bg-[#f6f9fe] flex flex-col md:justify-center md:items-center overflow-hidden relative" onWheel={handleLeftWheel}>
+      <div className="shrink-0 h-[260px] md:h-auto md:flex-1 bg-[#f6f9fe] flex flex-col md:justify-center md:items-center overflow-hidden relative pb-[88px] md:pb-[88px]" onWheel={handleLeftWheel}>
 
         {/* ── FILTROS / GARANTIAS: filter banner (fills full outer container) ── */}
         <div className={`absolute inset-0 transition-opacity duration-500 z-10 ${displaySection === "filtros" || displaySection === "garantias" ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
@@ -1551,20 +1604,19 @@ export default function CheckinProduct({ family }: Props) {
                   className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-500 ${i === activeSceneIdx ? "opacity-100" : "opacity-0"}`}
                 />
               ))
+            ) : activeColorImages.length > 0 && showSlide ? (
+              activeColorImages.map((img, i) => (
+                <img key={i} src={img}
+                  alt={`${activeVariant.name} – ${colorOptions[activeColorIdx]?.name ?? ""} – ${i + 1}`}
+                  className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-700 ease-in-out ${i === slideIdx ? "opacity-100" : "opacity-0"}`}
+                />
+              ))
             ) : activeColorImages.length > 0 ? (
               <img src={activeVariant.img}
                 alt={activeVariant.name}
                 className="absolute inset-0 w-full h-full object-contain"
               />
             ) : (
-            /* BACKUP — slideshow completo, reativar quando imagens estiverem prontas
-              activeColorImages.map((img, i) => (
-                <img key={i} src={img}
-                  alt={`${activeVariant.name} – ${colorOptions[activeColorIdx]?.name ?? ""} – ${i + 1}`}
-                  className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-500 ${i === slideIdx ? "opacity-100" : "opacity-0"}`}
-                />
-              ))
-            */
               family.variants.map((v, i) => (
                 <img key={v.id} src={v.img} alt={v.name}
                   className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-500 ${i === activeVariantIdx ? "opacity-100" : "opacity-0"}`}
@@ -1576,8 +1628,7 @@ export default function CheckinProduct({ family }: Props) {
 
 
 
-          {/* BACKUP — setas do slide, reativar junto com o slideshow
-          {family.scenes.length === 0 && (activeColorImages.length > 0 ? slideCount > 1 : family.variants.length > 1) && (
+          {showSlide && family.scenes.length === 0 && (activeColorImages.length > 0 ? slideCount > 1 : family.variants.length > 1) && (
             <>
               <button aria-label={lb.imagemAnterior}
                 className={`absolute left-[12px] top-1/2 -translate-y-1/2 z-10 size-[38px] rounded-full bg-white/90 backdrop-blur-sm border border-[#e8ecf4] flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 ${(displaySection === "produto" || displaySection === "cores") && imageHovered ? "opacity-100" : "opacity-0 pointer-events-none"}`}
@@ -1593,7 +1644,6 @@ export default function CheckinProduct({ family }: Props) {
               </button>
             </>
           )}
-          */}
 
         </div>
       </div>
@@ -1602,7 +1652,7 @@ export default function CheckinProduct({ family }: Props) {
       <div className="flex-1 min-h-0 w-full md:flex-none md:w-[400px] xl:w-[440px] flex flex-col border-t md:border-t-0 md:border-l border-[#e8ecf4] bg-white">
 
         <div ref={scrollRef} onScroll={handleScroll} className="flex-1 overflow-y-auto">
-          <div className="px-[20px] md:px-[32px] pt-[36px] pb-[8px] flex flex-col gap-[28px]">
+          <div className="px-[20px] md:px-[32px] pt-[36px] pb-[100px] flex flex-col gap-[28px]">
 
             {/* ── Header ──────────────────────────────────────────────────── */}
             <div className="flex flex-col gap-[4px]">
@@ -1917,6 +1967,41 @@ export default function CheckinProduct({ family }: Props) {
                   </p>
                 )}
               </div>
+
+              {/* ── Pre-order pricing breakdown ───────────────────────────── */}
+              <div ref={pricingCardRef} className="flex flex-col gap-[4px]">
+                {/* Availability header */}
+                <p className="font-['Avenir_LT_Pro:95_Black'] text-[20px] leading-snug text-[#1f2e91]">
+                  Disponível em: ~10 semanas
+                </p>
+                {freteResult?.state === "ok" && (
+                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#6b7280]">
+                    Entrega {freteResult.city}, {freteResult.uf}, {fv.cep}
+                  </p>
+                )}
+                {/* Price details — always visible */}
+                <div className="mt-[8px] border border-[#e0e9ff] rounded-[12px] overflow-hidden">
+                  <div className="bg-white px-[16px] py-[16px] flex flex-col gap-[14px]">
+                    <div className="flex items-start justify-between gap-[12px]">
+                      <div className="flex flex-col gap-[3px]">
+                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91]">Valor estimado de compra</p>
+                        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af]">Incluso Valor do Produto e Taxa de Pedido</p>
+                      </div>
+                      <span className="font-['Avenir_LT_Pro:95_Black'] text-[18px] text-[#1f2e91] shrink-0">
+                        {formatPrice(activeVariant.price, lang)}
+                      </span>
+                    </div>
+                    <div className="h-px bg-[#f0f4ff]" />
+                    <div className="flex items-start justify-between gap-[12px]">
+                      <div className="flex flex-col gap-[3px]">
+                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91]">Taxa de Pedido</p>
+                        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af]">Taxa de pedido não reembolsável</p>
+                      </div>
+                      <span className="font-['Avenir_LT_Pro:95_Black'] text-[18px] text-[#1f2e91] shrink-0">{(lang === "pt" || lang === "pt-pt") ? formatBRL(125) : "US$ 25,00"}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <Sep />
@@ -2095,6 +2180,52 @@ export default function CheckinProduct({ family }: Props) {
               </div>
             </div>
 
+            <Sep />
+
+            {/* ── Payment ─────────────────────────────────────────────────── */}
+            <div ref={paymentBlockRef} className="flex flex-col gap-[16px]">
+              <SectionTitle>Pagamento</SectionTitle>
+              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af] -mt-[4px]">
+                A taxa de reserva de{" "}
+                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[#1f2e91]">{(lang === "pt" || lang === "pt-pt") ? formatBRL(125) : "US$ 25,00"}</span>{" "}
+                é cobrada agora para confirmar a sua encomenda e não é reembolsável.
+              </p>
+              <div className="flex gap-[12px]">
+                <div className="flex flex-col gap-[6px] flex-1">
+                  <label className="font-['Avenir_LT_Pro:85_Heavy'] text-[10px] text-[#aab2bc] uppercase tracking-[0.08em]">
+                    {lb.zipDeliveryLabel}
+                  </label>
+                  <input
+                    type="text"
+                    autoComplete="postal-code"
+                    placeholder="ZIP / Postal Code"
+                    value={fv.zipDelivery}
+                    onChange={(e) => setField("zipDelivery", e.target.value)}
+                    className="h-[44px] px-[14px] rounded-[10px] bg-[#f6f9fe] border border-[#e8ecf4] focus:border-[#0233c3] font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#1f2e91] placeholder:text-[#aab2bc] outline-none transition-colors"
+                  />
+                </div>
+                <div className="flex flex-col gap-[6px] flex-1">
+                  <label className="font-['Avenir_LT_Pro:85_Heavy'] text-[10px] text-[#aab2bc] uppercase tracking-[0.08em]">
+                    {lb.zipBillingLabel}
+                  </label>
+                  <input
+                    type="text"
+                    autoComplete="billing postal-code"
+                    placeholder="ZIP / Postal Code"
+                    value={fv.zipBilling}
+                    onChange={(e) => setField("zipBilling", e.target.value)}
+                    className="h-[44px] px-[14px] rounded-[10px] bg-[#f6f9fe] border border-[#e8ecf4] focus:border-[#0233c3] font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#1f2e91] placeholder:text-[#aab2bc] outline-none transition-colors"
+                  />
+                </div>
+              </div>
+              <StripePaymentForm
+                formRef={stripeRef}
+                processingLabel="Processando pagamento..."
+                locale={lang}
+                billingPostalCode={fv.zipBilling}
+              />
+            </div>
+
             <div className="h-[12px]" />
           </div>
         </div>
@@ -2227,33 +2358,62 @@ export default function CheckinProduct({ family }: Props) {
           </div>
         )}
 
-        {/* ── Sticky bottom bar ──────────────────────────────────────────── */}
-        <div className="flex-shrink-0 border-t border-[#e8ecf4] bg-white px-[24px] py-[16px] flex items-center gap-[12px]">
-          <div className="flex-1 flex flex-col gap-[2px] min-w-0">
-            <span
-              className="font-['Avenir_LT_Pro:95_Black'] text-[26px] leading-none"
-              style={{ background: accentGrad, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
-            >
-              {lang === "pt" && payTab === "financiar"
-                ? `${formatPrice(monthlyPrice(activeVariant.price), lang)}/mês`
-                : formatPrice(activeVariant.price, lang)}
-            </span>
-            <span className="font-['Avenir_LT_Pro:55_Roman'] text-[11px] text-[#9ca3af] truncate">
-              {payTab === "financiar" ? lb.semJuros : ""}{activeVariant.name}
-            </span>
-          </div>
+      </div>
+
+      {/* ── Full-width fixed sticky bar ──────────────────────────────────── */}
+      <div
+        className={`fixed bottom-0 left-0 right-0 z-40 border-t border-[#e8ecf4] bg-white flex items-stretch transition-transform duration-300 ${
+          pricingVisible ? "translate-y-full" : "translate-y-0"
+        }`}
+      >
+        {/* Left: fills the image panel area */}
+        <div className="flex-1 flex flex-col gap-[5px] min-w-0 justify-center px-[24px] md:px-[48px] py-[20px]">
+          <span
+            className="font-['Avenir_LT_Pro:95_Black'] text-[22px] leading-tight"
+            style={{ background: accentGrad, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
+          >
+            {activeVariant.name}
+          </span>
+          <span className="font-['Avenir_LT_Pro:55_Roman'] text-[11px] text-[#6b7280] leading-snug [overflow-wrap:anywhere]">
+            {[
+              colorOptions[activeColorIdx]?.name,
+              specs.filtragem.includes("UF") ? "Filtro UF" : "Osmose Reversa",
+              specs.gas ? lb.gasLabel : null,
+              specs.h2 ? lb.h2Label : null,
+              specs.painel !== "—" ? specs.painel : null,
+            ].filter(Boolean).join(" · ")}
+          </span>
+        </div>
+        {/* Right: same width as the sidebar panel */}
+        <div className="md:w-[400px] xl:w-[440px] shrink-0 px-[24px] py-[20px] flex items-center gap-[16px]">
+          <span
+            className="flex-1 font-['Avenir_LT_Pro:95_Black'] text-[20px] leading-none"
+            style={{ background: accentGrad, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
+          >
+            {formatPrice(activeVariant.price, lang)}
+          </span>
           <button
-            onClick={() => {
+            disabled={stripeProcessing}
+            onClick={async () => {
               if (!isFormValid) {
                 touchField("cep"); touchField("nome"); touchField("email"); touchField("email2"); touchField("tel");
                 return;
               }
-              addToCart(activeVariant.id, activeVariant.name, true);
-              setOrderConfirmOpen(true);
+              setStripeProcessing(true);
+              const isPt = lang === "pt" || lang === "pt-pt";
+              const result = await stripeRef.current?.confirmPayment(isPt ? 125 : 25, fv.email, isPt ? "brl" : "usd");
+              setStripeProcessing(false);
+              if (result?.success) {
+                addToCart(activeVariant.id, activeVariant.name, true);
+                setOrderConfirmOpen(true);
+              }
             }}
-            className="h-[48px] px-[28px] rounded-[14px] font-['Avenir_LT_Pro:85_Heavy'] text-[14px] text-white shrink-0 transition-opacity hover:opacity-90"
-            style={{ background: accentGrad, opacity: isFormValid ? 1 : 0.5 }}
+            className="h-[48px] px-[28px] rounded-[14px] font-['Avenir_LT_Pro:85_Heavy'] text-[14px] text-white shrink-0 transition-opacity hover:opacity-90 disabled:opacity-60 flex items-center gap-[8px]"
+            style={{ background: accentGrad, opacity: isFormValid && !stripeProcessing ? 1 : 0.5 }}
           >
+            {stripeProcessing && (
+              <span className="size-[14px] border-2 border-white border-t-transparent rounded-full animate-spin" />
+            )}
             {lb.encomendar}
           </button>
         </div>

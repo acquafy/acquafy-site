@@ -420,8 +420,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateQty, openCart }}>
       {children}
 
-      {/* ── BOTÃO FLUTUANTE CARRINHO ── */}
-      {(pastBanner || pathname.startsWith('/buy') || isWideScreen) && (
+      {/* ── BOTÃO FLUTUANTE CARRINHO (stand by) ── */}
+      {false && (pastBanner || pathname.startsWith('/buy') || isWideScreen) && (
         <button
           onClick={() => setShowCartPanel(true)}
           suppressHydrationWarning
