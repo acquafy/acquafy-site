@@ -93,6 +93,10 @@ const LABELS: Record<Lang, {
   adicionadoCarrinho: string; totalLabel: string;
   buscarPais: string; cepNaoEncontrado: string; erroCep: string;
   zipDeliveryLabel: string; zipBillingLabel: string;
+  disponivelEm: string; entregaPrefix: string;
+  valorEstimadoTitle: string; valorEstimadoDesc: string;
+  taxaPedidoTitle: string; taxaPedidoDesc: string;
+  pagamentoTitle: string; taxaReservaPrefix: string; taxaReservaSuffix: string;
 }> = {
   pt: {
     formato: "Formato", filtragem: "Sistema de Filtragem", temperaturas: "Temperaturas",
@@ -124,6 +128,10 @@ const LABELS: Record<Lang, {
     adicionadoCarrinho: "Adicionado ao carrinho!", totalLabel: "Total",
     buscarPais: "Buscar país...", cepNaoEncontrado: "CEP não encontrado.", erroCep: "Erro ao consultar CEP. Tente novamente.",
     zipDeliveryLabel: "ZIP Code de Entrega", zipBillingLabel: "ZIP Code de Cobrança",
+    disponivelEm: "Disponível em: ~10 semanas", entregaPrefix: "Entrega",
+    valorEstimadoTitle: "Valor estimado de compra", valorEstimadoDesc: "Incluso Valor do Produto e Taxa de Pedido",
+    taxaPedidoTitle: "Taxa de Pedido", taxaPedidoDesc: "Taxa de pedido não reembolsável",
+    pagamentoTitle: "Pagamento", taxaReservaPrefix: "A taxa de reserva de", taxaReservaSuffix: "é cobrada agora para confirmar a sua encomenda e não é reembolsável.",
   },
   "pt-pt": {
     formato: "Formato", filtragem: "Sistema de Filtragem", temperaturas: "Temperaturas",
@@ -155,6 +163,10 @@ const LABELS: Record<Lang, {
     adicionadoCarrinho: "Adicionado ao carrinho!", totalLabel: "Total",
     buscarPais: "Pesquisar país...", cepNaoEncontrado: "Código postal não encontrado.", erroCep: "Erro ao consultar o código postal. Tente novamente.",
     zipDeliveryLabel: "Código Postal de Entrega", zipBillingLabel: "Código Postal de Faturação",
+    disponivelEm: "Disponível em: ~10 semanas", entregaPrefix: "Entrega",
+    valorEstimadoTitle: "Valor estimado de compra", valorEstimadoDesc: "Incluso Valor do Produto e Taxa de Pedido",
+    taxaPedidoTitle: "Taxa de Pedido", taxaPedidoDesc: "Taxa de pedido não reembolsável",
+    pagamentoTitle: "Pagamento", taxaReservaPrefix: "A taxa de reserva de", taxaReservaSuffix: "é cobrada agora para confirmar a sua encomenda e não é reembolsável.",
   },
   en: {
     formato: "Format", filtragem: "Filtration System", temperaturas: "Temperatures",
@@ -186,6 +198,10 @@ const LABELS: Record<Lang, {
     adicionadoCarrinho: "Added to cart!", totalLabel: "Total",
     buscarPais: "Search country...", cepNaoEncontrado: "ZIP code not found.", erroCep: "Error looking up ZIP code. Please try again.",
     zipDeliveryLabel: "Delivery ZIP Code", zipBillingLabel: "Billing ZIP Code",
+    disponivelEm: "Available in: ~10 weeks", entregaPrefix: "Delivery",
+    valorEstimadoTitle: "Estimated purchase value", valorEstimadoDesc: "Includes Product Value and Order Fee",
+    taxaPedidoTitle: "Order Fee", taxaPedidoDesc: "Non-refundable order fee",
+    pagamentoTitle: "Payment", taxaReservaPrefix: "The reservation fee of", taxaReservaSuffix: "is charged now to confirm your order and is non-refundable.",
   },
   "en-gb": {
     formato: "Format", filtragem: "Filtration System", temperaturas: "Temperatures",
@@ -217,6 +233,10 @@ const LABELS: Record<Lang, {
     adicionadoCarrinho: "Added to basket!", totalLabel: "Total",
     buscarPais: "Search country...", cepNaoEncontrado: "Postcode not found.", erroCep: "Error looking up postcode. Please try again.",
     zipDeliveryLabel: "Delivery Postcode", zipBillingLabel: "Billing Postcode",
+    disponivelEm: "Available in: ~10 weeks", entregaPrefix: "Delivery",
+    valorEstimadoTitle: "Estimated purchase value", valorEstimadoDesc: "Includes Product Value and Order Fee",
+    taxaPedidoTitle: "Order Fee", taxaPedidoDesc: "Non-refundable order fee",
+    pagamentoTitle: "Payment", taxaReservaPrefix: "The reservation fee of", taxaReservaSuffix: "is charged now to confirm your order and is non-refundable.",
   },
   es: {
     formato: "Formato", filtragem: "Sistema de Filtración", temperaturas: "Temperaturas",
@@ -248,6 +268,10 @@ const LABELS: Record<Lang, {
     adicionadoCarrinho: "¡Añadido al carrito!", totalLabel: "Total",
     buscarPais: "Buscar país...", cepNaoEncontrado: "Código postal no encontrado.", erroCep: "Error al consultar el código postal. Inténtalo de nuevo.",
     zipDeliveryLabel: "Código Postal de Envío", zipBillingLabel: "Código Postal de Facturación",
+    disponivelEm: "Disponible en: ~10 semanas", entregaPrefix: "Entrega",
+    valorEstimadoTitle: "Valor estimado de compra", valorEstimadoDesc: "Incluye Valor del Producto y Tarifa de Pedido",
+    taxaPedidoTitle: "Tarifa de Pedido", taxaPedidoDesc: "Tarifa de pedido no reembolsable",
+    pagamentoTitle: "Pago", taxaReservaPrefix: "La tarifa de reserva de", taxaReservaSuffix: "se cobra ahora para confirmar tu pedido y no es reembolsable.",
   },
   fr: {
     formato: "Format", filtragem: "Système de Filtration", temperaturas: "Températures",
@@ -279,6 +303,10 @@ const LABELS: Record<Lang, {
     adicionadoCarrinho: "Ajouté au panier !", totalLabel: "Total",
     buscarPais: "Rechercher un pays...", cepNaoEncontrado: "Code postal introuvable.", erroCep: "Erreur lors de la consultation du code postal. Réessayez.",
     zipDeliveryLabel: "Code Postal de Livraison", zipBillingLabel: "Code Postal de Facturation",
+    disponivelEm: "Disponible en: ~10 semaines", entregaPrefix: "Livraison",
+    valorEstimadoTitle: "Valeur estimée d'achat", valorEstimadoDesc: "Inclut la valeur du produit et les frais de commande",
+    taxaPedidoTitle: "Frais de commande", taxaPedidoDesc: "Frais de commande non remboursables",
+    pagamentoTitle: "Paiement", taxaReservaPrefix: "Les frais de réservation de", taxaReservaSuffix: "sont prélevés maintenant pour confirmer votre commande et ne sont pas remboursables.",
   },
   de: {
     formato: "Format", filtragem: "Filtersystem", temperaturas: "Temperaturen",
@@ -310,6 +338,10 @@ const LABELS: Record<Lang, {
     adicionadoCarrinho: "Zum Warenkorb hinzugefügt!", totalLabel: "Gesamt",
     buscarPais: "Land suchen...", cepNaoEncontrado: "Postleitzahl nicht gefunden.", erroCep: "Fehler bei der Postleitzahlenabfrage. Bitte erneut versuchen.",
     zipDeliveryLabel: "Lieferungs-PLZ", zipBillingLabel: "Rechnungs-PLZ",
+    disponivelEm: "Verfügbar in: ~10 Wochen", entregaPrefix: "Lieferung",
+    valorEstimadoTitle: "Geschätzter Kaufpreis", valorEstimadoDesc: "Inkl. Produktwert und Bestellgebühr",
+    taxaPedidoTitle: "Bestellgebühr", taxaPedidoDesc: "Nicht erstattungsfähige Bestellgebühr",
+    pagamentoTitle: "Zahlung", taxaReservaPrefix: "Die Reservierungsgebühr von", taxaReservaSuffix: "wird jetzt zur Bestätigung Ihrer Bestellung berechnet und ist nicht erstattungsfähig.",
   },
   it: {
     formato: "Formato", filtragem: "Sistema di Filtrazione", temperaturas: "Temperature",
@@ -341,6 +373,10 @@ const LABELS: Record<Lang, {
     adicionadoCarrinho: "Aggiunto al carrello!", totalLabel: "Totale",
     buscarPais: "Cerca paese...", cepNaoEncontrado: "CAP non trovato.", erroCep: "Errore durante la ricerca del CAP. Riprova.",
     zipDeliveryLabel: "CAP di Consegna", zipBillingLabel: "CAP di Fatturazione",
+    disponivelEm: "Disponibile in: ~10 settimane", entregaPrefix: "Consegna",
+    valorEstimadoTitle: "Valore stimato d'acquisto", valorEstimadoDesc: "Include valore prodotto e commissione d'ordine",
+    taxaPedidoTitle: "Commissione d'ordine", taxaPedidoDesc: "Commissione d'ordine non rimborsabile",
+    pagamentoTitle: "Pagamento", taxaReservaPrefix: "La commissione di prenotazione di", taxaReservaSuffix: "viene addebitata ora per confermare il tuo ordine e non è rimborsabile.",
   },
   zh: {
     formato: "形式", filtragem: "过滤系统", temperaturas: "温度",
@@ -372,6 +408,10 @@ const LABELS: Record<Lang, {
     adicionadoCarrinho: "已加入购物车！", totalLabel: "合计",
     buscarPais: "搜索国家...", cepNaoEncontrado: "未找到邮政编码。", erroCep: "查询邮政编码出错，请重试。",
     zipDeliveryLabel: "收货邮政编码", zipBillingLabel: "账单邮政编码",
+    disponivelEm: "预计：~10周", entregaPrefix: "配送",
+    valorEstimadoTitle: "预估购买金额", valorEstimadoDesc: "包含产品价格及订单费用",
+    taxaPedidoTitle: "订单费用", taxaPedidoDesc: "不可退款的订单费用",
+    pagamentoTitle: "付款", taxaReservaPrefix: "预约费", taxaReservaSuffix: "现在收取以确认您的订单，不可退款。",
   },
   ja: {
     formato: "形式", filtragem: "浄水システム", temperaturas: "温度",
@@ -403,6 +443,10 @@ const LABELS: Record<Lang, {
     adicionadoCarrinho: "カートに追加しました！", totalLabel: "合計",
     buscarPais: "国を検索...", cepNaoEncontrado: "郵便番号が見つかりません。", erroCep: "郵便番号の照会中にエラーが発生しました。もう一度お試しください。",
     zipDeliveryLabel: "配送先郵便番号", zipBillingLabel: "請求先郵便番号",
+    disponivelEm: "お届けまで：約10週間", entregaPrefix: "配送",
+    valorEstimadoTitle: "購入予定金額", valorEstimadoDesc: "商品代金と注文手数料を含む",
+    taxaPedidoTitle: "注文手数料", taxaPedidoDesc: "返金不可の注文手数料",
+    pagamentoTitle: "お支払い", taxaReservaPrefix: "予約手数料", taxaReservaSuffix: "はご注文確認のために今すぐ請求され、返金不可です。",
   },
   ko: {
     formato: "형식", filtragem: "정수 시스템", temperaturas: "온도",
@@ -434,6 +478,10 @@ const LABELS: Record<Lang, {
     adicionadoCarrinho: "장바구니에 추가되었습니다!", totalLabel: "합계",
     buscarPais: "국가 검색...", cepNaoEncontrado: "우편번호를 찾을 수 없습니다.", erroCep: "우편번호 조회 중 오류가 발생했습니다. 다시 시도해 주세요.",
     zipDeliveryLabel: "배송 우편번호", zipBillingLabel: "청구 우편번호",
+    disponivelEm: "배송 예정: ~10주", entregaPrefix: "배송",
+    valorEstimadoTitle: "예상 구매 금액", valorEstimadoDesc: "제품 금액 및 주문 수수료 포함",
+    taxaPedidoTitle: "주문 수수료", taxaPedidoDesc: "환불 불가 주문 수수료",
+    pagamentoTitle: "결제", taxaReservaPrefix: "예약 수수료", taxaReservaSuffix: "는 지금 주문 확인을 위해 청구되며 환불되지 않습니다.",
   },
   sv: {
     formato: "Format", filtragem: "Filtreringssystem", temperaturas: "Temperaturer",
@@ -465,6 +513,10 @@ const LABELS: Record<Lang, {
     adicionadoCarrinho: "Tillagd i varukorgen!", totalLabel: "Totalt",
     buscarPais: "Sök land...", cepNaoEncontrado: "Postnummer hittades inte.", erroCep: "Fel vid postnummersökning. Försök igen.",
     zipDeliveryLabel: "Leveranspostnummer", zipBillingLabel: "Faktureringspostnummer",
+    disponivelEm: "Tillgänglig om: ~10 veckor", entregaPrefix: "Leverans",
+    valorEstimadoTitle: "Uppskattat inköpsvärde", valorEstimadoDesc: "Inkluderar produktvärde och orderavgift",
+    taxaPedidoTitle: "Orderavgift", taxaPedidoDesc: "Icke-återbetalningsbar orderavgift",
+    pagamentoTitle: "Betalning", taxaReservaPrefix: "Reservationsavgiften på", taxaReservaSuffix: "debiteras nu för att bekräfta din beställning och är inte återbetalningsbar.",
   },
   fi: {
     formato: "Muoto", filtragem: "Suodatusjärjestelmä", temperaturas: "Lämpötilat",
@@ -496,6 +548,10 @@ const LABELS: Record<Lang, {
     adicionadoCarrinho: "Lisätty ostoskoriin!", totalLabel: "Yhteensä",
     buscarPais: "Etsi maata...", cepNaoEncontrado: "Postinumeroa ei löydy.", erroCep: "Virhe postinumeron haussa. Yritä uudelleen.",
     zipDeliveryLabel: "Toimituspostinumero", zipBillingLabel: "Laskutuspostinumero",
+    disponivelEm: "Saatavilla: ~10 viikossa", entregaPrefix: "Toimitus",
+    valorEstimadoTitle: "Arvioitu ostosumma", valorEstimadoDesc: "Sisältää tuotteen hinnan ja tilausmaksun",
+    taxaPedidoTitle: "Tilausmaksu", taxaPedidoDesc: "Palautuskelvoton tilausmaksu",
+    pagamentoTitle: "Maksu", taxaReservaPrefix: "Varausmaksu", taxaReservaSuffix: "peritään nyt tilauksen vahvistamiseksi, eikä sitä palauteta.",
   },
   ru: {
     formato: "Формат", filtragem: "Система фильтрации", temperaturas: "Температуры",
@@ -527,6 +583,10 @@ const LABELS: Record<Lang, {
     adicionadoCarrinho: "Добавлено в корзину!", totalLabel: "Итого",
     buscarPais: "Поиск страны...", cepNaoEncontrado: "Индекс не найден.", erroCep: "Ошибка при запросе индекса. Повторите попытку.",
     zipDeliveryLabel: "Индекс доставки", zipBillingLabel: "Платёжный индекс",
+    disponivelEm: "Доступно через: ~10 недель", entregaPrefix: "Доставка",
+    valorEstimadoTitle: "Ориентировочная стоимость", valorEstimadoDesc: "Включает стоимость товара и сбор за заказ",
+    taxaPedidoTitle: "Сбор за заказ", taxaPedidoDesc: "Невозвратный сбор за заказ",
+    pagamentoTitle: "Оплата", taxaReservaPrefix: "Резервационный сбор в размере", taxaReservaSuffix: "взимается сейчас для подтверждения заказа и не возвращается.",
   },
   ro: {
     formato: "Format", filtragem: "Sistem de Filtrare", temperaturas: "Temperaturi",
@@ -558,6 +618,10 @@ const LABELS: Record<Lang, {
     adicionadoCarrinho: "Adaugat in cos!", totalLabel: "Total",
     buscarPais: "Cautare tara...", cepNaoEncontrado: "Codul postal nu a fost gasit.", erroCep: "Eroare la interogarea codului postal. Incercati din nou.",
     zipDeliveryLabel: "Cod Postal Livrare", zipBillingLabel: "Cod Postal Facturare",
+    disponivelEm: "Disponibil în: ~10 săptămâni", entregaPrefix: "Livrare",
+    valorEstimadoTitle: "Valoare estimată de cumpărare", valorEstimadoDesc: "Include valoarea produsului și taxa de comandă",
+    taxaPedidoTitle: "Taxă de comandă", taxaPedidoDesc: "Taxă de comandă nerambursabilă",
+    pagamentoTitle: "Plată", taxaReservaPrefix: "Taxa de rezervare de", taxaReservaSuffix: "este percepută acum pentru a confirma comanda și nu este rambursabilă.",
   },
   he: {
     formato: "פורמט", filtragem: "מערכת סינון", temperaturas: "טמפרטורות",
@@ -589,6 +653,10 @@ const LABELS: Record<Lang, {
     adicionadoCarrinho: "נוסף לעגלה!", totalLabel: "סה\"כ",
     buscarPais: "חפש מדינה...", cepNaoEncontrado: "מיקוד לא נמצא.", erroCep: "שגיאה בשאילתת המיקוד. נסה שוב.",
     zipDeliveryLabel: "מיקוד משלוח", zipBillingLabel: "מיקוד חיוב",
+    disponivelEm: "זמין בעוד: ~10 שבועות", entregaPrefix: "משלוח",
+    valorEstimadoTitle: "ערך רכישה משוער", valorEstimadoDesc: "כולל ערך המוצר ודמי הזמנה",
+    taxaPedidoTitle: "עמלת הזמנה", taxaPedidoDesc: "עמלת הזמנה שאינה ניתנת להחזר",
+    pagamentoTitle: "תשלום", taxaReservaPrefix: "דמי ההזמנה של", taxaReservaSuffix: "נגבים כעת לאישור הזמנתך ואינם ניתנים להחזר.",
   },
 };
 
@@ -2012,11 +2080,11 @@ export default function CheckinProduct({ family, showSlide = false }: Props) {
               <div ref={pricingCardRef} className="flex flex-col gap-[4px]">
                 {/* Availability header */}
                 <p className="font-['Avenir_LT_Pro:95_Black'] text-[20px] leading-snug text-[#1f2e91]">
-                  Disponível em: ~10 semanas
+                  {lb.disponivelEm}
                 </p>
                 {freteResult?.state === "ok" && (
                   <p className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#6b7280]">
-                    Entrega {freteResult.city}, {freteResult.uf}, {fv.cep}
+                    {lb.entregaPrefix} {freteResult.city}, {freteResult.uf}, {fv.cep}
                   </p>
                 )}
                 {/* Price details — always visible */}
@@ -2024,8 +2092,8 @@ export default function CheckinProduct({ family, showSlide = false }: Props) {
                   <div className="bg-white px-[16px] py-[16px] flex flex-col gap-[14px]">
                     <div className="flex items-start justify-between gap-[12px]">
                       <div className="flex flex-col gap-[3px]">
-                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91]">Valor estimado de compra</p>
-                        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af]">Incluso Valor do Produto e Taxa de Pedido</p>
+                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91]">{lb.valorEstimadoTitle}</p>
+                        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af]">{lb.valorEstimadoDesc}</p>
                       </div>
                       <span className="font-['Avenir_LT_Pro:95_Black'] text-[18px] text-[#1f2e91] shrink-0">
                         {formatPrice(activeVariant.price, lang)}
@@ -2034,8 +2102,8 @@ export default function CheckinProduct({ family, showSlide = false }: Props) {
                     <div className="h-px bg-[#f0f4ff]" />
                     <div className="flex items-start justify-between gap-[12px]">
                       <div className="flex flex-col gap-[3px]">
-                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91]">Taxa de Pedido</p>
-                        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af]">Taxa de pedido não reembolsável</p>
+                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91]">{lb.taxaPedidoTitle}</p>
+                        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af]">{lb.taxaPedidoDesc}</p>
                       </div>
                       <span className="font-['Avenir_LT_Pro:95_Black'] text-[18px] text-[#1f2e91] shrink-0">{(lang === "pt" || lang === "pt-pt") ? formatBRL(125) : "US$ 25,00"}</span>
                     </div>
@@ -2224,11 +2292,11 @@ export default function CheckinProduct({ family, showSlide = false }: Props) {
 
             {/* ── Payment ─────────────────────────────────────────────────── */}
             <div ref={paymentBlockRef} className="flex flex-col gap-[16px]">
-              <SectionTitle>Pagamento</SectionTitle>
+              <SectionTitle>{lb.pagamentoTitle}</SectionTitle>
               <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af] -mt-[4px]">
-                A taxa de reserva de{" "}
+                {lb.taxaReservaPrefix}{" "}
                 <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[#1f2e91]">{(lang === "pt" || lang === "pt-pt") ? formatBRL(125) : "US$ 25,00"}</span>{" "}
-                é cobrada agora para confirmar a sua encomenda e não é reembolsável.
+                {lb.taxaReservaSuffix}
               </p>
               <div className="flex gap-[12px]">
                 <div className="flex flex-col gap-[6px] flex-1">
