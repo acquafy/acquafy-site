@@ -2,26 +2,25 @@
 
 import Link from "next/link";
 import { CHECKIN_FAMILIES, type CheckinFamily, type CheckinVariant } from "@/lib/checkin-products";
-import { useCart } from "./CartProvider";
 import { useLang } from "@/context/LanguageContext";
 
-const T: Record<import("@/context/LanguageContext").Lang, { h1: string; sub: string; verMais: string; adicionarCarrinho: string }> = {
-  pt:    { h1: "Escolha o seu purificador",       sub: "Selecione o modelo ideal para a sua necessidade",       verMais: "Ver mais",        adicionarCarrinho: "Adicionar ao carrinho" },
-  "pt-pt": { h1: "Escolha o seu purificador",     sub: "Selecione o modelo ideal para as suas necessidades",    verMais: "Ver mais",        adicionarCarrinho: "Adicionar ao carrinho" },
-  en:    { h1: "Choose your purifier",             sub: "Select the ideal model for your needs",                verMais: "Learn more",      adicionarCarrinho: "Add to cart" },
-  "en-gb": { h1: "Choose your purifier",           sub: "Select the ideal model for your needs",                verMais: "Learn more",      adicionarCarrinho: "Add to basket" },
-  es:    { h1: "Elige tu purificador",             sub: "Selecciona el modelo ideal para tus necesidades",      verMais: "Ver más",         adicionarCarrinho: "Añadir al carrito" },
-  fr:    { h1: "Choisissez votre purificateur",    sub: "Sélectionnez le modèle idéal pour vos besoins",        verMais: "En savoir plus",  adicionarCarrinho: "Ajouter au panier" },
-  de:    { h1: "Wählen Sie Ihren Purifier",        sub: "Wählen Sie das ideale Modell für Ihre Bedürfnisse",    verMais: "Mehr erfahren",   adicionarCarrinho: "In den Warenkorb" },
-  it:    { h1: "Scegli il tuo purificatore",       sub: "Seleziona il modello ideale per le tue esigenze",      verMais: "Scopri di più",   adicionarCarrinho: "Aggiungi al carrello" },
-  zh:    { h1: "选择您的净水器",       sub: "选择最适合您需求的型号",                verMais: "了解更多",       adicionarCarrinho: "加入购物车" },
-  ja:    { h1: "浄水器を選んでください",   sub: "ニーズに最適なモデルをお選びください",    verMais: "詳細を見る",     adicionarCarrinho: "カートに追加" },
-  ko:    { h1: "정수기를 선택하세요",   sub: "필요에 맞는 이상적인 모델을 선택하세요",    verMais: "자세히 보기",    adicionarCarrinho: "장바구니에 추가" },
-  sv:    { h1: "Välj din renare",                  sub: "Välj den ideala modellen för dina behov",              verMais: "Läs mer",         adicionarCarrinho: "Lägg i varukorg" },
-  fi:    { h1: "Valitse puhdistimesi",             sub: "Valitse tarpeisiisi sopiva malli",                     verMais: "Lue lisää",       adicionarCarrinho: "Lisää ostoskoriin" },
-  ru:    { h1: "Выберите ваш очиститель",     sub: "Выберите идеальную модель для ваших нужд",    verMais: "Подробнее",      adicionarCarrinho: "Добавить в корзину" },
-  ro:    { h1: "Alege purificatorul tau",          sub: "Selecteaza modelul ideal pentru nevoile tale",         verMais: "Afla mai mult",   adicionarCarrinho: "Adauga in cos" },
-  he:    { h1: "בחר את המטהר שלך",     sub: "בחר את הדגם המתאים לצרכיך",    verMais: "למד עוד",      adicionarCarrinho: "הוסף לסל" },
+const T: Record<import("@/context/LanguageContext").Lang, { h1: string; sub: string; comprarAgora: string }> = {
+  pt:      { h1: "Escolha o seu purificador",       sub: "Selecione o modelo ideal para a sua necessidade",       comprarAgora: "Comprar agora" },
+  "pt-pt": { h1: "Escolha o seu purificador",       sub: "Selecione o modelo ideal para as suas necessidades",    comprarAgora: "Comprar agora" },
+  en:      { h1: "Choose your purifier",             sub: "Select the ideal model for your needs",                comprarAgora: "Buy now" },
+  "en-gb": { h1: "Choose your purifier",             sub: "Select the ideal model for your needs",                comprarAgora: "Buy now" },
+  es:      { h1: "Elige tu purificador",             sub: "Selecciona el modelo ideal para tus necesidades",      comprarAgora: "Comprar ahora" },
+  fr:      { h1: "Choisissez votre purificateur",    sub: "Sélectionnez le modèle idéal pour vos besoins",        comprarAgora: "Acheter maintenant" },
+  de:      { h1: "Wählen Sie Ihren Purifier",        sub: "Wählen Sie das ideale Modell für Ihre Bedürfnisse",    comprarAgora: "Jetzt kaufen" },
+  it:      { h1: "Scegli il tuo purificatore",       sub: "Seleziona il modello ideale per le tue esigenze",      comprarAgora: "Acquista ora" },
+  zh:      { h1: "选择您的净水器",                    sub: "选择最适合您需求的型号",                                comprarAgora: "立即购买" },
+  ja:      { h1: "浄水器を選んでください",             sub: "ニーズに最適なモデルをお選びください",                  comprarAgora: "今すぐ購入" },
+  ko:      { h1: "정수기를 선택하세요",               sub: "필요에 맞는 이상적인 모델을 선택하세요",                comprarAgora: "지금 구매" },
+  sv:      { h1: "Välj din renare",                  sub: "Välj den ideala modellen för dina behov",              comprarAgora: "Köp nu" },
+  fi:      { h1: "Valitse puhdistimesi",             sub: "Valitse tarpeisiisi sopiva malli",                     comprarAgora: "Osta nyt" },
+  ru:      { h1: "Выберите ваш очиститель",          sub: "Выберите идеальную модель для ваших нужд",             comprarAgora: "Купить сейчас" },
+  ro:      { h1: "Alege purificatorul tau",          sub: "Selecteaza modelul ideal pentru nevoile tale",         comprarAgora: "Cumpara acum" },
+  he:      { h1: "בחר את המטהר שלך",                sub: "בחר את הדגם המתאים לצרכיך",                           comprarAgora: "קנה עכשיו" },
 };
 
 function getFamily(slug: string): CheckinFamily {
@@ -32,12 +31,10 @@ const BLUE_GRAD   = "linear-gradient(90deg, #0233c3, #0569ff)";
 const PURPLE_GRAD = "linear-gradient(90deg, #0233c3, #9f3df5)";
 
 function ProductCard({ variant, family }: { variant: CheckinVariant; family: CheckinFamily }) {
-  const { addToCart } = useCart();
   const { lang } = useLang();
   const t = T[lang];
-  const grad         = family.isPremium ? PURPLE_GRAD : BLUE_GRAD;
-  const nameColor    = family.isPremium ? "#6e0cc3" : "#0233c3";
-  const outlineColor = family.isPremium ? "#6e0cc3" : "#0233c3";
+  const grad      = family.isPremium ? PURPLE_GRAD : BLUE_GRAD;
+  const nameColor = family.isPremium ? "#6e0cc3" : "#0233c3";
 
   return (
     <div className="bg-white flex flex-[1_0_0] flex-col gap-[10px] items-center min-h-[360px] min-w-[160px] overflow-hidden p-[20px] rounded-[12px]">
@@ -54,21 +51,14 @@ function ProductCard({ variant, family }: { variant: CheckinVariant; family: Che
       >
         {variant.name}
       </p>
-      <div className="mt-auto flex flex-col gap-[8px] w-full shrink-0">
+      <div className="mt-auto w-full shrink-0">
         <Link
           href={`/buy/checkin-${family.slug}`}
           className="flex items-center justify-center min-h-[40px] px-[10px] py-[8px] rounded-[8px] w-full font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white hover:opacity-90 active:opacity-80 transition-opacity"
           style={{ backgroundImage: grad }}
         >
-          {t.verMais}
+          {t.comprarAgora}
         </Link>
-        <button
-          onClick={() => addToCart(variant.id, variant.name)}
-          className="flex items-center justify-center min-h-[40px] px-[10px] py-[8px] rounded-[8px] w-full font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] bg-white border hover:opacity-80 active:opacity-60 transition-opacity"
-          style={{ borderColor: outlineColor, color: outlineColor }}
-        >
-          {t.adicionarCarrinho}
-        </button>
       </div>
     </div>
   );
