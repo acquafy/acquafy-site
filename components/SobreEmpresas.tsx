@@ -4,7 +4,7 @@ import { useLang, type Lang } from "@/context/LanguageContext";
 // ── Brand logo assets ─────────────────────────────────────────────────────────
 const imgInterfyLogo     = "/figma-assets/logo-interfy.svg";
 const imgEcofy           = "/figma-assets/logo-ecofy.svg";
-const imgInterfyShopping = "/figma-assets/logo-interfy-shopping.svg";
+const imgInjectra        = "/figma-assets/logo-injectra.svg";
 const imgInnovecar       = "/figma-assets/logo-innovecar.webp";
 const imgNeoai           = "/figma-assets/product-neoai.webp";
 const imgProcessdoc      = "/figma-assets/icon-processdoc.svg";
@@ -18,7 +18,7 @@ const imgDocsystem       = "/figma-assets/icon-docsystem.svg";
 const brands = [
   { src: imgInterfyLogo,     alt: "Interfy",          aw: 160,      ah: 40.193  },
   { src: imgEcofy,           alt: "Ecofy",             aw: 208.80,   ah: 54.581  },
-  { src: imgInterfyShopping, alt: "Interfy Shopping",  aw: 215.542,  ah: 51.362  },
+  { src: imgInjectra,        alt: "Injectra",           aw: 16238.1,  ah: 4492.77 },
   { src: imgInnovecar,       alt: "Innovecar",         aw: 3040,     ah: 834     },
   { src: imgNeoai,           alt: "NeoAI",             aw: 180,      ah: 62.586  },
   { src: imgProcessdoc,      alt: "Processdoc",        aw: 219.673,  ah: 54.188  },
