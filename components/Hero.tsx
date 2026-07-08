@@ -8,7 +8,7 @@ import { useLang, type Lang } from "@/context/LanguageContext";
 const imgBg1    = "/figma-assets/bg-slide-1.webp";
 const imgBg2    = "/figma-assets/bg-slide-2-xl.webp";
 // Images
-const imgMockup  = "/figma-assets/mockup-tablet-phone.webp";
+const imgMockup  = "/figma-assets/image-banner-home.webp";
 const imgFrame36 = "/figma-assets/frame-36-mobile-product.webp";
 // Slide 1 feature icons
 const imgPlanetWeb = "/figma-assets/icon-planetweb-30px-b.svg";
@@ -796,7 +796,7 @@ export default function Hero() {
               onKeyDown={(e) => e.key === "Enter" && setSlide(1)}
             >
               <div className="relative w-full" style={{ aspectRatio: "3160/2300" }}>
-                <img src={imgMockup} alt="Acquafy Platform Mockup" className="absolute inset-0 w-full h-full object-cover" />
+                <img src={imgMockup} alt="Acquafy Platform Mockup" className="absolute inset-0 w-full h-full object-contain" />
               </div>
             </div>
 
@@ -979,7 +979,7 @@ export default function Hero() {
           {slide === 0 && (
             <div className="flex flex-1 items-end justify-end min-w-px">
               <div className="relative w-full" style={{ aspectRatio: "3160/2300" }}>
-                <img src={imgMockup} alt="Acquafy Platform Mockup" className="absolute inset-0 w-full h-full object-cover" />
+                <img src={imgMockup} alt="Acquafy Platform Mockup" className="absolute inset-0 w-full h-full object-contain" />
               </div>
             </div>
           )}

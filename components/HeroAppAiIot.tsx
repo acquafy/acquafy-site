@@ -3,8 +3,8 @@ import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
 // ── Assets ────────────────────────────────────────────────────────────────────
-const imgBg     = "/figma-assets/bg-i.webp";
-const imgMockup = "/figma-assets/mockup-a.webp";
+const imgBg     = "/figma-assets/banner-app-ai-iot.webp";
+const imgMockup = "/figma-assets/banner-app-ai-iot-menor.webp";
 const imgMobile = "/figma-assets/icon-mobile-20px.svg";
 const imgBrain  = "/figma-assets/icon-brain-d.svg";
 const imgIoT    = "/figma-assets/icon-iot-main.svg";
