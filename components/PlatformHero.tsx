@@ -2,8 +2,8 @@
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
-const imgBg     = "/figma-assets/platform-hero-bg.webp";
-const imgMockup = "/figma-assets/platform-hero-mockup.webp";
+const imgBg     = "/figma-assets/banner-app-ai-iot.webp";
+const imgMockup = "/figma-assets/banner-app-ai-iot-menor.webp";
 
 const imgChat   = "/figma-assets/icon-chat-b.svg";
 
