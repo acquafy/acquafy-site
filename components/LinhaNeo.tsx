@@ -33,6 +33,7 @@ type Product = {
   sub: string;
   tank?: string;
   slug: string;
+  id: string;
 };
 
 const T: Record<Lang, {
@@ -906,7 +907,7 @@ function ProductCard({ product }: { product: Product }) {
         {product.name}
       </p>
       <a
-        href={`/buy/checkin-${product.slug}`}
+        href={`/buy/checkin-${product.slug}?modelo=${product.id}`}
         className="flex items-center justify-center min-h-[40px] px-[10px] py-[8px] rounded-[8px] w-full shrink-0 font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white hover:opacity-90 active:opacity-80 transition-opacity no-underline"
         style={{ backgroundImage: "linear-gradient(90deg, #0233c3, #0569ff)" }}
       >
@@ -922,20 +923,20 @@ export default function LinhaNeo() {
 
 
   const row1: Product[] = [
-    { img: imgNeoUp,    imgW: 3275, imgH: 4096, name: "Neo UP",                                        sub: t.subNatural,               slug: "neo-up" },
-    { img: imgNeoFit,   imgW: 3275, imgH: 4096, name: "Neo FIT",                                       sub: t.sub6, tank: t.tank400,    slug: "neo-essentials" },
-    { img: imgNeoTouch, imgW: 3384, imgH: 4096, name: "Neo TOUCH",                                     sub: t.sub6, tank: t.tank800,    slug: "neo-essentials" },
-    { img: imgNeoPlus,  imgW: 3384, imgH: 4096, name: "Neo PLUS",                                      sub: t.sub6, tank: t.tank1500,   slug: "neo-essentials" },
-    { img: imgNeoSmart, imgW: 3275, imgH: 4096, name: <span>Neo SMART H<sub>2</sub></span>,            sub: t.sub7, tank: t.tank800,    slug: "neo-essentials" },
+    { img: imgNeoUp,    imgW: 3275, imgH: 4096, name: "Neo UP",                                        sub: t.subNatural,               slug: "neo-up",         id: "neo-up" },
+    { img: imgNeoFit,   imgW: 3275, imgH: 4096, name: "Neo FIT",                                       sub: t.sub6, tank: t.tank400,    slug: "neo-essentials", id: "neo-fit" },
+    { img: imgNeoTouch, imgW: 3384, imgH: 4096, name: "Neo TOUCH",                                     sub: t.sub6, tank: t.tank800,    slug: "neo-essentials", id: "neo-touch" },
+    { img: imgNeoPlus,  imgW: 3384, imgH: 4096, name: "Neo PLUS",                                      sub: t.sub6, tank: t.tank1500,   slug: "neo-essentials", id: "neo-plus" },
+    { img: imgNeoSmart, imgW: 3275, imgH: 4096, name: <span>Neo SMART H<sub>2</sub></span>,            sub: t.sub7, tank: t.tank800,    slug: "neo-essentials", id: "neo-smart-h2" },
   ];
 
   const row2: Product[] = [
-    { img: imgNeoUltra,        imgW: 3772, imgH: 4096, name: "Neo ULTRA",                              sub: t.sub6, tank: t.tank3l, slug: "neo-ultra" },
-    { img: imgNeoUltraSpark,   imgW: 3772, imgH: 4096, name: <><span>Neo ULTRA</span><span>SPARK</span></>,              sub: t.sub7, tank: t.tank3l, slug: "neo-ultra" },
-    { img: imgNeoUltraSparkH2, imgW: 3772, imgH: 4096, name: <><span>Neo ULTRA</span><span>SPARK H<sub>2</sub></span></>, sub: t.sub8, tank: t.tank3l, slug: "neo-ultra" },
-    { img: imgNeoMax,          imgW: 1515, imgH: 4012, name: "Neo MAX",                                                   sub: t.sub6, tank: t.tank3l, slug: "neo-max" },
-    { img: imgNeoMaxSpark,     imgW: 1515, imgH: 4012, name: <><span>Neo MAX</span><span>SPARK</span></>,                 sub: t.sub7, tank: t.tank3l, slug: "neo-max" },
-    { img: imgNeoMaxSparkH2,   imgW: 1515, imgH: 4012, name: <><span>Neo MAX</span><span>SPARK H<sub>2</sub></span></>,  sub: t.sub8, tank: t.tank3l, slug: "neo-max" },
+    { img: imgNeoUltra,        imgW: 3772, imgH: 4096, name: "Neo ULTRA",                              sub: t.sub6, tank: t.tank3l, slug: "neo-ultra", id: "neo-ultra" },
+    { img: imgNeoUltraSpark,   imgW: 3772, imgH: 4096, name: <><span>Neo ULTRA</span><span>SPARK</span></>,              sub: t.sub7, tank: t.tank3l, slug: "neo-ultra", id: "neo-ultra-spark" },
+    { img: imgNeoUltraSparkH2, imgW: 3772, imgH: 4096, name: <><span>Neo ULTRA</span><span>SPARK H<sub>2</sub></span></>, sub: t.sub8, tank: t.tank3l, slug: "neo-ultra", id: "neo-ultra-spark-h2" },
+    { img: imgNeoMax,          imgW: 1515, imgH: 4012, name: "Neo MAX",                                                   sub: t.sub6, tank: t.tank3l, slug: "neo-max", id: "neo-max" },
+    { img: imgNeoMaxSpark,     imgW: 1515, imgH: 4012, name: <><span>Neo MAX</span><span>SPARK</span></>,                 sub: t.sub7, tank: t.tank3l, slug: "neo-max", id: "neo-max-spark" },
+    { img: imgNeoMaxSparkH2,   imgW: 1515, imgH: 4012, name: <><span>Neo MAX</span><span>SPARK H<sub>2</sub></span></>,  sub: t.sub8, tank: t.tank3l, slug: "neo-max", id: "neo-max-spark-h2" },
   ];
 
   return (

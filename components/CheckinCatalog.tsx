@@ -53,7 +53,7 @@ function ProductCard({ variant, family }: { variant: CheckinVariant; family: Che
       </p>
       <div className="mt-auto w-full shrink-0">
         <Link
-          href={`/buy/checkin-${family.slug}`}
+          href={`/buy/checkin-${family.slug}?modelo=${variant.id}`}
           className="flex items-center justify-center min-h-[40px] px-[10px] py-[8px] rounded-[8px] w-full font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white hover:opacity-90 active:opacity-80 transition-opacity"
           style={{ backgroundImage: grad }}
         >

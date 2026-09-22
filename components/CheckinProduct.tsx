@@ -13,34 +13,74 @@ type Props = { family: CheckinFamily; showSlide?: boolean };
 
 /* ── Spec data per variant ─────────────────────────────────────────────────── */
 type VSpec = {
-  formato: string; funcoes: string; temperaturas: string;
+  formato: string;
+  dimMoldura: [number, number] | null; // [altura, largura] cm
+  dimAltura: number; // cm
+  dimAlturaBaseCopo: number | null; // cm
+  dimLargura: number; // cm
+  dimProfundidade: number; // cm
+  funcoes: string; temperaturas: string;
   gas: boolean; h2: boolean;
   painel: string; app: boolean; iot: boolean; wifi: boolean; uv: boolean;
   filtragem: string; tanque: string; material: string;
 };
 
+// ─── Formatação de cm por idioma (vírgula decimal para a maioria; ponto para en/zh/ja/ko/he) ──
+const CM_COMMA_LOCALES = new Set<Lang>(["pt", "pt-pt", "es", "fr", "de", "it", "sv", "fi", "ru", "ro"]);
+function localizeNum(n: number, lang: Lang): string {
+  const s = String(n);
+  return CM_COMMA_LOCALES.has(lang) ? s.replace(".", ",") : s;
+}
+function fmtCm(cm: number, lang: Lang): string {
+  return `${localizeNum(cm, lang)}cm`;
+}
+function fmtCm2(pair: [number, number], lang: Lang): string {
+  return `${localizeNum(pair[0], lang)} × ${localizeNum(pair[1], lang)}cm`;
+}
+
+// ─── Dimensões — exibidas em linhas próprias na ficha técnica (Altura/Largura/Profundidade) ──
+// Medidas completas de fabricação (pés e base), mantidas aqui apenas como referência
+// para o caso de precisarmos exibi-las futuramente — não usadas na UI hoje:
+//   Pequenos (Up & Fit):       Altura 435mm + 8mm (pés) · Largura 294mm · Profundidade 230,4mm
+//   Médios (Smart/Plus/Touch): Altura 435mm + 8mm (pés) · Largura 294mm · Profundidade 297,4mm
+//   Ultra:                     Altura 435mm + 8mm (pés) · Largura 294mm · Profundidade 500mm
+//   Max:                       Altura 1184mm + 8mm (pés) · Altura da base do copo 777,6mm · Largura 294mm · Profundidade 500mm
+//   Acquafy Media:             Altura 2113,8mm + 22mm (base) · Largura 644mm · Profundidade 306mm · Profundidade da base 470mm
+//   Infinity:                  Altura 600mm + 8mm (pés) · Largura 280mm · Profundidade 368mm
+//   Prestige:                  Moldura 480×550mm (A×L) · Base 430mm + 8mm (pés) · Largura 500mm · Profundidade 380mm
+//   Prime:                     Altura 430mm + 8mm (pés) · Largura 500mm · Profundidade 380mm
+type DimFields = Pick<VSpec, "dimMoldura" | "dimAltura" | "dimAlturaBaseCopo" | "dimLargura" | "dimProfundidade">;
+const DIMS_PEQUENOS: DimFields = { dimMoldura: null, dimAltura: 43.5,  dimAlturaBaseCopo: null,  dimLargura: 29.4, dimProfundidade: 23.04 };
+const DIMS_MEDIOS:   DimFields = { dimMoldura: null, dimAltura: 43.5,  dimAlturaBaseCopo: null,  dimLargura: 29.4, dimProfundidade: 29.74 };
+const DIMS_ULTRA:    DimFields = { dimMoldura: null, dimAltura: 43.5,  dimAlturaBaseCopo: null,  dimLargura: 29.4, dimProfundidade: 50 };
+const DIMS_MAX:       DimFields = { dimMoldura: null, dimAltura: 118.4, dimAlturaBaseCopo: 77.76, dimLargura: 29.4, dimProfundidade: 50 };
+const DIMS_MEDIA:     DimFields = { dimMoldura: null, dimAltura: 211.38, dimAlturaBaseCopo: null, dimLargura: 64.4, dimProfundidade: 30.6 };
+const DIMS_INFINITY:  DimFields = { dimMoldura: null, dimAltura: 60,   dimAlturaBaseCopo: null,  dimLargura: 28,   dimProfundidade: 36.8 };
+const DIMS_PRESTIGE:  DimFields = { dimMoldura: [48, 55], dimAltura: 43, dimAlturaBaseCopo: null, dimLargura: 50,  dimProfundidade: 38 };
+const DIMS_PRIME:     DimFields = { dimMoldura: null, dimAltura: 43,   dimAlturaBaseCopo: null,  dimLargura: 50,   dimProfundidade: 38 };
+
 const SPECS: Record<string, VSpec> = {
-  "neo-up":                { formato: "Bancada ou Parede", funcoes: "—",      temperaturas: "Natural",                  gas: false, h2: false, painel: "—",                  app: false, iot: false, wifi: false, uv: false, filtragem: "4 Filtros UF de Alta Performance", tanque: "—",      material: "Acabamento premium" },
-  "neo-fit":               { formato: "Bancada ou Parede", funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"",    app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros UF de Alta Performance", tanque: "400ml",  material: "Acabamento premium" },
-  "neo-smart-h2":          { formato: "Bancada",           funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: true,  painel: "LED Touch 10.1\"",    app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros RO / Osmose Reversa",   tanque: "800ml",  material: "Acabamento premium" },
-  "neo-touch":             { formato: "Bancada",           funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"",    app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros UF de Alta Performance", tanque: "800ml",  material: "Acabamento premium" },
-  "neo-plus":              { formato: "Bancada",           funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"",    app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros UF de Alta Performance", tanque: "1500ml", material: "Acabamento premium" },
-  "neo-ultra":             { formato: "Bancada",           funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"",    app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros UF de Alta Performance", tanque: "3000ml", material: "Acabamento premium" },
-  "neo-ultra-spark":       { formato: "Bancada",           funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: true,  h2: false, painel: "LED Touch 10.1\"",    app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros UF de Alta Performance", tanque: "3000ml", material: "Acabamento premium" },
-  "neo-ultra-spark-h2":    { formato: "Bancada",           funcoes: "8 em 1", temperaturas: "Natural, Gelada e Quente", gas: true,  h2: true,  painel: "LED Touch 10.1\"",    app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros RO / Osmose Reversa",   tanque: "3000ml", material: "Acabamento premium" },
-  "neo-max":               { formato: "Coluna",            funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"",    app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros UF de Alta Performance", tanque: "3000ml", material: "Acabamento premium" },
-  "neo-max-spark":         { formato: "Coluna",            funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: true,  h2: false, painel: "LED Touch 10.1\"",    app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros UF de Alta Performance", tanque: "3000ml", material: "Acabamento premium" },
-  "neo-max-spark-h2":      { formato: "Coluna",            funcoes: "8 em 1", temperaturas: "Natural, Gelada e Quente", gas: true,  h2: true,  painel: "LED Touch 10.1\"",    app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros RO / Osmose Reversa",   tanque: "3000ml", material: "Acabamento premium" },
-  "neo-infinity":          { formato: "Bancada",           funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LCD IPS Touch 15.6\"", app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros RO / Osmose Reversa",   tanque: "3000ml", material: "Aço inox" },
-  "neo-infinity-spark":    { formato: "Bancada",           funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: true,  h2: false, painel: "LCD IPS Touch 15.6\"", app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros RO / Osmose Reversa",   tanque: "3000ml", material: "Aço inox" },
-  "neo-infinity-spark-h2": { formato: "Bancada",           funcoes: "8 em 1", temperaturas: "Natural, Gelada e Quente", gas: true,  h2: true,  painel: "LCD IPS Touch 15.6\"", app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros RO / Osmose Reversa",   tanque: "3000ml", material: "Aço inox" },
-  "neo-prestige":          { formato: "Embutido",          funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LCD IPS Touch 15.6\"", app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros RO / Osmose Reversa",   tanque: "3000ml", material: "Aço inox" },
-  "neo-prestige-spark":    { formato: "Embutido",          funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: true,  h2: false, painel: "LCD IPS Touch 15.6\"", app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros RO / Osmose Reversa",   tanque: "3000ml", material: "Aço inox" },
-  "neo-prestige-spark-h2": { formato: "Embutido",          funcoes: "8 em 1", temperaturas: "Natural, Gelada e Quente", gas: true,  h2: true,  painel: "LCD IPS Touch 15.6\"", app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros RO / Osmose Reversa",   tanque: "3000ml", material: "Aço inox" },
-  "neo-prime":             { formato: "Bancada",           funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LCD IPS Touch 15.6\"", app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros RO / Osmose Reversa",   tanque: "3000ml", material: "Aço inox" },
-  "neo-prime-spark":       { formato: "Bancada",           funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: true,  h2: false, painel: "LCD IPS Touch 15.6\"", app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros RO / Osmose Reversa",   tanque: "3000ml", material: "Aço inox" },
-  "neo-prime-spark-h2":    { formato: "Bancada",           funcoes: "8 em 1", temperaturas: "Natural, Gelada e Quente", gas: true,  h2: true,  painel: "LCD IPS Touch 15.6\"", app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros RO / Osmose Reversa",   tanque: "3000ml", material: "Aço inox" },
-  "acquafy-media":          { formato: "Totem Digital",     funcoes: "—",      temperaturas: "Natural e Gelada",          gas: false, h2: false, painel: "Samsung Business 43\" 24/7", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "5.000ml", material: "Aço inox" },
+  "neo-up":                { formato: "Bancada ou Parede", ...DIMS_PEQUENOS, funcoes: "—",      temperaturas: "Natural",                  gas: false, h2: false, painel: "—",                  app: false, iot: false, wifi: false, uv: false, filtragem: "4 Filtros UF de Alta Performance", tanque: "—",      material: "Acabamento premium" },
+  "neo-fit":               { formato: "Bancada ou Parede", ...DIMS_PEQUENOS, funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"",    app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros UF de Alta Performance", tanque: "400ml",  material: "Acabamento premium" },
+  "neo-smart-h2":          { formato: "Bancada",           ...DIMS_MEDIOS,   funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: true,  painel: "LED Touch 10.1\"",    app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros RO / Osmose Reversa",   tanque: "800ml",  material: "Acabamento premium" },
+  "neo-touch":             { formato: "Bancada",           ...DIMS_MEDIOS,   funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"",    app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros UF de Alta Performance", tanque: "800ml",  material: "Acabamento premium" },
+  "neo-plus":              { formato: "Bancada",           ...DIMS_MEDIOS,   funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"",    app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros UF de Alta Performance", tanque: "1500ml", material: "Acabamento premium" },
+  "neo-ultra":             { formato: "Bancada",           ...DIMS_ULTRA,    funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"",    app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros UF de Alta Performance", tanque: "3000ml", material: "Acabamento premium" },
+  "neo-ultra-spark":       { formato: "Bancada",           ...DIMS_ULTRA,    funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: true,  h2: false, painel: "LED Touch 10.1\"",    app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros UF de Alta Performance", tanque: "3000ml", material: "Acabamento premium" },
+  "neo-ultra-spark-h2":    { formato: "Bancada",           ...DIMS_ULTRA,    funcoes: "8 em 1", temperaturas: "Natural, Gelada e Quente", gas: true,  h2: true,  painel: "LED Touch 10.1\"",    app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros RO / Osmose Reversa",   tanque: "3000ml", material: "Acabamento premium" },
+  "neo-max":               { formato: "Coluna",            ...DIMS_MAX,      funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"",    app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros UF de Alta Performance", tanque: "3000ml", material: "Acabamento premium" },
+  "neo-max-spark":         { formato: "Coluna",            ...DIMS_MAX,      funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: true,  h2: false, painel: "LED Touch 10.1\"",    app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros UF de Alta Performance", tanque: "3000ml", material: "Acabamento premium" },
+  "neo-max-spark-h2":      { formato: "Coluna",            ...DIMS_MAX,      funcoes: "8 em 1", temperaturas: "Natural, Gelada e Quente", gas: true,  h2: true,  painel: "LED Touch 10.1\"",    app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros RO / Osmose Reversa",   tanque: "3000ml", material: "Acabamento premium" },
+  "neo-infinity":          { formato: "Bancada",           ...DIMS_INFINITY, funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LCD IPS Touch 15.6\"", app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros RO / Osmose Reversa",   tanque: "3000ml", material: "Aço inox" },
+  "neo-infinity-spark":    { formato: "Bancada",           ...DIMS_INFINITY, funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: true,  h2: false, painel: "LCD IPS Touch 15.6\"", app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros RO / Osmose Reversa",   tanque: "3000ml", material: "Aço inox" },
+  "neo-infinity-spark-h2": { formato: "Bancada",           ...DIMS_INFINITY, funcoes: "8 em 1", temperaturas: "Natural, Gelada e Quente", gas: true,  h2: true,  painel: "LCD IPS Touch 15.6\"", app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros RO / Osmose Reversa",   tanque: "3000ml", material: "Aço inox" },
+  "neo-prestige":          { formato: "Embutido",          ...DIMS_PRESTIGE, funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LCD IPS Touch 15.6\"", app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros RO / Osmose Reversa",   tanque: "3000ml", material: "Aço inox" },
+  "neo-prestige-spark":    { formato: "Embutido",          ...DIMS_PRESTIGE, funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: true,  h2: false, painel: "LCD IPS Touch 15.6\"", app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros RO / Osmose Reversa",   tanque: "3000ml", material: "Aço inox" },
+  "neo-prestige-spark-h2": { formato: "Embutido",          ...DIMS_PRESTIGE, funcoes: "8 em 1", temperaturas: "Natural, Gelada e Quente", gas: true,  h2: true,  painel: "LCD IPS Touch 15.6\"", app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros RO / Osmose Reversa",   tanque: "3000ml", material: "Aço inox" },
+  "neo-prime":             { formato: "Bancada",           ...DIMS_PRIME,    funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LCD IPS Touch 15.6\"", app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros RO / Osmose Reversa",   tanque: "3000ml", material: "Aço inox" },
+  "neo-prime-spark":       { formato: "Bancada",           ...DIMS_PRIME,    funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: true,  h2: false, painel: "LCD IPS Touch 15.6\"", app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros RO / Osmose Reversa",   tanque: "3000ml", material: "Aço inox" },
+  "neo-prime-spark-h2":    { formato: "Bancada",           ...DIMS_PRIME,    funcoes: "8 em 1", temperaturas: "Natural, Gelada e Quente", gas: true,  h2: true,  painel: "LCD IPS Touch 15.6\"", app: true,  iot: true,  wifi: true,  uv: true,  filtragem: "4 Filtros RO / Osmose Reversa",   tanque: "3000ml", material: "Aço inox" },
+  "acquafy-media":          { formato: "Totem Digital",     ...DIMS_MEDIA,    funcoes: "—",      temperaturas: "Natural e Gelada",          gas: false, h2: false, painel: "Samsung Business 43\" 24/7", app: true, iot: true, wifi: true, uv: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "5.000ml", material: "Aço inox" },
 };
 
 const SPEC_VALUES: Record<string, Record<Lang, string>> = {
@@ -69,7 +109,7 @@ function translateSpecValue(val: string, lang: Lang): string {
 }
 
 const LABELS: Record<Lang, {
-  formato: string; filtragem: string; temperaturas: string; gasLabel: string; h2Label: string;
+  formato: string; dimMoldura: string; dimAltura: string; dimAlturaBaseCopo: string; dimLargura: string; dimProfundidade: string; filtragem: string; temperaturas: string; gasLabel: string; h2Label: string;
   painel: string; app: string; aiIot: string; wifi: string; tanque: string; material: string; computador: string;
   fichaTecnica: string; demaisFuncionalidades: string; ocultarFuncionalidades: string;
   garantias: string; detalhesContaTitle: string;
@@ -99,7 +139,7 @@ const LABELS: Record<Lang, {
   pagamentoTitle: string; taxaReservaPrefix: string; taxaReservaSuffix: string;
 }> = {
   pt: {
-    formato: "Formato", filtragem: "Sistema de Filtragem", temperaturas: "Temperaturas",
+    formato: "Formato", dimMoldura: "Moldura (A×L)", dimAltura: "Altura", dimAlturaBaseCopo: "Altura da base do copo", dimLargura: "Largura", dimProfundidade: "Profundidade", filtragem: "Sistema de Filtragem", temperaturas: "Temperaturas",
     gasLabel: "Água com Gás", h2Label: "Água Hidrogenada",
     painel: "Painel", app: "App", aiIot: "AI + IoT", wifi: "Wi-Fi + Bluetooth 5.3",
     tanque: "Tanque", material: "Material", computador: "Computador",
@@ -134,7 +174,7 @@ const LABELS: Record<Lang, {
     pagamentoTitle: "Pagamento", taxaReservaPrefix: "A taxa de reserva de", taxaReservaSuffix: "é cobrada agora para confirmar a sua encomenda e não é reembolsável.",
   },
   "pt-pt": {
-    formato: "Formato", filtragem: "Sistema de Filtragem", temperaturas: "Temperaturas",
+    formato: "Formato", dimMoldura: "Moldura (A×L)", dimAltura: "Altura", dimAlturaBaseCopo: "Altura da base do copo", dimLargura: "Largura", dimProfundidade: "Profundidade", filtragem: "Sistema de Filtragem", temperaturas: "Temperaturas",
     gasLabel: "Água com Gás", h2Label: "Água Hidrogenada",
     painel: "Painel", app: "App", aiIot: "AI + IoT", wifi: "Wi-Fi + Bluetooth 5.3",
     tanque: "Tanque", material: "Material", computador: "Computador",
@@ -169,7 +209,7 @@ const LABELS: Record<Lang, {
     pagamentoTitle: "Pagamento", taxaReservaPrefix: "A taxa de reserva de", taxaReservaSuffix: "é cobrada agora para confirmar a sua encomenda e não é reembolsável.",
   },
   en: {
-    formato: "Format", filtragem: "Filtration System", temperaturas: "Temperatures",
+    formato: "Format", dimMoldura: "Frame (H×W)", dimAltura: "Height", dimAlturaBaseCopo: "Cup base height", dimLargura: "Width", dimProfundidade: "Depth", filtragem: "Filtration System", temperaturas: "Temperatures",
     gasLabel: "Sparkling Water", h2Label: "Hydrogen Water",
     painel: "Panel", app: "App", aiIot: "AI + IoT", wifi: "Wi-Fi + Bluetooth 5.3",
     tanque: "Tank", material: "Material", computador: "Computer",
@@ -204,7 +244,7 @@ const LABELS: Record<Lang, {
     pagamentoTitle: "Payment", taxaReservaPrefix: "The reservation fee of", taxaReservaSuffix: "is charged now to confirm your order and is non-refundable.",
   },
   "en-gb": {
-    formato: "Format", filtragem: "Filtration System", temperaturas: "Temperatures",
+    formato: "Format", dimMoldura: "Frame (H×W)", dimAltura: "Height", dimAlturaBaseCopo: "Cup base height", dimLargura: "Width", dimProfundidade: "Depth", filtragem: "Filtration System", temperaturas: "Temperatures",
     gasLabel: "Sparkling Water", h2Label: "Hydrogen Water",
     painel: "Panel", app: "App", aiIot: "AI + IoT", wifi: "Wi-Fi + Bluetooth 5.3",
     tanque: "Tank", material: "Material", computador: "Computer",
@@ -239,7 +279,7 @@ const LABELS: Record<Lang, {
     pagamentoTitle: "Payment", taxaReservaPrefix: "The reservation fee of", taxaReservaSuffix: "is charged now to confirm your order and is non-refundable.",
   },
   es: {
-    formato: "Formato", filtragem: "Sistema de Filtración", temperaturas: "Temperaturas",
+    formato: "Formato", dimMoldura: "Marco (A×An)", dimAltura: "Altura", dimAlturaBaseCopo: "Altura de la base del vaso", dimLargura: "Ancho", dimProfundidade: "Profundidad", filtragem: "Sistema de Filtración", temperaturas: "Temperaturas",
     gasLabel: "Agua con Gas", h2Label: "Agua Hidrogenada",
     painel: "Panel", app: "App", aiIot: "AI + IoT", wifi: "Wi-Fi + Bluetooth 5.3",
     tanque: "Depósito", material: "Material", computador: "Ordenador",
@@ -274,7 +314,7 @@ const LABELS: Record<Lang, {
     pagamentoTitle: "Pago", taxaReservaPrefix: "La tarifa de reserva de", taxaReservaSuffix: "se cobra ahora para confirmar tu pedido y no es reembolsable.",
   },
   fr: {
-    formato: "Format", filtragem: "Système de Filtration", temperaturas: "Températures",
+    formato: "Format", dimMoldura: "Cadre (H×L)", dimAltura: "Hauteur", dimAlturaBaseCopo: "Hauteur de la base du verre", dimLargura: "Largeur", dimProfundidade: "Profondeur", filtragem: "Système de Filtration", temperaturas: "Températures",
     gasLabel: "Eau Pétillante", h2Label: "Eau Hydrogénée",
     painel: "Panneau", app: "App", aiIot: "AI + IoT", wifi: "Wi-Fi + Bluetooth 5.3",
     tanque: "Réservoir", material: "Matériau", computador: "Ordinateur",
@@ -309,7 +349,7 @@ const LABELS: Record<Lang, {
     pagamentoTitle: "Paiement", taxaReservaPrefix: "Les frais de réservation de", taxaReservaSuffix: "sont prélevés maintenant pour confirmer votre commande et ne sont pas remboursables.",
   },
   de: {
-    formato: "Format", filtragem: "Filtersystem", temperaturas: "Temperaturen",
+    formato: "Format", dimMoldura: "Rahmen (H×B)", dimAltura: "Höhe", dimAlturaBaseCopo: "Höhe des Becherständers", dimLargura: "Breite", dimProfundidade: "Tiefe", filtragem: "Filtersystem", temperaturas: "Temperaturen",
     gasLabel: "Sprudelwasser", h2Label: "Wasserstoffwasser",
     painel: "Bedienfeld", app: "App", aiIot: "AI + IoT", wifi: "Wi-Fi + Bluetooth 5.3",
     tanque: "Tank", material: "Material", computador: "Computer",
@@ -344,7 +384,7 @@ const LABELS: Record<Lang, {
     pagamentoTitle: "Zahlung", taxaReservaPrefix: "Die Reservierungsgebühr von", taxaReservaSuffix: "wird jetzt zur Bestätigung Ihrer Bestellung berechnet und ist nicht erstattungsfähig.",
   },
   it: {
-    formato: "Formato", filtragem: "Sistema di Filtrazione", temperaturas: "Temperature",
+    formato: "Formato", dimMoldura: "Cornice (A×L)", dimAltura: "Altezza", dimAlturaBaseCopo: "Altezza base bicchiere", dimLargura: "Larghezza", dimProfundidade: "Profondità", filtragem: "Sistema di Filtrazione", temperaturas: "Temperature",
     gasLabel: "Acqua Frizzante", h2Label: "Acqua all'Idrogeno",
     painel: "Pannello", app: "App", aiIot: "AI + IoT", wifi: "Wi-Fi + Bluetooth 5.3",
     tanque: "Serbatoio", material: "Materiale", computador: "Computer",
@@ -379,7 +419,7 @@ const LABELS: Record<Lang, {
     pagamentoTitle: "Pagamento", taxaReservaPrefix: "La commissione di prenotazione di", taxaReservaSuffix: "viene addebitata ora per confermare il tuo ordine e non è rimborsabile.",
   },
   zh: {
-    formato: "形式", filtragem: "过滤系统", temperaturas: "温度",
+    formato: "形式", dimMoldura: "边框（高×宽）", dimAltura: "高度", dimAlturaBaseCopo: "杯座高度", dimLargura: "宽度", dimProfundidade: "深度", filtragem: "过滤系统", temperaturas: "温度",
     gasLabel: "气泡水", h2Label: "富氢水",
     painel: "面板", app: "应用", aiIot: "AI + IoT", wifi: "Wi-Fi + Bluetooth 5.3",
     tanque: "水箱", material: "材质", computador: "电脑",
@@ -414,7 +454,7 @@ const LABELS: Record<Lang, {
     pagamentoTitle: "付款", taxaReservaPrefix: "预约费", taxaReservaSuffix: "现在收取以确认您的订单，不可退款。",
   },
   ja: {
-    formato: "形式", filtragem: "浄水システム", temperaturas: "温度",
+    formato: "形式", dimMoldura: "フレーム（高さ×幅）", dimAltura: "高さ", dimAlturaBaseCopo: "カップベースの高さ", dimLargura: "幅", dimProfundidade: "奥行き", filtragem: "浄水システム", temperaturas: "温度",
     gasLabel: "炭酸水", h2Label: "水素水",
     painel: "パネル", app: "アプリ", aiIot: "AI + IoT", wifi: "Wi-Fi + Bluetooth 5.3",
     tanque: "タンク", material: "素材", computador: "コンピューター",
@@ -449,7 +489,7 @@ const LABELS: Record<Lang, {
     pagamentoTitle: "お支払い", taxaReservaPrefix: "予約手数料", taxaReservaSuffix: "はご注文確認のために今すぐ請求され、返金不可です。",
   },
   ko: {
-    formato: "형식", filtragem: "정수 시스템", temperaturas: "온도",
+    formato: "형식", dimMoldura: "프레임 (높이×너비)", dimAltura: "높이", dimAlturaBaseCopo: "컵 받침대 높이", dimLargura: "너비", dimProfundidade: "깊이", filtragem: "정수 시스템", temperaturas: "온도",
     gasLabel: "탄산수", h2Label: "수소수",
     painel: "패널", app: "앱", aiIot: "AI + IoT", wifi: "Wi-Fi + Bluetooth 5.3",
     tanque: "탱크", material: "소재", computador: "컴퓨터",
@@ -484,7 +524,7 @@ const LABELS: Record<Lang, {
     pagamentoTitle: "결제", taxaReservaPrefix: "예약 수수료", taxaReservaSuffix: "는 지금 주문 확인을 위해 청구되며 환불되지 않습니다.",
   },
   sv: {
-    formato: "Format", filtragem: "Filtreringssystem", temperaturas: "Temperaturer",
+    formato: "Format", dimMoldura: "Ram (H×B)", dimAltura: "Höjd", dimAlturaBaseCopo: "Kopphöjd", dimLargura: "Bredd", dimProfundidade: "Djup", filtragem: "Filtreringssystem", temperaturas: "Temperaturer",
     gasLabel: "Kolsyrat Vatten", h2Label: "Vätgasvatten",
     painel: "Panel", app: "App", aiIot: "AI + IoT", wifi: "Wi-Fi + Bluetooth 5.3",
     tanque: "Tank", material: "Material", computador: "Dator",
@@ -519,7 +559,7 @@ const LABELS: Record<Lang, {
     pagamentoTitle: "Betalning", taxaReservaPrefix: "Reservationsavgiften på", taxaReservaSuffix: "debiteras nu för att bekräfta din beställning och är inte återbetalningsbar.",
   },
   fi: {
-    formato: "Muoto", filtragem: "Suodatusjärjestelmä", temperaturas: "Lämpötilat",
+    formato: "Muoto", dimMoldura: "Kehys (K×L)", dimAltura: "Korkeus", dimAlturaBaseCopo: "Kuppialustan korkeus", dimLargura: "Leveys", dimProfundidade: "Syvyys", filtragem: "Suodatusjärjestelmä", temperaturas: "Lämpötilat",
     gasLabel: "Hiilihapotettu Vesi", h2Label: "Vetyvesi",
     painel: "Paneeli", app: "Sovellus", aiIot: "AI + IoT", wifi: "Wi-Fi + Bluetooth 5.3",
     tanque: "Säiliö", material: "Materiaali", computador: "Tietokone",
@@ -554,7 +594,7 @@ const LABELS: Record<Lang, {
     pagamentoTitle: "Maksu", taxaReservaPrefix: "Varausmaksu", taxaReservaSuffix: "peritään nyt tilauksen vahvistamiseksi, eikä sitä palauteta.",
   },
   ru: {
-    formato: "Формат", filtragem: "Система фильтрации", temperaturas: "Температуры",
+    formato: "Формат", dimMoldura: "Рамка (В×Ш)", dimAltura: "Высота", dimAlturaBaseCopo: "Высота подставки для стакана", dimLargura: "Ширина", dimProfundidade: "Глубина", filtragem: "Система фильтрации", temperaturas: "Температуры",
     gasLabel: "Газированная вода", h2Label: "Водородная вода",
     painel: "Панель", app: "Приложение", aiIot: "AI + IoT", wifi: "Wi-Fi + Bluetooth 5.3",
     tanque: "Бак", material: "Материал", computador: "Компьютер",
@@ -589,7 +629,7 @@ const LABELS: Record<Lang, {
     pagamentoTitle: "Оплата", taxaReservaPrefix: "Резервационный сбор в размере", taxaReservaSuffix: "взимается сейчас для подтверждения заказа и не возвращается.",
   },
   ro: {
-    formato: "Format", filtragem: "Sistem de Filtrare", temperaturas: "Temperaturi",
+    formato: "Format", dimMoldura: "Rama (I×L)", dimAltura: "Inaltime", dimAlturaBaseCopo: "Inaltimea bazei paharului", dimLargura: "Latime", dimProfundidade: "Adancime", filtragem: "Sistem de Filtrare", temperaturas: "Temperaturi",
     gasLabel: "Apa Carbogazoasa", h2Label: "Apa cu Hidrogen",
     painel: "Panou", app: "Aplicatie", aiIot: "AI + IoT", wifi: "Wi-Fi + Bluetooth 5.3",
     tanque: "Rezervor", material: "Material", computador: "Calculator",
@@ -624,7 +664,7 @@ const LABELS: Record<Lang, {
     pagamentoTitle: "Plată", taxaReservaPrefix: "Taxa de rezervare de", taxaReservaSuffix: "este percepută acum pentru a confirma comanda și nu este rambursabilă.",
   },
   he: {
-    formato: "פורמט", filtragem: "מערכת סינון", temperaturas: "טמפרטורות",
+    formato: "פורמט", dimMoldura: "מסגרת (גובה×רוחב)", dimAltura: "גובה", dimAlturaBaseCopo: "גובה בסיס הכוס", dimLargura: "רוחב", dimProfundidade: "עומק", filtragem: "מערכת סינון", temperaturas: "טמפרטורות",
     gasLabel: "מים מוגזים", h2Label: "מים עם מימן",
     painel: "לוח", app: "אפליקציה", aiIot: "AI + IoT", wifi: "Wi-Fi + Bluetooth 5.3",
     tanque: "מיכל", material: "חומר", computador: "מחשב",
@@ -1096,7 +1136,7 @@ function SpecRow({ label, value, isBool, isPremium }: { label: string; value: st
         ) : value === "—" ? (
           <BoolCell value={false} />
         ) : (
-          <span className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#374151]">{value as string}</span>
+          <span className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#374151] whitespace-pre-line">{value as string}</span>
         )}
       </div>
     </div>
@@ -1422,6 +1462,13 @@ export default function CheckinProduct({ family, showSlide = false }: Props) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const [activeVariantIdx, setActiveVariantIdx] = useState(0);
+  // Honor ?modelo=<variant-id> so links from the catalog/compare pages open on the clicked variant, not always the first one.
+  useEffect(() => {
+    const modelo = new URLSearchParams(window.location.search).get("modelo");
+    if (!modelo) return;
+    const idx = family.variants.findIndex((v) => v.id === modelo);
+    if (idx >= 0) setActiveVariantIdx(idx);
+  }, [family]);
   const [activeColorIdx, setActiveColorIdx] = useState(0);
   const [activeSceneIdx, setActiveSceneIdx] = useState(0);
   const [payTab, setPayTab] = useState<"dinheiro" | "financiar">("dinheiro");
@@ -1844,8 +1891,13 @@ export default function CheckinProduct({ family, showSlide = false }: Props) {
                   {lb.fichaTecnica}
                 </p>
               </div>
-              {/* Always visible — 5 rows */}
+              {/* Always visible — 8 rows */}
               <SpecRow label={lb.formato}    value={translateSpecValue(specs.formato, lang)}      isPremium={family.isPremium} />
+              <SpecRow label={lb.dimAltura}       value={specs.dimAlturaBaseCopo !== null
+                ? `${fmtCm(specs.dimAltura, lang)}\n${lb.dimAlturaBaseCopo}: ${fmtCm(specs.dimAlturaBaseCopo, lang)}`
+                : fmtCm(specs.dimAltura, lang)}       isPremium={family.isPremium} />
+              <SpecRow label={lb.dimLargura}      value={fmtCm(specs.dimLargura, lang)}      isPremium={family.isPremium} />
+              <SpecRow label={lb.dimProfundidade} value={fmtCm(specs.dimProfundidade, lang)} isPremium={family.isPremium} />
               <SpecRow label={lb.filtragem}  value={translateSpecValue(specs.filtragem, lang)} isPremium={family.isPremium} />
               <SpecRow label={lb.temperaturas} value={translateSpecValue(specs.temperaturas, lang)} isPremium={family.isPremium} />
               <SpecRow label={lb.gasLabel}   value={specs.gas}   isBool isPremium={family.isPremium} />
@@ -1853,6 +1905,9 @@ export default function CheckinProduct({ family, showSlide = false }: Props) {
               {/* Collapsible rows */}
               {fichaTecnicaOpen && (
                 <>
+                  {specs.dimMoldura !== null && (
+                    <SpecRow label={lb.dimMoldura} value={fmtCm2(specs.dimMoldura, lang)} isPremium={family.isPremium} />
+                  )}
                   <SpecRow label={lb.painel}   value={specs.painel}    isPremium={family.isPremium} />
                   <SpecRow label={lb.app}      value={specs.app}  isBool isPremium={family.isPremium} />
                   <SpecRow label={lb.aiIot}    value={specs.iot}  isBool isPremium={family.isPremium} />
