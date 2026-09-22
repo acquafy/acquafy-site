@@ -38,6 +38,11 @@ const imgSustainability = "/figma-assets/icon-sustainability.svg";
 // ─── Types ────────────────────────────────────────────────────────────────────
 type Specs = {
   formato: string;
+  dimMoldura: [number, number] | null; // [altura, largura] cm
+  dimAltura: number; // cm
+  dimAlturaBaseCopo: number | null; // cm
+  dimLargura: number; // cm
+  dimProfundidade: number; // cm
   funcoes: string;
   temperaturas: string;
   gas: boolean;
@@ -63,6 +68,58 @@ type Product = {
   specs: Specs;
 };
 
+// ─── Dimensões — exibidas em linhas próprias na tabela (Altura/Largura/Profundidade) ──
+// Medidas completas de fabricação (pés e base), mantidas aqui apenas como referência
+// para o caso de precisarmos exibi-las futuramente — não usadas na UI hoje:
+//   Pequenos (Up & Fit):       Altura 435mm + 8mm (pés) · Largura 294mm · Profundidade 230,4mm
+//   Médios (Smart/Plus/Touch): Altura 435mm + 8mm (pés) · Largura 294mm · Profundidade 297,4mm
+//   Ultra:                     Altura 435mm + 8mm (pés) · Largura 294mm · Profundidade 500mm
+//   Max:                       Altura 1184mm + 8mm (pés) · Altura da base do copo 777,6mm · Largura 294mm · Profundidade 500mm
+//   Acquafy Media:             Altura 2113,8mm + 22mm (base) · Largura 644mm · Profundidade 306mm · Profundidade da base 470mm
+//   Infinity:                  Altura 600mm + 8mm (pés) · Largura 280mm · Profundidade 368mm
+//   Prestige:                  Moldura 480×550mm (A×L) · Base 430mm + 8mm (pés) · Largura 500mm · Profundidade 380mm
+//   Prime:                     Altura 430mm + 8mm (pés) · Largura 500mm · Profundidade 380mm
+type DimFields = Pick<Specs, "dimMoldura" | "dimAltura" | "dimAlturaBaseCopo" | "dimLargura" | "dimProfundidade">;
+const DIMS_PEQUENOS: DimFields = { dimMoldura: null, dimAltura: 43.5,  dimAlturaBaseCopo: null,  dimLargura: 29.4, dimProfundidade: 23.04 };
+const DIMS_MEDIOS:   DimFields = { dimMoldura: null, dimAltura: 43.5,  dimAlturaBaseCopo: null,  dimLargura: 29.4, dimProfundidade: 29.74 };
+const DIMS_ULTRA:    DimFields = { dimMoldura: null, dimAltura: 43.5,  dimAlturaBaseCopo: null,  dimLargura: 29.4, dimProfundidade: 50 };
+const DIMS_MAX:       DimFields = { dimMoldura: null, dimAltura: 118.4, dimAlturaBaseCopo: 77.76, dimLargura: 29.4, dimProfundidade: 50 };
+const DIMS_MEDIA:     DimFields = { dimMoldura: null, dimAltura: 211.38, dimAlturaBaseCopo: null, dimLargura: 64.4, dimProfundidade: 30.6 };
+const DIMS_INFINITY:  DimFields = { dimMoldura: null, dimAltura: 60,   dimAlturaBaseCopo: null,  dimLargura: 28,   dimProfundidade: 36.8 };
+const DIMS_PRESTIGE:  DimFields = { dimMoldura: [48, 55], dimAltura: 43, dimAlturaBaseCopo: null, dimLargura: 50,  dimProfundidade: 38 };
+const DIMS_PRIME:     DimFields = { dimMoldura: null, dimAltura: 43,   dimAlturaBaseCopo: null,  dimLargura: 50,   dimProfundidade: 38 };
+
+// ─── Formatação de cm por idioma (vírgula decimal para a maioria; ponto para en/zh/ja/ko/he) ──
+const CM_COMMA_LOCALES = new Set<Lang>(["pt", "pt-pt", "es", "fr", "de", "it", "sv", "fi", "ru", "ro"]);
+function localizeNum(n: number, lang: Lang): string {
+  const s = String(n);
+  return CM_COMMA_LOCALES.has(lang) ? s.replace(".", ",") : s;
+}
+function fmtCm(cm: number, lang: Lang): string {
+  return `${localizeNum(cm, lang)}cm`;
+}
+function fmtCm2(pair: [number, number], lang: Lang): string {
+  return `${localizeNum(pair[0], lang)} × ${localizeNum(pair[1], lang)}cm`;
+}
+
+// ─── Legenda da altura da base do copo — anexada à linha "Altura", só nos modelos Coluna ──
+const ALTURA_BASE_COPO_LABEL: Record<Lang, string> = {
+  pt: "Altura da base do copo", "pt-pt": "Altura da base do copo",
+  en: "Cup base height", "en-gb": "Cup base height",
+  es: "Altura de la base del vaso",
+  fr: "Hauteur de la base du verre",
+  de: "Höhe des Becherständers",
+  it: "Altezza base bicchiere",
+  zh: "杯座高度",
+  ja: "カップベースの高さ",
+  ko: "컵 받침대 높이",
+  sv: "Kopphöjd",
+  fi: "Kuppialustan korkeus",
+  ru: "Высота подставки для стакана",
+  ro: "Inaltimea bazei paharului",
+  he: "גובה בסיס הכוס",
+};
+
 // ─── Product Catalog ──────────────────────────────────────────────────────────
 const PRODUCTS: Product[] = [
   // ── Neo Essentials ──────────────────────────────────────────────
@@ -70,135 +127,139 @@ const PRODUCTS: Product[] = [
     id: "neo-up", label: "Neo UP",
     nameParts: [{ text: "Neo " }, { text: "UP", highlight: true }],
     linha: "Essentials", categories: ["Bancada"],
-    specs: { formato: "Bancada ou Parede", funcoes: "—", temperaturas: "Natural", gas: false, h2: false, painel: "—", app: false, iot: false, wifi: false, uv: false, compressor: false, filtragem: "4 Filtros UF de Alta Performance", tanque: "—", material: "Acabamento premium", preco: "US$ 257.97" },
+    specs: { formato: "Bancada ou Parede", ...DIMS_PEQUENOS, funcoes: "—", temperaturas: "Natural", gas: false, h2: false, painel: "—", app: false, iot: false, wifi: false, uv: false, compressor: false, filtragem: "4 Filtros UF de Alta Performance", tanque: "—", material: "Acabamento premium", preco: "US$ 257.97" },
   },
   {
     id: "neo-fit", label: "Neo FIT",
     nameParts: [{ text: "Neo " }, { text: "FIT", highlight: true }],
     linha: "Essentials", categories: ["Bancada"],
-    specs: { formato: "Bancada ou Parede", funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, compressor: false, filtragem: "4 Filtros UF de Alta Performance", tanque: "400ml", material: "Acabamento premium", preco: "US$ 397.97" },
+    specs: { formato: "Bancada ou Parede", ...DIMS_PEQUENOS, funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, compressor: false, filtragem: "4 Filtros UF de Alta Performance", tanque: "400ml", material: "Acabamento premium", preco: "US$ 397.97" },
   },
   {
     id: "neo-touch", label: "Neo TOUCH",
     nameParts: [{ text: "Neo " }, { text: "TOUCH", highlight: true }],
     linha: "Essentials", categories: ["Bancada"],
-    specs: { formato: "Bancada", funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, compressor: false, filtragem: "4 Filtros UF de Alta Performance", tanque: "800ml", material: "Acabamento premium", preco: "US$ 447.97" },
+    specs: { formato: "Bancada", ...DIMS_MEDIOS, funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, compressor: false, filtragem: "4 Filtros UF de Alta Performance", tanque: "800ml", material: "Acabamento premium", preco: "US$ 447.97" },
   },
   {
     id: "neo-plus", label: "Neo PLUS",
     nameParts: [{ text: "Neo " }, { text: "PLUS", highlight: true }],
     linha: "Essentials", categories: ["Bancada"],
-    specs: { formato: "Bancada", funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, compressor: false, filtragem: "4 Filtros UF de Alta Performance", tanque: "1500ml", material: "Acabamento premium", preco: "US$ 697.97" },
+    specs: { formato: "Bancada", ...DIMS_MEDIOS, funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, compressor: false, filtragem: "4 Filtros UF de Alta Performance", tanque: "1500ml", material: "Acabamento premium", preco: "US$ 697.97" },
   },
   {
     id: "neo-smart-h2", label: "Neo SMART H₂",
     nameParts: [{ text: "Neo " }, { text: "SMART H", highlight: true }, { text: "2", highlight: true }],
     linha: "Essentials", categories: ["Bancada", "Água Hidrogenada"],
-    specs: { formato: "Bancada", funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: true, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, compressor: false, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "800ml", material: "Acabamento premium", preco: "US$ 697.97" },
+    specs: { formato: "Bancada", ...DIMS_MEDIOS, funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: true, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, compressor: false, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "800ml", material: "Acabamento premium", preco: "US$ 697.97" },
   },
   {
     id: "neo-ultra", label: "Neo ULTRA",
     nameParts: [{ text: "Neo " }, { text: "ULTRA", highlight: true }],
     linha: "Essentials", categories: ["Bancada"],
-    specs: { formato: "Bancada", funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "3000ml", material: "Acabamento premium", preco: "US$ 997.97" },
+    specs: { formato: "Bancada", ...DIMS_ULTRA, funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "3000ml", material: "Acabamento premium", preco: "US$ 997.97" },
   },
   {
     id: "neo-ultra-spark", label: "Neo ULTRA SPARK",
     nameParts: [{ text: "Neo " }, { text: "ULTRA SPARK", highlight: true }],
     linha: "Essentials", categories: ["Bancada", "Água com Gás"],
-    specs: { formato: "Bancada", funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "3000ml", material: "Acabamento premium", preco: "US$ 1,197.97" },
+    specs: { formato: "Bancada", ...DIMS_ULTRA, funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "3000ml", material: "Acabamento premium", preco: "US$ 1,197.97" },
   },
   {
     id: "neo-ultra-spark-h2", label: "Neo ULTRA SPARK H₂",
     nameParts: [{ text: "Neo " }, { text: "ULTRA SPARK H", highlight: true }, { text: "2", highlight: true }],
     linha: "Essentials", categories: ["Bancada", "Água com Gás", "Água Hidrogenada"],
-    specs: { formato: "Bancada", funcoes: "8 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: true, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Acabamento premium", preco: "US$ 1,397.97" },
+    specs: { formato: "Bancada", ...DIMS_ULTRA, funcoes: "8 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: true, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Acabamento premium", preco: "US$ 1,397.97" },
   },
   {
     id: "neo-max", label: "Neo MAX",
     nameParts: [{ text: "Neo " }, { text: "MAX", highlight: true }],
     linha: "Essentials", categories: ["Coluna"],
-    specs: { formato: "Coluna", funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "3000ml", material: "Acabamento premium", preco: "US$ 1,197.97" },
+    specs: { formato: "Coluna", ...DIMS_MAX, funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "3000ml", material: "Acabamento premium", preco: "US$ 1,197.97" },
   },
   {
     id: "neo-max-spark", label: "Neo MAX SPARK",
     nameParts: [{ text: "Neo " }, { text: "MAX SPARK", highlight: true }],
     linha: "Essentials", categories: ["Coluna", "Água com Gás"],
-    specs: { formato: "Coluna", funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "3000ml", material: "Acabamento premium", preco: "US$ 1,397.97" },
+    specs: { formato: "Coluna", ...DIMS_MAX, funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: false, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "3000ml", material: "Acabamento premium", preco: "US$ 1,397.97" },
   },
   {
     id: "neo-max-spark-h2", label: "Neo MAX SPARK H₂",
     nameParts: [{ text: "Neo " }, { text: "MAX SPARK H", highlight: true }, { text: "2", highlight: true }],
     linha: "Essentials", categories: ["Coluna", "Água com Gás", "Água Hidrogenada"],
-    specs: { formato: "Coluna", funcoes: "8 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: true, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Acabamento premium", preco: "US$ 1,597.97" },
+    specs: { formato: "Coluna", ...DIMS_MAX, funcoes: "8 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: true, painel: "LED Touch 10.1\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Acabamento premium", preco: "US$ 1,597.97" },
   },
   // ── Acquafy Media ───────────────────────────────────────────────
   {
     id: "acquafy-media", label: "Acquafy Media",
     nameParts: [{ text: "Acquafy " }, { text: "Media", highlight: true }],
     linha: "Premium", categories: [],
-    specs: { formato: "Totem Digital", funcoes: "—", temperaturas: "Natural e Gelada", gas: false, h2: false, painel: "Samsung Business 43\" 24/7", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "5.000ml", material: "Aço inox", preco: "US$ 2,000.00" },
+    specs: { formato: "Totem Digital", ...DIMS_MEDIA, funcoes: "—", temperaturas: "Natural e Gelada", gas: false, h2: false, painel: "Samsung Business 43\" 24/7", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros UF de Alta Performance", tanque: "5.000ml", material: "Aço inox", preco: "US$ 2,000.00" },
   },
   // ── Neo Premium ─────────────────────────────────────────────────
   {
     id: "neo-infinity", label: "Neo INFINITY",
     nameParts: [{ text: "Neo " }, { text: "INFINITY", highlight: true }],
     linha: "Premium", categories: ["Bancada"],
-    specs: { formato: "Bancada", funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,697.97" },
+    specs: { formato: "Bancada", ...DIMS_INFINITY, funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,697.97" },
   },
   {
     id: "neo-infinity-spark", label: "Neo INFINITY SPARK",
     nameParts: [{ text: "Neo " }, { text: "INFINITY SPARK", highlight: true }],
     linha: "Premium", categories: ["Bancada", "Água com Gás"],
-    specs: { formato: "Bancada", funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: false, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,797.97" },
+    specs: { formato: "Bancada", ...DIMS_INFINITY, funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: false, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,797.97" },
   },
   {
     id: "neo-infinity-spark-h2", label: "Neo INFINITY SPARK H₂",
     nameParts: [{ text: "Neo " }, { text: "INFINITY SPARK H", highlight: true }, { text: "2", highlight: true }],
     linha: "Premium", categories: ["Bancada", "Água com Gás", "Água Hidrogenada"],
-    specs: { formato: "Bancada", funcoes: "8 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: true, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,897.97" },
+    specs: { formato: "Bancada", ...DIMS_INFINITY, funcoes: "8 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: true, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,897.97" },
   },
   {
     id: "neo-prestige", label: "Neo PRESTIGE",
     nameParts: [{ text: "Neo " }, { text: "PRESTIGE", highlight: true }],
     linha: "Premium", categories: ["Embutido"],
-    specs: { formato: "Embutido", funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,727.97" },
+    specs: { formato: "Embutido", ...DIMS_PRESTIGE, funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,727.97" },
   },
   {
     id: "neo-prestige-spark", label: "Neo PRESTIGE SPARK",
     nameParts: [{ text: "Neo " }, { text: "PRESTIGE SPARK", highlight: true }],
     linha: "Premium", categories: ["Embutido", "Água com Gás"],
-    specs: { formato: "Embutido", funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: false, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,827.97" },
+    specs: { formato: "Embutido", ...DIMS_PRESTIGE, funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: false, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,827.97" },
   },
   {
     id: "neo-prestige-spark-h2", label: "Neo PRESTIGE SPARK H₂",
     nameParts: [{ text: "Neo " }, { text: "PRESTIGE SPARK H", highlight: true }, { text: "2", highlight: true }],
     linha: "Premium", categories: ["Embutido", "Água com Gás", "Água Hidrogenada"],
-    specs: { formato: "Embutido", funcoes: "8 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: true, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,927.97" },
+    specs: { formato: "Embutido", ...DIMS_PRESTIGE, funcoes: "8 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: true, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,927.97" },
   },
   {
     id: "neo-prime", label: "Neo PRIME",
     nameParts: [{ text: "Neo " }, { text: "PRIME", highlight: true }],
     linha: "Premium", categories: ["Bancada"],
-    specs: { formato: "Bancada", funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,697.97" },
+    specs: { formato: "Bancada", ...DIMS_PRIME, funcoes: "6 em 1", temperaturas: "Natural, Gelada e Quente", gas: false, h2: false, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,697.97" },
   },
   {
     id: "neo-prime-spark", label: "Neo PRIME SPARK",
     nameParts: [{ text: "Neo " }, { text: "PRIME SPARK", highlight: true }],
     linha: "Premium", categories: ["Bancada", "Água com Gás"],
-    specs: { formato: "Bancada", funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: false, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,797.97" },
+    specs: { formato: "Bancada", ...DIMS_PRIME, funcoes: "7 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: false, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,797.97" },
   },
   {
     id: "neo-prime-spark-h2", label: "Neo PRIME SPARK H₂",
     nameParts: [{ text: "Neo " }, { text: "PRIME SPARK H", highlight: true }, { text: "2", highlight: true }],
     linha: "Premium", categories: ["Bancada", "Água com Gás", "Água Hidrogenada"],
-    specs: { formato: "Bancada", funcoes: "8 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: true, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,897.97" },
+    specs: { formato: "Bancada", ...DIMS_PRIME, funcoes: "8 em 1", temperaturas: "Natural, Gelada e Quente", gas: true, h2: true, painel: "LCD IPS Touch 15.6\"", app: true, iot: true, wifi: true, uv: true, compressor: true, filtragem: "4 Filtros RO / Osmose Reversa de Alta Performance", tanque: "3000ml", material: "Aço inox", preco: "US$ 1,897.97" },
   },
 ];
 
 // ─── Spec Rows ────────────────────────────────────────────────────────────────
-const SPEC_ROWS: { key: keyof Specs; label: string; type: "text" | "bool" | "price" }[] = [
-  { key: "formato",     label: "Formato",               type: "text"  },
+const SPEC_ROWS: { key: keyof Specs; label: string; type: "text" | "bool" | "price" | "cm" | "cm2" }[] = [
+  { key: "formato",           label: "Formato",                 type: "text"  },
+  { key: "dimMoldura",        label: "Moldura (A×L)",           type: "cm2"  },
+  { key: "dimAltura",         label: "Altura",                  type: "cm"  },
+  { key: "dimLargura",        label: "Largura",                 type: "cm"  },
+  { key: "dimProfundidade",   label: "Profundidade",            type: "cm"  },
   { key: "temperaturas",label: "Temperaturas",          type: "text"  },
   { key: "gas",         label: "Água com gás",          type: "bool"  },
   { key: "h2",          label: "Água hidrogenada",      type: "bool"  },
@@ -475,7 +536,7 @@ const T: Record<Lang, {
     selectProduct: "Selecione um produto", removeLabel: "Remover",
     tableFeatures: "Características",
     linePrefix: "Linha Neo ",
-    specRowLabels: ["Formato", "Temperaturas", "Água com gás", "Água hidrogenada", "Painel", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Sistema de Filtragem", "Tanque de água gelada", "Compressor Inverter", "Material", "Preço BR"],
+    specRowLabels: ["Formato", "Moldura (A×L)", "Altura", "Largura", "Profundidade", "Temperaturas", "Água com gás", "Água hidrogenada", "Painel", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Sistema de Filtragem", "Tanque de água gelada", "Compressor Inverter", "Material", "Preço BR"],
     acquireLabel: "Adquirir", buyNow: "Comprar Agora →",
     emptyTable: "Selecione ao menos um produto para comparar.",
     essentialsChecklist: ["Painel LED Touch 10,1", "App + AI + IoT", "4 Filtros UF de Alta Performance", "Modelos Bancada, Parede e Coluna", "Excelente custo-benefício"],
@@ -507,7 +568,7 @@ const T: Record<Lang, {
     selectProduct: "Selecione um produto", removeLabel: "Remover",
     tableFeatures: "Características",
     linePrefix: "Linha Neo ",
-    specRowLabels: ["Formato", "Temperaturas", "Água com gás", "Água hidrogenada", "Painel", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Sistema de Filtragem", "Tanque de água gelada", "Compressor Inverter", "Material", "Preço BR"],
+    specRowLabels: ["Formato", "Moldura (A×L)", "Altura", "Largura", "Profundidade", "Temperaturas", "Água com gás", "Água hidrogenada", "Painel", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Sistema de Filtragem", "Tanque de água gelada", "Compressor Inverter", "Material", "Preço BR"],
     acquireLabel: "Adquirir", buyNow: "Comprar Agora →",
     emptyTable: "Selecione pelo menos um produto para comparar.",
     essentialsChecklist: ["Painel LED Touch 10,1", "App + AI + IoT", "4 Filtros UF de Alta Performance", "Modelos Bancada, Parede e Coluna", "Excelente relação qualidade-preço"],
@@ -539,7 +600,7 @@ const T: Record<Lang, {
     selectProduct: "Select a product", removeLabel: "Remove",
     tableFeatures: "Features",
     linePrefix: "Neo Line ",
-    specRowLabels: ["Format", "Temperatures", "Sparkling Water", "Hydrogen Water", "Panel", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Filtration System", "Cold Water Tank", "Inverter Compressor", "Material", "BR Price"],
+    specRowLabels: ["Format", "Frame (H×W)", "Height", "Width", "Depth", "Temperatures", "Sparkling Water", "Hydrogen Water", "Panel", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Filtration System", "Cold Water Tank", "Inverter Compressor", "Material", "BR Price"],
     acquireLabel: "Buy", buyNow: "Buy Now →",
     emptyTable: "Select at least one product to compare.",
     essentialsChecklist: ["LED Touch Panel 10.1", "App + AI + IoT", "4 High-Performance UF Filters", "Countertop, Wall and Floor Stand Models", "Excellent value for money"],
@@ -571,7 +632,7 @@ const T: Record<Lang, {
     selectProduct: "Select a product", removeLabel: "Remove",
     tableFeatures: "Features",
     linePrefix: "Neo Line ",
-    specRowLabels: ["Format", "Temperatures", "Sparkling Water", "Hydrogen Water", "Panel", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Filtration System", "Cold Water Tank", "Inverter Compressor", "Material", "BR Price"],
+    specRowLabels: ["Format", "Frame (H×W)", "Height", "Width", "Depth", "Temperatures", "Sparkling Water", "Hydrogen Water", "Panel", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Filtration System", "Cold Water Tank", "Inverter Compressor", "Material", "BR Price"],
     acquireLabel: "Buy", buyNow: "Buy Now →",
     emptyTable: "Select at least one product to compare.",
     essentialsChecklist: ["LED Touch Panel 10.1", "App + AI + IoT", "4 High-Performance UF Filters", "Countertop, Wall and Floor Stand Models", "Excellent value for money"],
@@ -603,7 +664,7 @@ const T: Record<Lang, {
     selectProduct: "Selecciona un producto", removeLabel: "Eliminar",
     tableFeatures: "Características",
     linePrefix: "Línea Neo ",
-    specRowLabels: ["Formato", "Temperaturas", "Agua con Gas", "Agua Hidrogenada", "Panel", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Sistema de Filtración", "Depósito de Agua Fría", "Compresor Inverter", "Material", "Precio BR"],
+    specRowLabels: ["Formato", "Marco (A×An)", "Altura", "Ancho", "Profundidad", "Temperaturas", "Agua con Gas", "Agua Hidrogenada", "Panel", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Sistema de Filtración", "Depósito de Agua Fría", "Compresor Inverter", "Material", "Precio BR"],
     acquireLabel: "Adquirir", buyNow: "Comprar Ahora →",
     emptyTable: "Selecciona al menos un producto para comparar.",
     essentialsChecklist: ["Panel LED Touch 10.1", "App + AI + IoT", "4 Filtros UF de Alto Rendimiento", "Modelos Encimera, Pared y Columna", "Excelente relación calidad-precio"],
@@ -635,7 +696,7 @@ const T: Record<Lang, {
     selectProduct: "Sélectionner un produit", removeLabel: "Supprimer",
     tableFeatures: "Caractéristiques",
     linePrefix: "Gamme Neo ",
-    specRowLabels: ["Format", "Températures", "Eau pétillante", "Eau hydrogénée", "Panneau", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Système de filtration", "Réservoir d'eau froide", "Compresseur Inverter", "Matériau", "Prix BR"],
+    specRowLabels: ["Format", "Cadre (H×L)", "Hauteur", "Largeur", "Profondeur", "Températures", "Eau pétillante", "Eau hydrogénée", "Panneau", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Système de filtration", "Réservoir d'eau froide", "Compresseur Inverter", "Matériau", "Prix BR"],
     acquireLabel: "Acquérir", buyNow: "Acheter maintenant →",
     emptyTable: "Sélectionnez au moins un produit pour comparer.",
     essentialsChecklist: ["Panneau LED Touch 10,1", "App + AI + IoT", "4 filtres UF haute performance", "Modèles plan de travail, mural et colonne", "Excellent rapport qualité-prix"],
@@ -667,7 +728,7 @@ const T: Record<Lang, {
     selectProduct: "Produkt auswählen", removeLabel: "Entfernen",
     tableFeatures: "Eigenschaften",
     linePrefix: "Neo Linie ",
-    specRowLabels: ["Format", "Temperaturen", "Sprudelwasser", "Wasserstoffwasser", "Bedienfeld", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Filtersystem", "Kaltwassertank", "Inverter-Kompressor", "Material", "BR Preis"],
+    specRowLabels: ["Format", "Rahmen (H×B)", "Höhe", "Breite", "Tiefe", "Temperaturen", "Sprudelwasser", "Wasserstoffwasser", "Bedienfeld", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Filtersystem", "Kaltwassertank", "Inverter-Kompressor", "Material", "BR Preis"],
     acquireLabel: "Kaufen", buyNow: "Jetzt kaufen →",
     emptyTable: "Wählen Sie mindestens ein Produkt zum Vergleichen aus.",
     essentialsChecklist: ["LED Touch Panel 10,1", "App + AI + IoT", "4 Hochleistungs-UF-Filter", "Tisch-, Wand- und Standmodelle", "Ausgezeichnetes Preis-Leistungs-Verhältnis"],
@@ -699,7 +760,7 @@ const T: Record<Lang, {
     selectProduct: "Seleziona un prodotto", removeLabel: "Rimuovi",
     tableFeatures: "Caratteristiche",
     linePrefix: "Linea Neo ",
-    specRowLabels: ["Formato", "Temperature", "Acqua frizzante", "Acqua idrogenata", "Pannello", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Sistema di filtrazione", "Serbatoio acqua fredda", "Compressore Inverter", "Materiale", "Prezzo BR"],
+    specRowLabels: ["Formato", "Cornice (A×L)", "Altezza", "Larghezza", "Profondità", "Temperature", "Acqua frizzante", "Acqua idrogenata", "Pannello", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Sistema di filtrazione", "Serbatoio acqua fredda", "Compressore Inverter", "Materiale", "Prezzo BR"],
     acquireLabel: "Acquista", buyNow: "Compra ora →",
     emptyTable: "Seleziona almeno un prodotto per confrontare.",
     essentialsChecklist: ["Pannello LED Touch 10,1", "App + AI + IoT", "4 filtri UF ad alte prestazioni", "Modelli da banco, parete e colonna", "Ottimo rapporto qualità-prezzo"],
@@ -731,7 +792,7 @@ const T: Record<Lang, {
     selectProduct: "选择产品", removeLabel: "移除",
     tableFeatures: "特性",
     linePrefix: "Neo 系列 ",
-    specRowLabels: ["外形", "温度", "气泡水", "富氢水", "面板", "App", "AI + IoT", "Wi-Fi + 蓝牙 5.3", "UV LED", "过滤系统", "冷水箱", "变频压缩机", "材质", "巴西价格"],
+    specRowLabels: ["外形", "边框（高×宽）", "高度", "宽度", "深度", "温度", "气泡水", "富氢水", "面板", "App", "AI + IoT", "Wi-Fi + 蓝牙 5.3", "UV LED", "过滤系统", "冷水箱", "变频压缩机", "材质", "巴西价格"],
     acquireLabel: "购买", buyNow: "立即购买 →",
     emptyTable: "请至少选择一个产品进行比较。",
     essentialsChecklist: ["LED 触控面板 10.1", "App + AI + IoT", "4 个高性能 UF 滤芯", "台式、壁挂式和立式型号", "出色的性价比"],
@@ -763,7 +824,7 @@ const T: Record<Lang, {
     selectProduct: "製品を選択", removeLabel: "削除",
     tableFeatures: "特徴",
     linePrefix: "Neo ライン ",
-    specRowLabels: ["フォーム", "温度", "スパークリング", "水素水", "パネル", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "ろ過システム", "冷水タンク", "インバーターコンプレッサー", "素材", "BRプライス"],
+    specRowLabels: ["フォーム", "フレーム（高さ×幅）", "高さ", "幅", "奥行き", "温度", "スパークリング", "水素水", "パネル", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "ろ過システム", "冷水タンク", "インバーターコンプレッサー", "素材", "BRプライス"],
     acquireLabel: "購入", buyNow: "今すぐ購入 →",
     emptyTable: "比較するには少なくとも1つの製品を選択してください。",
     essentialsChecklist: ["LED タッチパネル 10.1", "App + AI + IoT", "4基の高性能UFフィルター", "卓上・壁掛け・スタンドモデル", "優れたコストパフォーマンス"],
@@ -795,7 +856,7 @@ const T: Record<Lang, {
     selectProduct: "제품 선택", removeLabel: "제거",
     tableFeatures: "특성",
     linePrefix: "Neo 라인 ",
-    specRowLabels: ["형태", "온도", "탄산수", "수소수", "패널", "앱", "AI + IoT", "Wi-Fi + 블루투스 5.3", "UV LED", "여과 시스템", "냉수 탱크", "인버터 컴프레서", "소재", "브라질 가격"],
+    specRowLabels: ["형태", "프레임 (높이×너비)", "높이", "너비", "깊이", "온도", "탄산수", "수소수", "패널", "앱", "AI + IoT", "Wi-Fi + 블루투스 5.3", "UV LED", "여과 시스템", "냉수 탱크", "인버터 컴프레서", "소재", "브라질 가격"],
     acquireLabel: "구매", buyNow: "지금 구매 →",
     emptyTable: "비교하려면 최소 하나의 제품을 선택하세요.",
     essentialsChecklist: ["LED 터치 패널 10.1", "App + AI + IoT", "4개 고성능 UF 필터", "카운터탑, 벽걸이, 스탠드형 모델", "뛰어난 가성비"],
@@ -827,7 +888,7 @@ const T: Record<Lang, {
     selectProduct: "Välj en produkt", removeLabel: "Ta bort",
     tableFeatures: "Egenskaper",
     linePrefix: "Neo-linjen ",
-    specRowLabels: ["Format", "Temperaturer", "Kolsyrat vatten", "Vätgasvatten", "Panel", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Filtreringssystem", "Källvattentank", "Inverterkompressor", "Material", "BR-pris"],
+    specRowLabels: ["Format", "Ram (H×B)", "Höjd", "Bredd", "Djup", "Temperaturer", "Kolsyrat vatten", "Vätgasvatten", "Panel", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Filtreringssystem", "Källvattentank", "Inverterkompressor", "Material", "BR-pris"],
     acquireLabel: "Köp", buyNow: "Köp nu →",
     emptyTable: "Välj minst en produkt för att jämföra.",
     essentialsChecklist: ["LED Touch-panel 10.1", "App + AI + IoT", "4 högpresterande UF-filter", "Bänkskiva-, vägg- och golvmodeller", "Utmärkt prisprestandaförhållande"],
@@ -859,7 +920,7 @@ const T: Record<Lang, {
     selectProduct: "Valitse tuote", removeLabel: "Poista",
     tableFeatures: "Ominaisuudet",
     linePrefix: "Neo-sarja ",
-    specRowLabels: ["Muoto", "Lämpötilat", "Hiilihapotettu vesi", "Vetypitoinen vesi", "Paneeli", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Suodatusjärjestelmä", "Kylmävesisäiliö", "Invertteri-kompressori", "Materiaali", "BR-hinta"],
+    specRowLabels: ["Muoto", "Kehys (K×L)", "Korkeus", "Leveys", "Syvyys", "Lämpötilat", "Hiilihapotettu vesi", "Vetypitoinen vesi", "Paneeli", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Suodatusjärjestelmä", "Kylmävesisäiliö", "Invertteri-kompressori", "Materiaali", "BR-hinta"],
     acquireLabel: "Osta", buyNow: "Osta nyt →",
     emptyTable: "Valitse vähintään yksi tuote vertailua varten.",
     essentialsChecklist: ["LED Touch -paneeli 10.1", "App + AI + IoT", "4 suorituskykyistä UF-suodatinta", "Tasomalli-, seinä- ja lattiamallit", "Erinomainen hinta-laatu-suhde"],
@@ -891,7 +952,7 @@ const T: Record<Lang, {
     selectProduct: "Выберите продукт", removeLabel: "Удалить",
     tableFeatures: "Характеристики",
     linePrefix: "Линейка Neo ",
-    specRowLabels: ["Формат", "Температуры", "Газированная вода", "Водородная вода", "Панель", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Система фильтрации", "Бак холодной воды", "Инверторный компрессор", "Материал", "Цена BR"],
+    specRowLabels: ["Формат", "Рамка (В×Ш)", "Высота", "Ширина", "Глубина", "Температуры", "Газированная вода", "Водородная вода", "Панель", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Система фильтрации", "Бак холодной воды", "Инверторный компрессор", "Материал", "Цена BR"],
     acquireLabel: "Купить", buyNow: "Купить сейчас →",
     emptyTable: "Выберите хотя бы один продукт для сравнения.",
     essentialsChecklist: ["Сенсорная панель LED Touch 10.1", "App + AI + IoT", "4 высокопроизводительных UF-фильтра", "Настольные, настенные и напольные модели", "Отличное соотношение цены и качества"],
@@ -923,7 +984,7 @@ const T: Record<Lang, {
     selectProduct: "Selecteaza un produs", removeLabel: "Elimina",
     tableFeatures: "Caracteristici",
     linePrefix: "Linia Neo ",
-    specRowLabels: ["Format", "Temperaturi", "Apa carbogazoasa", "Apa cu hidrogen", "Panou", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Sistem de filtrare", "Rezervor de apa rece", "Compresor Inverter", "Material", "Pret BR"],
+    specRowLabels: ["Format", "Rama (I×L)", "Inaltime", "Latime", "Adancime", "Temperaturi", "Apa carbogazoasa", "Apa cu hidrogen", "Panou", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "Sistem de filtrare", "Rezervor de apa rece", "Compresor Inverter", "Material", "Pret BR"],
     acquireLabel: "Cumpara", buyNow: "Cumpara acum →",
     emptyTable: "Selecteaza cel putin un produs pentru a compara.",
     essentialsChecklist: ["Panou LED Touch 10.1", "App + AI + IoT", "4 filtre UF de inalta performanta", "Modele de blat, perete si coloana", "Excelent raport calitate-pret"],
@@ -955,7 +1016,7 @@ const T: Record<Lang, {
     selectProduct: "בחר מוצר", removeLabel: "הסר",
     tableFeatures: "תכונות",
     linePrefix: "סדרת Neo ",
-    specRowLabels: ["פורמט", "טמפרטורות", "מים מוגזים", "מים מועשרי במימן", "לוח", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "מערכת סננון", "מיכל מים קרים", "קומפרסור אינוורטר", "חומר", "מחיר BR"],
+    specRowLabels: ["פורמט", "מסגרת (גובה×רוחב)", "גובה", "רוחב", "עומק", "טמפרטורות", "מים מוגזים", "מים מועשרי במימן", "לוח", "App", "AI + IoT", "Wi-Fi + Bluetooth 5.3", "UV LED", "מערכת סננון", "מיכל מים קרים", "קומפרסור אינוורטר", "חומר", "מחיר BR"],
     acquireLabel: "קנה", buyNow: "קנה עכשיו →",
     emptyTable: "בחר לפחות מוצר אחד להשוואה.",
     essentialsChecklist: ["לוח LED Touch 10.1", "App + AI + IoT", "4 מסנני UF בעלי ביצועים גבוהים", "דגמי שיפועי, קיר ועמדתי", "יחס מחיר-איכותממוצלן מצוין"],
@@ -1500,6 +1561,24 @@ export default function CompareProductos() {
                             ? formatPrice(PRODUCT_PRICES_BRL[product.id], lang)
                             : "—"}
                           </p>
+                        ) : row.type === "cm" ? (
+                          val === null ? (
+                            <BoolCell value={false} altYes={t.altYes} altNo={t.altNo} />
+                          ) : (
+                            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] leading-[15px] text-[#2a2a2b] text-center whitespace-pre-line">
+                              {row.key === "dimAltura" && product.specs.dimAlturaBaseCopo !== null
+                                ? `${fmtCm(val as number, lang)}\n${ALTURA_BASE_COPO_LABEL[lang]}: ${fmtCm(product.specs.dimAlturaBaseCopo, lang)}`
+                                : fmtCm(val as number, lang)}
+                            </p>
+                          )
+                        ) : row.type === "cm2" ? (
+                          val === null ? (
+                            <BoolCell value={false} altYes={t.altYes} altNo={t.altNo} />
+                          ) : (
+                            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] leading-[15px] text-[#2a2a2b] text-center">
+                              {fmtCm2(val as [number, number], lang)}
+                            </p>
+                          )
                         ) : val === "—" ? (
                           <BoolCell value={false} altYes={t.altYes} altNo={t.altNo} />
                         ) : (
@@ -1521,7 +1600,7 @@ export default function CompareProductos() {
                 {selectedProducts.map(product => (
                   <div key={product.id} className="flex items-center justify-center flex-1 min-w-[260px] px-[16px] py-[16px] border-r border-[#cbd0d4] last:border-r-0">
                     <a
-                      href={`/buy/checkin-${PRODUCT_TO_FAMILY[product.id] ?? product.id}`}
+                      href={`/buy/checkin-${PRODUCT_TO_FAMILY[product.id] ?? product.id}?modelo=${product.id}`}
                       className="flex items-center gap-[8px] px-[22px] py-[10px] rounded-full font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-white transition-opacity hover:opacity-85 whitespace-nowrap cursor-pointer"
                       style={{ background: product.linha === "Premium" ? "linear-gradient(135deg, #9f3df5, #0233c3)" : "linear-gradient(135deg, #0233c3, #0569ff)" }}>
                       {t.buyNow}
