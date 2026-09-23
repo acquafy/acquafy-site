@@ -1457,7 +1457,7 @@ function getColorName(slug: string | undefined, lang: Lang, fallback: string): s
   return COLOR_NAMES_I18N[slug]?.[lang] ?? fallback;
 }
 
-export default function CheckinProduct({ family, showSlide = false }: Props) {
+export default function CheckinProduct({ family, showSlide = true }: Props) {
   const { addToCart, cart } = useCart();
   const scrollRef = useRef<HTMLDivElement>(null);
   const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
@@ -1608,6 +1608,37 @@ export default function CheckinProduct({ family, showSlide = false }: Props) {
   const colorOptions = family.colors ?? ESSENTIALS_COLORS;
   const activeColorImages = activeVariant.slides?.[activeColorIdx] ?? [];
   const slideCount = activeColorImages.length > 0 ? activeColorImages.length : 1;
+
+  // Slide arrays can have different lengths per color (e.g. Cinza Metrópole lacks side-profile
+  // shots), so raw index isn't comparable across colors. Tag each slot by its physical position
+  // and re-find the same position (or nearest) when switching color, instead of resetting to 0.
+  const positionTagsForLength = (n: number): string[] => {
+    if (n === 7) return ["front", "turnA", "sideA", "backClosed", "backOpen", "sideB", "turnB"];
+    if (n === 6) return ["front", "turnA", "sideA", "backClosed", "backOpen", "turnB"];
+    if (n === 5) return ["front", "turnA", "backClosed", "backOpen", "turnB"];
+    return Array.from({ length: n }, (_, i) => `slot${i}`);
+  };
+  const handleColorSelect = (newColorIdx: number) => {
+    const newImages = activeVariant.slides?.[newColorIdx] ?? [];
+    if (newImages.length > 0 && activeColorImages.length > 0) {
+      const order = ["front", "turnA", "sideA", "backClosed", "backOpen", "sideB", "turnB"];
+      const oldTags = positionTagsForLength(activeColorImages.length);
+      const newTags = positionTagsForLength(newImages.length);
+      const currentTag = oldTags[slideIdx] ?? oldTags[0];
+      let newSlideIdx = newTags.indexOf(currentTag);
+      if (newSlideIdx === -1) {
+        const curRank = order.indexOf(currentTag);
+        let bestDist = Infinity;
+        newSlideIdx = 0;
+        newTags.forEach((t, idx) => {
+          const dist = Math.abs(order.indexOf(t) - curRank);
+          if (dist < bestDist) { bestDist = dist; newSlideIdx = idx; }
+        });
+      }
+      setSlideIdx(newSlideIdx);
+    }
+    setActiveColorIdx(newColorIdx);
+  };
   const specs = SPECS[activeVariant.id] ?? SPECS["neo-fit"]!;
   const accent = family.isPremium ? "#9f3df5" : "#0233c3";
   const accentGrad = family.isPremium
@@ -1760,12 +1791,18 @@ export default function CheckinProduct({ family, showSlide = false }: Props) {
                 />
               ))
             ) : activeColorImages.length > 0 && showSlide ? (
-              activeColorImages.map((img, i) => (
-                <img key={i} src={img}
-                  alt={`${activeVariant.name} – ${colorOptions[activeColorIdx]?.name ?? ""} – ${i + 1}`}
-                  className={`absolute inset-x-0 top-1/2 -translate-y-1/2 max-h-[500px] w-full object-contain transition-opacity duration-700 ease-in-out ${i === slideIdx ? "opacity-100" : "opacity-0"}`}
-                />
-              ))
+              // Render every color's slides (not just the active one) so the browser has already
+              // decoded them by the time the user switches color — reusing a single <img> per
+              // index and swapping its src caused the previous color's frame to flash briefly
+              // while the new file loaded.
+              (activeVariant.slides ?? []).flatMap((colorImgs, ci) =>
+                colorImgs.map((img, i) => (
+                  <img key={`${ci}-${i}`} src={img}
+                    alt={`${activeVariant.name} – ${colorOptions[ci]?.name ?? ""} – ${i + 1}`}
+                    className={`absolute inset-x-0 top-1/2 -translate-y-1/2 max-h-[500px] w-full object-contain transition-opacity duration-700 ease-in-out ${ci === activeColorIdx && i === slideIdx ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+                  />
+                ))
+              )
             ) : activeColorImages.length > 0 ? (
               <img src={activeVariant.img}
                 alt={activeVariant.name}
@@ -1786,17 +1823,29 @@ export default function CheckinProduct({ family, showSlide = false }: Props) {
           {showSlide && family.scenes.length === 0 && (activeColorImages.length > 0 ? slideCount > 1 : family.variants.length > 1) && (
             <>
               <button aria-label={lb.imagemAnterior}
-                className={`absolute left-[12px] top-1/2 -translate-y-1/2 z-10 size-[38px] rounded-full bg-white/90 backdrop-blur-sm border border-[#e8ecf4] flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 ${(displaySection === "produto" || displaySection === "cores") && imageHovered ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+                className={`absolute left-[12px] top-1/2 -translate-y-1/2 z-10 size-[38px] rounded-full bg-white/90 backdrop-blur-sm border border-[#e8ecf4] flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 ${(displaySection === "produto" || displaySection === "cores") ? "opacity-100" : "opacity-0 pointer-events-none"}`}
                 onClick={() => activeColorImages.length > 0 ? setSlideIdx(n => (n - 1 + slideCount) % slideCount) : setActiveVariantIdx(n => (n - 1 + family.variants.length) % family.variants.length)}
               >
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 11L5 7l4-4" stroke="#1f2e91" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </button>
               <button aria-label={lb.proximaImagem}
-                className={`absolute right-[12px] top-1/2 -translate-y-1/2 z-10 size-[38px] rounded-full bg-white/90 backdrop-blur-sm border border-[#e8ecf4] flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 ${(displaySection === "produto" || displaySection === "cores") && imageHovered ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+                className={`absolute right-[12px] top-1/2 -translate-y-1/2 z-10 size-[38px] rounded-full bg-white/90 backdrop-blur-sm border border-[#e8ecf4] flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 ${(displaySection === "produto" || displaySection === "cores") ? "opacity-100" : "opacity-0 pointer-events-none"}`}
                 onClick={() => activeColorImages.length > 0 ? setSlideIdx(n => (n + 1) % slideCount) : setActiveVariantIdx(n => (n + 1) % family.variants.length)}
               >
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 3l4 4-4 4" stroke="#1f2e91" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </button>
+              <div className={`absolute bottom-[16px] inset-x-0 z-10 flex gap-[8px] items-center justify-center transition-opacity duration-300 ${(displaySection === "produto" || displaySection === "cores") ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
+                {Array.from({ length: activeColorImages.length > 0 ? slideCount : family.variants.length }, (_, i) => i).map((i) => {
+                  const isActive = activeColorImages.length > 0 ? i === slideIdx : i === activeVariantIdx;
+                  return (
+                    <button key={i} aria-label={`${lb.proximaImagem} ${i + 1}`}
+                      className="size-[9px] rounded-full transition-all shrink-0"
+                      style={{ background: isActive ? accent : "#cbd0d4" }}
+                      onClick={() => activeColorImages.length > 0 ? setSlideIdx(i) : setActiveVariantIdx(i)}
+                    />
+                  );
+                })}
+              </div>
             </>
           )}
 
@@ -1957,7 +2006,7 @@ export default function CheckinProduct({ family, showSlide = false }: Props) {
                     {colorOptions.map((color, i) => {
                       const isActive = i === activeColorIdx;
                       return (
-                        <button key={i} onClick={() => setActiveColorIdx(i)}
+                        <button key={i} onClick={() => handleColorSelect(i)}
                           title={color.name}
                           className="size-[56px] rounded-full flex items-center justify-center transition-all shrink-0"
                           style={{
@@ -1969,7 +2018,9 @@ export default function CheckinProduct({ family, showSlide = false }: Props) {
                       );
                     })}
                   </div>
-                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af] text-center">Em breve</p>
+                  {!activeVariant.slides && (
+                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af] text-center">Em breve</p>
+                  )}
                 </div>
               </>
             )}

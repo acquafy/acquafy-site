@@ -6,11 +6,6 @@ import { LanguageSelectorFull } from "./ui/LanguageSelector";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
 const imgLogo      = "/figma-assets/logo-b.svg";
-const imgInstagram = "/figma-assets/icon-instagram.svg";
-const imgX         = "/figma-assets/icon-x-twitter.svg";
-const imgLinkedin  = "/figma-assets/icon-linkedin.svg";
-const imgYoutube   = "/figma-assets/icon-youtube.svg";
-const imgFacebook  = "/figma-assets/icon-facebook.svg";
 const imgGlobe     = "/figma-assets/icon-globe-planetweb-30px.svg";
 const imgChat      = "/figma-assets/icon-chat-large.svg";
 const imgLocation  = "/figma-assets/icon-location-b.svg";
@@ -27,20 +22,13 @@ const certLogos = [
   "/figma-assets/cert-badge-e.svg",
 ];
 
-const socialIcons = [
-  { src: imgInstagram, alt: "Instagram",   aspectW: 30,      aspectH: 30      },
-  { src: imgX,         alt: "X (Twitter)", aspectW: 1000.78, aspectH: 936.69  },
-  { src: imgLinkedin,  alt: "LinkedIn",    aspectW: 30,      aspectH: 30      },
-  { src: imgYoutube,   alt: "YouTube",     aspectW: 22,      aspectH: 15.5    },
-  { src: imgFacebook,  alt: "Facebook",    aspectW: 30.16,   aspectH: 30      },
-];
-
 // ── Translations ─────────────────────────────────────────────────────────────
 type NavCol = { title: string; links: { label: string; href: string }[] };
 type StatItem = { sub: string; main: string };
 
 const T: Record<Lang, {
   desc: string;
+  groupCredit: { prefix: string; brand: string; middle: string; linkLabel: string };
   nav: NavCol[];
   stats: StatItem[];
   founded: string;
@@ -51,6 +39,7 @@ const T: Record<Lang, {
 }> = {
   pt: {
     desc: "Acquafy Platform + App + AI + IoT para Gestão Global Inteligente de Água.",
+    groupCredit: { prefix: "Uma plataforma da", brand: "Interfy Corporation", middle: "Conheça o grupo:", linkLabel: "www.interfycorp.com" },
     nav: [
       { title: "Plataforma", links: [
         { label: "Plataforma Acquafy",            href: "/platform"          },
@@ -84,6 +73,7 @@ const T: Record<Lang, {
   },
   "pt-pt": {
     desc: "Acquafy Platform + Aplicação + AI + IoT para Gestão Global Inteligente da Água.",
+    groupCredit: { prefix: "Uma plataforma da", brand: "Interfy Corporation", middle: "Conheça o grupo:", linkLabel: "www.interfycorp.com" },
     nav: [
       { title: "Plataforma", links: [
         { label: "Plataforma Acquafy",            href: "/platform"          },
@@ -117,6 +107,7 @@ const T: Record<Lang, {
   },
   en: {
     desc: "Acquafy Platform + App + AI + IoT for Global Intelligent Water Management.",
+    groupCredit: { prefix: "A platform by", brand: "Interfy Corporation", middle: "Learn more about the group:", linkLabel: "www.interfycorp.com" },
     nav: [
       { title: "Platform", links: [
         { label: "Acquafy Platform",          href: "/platform"         },
@@ -150,6 +141,7 @@ const T: Record<Lang, {
   },
   "en-gb": {
     desc: "Acquafy Platform + App + AI + IoT for Global Intelligent Water Management.",
+    groupCredit: { prefix: "A platform by", brand: "Interfy Corporation", middle: "Learn more about the group:", linkLabel: "www.interfycorp.com" },
     nav: [
       { title: "Platform", links: [
         { label: "Acquafy Platform",          href: "/platform"         },
@@ -183,6 +175,7 @@ const T: Record<Lang, {
   },
   es: {
     desc: "Acquafy Platform + App + IA + IoT para la Gestión Global Inteligente del Agua.",
+    groupCredit: { prefix: "Una plataforma de", brand: "Interfy Corporation", middle: "Conoce el grupo:", linkLabel: "www.interfycorp.com" },
     nav: [
       { title: "Plataforma", links: [
         { label: "Plataforma Acquafy",         href: "/platform"         },
@@ -216,6 +209,7 @@ const T: Record<Lang, {
   },
   fr: {
     desc: "Acquafy Platform + App + AI + IoT pour la Gestion Mondiale Intelligente de l'Eau.",
+    groupCredit: { prefix: "Une plateforme de", brand: "Interfy Corporation", middle: "Découvrez le groupe :", linkLabel: "www.interfycorp.com" },
     nav: [
       { title: "Plateforme", links: [
         { label: "Plateforme Acquafy",          href: "/platform"         },
@@ -249,6 +243,7 @@ const T: Record<Lang, {
   },
   de: {
     desc: "Acquafy Platform + App + AI + IoT für globales intelligentes Wassermanagement.",
+    groupCredit: { prefix: "Eine Plattform der", brand: "Interfy Corporation", middle: "Lernen Sie die Gruppe kennen:", linkLabel: "www.interfycorp.com" },
     nav: [
       { title: "Plattform", links: [
         { label: "Acquafy Plattform",            href: "/platform"         },
@@ -282,6 +277,7 @@ const T: Record<Lang, {
   },
   it: {
     desc: "Acquafy Platform + App + AI + IoT per la Gestione Globale Intelligente dell'Acqua.",
+    groupCredit: { prefix: "Una piattaforma di", brand: "Interfy Corporation", middle: "Scopri il gruppo:", linkLabel: "www.interfycorp.com" },
     nav: [
       { title: "Piattaforma", links: [
         { label: "Piattaforma Acquafy",         href: "/platform"         },
@@ -315,6 +311,7 @@ const T: Record<Lang, {
   },
   zh: {
     desc: "Acquafy Platform + App + AI + IoT，实现全球智能水务管理。",
+    groupCredit: { prefix: "隶属于", brand: "Interfy Corporation", middle: "了解集团旗下品牌：", linkLabel: "www.interfycorp.com" },
     nav: [
       { title: "平台", links: [
         { label: "Acquafy 平台",    href: "/platform"         },
@@ -348,6 +345,7 @@ const T: Record<Lang, {
   },
   ja: {
     desc: "Acquafy Platform + App + AI + IoT によるグローバル・スマート水管理。",
+    groupCredit: { prefix: "運営会社", brand: "Interfy Corporation", middle: "グループ企業について:", linkLabel: "www.interfycorp.com" },
     nav: [
       { title: "プラットフォーム", links: [
         { label: "Acquafy プラットフォーム",  href: "/platform"         },
@@ -381,6 +379,7 @@ const T: Record<Lang, {
   },
   ko: {
     desc: "Acquafy Platform + App + AI + IoT로 글로벌 지능형 수자원 관리를 실현합니다.",
+    groupCredit: { prefix: "제공:", brand: "Interfy Corporation", middle: "그룹 소개:", linkLabel: "www.interfycorp.com" },
     nav: [
       { title: "플랫폼", links: [
         { label: "Acquafy 플랫폼",   href: "/platform"         },
@@ -414,6 +413,7 @@ const T: Record<Lang, {
   },
   sv: {
     desc: "Acquafy Platform + App + AI + IoT för global intelligent vattenhantering.",
+    groupCredit: { prefix: "En plattform från", brand: "Interfy Corporation", middle: "Utforska koncernen:", linkLabel: "www.interfycorp.com" },
     nav: [
       { title: "Plattform", links: [
         { label: "Acquafy Plattform",          href: "/platform"         },
@@ -447,6 +447,7 @@ const T: Record<Lang, {
   },
   fi: {
     desc: "Acquafy Platform + App + AI + IoT globaaliin älykkääseen vedenhallintaan.",
+    groupCredit: { prefix: "Alusta, jonka takana on", brand: "Interfy Corporation", middle: "Tutustu konserniin:", linkLabel: "www.interfycorp.com" },
     nav: [
       { title: "Alusta", links: [
         { label: "Acquafy-alusta",              href: "/platform"         },
@@ -480,6 +481,7 @@ const T: Record<Lang, {
   },
   ru: {
     desc: "Acquafy Platform + App + AI + IoT для глобального интеллектуального управления водными ресурсами.",
+    groupCredit: { prefix: "Платформа компании", brand: "Interfy Corporation", middle: "Узнайте больше о группе:", linkLabel: "www.interfycorp.com" },
     nav: [
       { title: "Платформа", links: [
         { label: "Платформа Acquafy",           href: "/platform"         },
@@ -513,6 +515,7 @@ const T: Record<Lang, {
   },
   ro: {
     desc: "Acquafy Platform + App + AI + IoT pentru Managementul Global Inteligent al Apei.",
+    groupCredit: { prefix: "O platforma a", brand: "Interfy Corporation", middle: "Descopera grupul:", linkLabel: "www.interfycorp.com" },
     nav: [
       { title: "Platforma", links: [
         { label: "Platforma Acquafy",           href: "/platform"         },
@@ -546,6 +549,7 @@ const T: Record<Lang, {
   },
   he: {
     desc: "Acquafy Platform + App + AI + IoT לניהול מים גלובלי חכם.",
+    groupCredit: { prefix: "פלטפורמה של", brand: "Interfy Corporation", middle: "הכירו את הקבוצה:", linkLabel: "www.interfycorp.com" },
     nav: [
       { title: "פלטפורמה", links: [
         { label: "פלטפורמת Acquafy",         href: "/platform"         },
@@ -580,23 +584,6 @@ const T: Record<Lang, {
 };
 
 const gradientLine = { backgroundImage: "linear-gradient(146.8deg, #3447d2 4.03%, #0035c1 124%)" };
-
-function SocialCircle({ src, alt, aspectW, aspectH }: { src: string; alt: string; aspectW: number; aspectH: number }) {
-  const isSquare = Math.abs(aspectW - aspectH) < 1;
-  return (
-    <div className="aspect-square bg-white border border-[#cbd0d4] flex flex-col items-center justify-center max-w-[50px] w-full mx-auto p-[14px] rounded-full cursor-pointer">
-      {isSquare ? (
-        <div className="flex-[1_0_0] min-h-px relative w-full" style={{ aspectRatio: "1/1" }}>
-          <img alt={alt} className="absolute inset-0 max-w-none size-full" src={src} />
-        </div>
-      ) : (
-        <div className="relative shrink-0 w-full" style={{ aspectRatio: `${aspectW}/${aspectH}` }}>
-          <img alt={alt} className="absolute block inset-0 max-w-none size-full" src={src} />
-        </div>
-      )}
-    </div>
-  );
-}
 
 function MobileNavSection({
   col, isOpen, onToggle,
@@ -643,7 +630,7 @@ export default function Footer() {
       <div className="flex flex-col items-center px-[20px] w-full">
         <div className="content-start flex flex-wrap gap-[40px_20px] items-stretch justify-center max-w-[1400px] w-full">
 
-          {/* Logo + description + social */}
+          {/* Logo + description + group credit */}
           <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start min-h-[210px] min-w-[240px] mob:h-auto mob:min-h-0 mob:items-center mob:pb-[40px]">
             <a href="/" className="flex flex-col items-center justify-center max-w-[200px] w-full">
               <div className="relative shrink-0 w-full" style={{ aspectRatio: "1133.84/187.34" }}>
@@ -653,11 +640,19 @@ export default function Footer() {
             <p className="font-['Articulat_CF:Regular'] text-[16px] leading-[25px] text-[#333] flex-[1_0_0] min-h-px w-full mob:text-center mob:flex-none mob:min-h-0">
               {t.desc}
             </p>
-            <div className="grid grid-cols-5 gap-[10px] w-full mt-auto mob:max-w-[260px] mob:mx-auto mob:mt-0">
-              {socialIcons.map((s) => (
-                <SocialCircle key={s.alt} src={s.src} alt={s.alt} aspectW={s.aspectW} aspectH={s.aspectH} />
-              ))}
-            </div>
+            <p className="font-['Articulat_CF:Regular'] text-[14px] leading-[20px] text-[#333] w-full mt-auto mob:text-center">
+              {t.groupCredit.prefix} <span className="font-bold">{t.groupCredit.brand}</span>
+              {" · "}
+              {t.groupCredit.middle}{" "}
+              <a
+                href="https://www.interfycorp.com"
+                target="_blank"
+                rel="noreferrer"
+                className="font-bold hover:underline"
+              >
+                {t.groupCredit.linkLabel}
+              </a>
+            </p>
           </div>
 
           {/* Desktop nav columns */}

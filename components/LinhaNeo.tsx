@@ -1,12 +1,26 @@
 "use client";
-import type { ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import FigmaIcon from "./FigmaIcon";
 import { PRODUCT_IMAGES } from "@/lib/products";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
 const imgCheckin = "/figma-assets/icon-check-e.svg";
 
-const imgPanel      = "/images/painel-v3-eng.webp";
+const imgDotActive   = "/figma-assets/dot-active-a.svg";
+const imgDotInactive = "/figma-assets/dot-inactive-a.svg";
+
+const panelEssentialsSrcs = [
+  "/figma-assets/panel-essentials-1.webp",
+  "/figma-assets/panel-essentials-2.webp",
+  "/figma-assets/panel-essentials-3.webp",
+  "/figma-assets/panel-essentials-4.webp",
+  "/figma-assets/panel-essentials-5.webp",
+  "/figma-assets/panel-essentials-6.webp",
+  "/figma-assets/panel-essentials-7.webp",
+  "/figma-assets/panel-essentials-8.webp",
+  "/figma-assets/panel-essentials-9.webp",
+];
+
 const imgHomeMob    = "/figma-assets/app-home-mobile.webp";
 const imgAppView    = "/figma-assets/app-view-screen.webp";
 const imgFeatCheck  = "/figma-assets/icon-check-30px.svg";
@@ -892,6 +906,40 @@ function CardImage({ src, maxW = "170px" }: { src: string; maxW?: string }) {
   );
 }
 
+function PanelSlideshowEssentials() {
+  const [active, setActive] = useState(0);
+  return (
+    <div className="flex flex-col gap-[10px] items-center w-full">
+      <div
+        className="w-full min-w-[120px] shrink-0 cursor-pointer overflow-hidden rounded-[9.29%] bg-black box-border"
+        style={{ maxWidth: "300px", aspectRatio: "4561/2543", padding: "0.877%" }}
+        onClick={() => setActive((active + 1) % panelEssentialsSrcs.length)}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => e.key === "Enter" && setActive((active + 1) % panelEssentialsSrcs.length)}
+        aria-label="Proximo slide"
+      >
+        <img
+          alt=""
+          className="block w-full h-full object-cover pointer-events-none"
+          src={panelEssentialsSrcs[active]}
+        />
+      </div>
+      <div className="flex gap-[10px] items-center justify-center flex-wrap">
+        {panelEssentialsSrcs.map((_, i) => (
+          <div
+            key={i}
+            className="relative shrink-0 size-[12px] cursor-pointer"
+            onClick={() => setActive(i)}
+          >
+            <img alt="" className="absolute block inset-0 max-w-none size-full" src={active === i ? imgDotActive : imgDotInactive} />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function ProductCard({ product }: { product: Product }) {
   const { lang } = useLang();
   return (
@@ -1000,7 +1048,7 @@ export default function LinhaNeo() {
                 <span className="text-[#1f2e91]">{t.panel.title2}</span>
               </p>
               <div className="flex flex-col gap-[20px] items-center w-full">
-                <CardImage src={imgPanel} maxW="300px" />
+                <PanelSlideshowEssentials />
                 <div className="flex flex-col gap-[20px] items-center w-full win-1024:items-start">
                   <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#1f2e91] text-center win-1024:text-left w-full">
                     {t.panel.sub}
