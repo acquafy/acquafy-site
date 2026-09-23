@@ -28,6 +28,9 @@ const panelSlideSrcs = [
   "/figma-assets/panel-premium-4.webp",
   "/figma-assets/panel-premium-5.webp",
   "/figma-assets/panel-premium-6.webp",
+  "/figma-assets/panel-premium-7.webp",
+  "/figma-assets/panel-premium-8.webp",
+  "/figma-assets/panel-premium-9.webp",
 ];
 
 const imgCheckin    = "/figma-assets/icon-check-b.svg";
@@ -483,27 +486,12 @@ function PremiumCard({ product, color = "#6e0cc3" }: { product: Product; color?:
 }
 
 function PanelSlideshow() {
-  return (
-    <div className="shrink-0 min-w-[240px] max-w-[249px] w-[240px]">
-      <div className="relative w-full" style={{ aspectRatio: "2309/3821" }}>
-        <img
-          alt="Painel Premium"
-          className="absolute inset-0 max-w-none object-cover pointer-events-none size-full"
-          src={panelSlideSrcs[0]}
-        />
-      </div>
-    </div>
-  );
-}
-
-/* BACKUP — slideshow completo, reativar quando imagens estiverem prontas
-function PanelSlideshowFull() {
   const [active, setActive] = useState(0);
   return (
     <div className="flex flex-col gap-[10px] items-center justify-center shrink-0 min-w-[240px] max-w-[249px] w-[240px]">
       <div
-        className="relative w-full cursor-pointer"
-        style={{ aspectRatio: "2309/3821" }}
+        className="w-full cursor-pointer overflow-hidden rounded-[5%] bg-black box-border"
+        style={{ aspectRatio: "3249/5308", padding: "1.231%" }}
         onClick={() => setActive((active + 1) % panelSlideSrcs.length)}
         role="button"
         tabIndex={0}
@@ -512,11 +500,11 @@ function PanelSlideshowFull() {
       >
         <img
           alt="Painel Premium"
-          className="absolute inset-0 max-w-none object-cover pointer-events-none size-full"
+          className="block w-full h-full object-cover pointer-events-none"
           src={panelSlideSrcs[active]}
         />
       </div>
-      <div className="flex gap-[10px] items-center justify-center">
+      <div className="flex gap-[10px] items-center justify-center flex-wrap">
         {panelSlideSrcs.map((_, i) => (
           <div
             key={i}
@@ -530,7 +518,6 @@ function PanelSlideshowFull() {
     </div>
   );
 }
-*/
 
 export default function LinhaPremium() {
   const { lang } = useLang();

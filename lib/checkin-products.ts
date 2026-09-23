@@ -38,16 +38,18 @@ function v(id: string, name: string, subLabel: string, desc: string, formato: st
   return { id, name, subLabel, desc, formato, price: PRODUCT_PRICES_BRL[id] ?? 0, img: PRODUCT_IMAGES[id] ?? "" };
 }
 
-function ultraSlides(variantId: string): string[][] {
-  const base = `/images/checkin/neo-ultra/${variantId}`;
-  // ULTRA_COLORS order: ap, cm, cz, bg, wt (indices 0-4)
-  // CM missing ULTRA ALL pos02 → 6 slides; others → 7 slides
-  return ["ap", "cm", "cz", "bg", "wt"].map((col) =>
-    col === "cm"
-      ? [`${base}/cm/01.webp`, `${base}/cm/02.webp`, `${base}/cm/03.webp`, `${base}/cm/04.webp`, `${base}/cm/05.webp`, `${base}/cm/06.webp`]
-      : [`${base}/${col}/01.webp`, `${base}/${col}/02.webp`, `${base}/${col}/03.webp`, `${base}/${col}/04.webp`, `${base}/${col}/05.webp`, `${base}/${col}/06.webp`, `${base}/${col}/07.webp`]
+// counts: how many slide images exist per color (CM lacks the side-profile shots, so it gets fewer).
+function positionSlides(familySlug: string, variantId: string, counts: Record<"ap" | "cm" | "cz" | "bg" | "wt", number>): string[][] {
+  const base = `/images/checkin/${familySlug}/${variantId}`;
+  return (["ap", "cm", "cz", "bg", "wt"] as const).map((col) =>
+    Array.from({ length: counts[col] }, (_, i) => `${base}/${col}/${String(i + 1).padStart(2, "0")}.webp`)
   );
 }
+
+const SIDES_COUNTS = { ap: 7, cm: 5, cz: 7, bg: 7, wt: 7 };
+// Ultra's side-B photo doesn't exist, so it's synthesized by flipping side-A horizontally —
+// same slide count as the other Essentials-tier families.
+const ULTRA_COUNTS  = { ap: 7, cm: 5, cz: 7, bg: 7, wt: 7 };
 
 
 export const ULTRA_COLORS: CheckinColor[] = [
@@ -64,7 +66,10 @@ export const CHECKIN_FAMILIES: CheckinFamily[] = [
     title: "Neo UP",
     subtitle: "Natural · Filtro UF",
     isPremium: false,
-    variants: [v("neo-up", "Neo UP", "Apenas Natural", "Natural", "Bancada ou Parede")],
+    colors: ULTRA_COLORS,
+    variants: [
+      { ...v("neo-up", "Neo UP", "Apenas Natural", "Natural", "Bancada ou Parede"), slides: positionSlides("neo-up", "neo-up", SIDES_COUNTS) },
+    ],
     scenes: [],
   },
   {
@@ -72,11 +77,12 @@ export const CHECKIN_FAMILIES: CheckinFamily[] = [
     title: "Neo Compact",
     subtitle: "Multifuncional · até 7 em 1",
     isPremium: false,
+    colors: ULTRA_COLORS,
     variants: [
-      v("neo-fit",      "Neo FIT",      "6 em 1", "6 em 1",        "Bancada ou Parede"),
-      v("neo-touch",    "Neo TOUCH",    "6 em 1", "6 em 1",        "Bancada"),
-      v("neo-plus",     "Neo PLUS",     "6 em 1", "6 em 1",        "Bancada"),
-      v("neo-smart-h2", "Neo SMART H₂", "7 em 1", "7 em 1 · H₂",  "Bancada"),
+      { ...v("neo-fit",      "Neo FIT",      "6 em 1", "6 em 1",       "Bancada ou Parede"), slides: positionSlides("neo-essentials", "neo-fit", SIDES_COUNTS)      },
+      { ...v("neo-touch",    "Neo TOUCH",    "6 em 1", "6 em 1",       "Bancada"),           slides: positionSlides("neo-essentials", "neo-touch", SIDES_COUNTS)    },
+      { ...v("neo-plus",     "Neo PLUS",     "6 em 1", "6 em 1",       "Bancada"),           slides: positionSlides("neo-essentials", "neo-plus", SIDES_COUNTS)     },
+      { ...v("neo-smart-h2", "Neo SMART H₂", "7 em 1", "7 em 1 · H₂", "Bancada"),           slides: positionSlides("neo-essentials", "neo-smart-h2", SIDES_COUNTS) },
     ],
     scenes: [],
   },
@@ -87,9 +93,9 @@ export const CHECKIN_FAMILIES: CheckinFamily[] = [
     isPremium: false,
     colors: ULTRA_COLORS,
     variants: [
-      { ...v("neo-ultra",          "Neo ULTRA",          "6 em 1", "6 em 1",             "Bancada"), slides: ultraSlides("neo-ultra")          },
-      { ...v("neo-ultra-spark",    "Neo ULTRA SPARK",    "7 em 1", "7 em 1 · Gás",       "Bancada"), slides: ultraSlides("neo-ultra-spark")    },
-      { ...v("neo-ultra-spark-h2", "Neo ULTRA SPARK H₂", "8 em 1", "8 em 1 · Gás + H₂", "Bancada"), slides: ultraSlides("neo-ultra-spark-h2") },
+      { ...v("neo-ultra",          "Neo ULTRA",          "6 em 1", "6 em 1",             "Bancada"), slides: positionSlides("neo-ultra", "neo-ultra", ULTRA_COUNTS)          },
+      { ...v("neo-ultra-spark",    "Neo ULTRA SPARK",    "7 em 1", "7 em 1 · Gás",       "Bancada"), slides: positionSlides("neo-ultra", "neo-ultra-spark", ULTRA_COUNTS)    },
+      { ...v("neo-ultra-spark-h2", "Neo ULTRA SPARK H₂", "8 em 1", "8 em 1 · Gás + H₂", "Bancada"), slides: positionSlides("neo-ultra", "neo-ultra-spark-h2", ULTRA_COUNTS) },
     ],
     scenes: [],
   },
