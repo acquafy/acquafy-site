@@ -911,8 +911,8 @@ function PanelSlideshowEssentials() {
   return (
     <div className="flex flex-col gap-[10px] items-center w-full">
       <div
-        className="w-full min-w-[120px] shrink-0 cursor-pointer overflow-hidden rounded-[9.29%] bg-black box-border"
-        style={{ maxWidth: "300px", aspectRatio: "4561/2543", padding: "0.877%" }}
+        className="w-full min-w-[120px] shrink-0 cursor-pointer overflow-hidden bg-black box-border"
+        style={{ maxWidth: "300px", aspectRatio: "4561/2543", padding: "0.877%", borderRadius: "9.29% / 16.66%" }}
         onClick={() => setActive((active + 1) % panelEssentialsSrcs.length)}
         role="button"
         tabIndex={0}
@@ -922,6 +922,7 @@ function PanelSlideshowEssentials() {
         <img
           alt=""
           className="block w-full h-full object-cover pointer-events-none"
+          style={{ borderRadius: "8.563% / 15.58%" }}
           src={panelEssentialsSrcs[active]}
         />
       </div>
