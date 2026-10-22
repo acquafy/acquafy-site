@@ -3,7 +3,7 @@
 import { useRef, useState, useCallback, useEffect } from "react";
 import { CHECKIN_FAMILIES, type CheckinFamily } from "@/lib/checkin-products";
 import StripePaymentForm, { type StripeFormHandle } from "@/components/StripePaymentForm";
-import { formatPrice, formatBRL, PRODUCT_PRICES_BRL, PRODUCT_IMAGES } from "@/lib/products";
+import { formatPrice, formatBRL, PRODUCT_PRICES_BRL, PRODUCT_LEASE_BRL, PRODUCT_IMAGES } from "@/lib/products";
 import FigmaIcon from "@/components/FigmaIcon";
 import { useCart } from "@/components/CartProvider";
 import { useLang } from "@/context/LanguageContext";
@@ -109,7 +109,7 @@ function translateSpecValue(val: string, lang: Lang): string {
 }
 
 const LABELS: Record<Lang, {
-  formato: string; dimMoldura: string; dimAltura: string; dimAlturaBaseCopo: string; dimLargura: string; dimProfundidade: string; filtragem: string; temperaturas: string; gasLabel: string; h2Label: string;
+  formato: string; dimMoldura: string; dimAltura: string; dimAlturaBaseCopo: string; dimLargura: string; dimProfundidade: string; dimensoes: string; filtragem: string; temperaturas: string; gasLabel: string; h2Label: string;
   painel: string; app: string; aiIot: string; wifi: string; tanque: string; material: string; computador: string;
   fichaTecnica: string; demaisFuncionalidades: string; ocultarFuncionalidades: string;
   garantias: string; detalhesContaTitle: string;
@@ -118,7 +118,7 @@ const LABELS: Record<Lang, {
   cepTitle: string; calcular: string;
   consentText: string; liAceito: string; termosDeUso: string;
   payCash: string; payFinanciar: string; payRent: string;
-  finNote: string; freteNote: string;
+  finNote: string; perMonth: string; parcelaTitle: string; parcelaDesc: string; dueTodayTitle: string; freteNote: string;
   coresLabel: string; encomendar: string;
   pedidoConfirmado: string; precisaMaisAlgo: string;
   compareProdutos: string; acquafyMedia: string; sejaUmParceiro: string; comprarOutro: string;
@@ -139,7 +139,7 @@ const LABELS: Record<Lang, {
   pagamentoTitle: string; taxaReservaPrefix: string; taxaReservaSuffix: string;
 }> = {
   pt: {
-    formato: "Formato", dimMoldura: "Moldura (A×L)", dimAltura: "Altura", dimAlturaBaseCopo: "Altura da base do copo", dimLargura: "Largura", dimProfundidade: "Profundidade", filtragem: "Sistema de Filtragem", temperaturas: "Temperaturas",
+    formato: "Formato", dimMoldura: "Moldura (A×L)", dimAltura: "Altura", dimAlturaBaseCopo: "Altura da base do copo", dimLargura: "Largura", dimProfundidade: "Profundidade", dimensoes: "Dimensões (A×L×P)", filtragem: "Sistema de Filtragem", temperaturas: "Temperaturas",
     gasLabel: "Água com Gás", h2Label: "Água Hidrogenada",
     painel: "Painel", app: "App", aiIot: "AI + IoT", wifi: "Wi-Fi + Bluetooth 5.3",
     tanque: "Tanque", material: "Material", computador: "Computador",
@@ -150,8 +150,8 @@ const LABELS: Record<Lang, {
     cepTitle: "Adicione seu CEP", calcular: "Calcular",
     consentText: "Ao prosseguir, autorizo a Acquafy a entrar em contato comigo sobre esta solicitação e a me enviar informações sobre produtos e serviços. Posso cancelar a qualquer momento.",
     liAceito: "Li e aceito os", termosDeUso: "Termos de Uso",
-    payCash: "Encomendar", payFinanciar: "Financiar", payRent: "Alugar",
-    finNote: "12x sem juros. Consulte condições no momento da compra.",
+    payCash: "Encomendar", payFinanciar: "Leasing", payRent: "Alugar",
+    finNote: "Pagamento em 36 parcelas mensais. Consulte condições no momento da compra.", perMonth: "/mês", parcelaTitle: "Parcela estimada", parcelaDesc: "Em 36 parcelas mensais", dueTodayTitle: "Devido hoje",
     freteNote: "Frete grátis para compras acima de R$ 500,00. Entrega em todo o Brasil.",
     coresLabel: "Cores", encomendar: "Encomendar",
     pedidoConfirmado: "Adicionado ao carrinho!", precisaMaisAlgo: "Precisa de mais algo?",
@@ -174,7 +174,7 @@ const LABELS: Record<Lang, {
     pagamentoTitle: "Pagamento", taxaReservaPrefix: "A taxa de reserva de", taxaReservaSuffix: "é cobrada agora para confirmar a sua encomenda e não é reembolsável.",
   },
   "pt-pt": {
-    formato: "Formato", dimMoldura: "Moldura (A×L)", dimAltura: "Altura", dimAlturaBaseCopo: "Altura da base do copo", dimLargura: "Largura", dimProfundidade: "Profundidade", filtragem: "Sistema de Filtragem", temperaturas: "Temperaturas",
+    formato: "Formato", dimMoldura: "Moldura (A×L)", dimAltura: "Altura", dimAlturaBaseCopo: "Altura da base do copo", dimLargura: "Largura", dimProfundidade: "Profundidade", dimensoes: "Dimensões (A×L×P)", filtragem: "Sistema de Filtragem", temperaturas: "Temperaturas",
     gasLabel: "Água com Gás", h2Label: "Água Hidrogenada",
     painel: "Painel", app: "App", aiIot: "AI + IoT", wifi: "Wi-Fi + Bluetooth 5.3",
     tanque: "Tanque", material: "Material", computador: "Computador",
@@ -185,8 +185,8 @@ const LABELS: Record<Lang, {
     cepTitle: "Introduza o seu código postal", calcular: "Calcular",
     consentText: "Ao prosseguir, autorizo a Acquafy a contactar-me sobre este pedido e a enviar-me informações sobre produtos e serviços. Posso cancelar a qualquer momento.",
     liAceito: "Li e aceito os", termosDeUso: "Termos de Utilização",
-    payCash: "Encomendar", payFinanciar: "Financiar", payRent: "Alugar",
-    finNote: "12x sem juros. Consulte condições no momento da compra.",
+    payCash: "Encomendar", payFinanciar: "Leasing", payRent: "Alugar",
+    finNote: "Pagamento em 36 prestações mensais. Consulte as condições no momento da compra.", perMonth: "/mês", parcelaTitle: "Prestação estimada", parcelaDesc: "Em 36 prestações mensais", dueTodayTitle: "A pagar hoje",
     freteNote: "Envio gratuito para compras acima de R$ 500,00. Entrega em todo o Brasil.",
     coresLabel: "Cores", encomendar: "Encomendar",
     pedidoConfirmado: "Adicionado ao carrinho!", precisaMaisAlgo: "Precisa de mais algo?",
@@ -209,7 +209,7 @@ const LABELS: Record<Lang, {
     pagamentoTitle: "Pagamento", taxaReservaPrefix: "A taxa de reserva de", taxaReservaSuffix: "é cobrada agora para confirmar a sua encomenda e não é reembolsável.",
   },
   en: {
-    formato: "Format", dimMoldura: "Frame (H×W)", dimAltura: "Height", dimAlturaBaseCopo: "Cup base height", dimLargura: "Width", dimProfundidade: "Depth", filtragem: "Filtration System", temperaturas: "Temperatures",
+    formato: "Format", dimMoldura: "Frame (H×W)", dimAltura: "Height", dimAlturaBaseCopo: "Cup base height", dimLargura: "Width", dimProfundidade: "Depth", dimensoes: "Dimensions (H×W×D)", filtragem: "Filtration System", temperaturas: "Temperatures",
     gasLabel: "Sparkling Water", h2Label: "Hydrogen Water",
     painel: "Panel", app: "App", aiIot: "AI + IoT", wifi: "Wi-Fi + Bluetooth 5.3",
     tanque: "Tank", material: "Material", computador: "Computer",
@@ -220,8 +220,8 @@ const LABELS: Record<Lang, {
     cepTitle: "Enter your ZIP code", calcular: "Calculate",
     consentText: "By proceeding, I authorize Acquafy to contact me about this request and to send me information about products and services. I can unsubscribe at any time.",
     liAceito: "I have read and accept the", termosDeUso: "Terms of Use",
-    payCash: "Cash", payFinanciar: "Finance", payRent: "Rent",
-    finNote: "12x interest-free. Check conditions at the time of purchase.",
+    payCash: "Cash", payFinanciar: "Lease", payRent: "Rent",
+    finNote: "Paid in 36 monthly payments. Check conditions at the time of purchase.", perMonth: "/mo", parcelaTitle: "Est. Lease Payment", parcelaDesc: "36 monthly payments", dueTodayTitle: "Due Today",
     freteNote: "Free shipping on orders over R$ 500.00. Delivery across Brazil.",
     coresLabel: "Colors", encomendar: "Order Now",
     pedidoConfirmado: "Added to cart!", precisaMaisAlgo: "Need anything else?",
@@ -244,7 +244,7 @@ const LABELS: Record<Lang, {
     pagamentoTitle: "Payment", taxaReservaPrefix: "The reservation fee of", taxaReservaSuffix: "is charged now to confirm your order and is non-refundable.",
   },
   "en-gb": {
-    formato: "Format", dimMoldura: "Frame (H×W)", dimAltura: "Height", dimAlturaBaseCopo: "Cup base height", dimLargura: "Width", dimProfundidade: "Depth", filtragem: "Filtration System", temperaturas: "Temperatures",
+    formato: "Format", dimMoldura: "Frame (H×W)", dimAltura: "Height", dimAlturaBaseCopo: "Cup base height", dimLargura: "Width", dimProfundidade: "Depth", dimensoes: "Dimensions (H×W×D)", filtragem: "Filtration System", temperaturas: "Temperatures",
     gasLabel: "Sparkling Water", h2Label: "Hydrogen Water",
     painel: "Panel", app: "App", aiIot: "AI + IoT", wifi: "Wi-Fi + Bluetooth 5.3",
     tanque: "Tank", material: "Material", computador: "Computer",
@@ -255,8 +255,8 @@ const LABELS: Record<Lang, {
     cepTitle: "Enter your postcode", calcular: "Calculate",
     consentText: "By proceeding, I authorise Acquafy to contact me about this request and send me information about products and services. I can unsubscribe at any time.",
     liAceito: "I have read and accept the", termosDeUso: "Terms of Use",
-    payCash: "Cash", payFinanciar: "Finance", payRent: "Rent",
-    finNote: "12x interest-free. Check conditions at the time of purchase.",
+    payCash: "Cash", payFinanciar: "Lease", payRent: "Rent",
+    finNote: "Paid in 36 monthly payments. Check conditions at the time of purchase.", perMonth: "/mo", parcelaTitle: "Est. Lease Payment", parcelaDesc: "36 monthly payments", dueTodayTitle: "Due Today",
     freteNote: "Free delivery on orders over R$ 500.00. Delivery across Brazil.",
     coresLabel: "Colours", encomendar: "Order Now",
     pedidoConfirmado: "Added to basket!", precisaMaisAlgo: "Need anything else?",
@@ -279,7 +279,7 @@ const LABELS: Record<Lang, {
     pagamentoTitle: "Payment", taxaReservaPrefix: "The reservation fee of", taxaReservaSuffix: "is charged now to confirm your order and is non-refundable.",
   },
   es: {
-    formato: "Formato", dimMoldura: "Marco (A×An)", dimAltura: "Altura", dimAlturaBaseCopo: "Altura de la base del vaso", dimLargura: "Ancho", dimProfundidade: "Profundidad", filtragem: "Sistema de Filtración", temperaturas: "Temperaturas",
+    formato: "Formato", dimMoldura: "Marco (A×An)", dimAltura: "Altura", dimAlturaBaseCopo: "Altura de la base del vaso", dimLargura: "Ancho", dimProfundidade: "Profundidad", dimensoes: "Dimensiones (A×An×P)", filtragem: "Sistema de Filtración", temperaturas: "Temperaturas",
     gasLabel: "Agua con Gas", h2Label: "Agua Hidrogenada",
     painel: "Panel", app: "App", aiIot: "AI + IoT", wifi: "Wi-Fi + Bluetooth 5.3",
     tanque: "Depósito", material: "Material", computador: "Ordenador",
@@ -290,8 +290,8 @@ const LABELS: Record<Lang, {
     cepTitle: "Ingresa tu código postal", calcular: "Calcular",
     consentText: "Al continuar, autorizo a Acquafy a contactarme sobre esta solicitud y enviarme información sobre productos y servicios. Puedo cancelar en cualquier momento.",
     liAceito: "He leído y acepto los", termosDeUso: "Términos de Uso",
-    payCash: "Efectivo", payFinanciar: "Financiar", payRent: "Alquilar",
-    finNote: "12 cuotas sin interés. Consulte condiciones al momento de la compra.",
+    payCash: "Efectivo", payFinanciar: "Leasing", payRent: "Alquilar",
+    finNote: "Pago en 36 cuotas mensuales. Consulte condiciones al momento de la compra.", perMonth: "/mes", parcelaTitle: "Cuota estimada", parcelaDesc: "En 36 cuotas mensuales", dueTodayTitle: "A pagar hoy",
     freteNote: "Envío gratis en compras superiores a R$ 500,00. Entrega en todo Brasil.",
     coresLabel: "Colores", encomendar: "Pedir Ahora",
     pedidoConfirmado: "¡Añadido al carrito!", precisaMaisAlgo: "¿Necesitas algo más?",
@@ -314,7 +314,7 @@ const LABELS: Record<Lang, {
     pagamentoTitle: "Pago", taxaReservaPrefix: "La tarifa de reserva de", taxaReservaSuffix: "se cobra ahora para confirmar tu pedido y no es reembolsable.",
   },
   fr: {
-    formato: "Format", dimMoldura: "Cadre (H×L)", dimAltura: "Hauteur", dimAlturaBaseCopo: "Hauteur de la base du verre", dimLargura: "Largeur", dimProfundidade: "Profondeur", filtragem: "Système de Filtration", temperaturas: "Températures",
+    formato: "Format", dimMoldura: "Cadre (H×L)", dimAltura: "Hauteur", dimAlturaBaseCopo: "Hauteur de la base du verre", dimLargura: "Largeur", dimProfundidade: "Profondeur", dimensoes: "Dimensions (H×L×P)", filtragem: "Système de Filtration", temperaturas: "Températures",
     gasLabel: "Eau Pétillante", h2Label: "Eau Hydrogénée",
     painel: "Panneau", app: "App", aiIot: "AI + IoT", wifi: "Wi-Fi + Bluetooth 5.3",
     tanque: "Réservoir", material: "Matériau", computador: "Ordinateur",
@@ -325,8 +325,8 @@ const LABELS: Record<Lang, {
     cepTitle: "Entrez votre code postal", calcular: "Calculer",
     consentText: "En continuant, j'autorise Acquafy à me contacter au sujet de cette demande et à m'envoyer des informations sur les produits et services. Je peux me désinscrire à tout moment.",
     liAceito: "J'ai lu et j'accepte les", termosDeUso: "Conditions d'utilisation",
-    payCash: "Espèces", payFinanciar: "Financer", payRent: "Louer",
-    finNote: "12x sans intérêt. Vérifiez les conditions au moment de l'achat.",
+    payCash: "Espèces", payFinanciar: "Leasing", payRent: "Louer",
+    finNote: "Paiement en 36 mensualités. Vérifiez les conditions au moment de l'achat.", perMonth: "/mois", parcelaTitle: "Mensualité estimée", parcelaDesc: "En 36 mensualités", dueTodayTitle: "À payer aujourd'hui",
     freteNote: "Livraison gratuite pour les achats supérieurs à R$ 500,00. Livraison dans tout le Brésil.",
     coresLabel: "Couleurs", encomendar: "Commander",
     pedidoConfirmado: "Ajouté au panier !", precisaMaisAlgo: "Besoin d'autre chose ?",
@@ -349,7 +349,7 @@ const LABELS: Record<Lang, {
     pagamentoTitle: "Paiement", taxaReservaPrefix: "Les frais de réservation de", taxaReservaSuffix: "sont prélevés maintenant pour confirmer votre commande et ne sont pas remboursables.",
   },
   de: {
-    formato: "Format", dimMoldura: "Rahmen (H×B)", dimAltura: "Höhe", dimAlturaBaseCopo: "Höhe des Becherständers", dimLargura: "Breite", dimProfundidade: "Tiefe", filtragem: "Filtersystem", temperaturas: "Temperaturen",
+    formato: "Format", dimMoldura: "Rahmen (H×B)", dimAltura: "Höhe", dimAlturaBaseCopo: "Höhe des Becherständers", dimLargura: "Breite", dimProfundidade: "Tiefe", dimensoes: "Maße (H×B×T)", filtragem: "Filtersystem", temperaturas: "Temperaturen",
     gasLabel: "Sprudelwasser", h2Label: "Wasserstoffwasser",
     painel: "Bedienfeld", app: "App", aiIot: "AI + IoT", wifi: "Wi-Fi + Bluetooth 5.3",
     tanque: "Tank", material: "Material", computador: "Computer",
@@ -360,8 +360,8 @@ const LABELS: Record<Lang, {
     cepTitle: "Postleitzahl eingeben", calcular: "Berechnen",
     consentText: "Durch Fortfahren erteile ich Acquafy die Erlaubnis, mich bezüglich dieser Anfrage zu kontaktieren und mir Informationen über Produkte und Dienstleistungen zu senden. Ich kann mich jederzeit abmelden.",
     liAceito: "Ich habe die gelesen und akzeptiere die", termosDeUso: "Nutzungsbedingungen",
-    payCash: "Bargeld", payFinanciar: "Finanzieren", payRent: "Mieten",
-    finNote: "12x zinslos. Konditionen zum Zeitpunkt des Kaufs prüfen.",
+    payCash: "Bargeld", payFinanciar: "Leasing", payRent: "Mieten",
+    finNote: "Zahlung in 36 Monatsraten. Konditionen zum Zeitpunkt des Kaufs prüfen.", perMonth: "/Monat", parcelaTitle: "Gesch. Monatsrate", parcelaDesc: "In 36 Monatsraten", dueTodayTitle: "Heute fällig",
     freteNote: "Kostenloser Versand ab R$ 500,00. Lieferung in ganz Brasilien.",
     coresLabel: "Farben", encomendar: "Jetzt bestellen",
     pedidoConfirmado: "Zum Warenkorb hinzugefügt!", precisaMaisAlgo: "Noch etwas benötigt?",
@@ -384,7 +384,7 @@ const LABELS: Record<Lang, {
     pagamentoTitle: "Zahlung", taxaReservaPrefix: "Die Reservierungsgebühr von", taxaReservaSuffix: "wird jetzt zur Bestätigung Ihrer Bestellung berechnet und ist nicht erstattungsfähig.",
   },
   it: {
-    formato: "Formato", dimMoldura: "Cornice (A×L)", dimAltura: "Altezza", dimAlturaBaseCopo: "Altezza base bicchiere", dimLargura: "Larghezza", dimProfundidade: "Profondità", filtragem: "Sistema di Filtrazione", temperaturas: "Temperature",
+    formato: "Formato", dimMoldura: "Cornice (A×L)", dimAltura: "Altezza", dimAlturaBaseCopo: "Altezza base bicchiere", dimLargura: "Larghezza", dimProfundidade: "Profondità", dimensoes: "Dimensioni (A×L×P)", filtragem: "Sistema di Filtrazione", temperaturas: "Temperature",
     gasLabel: "Acqua Frizzante", h2Label: "Acqua all'Idrogeno",
     painel: "Pannello", app: "App", aiIot: "AI + IoT", wifi: "Wi-Fi + Bluetooth 5.3",
     tanque: "Serbatoio", material: "Materiale", computador: "Computer",
@@ -395,8 +395,8 @@ const LABELS: Record<Lang, {
     cepTitle: "Inserisci il tuo CAP", calcular: "Calcola",
     consentText: "Procedendo, autorizzo Acquafy a contattarmi in merito a questa richiesta e a inviarmi informazioni su prodotti e servizi. Posso annullare in qualsiasi momento.",
     liAceito: "Ho letto e accetto i", termosDeUso: "Termini di Utilizzo",
-    payCash: "Contante", payFinanciar: "Finanziare", payRent: "Noleggiare",
-    finNote: "12 rate senza interessi. Verifica le condizioni al momento dell'acquisto.",
+    payCash: "Contante", payFinanciar: "Leasing", payRent: "Noleggiare",
+    finNote: "Pagamento in 36 rate mensili. Verifica le condizioni al momento dell'acquisto.", perMonth: "/mese", parcelaTitle: "Rata mensile stimata", parcelaDesc: "In 36 rate mensili", dueTodayTitle: "Da pagare oggi",
     freteNote: "Spedizione gratuita per acquisti superiori a R$ 500,00. Consegna in tutto il Brasile.",
     coresLabel: "Colori", encomendar: "Ordina Ora",
     pedidoConfirmado: "Aggiunto al carrello!", precisaMaisAlgo: "Hai bisogno di altro?",
@@ -419,7 +419,7 @@ const LABELS: Record<Lang, {
     pagamentoTitle: "Pagamento", taxaReservaPrefix: "La commissione di prenotazione di", taxaReservaSuffix: "viene addebitata ora per confermare il tuo ordine e non è rimborsabile.",
   },
   zh: {
-    formato: "形式", dimMoldura: "边框（高×宽）", dimAltura: "高度", dimAlturaBaseCopo: "杯座高度", dimLargura: "宽度", dimProfundidade: "深度", filtragem: "过滤系统", temperaturas: "温度",
+    formato: "形式", dimMoldura: "边框（高×宽）", dimAltura: "高度", dimAlturaBaseCopo: "杯座高度", dimLargura: "宽度", dimProfundidade: "深度", dimensoes: "尺寸（高×宽×深）", filtragem: "过滤系统", temperaturas: "温度",
     gasLabel: "气泡水", h2Label: "富氢水",
     painel: "面板", app: "应用", aiIot: "AI + IoT", wifi: "Wi-Fi + Bluetooth 5.3",
     tanque: "水箱", material: "材质", computador: "电脑",
@@ -430,8 +430,8 @@ const LABELS: Record<Lang, {
     cepTitle: "请输入邮政编码", calcular: "计算",
     consentText: "继续操作即表示我授权Acquafy就本请求与我联系，并向我发送有关产品和服务的信息。我可随时取消。",
     liAceito: "我已阅读并接受", termosDeUso: "使用条款",
-    payCash: "现金", payFinanciar: "分期", payRent: "租赁",
-    finNote: "12期免息。请在购买时查询条件。",
+    payCash: "现金", payFinanciar: "融资租赁", payRent: "租赁",
+    finNote: "分36个月支付。请在购买时查询条件。", perMonth: "/月", parcelaTitle: "预计月付金额", parcelaDesc: "分36个月支付", dueTodayTitle: "今日应付",
     freteNote: "购买满R$ 500.00免运费。配送至巴西全境。",
     coresLabel: "颜色", encomendar: "立即下单",
     pedidoConfirmado: "已加入购物车！", precisaMaisAlgo: "还需要什么？",
@@ -454,7 +454,7 @@ const LABELS: Record<Lang, {
     pagamentoTitle: "付款", taxaReservaPrefix: "预约费", taxaReservaSuffix: "现在收取以确认您的订单，不可退款。",
   },
   ja: {
-    formato: "形式", dimMoldura: "フレーム（高さ×幅）", dimAltura: "高さ", dimAlturaBaseCopo: "カップベースの高さ", dimLargura: "幅", dimProfundidade: "奥行き", filtragem: "浄水システム", temperaturas: "温度",
+    formato: "形式", dimMoldura: "フレーム（高さ×幅）", dimAltura: "高さ", dimAlturaBaseCopo: "カップベースの高さ", dimLargura: "幅", dimProfundidade: "奥行き", dimensoes: "寸法（高さ×幅×奥行き）", filtragem: "浄水システム", temperaturas: "温度",
     gasLabel: "炭酸水", h2Label: "水素水",
     painel: "パネル", app: "アプリ", aiIot: "AI + IoT", wifi: "Wi-Fi + Bluetooth 5.3",
     tanque: "タンク", material: "素材", computador: "コンピューター",
@@ -465,8 +465,8 @@ const LABELS: Record<Lang, {
     cepTitle: "郵便番号を入力", calcular: "計算する",
     consentText: "続行することで、Acquafyがこのリクエストについて私に連絡し、製品・サービスに関する情報を送信することを許可します。いつでも解除できます。",
     liAceito: "利用規約を読み、同意します", termosDeUso: "利用規約",
-    payCash: "現金", payFinanciar: "分割払い", payRent: "レンタル",
-    finNote: "12回無利息。購入時に条件をご確認ください。",
+    payCash: "現金", payFinanciar: "リース", payRent: "レンタル",
+    finNote: "36回の月払い。購入時に条件をご確認ください。", perMonth: "/月", parcelaTitle: "月々の概算支払額", parcelaDesc: "36回払い", dueTodayTitle: "本日のお支払い",
     freteNote: "R$ 500.00以上の購入で送料無料。ブラジル全土配送。",
     coresLabel: "カラー", encomendar: "今すぐ注文",
     pedidoConfirmado: "カートに追加しました！", precisaMaisAlgo: "他にご要望はありますか？",
@@ -489,7 +489,7 @@ const LABELS: Record<Lang, {
     pagamentoTitle: "お支払い", taxaReservaPrefix: "予約手数料", taxaReservaSuffix: "はご注文確認のために今すぐ請求され、返金不可です。",
   },
   ko: {
-    formato: "형식", dimMoldura: "프레임 (높이×너비)", dimAltura: "높이", dimAlturaBaseCopo: "컵 받침대 높이", dimLargura: "너비", dimProfundidade: "깊이", filtragem: "정수 시스템", temperaturas: "온도",
+    formato: "형식", dimMoldura: "프레임 (높이×너비)", dimAltura: "높이", dimAlturaBaseCopo: "컵 받침대 높이", dimLargura: "너비", dimProfundidade: "깊이", dimensoes: "치수 (높이×너비×깊이)", filtragem: "정수 시스템", temperaturas: "온도",
     gasLabel: "탄산수", h2Label: "수소수",
     painel: "패널", app: "앱", aiIot: "AI + IoT", wifi: "Wi-Fi + Bluetooth 5.3",
     tanque: "탱크", material: "소재", computador: "컴퓨터",
@@ -500,8 +500,8 @@ const LABELS: Record<Lang, {
     cepTitle: "우편번호를 입력하세요", calcular: "계산",
     consentText: "계속 진행하면 Acquafy가 이 요청에 대해 저에게 연락하고 제품 및 서비스 정보를 보내는 것을 허용합니다. 언제든지 취소할 수 있습니다.",
     liAceito: "읽고 동의합니다", termosDeUso: "이용 약관",
-    payCash: "현금", payFinanciar: "할부", payRent: "렌탈",
-    finNote: "12개월 무이자. 구매 시 조건을 확인하세요.",
+    payCash: "현금", payFinanciar: "리스", payRent: "렌탈",
+    finNote: "36개월 분할 납부. 구매 시 조건을 확인하세요.", perMonth: "/월", parcelaTitle: "예상 월 납부액", parcelaDesc: "36개월 분할", dueTodayTitle: "오늘 결제 금액",
     freteNote: "R$ 500.00 이상 구매 시 무료 배송. 브라질 전역 배송.",
     coresLabel: "색상", encomendar: "지금 주문",
     pedidoConfirmado: "장바구니에 추가되었습니다!", precisaMaisAlgo: "더 필요한 것이 있나요?",
@@ -524,7 +524,7 @@ const LABELS: Record<Lang, {
     pagamentoTitle: "결제", taxaReservaPrefix: "예약 수수료", taxaReservaSuffix: "는 지금 주문 확인을 위해 청구되며 환불되지 않습니다.",
   },
   sv: {
-    formato: "Format", dimMoldura: "Ram (H×B)", dimAltura: "Höjd", dimAlturaBaseCopo: "Kopphöjd", dimLargura: "Bredd", dimProfundidade: "Djup", filtragem: "Filtreringssystem", temperaturas: "Temperaturer",
+    formato: "Format", dimMoldura: "Ram (H×B)", dimAltura: "Höjd", dimAlturaBaseCopo: "Kopphöjd", dimLargura: "Bredd", dimProfundidade: "Djup", dimensoes: "Mått (H×B×D)", filtragem: "Filtreringssystem", temperaturas: "Temperaturer",
     gasLabel: "Kolsyrat Vatten", h2Label: "Vätgasvatten",
     painel: "Panel", app: "App", aiIot: "AI + IoT", wifi: "Wi-Fi + Bluetooth 5.3",
     tanque: "Tank", material: "Material", computador: "Dator",
@@ -535,8 +535,8 @@ const LABELS: Record<Lang, {
     cepTitle: "Ange ditt postnummer", calcular: "Beräkna",
     consentText: "Genom att fortsätta ger jag Acquafy tillstånd att kontakta mig angående denna förfrågan och skicka information om produkter och tjänster. Jag kan avregistrera mig när som helst.",
     liAceito: "Jag har läst och accepterar", termosDeUso: "Användarvillkor",
-    payCash: "Kontant", payFinanciar: "Finansiera", payRent: "Hyra",
-    finNote: "12x räntefritt. Kontrollera villkoren vid köptillfället.",
+    payCash: "Kontant", payFinanciar: "Leasing", payRent: "Hyra",
+    finNote: "Betalning i 36 månatliga delbetalningar. Kontrollera villkoren vid köptillfället.", perMonth: "/mån", parcelaTitle: "Beräknad månadsbetalning", parcelaDesc: "36 månatliga betalningar", dueTodayTitle: "Att betala idag",
     freteNote: "Gratis frakt vid köp över R$ 500,00. Leverans över hela Brasilien.",
     coresLabel: "Färger", encomendar: "Beställ Nu",
     pedidoConfirmado: "Tillagd i varukorgen!", precisaMaisAlgo: "Behöver du något annat?",
@@ -559,7 +559,7 @@ const LABELS: Record<Lang, {
     pagamentoTitle: "Betalning", taxaReservaPrefix: "Reservationsavgiften på", taxaReservaSuffix: "debiteras nu för att bekräfta din beställning och är inte återbetalningsbar.",
   },
   fi: {
-    formato: "Muoto", dimMoldura: "Kehys (K×L)", dimAltura: "Korkeus", dimAlturaBaseCopo: "Kuppialustan korkeus", dimLargura: "Leveys", dimProfundidade: "Syvyys", filtragem: "Suodatusjärjestelmä", temperaturas: "Lämpötilat",
+    formato: "Muoto", dimMoldura: "Kehys (K×L)", dimAltura: "Korkeus", dimAlturaBaseCopo: "Kuppialustan korkeus", dimLargura: "Leveys", dimProfundidade: "Syvyys", dimensoes: "Mitat (K×L×S)", filtragem: "Suodatusjärjestelmä", temperaturas: "Lämpötilat",
     gasLabel: "Hiilihapotettu Vesi", h2Label: "Vetyvesi",
     painel: "Paneeli", app: "Sovellus", aiIot: "AI + IoT", wifi: "Wi-Fi + Bluetooth 5.3",
     tanque: "Säiliö", material: "Materiaali", computador: "Tietokone",
@@ -570,8 +570,8 @@ const LABELS: Record<Lang, {
     cepTitle: "Anna postinumerosi", calcular: "Laske",
     consentText: "Jatkamalla valtuutan Acquafyn ottamaan minuun yhteyttä tästä pyynnöstä ja lähettämään tietoja tuotteista ja palveluista. Voin peruuttaa milloin tahansa.",
     liAceito: "Olen lukenut ja hyväksyn", termosDeUso: "Käyttöehdot",
-    payCash: "Käteinen", payFinanciar: "Rahoittaa", payRent: "Vuokrata",
-    finNote: "12x korotonta. Tarkista ehdot ostohetkellä.",
+    payCash: "Käteinen", payFinanciar: "Leasing", payRent: "Vuokrata",
+    finNote: "Maksu 36 kuukausierässä. Tarkista ehdot ostohetkellä.", perMonth: "/kk", parcelaTitle: "Arvioitu kuukausierä", parcelaDesc: "36 kuukausierää", dueTodayTitle: "Maksettava tänään",
     freteNote: "Ilmainen toimitus yli R$ 500,00 ostoksille. Toimitus koko Brasiliaan.",
     coresLabel: "Värit", encomendar: "Tilaa Nyt",
     pedidoConfirmado: "Lisätty ostoskoriin!", precisaMaisAlgo: "Tarvitsetko muuta?",
@@ -594,7 +594,7 @@ const LABELS: Record<Lang, {
     pagamentoTitle: "Maksu", taxaReservaPrefix: "Varausmaksu", taxaReservaSuffix: "peritään nyt tilauksen vahvistamiseksi, eikä sitä palauteta.",
   },
   ru: {
-    formato: "Формат", dimMoldura: "Рамка (В×Ш)", dimAltura: "Высота", dimAlturaBaseCopo: "Высота подставки для стакана", dimLargura: "Ширина", dimProfundidade: "Глубина", filtragem: "Система фильтрации", temperaturas: "Температуры",
+    formato: "Формат", dimMoldura: "Рамка (В×Ш)", dimAltura: "Высота", dimAlturaBaseCopo: "Высота подставки для стакана", dimLargura: "Ширина", dimProfundidade: "Глубина", dimensoes: "Размеры (В×Ш×Г)", filtragem: "Система фильтрации", temperaturas: "Температуры",
     gasLabel: "Газированная вода", h2Label: "Водородная вода",
     painel: "Панель", app: "Приложение", aiIot: "AI + IoT", wifi: "Wi-Fi + Bluetooth 5.3",
     tanque: "Бак", material: "Материал", computador: "Компьютер",
@@ -605,8 +605,8 @@ const LABELS: Record<Lang, {
     cepTitle: "Введите почтовый индекс", calcular: "Рассчитать",
     consentText: "Продолжая, я разрешаю Acquafy связаться со мной по данному запросу и направлять мне информацию о продуктах и услугах. Я могу отписаться в любое время.",
     liAceito: "Я прочитал и принимаю", termosDeUso: "Условия использования",
-    payCash: "Наличные", payFinanciar: "Финансирование", payRent: "Аренда",
-    finNote: "12x без процентов. Уточните условия при покупке.",
+    payCash: "Наличные", payFinanciar: "Лизинг", payRent: "Аренда",
+    finNote: "Оплата в 36 ежемесячных платежей. Уточните условия при покупке.", perMonth: "/мес.", parcelaTitle: "Ориентировочный платёж", parcelaDesc: "36 ежемесячных платежей", dueTodayTitle: "К оплате сегодня",
     freteNote: "Бесплатная доставка при покупке от R$ 500,00. Доставка по всей Бразилии.",
     coresLabel: "Цвета", encomendar: "Заказать сейчас",
     pedidoConfirmado: "Добавлено в корзину!", precisaMaisAlgo: "Нужно ещё что-нибудь?",
@@ -629,7 +629,7 @@ const LABELS: Record<Lang, {
     pagamentoTitle: "Оплата", taxaReservaPrefix: "Резервационный сбор в размере", taxaReservaSuffix: "взимается сейчас для подтверждения заказа и не возвращается.",
   },
   ro: {
-    formato: "Format", dimMoldura: "Rama (I×L)", dimAltura: "Inaltime", dimAlturaBaseCopo: "Inaltimea bazei paharului", dimLargura: "Latime", dimProfundidade: "Adancime", filtragem: "Sistem de Filtrare", temperaturas: "Temperaturi",
+    formato: "Format", dimMoldura: "Rama (I×L)", dimAltura: "Inaltime", dimAlturaBaseCopo: "Inaltimea bazei paharului", dimLargura: "Latime", dimProfundidade: "Adancime", dimensoes: "Dimensiuni (Î×L×A)", filtragem: "Sistem de Filtrare", temperaturas: "Temperaturi",
     gasLabel: "Apa Carbogazoasa", h2Label: "Apa cu Hidrogen",
     painel: "Panou", app: "Aplicatie", aiIot: "AI + IoT", wifi: "Wi-Fi + Bluetooth 5.3",
     tanque: "Rezervor", material: "Material", computador: "Calculator",
@@ -640,8 +640,8 @@ const LABELS: Record<Lang, {
     cepTitle: "Adauga codul postal", calcular: "Calculeaza",
     consentText: "Continuand, autorizez Acquafy sa ma contacteze cu privire la aceasta solicitare si sa imi trimita informatii despre produse si servicii. Pot anula oricand.",
     liAceito: "Am citit si accept", termosDeUso: "Termenii de Utilizare",
-    payCash: "Numerar", payFinanciar: "Finantare", payRent: "Inchiriere",
-    finNote: "12 rate fara dobanda. Verificati conditiile la momentul achizitiei.",
+    payCash: "Numerar", payFinanciar: "Leasing", payRent: "Inchiriere",
+    finNote: "Plata in 36 de rate lunare. Verificati conditiile la momentul achizitiei.", perMonth: "/lună", parcelaTitle: "Rata lunară estimată", parcelaDesc: "În 36 de rate lunare", dueTodayTitle: "De plătit astăzi",
     freteNote: "Transport gratuit pentru achizitii peste R$ 500,00. Livrare in toata Brazilia.",
     coresLabel: "Culori", encomendar: "Comanda Acum",
     pedidoConfirmado: "Adaugat in cos!", precisaMaisAlgo: "Mai aveti nevoie de ceva?",
@@ -664,7 +664,7 @@ const LABELS: Record<Lang, {
     pagamentoTitle: "Plată", taxaReservaPrefix: "Taxa de rezervare de", taxaReservaSuffix: "este percepută acum pentru a confirma comanda și nu este rambursabilă.",
   },
   he: {
-    formato: "פורמט", dimMoldura: "מסגרת (גובה×רוחב)", dimAltura: "גובה", dimAlturaBaseCopo: "גובה בסיס הכוס", dimLargura: "רוחב", dimProfundidade: "עומק", filtragem: "מערכת סינון", temperaturas: "טמפרטורות",
+    formato: "פורמט", dimMoldura: "מסגרת (גובה×רוחב)", dimAltura: "גובה", dimAlturaBaseCopo: "גובה בסיס הכוס", dimLargura: "רוחב", dimProfundidade: "עומק", dimensoes: "מידות (גובה×רוחב×עומק)", filtragem: "מערכת סינון", temperaturas: "טמפרטורות",
     gasLabel: "מים מוגזים", h2Label: "מים עם מימן",
     painel: "לוח", app: "אפליקציה", aiIot: "AI + IoT", wifi: "Wi-Fi + Bluetooth 5.3",
     tanque: "מיכל", material: "חומר", computador: "מחשב",
@@ -675,8 +675,8 @@ const LABELS: Record<Lang, {
     cepTitle: "הוסף את המיקוד שלך", calcular: "חשב",
     consentText: "בהמשך, אני מאשר לAcquafy ליצור איתי קשר בנוגע לבקשה זו ולשלוח לי מידע על מוצרים ושירותים. אני יכול לבטל בכל עת.",
     liAceito: "קראתי ומסכים ל", termosDeUso: "תנאי שימוש",
-    payCash: "מזומן", payFinanciar: "מימון", payRent: "השכרה",
-    finNote: "12 תשלומים ללא ריבית. בדוק תנאים בעת הרכישה.",
+    payCash: "מזומן", payFinanciar: "ליסינג", payRent: "השכרה",
+    finNote: "תשלום ב-36 תשלומים חודשיים. בדוק תנאים בעת הרכישה.", perMonth: "/חודש", parcelaTitle: "תשלום חודשי משוער", parcelaDesc: "36 תשלומים חודשיים", dueTodayTitle: "לתשלום היום",
     freteNote: "משלוח חינם לרכישות מעל R$ 500.00. משלוח לכל ברזיל.",
     coresLabel: "צבעים", encomendar: "הזמן עכשיו",
     pedidoConfirmado: "נוסף לעגלה!", precisaMaisAlgo: "צריך עוד משהו?",
@@ -1686,7 +1686,10 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
       ? family.scenes[activeSceneIdx].img
       : activeVariant.img;
 
-  const monthlyPrice = (price: number) => Math.ceil(price / 12);
+  const tabPrice = (variant: { id: string; price: number }, spaced = false) => {
+    if (payTab === "financiar") return `${formatPrice(PRODUCT_LEASE_BRL[variant.id] ?? 0, lang)}${spaced ? " " : ""}${lb.perMonth}`;
+    return formatPrice(variant.price, lang);
+  };
 
   return (
     <div className="flex flex-col md:flex-row w-full h-[calc(100vh-80px)] overflow-hidden">
@@ -1868,22 +1871,21 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
 
             {/* ── Payment tabs ────────────────────────────────────────────── */}
             <div className="border-b border-[#e8ecf4] flex">
-              <button onClick={() => setPayTab("dinheiro")}
-                className="flex-1 pb-[12px] pt-[4px] font-['Avenir_LT_Pro:85_Heavy'] text-[13px] transition-colors relative"
-                style={{ color: payTab === "dinheiro" ? accent : "#aab2bc" }}
-              >
-                {lb.payCash}
-                {payTab === "dinheiro" && (
-                  <span className="absolute bottom-0 left-0 right-0 h-[2px] rounded-full"
-                    style={{ background: accentGrad }} />
-                )}
-              </button>
-              {/* FINANCIAR — standby */}
-              <div className="flex-1 pb-[12px] pt-[4px] flex items-center justify-center">
-                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#d1d5db]">
-                  {lb.payFinanciar}
-                </span>
-              </div>
+              {([
+                ["dinheiro", lb.payCash],
+                ["financiar", lb.payFinanciar],
+              ] as const).map(([tab, label]) => (
+                <button key={tab} onClick={() => setPayTab(tab)}
+                  className="flex-1 pb-[12px] pt-[4px] font-['Avenir_LT_Pro:85_Heavy'] text-[13px] transition-colors relative"
+                  style={{ color: payTab === tab ? accent : "#aab2bc" }}
+                >
+                  {label}
+                  {payTab === tab && (
+                    <span className="absolute bottom-0 left-0 right-0 h-[2px] rounded-full"
+                      style={{ background: accentGrad }} />
+                  )}
+                </button>
+              ))}
               {/* ALUGAR — standby */}
               <div className="flex-1 pb-[12px] pt-[4px] flex items-center justify-center">
                 <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#d1d5db]">
@@ -1899,9 +1901,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
               onMouseLeave={() => setHoverSection(null)}>
               {family.variants.map((variant, i) => {
                 const isActive = i === activeVariantIdx;
-                const displayPrice = lang === "pt" && payTab === "financiar"
-                  ? `${formatPrice(monthlyPrice(variant.price), lang)}/mês`
-                  : formatPrice(variant.price, lang);
+                const displayPrice = tabPrice(variant);
                 return (
                   <button key={variant.id} onClick={() => setActiveVariantIdx(i)}
                     className="flex items-center justify-between gap-[10px] px-[14px] py-[12px] rounded-[12px] text-left transition-all"
@@ -1942,11 +1942,8 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
               </div>
               {/* Always visible — 8 rows */}
               <SpecRow label={lb.formato}    value={translateSpecValue(specs.formato, lang)}      isPremium={family.isPremium} />
-              <SpecRow label={lb.dimAltura}       value={specs.dimAlturaBaseCopo !== null
-                ? `${fmtCm(specs.dimAltura, lang)}\n${lb.dimAlturaBaseCopo}: ${fmtCm(specs.dimAlturaBaseCopo, lang)}`
-                : fmtCm(specs.dimAltura, lang)}       isPremium={family.isPremium} />
-              <SpecRow label={lb.dimLargura}      value={fmtCm(specs.dimLargura, lang)}      isPremium={family.isPremium} />
-              <SpecRow label={lb.dimProfundidade} value={fmtCm(specs.dimProfundidade, lang)} isPremium={family.isPremium} />
+              <SpecRow label={lb.dimensoes} value={`${localizeNum(specs.dimAltura, lang)} × ${localizeNum(specs.dimLargura, lang)} × ${localizeNum(specs.dimProfundidade, lang)}cm`} isPremium={family.isPremium} />
+              <SpecRow label={lb.tanque}     value={specs.tanque}    isPremium={family.isPremium} />
               <SpecRow label={lb.filtragem}  value={translateSpecValue(specs.filtragem, lang)} isPremium={family.isPremium} />
               <SpecRow label={lb.temperaturas} value={translateSpecValue(specs.temperaturas, lang)} isPremium={family.isPremium} />
               <SpecRow label={lb.gasLabel}   value={specs.gas}   isBool isPremium={family.isPremium} />
@@ -1963,7 +1960,6 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                   <SpecRow label={lb.wifi}     value={specs.wifi} isBool isPremium={family.isPremium} />
                   <SpecRow label="UV LED"      value={specs.uv}   isBool isPremium={family.isPremium} />
                   <SpecRow label="Compressor Inverter" value={HAS_COMPRESSOR.has(activeVariant.id)} isBool isPremium={family.isPremium} />
-                  <SpecRow label={lb.tanque}   value={specs.tanque}    isPremium={family.isPremium} />
                   <SpecRow label={lb.material} value={translateSpecValue(specs.material, lang)}  isPremium={family.isPremium} />
                   {activeVariant.id === "acquafy-media" && (
                     <>
@@ -2198,17 +2194,17 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                   <div className="bg-white px-[16px] py-[16px] flex flex-col gap-[14px]">
                     <div className="flex items-start justify-between gap-[12px]">
                       <div className="flex flex-col gap-[3px]">
-                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91]">{lb.valorEstimadoTitle}</p>
-                        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af]">{lb.valorEstimadoDesc}</p>
+                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91]">{payTab === "financiar" ? lb.parcelaTitle : lb.valorEstimadoTitle}</p>
+                        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af]">{payTab === "financiar" ? lb.parcelaDesc : lb.valorEstimadoDesc}</p>
                       </div>
                       <span className="font-['Avenir_LT_Pro:95_Black'] text-[18px] text-[#1f2e91] shrink-0">
-                        {formatPrice(activeVariant.price, lang)}
+                        {tabPrice(activeVariant, true)}
                       </span>
                     </div>
                     <div className="h-px bg-[#f0f4ff]" />
                     <div className="flex items-start justify-between gap-[12px]">
                       <div className="flex flex-col gap-[3px]">
-                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91]">{lb.taxaPedidoTitle}</p>
+                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91]">{payTab === "financiar" ? lb.dueTodayTitle : lb.taxaPedidoTitle}</p>
                         <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af]">{lb.taxaPedidoDesc}</p>
                       </div>
                       <span className="font-['Avenir_LT_Pro:95_Black'] text-[18px] text-[#1f2e91] shrink-0">{(lang === "pt" || lang === "pt-pt") ? formatBRL(125) : "US$ 25,00"}</span>
@@ -2600,12 +2596,19 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
         </div>
         {/* Right: same width as the sidebar panel */}
         <div className="md:w-[400px] xl:w-[440px] shrink-0 px-[24px] py-[20px] flex items-center gap-[16px]">
-          <span
-            className="flex-1 font-['Avenir_LT_Pro:95_Black'] text-[20px] leading-none"
-            style={{ background: accentGrad, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
-          >
-            {formatPrice(activeVariant.price, lang)}
-          </span>
+          <div className="flex-1 flex flex-col gap-[4px] min-w-0">
+            <span
+              className="font-['Avenir_LT_Pro:95_Black'] text-[20px] leading-none"
+              style={{ background: accentGrad, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
+            >
+              {tabPrice(activeVariant)}
+            </span>
+            {payTab === "financiar" && (
+              <span className="font-['Avenir_LT_Pro:55_Roman'] text-[11px] text-[#6b7280] leading-none">
+                {lb.parcelaDesc}
+              </span>
+            )}
+          </div>
           <button
             disabled={stripeProcessing}
             onClick={async () => {

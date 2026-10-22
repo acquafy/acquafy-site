@@ -490,8 +490,8 @@ function PanelSlideshow() {
   return (
     <div className="flex flex-col gap-[10px] items-center justify-center shrink-0 min-w-[240px] max-w-[249px] w-[240px]">
       <div
-        className="w-full cursor-pointer overflow-hidden rounded-[5%] bg-black box-border"
-        style={{ aspectRatio: "3249/5308", padding: "1.231%" }}
+        className="w-full cursor-pointer overflow-hidden bg-black box-border"
+        style={{ aspectRatio: "3249/5308", padding: "1.231%", borderRadius: "5% / 3.06%" }}
         onClick={() => setActive((active + 1) % panelSlideSrcs.length)}
         role="button"
         tabIndex={0}
@@ -501,6 +501,7 @@ function PanelSlideshow() {
         <img
           alt="Painel Premium"
           className="block w-full h-full object-cover pointer-events-none"
+          style={{ borderRadius: "3.864% / 2.342%" }}
           src={panelSlideSrcs[active]}
         />
       </div>

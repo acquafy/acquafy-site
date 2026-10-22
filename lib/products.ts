@@ -1,52 +1,47 @@
-/** Preços BRL — fonte única para CompareProductos e CheckinMain */
-export const PRODUCT_PRICES_BRL: Record<string, number> = {
-  "neo-up":                   1289.85,
-  "neo-fit":                  1989.85,
-  "neo-smart-h2":             3489.85,
-  "neo-touch":                2239.85,
-  "neo-plus":                 3489.85,
-  "neo-ultra":                4989.85,
-  "neo-ultra-spark":          5989.85,
-  "neo-ultra-spark-h2":       6989.85,
-  "neo-max":                  5989.85,
-  "neo-max-spark":            6989.85,
-  "neo-max-spark-h2":         7989.85,
-  "neo-infinity":             8489.85,
-  "neo-infinity-spark":       8989.85,
-  "neo-infinity-spark-h2":    9489.85,
-  "neo-prestige":             8639.85,
-  "neo-prestige-spark":       9139.85,
-  "neo-prestige-spark-h2":    9639.85,
-  "neo-prime":                8489.85,
-  "neo-prime-spark":          8989.85,
-  "neo-prime-spark-h2":       9489.85,
-  "acquafy-media":            10000.00,
+/** Cotação fixa usada em todo o site: US$ 1,00 = R$ 5,00 */
+export const USD_TO_BRL = 5;
+
+/**
+ * Tabela oficial (USD) — fonte única de preços.
+ * sales = Encomendar · lease = Financiar (parcela mensal, 36x). Valores de "Custo" (Alugar) ignorados.
+ */
+export const PRODUCT_PRICING_USD: Record<string, { sales: number; lease: number }> = {
+  "neo-up":                { sales: 399.77,  lease: 39.97 },
+  "neo-fit":               { sales: 498.77,  lease: 49.97 },
+  "neo-touch":             { sales: 599.77,  lease: 59.97 },
+  "neo-smart-h2":          { sales: 699.77,  lease: 69.97 },
+  "neo-plus":              { sales: 699.77,  lease: 69.97 },
+  "neo-ultra":             { sales: 999.77,  lease: 99.97 },
+  "neo-ultra-spark":       { sales: 1199.77, lease: 119.97 },
+  "neo-ultra-spark-h2":    { sales: 1399.77, lease: 139.97 },
+  "neo-max":               { sales: 1199.77, lease: 119.97 },
+  "neo-max-spark":         { sales: 1399.77, lease: 139.97 },
+  "neo-max-spark-h2":      { sales: 1599.77, lease: 159.97 },
+  "neo-infinity":          { sales: 1699.77, lease: 169.97 },
+  "neo-infinity-spark":    { sales: 1799.77, lease: 179.97 },
+  "neo-infinity-spark-h2": { sales: 1899.77, lease: 189.97 },
+  "neo-prime":             { sales: 1699.77, lease: 169.97 },
+  "neo-prime-spark":       { sales: 1799.77, lease: 179.97 },
+  "neo-prime-spark-h2":    { sales: 1899.77, lease: 189.97 },
+  "neo-prestige":          { sales: 1729.77, lease: 172.97 },
+  "neo-prestige-spark":    { sales: 1829.77, lease: 182.97 },
+  "neo-prestige-spark-h2": { sales: 1929.77, lease: 192.97 },
+  "acquafy-media":         { sales: 2599.77, lease: 259.97 },
 };
 
+const toBRL = (usd: number) => Math.round(usd * USD_TO_BRL * 100) / 100;
+const fromPricing = <T,>(pick: (p: { sales: number; lease: number }) => T) =>
+  Object.fromEntries(Object.entries(PRODUCT_PRICING_USD).map(([id, p]) => [id, pick(p)])) as Record<string, T>;
+
+/** Preço de compra (Encomendar) em BRL — fonte única para CompareProductos e CheckinMain */
+export const PRODUCT_PRICES_BRL: Record<string, number> = fromPricing((p) => toBRL(p.sales));
+/** Parcela mensal do Financiar (36x) em BRL */
+export const PRODUCT_LEASE_BRL: Record<string, number> = fromPricing((p) => toBRL(p.lease));
+
 /** Preços USD — exibidos quando lang !== "pt" */
-export const PRODUCT_PRICES_USD: Record<string, string> = {
-  "neo-up":                   "US$ 257.97",
-  "neo-fit":                  "US$ 397.97",
-  "neo-smart-h2":             "US$ 697.97",
-  "neo-touch":                "US$ 447.97",
-  "neo-plus":                 "US$ 697.97",
-  "neo-ultra":                "US$ 997.97",
-  "neo-ultra-spark":          "US$ 1,197.97",
-  "neo-ultra-spark-h2":       "US$ 1,397.97",
-  "neo-max":                  "US$ 1,197.97",
-  "neo-max-spark":            "US$ 1,397.97",
-  "neo-max-spark-h2":         "US$ 1,597.97",
-  "neo-infinity":             "US$ 1,697.97",
-  "neo-infinity-spark":       "US$ 1,797.97",
-  "neo-infinity-spark-h2":    "US$ 1,897.97",
-  "neo-prestige":             "US$ 1,727.97",
-  "neo-prestige-spark":       "US$ 1,827.97",
-  "neo-prestige-spark-h2":    "US$ 1,927.97",
-  "neo-prime":                "US$ 1,697.97",
-  "neo-prime-spark":          "US$ 1,797.97",
-  "neo-prime-spark-h2":       "US$ 1,897.97",
-  "acquafy-media":            "US$ 2,000.00",
-};
+export const PRODUCT_PRICES_USD: Record<string, string> = fromPricing(
+  (p) => `US$ ${p.sales.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+);
 
 export function formatBRL(value: number) {
   return `R$ ${value.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`;
@@ -54,7 +49,7 @@ export function formatBRL(value: number) {
 
 export function formatPrice(brl: number, lang: string): string {
   if (lang === "pt" || lang === "pt-pt") return formatBRL(brl);
-  const usd = brl / 5;
+  const usd = brl / USD_TO_BRL;
   return `US$ ${usd.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 }
 
