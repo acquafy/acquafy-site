@@ -1126,8 +1126,8 @@ function BoolCell({ value }: { value: boolean }) {
 /* ── Table row ─────────────────────────────────────────────────────────────── */
 function SpecRow({ label, value, isBool, isPremium }: { label: string; value: string | boolean; isBool?: boolean; isPremium: boolean }) {
   return (
-    <div className="flex items-stretch border-b border-[#e8ecf4] last:border-b-0">
-      <div className="w-[180px] xl:w-[200px] shrink-0 border-r border-[#e8ecf4] px-[14px] py-[12px] flex items-center">
+    <div className="grid grid-cols-subgrid col-span-2 items-stretch border-b border-[#e8ecf4] last:border-b-0">
+      <div className="border-r border-[#e8ecf4] px-[14px] py-[12px] flex items-center">
         <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#1f2e91]">{label}</span>
       </div>
       <div className="flex-1 px-[14px] py-[12px] flex items-center">
@@ -1932,9 +1932,9 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
             </div>
 
             {/* ── Ficha Técnica ────────────────────────────────────────────── */}
-            <div className="border border-[#e8ecf4] rounded-[16px] overflow-hidden">
+            <div className="border border-[#e8ecf4] rounded-[16px] overflow-hidden grid grid-cols-[fit-content(45%)_1fr]">
               {/* Header */}
-              <div className="px-[14px] py-[12px] border-b border-[#e8ecf4]"
+              <div className="col-span-2 px-[14px] py-[12px] border-b border-[#e8ecf4]"
                 style={{ background: "linear-gradient(135deg, #f6f9fe, #eef2ff)" }}>
                 <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] text-[#1f2e91] text-center uppercase tracking-[0.06em]">
                   {lb.fichaTecnica}
@@ -1973,7 +1973,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
               )}
               {/* Toggle */}
               <button onClick={() => setFichaTecnicaOpen((v) => !v)}
-                className="w-full flex items-center justify-between px-[14px] py-[14px] border-t border-[#e8ecf4] bg-[#f6f9fe] hover:bg-[#eef2ff] transition-colors">
+                className="col-span-2 w-full flex items-center justify-between px-[14px] py-[14px] border-t border-[#e8ecf4] bg-[#f6f9fe] hover:bg-[#eef2ff] transition-colors">
                 <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px]" style={{ color: accent }}>
                   {fichaTecnicaOpen ? lb.ocultarFuncionalidades : lb.demaisFuncionalidades}
                 </span>
