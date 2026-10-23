@@ -3,7 +3,7 @@ export const USD_TO_BRL = 5;
 
 /**
  * Tabela oficial (USD) — fonte única de preços.
- * sales = Encomendar · lease = Financiar (parcela mensal, 36x). Valores de "Custo" (Alugar) ignorados.
+ * sales = Encomendar · lease = Financiar (parcela mensal, 36x). Valores de "Custo" (Alugar) ignorados; a aba Financiar (financiamento) segue em standby.
  */
 export const PRODUCT_PRICING_USD: Record<string, { sales: number; lease: number }> = {
   "neo-up":                { sales: 399.77,  lease: 39.97 },
