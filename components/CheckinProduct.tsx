@@ -117,7 +117,7 @@ const LABELS: Record<Lang, {
   nomeLabel: string; emailLabel: string; email2Label: string; telLabel: string;
   cepTitle: string; calcular: string;
   consentText: string; liAceito: string; termosDeUso: string;
-  payCash: string; payFinanciar: string; payRent: string;
+  payCash: string; payLease: string; payFinance: string;
   finNote: string; perMonth: string; parcelaTitle: string; parcelaDesc: string; dueTodayTitle: string; freteNote: string;
   coresLabel: string; encomendar: string;
   pedidoConfirmado: string; precisaMaisAlgo: string;
@@ -150,7 +150,7 @@ const LABELS: Record<Lang, {
     cepTitle: "Adicione seu CEP", calcular: "Calcular",
     consentText: "Ao prosseguir, autorizo a Acquafy a entrar em contato comigo sobre esta solicitação e a me enviar informações sobre produtos e serviços. Posso cancelar a qualquer momento.",
     liAceito: "Li e aceito os", termosDeUso: "Termos de Uso",
-    payCash: "Encomendar", payFinanciar: "Leasing", payRent: "Alugar",
+    payCash: "Encomendar", payLease: "Leasing", payFinance: "Financiar",
     finNote: "Pagamento em 36 parcelas mensais. Consulte condições no momento da compra.", perMonth: "/mês", parcelaTitle: "Parcela estimada", parcelaDesc: "Em 36 parcelas mensais", dueTodayTitle: "Devido hoje",
     freteNote: "Frete grátis para compras acima de R$ 500,00. Entrega em todo o Brasil.",
     coresLabel: "Cores", encomendar: "Encomendar",
@@ -185,7 +185,7 @@ const LABELS: Record<Lang, {
     cepTitle: "Introduza o seu código postal", calcular: "Calcular",
     consentText: "Ao prosseguir, autorizo a Acquafy a contactar-me sobre este pedido e a enviar-me informações sobre produtos e serviços. Posso cancelar a qualquer momento.",
     liAceito: "Li e aceito os", termosDeUso: "Termos de Utilização",
-    payCash: "Encomendar", payFinanciar: "Leasing", payRent: "Alugar",
+    payCash: "Encomendar", payLease: "Leasing", payFinance: "Financiar",
     finNote: "Pagamento em 36 prestações mensais. Consulte as condições no momento da compra.", perMonth: "/mês", parcelaTitle: "Prestação estimada", parcelaDesc: "Em 36 prestações mensais", dueTodayTitle: "A pagar hoje",
     freteNote: "Envio gratuito para compras acima de R$ 500,00. Entrega em todo o Brasil.",
     coresLabel: "Cores", encomendar: "Encomendar",
@@ -220,7 +220,7 @@ const LABELS: Record<Lang, {
     cepTitle: "Enter your ZIP code", calcular: "Calculate",
     consentText: "By proceeding, I authorize Acquafy to contact me about this request and to send me information about products and services. I can unsubscribe at any time.",
     liAceito: "I have read and accept the", termosDeUso: "Terms of Use",
-    payCash: "Cash", payFinanciar: "Lease", payRent: "Rent",
+    payCash: "Cash", payLease: "Lease", payFinance: "Finance",
     finNote: "Paid in 36 monthly payments. Check conditions at the time of purchase.", perMonth: "/mo", parcelaTitle: "Est. Lease Payment", parcelaDesc: "36 monthly payments", dueTodayTitle: "Due Today",
     freteNote: "Free shipping on orders over R$ 500.00. Delivery across Brazil.",
     coresLabel: "Colors", encomendar: "Order Now",
@@ -255,7 +255,7 @@ const LABELS: Record<Lang, {
     cepTitle: "Enter your postcode", calcular: "Calculate",
     consentText: "By proceeding, I authorise Acquafy to contact me about this request and send me information about products and services. I can unsubscribe at any time.",
     liAceito: "I have read and accept the", termosDeUso: "Terms of Use",
-    payCash: "Cash", payFinanciar: "Lease", payRent: "Rent",
+    payCash: "Cash", payLease: "Lease", payFinance: "Finance",
     finNote: "Paid in 36 monthly payments. Check conditions at the time of purchase.", perMonth: "/mo", parcelaTitle: "Est. Lease Payment", parcelaDesc: "36 monthly payments", dueTodayTitle: "Due Today",
     freteNote: "Free delivery on orders over R$ 500.00. Delivery across Brazil.",
     coresLabel: "Colours", encomendar: "Order Now",
@@ -290,7 +290,7 @@ const LABELS: Record<Lang, {
     cepTitle: "Ingresa tu código postal", calcular: "Calcular",
     consentText: "Al continuar, autorizo a Acquafy a contactarme sobre esta solicitud y enviarme información sobre productos y servicios. Puedo cancelar en cualquier momento.",
     liAceito: "He leído y acepto los", termosDeUso: "Términos de Uso",
-    payCash: "Efectivo", payFinanciar: "Leasing", payRent: "Alquilar",
+    payCash: "Efectivo", payLease: "Leasing", payFinance: "Financiar",
     finNote: "Pago en 36 cuotas mensuales. Consulte condiciones al momento de la compra.", perMonth: "/mes", parcelaTitle: "Cuota estimada", parcelaDesc: "En 36 cuotas mensuales", dueTodayTitle: "A pagar hoy",
     freteNote: "Envío gratis en compras superiores a R$ 500,00. Entrega en todo Brasil.",
     coresLabel: "Colores", encomendar: "Pedir Ahora",
@@ -325,7 +325,7 @@ const LABELS: Record<Lang, {
     cepTitle: "Entrez votre code postal", calcular: "Calculer",
     consentText: "En continuant, j'autorise Acquafy à me contacter au sujet de cette demande et à m'envoyer des informations sur les produits et services. Je peux me désinscrire à tout moment.",
     liAceito: "J'ai lu et j'accepte les", termosDeUso: "Conditions d'utilisation",
-    payCash: "Espèces", payFinanciar: "Leasing", payRent: "Louer",
+    payCash: "Espèces", payLease: "Leasing", payFinance: "Financer",
     finNote: "Paiement en 36 mensualités. Vérifiez les conditions au moment de l'achat.", perMonth: "/mois", parcelaTitle: "Mensualité estimée", parcelaDesc: "En 36 mensualités", dueTodayTitle: "À payer aujourd'hui",
     freteNote: "Livraison gratuite pour les achats supérieurs à R$ 500,00. Livraison dans tout le Brésil.",
     coresLabel: "Couleurs", encomendar: "Commander",
@@ -360,7 +360,7 @@ const LABELS: Record<Lang, {
     cepTitle: "Postleitzahl eingeben", calcular: "Berechnen",
     consentText: "Durch Fortfahren erteile ich Acquafy die Erlaubnis, mich bezüglich dieser Anfrage zu kontaktieren und mir Informationen über Produkte und Dienstleistungen zu senden. Ich kann mich jederzeit abmelden.",
     liAceito: "Ich habe die gelesen und akzeptiere die", termosDeUso: "Nutzungsbedingungen",
-    payCash: "Bargeld", payFinanciar: "Leasing", payRent: "Mieten",
+    payCash: "Bargeld", payLease: "Leasing", payFinance: "Finanzieren",
     finNote: "Zahlung in 36 Monatsraten. Konditionen zum Zeitpunkt des Kaufs prüfen.", perMonth: "/Monat", parcelaTitle: "Gesch. Monatsrate", parcelaDesc: "In 36 Monatsraten", dueTodayTitle: "Heute fällig",
     freteNote: "Kostenloser Versand ab R$ 500,00. Lieferung in ganz Brasilien.",
     coresLabel: "Farben", encomendar: "Jetzt bestellen",
@@ -395,7 +395,7 @@ const LABELS: Record<Lang, {
     cepTitle: "Inserisci il tuo CAP", calcular: "Calcola",
     consentText: "Procedendo, autorizzo Acquafy a contattarmi in merito a questa richiesta e a inviarmi informazioni su prodotti e servizi. Posso annullare in qualsiasi momento.",
     liAceito: "Ho letto e accetto i", termosDeUso: "Termini di Utilizzo",
-    payCash: "Contante", payFinanciar: "Leasing", payRent: "Noleggiare",
+    payCash: "Contante", payLease: "Leasing", payFinance: "Finanziare",
     finNote: "Pagamento in 36 rate mensili. Verifica le condizioni al momento dell'acquisto.", perMonth: "/mese", parcelaTitle: "Rata mensile stimata", parcelaDesc: "In 36 rate mensili", dueTodayTitle: "Da pagare oggi",
     freteNote: "Spedizione gratuita per acquisti superiori a R$ 500,00. Consegna in tutto il Brasile.",
     coresLabel: "Colori", encomendar: "Ordina Ora",
@@ -430,7 +430,7 @@ const LABELS: Record<Lang, {
     cepTitle: "请输入邮政编码", calcular: "计算",
     consentText: "继续操作即表示我授权Acquafy就本请求与我联系，并向我发送有关产品和服务的信息。我可随时取消。",
     liAceito: "我已阅读并接受", termosDeUso: "使用条款",
-    payCash: "现金", payFinanciar: "融资租赁", payRent: "租赁",
+    payCash: "现金", payLease: "融资租赁", payFinance: "分期",
     finNote: "分36个月支付。请在购买时查询条件。", perMonth: "/月", parcelaTitle: "预计月付金额", parcelaDesc: "分36个月支付", dueTodayTitle: "今日应付",
     freteNote: "购买满R$ 500.00免运费。配送至巴西全境。",
     coresLabel: "颜色", encomendar: "立即下单",
@@ -465,7 +465,7 @@ const LABELS: Record<Lang, {
     cepTitle: "郵便番号を入力", calcular: "計算する",
     consentText: "続行することで、Acquafyがこのリクエストについて私に連絡し、製品・サービスに関する情報を送信することを許可します。いつでも解除できます。",
     liAceito: "利用規約を読み、同意します", termosDeUso: "利用規約",
-    payCash: "現金", payFinanciar: "リース", payRent: "レンタル",
+    payCash: "現金", payLease: "リース", payFinance: "分割払い",
     finNote: "36回の月払い。購入時に条件をご確認ください。", perMonth: "/月", parcelaTitle: "月々の概算支払額", parcelaDesc: "36回払い", dueTodayTitle: "本日のお支払い",
     freteNote: "R$ 500.00以上の購入で送料無料。ブラジル全土配送。",
     coresLabel: "カラー", encomendar: "今すぐ注文",
@@ -500,7 +500,7 @@ const LABELS: Record<Lang, {
     cepTitle: "우편번호를 입력하세요", calcular: "계산",
     consentText: "계속 진행하면 Acquafy가 이 요청에 대해 저에게 연락하고 제품 및 서비스 정보를 보내는 것을 허용합니다. 언제든지 취소할 수 있습니다.",
     liAceito: "읽고 동의합니다", termosDeUso: "이용 약관",
-    payCash: "현금", payFinanciar: "리스", payRent: "렌탈",
+    payCash: "현금", payLease: "리스", payFinance: "할부",
     finNote: "36개월 분할 납부. 구매 시 조건을 확인하세요.", perMonth: "/월", parcelaTitle: "예상 월 납부액", parcelaDesc: "36개월 분할", dueTodayTitle: "오늘 결제 금액",
     freteNote: "R$ 500.00 이상 구매 시 무료 배송. 브라질 전역 배송.",
     coresLabel: "색상", encomendar: "지금 주문",
@@ -535,7 +535,7 @@ const LABELS: Record<Lang, {
     cepTitle: "Ange ditt postnummer", calcular: "Beräkna",
     consentText: "Genom att fortsätta ger jag Acquafy tillstånd att kontakta mig angående denna förfrågan och skicka information om produkter och tjänster. Jag kan avregistrera mig när som helst.",
     liAceito: "Jag har läst och accepterar", termosDeUso: "Användarvillkor",
-    payCash: "Kontant", payFinanciar: "Leasing", payRent: "Hyra",
+    payCash: "Kontant", payLease: "Leasing", payFinance: "Finansiera",
     finNote: "Betalning i 36 månatliga delbetalningar. Kontrollera villkoren vid köptillfället.", perMonth: "/mån", parcelaTitle: "Beräknad månadsbetalning", parcelaDesc: "36 månatliga betalningar", dueTodayTitle: "Att betala idag",
     freteNote: "Gratis frakt vid köp över R$ 500,00. Leverans över hela Brasilien.",
     coresLabel: "Färger", encomendar: "Beställ Nu",
@@ -570,7 +570,7 @@ const LABELS: Record<Lang, {
     cepTitle: "Anna postinumerosi", calcular: "Laske",
     consentText: "Jatkamalla valtuutan Acquafyn ottamaan minuun yhteyttä tästä pyynnöstä ja lähettämään tietoja tuotteista ja palveluista. Voin peruuttaa milloin tahansa.",
     liAceito: "Olen lukenut ja hyväksyn", termosDeUso: "Käyttöehdot",
-    payCash: "Käteinen", payFinanciar: "Leasing", payRent: "Vuokrata",
+    payCash: "Käteinen", payLease: "Leasing", payFinance: "Rahoittaa",
     finNote: "Maksu 36 kuukausierässä. Tarkista ehdot ostohetkellä.", perMonth: "/kk", parcelaTitle: "Arvioitu kuukausierä", parcelaDesc: "36 kuukausierää", dueTodayTitle: "Maksettava tänään",
     freteNote: "Ilmainen toimitus yli R$ 500,00 ostoksille. Toimitus koko Brasiliaan.",
     coresLabel: "Värit", encomendar: "Tilaa Nyt",
@@ -605,7 +605,7 @@ const LABELS: Record<Lang, {
     cepTitle: "Введите почтовый индекс", calcular: "Рассчитать",
     consentText: "Продолжая, я разрешаю Acquafy связаться со мной по данному запросу и направлять мне информацию о продуктах и услугах. Я могу отписаться в любое время.",
     liAceito: "Я прочитал и принимаю", termosDeUso: "Условия использования",
-    payCash: "Наличные", payFinanciar: "Лизинг", payRent: "Аренда",
+    payCash: "Наличные", payLease: "Лизинг", payFinance: "Финансирование",
     finNote: "Оплата в 36 ежемесячных платежей. Уточните условия при покупке.", perMonth: "/мес.", parcelaTitle: "Ориентировочный платёж", parcelaDesc: "36 ежемесячных платежей", dueTodayTitle: "К оплате сегодня",
     freteNote: "Бесплатная доставка при покупке от R$ 500,00. Доставка по всей Бразилии.",
     coresLabel: "Цвета", encomendar: "Заказать сейчас",
@@ -640,7 +640,7 @@ const LABELS: Record<Lang, {
     cepTitle: "Adauga codul postal", calcular: "Calculeaza",
     consentText: "Continuand, autorizez Acquafy sa ma contacteze cu privire la aceasta solicitare si sa imi trimita informatii despre produse si servicii. Pot anula oricand.",
     liAceito: "Am citit si accept", termosDeUso: "Termenii de Utilizare",
-    payCash: "Numerar", payFinanciar: "Leasing", payRent: "Inchiriere",
+    payCash: "Numerar", payLease: "Leasing", payFinance: "Finantare",
     finNote: "Plata in 36 de rate lunare. Verificati conditiile la momentul achizitiei.", perMonth: "/lună", parcelaTitle: "Rata lunară estimată", parcelaDesc: "În 36 de rate lunare", dueTodayTitle: "De plătit astăzi",
     freteNote: "Transport gratuit pentru achizitii peste R$ 500,00. Livrare in toata Brazilia.",
     coresLabel: "Culori", encomendar: "Comanda Acum",
@@ -675,7 +675,7 @@ const LABELS: Record<Lang, {
     cepTitle: "הוסף את המיקוד שלך", calcular: "חשב",
     consentText: "בהמשך, אני מאשר לAcquafy ליצור איתי קשר בנוגע לבקשה זו ולשלוח לי מידע על מוצרים ושירותים. אני יכול לבטל בכל עת.",
     liAceito: "קראתי ומסכים ל", termosDeUso: "תנאי שימוש",
-    payCash: "מזומן", payFinanciar: "ליסינג", payRent: "השכרה",
+    payCash: "מזומן", payLease: "ליסינג", payFinance: "מימון",
     finNote: "תשלום ב-36 תשלומים חודשיים. בדוק תנאים בעת הרכישה.", perMonth: "/חודש", parcelaTitle: "תשלום חודשי משוער", parcelaDesc: "36 תשלומים חודשיים", dueTodayTitle: "לתשלום היום",
     freteNote: "משלוח חינם לרכישות מעל R$ 500.00. משלוח לכל ברזיל.",
     coresLabel: "צבעים", encomendar: "הזמן עכשיו",
@@ -1873,7 +1873,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
             <div className="border-b border-[#e8ecf4] flex">
               {([
                 ["dinheiro", lb.payCash],
-                ["financiar", lb.payFinanciar],
+                ["financiar", lb.payLease],
               ] as const).map(([tab, label]) => (
                 <button key={tab} onClick={() => setPayTab(tab)}
                   className="flex-1 pb-[12px] pt-[4px] font-['Avenir_LT_Pro:85_Heavy'] text-[13px] transition-colors relative"
@@ -1886,10 +1886,10 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                   )}
                 </button>
               ))}
-              {/* ALUGAR — standby */}
+              {/* FINANCIAR — standby */}
               <div className="flex-1 pb-[12px] pt-[4px] flex items-center justify-center">
                 <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#d1d5db]">
-                  {lb.payRent}
+                  {lb.payFinance}
                 </span>
               </div>
             </div>
