@@ -1,0 +1,24 @@
+/* app/m/embed.css
+   A mobile screen shown inside the iframe of the two-phone stage (components/mobile/DuoStage.tsx). The stage draws the bezel; the
+   screen inside the iframe is the full window, with the simulated safe areas and the status bar / home indicator, as in the
+   framed preview. layout.tsx sets html[data-embedded] when the page runs inside a frame. */
+
+html[data-embedded] [data-platform="ios"] {
+  --m-frame-w: 100vw;
+  --m-frame-h: 100dvh;
+  --m-safe-top: 54px;
+  --m-safe-bottom: 34px;
+}
+html[data-embedded] [data-platform="android"] {
+  --m-frame-w: 100vw;
+  --m-frame-h: 100dvh;
+  --m-safe-top: 24px;
+  --m-safe-bottom: 24px;
+}
+/* The device chrome (status bar, home indicator) is `hidden` below 600px; inside the frame it must show. */
+html[data-embedded] [data-device-screen] > .z-30 {
+  display: block;
+}
+html[data-embedded] body {
+  background: transparent;
+}

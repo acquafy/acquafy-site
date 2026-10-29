@@ -1,0 +1,281 @@
+/* app/m/ios.css
+   iOS 26 "Liquid Glass" look of the mobile app. Everything here is scoped by [data-platform="ios"]; Android lives in
+   android.css. Tokens and utilities of the iOS chrome and primitives (components/mobile/ios, components/mobile/ui/ios).
+
+   Principle (HIG): glass is the FUNCTIONAL layer of controls and navigation that floats over the content (tab bar, nav-bar
+   buttons, sheets, alerts). The content itself (cards, lists) stays opaque. Never stack glass on glass.
+   The classes below only paint (fill, blur, specular rim); layout stays in Tailwind utilities in the components. No drop
+   shadows: the rim is drawn with hairline + inset highlights, as the rest of the portal has no shadows on blocks. */
+
+:root [data-platform="ios"] {
+  /* systemGroupedBackground: the page under the opaque inset-grouped blocks. */
+  --ios-bg: #eff2f8;
+  --m-bg: var(--ios-bg);
+  /* tertiarySystemFill / quaternarySystemFill: text fields, search, segmented track, tinted buttons. */
+  --ios-fill: rgb(112 124 168 / 0.14);
+  --ios-fill-strong: rgb(112 124 168 / 0.26);
+  --ios-spring: cubic-bezier(0.32, 0.72, 0, 1);
+
+  /* Liquid Glass, "regular" variant (adapts to what is behind it). */
+  --glass-blur: 22px;
+  --glass-fill: rgb(255 255 255 / 0.5);
+  --glass-fill-active: rgb(255 255 255 / 0.74);
+  --glass-fill-thick: rgb(247 249 254 / 0.8);
+  --glass-rim: rgb(255 255 255 / 0.95);
+  --glass-rim-soft: rgb(255 255 255 / 0.55);
+  --glass-edge: rgb(15 30 90 / 0.11);
+  --glass-glow: rgb(255 255 255 / 0.3);
+  --glass-lens: rgb(31 102 255 / 0.14);
+
+  /* Tab bar: a floating capsule above the home indicator; the content gets this much room at the bottom. */
+  --ios-tabbar-h: 62px;
+  --ios-tabbar-bottom: max(8px, calc(var(--m-safe-bottom) - 18px));
+  --ios-tab-space: calc(var(--ios-tabbar-h) + var(--ios-tabbar-bottom) + 24px);
+}
+
+:root[data-theme="dark"] [data-platform="ios"] {
+  --ios-bg: #05070d;
+  --m-bg: var(--ios-bg);
+  --ios-fill: rgb(130 146 200 / 0.18);
+  --ios-fill-strong: rgb(130 146 200 / 0.32);
+
+  --glass-fill: rgb(40 50 82 / 0.5);
+  --glass-fill-active: rgb(66 80 122 / 0.7);
+  --glass-fill-thick: rgb(20 28 54 / 0.8);
+  --glass-rim: rgb(255 255 255 / 0.36);
+  --glass-rim-soft: rgb(255 255 255 / 0.14);
+  --glass-edge: rgb(0 0 0 / 0.55);
+  --glass-glow: rgb(255 255 255 / 0.05);
+  --glass-lens: rgb(79 129 255 / 0.3);
+}
+
+/* Transparency off / more contrast (system accessibility settings): the glass turns into a solid surface. */
+@media (prefers-reduced-transparency: reduce) {
+  :root [data-platform="ios"] {
+    --glass-fill: color-mix(in srgb, var(--color-card) 97%, transparent);
+    --glass-fill-active: var(--color-canvas);
+    --glass-fill-thick: var(--color-card);
+    --glass-blur: 0px;
+  }
+}
+@media (prefers-contrast: more) {
+  :root [data-platform="ios"] {
+    --glass-edge: rgb(0 0 0 / 0.45);
+    --glass-rim-soft: rgb(0 0 0 / 0.25);
+  }
+}
+
+/* ---- Liquid Glass surfaces -------------------------------------------------------------------------------------- */
+
+[data-platform="ios"] .ios-glass {
+  background-color: var(--glass-fill);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.8);
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.8);
+  box-shadow:
+    0 0 0 0.5px var(--glass-edge),
+    inset 0 0 0 0.5px var(--glass-rim-soft),
+    inset 1.5px 1.5px 1px -1px var(--glass-rim),
+    inset -1px -1px 1px -1px var(--glass-rim-soft),
+    inset 0 0 14px var(--glass-glow);
+}
+/* Pressed: the glass brightens ("liquid") while the control springs in (see .ios-press). */
+[data-platform="ios"] .ios-glass:active {
+  background-color: var(--glass-fill-active);
+}
+
+/* Bigger panels (sheets, alerts, action sheets): more opaque so text on it always reads. */
+[data-platform="ios"] .ios-glass-thick {
+  background-color: var(--glass-fill-thick);
+  -webkit-backdrop-filter: blur(36px) saturate(1.9);
+  backdrop-filter: blur(36px) saturate(1.9);
+  box-shadow:
+    0 0 0 0.5px var(--glass-edge),
+    inset 0 0 0 0.5px var(--glass-rim-soft),
+    inset 1.5px 1.5px 1px -1px var(--glass-rim),
+    inset -1px -1px 1px -1px var(--glass-rim-soft);
+}
+
+/* "Prominent" glass: tinted with the brand colour (primary actions). */
+[data-platform="ios"] .ios-glass-prominent {
+  background-color: #2a5ff3;
+  background-image: linear-gradient(180deg, rgb(255 255 255 / 0.3) 0%, rgb(255 255 255 / 0.04) 52%, rgb(255 255 255 / 0) 100%),
+    linear-gradient(100deg, rgb(31 102 255 / 0.96) 0%, rgb(106 77 240 / 0.96) 58%, rgb(138 63 240 / 0.96) 100%);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.8);
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.8);
+  box-shadow:
+    0 0 0 0.5px rgb(10 20 80 / 0.25),
+    inset 0 0 0 0.5px rgb(255 255 255 / 0.38),
+    inset 1.5px 1.5px 1px -1px rgb(255 255 255 / 0.85),
+    inset -1px -1px 1px -1px rgb(255 255 255 / 0.4),
+    inset 0 -10px 14px -10px rgb(255 255 255 / 0.28);
+  color: #fff;
+}
+[data-platform="ios"] .ios-glass-prominent:active:not(:disabled) {
+  filter: brightness(1.14) saturate(1.1);
+}
+
+/* The "lens": the highlighted glass under the selected tab / segment. It slides between items. */
+[data-platform="ios"] .ios-lens {
+  background-color: rgb(255 255 255 / 0.96);
+  box-shadow:
+    0 0 0 0.5px rgb(15 30 90 / 0.08),
+    inset 0 0 0 0.5px rgb(255 255 255 / 0.9),
+    inset 1px 1px 1px -0.5px rgb(255 255 255 / 1);
+}
+:root[data-theme="dark"] [data-platform="ios"] .ios-lens {
+  background-color: rgb(255 255 255 / 0.2);
+  box-shadow:
+    0 0 0 0.5px rgb(0 0 0 / 0.4),
+    inset 0 0 0 0.5px rgb(255 255 255 / 0.22),
+    inset 1px 1px 1px -0.5px rgb(255 255 255 / 0.4);
+}
+[data-platform="ios"] .ios-lens-tint {
+  background-color: var(--glass-lens);
+  box-shadow:
+    inset 0 0 0 0.5px var(--glass-rim-soft),
+    inset 1.5px 1.5px 1px -1px var(--glass-rim),
+    inset -1px -1px 1px -1px var(--glass-rim-soft);
+}
+
+/* Scroll edge effect: content fades into a soft blur under the bars, with no hard divider. */
+[data-platform="ios"] .ios-edge-top {
+  background: linear-gradient(to bottom, color-mix(in srgb, var(--ios-bg) 94%, transparent) 0%, color-mix(in srgb, var(--ios-bg) 70%, transparent) 55%, transparent 100%);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
+}
+[data-platform="ios"] .ios-edge-bottom {
+  background: linear-gradient(to top, color-mix(in srgb, var(--ios-bg) 80%, transparent) 0%, transparent 100%);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  -webkit-mask-image: linear-gradient(to top, #000 0%, #000 45%, transparent 100%);
+  mask-image: linear-gradient(to top, #000 0%, #000 45%, transparent 100%);
+}
+
+/* ---- Behaviour -------------------------------------------------------------------------------------------------- */
+
+/* Controls spring on press (scale 0.96, ~250ms). */
+[data-platform="ios"] .ios-press {
+  transition:
+    transform 0.28s var(--ios-spring),
+    background-color 0.2s,
+    filter 0.2s,
+    opacity 0.2s;
+  touch-action: manipulation;
+}
+[data-platform="ios"] .ios-press:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+/* Row of a list: highlight fill while pressed (no scale). */
+[data-platform="ios"] .ios-row {
+  transition: background-color 0.18s;
+}
+[data-platform="ios"] .ios-row:active:not(:disabled) {
+  background-color: var(--ios-fill);
+}
+
+/* Continuous ("squircle") corners where the browser supports them; the plain border-radius is the fallback. */
+@supports (corner-shape: squircle) {
+  [data-platform="ios"] .ios-sq {
+    corner-shape: squircle;
+  }
+}
+
+/* Glossy settings-style icon tile (solid colour set by the component). */
+[data-platform="ios"] .ios-tile {
+  background-image: linear-gradient(180deg, rgb(255 255 255 / 0.26) 0%, rgb(255 255 255 / 0) 60%);
+  box-shadow: inset 0 0 0 0.5px rgb(255 255 255 / 0.25);
+}
+
+/* Switch thumb: a pill that stretches while pressed. */
+[data-platform="ios"] .ios-thumb {
+  background-color: #fff;
+  box-shadow:
+    inset 0 0 0 0.5px rgb(0 0 0 / 0.08),
+    inset 1px 1px 1px -0.5px rgb(255 255 255 / 1),
+    0 0 0 0.5px rgb(0 0 0 / 0.06);
+}
+
+/* ---- Motion ----------------------------------------------------------------------------------------------------- */
+
+@keyframes ios-push-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+/* Going back: the screen underneath slides in from slightly left (parallax) while it fades up. */
+@keyframes ios-pop-in {
+  from {
+    opacity: 0.6;
+    transform: translateX(-28%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes ios-tab-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes ios-sheet-in {
+  from {
+    transform: translateY(105%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes ios-sheet-out {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(105%);
+  }
+}
+@keyframes ios-scrim-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes ios-scrim-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes ios-alert-in {
+  from {
+    opacity: 0;
+    transform: scale(1.12);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes ios-alert-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+}
