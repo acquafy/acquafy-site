@@ -1,0 +1,298 @@
+@import "tailwindcss";
+
+/* Night mode: the dark: utilities apply when <html data-theme="dark"> (set from the cookie by the root layout). */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+:root {
+  color-scheme: light;
+  --background: #eaf3ff;
+  --foreground: #0b1f66;
+
+  /* Surfaces and decorative gradients that are not plain colour tokens (light = Dia). */
+  --body-bg: radial-gradient(1200px 500px at 70% -10%, #cfe3ff 0%, transparent 60%), linear-gradient(180deg, #e7f1ff 0%, #f3f8ff 100%);
+  --sidebar-a: #fafbff;
+  --sidebar-b: #e8f1f8;
+  --hero-a: #bfe3ff;
+  --hero-b: #e2f1ff;
+  --hero-c: #f4f9ff;
+  --photo-a: #8cc8ff;
+  --photo-b: #dff0ff;
+  --photo-soft-a: #d6e8ff;
+  --photo-soft-b: #eef5ff;
+  --map-a: #e3f1ff;
+  --map-b: #cfe3f7;
+  --map-land: #eaf4e4;
+  --map-land-line: #b9d3ab;
+  --bar-ghost-a: #c8d9ff;
+  --bar-ghost-b: #dce7ff;
+  --scroll-thumb: #b9cdf5;
+  --wave-a: rgba(31, 102, 255, 0.16);
+  --wave-b: rgba(96, 190, 255, 0.28);
+  --wave-bubble: rgba(255, 255, 255, 0.9);
+}
+
+/* Noite */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --background: #070d1f;
+  --foreground: #e8eefc;
+
+  --color-ink: #e8eefc;
+  --color-ink-soft: #b4c0e0;
+  --color-ink-mute: #8b98bf;
+  --color-line: #26335c;
+  --color-canvas: #16213f;
+  --color-card: #111a33;
+  --color-page: #0b1226;
+
+  --color-brand: #4f81ff;
+  --color-brand-soft: #1b2b57;
+  --color-violet: #a07bff;
+  --color-violet-soft: #2a2158;
+  --color-ok: #3ccf86;
+  --color-ok-soft: #0f3324;
+  --color-warn: #ffa43a;
+  --color-warn-soft: #3b2a10;
+  --color-danger: #ff7391;
+  --color-danger-soft: #3d1626;
+
+  --body-bg: #070d1f;
+  --sidebar-a: #0e1730;
+  --sidebar-b: #0a1226;
+  --hero-a: #1d3f7c;
+  --hero-b: #132650;
+  --hero-c: #0f1b3a;
+  --photo-a: #264f93;
+  --photo-b: #132650;
+  --photo-soft-a: #1a3366;
+  --photo-soft-b: #121f42;
+  --map-a: #14264d;
+  --map-b: #0f1d3c;
+  --map-land: #17294f;
+  --map-land-line: #2c4377;
+  --bar-ghost-a: #2a3d70;
+  --bar-ghost-b: #22325f;
+  --scroll-thumb: #2c3b6b;
+  --wave-a: rgba(79, 129, 255, 0.2);
+  --wave-b: rgba(96, 190, 255, 0.22);
+  --wave-bubble: rgba(190, 225, 255, 0.7);
+}
+
+@theme {
+  /* Acquafy Investor Portal tokens (from the desktop references) */
+  --color-ink: #0a1f7a;
+  --color-ink-soft: #3f4f95;
+  --color-ink-mute: #5a6899;
+  --color-line: #e2eafa;
+  --color-canvas: #eaf3ff;
+  --color-card: #ffffff;
+  /* Page surface behind the cards (content area and top bar). */
+  --color-page: #ffffff;
+
+  --color-navy-950: #071f6e;
+  --color-navy-900: #0a2a86;
+  --color-navy-800: #0c3aa8;
+
+  --color-brand: #1f66ff;
+  --color-brand-soft: #e4eeff;
+  --color-violet: #7c3aed;
+  --color-violet-soft: #f1e9ff;
+  --color-ok: #17a65a;
+  --color-ok-soft: #e1f7ea;
+  --color-warn: #f5921b;
+  --color-warn-soft: #fff0dc;
+  --color-danger: #e5446d;
+  --color-danger-soft: #ffe5ec;
+
+  --font-sans: var(--font-sans-stack);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+html {
+  background: var(--background);
+}
+
+body {
+  min-height: 100vh;
+  color: var(--color-ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  background: var(--body-bg);
+  background-attachment: fixed;
+}
+
+/* Receipts and other `Modal printable` dialogs: print only the dialog, without its action buttons. */
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+  .print-area,
+  .print-area * {
+    visibility: visible !important;
+  }
+  .print-area {
+    position: fixed;
+    inset: 0;
+    margin: 0;
+    width: 100%;
+    max-width: none;
+    max-height: none;
+    box-shadow: none;
+  }
+  [data-print-hide] {
+    display: none !important;
+  }
+}
+
+/* White content area: cards are delimited by a hairline border only (no shadows on blocks). */
+@utility card {
+  background: var(--color-card);
+  border: 1px solid var(--color-line);
+  border-radius: 0.75rem;
+}
+
+@utility bg-brand-gradient {
+  background-image: linear-gradient(90deg, #1f66ff 0%, #6a4df0 55%, #8a3ff0 100%);
+}
+
+/* The light blue of the Acquafy site footer (components/Footer.tsx background). */
+@utility bg-sidebar-gradient {
+  background-image: linear-gradient(to bottom, var(--sidebar-a), var(--sidebar-b));
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Deep-blue brand panel (login). Always dark, in Dia and Noite, because its text is white. */
+@utility bg-brand-panel {
+  background-image: linear-gradient(180deg, #0a2a86 0%, #0b3396 55%, #0a46b8 100%);
+}
+
+/* ------------------------------------------------------------------------------------------------------------
+   Mobile app (/m/ios/*, /m/android/*). Everything below is scoped by [data-platform], which PlatformProvider sets on
+   a wrapper above the providers. Block borders instead of shadows; colours come from the same tokens as the desktop.
+   ------------------------------------------------------------------------------------------------------------ */
+@custom-variant ios (&:where([data-platform="ios"], [data-platform="ios"] *));
+@custom-variant android (&:where([data-platform="android"], [data-platform="android"] *));
+
+[data-platform] {
+  /* Screen background (Dia). Cards sit on it as white blocks with a hairline border. */
+  --m-bg: linear-gradient(180deg, #dcecff 0px, #eef5ff 280px, #eef5ff 100%);
+  --m-bezel: #0d1017;
+  /* Viewport of the screen: full window on a phone, a device-sized frame (see DeviceFrame) from 600px up. */
+  --m-frame-w: 100vw;
+  --m-frame-h: 100dvh;
+  --m-safe-top: env(safe-area-inset-top, 0px);
+  --m-safe-bottom: env(safe-area-inset-bottom, 0px);
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:root[data-theme="dark"] [data-platform] {
+  --m-bg: linear-gradient(180deg, #112046 0px, #0b1226 280px, #0b1226 100%);
+  --m-bezel: #04060b;
+}
+
+@media (min-width: 600px) {
+  /* Frame height = window − stage padding (3rem) − bezel (2 × 11px + 2 × 1px border). */
+  [data-platform="ios"] {
+    --m-frame-w: 390px;
+    --m-frame-h: min(844px, calc(100dvh - 3rem - 24px));
+    --m-safe-top: 54px;
+    --m-safe-bottom: 34px;
+  }
+  [data-platform="android"] {
+    --m-frame-w: 412px;
+    /* Pixel: thin bezel (9px + 1px border), 24dp status bar, 24dp gesture area. */
+    --m-frame-h: min(915px, calc(100dvh - 3rem - 20px));
+    --m-safe-top: 24px;
+    --m-safe-bottom: 24px;
+  }
+}
+
+[data-platform="ios"] {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, var(--font-sans), sans-serif;
+}
+
+[data-platform] .m-noscrollbar {
+  scrollbar-width: none;
+}
+[data-platform] .m-noscrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Toasts live in the top layer (outside the device frame), so they are repositioned over the screen, under the island. */
+[data-platform] [role="region"][aria-label="Avisos"] {
+  inset: auto;
+  top: calc((100dvh - var(--m-frame-h)) / 2 + var(--m-safe-top) + 4px);
+  left: calc(50% - var(--m-frame-w) / 2 + 12px);
+  width: calc(var(--m-frame-w) - 24px);
+}
+[data-platform] [role="region"][aria-label="Avisos"] .card {
+  box-shadow: none;
+  border-radius: 14px;
+}
+
+@keyframes m-sheet-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes m-sheet-down {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+@keyframes m-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes m-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes m-push-in {
+  from {
+    opacity: 0;
+    transform: translateX(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes m-rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-platform] * {
+    animation-duration: 1ms !important;
+    transition-duration: 1ms !important;
+  }
+}
