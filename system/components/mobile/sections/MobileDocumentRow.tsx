@@ -18,7 +18,7 @@ export type MobileDocumentActions = {
 export function MobileDocumentRow({ doc, actions }: { doc: DocumentItem; actions: MobileDocumentActions }) {
   const tile = doc.uploaded ? CATEGORY_TILES[doc.category] : (DOC_TILES[doc.id] ?? CATEGORY_TILES[doc.category]);
   return (
-    <li id={`doc-${doc.id}`} className="flex min-w-0 items-center gap-1 rounded-[14px] border border-line bg-card py-2 pr-1 pl-3">
+    <li id={`doc-${doc.id}`} className="flex min-w-0 items-center gap-1 rounded-[14px] bg-card py-2 pr-1 pl-3">
       <button
         type="button"
         onClick={() => actions.onPreview(doc)}

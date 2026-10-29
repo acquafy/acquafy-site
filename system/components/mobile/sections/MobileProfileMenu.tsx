@@ -35,7 +35,7 @@ export function MobileProfileMenu() {
     setLogoutOpen(false);
     endSession();
     toast({ title: "Sessão encerrada", description: "Até logo! Você saiu do Portal do Investidor.", tone: "info" });
-    router.replace(mobilePath(platform, "welcome"));
+    router.replace(mobilePath(platform, "login"));
     router.refresh();
   };
 
@@ -93,7 +93,14 @@ export function MobileProfileMenu() {
           },
         }))}
       />
-      <MobileConfirmSheet open={logoutOpen} title="Sair da conta?" description="Você precisará entrar novamente para acessar o portal." confirmLabel="Sair" onConfirm={logout} onCancel={() => setLogoutOpen(false)}>
+      <MobileConfirmSheet
+        open={logoutOpen}
+        title="Sair da conta?"
+        description="Você precisará entrar novamente para acessar o portal."
+        confirmLabel="Sair"
+        onConfirm={logout}
+        onCancel={() => setLogoutOpen(false)}
+      >
         <p className="text-[15px] text-ink-soft">Seus dados continuam seguros. Suas preferências ficam salvas neste aparelho.</p>
       </MobileConfirmSheet>
     </>

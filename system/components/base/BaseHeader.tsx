@@ -12,7 +12,7 @@ const LINKS = [
   { href: "/base/telas", label: "Telas" },
   { href: "/base/componentes", label: "Componentes" },
   { href: "/base/organismos", label: "Organismos Desktop" },
-  { href: "/base/organismos-mobile", label: "Organismos Mobile" },
+  { href: "/base/organismos-mobile", label: "Organismos Celular e Tablet" },
 ];
 
 /** Top bar of the /base hub: logo, section links and the Dia/Noite switch. */

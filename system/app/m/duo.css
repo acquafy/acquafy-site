@@ -1,0 +1,37 @@
+/* app/m/duo.css
+   The two-phone stage (/m/duo/*): both phones are real pages drawn at the same fixed size and scaled together, so the frame height
+   must not follow the window height (the default in globals.css does) or the two phones would be squeezed instead of scaled. */
+
+/* Frame size and safe areas of each platform × form factor (the numbers of lib/mobile/devices.ts). */
+.duo-stage [data-platform="ios"][data-device="phone"] {
+  --m-frame-w: 390px;
+  --m-frame-h: 844px;
+}
+.duo-stage [data-platform="android"][data-device="phone"] {
+  --m-frame-w: 412px;
+  --m-frame-h: 915px;
+}
+.duo-stage [data-platform="ios"][data-device="tablet"] {
+  --m-frame-w: 1194px;
+  --m-frame-h: 834px;
+  --m-safe-top: 24px;
+  --m-safe-bottom: 20px;
+}
+.duo-stage [data-platform="android"][data-device="tablet"] {
+  --m-frame-w: 1280px;
+  --m-frame-h: 800px;
+  --m-safe-top: 24px;
+  --m-safe-bottom: 24px;
+}
+.duo-stage [data-platform="android"][data-device="foldable"] {
+  --m-frame-w: 928px;
+  --m-frame-h: 800px;
+  --m-safe-top: 24px;
+  --m-safe-bottom: 24px;
+}
+.duo-stage [data-platform="ios"][data-device="foldable"] {
+  --m-frame-w: 940px;
+  --m-frame-h: 705px;
+  --m-safe-top: 24px;
+  --m-safe-bottom: 20px;
+}

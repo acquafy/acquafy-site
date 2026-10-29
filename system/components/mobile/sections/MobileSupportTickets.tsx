@@ -12,7 +12,18 @@ import { useToast } from "@/components/providers/ToastProvider";
 import { Badge } from "@/components/ui/Badge";
 import { ChatBubble } from "@/components/ui/ChatBubble";
 import { FieldFrame } from "@/components/ui/Field";
-import { ATTACHMENT_MAX_BYTES, PRIORITY_OPTIONS, TICKET_CATEGORIES, TICKET_PRIORITY, TICKET_STATUS, categoryLabel, type Ticket, type TicketCategory, type TicketPriority, type TicketStatus } from "@/config/support-page";
+import {
+  ATTACHMENT_MAX_BYTES,
+  PRIORITY_OPTIONS,
+  TICKET_CATEGORIES,
+  TICKET_PRIORITY,
+  TICKET_STATUS,
+  categoryLabel,
+  type Ticket,
+  type TicketCategory,
+  type TicketPriority,
+  type TicketStatus,
+} from "@/config/support-page";
 import { formatBytes } from "@/lib/fileActions";
 import { formatDate, type IsoDate } from "@/lib/format";
 import { useHeld } from "@/lib/mobile/useHeld";
@@ -36,7 +47,21 @@ function StatusBadge({ status }: { status: TicketStatus }) {
   );
 }
 
-function NewTicketSheet({ open, onClose, today, tickets, initialSubject, onCreate }: { open: boolean; onClose: () => void; today: IsoDate; tickets: Ticket[]; initialSubject: string; onCreate: (t: Ticket) => void }) {
+function NewTicketSheet({
+  open,
+  onClose,
+  today,
+  tickets,
+  initialSubject,
+  onCreate,
+}: {
+  open: boolean;
+  onClose: () => void;
+  today: IsoDate;
+  tickets: Ticket[];
+  initialSubject: string;
+  onCreate: (t: Ticket) => void;
+}) {
   const toast = useToast();
   const form = useRef<HTMLFormElement>(null);
   const [subject, setSubject] = useState<string | null>(null);
@@ -164,7 +189,7 @@ function NewTicketSheet({ open, onClose, today, tickets, initialSubject, onCreat
                 aria-invalid={invalid || undefined}
                 aria-describedby={describedBy}
                 onChange={(e) => pickFile(e.target.files?.[0] ?? null)}
-                className="block w-full cursor-pointer rounded-[12px] border border-line bg-card text-[15px] text-ink-soft file:mr-3 file:min-h-11 file:cursor-pointer file:border-0 file:bg-brand-soft file:px-4 file:text-[15px] file:font-semibold file:text-brand focus-visible:outline-2 focus-visible:outline-brand/40"
+                className="block w-full cursor-pointer rounded-[12px] bg-card text-[15px] text-ink-soft file:mr-3 file:min-h-11 file:cursor-pointer file:border-0 file:bg-brand-soft file:px-4 file:text-[15px] file:font-semibold file:text-brand focus-visible:outline-2 focus-visible:outline-brand/40"
               />
               {file && (
                 <p className="mt-2 flex items-center gap-2 text-[13.5px] text-ink-soft">
@@ -193,7 +218,14 @@ function NewTicketSheet({ open, onClose, today, tickets, initialSubject, onCreat
   );
 }
 
-type Props = { tickets: Ticket[]; today: IsoDate; onCreate: (t: Ticket) => void; onUpdate: (id: string, change: (t: Ticket) => Ticket) => void; newTicket: { open: boolean; subject: string }; onNewTicket: (open: boolean, subject?: string) => void };
+type Props = {
+  tickets: Ticket[];
+  today: IsoDate;
+  onCreate: (t: Ticket) => void;
+  onUpdate: (id: string, change: (t: Ticket) => Ticket) => void;
+  newTicket: { open: boolean; subject: string };
+  onNewTicket: (open: boolean, subject?: string) => void;
+};
 
 /** "Meus chamados": status filter chips, one row per ticket, the conversation sheet (reply / resolve / reopen) and the new-ticket sheet. */
 export function MobileSupportTickets({ tickets, today, onCreate, onUpdate, newTicket, onNewTicket }: Props) {
@@ -225,7 +257,11 @@ export function MobileSupportTickets({ tickets, today, onCreate, onUpdate, newTi
   const setStatus = (status: TicketStatus) => {
     if (!open) return;
     onUpdate(open.id, (t) => ({ ...t, status, updatedAt: today }));
-    toast(status === "resolved" ? { title: "Chamado resolvido", description: `#${open.id} foi marcado como resolvido.` } : { title: "Chamado reaberto", description: `#${open.id} voltou para a fila da equipe.` });
+    toast(
+      status === "resolved"
+        ? { title: "Chamado resolvido", description: `#${open.id} foi marcado como resolvido.` }
+        : { title: "Chamado reaberto", description: `#${open.id} voltou para a fila da equipe.` },
+    );
   };
 
   return (
@@ -253,13 +289,7 @@ export function MobileSupportTickets({ tickets, today, onCreate, onUpdate, newTi
           icon={Inbox}
           title="Nenhum chamado nesse filtro"
           description={tickets.length === 0 ? "Você ainda não abriu chamados." : "Escolha outro status para ver seus chamados."}
-          action={
-            tickets.length === 0 && (
-              <MobileButton onClick={() => onNewTicket(true)}>
-                Abrir chamado
-              </MobileButton>
-            )
-          }
+          action={tickets.length === 0 && <MobileButton onClick={() => onNewTicket(true)}>Abrir chamado</MobileButton>}
         />
       ) : (
         <ul className="grid gap-2.5">
@@ -273,7 +303,7 @@ export function MobileSupportTickets({ tickets, today, onCreate, onUpdate, newTi
                   setOpenId(t.id);
                 }}
                 aria-label={`Chamado ${t.id}: ${t.subject}, ${TICKET_STATUS[t.status].label}. Abrir conversa`}
-                className="flex min-h-[72px] w-full items-center gap-3 rounded-[14px] border border-line bg-card p-3.5 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand active:bg-brand-soft/60"
+                className="flex min-h-[72px] w-full items-center gap-3 rounded-[14px] bg-card p-3.5 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand active:bg-brand-soft/60"
               >
                 <span className="min-w-0 flex-1">
                   <span className="tabular block text-[13px] font-bold text-brand">#{t.id}</span>

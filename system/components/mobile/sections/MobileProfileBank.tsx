@@ -142,7 +142,7 @@ export function MobileProfileBank() {
 
   return (
     <div className="grid gap-4">
-      <div className="rounded-[14px] border border-line bg-card px-4 py-1">
+      <div className="rounded-[14px] bg-card px-4 py-1">
         <DefinitionList
           rows={[
             { icon: <UserRound className="size-5 text-brand" aria-hidden="true" />, label: "Titular", value: b.holder },

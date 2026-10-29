@@ -16,9 +16,8 @@ function profileStats(): MobileProfileStats {
 
 export default function IosProfilePage() {
   return (
-    <IosScreen title="Meu Perfil" navTitle="Perfil" subtitle="Gerencie suas informações e preferências.">
+    <IosScreen title="Meu Perfil" navTitle="Perfil" subtitle="Gerencie suas informações e preferências." aside={<MobileProfileMenu />}>
       <MobileProfileCard stats={profileStats()} />
-      <MobileProfileMenu />
     </IosScreen>
   );
 }

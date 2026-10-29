@@ -70,7 +70,7 @@ export function MobileProfileTwoFactorSheet({ open, onClose }: { open: boolean; 
       }
     >
       <div className="grid gap-5">
-        <div className="rounded-[14px] border border-line bg-canvas/50 p-4 text-center">
+        <div className="rounded-[14px] bg-canvas/50 p-4 text-center">
           <p className="text-[13px] text-ink-soft">Chave de configuração</p>
           <p className="tabular mt-1 font-mono text-[18px] font-bold tracking-wider text-ink">{TWO_FACTOR_SECRET}</p>
           <MobileButton variant="soft" size="sm" className="mt-2.5" onClick={copyKey}>

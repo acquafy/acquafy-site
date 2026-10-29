@@ -4,15 +4,16 @@
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { ArrowRight, Lock, Mail, ShieldCheck, UserPlus } from "lucide-react";
+import { useFlowSplit } from "@/components/mobile/sections/MobileFlowSplit";
 import { usePlatform } from "@/components/mobile/PlatformProvider";
 import { MobileButton } from "@/components/mobile/ui/MobileButton";
 import { MobileCheckbox, MobileTextField } from "@/components/mobile/ui/MobileFields";
 import { MobileLogo } from "@/components/mobile/ui/MobileLogo";
-import { MobilePurifierShowcase } from "@/components/mobile/ui/MobilePurifierShowcase";
 import { useToast } from "@/components/providers/ToastProvider";
 import { isEmail } from "@/components/ui/validate";
 import { loginCopy } from "@/config/login-page";
 import { signIn } from "@/lib/auth";
+import { cn } from "@/lib/cn";
 import { mobilePath } from "@/lib/mobile/platform";
 import { MobileLoginAccessSheet } from "./MobileLoginAccessSheet";
 import { MobileLoginForgotSheet } from "./MobileLoginForgotSheet";
@@ -23,6 +24,7 @@ type Errors = { email?: string; password?: string };
 export function MobileLogin() {
   const router = useRouter();
   const platform = usePlatform();
+  const split = useFlowSplit();
   const toast = useToast();
   const form = useRef<HTMLFormElement>(null);
   const [email, setEmail] = useState("");
@@ -62,19 +64,18 @@ export function MobileLogin() {
   };
 
   return (
-    <main className="flex min-h-full flex-1 flex-col">
-      <section className="relative px-5 pt-[calc(var(--m-safe-top)+12px)] pb-4">
+    <main className="flex h-(--m-frame-h) min-h-0 flex-col justify-center pb-(--m-safe-bottom)">
+      <section className={cn("relative px-5 pt-[calc(var(--m-safe-top)+12px)] pb-4", split && "hidden")}>
         <div className="flex justify-center">
           <MobileLogo className="h-9" priority />
         </div>
-        <h1 className="mt-5 max-w-[11rem] text-[clamp(1.5rem,7.4vw,1.875rem)] leading-[1.1] font-extrabold tracking-tight text-ink">
-          {loginCopy.headlineLead} <span className="bg-gradient-to-r from-brand to-violet bg-clip-text text-transparent">{loginCopy.headlineAccent}</span>
-        </h1>
-        <p className="mt-2.5 max-w-[11.5rem] text-[14.5px] leading-snug text-ink-soft">{loginCopy.support}</p>
-        <MobilePurifierShowcase priority ripples={false} className="absolute top-[calc(var(--m-safe-top)+60px)] right-0 h-[190px] w-[52%] overflow-hidden" />
       </section>
 
-      <section aria-label="Entrar" className="mt-auto flex-1 rounded-t-[22px] border border-b-0 border-line bg-card px-5 pt-5 pb-[max(20px,calc(var(--m-safe-bottom)+8px))]">
+      <section aria-label="Entrar" className={cn("px-5 pt-2 pb-5", split && "px-0")}>
+        <div className="mb-6">
+          <h2 className="text-[28px] leading-tight font-extrabold tracking-tight text-ink">{loginCopy.formTitle}</h2>
+          <p className="mt-1 text-[16px] text-ink-soft">{loginCopy.formSubtitle}</p>
+        </div>
         <form ref={form} method="post" noValidate onSubmit={onSubmit} aria-label="Entrar no portal" className="grid gap-3.5">
           <MobileTextField
             label="E-mail"
@@ -109,7 +110,11 @@ export function MobileLogin() {
 
           <div className="flex items-center justify-between gap-3">
             <MobileCheckbox label="Lembrar-me" checked={remember} onChange={(e) => setRemember(e.target.checked)} />
-            <button type="button" onClick={() => setSheet("forgot")} className="min-h-11 rounded-md text-[15px] font-semibold text-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand active:opacity-60">
+            <button
+              type="button"
+              onClick={() => setSheet("forgot")}
+              className="min-h-11 rounded-md text-[15px] font-semibold text-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand active:opacity-60"
+            >
               Esqueci minha senha
             </button>
           </div>

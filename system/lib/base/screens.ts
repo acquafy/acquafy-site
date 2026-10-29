@@ -1,6 +1,7 @@
 // lib/base/screens.ts
 import "server-only";
 import { PRODUCTION_GROUPS, SCREENS, type Platform, type ScreenDef } from "@/config/base-registry";
+import type { ScreenFormat } from "./formats";
 import { mobileScreenExists, organisms, referenceExists, type OrganismFile } from "./inventory";
 
 export type PlatformState = { platform: Platform; href: string | null; state: "ready" | "pending" | "none" };
@@ -78,6 +79,25 @@ export function platformCounts(screens: ResolvedScreen[]): Record<Platform, { re
       if (p.state === "none") continue;
       out[p.platform].total += 1;
       if (p.state === "ready") out[p.platform].ready += 1;
+    }
+  }
+  return out;
+}
+
+/** Screens ready per FORMAT: Desktop, and Tablet e Foldable / Celulares (the same app screens, ready once both iOS and Android exist). */
+export function formatCounts(screens: ResolvedScreen[]): Record<ScreenFormat, { ready: number; total: number }> {
+  const out = { desktop: { ready: 0, total: 0 }, tablet: { ready: 0, total: 0 }, celular: { ready: 0, total: 0 } };
+  for (const s of screens) {
+    const state = (platform: Platform) => s.platforms.find((p) => p.platform === platform)?.state ?? "none";
+    if (state("desktop") !== "none") {
+      out.desktop.total += 1;
+      if (state("desktop") === "ready") out.desktop.ready += 1;
+    }
+    if (!s.mobile) continue;
+    const ready = state("ios") === "ready" && state("android") === "ready";
+    for (const f of ["tablet", "celular"] as const) {
+      out[f].total += 1;
+      if (ready) out[f].ready += 1;
     }
   }
   return out;

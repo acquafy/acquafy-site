@@ -73,9 +73,14 @@ export function MobileSupportChat({ open, onClose }: { open: boolean; onClose: (
             autoComplete="off"
             maxLength={500}
             enterKeyHint="send"
-            className="h-12 min-w-0 flex-1 rounded-full border border-line bg-card px-4 text-[16px] text-ink placeholder:text-ink-mute/80 focus-visible:border-brand focus-visible:outline-2 focus-visible:outline-brand/30"
+            className="h-12 min-w-0 flex-1 rounded-full bg-card px-4 text-[16px] text-ink placeholder:text-ink-mute/80 focus-visible:border-brand focus-visible:outline-2 focus-visible:outline-brand/30"
           />
-          <button type="submit" disabled={!draft.trim()} aria-label="Enviar mensagem" className="grid size-12 shrink-0 place-items-center rounded-full bg-brand-gradient text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:opacity-40">
+          <button
+            type="submit"
+            disabled={!draft.trim()}
+            aria-label="Enviar mensagem"
+            className="grid size-12 shrink-0 place-items-center rounded-full bg-brand-gradient text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand disabled:opacity-40"
+          >
             <Send className="size-5" aria-hidden="true" />
           </button>
         </form>

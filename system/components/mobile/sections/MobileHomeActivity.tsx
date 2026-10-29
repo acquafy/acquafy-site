@@ -18,7 +18,7 @@ export function MobileHomeActivity({ summary }: { summary: PortalSummary }) {
       <div className="px-3.5 pt-3.5">
         <MobileSectionHeader level={3} icon={Clock3} title="Últimas movimentações" action={{ label: "Ver todas", href: { route: "finance" } }} />
       </div>
-      <MobileListGroup className="mt-1 [&>ul]:rounded-none [&>ul]:border-0 [&>ul]:border-t">
+      <MobileListGroup className="mt-1 [&>ul]:rounded-none [&>ul]:border-0 [&>ul]:border-t [&>ul]:border-line/50">
         {items.map((a) => (
           <MobileListRow
             key={a.id}
@@ -27,7 +27,15 @@ export function MobileHomeActivity({ summary }: { summary: PortalSummary }) {
             title={a.title}
             subtitle={formatDateShort(a.date)}
             href={{ route: a.route }}
-            value={a.amount !== undefined ? <span className="font-bold text-ok"><Money value={a.amount} whole /></span> : <span className="font-semibold text-brand">{a.label}</span>}
+            value={
+              a.amount !== undefined ? (
+                <span className="font-bold text-ok">
+                  <Money value={a.amount} whole />
+                </span>
+              ) : (
+                <span className="font-semibold text-brand">{a.label}</span>
+              )
+            }
           />
         ))}
       </MobileListGroup>

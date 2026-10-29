@@ -352,7 +352,7 @@
   --md-btn-fg: var(--md-on-secondary-container);
 }
 [data-platform="android"] .md-btn[data-variant="outlined"] {
-  --md-btn-bd: var(--md-outline);
+  --md-btn-bd: var(--md-outline-variant);
   --md-btn-fg: var(--md-primary);
 }
 [data-platform="android"] .md-btn[data-variant="text"] {
@@ -360,7 +360,7 @@
   --md-btn-px: 12px;
 }
 [data-platform="android"] .md-btn[data-variant="danger"] {
-  --md-btn-bd: color-mix(in srgb, var(--md-error) 60%, transparent);
+  --md-btn-bd: color-mix(in srgb, var(--md-error) 35%, transparent);
   --md-btn-fg: var(--md-error);
 }
 [data-platform="android"] .md-btn:disabled,
@@ -571,14 +571,15 @@
 /* ---- Text fields (M3 filled): 56px container, 4px top radius, floating label, 1px → 2px indicator ---- */
 [data-platform="android"] .md-field {
   position: relative;
-  border-radius: var(--md-shape-xs) var(--md-shape-xs) 0 0;
-  background: var(--md-surface-container-highest);
+  overflow: hidden;
+  border-radius: var(--md-shape-md);
+  background: var(--md-surface-container);
 }
 [data-platform="android"] .md-field::after {
   content: "";
   position: absolute;
   inset: auto 0 0;
-  height: 1px;
+  height: 0;
   background: var(--md-on-surface-variant);
   transition:
     height 0.15s linear,
@@ -715,6 +716,13 @@
   left: calc(50% - var(--m-frame-w) / 2 + 8px);
   width: calc(var(--m-frame-w) - 16px);
 }
+/* Tablet / foldable: no bottom bar, so the snackbar sits 24px above the gesture area; at most 560px wide, centred on the content next to the 80px rail. */
+[data-platform="android"]:not([data-device="phone"]) [role="region"][aria-label="Avisos"] {
+  --snack-w: min(560px, calc(var(--m-frame-w) - 160px));
+  bottom: calc((100dvh - var(--m-frame-h)) / 2 + var(--m-safe-bottom) + 24px);
+  left: calc(50% + 40px - var(--snack-w) / 2);
+  width: var(--snack-w);
+}
 [data-platform="android"] [role="region"][aria-label="Avisos"] li {
   min-height: 48px;
   align-items: center;
@@ -801,6 +809,32 @@
   }
   to {
     transform: translateY(100%);
+  }
+}
+@keyframes md-side-in {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes md-side-out {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+@keyframes md-menu-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 @keyframes md-dialog-in {

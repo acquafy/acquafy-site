@@ -24,16 +24,6 @@ export type ScreenDef = {
 };
 
 export const SCREENS: ScreenDef[] = [
-  {
-    id: "bem-vindo",
-    title: "Bem-vindo (onboarding)",
-    desktop: null,
-    mobile: "bem-vindo",
-    mobileGroup: "flow",
-    references: ["PORTA - PARTE 1 _ MOBILE.jpeg"],
-    organisms: ["Welcome"],
-    note: "Só existe no app.",
-  },
   { id: "login", title: "Login", desktop: "/login", mobile: "login", mobileGroup: "flow", references: ["PORTAL DE LOGIN - MOBILE.jpeg"], organisms: ["Login"] },
   { id: "home", title: "Home / Início", desktop: "/home", mobile: "home", mobileGroup: "tabs", references: ["DASHBOARD - MOBILE.jpeg"], organisms: ["Home"], note: "Atalhos e ações do dia a dia." },
   {
@@ -94,7 +84,7 @@ export const BASE_LINKS = {
  * the money, then management, then the account. Screens not listed here go to the end under "Outras".
  */
 export const PRODUCTION_GROUPS: { id: string; title: string; description: string; screens: string[] }[] = [
-  { id: "access", title: "Acesso", description: "Primeiro contato: onboarding do app e entrada.", screens: ["bem-vindo", "login"] },
+  { id: "access", title: "Acesso", description: "Entrada: o app vai direto para o login (sem onboarding).", screens: ["login"] },
   { id: "overview", title: "Visão geral", description: "O que o investidor vê ao entrar: atalhos do dia e dados gerais.", screens: ["home", "dashboard"] },
   { id: "investment", title: "Investimento", description: "Os purificadores, novos aportes e o contrato.", screens: ["purificadores", "solicitar", "contrato"] },
   { id: "finance", title: "Financeiro", description: "Repasses recebidos e a receber.", screens: ["extrato", "calendario"] },

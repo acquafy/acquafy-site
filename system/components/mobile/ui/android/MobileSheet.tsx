@@ -4,6 +4,7 @@
 import { useId, useRef, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { X } from "lucide-react";
+import { useDevice } from "@/components/mobile/PlatformProvider";
 import { Ripple } from "@/components/mobile/android/Ripple";
 import { useModalLayer } from "@/components/mobile/android/useModalLayer";
 import { cn } from "@/lib/cn";
@@ -28,12 +29,16 @@ const DISMISS_DRAG_PX = 90;
  * around the phone): `surface-container-low`, 28px top radius, 32×4 drag handle, headline small title on the LEFT, a close icon button,
  * 32% scrim. Drag the handle/header down to dismiss. Focus moves into the sheet, Tab is trapped, Escape and the scrim close it, and focus
  * returns to what opened it.
+ *
+ * On a tablet or a foldable (`useDevice()`) it is the M3 modal SIDE sheet instead: a 400px panel on the right, full height, 28px radius on
+ * the left corners, no handle (nothing to drag), sliding in from the right; the content, header and footer are the same.
  */
 export function MobileSheet({ open, onClose, title, description, children, footer, size = "auto" }: MobileSheetProps) {
   const titleId = useId();
   const descId = useId();
   const drag = useRef<{ startY: number; dy: number } | null>(null);
   const panel = useRef<HTMLDivElement>(null);
+  const side = useDevice() !== "phone";
   const { root, visible, closing, trapTab } = useModalLayer({ open, onClose, exitMs: EXIT_MS, panel });
 
   if (!root || !visible) return null;
@@ -71,14 +76,28 @@ export function MobileSheet({ open, onClose, title, description, children, foote
         tabIndex={-1}
         onKeyDown={trapTab}
         className={cn(
-          "absolute inset-x-0 bottom-0 flex flex-col rounded-t-[28px] bg-(--md-surface-container-low) text-(--md-on-surface) outline-none",
-          size === "full" ? "h-[calc(100%-var(--m-safe-top)-24px)]" : "max-h-[calc(100%-var(--m-safe-top)-24px)]",
-          closing ? "animate-[md-sheet-down_0.25s_var(--md-ease-accelerate)_forwards]" : "animate-[md-sheet-up_0.45s_var(--md-ease-decelerate)]",
+          "absolute flex flex-col bg-(--md-surface-container-low) text-(--md-on-surface) outline-none",
+          side
+            ? "inset-y-0 right-0 w-[400px] max-w-full rounded-l-[28px] pt-[calc(var(--m-safe-top)+8px)]"
+            : cn("inset-x-0 bottom-0 rounded-t-[28px]", size === "full" ? "h-[calc(100%-var(--m-safe-top)-24px)]" : "max-h-[calc(100%-var(--m-safe-top)-24px)]"),
+          side
+            ? closing
+              ? "animate-[md-side-out_0.25s_var(--md-ease-accelerate)_forwards]"
+              : "animate-[md-side-in_0.4s_var(--md-ease-decelerate)]"
+            : closing
+              ? "animate-[md-sheet-down_0.25s_var(--md-ease-accelerate)_forwards]"
+              : "animate-[md-sheet-up_0.45s_var(--md-ease-decelerate)]",
         )}
       >
-        <div onPointerDown={onDragStart} onPointerMove={onDragMove} onPointerUp={onDragEnd} onPointerCancel={onDragEnd} className="shrink-0 cursor-grab touch-none select-none">
-          <span aria-hidden="true" className="mx-auto mt-4 block h-1 w-8 rounded-full bg-(--md-on-surface-variant) opacity-40" />
-          <div className="flex items-start gap-2 pt-3 pr-1 pb-3 pl-4">
+        <div
+          onPointerDown={side ? undefined : onDragStart}
+          onPointerMove={side ? undefined : onDragMove}
+          onPointerUp={side ? undefined : onDragEnd}
+          onPointerCancel={side ? undefined : onDragEnd}
+          className={cn("shrink-0", !side && "cursor-grab touch-none select-none")}
+        >
+          {!side && <span aria-hidden="true" className="mx-auto mt-4 block h-1 w-8 rounded-full bg-(--md-on-surface-variant) opacity-40" />}
+          <div className={cn("flex items-start gap-2 pr-1 pb-3", side ? "pt-1 pl-6" : "pt-3 pl-4")}>
             <div className="min-w-0 flex-1 pt-1">
               <h2 id={titleId} className="md-headline-s text-(--md-on-surface)">
                 {title}
@@ -95,8 +114,8 @@ export function MobileSheet({ open, onClose, title, description, children, foote
             </button>
           </div>
         </div>
-        <div className={cn("min-h-0 flex-1 overflow-x-hidden overflow-y-auto overscroll-contain px-4", footer ? "pb-4" : "pb-[calc(var(--m-safe-bottom)+16px)]")}>{children}</div>
-        {footer && <div className="shrink-0 border-t border-(--md-outline-variant)/60 px-4 pt-3 pb-[max(16px,var(--m-safe-bottom))]">{footer}</div>}
+        <div className={cn("min-h-0 flex-1 overflow-x-hidden overflow-y-auto overscroll-contain", side ? "px-6" : "px-4", footer ? "pb-4" : "pb-[calc(var(--m-safe-bottom)+16px)]")}>{children}</div>
+        {footer && <div className={cn("shrink-0 border-t border-(--md-outline-variant)/60 pt-3 pb-[max(16px,var(--m-safe-bottom))]", side ? "px-6" : "px-4")}>{footer}</div>}
       </div>
     </div>,
     root,
