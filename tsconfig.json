@@ -37,6 +37,7 @@
   ],
   "exclude": [
     "node_modules",
+    "system",
     "**/*.backup.tsx",
     "**/*.backup.ts"
   ]
