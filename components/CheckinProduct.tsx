@@ -1609,36 +1609,6 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
   const activeColorImages = activeVariant.slides?.[activeColorIdx] ?? [];
   const slideCount = activeColorImages.length > 0 ? activeColorImages.length : 1;
 
-  // Slide arrays can have different lengths per color (e.g. Cinza Metrópole lacks side-profile
-  // shots), so raw index isn't comparable across colors. Tag each slot by its physical position
-  // and re-find the same position (or nearest) when switching color, instead of resetting to 0.
-  const positionTagsForLength = (n: number): string[] => {
-    if (n === 7) return ["front", "turnA", "sideA", "backClosed", "backOpen", "sideB", "turnB"];
-    if (n === 6) return ["front", "turnA", "sideA", "backClosed", "backOpen", "turnB"];
-    if (n === 5) return ["front", "turnA", "backClosed", "backOpen", "turnB"];
-    return Array.from({ length: n }, (_, i) => `slot${i}`);
-  };
-  const handleColorSelect = (newColorIdx: number) => {
-    const newImages = activeVariant.slides?.[newColorIdx] ?? [];
-    if (newImages.length > 0 && activeColorImages.length > 0) {
-      const order = ["front", "turnA", "sideA", "backClosed", "backOpen", "sideB", "turnB"];
-      const oldTags = positionTagsForLength(activeColorImages.length);
-      const newTags = positionTagsForLength(newImages.length);
-      const currentTag = oldTags[slideIdx] ?? oldTags[0];
-      let newSlideIdx = newTags.indexOf(currentTag);
-      if (newSlideIdx === -1) {
-        const curRank = order.indexOf(currentTag);
-        let bestDist = Infinity;
-        newSlideIdx = 0;
-        newTags.forEach((t, idx) => {
-          const dist = Math.abs(order.indexOf(t) - curRank);
-          if (dist < bestDist) { bestDist = dist; newSlideIdx = idx; }
-        });
-      }
-      setSlideIdx(newSlideIdx);
-    }
-    setActiveColorIdx(newColorIdx);
-  };
   const specs = SPECS[activeVariant.id] ?? SPECS["neo-fit"]!;
   const accent = family.isPremium ? "#9f3df5" : "#0233c3";
   const accentGrad = family.isPremium
@@ -2002,7 +1972,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                     {colorOptions.map((color, i) => {
                       const isActive = i === activeColorIdx;
                       return (
-                        <button key={i} onClick={() => handleColorSelect(i)}
+                        <button key={i} onClick={() => setActiveColorIdx(i)}
                           title={color.name}
                           className="size-[56px] rounded-full flex items-center justify-center transition-all shrink-0"
                           style={{
@@ -2577,22 +2547,40 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
         }`}
       >
         {/* Left: fills the image panel area */}
-        <div className="flex-1 flex flex-col gap-[5px] min-w-0 justify-center px-[24px] md:px-[48px] py-[20px]">
-          <span
-            className="font-['Avenir_LT_Pro:95_Black'] text-[22px] leading-tight"
-            style={{ background: accentGrad, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
-          >
-            {activeVariant.name}
-          </span>
-          <span className="font-['Avenir_LT_Pro:55_Roman'] text-[11px] text-[#6b7280] leading-snug [overflow-wrap:anywhere]">
-            {[
-              getColorName(colorOptions[activeColorIdx]?.slug, lang, colorOptions[activeColorIdx]?.name ?? ""),
-              specs.filtragem.includes("UF") ? UF_LABEL[lang] : RO_LABEL[lang],
-              specs.gas ? lb.gasLabel : null,
-              specs.h2 ? lb.h2Label : null,
-              specs.painel !== "—" ? specs.painel : null,
-            ].filter(Boolean).join(" · ")}
-          </span>
+        <div className="flex-1 flex items-center gap-[12px] md:gap-[28px] flex-wrap min-w-0 px-[24px] md:px-[48px] py-[20px]">
+          <div className="flex flex-col gap-[5px] min-w-0 justify-center">
+            <span
+              className="font-['Avenir_LT_Pro:95_Black'] text-[22px] leading-tight"
+              style={{ background: accentGrad, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
+            >
+              {activeVariant.name}
+            </span>
+            <span className="font-['Avenir_LT_Pro:55_Roman'] text-[11px] text-[#6b7280] leading-snug [overflow-wrap:anywhere]">
+              {[
+                getColorName(colorOptions[activeColorIdx]?.slug, lang, colorOptions[activeColorIdx]?.name ?? ""),
+                specs.filtragem.includes("UF") ? UF_LABEL[lang] : RO_LABEL[lang],
+                specs.gas ? lb.gasLabel : null,
+                specs.h2 ? lb.h2Label : null,
+                specs.painel !== "—" ? specs.painel : null,
+              ].filter(Boolean).join(" · ")}
+            </span>
+          </div>
+          {!family.isPremium && (
+            <div className="flex gap-[8px] items-center shrink-0">
+              {colorOptions.map((color, i) => {
+                const isActive = i === activeColorIdx;
+                const name = getColorName(color.slug, lang, color.name);
+                return (
+                  <button key={color.slug} onClick={() => setActiveColorIdx(i)}
+                    title={name} aria-label={name}
+                    className="size-[30px] rounded-full flex items-center justify-center transition-all shrink-0"
+                    style={{ border: isActive ? `2px solid ${accent}` : "2px solid #e8ecf4", padding: "3px" }}>
+                    <div className="size-full rounded-full" style={{ background: color.gradient }} />
+                  </button>
+                );
+              })}
+            </div>
+          )}
         </div>
         {/* Right: same width as the sidebar panel */}
         <div className="md:w-[400px] xl:w-[440px] shrink-0 px-[24px] py-[20px] flex items-center gap-[16px]">
