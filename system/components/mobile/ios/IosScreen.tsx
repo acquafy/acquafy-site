@@ -80,7 +80,7 @@ export function IosScreen({ title, navTitle, subtitle, back, actions, accessory,
           className={cn(
             "relative flex flex-col gap-4 px-4 pb-6 @2xl:px-6 @2xl:pb-8",
             !!aside && "@2xl:grid @2xl:items-start",
-            !!aside && (foldable ? (sidebarOpen ? "@2xl:grid-cols-1" : "@2xl:grid-cols-[calc(50cqw-84px)_1fr] @2xl:gap-6") : "@2xl:grid-cols-2 @2xl:gap-5"),
+            !!aside && (foldable ? (sidebarOpen ? "@2xl:grid-cols-1" : "@2xl:grid-cols-[calc(50cqw-76px)_1fr] @2xl:gap-6") : "@2xl:grid-cols-2 @2xl:gap-5"),
             className,
           )}
         >
