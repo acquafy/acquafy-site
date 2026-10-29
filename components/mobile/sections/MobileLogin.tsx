@@ -71,7 +71,7 @@ export function MobileLogin() {
           {loginCopy.headlineLead} <span className="bg-gradient-to-r from-brand to-violet bg-clip-text text-transparent">{loginCopy.headlineAccent}</span>
         </h1>
         <p className="mt-2.5 max-w-[11.5rem] text-[14.5px] leading-snug text-ink-soft">{loginCopy.support}</p>
-        <MobilePurifierShowcase priority ripples={false} className="absolute top-[88px] right-0 h-[200px] w-[52%] overflow-hidden" />
+        <MobilePurifierShowcase priority ripples={false} className="absolute top-[calc(var(--m-safe-top)+60px)] right-0 h-[190px] w-[52%] overflow-hidden" />
       </section>
 
       <section aria-label="Entrar" className="mt-auto flex-1 rounded-t-[22px] border border-b-0 border-line bg-card px-5 pt-5 pb-[max(20px,calc(var(--m-safe-bottom)+8px))]">
