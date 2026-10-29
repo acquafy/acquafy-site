@@ -15,7 +15,7 @@ export function MobilePurifierRow({ purifier: p, onOpen }: { purifier: Purifier;
         type="button"
         onClick={() => onOpen(p)}
         aria-label={`${p.model}, número de série ${p.serial}, ${locationLabel(p)}. Abrir detalhes`}
-        className="flex min-h-[72px] w-full items-center gap-3 rounded-[14px] border border-line bg-card p-3 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand active:bg-brand-soft/60"
+        className="flex min-h-[72px] w-full items-center gap-3 rounded-[14px] bg-card p-3 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand active:bg-brand-soft/60"
       >
         <span aria-hidden="true" className="grid size-[52px] shrink-0 place-items-center rounded-[12px] bg-[radial-gradient(ellipse_at_50%_60%,var(--photo-a),var(--photo-b)_75%)]">
           <Image src="/brand/neo-up-thumb.webp" alt="" width={112} height={143} className="h-10 w-auto" />

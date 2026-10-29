@@ -43,7 +43,7 @@ export function MobileHeaderActions() {
         aria-label={state.unread ? `Notificações (${state.unread} não lidas)` : "Notificações"}
         className="relative grid size-11 place-items-center rounded-full text-brand focus-visible:outline-2 focus-visible:outline-brand active:bg-brand-soft"
       >
-        <span className="grid size-10 place-items-center rounded-full border border-line bg-card">
+        <span className="grid size-10 place-items-center rounded-full bg-card">
           <Bell className="size-[22px]" strokeWidth={1.75} aria-hidden="true" />
         </span>
         {state.unread > 0 && (
@@ -80,7 +80,7 @@ function MobileNotificationsSheet({ open, onClose, state }: { open: boolean; onC
           <BellOff className="size-5" aria-hidden="true" /> Nenhuma notificação.
         </p>
       ) : (
-        <ul className="divide-y divide-line overflow-hidden rounded-[14px] border border-line bg-card">
+        <ul className="divide-y divide-line overflow-hidden rounded-[14px] bg-card">
           {notifications.map((n) => {
             const isUnread = !state.readIds.includes(n.id);
             return (
@@ -91,7 +91,10 @@ function MobileNotificationsSheet({ open, onClose, state }: { open: boolean; onC
                     state.markRead(n.id);
                     onClose();
                   }}
-                  className={cn("flex items-start gap-3 px-3.5 py-3 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-brand active:bg-brand-soft/60", isUnread && "bg-brand-soft/35")}
+                  className={cn(
+                    "flex items-start gap-3 px-3.5 py-3 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-brand active:bg-brand-soft/60",
+                    isUnread && "bg-brand-soft/35",
+                  )}
                 >
                   <IconTile icon={n.icon} tone={n.tone} className="size-10" />
                   <span className="min-w-0 flex-1">

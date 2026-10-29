@@ -15,10 +15,8 @@ import { sharedPreviews } from "./SharedPreviews";
 import { statementPreviews } from "./StatementPreviews";
 import { supportPreviews } from "./SupportPreviews";
 import type { PreviewMap } from "./types";
-import { welcomePreviews } from "./WelcomePreviews";
 
 export const ORGANISM_PREVIEWS: PreviewMap = {
-  ...welcomePreviews,
   ...loginPreviews,
   ...homePreviews,
   ...dashboardPreviews,

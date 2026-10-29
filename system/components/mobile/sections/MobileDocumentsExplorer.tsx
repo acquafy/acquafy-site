@@ -99,7 +99,7 @@ export function MobileDocumentsExplorer({ today }: { today: IsoDate }) {
           onClick={() => setSortOpen(true)}
           aria-haspopup="dialog"
           aria-label={menuActive ? "Ordenar e filtrar (filtros ativos)" : "Ordenar e filtrar"}
-          className="relative grid size-11 shrink-0 place-items-center rounded-[12px] border border-line bg-card text-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand active:bg-brand-soft"
+          className="relative grid size-11 shrink-0 place-items-center rounded-[12px] bg-card text-brand focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand active:bg-brand-soft"
         >
           <ListFilter className="size-5" aria-hidden="true" />
           {menuActive && <span aria-hidden="true" className="absolute top-1.5 right-1.5 size-2.5 rounded-full border-2 border-card bg-brand" />}
@@ -156,7 +156,15 @@ export function MobileDocumentsExplorer({ today }: { today: IsoDate }) {
           toast({ title: "Documento enviado", description: `${doc.title} foi adicionado em ${CATEGORY_LABELS[doc.category]}.` });
         }}
       />
-      <MobileConfirmSheet open={!!toDelete} title="Excluir documento?" description="Esta ação remove o documento da sua lista e não pode ser desfeita." confirmLabel="Excluir" danger onConfirm={confirmDelete} onCancel={() => setToDelete(null)}>
+      <MobileConfirmSheet
+        open={!!toDelete}
+        title="Excluir documento?"
+        description="Esta ação remove o documento da sua lista e não pode ser desfeita."
+        confirmLabel="Excluir"
+        danger
+        onConfirm={confirmDelete}
+        onCancel={() => setToDelete(null)}
+      >
         {deleting && (
           <p className="text-[15px] text-ink">
             <strong>{deleting.title}</strong>

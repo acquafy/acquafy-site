@@ -243,6 +243,38 @@
     transform: translateY(105%);
   }
 }
+/* Form sheet of the tablet / foldable: rises a little from below the centre. */
+@keyframes ios-form-in {
+  from {
+    opacity: 0;
+    transform: translateY(48px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes ios-form-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+}
+/* Popover of the tablet / foldable: grows from a slightly smaller size. */
+@keyframes ios-popover-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
 @keyframes ios-scrim-in {
   from {
     opacity: 0;

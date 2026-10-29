@@ -19,7 +19,7 @@ export function MobileFinanceRow({ installment: i, onOpen }: { installment: Inst
         type="button"
         onClick={() => onOpen(i)}
         aria-label={`Parcela ${i.number}, ${formatCompetence(i.year, i.month)}, ${received ? "recebida" : "pendente"}. Abrir detalhes`}
-        className="flex min-h-[84px] w-full items-center gap-2.5 rounded-[14px] border border-line bg-card p-3 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand active:bg-brand-soft/60"
+        className="flex min-h-[84px] w-full items-center gap-2.5 rounded-[14px] bg-card p-3 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand active:bg-brand-soft/60"
       >
         <span aria-hidden="true" className="tabular grid w-[52px] shrink-0 place-items-center rounded-[10px] bg-canvas/70 py-1.5 text-center leading-tight text-ink">
           <span className="text-[18px] font-extrabold">{date.day}</span>

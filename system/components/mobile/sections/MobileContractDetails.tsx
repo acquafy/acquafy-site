@@ -46,7 +46,11 @@ export function MobileContractDetails({ units, invested, installments, firstPayo
 
   const copyHash = async () => {
     const ok = await copyText(DOCUMENT_HASH);
-    toast(ok ? { title: "Hash copiado", description: "O hash do documento está na área de transferência." } : { tone: "error", title: "Não foi possível copiar", description: "O navegador bloqueou a área de transferência." });
+    toast(
+      ok
+        ? { title: "Hash copiado", description: "O hash do documento está na área de transferência." }
+        : { tone: "error", title: "Não foi possível copiar", description: "O navegador bloqueou a área de transferência." },
+    );
   };
 
   return (
@@ -115,7 +119,7 @@ export function MobileContractDetails({ units, invested, installments, firstPayo
                 const k = KIND[e.kind];
                 const done = e.status === "Concluído";
                 return (
-                  <li key={e.id} className="flex items-start gap-3 rounded-[14px] border border-line bg-card p-3.5">
+                  <li key={e.id} className="flex items-start gap-3 rounded-[14px] bg-card p-3.5">
                     <IconTile icon={k.icon} tone={k.tone} className="size-10" />
                     <div className="min-w-0 flex-1">
                       <p className="text-[15px] leading-snug font-bold text-ink">{e.title}</p>
@@ -141,7 +145,7 @@ export function MobileContractDetails({ units, invested, installments, firstPayo
           {signatures.map((sig) => {
             const mine = sig.signer === null;
             return (
-              <article key={sig.party} className="flex items-start gap-3 rounded-[14px] border border-line bg-card p-3.5">
+              <article key={sig.party} className="flex items-start gap-3 rounded-[14px] bg-card p-3.5">
                 <IconTile icon={mine ? UserRound : Building2} tone={mine ? "blue" : "violet"} className="size-11" />
                 <div className="min-w-0 flex-1 leading-snug">
                   <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1">

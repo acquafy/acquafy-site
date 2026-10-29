@@ -4,6 +4,7 @@
 import Link from "next/link";
 import { forwardRef, type ReactNode } from "react";
 import { ChevronLeft } from "lucide-react";
+import { useDevice } from "@/components/mobile/PlatformProvider";
 import { MobileLogo } from "@/components/mobile/ui/MobileLogo";
 import { cn } from "@/lib/cn";
 import { markIosPop } from "./IosTransition";
@@ -27,13 +28,15 @@ export type IosNavBarProps = {
  * `IosScreen` below it; this bar only cross-fades the logo and the inline title.
  */
 export const IosNavBar = forwardRef<HTMLElement, IosNavBarProps>(function IosNavBar({ title, collapsed, elevated, back, actions }, ref) {
+  // The tablet sidebar already carries the logo, so a tab root has nothing on the left there (the foldable rail has no room for it).
+  const logo = useDevice() !== "tablet";
   return (
     <header ref={ref} className="sticky top-0 z-20 pt-(--m-safe-top)">
       <div
         aria-hidden="true"
         className={cn("ios-edge-top pointer-events-none absolute inset-x-0 top-0 -z-10 h-[calc(100%+18px)] transition-opacity duration-300", elevated ? "opacity-100" : "opacity-0")}
       />
-      <div className="relative flex h-[52px] items-center justify-between gap-2 px-4">
+      <div className="relative flex h-[52px] items-center justify-between gap-2 px-4 @2xl:px-6">
         {back ? (
           <Link
             href={back.href}
@@ -43,8 +46,10 @@ export const IosNavBar = forwardRef<HTMLElement, IosNavBarProps>(function IosNav
           >
             <ChevronLeft className="size-6 -translate-x-px" strokeWidth={2.5} aria-hidden="true" />
           </Link>
-        ) : (
+        ) : logo ? (
           <MobileLogo className={cn("h-5 transition-opacity duration-200", collapsed && "opacity-0")} priority />
+        ) : (
+          <span aria-hidden="true" />
         )}
 
         <p

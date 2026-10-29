@@ -12,7 +12,7 @@ const COPY = {
     layout: "flex flex-col",
   },
   mobile: {
-    title: "Organismos Mobile",
+    title: "Organismos Celular e Tablet",
     lead: "Os blocos de tela do app (components/mobile/sections), um depois do outro e renderizados",
     layout: "grid grid-cols-[repeat(auto-fill,minmax(640px,1fr))] items-start gap-x-6 gap-y-2",
   },

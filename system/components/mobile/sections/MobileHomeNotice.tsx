@@ -12,7 +12,7 @@ export function MobileHomeNotice() {
   return (
     <Link
       href={href({ route: "calendar" })}
-      className="flex items-center gap-3 rounded-[14px] border border-brand/25 bg-brand-soft/60 p-3.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand active:bg-brand-soft"
+      className="flex items-center gap-3 rounded-[14px] bg-brand-soft/60 p-3.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand active:bg-brand-soft"
     >
       <span aria-hidden="true" className="grid size-11 shrink-0 place-items-center rounded-[12px] bg-card text-brand">
         <CalendarCheck2 className="size-6" strokeWidth={1.75} />

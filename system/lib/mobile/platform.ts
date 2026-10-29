@@ -14,7 +14,6 @@ export function isPlatform(value: string | undefined | null): value is Platform 
 
 /** Route segments of the mobile screens (identical on both platforms). */
 export const MOBILE_ROUTES = {
-  welcome: "bem-vindo",
   login: "login",
   home: "home",
   purifiers: "purificadores",

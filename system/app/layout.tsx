@@ -2,6 +2,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { cookies } from "next/headers";
+import { BaseBackLink } from "@/components/base/BaseBackLink";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { isTheme, THEME_COOKIE } from "@/lib/theme";
 import "./globals.css";
@@ -19,9 +20,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const theme = isTheme(saved) ? saved : "light";
 
   return (
-    <html lang="pt-BR" data-theme={theme} className={inter.variable}>
+    <html lang="pt-BR" data-theme={theme} className={inter.variable} suppressHydrationWarning>
       <body className="antialiased">
-        <ThemeProvider initial={theme}>{children}</ThemeProvider>
+        <ThemeProvider initial={theme}>
+          {children}
+          <BaseBackLink />
+        </ThemeProvider>
       </body>
     </html>
   );

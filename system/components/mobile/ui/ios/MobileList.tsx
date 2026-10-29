@@ -27,7 +27,7 @@ export function MobileListGroup({
   return (
     <section className={cn("min-w-0", className)}>
       {header && <h3 className="mb-1.5 px-4 text-[13px] leading-[18px] tracking-[0.01em] text-ink-mute uppercase">{header}</h3>}
-      <ul aria-label={ariaLabel} className="ios-sq overflow-hidden rounded-[26px] border border-line/70 bg-card">
+      <ul aria-label={ariaLabel} className="ios-sq overflow-hidden rounded-[26px] bg-card">
         {children}
       </ul>
       {footer && <p className="mt-1.5 px-4 text-[13px] leading-[18px] text-ink-soft">{footer}</p>}

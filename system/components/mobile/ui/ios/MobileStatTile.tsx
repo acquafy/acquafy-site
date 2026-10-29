@@ -42,7 +42,7 @@ export function MobileStatTile({ icon, tone, label, value, caption, href, onClic
   );
   const cls = cn(
     "ios-sq block min-w-0 rounded-[22px] border text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand",
-    selected ? "border-brand bg-brand-soft" : "border-line/70 bg-card",
+    selected ? "border-brand bg-brand-soft" : "border-transparent bg-card",
     pressable && "ios-press",
     className,
   );

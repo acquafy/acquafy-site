@@ -72,7 +72,7 @@ export function MobileProfileSecurity() {
 
       <section aria-label="Sessões ativas" className="grid gap-2.5">
         <h2 className="px-1 text-[18px] font-bold tracking-tight text-ink">Sessões ativas</h2>
-        <ul className="divide-y divide-line overflow-hidden rounded-[14px] border border-line bg-card">
+        <ul className="divide-y divide-line overflow-hidden rounded-[14px] bg-card">
           {security.sessions.map((s) => (
             <li key={s.id} className="flex items-center gap-3 px-3.5 py-3">
               <IconTile icon={s.kind === "mobile" ? Smartphone : Monitor} tone={s.current ? "green" : "blue"} className="size-10" />
@@ -103,13 +103,17 @@ export function MobileProfileSecurity() {
         )}
       </section>
 
-      <MobileProfilePasswordSheet
-        open={dialog === "password"}
-        onClose={close}
-        onChanged={() => setSecurity((s) => ({ ...s, passwordChangedAt: todayIso() }))}
-      />
+      <MobileProfilePasswordSheet open={dialog === "password"} onClose={close} onChanged={() => setSecurity((s) => ({ ...s, passwordChangedAt: todayIso() }))} />
       <MobileProfileTwoFactorSheet open={dialog === "enable2fa"} onClose={close} />
-      <MobileConfirmSheet open={dialog === "disable2fa"} title="Desativar duas etapas?" description="Sua conta ficará protegida apenas pela senha." confirmLabel="Desativar" danger onConfirm={disable2fa} onCancel={close} />
+      <MobileConfirmSheet
+        open={dialog === "disable2fa"}
+        title="Desativar duas etapas?"
+        description="Sua conta ficará protegida apenas pela senha."
+        confirmLabel="Desativar"
+        danger
+        onConfirm={disable2fa}
+        onCancel={close}
+      />
       <MobileConfirmSheet
         open={dialog === "endAll"}
         title="Encerrar outras sessões?"

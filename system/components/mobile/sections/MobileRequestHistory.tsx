@@ -66,7 +66,7 @@ export function MobileRequestHistory({ requests, baseline, onCancel }: Props) {
                 type="button"
                 onClick={() => setDetailId(r.id)}
                 aria-label={`Solicitação ${r.id}, ${REQUEST_STATUS[r.status].label}. Abrir detalhes`}
-                className="flex min-h-[72px] w-full items-center gap-3 rounded-[14px] border border-line bg-card p-3.5 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand active:bg-brand-soft/60"
+                className="flex min-h-[72px] w-full items-center gap-3 rounded-[14px] bg-card p-3.5 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand active:bg-brand-soft/60"
               >
                 <span className="min-w-0 flex-1">
                   <span className="tabular block text-[15px] font-bold text-ink">{r.id}</span>
@@ -129,7 +129,15 @@ export function MobileRequestHistory({ requests, baseline, onCancel }: Props) {
           </div>
         )}
       </MobileSheet>
-      <MobileConfirmSheet open={!!cancelId} title="Cancelar solicitação?" description={toCancel ? `${toCancel.id} será cancelada e não poderá ser reativada.` : undefined} confirmLabel="Cancelar solicitação" danger onConfirm={confirmCancel} onCancel={() => setCancelId(null)} />
+      <MobileConfirmSheet
+        open={!!cancelId}
+        title="Cancelar solicitação?"
+        description={toCancel ? `${toCancel.id} será cancelada e não poderá ser reativada.` : undefined}
+        confirmLabel="Cancelar solicitação"
+        danger
+        onConfirm={confirmCancel}
+        onCancel={() => setCancelId(null)}
+      />
     </section>
   );
 }

@@ -21,7 +21,7 @@ export function MobileRadioGroup<T extends string>({ legend, name, options, valu
   return (
     <fieldset className="min-w-0">
       <legend className="mb-1.5 px-4 text-[13px] leading-[18px] tracking-[0.01em] text-ink-mute uppercase">{legend}</legend>
-      <div className="ios-sq overflow-hidden rounded-[26px] border border-line/70 bg-card">
+      <div className="ios-sq overflow-hidden rounded-[26px] bg-card">
         {options.map((o, i) => {
           const on = value === o.value;
           return (

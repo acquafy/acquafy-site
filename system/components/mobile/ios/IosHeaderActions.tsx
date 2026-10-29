@@ -79,7 +79,7 @@ function IosNotificationsSheet({ open, onClose, state }: { open: boolean; onClos
           <BellOff className="size-5" aria-hidden="true" /> Nenhuma notificação.
         </p>
       ) : (
-        <ul className="ios-sq overflow-hidden rounded-[26px] border border-line/70 bg-card">
+        <ul className="ios-sq overflow-hidden rounded-[26px] bg-card">
           {notifications.map((n) => {
             const isUnread = !state.readIds.includes(n.id);
             return (

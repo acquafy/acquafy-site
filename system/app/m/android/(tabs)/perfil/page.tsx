@@ -16,9 +16,8 @@ function profileStats(): MobileProfileStats {
 
 export default function AndroidProfilePage() {
   return (
-    <AndroidScreen title="Meu Perfil" navTitle="Perfil" subtitle="Gerencie suas informações e preferências.">
+    <AndroidScreen title="Meu Perfil" navTitle="Perfil" subtitle="Gerencie suas informações e preferências." secondary={<MobileProfileMenu />}>
       <MobileProfileCard stats={profileStats()} />
-      <MobileProfileMenu />
     </AndroidScreen>
   );
 }

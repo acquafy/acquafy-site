@@ -9,7 +9,6 @@ import { MobileHomeNotice } from "@/components/mobile/sections/MobileHomeNotice"
 import { MobileHomePayouts } from "@/components/mobile/sections/MobileHomePayouts";
 import { MobileHomeShortcuts } from "@/components/mobile/sections/MobileHomeShortcuts";
 import { MobileHomeSummary } from "@/components/mobile/sections/MobileHomeSummary";
-import { MobilePurifierShowcase } from "@/components/mobile/ui/MobilePurifierShowcase";
 import { homeCopy } from "@/config/mobile-home";
 import { formatDateShort } from "@/lib/mobile/format";
 import { getPortalSummary } from "@/lib/portal/schedule";
@@ -24,7 +23,14 @@ export default function IosHomePage() {
       title={<MobileHomeGreeting />}
       navTitle="Início"
       subtitle={homeCopy.subtitle}
-      accessory={<MobilePurifierShowcase priority ripples={false} className="absolute top-1 right-0 -z-0 h-[142px] w-[34%]" />}
+      aside={
+        <>
+          <MobileHomePayouts installments={s.installments} />
+          <MobileHomeEquipment units={s.units} />
+          <MobileHomeActivity summary={s} />
+          <MobileHomeNotice />
+        </>
+      }
     >
       <MobileHomeSummary
         data={{
@@ -41,10 +47,6 @@ export default function IosHomePage() {
       />
       <MobileHomeKpis summary={s} />
       <MobileHomeShortcuts />
-      <MobileHomePayouts installments={s.installments} />
-      <MobileHomeEquipment units={s.units} />
-      <MobileHomeActivity summary={s} />
-      <MobileHomeNotice />
     </IosScreen>
   );
 }

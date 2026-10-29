@@ -3,6 +3,7 @@
 
 import { useId, useRef, type ReactNode } from "react";
 import { createPortal } from "react-dom";
+import { useDevice } from "@/components/mobile/PlatformProvider";
 import { cn } from "@/lib/cn";
 import { useModalLayer } from "./useModalLayer";
 
@@ -21,12 +22,13 @@ const EXIT_MS = 180;
 
 /**
  * Material 3 basic dialog: centred over a 32% scrim, 28px radius, `surface-container-high`, headline 24, body medium and text buttons
- * aligned to the right. Portalled to the device frame's overlay layer like the sheets; same focus handling.
+ * aligned to the right (312px wide on a phone, up to 560px on a tablet or foldable). Portalled to the device frame's overlay layer like the sheets; same focus handling.
  */
 export function AndroidDialog({ open, onClose, title, description, children, actions }: Props) {
   const titleId = useId();
   const descId = useId();
   const panel = useRef<HTMLDivElement>(null);
+  const wide = useDevice() !== "phone";
   const { root, visible, closing, trapTab } = useModalLayer({ open, onClose, exitMs: EXIT_MS, panel });
   if (!root || !visible) return null;
 
@@ -42,7 +44,8 @@ export function AndroidDialog({ open, onClose, title, description, children, act
         tabIndex={-1}
         onKeyDown={trapTab}
         className={cn(
-          "relative flex max-h-full w-full max-w-[312px] flex-col rounded-[28px] bg-(--md-surface-container-high) p-6 text-(--md-on-surface) outline-none",
+          "relative flex max-h-full w-full flex-col rounded-[28px] bg-(--md-surface-container-high) p-6 text-(--md-on-surface) outline-none",
+          wide ? "max-w-[560px]" : "max-w-[312px]",
           closing ? "animate-[md-dialog-out_0.18s_var(--md-ease-accelerate)_forwards]" : "animate-[md-dialog-in_0.3s_var(--md-ease-decelerate)]",
         )}
       >

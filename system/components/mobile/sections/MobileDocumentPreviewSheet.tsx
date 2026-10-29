@@ -74,7 +74,7 @@ export function MobileDocumentPreviewSheet({ doc: current, onClose, onDownload, 
             <Image src={src} alt={doc.title} width={1200} height={800} unoptimized className="mx-auto h-auto max-h-[52dvh] w-auto max-w-full rounded-[12px] object-contain" />
           )
         ) : (
-          <div className="grid place-items-center gap-2 rounded-[14px] border border-line bg-canvas/50 px-5 py-10 text-center">
+          <div className="grid place-items-center gap-2 rounded-[14px] bg-canvas/50 px-5 py-10 text-center">
             <FileX2 className="size-9 text-ink-mute" aria-hidden="true" />
             <p className="text-[16px] font-bold text-ink">Sem pré-visualização para {doc.kind}</p>
             <p className="max-w-[18rem] text-[14px] text-ink-soft">
