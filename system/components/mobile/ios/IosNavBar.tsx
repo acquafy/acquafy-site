@@ -7,6 +7,7 @@ import { ChevronLeft } from "lucide-react";
 import { useDevice } from "@/components/mobile/PlatformProvider";
 import { MobileLogo } from "@/components/mobile/ui/MobileLogo";
 import { cn } from "@/lib/cn";
+import { useSidebarOpen } from "./IosSidebarState";
 import { markIosPop } from "./IosTransition";
 
 export type IosNavBarProps = {
@@ -28,8 +29,9 @@ export type IosNavBarProps = {
  * `IosScreen` below it; this bar only cross-fades the logo and the inline title.
  */
 export const IosNavBar = forwardRef<HTMLElement, IosNavBarProps>(function IosNavBar({ title, collapsed, elevated, back, actions }, ref) {
-  // The tablet sidebar already carries the logo, so a tab root has nothing on the left there (the foldable rail has no room for it).
-  const logo = useDevice() !== "tablet";
+  // The open sidebar (tablet, foldable) already carries the logo, so a tab root shows it here only on a phone or when the sidebar is collapsed.
+  const sidebarOpen = useSidebarOpen();
+  const logo = useDevice() === "phone" || !sidebarOpen;
   return (
     <header ref={ref} className="sticky top-0 z-20 pt-(--m-safe-top)">
       <div

@@ -126,9 +126,9 @@ export function IosSidebar({ open, onToggle }: { open: boolean; onToggle: () => 
   );
 
   return (
-    <aside className={cn("sticky top-0 z-10 h-(--m-frame-h) shrink-0 self-start pt-(--m-safe-top) pb-3 pl-3 transition-[width] duration-300 ease-(--ios-spring)", rail ? "w-[84px]" : "w-[292px]")}>
-      <nav aria-label="Navegação principal" className={cn("ios-glass-thick ios-sq flex h-full flex-col rounded-[26px]", rail ? "p-2 pt-3" : "p-3")}>
-        <div className={cn("flex items-center pb-3", rail ? "justify-center" : "justify-between px-3 pt-1")}>
+    <aside className={cn("sticky top-0 z-10 h-(--m-frame-h) shrink-0 self-start pt-(--m-safe-top) pb-3 pl-3 transition-[width] duration-300 ease-(--ios-spring)", rail ? "w-[76px]" : "w-[240px]")}>
+      <nav aria-label="Navegação principal" className={cn("ios-glass-thick ios-sq flex h-full flex-col overflow-y-auto rounded-[26px]", rail ? "p-2 pt-3" : "p-3")}>
+        <div className={cn("flex items-center", rail ? "justify-center pb-3" : "justify-between px-3 pt-1 pb-5")}>
           {!rail && <MobileLogo className="h-6" priority />}
           <button
             type="button"
