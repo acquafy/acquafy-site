@@ -1070,7 +1070,7 @@ export default function LinhaNeo() {
           </div>
 
           {/* Card 2 – Acquafy AI */}
-          <div className="bg-white flex flex-1 flex-col gap-[20px] items-start min-h-[310px] min-w-[280px] p-[20px] rounded-[16px]">
+          <div className="bg-white flex flex-1 flex-col gap-[20px] items-start min-h-[310px] min-w-[280px] max-w-[320px] p-[20px] rounded-[16px]">
             <div className="flex flex-1 flex-col gap-[20px] items-center w-full win-1024:items-start">
               <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#0569ff] text-center win-1024:text-left w-full">
                 {t.ai.title}
@@ -1097,7 +1097,7 @@ export default function LinhaNeo() {
           </div>
 
           {/* Card 3 – Controle pelo App */}
-          <div className="bg-white flex flex-1 flex-col gap-[20px] items-start min-h-[310px] min-w-[280px] p-[20px] rounded-[16px]">
+          <div className="bg-white flex flex-1 flex-col gap-[20px] items-start min-h-[310px] min-w-[280px] max-w-[320px] p-[20px] rounded-[16px]">
             <div className="flex flex-1 flex-col gap-[20px] items-center w-full win-1024:items-start">
               <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#0569ff] text-center win-1024:text-left w-full">
                 {t.ctrl.title}
