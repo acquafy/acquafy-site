@@ -912,7 +912,7 @@ function PanelSlideshowEssentials() {
     <div className="flex flex-col gap-[10px] items-center justify-center w-full shrink-0">
       <div
         className="w-full min-w-[120px] shrink-0 cursor-pointer overflow-hidden bg-black box-border"
-        style={{ aspectRatio: "4561/2543", padding: "0.877%", borderRadius: "9.29% / 16.66%" }}
+        style={{ maxWidth: "480px", aspectRatio: "4561/2543", padding: "0.877%", borderRadius: "9.29% / 16.66%" }}
         onClick={() => setActive((active + 1) % panelEssentialsSrcs.length)}
         role="button"
         tabIndex={0}
