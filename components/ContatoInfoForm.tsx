@@ -6,7 +6,7 @@ import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
 // ── Assets ────────────────────────────────────────────────────────────────────
-const imgArrowWhite = "/figma-assets/icon-arrow-white-small.svg"; // 11.2×8.84  landscape
+const imgArrowWhite = "/figma-assets/icon-arrow-white-hover.svg"; // 11.2×8.84  landscape
 
 const ASSUNTOS_PT = [
   "Falar com especialista",
@@ -883,7 +883,7 @@ export default function ContatoInfoForm() {
               <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-white text-center whitespace-nowrap">
                 {t.submitBtn}
               </span>
-              <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
+              <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
             </button>
 
             {/* Checkbox privacidade */}

@@ -311,7 +311,7 @@ export default function ParceirosAcessorios() {
 
         {/* Header */}
         <div className="flex flex-col gap-[20px] items-center text-center w-full">
-          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] min-w-[240px] w-full">
+          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] min-w-[240px] w-full">
             {t.heading}
           </h2>
           <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] w-full">

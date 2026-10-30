@@ -2,6 +2,7 @@
 import { useState, type ReactNode } from "react";
 import FigmaIcon from "./FigmaIcon";
 import PremiumSlideshow from "./ui/PremiumSlideshow";
+import { SlideFullscreenButton, SlideLightbox } from "./ui/SlideFullscreen";
 import { PRODUCT_IMAGES } from "@/lib/products";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
@@ -487,10 +488,12 @@ function PremiumCard({ product, color = "#6e0cc3" }: { product: Product; color?:
 
 function PanelSlideshow() {
   const [active, setActive] = useState(0);
+  const [open, setOpen] = useState(false);
+  const count = panelSlideSrcs.length;
   return (
-    <div className="flex flex-col gap-[10px] items-center justify-center shrink-0 min-w-[240px] max-w-[249px] w-[240px]">
+    <div className="flex flex-col gap-[10px] items-center justify-center shrink-0 min-w-[240px] max-w-[300px] w-[300px]">
       <div
-        className="w-full cursor-pointer overflow-hidden bg-black box-border"
+        className="group relative w-full cursor-pointer overflow-hidden bg-black box-border"
         style={{ aspectRatio: "3249/5308", padding: "1.231%", borderRadius: "5% / 3.06%" }}
         onClick={() => setActive((active + 1) % panelSlideSrcs.length)}
         role="button"
@@ -504,7 +507,17 @@ function PanelSlideshow() {
           style={{ borderRadius: "3.864% / 2.342%" }}
           src={panelSlideSrcs[active]}
         />
+        <SlideFullscreenButton onOpen={() => setOpen(true)} />
       </div>
+      {open && (
+        <SlideLightbox
+          src={panelSlideSrcs[active]}
+          alt="Painel Premium"
+          onClose={() => setOpen(false)}
+          onPrev={() => setActive((active - 1 + count) % count)}
+          onNext={() => setActive((active + 1) % count)}
+        />
+      )}
       <div className="flex gap-[10px] items-center justify-center flex-wrap">
         {panelSlideSrcs.map((_, i) => (
           <div
@@ -549,7 +562,7 @@ export default function LinhaPremium() {
         <div className="flex flex-col gap-[20px] items-start w-full">
           <div className="flex flex-wrap gap-y-[20px] items-center justify-center w-full">
             <h2
-              className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] bg-clip-text text-transparent flex-1 min-w-[240px] text-center lg:text-left"
+              className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] bg-clip-text text-transparent flex-1 min-w-[240px] text-center lg:text-left"
               style={{ backgroundImage: "linear-gradient(170.17deg, #0233c3 6.19%, #9f3df5 93.35%)" }}
             >
               Neo Premium
@@ -574,7 +587,7 @@ export default function LinhaPremium() {
                     <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] w-full">
                       {w.label}
                     </p>
-                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] leading-[14px] text-[#2a2a2b] w-full">
+                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[17px] text-[#2a2a2b] w-full">
                       {w.sub}
                     </p>
                   </div>
@@ -584,7 +597,7 @@ export default function LinhaPremium() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-[20px] items-start justify-center w-full lg:flex-row lg:flex-wrap lg:items-start">
+        <div className="flex flex-col gap-[20px] items-start justify-center w-full lg:flex-row lg:flex-wrap lg:items-stretch">
 
           <div className="flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-w-[240px] w-full lg:w-auto">
             <div className="flex flex-wrap gap-[15px] items-stretch w-full">
@@ -598,9 +611,9 @@ export default function LinhaPremium() {
             </div>
           </div>
 
-          <div className="flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-w-[240px]">
+          <div className="flex flex-[1_0_0] flex-col gap-[20px] items-center justify-start min-w-[240px]">
 
-            <div className="bg-[#f6f9fe] flex flex-col gap-[40px] items-center justify-center min-w-[240px] pt-[20px] rounded-[16px] shrink-0 w-full">
+            <div className="bg-[#f6f9fe] flex flex-col gap-[20px] items-center justify-center min-w-[240px] pt-[20px] rounded-[16px] shrink-0 w-full">
 
               <div className="flex flex-col gap-[10px] items-start w-full">
                 <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] w-full">
@@ -618,15 +631,15 @@ export default function LinhaPremium() {
               </div>
 
               <div className="flex flex-wrap gap-[20px] items-center justify-center shrink-0 w-full">
-                <div className="content-start flex flex-[1_0_0] flex-wrap gap-x-[10px] gap-y-[20px] items-start justify-center min-w-[240px]">
+                <div className="self-stretch flex flex-[1_0_0] flex-col gap-[20px] items-start justify-center min-w-[240px]">
                   {panelFeatures.map((f, i) => (
-                    <div key={i} className="flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-w-[140px]">
-                      <FigmaIcon src={f.icon} size={30} />
-                      <div className="flex flex-col gap-[10px] items-center shrink-0 text-center w-full">
-                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#6e0cc3] text-center w-full whitespace-pre-line min-h-[34px] flex flex-col justify-center">
+                    <div key={i} className="flex gap-[20px] items-center w-full">
+                      <FigmaIcon src={f.icon} size={36} />
+                      <div className="flex flex-[1_0_0] flex-col gap-[5px] items-start min-w-px">
+                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[17px] leading-[20px] text-[#6e0cc3] w-full whitespace-pre-line">
                           {f.title}
                         </p>
-                        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] leading-[14px] text-[#2a2a2b] text-center w-full">
+                        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[17px] text-[#2a2a2b] w-full">
                           {f.desc}
                         </p>
                       </div>

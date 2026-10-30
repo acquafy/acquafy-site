@@ -7,7 +7,7 @@ import { useLang, type Lang } from "@/context/LanguageContext";
 const imgBg          = "/figma-assets/bg-b.webp";
 const imgSuporte     = "/figma-assets/image-suporte.webp";
 // Badge icon
-const imgPlanetWeb   = "/figma-assets/icon-planetweb-30px-a.svg";  // 30×30 sq
+const imgPlanetWeb   = "/figma-assets/icon-planet-b.svg";  // 30×30 sq
 // Stats bar icons
 const imgPlanetGlobe = "/figma-assets/icon-planet-globe-30px.svg";  // 30×30 sq
 const imgPessoas     = "/figma-assets/icon-pessoas-a.svg";  // 43.86×40.50

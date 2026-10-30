@@ -16,10 +16,10 @@ const imgShield   = "/figma-assets/icon-shield-26px-a.svg"; // 26×30
 const imgPlanet   = "/figma-assets/icon-planet-30px-a.svg"; // 30×30
 
 // Stats bar icons
-const imgAI       = "/figma-assets/icon-ai-30px-c.svg"; // 30×30 em slot 40px
+const imgAI       = "/figma-assets/icon-ai-40px.svg"; // 30×30 em slot 40px
 const imgWaterBub = "/figma-assets/icon-water-bub-40px.svg"; // 40×40
-const imgPlanet1  = "/figma-assets/icon-planet-30px-slot40.svg"; // 30×30 em slot 40px
-const imgSustain  = "/figma-assets/icon-sustain-40px.svg"; // 40×40
+const imgPlanet1  = "/figma-assets/ts-icon-planet.svg"; // 30×30 em slot 40px
+const imgSustain  = "/figma-assets/icon-sustent-b.svg"; // 40×40
 
 const T: Record<Lang, {
   desc: string;

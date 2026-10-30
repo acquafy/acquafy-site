@@ -3,7 +3,7 @@ import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
 // Aspect ratios from Figma design
-const imgParceria  = "/figma-assets/icon-parceria-large.svg";  // 1125×1078 ≈ sq
+const imgParceria  = "/figma-assets/icon-parceria-a.svg";  // 1125×1078 ≈ sq
 const imgEscala    = "/figma-assets/icon-escala.svg";  // 30×30 sq
 const imgAdaptacao = "/figma-assets/icon-adaptacao.svg";  // 38×40 portrait
 const imgEducacao  = "/figma-assets/icon-educacao.svg";  // 30×22 landscape
@@ -194,7 +194,7 @@ export default function ExpansaoGlobalPilares() {
   return (
     <section className="bg-[#f6f9fe] flex flex-col items-center justify-center overflow-hidden px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] text-center w-full">
+        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] text-center w-full">
           {t.heading}
         </h2>
 

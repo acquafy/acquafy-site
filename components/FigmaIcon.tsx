@@ -12,6 +12,12 @@
  *   <FigmaIcon src={src} size={30} aspectW={30} aspectH={22} />
  */
 
+import replacedIcons from "@/lib/replaced-icons.json";
+
+// icons from the new set are drawn on a square canvas: always show them in a square slot, whatever aspect the call site passes
+const SQUARE_ICONS = new Set<string>(replacedIcons);
+const baseName = (src: string) => src.split("?")[0].split("/").pop() ?? "";
+
 interface FigmaIconProps {
   src: string;
   alt?: string;
@@ -33,8 +39,9 @@ export default function FigmaIcon({
   aspectH,
   className = "",
 }: FigmaIconProps) {
-  const w = aspectW ?? size;
-  const h = aspectH ?? size;
+  const square = SQUARE_ICONS.has(baseName(src));
+  const w = square ? size : aspectW ?? size;
+  const h = square ? size : aspectH ?? size;
   const bleed = 2.5;
 
   if (w === h) {

@@ -11,7 +11,7 @@ const imgArrowGray  = "/figma-assets/icon-arrow-gray.svg";
 const imgArrowGreen = "/figma-assets/icon-arrow-green.svg";
 
 // ── Partner icon  (40.69×40 — fills 16px slot by width) ──────────────────────
-const imgPartnerWhite = "/figma-assets/icon-partner-white.svg";
+const imgPartnerWhite = "/figma-assets/icon-partner-b.svg";
 const imgPartnerBlue  = "/figma-assets/icon-partner-blue.svg";
 const imgPartnerGray  = "/figma-assets/icon-partner-gray.svg";
 

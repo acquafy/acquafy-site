@@ -3,8 +3,8 @@ import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
 const imgBg       = "/figma-assets/bg-banner.webp"; // banner bg
-const imgArrow    = "/figma-assets/icon-arrow-blue-solid.svg"; // seta azul
-const imgChat     = "/figma-assets/icon-chat-a.svg"; // chat icon
+const imgArrow    = "/figma-assets/icon-arrow-blue-b.svg"; // seta azul
+const imgChat     = "/figma-assets/icon-chat-b.svg"; // chat icon
 
 const T: Record<Lang, {
   heading: string;
@@ -124,16 +124,14 @@ export default function CtaBannerAppAiIot() {
             <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors text-center whitespace-nowrap shrink-0">
               {t.btn1}
             </span>
-            <div className="relative h-0 shrink-0 w-[9px]">
+            <div className="relative shrink-0 h-[18px] w-[18px]">
               <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0">
-                <FigmaIcon src={imgArrow} size={9} aspectW={11.2} aspectH={8.84} />
+                <FigmaIcon src={imgArrow} size={18} aspectW={18} aspectH={18} />
               </div>
               <div className="absolute inset-0 transition-opacity duration-150 opacity-0 group-hover:opacity-100">
                 <FigmaIcon
                   src={imgArrow}
-                  size={9}
-                  aspectW={11.2}
-                  aspectH={8.84}
+                  size={18} aspectW={18} aspectH={18}
                   className="[filter:brightness(0)_invert(1)]"
                 />
               </div>

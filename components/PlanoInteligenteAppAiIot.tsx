@@ -258,7 +258,7 @@ export default function PlanoInteligenteAppAiIot() {
                   </div>
                 </div>
 
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#1f2e91] text-center w-full">
+                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[17px] leading-[20px] text-[#1f2e91] text-center w-full">
                   {step.label}
                 </p>
                 <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] leading-[16px] text-[#333] text-center w-full">

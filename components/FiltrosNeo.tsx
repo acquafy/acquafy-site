@@ -194,7 +194,7 @@ export default function FiltrosNeo() {
   return (
     <section className="bg-white flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#0569ff] text-center w-full">
+        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#0569ff] text-center w-full">
           {t.h2}
         </h2>
         <div className="flex flex-wrap gap-[20px] items-stretch justify-center w-full">

@@ -3,8 +3,8 @@ import FigmaIcon from "./FigmaIcon";
 import { useChatWidget } from "./ChatWidget";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
-const imgArrowWhite = "/figma-assets/icon-arrow-white-solid.svg";
-const imgArrowBlue  = "/figma-assets/icon-arrow-blue-c.svg";
+const imgArrowWhite = "/figma-assets/icon-arrow-white-hover.svg";
+const imgArrowBlue  = "/figma-assets/icon-arrow-blue-b.svg";
 
 const imgChatIcon   = "/figma-assets/icon-chat-icon.svg";
 const imgMailIcon   = "/figma-assets/icon-mail-icon.svg";
@@ -332,7 +332,7 @@ export default function CtaBK() {
 
         {/* Header */}
         <div className="flex flex-col gap-[16px] items-center text-center w-full">
-          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-white w-full">
+          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-white w-full">
             {t.heading}
           </h2>
           <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-white max-w-[600px] w-full">
@@ -352,7 +352,7 @@ export default function CtaBK() {
             <span className="font-['Articulat_CF:Bold'] text-[16px] text-[#0233c3] flex-1 text-center leading-normal">
               {t.btnOpenTicket}
             </span>
-            <FigmaIcon src={imgArrowBlue} size={9} aspectW={11.2} aspectH={8.84} />
+            <FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} />
           </a>
 
           <a href="/contact" className="group border-2 border-white hover:bg-white active:bg-[#f0f4ff] transition-colors
@@ -361,12 +361,12 @@ export default function CtaBK() {
             <span className="font-['Articulat_CF:Bold'] text-[16px] text-white group-hover:text-[#0233c3] transition-colors flex-1 text-center leading-normal">
               {t.btnTalkSpecialist}
             </span>
-            <div className="relative shrink-0" style={{ width: 9, height: 9 }}>
+            <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
               <div className="absolute inset-0 transition-opacity opacity-100 group-hover:opacity-0">
-                <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
+                <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
               </div>
               <div className="absolute inset-0 transition-opacity opacity-0 group-hover:opacity-100">
-                <FigmaIcon src={imgArrowBlue} size={9} aspectW={11.2} aspectH={8.84} />
+                <FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} />
               </div>
             </div>
           </a>

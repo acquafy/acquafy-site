@@ -1,9 +1,1 @@
-<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 21.5 21.5" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path id="CHECKIN" d="M7.51259 10.75C8.27998 11.4454 9.04736 12.1169 9.81475 12.8124C11.0857 11.4694 12.3567 10.1265 13.6517 8.78357M20.75 10.75C20.75 16.2728 16.2728 20.75 10.75 20.75C5.22715 20.75 0.75 16.2728 0.75 10.75C0.75 5.22715 5.22715 0.75 10.75 0.75C16.2728 0.75 20.75 5.22715 20.75 10.75Z" stroke="url(#paint0_linear_0_262)" stroke-width="1.5" stroke-miterlimit="22.9256" stroke-linecap="round"/>
-<defs>
-<linearGradient id="paint0_linear_0_262" x1="1.75" y1="5.10547" x2="20.4052" y2="6.53101" gradientUnits="userSpaceOnUse">
-<stop stop-color="#0233C3"/>
-<stop offset="1" stop-color="#9F3DF5"/>
-</linearGradient>
-</defs>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="21.5" height="21.5" viewBox="0 0 21.5 21.5" fill="none"><svg x="-1.29" y="-1.29" width="24.08" height="24.08" viewBox="0 0 24 24" fill="none" stroke="url(#g)" stroke-width="1.241" stroke-linecap="round" stroke-linejoin="round"><defs><linearGradient id="g" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="24" y2="0"><stop offset="0" stop-color="#0233c3"/><stop offset="1" stop-color="#9f3df5"/></linearGradient></defs><path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12s4.477 10 10 10s10-4.477 10-10Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M8 12.75s1.6.912 2.4 2.25c0 0 2.4-5.25 5.6-7"/></svg></svg>

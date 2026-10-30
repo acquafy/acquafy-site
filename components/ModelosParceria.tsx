@@ -4,7 +4,7 @@ import { useLang, type Lang } from "@/context/LanguageContext";
 import FigmaIcon from "./FigmaIcon";
 
 /* ── Assets ──────────────────────────────────────────────────────── */
-const imgArrowWhite = "/figma-assets/icon-arrow-white-small.svg";
+const imgArrowWhite = "/figma-assets/icon-arrow-white-hover.svg";
 const imgSilver     = "/figma-assets/product-silver-d.webp";
 const imgGold       = "/figma-assets/product-gold-c.webp";
 const imgPlatinum   = "/figma-assets/product-platinum-d.webp";
@@ -874,7 +874,7 @@ export function PartnerModal({ tier, ft, onClose }: {
             <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-white text-center whitespace-nowrap">
               {ft.submitBtn}
             </span>
-            <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
+            <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
           </button>
 
           {/* Checkbox privacidade */}
@@ -995,7 +995,7 @@ export default function ModelosParceria() {
         <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
 
           {/* Header */}
-          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] text-center min-w-[240px] w-full">
+          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] text-center min-w-[240px] w-full">
             {t.heading}
             <span className="text-[#0569ff]">{t.headingHL}</span>
           </h2>

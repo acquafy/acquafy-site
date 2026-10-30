@@ -314,7 +314,7 @@ const T: Record<Lang, {
 // ── Assets ───────────────────────────────────────────────────────────────────
 const imgInterfyCorpLogo = "/figma-assets/logo-interfy-corp.png";
 const imgRatingIcon       = "/figma-assets/icon-rating-20anos.svg"; // +20 anos     sq
-const imgGlobeIcon        = "/figma-assets/icon-globe-presence.svg"; // presenca     sq
+const imgGlobeIcon        = "/figma-assets/icon-globe-world.svg"; // presenca     sq
 const imgEcosystemIcon    = "/figma-assets/icon-ecosystem.svg"; // ecossistemas sq
 const imgScaleIcon        = "/figma-assets/icon-scale-inovacao.svg"; // inovacao     sq
 
@@ -344,8 +344,8 @@ export default function SobreQuemSomos() {
       <div className="flex flex-col gap-[40px] items-start justify-center max-w-[1400px] w-full win-1024:flex-row win-1024:flex-wrap">
 
         {/* Left: Quem Somos */}
-        <div className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[40px] items-center max-w-[550px] min-w-[280px] px-[20px] py-[40px] rounded-[16px]">
-          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] w-full text-center lg:text-left">
+        <div className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[20px] items-center max-w-[550px] min-w-[280px] px-[20px] py-[40px] rounded-[16px]">
+          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] w-full text-center lg:text-left">
             {t.quemSomosTitle}
           </h2>
           <div className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] w-full">
@@ -357,8 +357,8 @@ export default function SobreQuemSomos() {
         </div>
 
         {/* Right: Interfy Corp */}
-        <div className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[40px] items-center min-w-[280px] px-[20px] py-[40px] rounded-[16px]">
-          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] w-full text-center lg:text-left">
+        <div className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[20px] items-center min-w-[280px] px-[20px] py-[40px] rounded-[16px]">
+          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] w-full text-center lg:text-left">
             {t.interfyTitle}
           </h2>
 

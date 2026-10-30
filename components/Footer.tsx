@@ -2,11 +2,12 @@
 
 import { useState } from "react";
 import FigmaIcon from "./FigmaIcon";
+import { PARTNER_BTN } from "./Header";
 import { LanguageSelectorFull } from "./ui/LanguageSelector";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
 const imgLogo      = "/figma-assets/logo-b.svg";
-const imgGlobe     = "/figma-assets/icon-globe-planetweb-30px.svg";
+const imgGlobe     = "/figma-assets/icon-globe-world.svg";
 const imgChat      = "/figma-assets/icon-chat-large.svg";
 const imgLocation  = "/figma-assets/icon-location-b.svg";
 const imgMoney     = "/figma-assets/icon-money-large-b.svg";
@@ -50,7 +51,8 @@ const T: Record<Lang, {
       { title: "Produtos", links: [
         { label: "Linha Neo",            href: "/neo-line" },
         { label: "Acquafy Media",        href: "/neo-media" },
-        { label: "Filtros & Acessórios", href: "/filters"   },
+        { label: "Filtros", href: "/filters" },
+        { label: "Acessórios", href: "/accessories" },
         { label: "Compare Produtos",     href: "/compare"   },
       ]},
       { title: "Empresa", links: [
@@ -84,7 +86,8 @@ const T: Record<Lang, {
       { title: "Produtos", links: [
         { label: "Linha Neo",            href: "/neo-line" },
         { label: "Acquafy Media",        href: "/neo-media" },
-        { label: "Filtros & Acessórios", href: "/filters"   },
+        { label: "Filtros", href: "/filters" },
+        { label: "Acessórios", href: "/accessories" },
         { label: "Comparar Produtos",    href: "/compare"   },
       ]},
       { title: "Empresa", links: [
@@ -118,7 +121,8 @@ const T: Record<Lang, {
       { title: "Products", links: [
         { label: "Neo Line",              href: "/neo-line" },
         { label: "Acquafy Media",         href: "/neo-media" },
-        { label: "Filters & Accessories", href: "/filters"   },
+        { label: "Filters", href: "/filters" },
+        { label: "Accessories", href: "/accessories" },
         { label: "Compare Products",      href: "/compare"   },
       ]},
       { title: "Company", links: [
@@ -152,7 +156,8 @@ const T: Record<Lang, {
       { title: "Products", links: [
         { label: "Neo Line",              href: "/neo-line" },
         { label: "Acquafy Media",         href: "/neo-media" },
-        { label: "Filters & Accessories", href: "/filters"   },
+        { label: "Filters", href: "/filters" },
+        { label: "Accessories", href: "/accessories" },
         { label: "Compare Products",      href: "/compare"   },
       ]},
       { title: "Company", links: [
@@ -186,7 +191,8 @@ const T: Record<Lang, {
       { title: "Productos", links: [
         { label: "Línea Neo",            href: "/neo-line" },
         { label: "Acquafy Media",        href: "/neo-media" },
-        { label: "Filtros y Accesorios", href: "/filters"   },
+        { label: "Filtros", href: "/filters" },
+        { label: "Accesorios", href: "/accessories" },
         { label: "Comparar Productos",   href: "/compare"   },
       ]},
       { title: "Empresa", links: [
@@ -220,7 +226,8 @@ const T: Record<Lang, {
       { title: "Produits", links: [
         { label: "Gamme Neo",             href: "/neo-line" },
         { label: "Acquafy Media",         href: "/neo-media" },
-        { label: "Filtres & Accessoires", href: "/filters"   },
+        { label: "Filtres", href: "/filters" },
+        { label: "Accessoires", href: "/accessories" },
         { label: "Comparer les Produits", href: "/compare"   },
       ]},
       { title: "Entreprise", links: [
@@ -254,7 +261,8 @@ const T: Record<Lang, {
       { title: "Produkte", links: [
         { label: "Neo-Linie",            href: "/neo-line" },
         { label: "Acquafy Media",        href: "/neo-media" },
-        { label: "Filter & Zubehör",     href: "/filters"   },
+        { label: "Filter", href: "/filters" },
+        { label: "Zubehör", href: "/accessories" },
         { label: "Produkte vergleichen", href: "/compare"   },
       ]},
       { title: "Unternehmen", links: [
@@ -288,7 +296,8 @@ const T: Record<Lang, {
       { title: "Prodotti", links: [
         { label: "Linea Neo",          href: "/neo-line" },
         { label: "Acquafy Media",      href: "/neo-media" },
-        { label: "Filtri & Accessori", href: "/filters"   },
+        { label: "Filtri", href: "/filters" },
+        { label: "Accessori", href: "/accessories" },
         { label: "Confronta Prodotti", href: "/compare"   },
       ]},
       { title: "Azienda", links: [
@@ -322,7 +331,8 @@ const T: Record<Lang, {
       { title: "产品", links: [
         { label: "Neo 系列",   href: "/neo-line" },
         { label: "Acquafy Media", href: "/neo-media" },
-        { label: "滤芯与配件", href: "/filters"   },
+        { label: "滤芯", href: "/filters" },
+        { label: "配件", href: "/accessories" },
         { label: "产品对比",   href: "/compare"   },
       ]},
       { title: "公司", links: [
@@ -356,7 +366,8 @@ const T: Record<Lang, {
       { title: "製品", links: [
         { label: "Neo ライン",              href: "/neo-line" },
         { label: "Acquafy Media",          href: "/neo-media" },
-        { label: "フィルター & アクセサリ", href: "/filters"   },
+        { label: "フィルター", href: "/filters" },
+        { label: "アクセサリー", href: "/accessories" },
         { label: "製品を比較する",          href: "/compare"   },
       ]},
       { title: "企業情報", links: [
@@ -390,7 +401,8 @@ const T: Record<Lang, {
       { title: "제품", links: [
         { label: "Neo 라인",         href: "/neo-line" },
         { label: "Acquafy Media",   href: "/neo-media" },
-        { label: "필터 & 액세서리",  href: "/filters"   },
+        { label: "필터", href: "/filters" },
+        { label: "액세서리", href: "/accessories" },
         { label: "제품 비교",        href: "/compare"   },
       ]},
       { title: "회사", links: [
@@ -424,7 +436,8 @@ const T: Record<Lang, {
       { title: "Produkter", links: [
         { label: "Neo-linjen",           href: "/neo-line" },
         { label: "Acquafy Media",        href: "/neo-media" },
-        { label: "Filter & Tillbehör",   href: "/filters"   },
+        { label: "Filter", href: "/filters" },
+        { label: "Tillbehör", href: "/accessories" },
         { label: "Jämför Produkter",     href: "/compare"   },
       ]},
       { title: "Företag", links: [
@@ -458,7 +471,8 @@ const T: Record<Lang, {
       { title: "Tuotteet", links: [
         { label: "Neo-linja",            href: "/neo-line" },
         { label: "Acquafy Media",        href: "/neo-media" },
-        { label: "Suodattimet & Lisäosat", href: "/filters" },
+        { label: "Suodattimet", href: "/filters" },
+        { label: "Lisäosat", href: "/accessories" },
         { label: "Vertaile Tuotteita",   href: "/compare"   },
       ]},
       { title: "Yritys", links: [
@@ -492,7 +506,8 @@ const T: Record<Lang, {
       { title: "Продукты", links: [
         { label: "Линейка Neo",          href: "/neo-line" },
         { label: "Acquafy Media",        href: "/neo-media" },
-        { label: "Фильтры & Аксессуары", href: "/filters"   },
+        { label: "Фильтры", href: "/filters" },
+        { label: "Аксессуары", href: "/accessories" },
         { label: "Сравнить продукты",    href: "/compare"   },
       ]},
       { title: "Компания", links: [
@@ -526,7 +541,8 @@ const T: Record<Lang, {
       { title: "Produse", links: [
         { label: "Linia Neo",            href: "/neo-line" },
         { label: "Acquafy Media",        href: "/neo-media" },
-        { label: "Filtre & Accesorii",   href: "/filters"   },
+        { label: "Filtre", href: "/filters" },
+        { label: "Accesorii", href: "/accessories" },
         { label: "Compara Produse",      href: "/compare"   },
       ]},
       { title: "Companie", links: [
@@ -560,7 +576,8 @@ const T: Record<Lang, {
       { title: "מוצרים", links: [
         { label: "קו Neo",              href: "/neo-line" },
         { label: "Acquafy Media",       href: "/neo-media" },
-        { label: "מסננים ואביזרים",     href: "/filters"   },
+        { label: "מסננים", href: "/filters" },
+        { label: "אביזרים", href: "/accessories" },
         { label: "השווה מוצרים",        href: "/compare"   },
       ]},
       { title: "חברה", links: [
@@ -624,23 +641,23 @@ export default function Footer() {
 
   return (
     <footer
-      className="border-t-[0.5px] border-[#002ba8] flex flex-col gap-[40px] items-center justify-center pt-[50px] w-full"
+      className="flex flex-col gap-[20px] items-center justify-center pt-[40px] w-full"
       style={{ background: "linear-gradient(to bottom, #fafbff, #e8f1f8)" }}
     >
       <div className="flex flex-col items-center px-[20px] w-full">
         <div className="content-start flex flex-wrap gap-[40px_20px] items-stretch justify-center max-w-[1400px] w-full">
 
           {/* Logo + description + group credit */}
-          <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start min-h-[210px] min-w-[240px] mob:h-auto mob:min-h-0 mob:items-center mob:pb-[40px]">
+          <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-[240px] mob:items-center mob:pb-[40px]">
             <a href="/" className="flex flex-col items-center justify-center max-w-[200px] w-full">
               <div className="relative shrink-0 w-full" style={{ aspectRatio: "1133.84/187.34" }}>
                 <img alt="Acquafy" className="absolute block inset-0 max-w-none size-full" src={imgLogo} />
               </div>
             </a>
-            <p className="font-['Articulat_CF:Regular'] text-[16px] leading-[25px] text-[#333] flex-[1_0_0] min-h-px w-full mob:text-center mob:flex-none mob:min-h-0">
+            <p className="font-['Articulat_CF:Regular'] text-[16px] leading-[25px] text-[#333] w-full mob:text-center">
               {t.desc}
             </p>
-            <p className="font-['Articulat_CF:Regular'] text-[14px] leading-[20px] text-[#333] w-full mt-auto mob:text-center">
+            <p className="font-['Articulat_CF:Regular'] text-[14px] leading-[20px] text-[#333] w-full mob:text-center">
               {t.groupCredit.prefix} <span className="font-bold">{t.groupCredit.brand}</span>
               {" · "}
               {t.groupCredit.middle}{" "}
@@ -657,12 +674,12 @@ export default function Footer() {
 
           {/* Desktop nav columns */}
           {t.nav.map((col) => (
-            <div key={col.title} className="flex flex-[1_0_0] flex-col gap-[40px] items-start min-h-[215px] min-w-[200px] pl-[20px] mob:hidden">
+            <div key={col.title} className="flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-[200px] pl-[20px] mob:hidden">
               <div className="flex flex-col gap-[10px] items-start min-h-[30px] w-full">
                 <p className="font-['Articulat_CF:Bold'] text-[18px] leading-[22px] text-[#0569ff] w-full">{col.title}</p>
                 <div className="h-[1.5px] rounded-full shrink-0 w-[30px]" style={gradientLine} />
               </div>
-              <div className="flex flex-col gap-[30px] items-start w-full">
+              <div className="flex flex-col gap-[20px] items-start w-full">
                 {col.links.map((link) => (
                   <div key={link.href} className="flex gap-[10px] items-center w-full">
                     <a href={link.href} className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#2a2a2b] flex-[1_0_0] min-w-px hover:text-[#0233c3] transition-colors">
@@ -671,6 +688,12 @@ export default function Footer() {
                   </div>
                 ))}
               </div>
+              {col === t.nav[t.nav.length - 1] && (
+                <a href="/partnership" className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex gap-[10px] items-center justify-center h-[40px] overflow-hidden px-[20px] rounded-[8px] cursor-pointer">
+                  <FigmaIcon src="/figma-assets/icon-partner-b.svg" size={16} />
+                  <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white whitespace-nowrap">{PARTNER_BTN[lang]}</span>
+                </a>
+              )}
             </div>
           ))}
 
@@ -701,13 +724,13 @@ export default function Footer() {
             ];
             const ic = icons[i];
             return (
-              <div key={i} className="flex flex-[1_0_0] gap-[20px] items-center min-w-[240px] p-[20px]">
+              <div key={i} className="flex flex-[1_0_0] gap-[20px] items-center min-w-[240px] px-[20px] py-[10px]">
                 <div className="flex flex-col items-center justify-center shrink-0 size-[40px]">
                   <FigmaIcon src={ic.src} size={40} aspectW={ic.aspectW} aspectH={ic.aspectH} />
                 </div>
-                <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-px">
-                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#07235c] w-full">{s.sub}</p>
-                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#0233c3] w-full">{s.main}</p>
+                <div className="flex flex-[1_0_0] flex-col gap-[5px] items-start min-w-px">
+                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#07235c] w-full">{s.sub}</p>
+                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[24px] text-[#0233c3] w-full">{s.main}</p>
                 </div>
               </div>
             );

@@ -1,0 +1,812 @@
+{
+  "updatedAt": "2026-10-30T22:08:09.272Z",
+  "ok": [],
+  "optimize": [
+    {
+      "icon": "hugeicons/globe-02",
+      "files": [
+        "icon-global.svg",
+        "icon-global-monitoring.svg",
+        "icon-globe-30px-a.svg",
+        "icon-globe-30px-b.svg",
+        "icon-globe-38px.svg",
+        "icon-globe-badge.svg",
+        "icon-globe-connectivity-40px.svg",
+        "icon-globe-header-18px.svg",
+        "icon-globe-nova-fase.svg",
+        "icon-globe-planetweb-30px.svg",
+        "icon-globe-presence.svg",
+        "icon-globe-stats-30px.svg",
+        "icon-globe-world.svg",
+        "icon-planet-30px-a.svg",
+        "icon-planet-30px-b.svg",
+        "icon-planet-30px-slot40.svg",
+        "icon-planet-a.svg",
+        "icon-planet-b.svg",
+        "icon-planet-c.svg",
+        "icon-planet-global.svg",
+        "icon-planet-globe-30px.svg",
+        "icon-planetweb-30px-a.svg",
+        "icon-planetweb-30px-b.svg",
+        "icon-planetweb-30px-c.svg",
+        "icon-planetweb-globo.svg",
+        "icon-planetweb-operacao-global.svg",
+        "op-planet.svg",
+        "ts-icon-planet.svg",
+        "ts-icon-stats-planet-web.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/arrow-right-02",
+      "files": [
+        "como-arrow.svg",
+        "icon-arrow-a.svg",
+        "icon-arrow-accent.svg",
+        "icon-arrow-b.svg",
+        "icon-arrow-blue-a.svg",
+        "icon-arrow-blue-b.svg",
+        "icon-arrow-blue-c.svg",
+        "icon-arrow-blue-outline-a.svg",
+        "icon-arrow-blue-outline-b.svg",
+        "icon-arrow-blue-outline-btn.svg",
+        "icon-arrow-blue-outline-c.svg",
+        "icon-arrow-blue-outline-d.svg",
+        "icon-arrow-blue-small.svg",
+        "icon-arrow-blue-solid.svg",
+        "icon-arrow-gray.svg",
+        "icon-arrow-green.svg",
+        "icon-arrow-white-a.svg",
+        "icon-arrow-white-b.svg",
+        "icon-arrow-white-bk.svg",
+        "icon-arrow-white-hover.svg",
+        "icon-arrow-white-small.svg",
+        "icon-arrow-white-solid.svg",
+        "icon-arrow-white-solid-btn.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/smart-phone-01",
+      "files": [
+        "como-icon-mobile.svg",
+        "icon-app-control.svg",
+        "icon-mobile-20px.svg",
+        "icon-mobile-21px.svg",
+        "icon-mobile-21px-b.svg",
+        "icon-mobile-21px-c.svg",
+        "icon-mobile-a.svg",
+        "icon-mobile-b.svg",
+        "icon-mobile-c.svg",
+        "icon-mobile-d.svg",
+        "icon-mobile-stats.svg",
+        "icon-phone-b.svg",
+        "op-mobile.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/wifi-01",
+      "files": [
+        "icon-iot-main.svg",
+        "icon-wifi-2025.svg",
+        "icon-wifi-30px-a.svg",
+        "icon-wifi-30px-b.svg",
+        "icon-wifi-30px-c.svg",
+        "icon-wifi-32px.svg",
+        "icon-wifi-63px.svg",
+        "icon-wifi-a.svg",
+        "icon-wifi-b.svg",
+        "icon-wifi-feat.svg",
+        "icon-wifi-stats.svg",
+        "ts-icon-iot.svg",
+        "ts-icon-wifi.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/checkmark-circle-01",
+      "files": [
+        "icon-check-30px.svg",
+        "icon-check-a.svg",
+        "icon-check-b.svg",
+        "icon-check-blue-a.svg",
+        "icon-check-blue-essentials.svg",
+        "icon-check-bullet.svg",
+        "icon-check-c.svg",
+        "icon-check-e.svg",
+        "icon-check-list.svg",
+        "icon-check-purple-a.svg",
+        "icon-check-purple-premium.svg"
+      ]
+    },
+    {
+      "icon": "lucide:brain",
+      "files": [
+        "icon-ai-insights-app.svg",
+        "icon-brain-30px-a.svg",
+        "icon-brain-30px-b.svg",
+        "icon-brain-30px-c.svg",
+        "icon-brain-32px.svg",
+        "icon-brain-63px.svg",
+        "icon-brain-a.svg",
+        "icon-brain-b.svg",
+        "icon-brain-c.svg",
+        "icon-brain-d.svg",
+        "ts-icon-brain.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/headphones",
+      "files": [
+        "icon-fone-30px.svg",
+        "icon-fone-a.svg",
+        "icon-fone-b.svg",
+        "icon-fone-list.svg",
+        "icon-headset.svg",
+        "icon-phone-30px.svg",
+        "icon-phone-a.svg",
+        "icon-updates-support.svg"
+      ]
+    },
+    {
+      "icon": "lucide:shield-check",
+      "files": [
+        "icon-admin.svg",
+        "icon-shield-26px-a.svg",
+        "icon-shield-26px-b.svg",
+        "icon-shield-26px-c.svg",
+        "icon-shield-a.svg",
+        "icon-shield-b.svg",
+        "icon-shield-label.svg",
+        "ts-icon-shield-check.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/user-group-03",
+      "files": [
+        "icon-partner-a.svg",
+        "icon-partner-b.svg",
+        "icon-partner-blue.svg",
+        "icon-partner-gray.svg",
+        "icon-partner-rede.svg",
+        "icon-partner-white.svg",
+        "icon-people-a.svg",
+        "icon-people-b.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/user-multiple-03",
+      "files": [
+        "checkin-icon-support.svg",
+        "icon-pessoas-32px.svg",
+        "icon-pessoas-38px.svg",
+        "icon-pessoas-a.svg",
+        "icon-pessoas-b.svg",
+        "icon-pessoas-foco-cliente.svg",
+        "icon-pessoas-stats.svg",
+        "ts-icon-stats-pessoas.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/artificial-intelligence-04",
+      "files": [
+        "icon-ai.svg",
+        "icon-ai-30px-b.svg",
+        "icon-ai-30px-c.svg",
+        "icon-ai-40px.svg",
+        "icon-ai-insights.svg",
+        "icon-ai-platform.svg",
+        "icon-app-iot-ai.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/bubble-chat",
+      "files": [
+        "icon-chat-42px.svg",
+        "icon-chat-a.svg",
+        "icon-chat-b.svg",
+        "icon-chat-icon.svg",
+        "icon-chat-list.svg",
+        "icon-chat-midia.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/exchange-dollar",
+      "files": [
+        "icon-money-33px.svg",
+        "icon-money-b.svg",
+        "icon-money-d.svg",
+        "icon-money-e.svg",
+        "icon-money-large-l.svg",
+        "op-money.svg"
+      ]
+    },
+    {
+      "icon": "filtros (estrutura própria, 4 tubos)",
+      "files": [
+        "icon-feature-filters.svg",
+        "icon-filter-40px.svg",
+        "icon-filter-a.svg",
+        "icon-filter-status.svg",
+        "icon-filtros-40px.svg",
+        "icon-filtros-b.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/handshake",
+      "files": [
+        "icon-parceiro.svg",
+        "icon-parceiros-a.svg",
+        "icon-parceiros-b.svg",
+        "icon-parceria-a.svg",
+        "icon-parceria-b.svg",
+        "icon-parceria-large.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/megaphone-02",
+      "files": [
+        "icon-marketing-a.svg",
+        "icon-marketing-b.svg",
+        "icon-marketing-c.svg",
+        "icon-marketing-d.svg",
+        "icon-marketing-landscape.svg",
+        "icon-megaphone.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/play-circle",
+      "files": [
+        "icon-bpm-play.svg",
+        "icon-media.svg",
+        "icon-media-stats.svg",
+        "icon-play-a.svg",
+        "icon-play-b.svg",
+        "op-media.svg"
+      ]
+    },
+    {
+      "icon": "globo com nós (Hugeicons globe-02 + anel de nós)",
+      "files": [
+        "icon-adaptacao.svg",
+        "icon-ecossistema.svg",
+        "icon-ecosystem.svg",
+        "icon-integration.svg",
+        "mp-icon-multireg.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/recycle-02",
+      "files": [
+        "icon-feature-bottles.svg",
+        "icon-sustainability.svg",
+        "icon-sustent-a.svg",
+        "ts-icon-reciclavel.svg",
+        "ts-icon-sustent.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/water-energy",
+      "files": [
+        "icon-osmose-reversa.svg",
+        "icon-water-c.svg",
+        "icon-water-pessoas.svg",
+        "icon-water-quality-app.svg",
+        "icon-water-vector.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/award-05",
+      "files": [
+        "icon-cert.svg",
+        "icon-certificado-a.svg",
+        "icon-certificado-b.svg",
+        "icon-certificate.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/clock-01",
+      "files": [
+        "icon-time-30px.svg",
+        "icon-time-icon.svg",
+        "icon-time-relogio.svg",
+        "icon-uptime.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/comment-02",
+      "files": [
+        "icon-chat-blue.svg",
+        "icon-chat-gray.svg",
+        "icon-chat-stats.svg",
+        "icon-chat-white.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/eco-energy",
+      "files": [
+        "icon-sustain-40px.svg",
+        "icon-sustent-b.svg",
+        "ts-icon-energia.svg",
+        "ts-icon-globo-green.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/gift",
+      "files": [
+        "icon-gift-a.svg",
+        "icon-gift-b.svg",
+        "icon-gift-cta.svg",
+        "icon-gift-label.svg"
+      ]
+    },
+    {
+      "icon": "globe_10735603.svg",
+      "files": [
+        "icon-globe-sust.svg",
+        "icon-globo-sustentabilidade.svg",
+        "icon-sustent-large.svg",
+        "ts-icon-globo-sust.svg"
+      ]
+    },
+    {
+      "icon": "iconoven:clean-water",
+      "files": [
+        "icon-water-d.svg",
+        "icon-water-large-a.svg",
+        "icon-water-large-b.svg",
+        "ts-icon-agua-intel.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/location-01",
+      "files": [
+        "icon-local-24px.svg",
+        "icon-local-31px.svg",
+        "icon-local-a.svg",
+        "icon-local-b.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/location-04",
+      "files": [
+        "como-icon-location.svg",
+        "icon-location-a.svg",
+        "icon-locations.svg",
+        "mp-icon-digital.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/modern-tv",
+      "files": [
+        "icon-lcd.svg",
+        "icon-medianet-a.svg",
+        "icon-medianet-b.svg",
+        "icon-medianet-c.svg"
+      ]
+    },
+    {
+      "icon": "qr-code_3594823.svg",
+      "files": [
+        "icon-qr-c.svg",
+        "icon-qr-codes-a.svg",
+        "icon-qr-codes-b.svg",
+        "icon-qr-links.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/arrow-up-01",
+      "files": [
+        "icon-arrow-down.svg",
+        "icon-arrow-footer.svg",
+        "icon-arrow-header.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/badge-percent",
+      "files": [
+        "icon-comissoes-a.svg",
+        "icon-comissoes-b.svg",
+        "icon-comissoes-c.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/calendar-04",
+      "files": [
+        "icon-calendar-a.svg",
+        "icon-calendar-b.svg",
+        "icon-filter-365days.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/cloud",
+      "files": [
+        "icon-cloud-30px.svg",
+        "icon-cloud-a.svg",
+        "op-cloud.svg"
+      ]
+    },
+    {
+      "icon": "iconoir:crown-circle",
+      "files": [
+        "icon-crown-30px.svg",
+        "icon-crown-a.svg",
+        "icon-feature-design.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/languages",
+      "files": [
+        "icon-16-languages.svg",
+        "icon-language-a.svg",
+        "icon-language-b.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/mail-01",
+      "files": [
+        "icon-mail-38px.svg",
+        "icon-mail-42px.svg",
+        "icon-mail-icon.svg"
+      ]
+    },
+    {
+      "icon": "majesticons:lidquid-drop-waves-2-line",
+      "files": [
+        "icon-agua-pura.svg",
+        "icon-agua-pura-30px.svg",
+        "ts-icon-preserv-agua.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/notification-01",
+      "files": [
+        "icon-bell.svg",
+        "icon-notif.svg",
+        "icon-notification.svg"
+      ]
+    },
+    {
+      "icon": "qr-code_7420584.svg",
+      "files": [
+        "icon-qr-a.svg",
+        "icon-qr-b.svg",
+        "op-qr.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/shield-01",
+      "files": [
+        "checkin-icon-shield.svg",
+        "icon-shield-24px.svg",
+        "icon-shield-d.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/shopping-cart-01",
+      "files": [
+        "icon-vendas-a.svg",
+        "icon-vendas-b.svg",
+        "icon-vendas-c.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/user-circle",
+      "files": [
+        "como-icon-user.svg",
+        "icon-profile-consumer.svg",
+        "mp-icon-user.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/calendar-sync",
+      "files": [
+        "checkin-icon-warranty.svg",
+        "icon-365.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/computer",
+      "files": [
+        "icon-screen.svg",
+        "ts-icon-tela.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/dashboard-browsing",
+      "files": [
+        "icon-dashboard.svg",
+        "icon-dashboard-large.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/dollar-circle",
+      "files": [
+        "icon-money-a.svg",
+        "icon-money-c.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/earth",
+      "files": [
+        "icon-mapa.svg",
+        "icon-mapa-global.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/graduation-cap",
+      "files": [
+        "icon-edu.svg",
+        "icon-educacao.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/map",
+      "files": [
+        "icon-location-b.svg",
+        "mp-icon-country.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/package",
+      "files": [
+        "icon-prod-neo-a.svg",
+        "icon-prod-neo-b.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/plug-01",
+      "files": [
+        "icon-feature-plug.svg",
+        "icon-plug-play.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/repair",
+      "files": [
+        "icon-manutencao.svg",
+        "icon-preventive-maintenance.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/square-lock-01",
+      "files": [
+        "icon-lock-a.svg",
+        "icon-lock-b.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/truck",
+      "files": [
+        "checkin-icon-delivery.svg",
+        "icon-logistics.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/activity-03",
+      "files": [
+        "icon-batimentos.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/add-square",
+      "files": [
+        "icon-cross.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/ai-magic",
+      "files": [
+        "icon-ai-30px-e.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/airplane-01",
+      "files": [
+        "icon-plane.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/arrow-right-01",
+      "files": [
+        "icon-arrow-head.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/atom-01",
+      "files": [
+        "icon-benefit-antioxidant.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/bell-ring",
+      "files": [
+        "icon-smart-alerts.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/bluetooth",
+      "files": [
+        "icon-bluetooth.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/book-open-01",
+      "files": [
+        "icon-book.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/boxes",
+      "files": [
+        "icon-container.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/building-02",
+      "files": [
+        "icon-building.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/bulb",
+      "files": [
+        "icon-lamp-inovacao.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/call-02",
+      "files": [
+        "icon-phone-42px.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/cancel-01",
+      "files": [
+        "icon-negative-x.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/cancel-circle",
+      "files": [
+        "icon-negative.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/chart-column",
+      "files": [
+        "icon-monitoring-realtime.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/chat",
+      "files": [
+        "icon-chat-large.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/cloud-download",
+      "files": [
+        "icon-download.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/coffee-02",
+      "files": [
+        "icon-caneca.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/dashboard-square-01",
+      "files": [
+        "icon-layout.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/diamond-02",
+      "files": [
+        "icon-benefit-minerals.svg"
+      ]
+    },
+    {
+      "icon": "escudo com gota (Hugeicons shield-01 + droplet)",
+      "files": [
+        "ts-icon-shield-agua.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/headset",
+      "files": [
+        "icon-fast-support.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/home-03",
+      "files": [
+        "icon-house.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/layers-01",
+      "files": [
+        "icon-planos.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/milk-bottle",
+      "files": [
+        "ts-icon-plastico.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/plant-01",
+      "files": [
+        "ts-icon-stats-planta.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/puzzle",
+      "files": [
+        "icon-integracao.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/router-01",
+      "files": [
+        "icon-iot.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/settings-01",
+      "files": [
+        "icon-gear.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/settings-04",
+      "files": [
+        "icon-config.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/shirt-01",
+      "files": [
+        "icon-camisa.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/shopping-bag-01",
+      "files": [
+        "icon-cart.svg"
+      ]
+    },
+    {
+      "icon": "tabler:drop-circle",
+      "files": [
+        "icon-water-20.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/tablet-01",
+      "files": [
+        "icon-remote-control.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/tick-02",
+      "files": [
+        "icon-check-d.svg"
+      ]
+    },
+    {
+      "icon": "hugeicons/trending-up",
+      "files": [
+        "icon-vendas-d.svg"
+      ]
+    }
+  ],
+  "keepOriginal": [],
+  "similar": [
+    {
+      "file": "icon-water-20.svg",
+      "currentIcon": "tabler:drop-circle"
+    }
+  ]
+}

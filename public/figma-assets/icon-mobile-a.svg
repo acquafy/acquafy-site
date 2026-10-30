@@ -1,6 +1,1 @@
-﻿<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 21.1 29.5" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="MOBILE">
-<path d="M18.0289 0.75H3.07105C1.78917 0.75 0.75 1.76643 0.75 3.02027V26.4797C0.75 27.7336 1.78917 28.75 3.07105 28.75H18.0289C19.3108 28.75 20.35 27.7336 20.35 26.4797V3.02027C20.35 1.76643 19.3108 0.75 18.0289 0.75Z" stroke="var(--stroke-0, #0569FF)" stroke-width="1.5" stroke-miterlimit="22.9256" stroke-linecap="round"/>
-<path d="M10.55 23.705C10.9773 23.705 11.3237 23.3661 11.3237 22.9482C11.3237 22.5303 10.9773 22.1914 10.55 22.1914C10.1227 22.1914 9.77632 22.5303 9.77632 22.9482C9.77632 23.3661 10.1227 23.705 10.55 23.705Z" stroke="var(--stroke-0, #0569FF)" stroke-width="1.5" stroke-miterlimit="22.9256" stroke-linecap="round"/>
-</g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="29.5" height="29.5" viewBox="0 0 29.5 29.5" fill="none"><svg x="-1.77" y="-1.77" width="33.04" height="33.04" viewBox="0 0 24 24" fill="none" stroke="#0569ff" stroke-width="1.079" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 2h-3c-2.357 0-3.536 0-4.268.732S5.5 4.643 5.5 7v10c0 2.357 0 3.535.732 4.268S8.143 22 10.5 22h3c2.357 0 3.535 0 4.268-.732c.732-.733.732-1.911.732-4.268V7c0-2.357 0-3.536-.732-4.268C17.035 2 15.857 2 13.5 2"/><path d="M12.125 19H12m.25 0a.25.25 0 1 1-.5 0a.25.25 0 0 1 .5 0"/></svg></svg>

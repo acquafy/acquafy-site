@@ -53,7 +53,7 @@ export default function CtaBanner() {
             <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-center whitespace-nowrap shrink-0 text-white">
               {t.btnBuy}
             </span>
-            <FigmaIcon src={imgArrowWhite} size={9} aspectW={11} aspectH={9} />
+            <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
           </a>
         </div>
       </div>

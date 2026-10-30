@@ -2429,18 +2429,18 @@ export default function CheckinMain() {
         {/* ── Trust strip ────────────────────────────────────────────────── */}
         <div className="bg-[#f6f9fe] rounded-[16px] flex flex-wrap gap-[8px] items-center justify-center p-[20px]">
             {[
-              { ...t.trustItems[0], icon: "/figma-assets/checkin-icon-shield.svg"   },
+              { ...t.trustItems[0], icon: "/figma-assets/icon-shield-d.svg"   },
               { ...t.trustItems[1], icon: "/figma-assets/checkin-icon-delivery.svg" },
               { ...t.trustItems[2], icon: "/figma-assets/checkin-icon-warranty.svg" },
               { ...t.trustItems[3], icon: "/figma-assets/checkin-icon-support.svg"  },
             ].map((badge, i) => (
               <div key={i} className="flex flex-[1_0_0] gap-[8px] items-center min-w-[180px]">
-                <div className="size-[32px] flex items-center justify-center shrink-0">
-                  <img src={badge.icon} alt="" className="h-[30px] w-auto" />
+                <div className="size-[38px] flex items-center justify-center shrink-0">
+                  <img src={badge.icon} alt="" className="h-[36px] w-auto" />
                 </div>
                 <div className="flex flex-col gap-[10px]">
-                  <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#1f2e91]">{badge.label}</span>
-                  <span className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] leading-[14px] text-[#2a2a2b]">{badge.desc}</span>
+                  <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[17px] leading-[20px] text-[#1f2e91]">{badge.label}</span>
+                  <span className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[17px] text-[#2a2a2b]">{badge.desc}</span>
                 </div>
               </div>
             ))}

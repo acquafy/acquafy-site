@@ -49,7 +49,7 @@ function RenderBlock({ block, cor }: { block: ContentBlock; cor: string }) {
       return (
         <div className="flex items-start gap-[12px] mt-[8px]">
           <div className="mt-[5px] shrink-0 w-[4px] h-[20px] rounded-full" style={{ backgroundColor: cor }} />
-          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91]">
+          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91]">
             {block.text}
           </h2>
         </div>
@@ -335,7 +335,7 @@ export default function ArtigoPageContent({ artigo, cat, relacionados, popularAr
               </h2>
               <Link href={`/artigos#${cat.slug}`} className="flex gap-[5px] items-center no-underline group">
                 <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#0233c3] group-hover:underline">{ui.verTodos}</span>
-                <FigmaIcon src={imgArrowBlue} size={8} aspectW={11.2} aspectH={8.84} />
+                <FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} />
               </Link>
             </div>
 
@@ -356,7 +356,7 @@ export default function ArtigoPageContent({ artigo, cat, relacionados, popularAr
                       {rel.tempoLeitura} {ui.minLeitura}
                     </p>
                   </div>
-                  <FigmaIcon src={imgArrowBlue} size={9} aspectW={11.2} aspectH={8.84} className="shrink-0 opacity-30 group-hover:opacity-100 transition-opacity" />
+                  <FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} className="shrink-0 opacity-30 group-hover:opacity-100 transition-opacity" />
                 </Link>
               ))}
             </div>

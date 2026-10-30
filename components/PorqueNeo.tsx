@@ -229,7 +229,7 @@ export default function PorqueNeo() {
         <div className="flex flex-col gap-[40px] items-start w-full">
 
           {/* Title */}
-          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-center w-full">
+          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-center w-full">
             <span className="text-[#1f2e91]">{t.heading1}</span>
             <span
               className="bg-clip-text text-transparent"

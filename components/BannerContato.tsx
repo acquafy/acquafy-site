@@ -7,9 +7,9 @@ const imgBg       = "/figma-assets/banner-contato-bg.webp";
 const imgProdutos = "/figma-assets/banner-contato-products.webp";
 
 // Feature icons — viewBox 0 0 42 42 (todos quadrados)
-const imgFone      = "/figma-assets/icon-headset.svg"; // FONE / headset
+const imgFone      = "/figma-assets/icon-fone-list.svg"; // FONE / headset
 const imgTime      = "/figma-assets/icon-time-relogio.svg"; // TIME / relógio
-const imgPlanetWeb = "/figma-assets/icon-planetweb-globo.svg"; // PLANET WEB / globo
+const imgPlanetWeb = "/figma-assets/ts-icon-planet.svg"; // PLANET WEB / globo
 
 const T: Record<Lang, {
   heading1: string;

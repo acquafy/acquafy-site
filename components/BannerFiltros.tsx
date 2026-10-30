@@ -3,14 +3,13 @@ import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
 // ── Backgrounds ──────────────────────────────────────────────────────────────
-// "Padrão" (xl+): background hero com splash de água + produtos visíveis ao fundo
-const imgBg      = "/figma-assets/bg-g.webp";
-// "120" (lg) + "1000" (mobile): foto explícita dos filtros no card lateral/stacked
-const imgFilters = "/figma-assets/image-filters.webp";
+const imgBg           = "/figma-assets/bg-g.webp";
+const imgFilters      = "/figma-assets/image-filters.webp";
+const imgAccBg        = "/figma-assets/banner-acessorios-bg.webp";
 
 // ── Setas: mesmas do Hero (padrão do projeto) ─────────────────────────────────
-const imgArrowWhite = "/figma-assets/icon-arrow-white-a.svg";
-const imgArrowBlue  = "/figma-assets/icon-arrow-blue-outline-a.svg";
+const imgArrowWhite = "/figma-assets/icon-arrow-white-hover.svg";
+const imgArrowBlue  = "/figma-assets/icon-arrow-blue-b.svg";
 
 // ── Stats icons ───────────────────────────────────────────────────────────────
 const imgWater      = "/figma-assets/icon-water-a.svg";
@@ -253,9 +252,79 @@ const T: Record<Lang, {
   },
 };
 
-export default function BannerFiltros() {
+const FILTERS_DESC: Record<Lang, string> = {
+  pt: "Os filtros Acquafy são projetados para manter a água sempre pura, segura e com o máximo desempenho em todos os equipamentos Acquafy.",
+  "pt-pt": "Os filtros Acquafy são concebidos para manter a água sempre pura, segura e com o máximo desempenho em todos os equipamentos Acquafy.",
+  en: "Acquafy filters are designed to keep water always pure, safe and at peak performance across all Acquafy equipment.",
+  "en-gb": "Acquafy filters are designed to keep water always pure, safe and at peak performance across all Acquafy equipment.",
+  es: "Los filtros Acquafy están diseñados para mantener el agua siempre pura, segura y con el máximo rendimiento en todos los equipos Acquafy.",
+  fr: "Les filtres Acquafy sont conçus pour maintenir l'eau toujours pure, sûre et avec des performances maximales sur tous les équipements Acquafy.",
+  de: "Acquafy Filter sind darauf ausgelegt, Wasser in allen Acquafy-Geräten stets rein, sicher und mit maximaler Leistung zu halten.",
+  it: "I filtri Acquafy sono progettati per mantenere l'acqua sempre pura, sicura e con le massime prestazioni su tutte le apparecchiature Acquafy.",
+  zh: "Acquafy 滤芯专为所有 Acquafy 设备保持水质纯净、安全和最佳性能而设计。",
+  ja: "Acquafy のフィルターは、すべての Acquafy 機器で水を常に純粋で安全、かつ最高のパフォーマンスに保つよう設計されています。",
+  ko: "Acquafy 필터는 모든 Acquafy 장비에서 물을 항상 순수하고 안전하며 최고의 성능으로 유지하도록 설계되었습니다.",
+  sv: "Acquafy filter är utformade för att hålla vattnet alltid rent, säkert och med maximal prestanda i all Acquafy-utrustning.",
+  fi: "Acquafy-suodattimet on suunniteltu pitämään vesi aina puhtaana, turvallisena ja huippusuorituskykyisenä kaikissa Acquafy-laitteissa.",
+  ru: "Фильтры Acquafy разработаны для поддержания воды всегда чистой, безопасной и с максимальной производительностью во всём оборудовании Acquafy.",
+  ro: "Filtrele Acquafy sunt proiectate pentru a mentine apa intotdeauna pura, sigura si la performanta maxima pe toate echipamentele Acquafy.",
+  he: "מסנני Acquafy מתוכננים לשמור על המים תמיד טהורים, בטוחים ובביצועים מרביים בכל ציוד Acquafy.",
+};
+
+const ACC_DESC: Record<Lang, string> = {
+  pt: "Os acessórios Acquafy levam a sua marca para o dia a dia: copos, camisetas, garrafas e brindes para equipes, eventos e parceiros.",
+  "pt-pt": "Os acessórios Acquafy levam a sua marca para o dia a dia: copos, t-shirts, garrafas e brindes para equipas, eventos e parceiros.",
+  en: "Acquafy accessories bring your brand into everyday life: cups, shirts, bottles and gifts for teams, events and partners.",
+  "en-gb": "Acquafy accessories bring your brand into everyday life: cups, shirts, bottles and gifts for teams, events and partners.",
+  es: "Los accesorios Acquafy llevan tu marca al día a día: vasos, camisetas, botellas y regalos para equipos, eventos y socios.",
+  fr: "Les accessoires Acquafy portent votre marque au quotidien : verres, t-shirts, bouteilles et cadeaux pour les équipes, les événements et les partenaires.",
+  de: "Acquafy Zubehör bringt Ihre Marke in den Alltag: Becher, Shirts, Flaschen und Geschenke für Teams, Veranstaltungen und Partner.",
+  it: "Gli accessori Acquafy portano il tuo marchio nella vita quotidiana: bicchieri, magliette, bottiglie e gadget per team, eventi e partner.",
+  zh: "Acquafy 配件让您的品牌融入日常：为团队、活动和合作伙伴提供杯子、T 恤、水瓶和礼品。",
+  ja: "Acquafy のアクセサリーは、あなたのブランドを日常に届けます。チーム、イベント、パートナー向けのカップ、Tシャツ、ボトル、ノベルティ。",
+  ko: "Acquafy 액세서리는 브랜드를 일상으로 가져옵니다. 팀, 행사, 파트너를 위한 컵, 티셔츠, 물병, 기념품.",
+  sv: "Acquafy tillbehör för ditt varumärke in i vardagen: muggar, tröjor, flaskor och present till team, evenemang och partners.",
+  fi: "Acquafy-tarvikkeet tuovat brändisi arkeen: mukit, paidat, pullot ja lahjat tiimeille, tapahtumiin ja kumppaneille.",
+  ru: "Аксессуары Acquafy приносят ваш бренд в повседневность: стаканы, футболки, бутылки и подарки для команд, мероприятий и партнёров.",
+  ro: "Accesoriile Acquafy aduc marca ta in viata de zi cu zi: pahare, tricouri, sticle si cadouri pentru echipe, evenimente si parteneri.",
+  he: "אביזרי Acquafy מביאים את המותג שלך לחיי היומיום: כוסות, חולצות, בקבוקים ומתנות לצוותים, לאירועים ולשותפים.",
+};
+
+const ACC_BTN: Record<Lang, string> = {
+  pt: "Conheça os acessórios",
+  "pt-pt": "Conheça os acessórios",
+  en: "Discover the accessories",
+  "en-gb": "Discover the accessories",
+  es: "Conoce los accesorios",
+  fr: "Découvrir les accessoires",
+  de: "Zubehör entdecken",
+  it: "Scopri gli accessori",
+  zh: "了解配件",
+  ja: "アクセサリーを見る",
+  ko: "액세서리 알아보기",
+  sv: "Utforska tillbehören",
+  fi: "Tutustu tarvikkeisiin",
+  ru: "Узнать об аксессуарах",
+  ro: "Descopera accesoriile",
+  he: "גלה את האביזרים",
+};
+
+// Photos shown in the accessories hero card
+const accessoryPhotos = [
+  "/figma-assets/product-cup.webp",
+  "/figma-assets/product-camisa-1c-b.webp",
+  "/figma-assets/product-squeeze-b.webp",
+  "/figma-assets/product-bone.webp",
+];
+
+export default function BannerFiltros({ variant = "filtros" }: { variant?: "filtros" | "acessorios" }) {
+  const isAcc = variant === "acessorios";
   const { lang } = useLang();
   const t = T[lang];
+  // Titles are "<filters> & " + "<accessories>" in every language, so each page takes its own word.
+  const title = isAcc ? t.title2 : t.title1.replace(/\s*&\s*$/, "");
+  const desc = isAcc ? ACC_DESC[lang] : FILTERS_DESC[lang];
+  const btn1 = isAcc ? ACC_BTN[lang] : t.btn1;
   const stats = [
     { icon: imgWater,      iconW: 40, iconH: 40, title: t.stats[0].title, desc: t.stats[0].desc },
     { icon: imgAI,         iconW: 30, iconH: 30, title: t.stats[1].title, desc: t.stats[1].desc },
@@ -264,14 +333,13 @@ export default function BannerFiltros() {
   ];
   return (
     <section
-      className="relative flex flex-col gap-[20px] items-center px-[20px] py-[40px] w-full overflow-hidden
-                 bg-[#f1f5fe] xl:bg-transparent xl:h-[calc(100vh-80px)]"
+      className="relative flex flex-col gap-[20px] items-center px-[20px] py-[40px] w-full overflow-hidden bg-[#f1f5fe] xl:bg-transparent xl:h-[calc(100vh-80px)]"
     >
       {/* ─── Background "Padrão" — visível apenas em xl+ ──────────────────────── */}
       <img
         alt=""
         className="hidden xl:block absolute inset-0 w-full h-full object-cover pointer-events-none"
-        src={imgBg}
+        src={isAcc ? imgAccBg : imgBg}
       />
 
       {/* ─── Área de conteúdo ─────────────────────────────────────────────────────
@@ -285,42 +353,41 @@ export default function BannerFiltros() {
 
           {/* Título */}
           <h1 className="font-['Avenir_LT_Pro:95_Black'] text-hero w-full text-center lg:text-left">
-            <span className="text-[#2a2a2b]">{t.title1}</span>
             <span
               className="bg-clip-text text-transparent"
               style={{ backgroundImage: "linear-gradient(to right, #0233c3, #0569ff)" }}
             >
-              {t.title2}
+              {title}
             </span>
           </h1>
 
           {/* Subtítulo azul */}
-          <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#0233c3] w-full text-center lg:text-left">
+          <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[24px] md:text-[24px] md:leading-[29px] text-[#0233c3] w-full text-center lg:text-left">
             {t.subtitle}
           </p>
 
           {/* Descrição */}
           <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#333] w-full text-center lg:text-left">
-            {t.desc}
+            {desc}
           </p>
 
           {/* Botões CTA — hero-size (50px, Articulat CF Bold 16px), mesmo padrão do Hero
               "1000" (mobile): centralizados | "120"+"Padrão" (lg+): à esquerda       */}
           <div className="flex flex-col md:flex-row flex-wrap gap-[20px] items-center w-full justify-center xl:justify-start">
             {/* BT AZUL BASE ARROW */}
-            <a href="#filtros-lista" className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex w-full md:flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] md:min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
-              <span className="font-['Articulat_CF:Bold'] text-[16px] text-white flex-1 text-center">{t.btn1}</span>
-              <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
+            <a href={isAcc ? "#acessorios-lista" : "#filtros-lista"} className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex w-full md:flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] md:min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
+              <span className="font-['Articulat_CF:Bold'] text-[16px] text-white flex-1 text-center">{btn1}</span>
+              <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
             </a>
             {/* BT AZUL OUT ARROW */}
             <a href="/contact" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex w-full md:flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] md:min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
               <span className="font-['Articulat_CF:Bold'] text-[16px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">{t.btn2}</span>
-              <div className="relative shrink-0" style={{ width: 9, height: 9 }}>
+              <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
                 <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0 group-active:opacity-0">
-                  <FigmaIcon src={imgArrowBlue} size={9} aspectW={11.2} aspectH={8.84} />
+                  <FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} />
                 </div>
                 <div className="absolute inset-0 transition-opacity duration-150 opacity-0 group-hover:opacity-100 group-active:opacity-100">
-                  <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
+                  <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
                 </div>
               </div>
             </a>
@@ -331,6 +398,23 @@ export default function BannerFiltros() {
             "1000" (mobile) : full-width, 500px de altura, empilhada abaixo do texto
             "120"  (lg)     : coluna à direita, flex-[1_0_0], aspect 700×480
             "Padrão" (xl+)  : oculta — os filtros aparecem pelo background image     */}
+        {isAcc ? (
+          <>
+            <div
+              className="relative rounded-[16px] overflow-hidden xl:hidden
+                         w-full
+                         lg:flex-[1_0_0] lg:min-w-[280px] lg:min-h-[192px] lg:[aspect-ratio:700/480]"
+            >
+              <img
+                alt="Acessórios Acquafy"
+                className="block w-full aspect-[1.36/1] object-cover object-[93%_center] lg:aspect-auto lg:absolute lg:inset-0 lg:h-full lg:object-right"
+                src={imgAccBg}
+              />
+            </div>
+            <div className="hidden xl:flex flex-1 min-w-[280px] min-h-[300px]" />
+          </>
+        ) : (
+          <>
         <div
           className="relative rounded-[16px] overflow-hidden xl:hidden
                      w-full
@@ -347,23 +431,25 @@ export default function BannerFiltros() {
              Mantém o texto à esquerda enquanto o background image
              expõe os produtos no lado direito da seção                            */}
         <div className="hidden xl:flex flex-1 min-w-[280px] min-h-[300px]" />
+          </>
+        )}
       </div>
 
       {/* ─── Stats bar — pinada ao rodapé (último elemento do flex-col da section) */}
-      <div className="relative bg-white flex flex-wrap gap-y-[30px] items-center justify-center max-w-[1400px] min-h-[140px] overflow-hidden py-[25px] rounded-[16px] w-full">
+      {!isAcc && <div className="relative bg-white flex flex-wrap gap-y-[30px] items-center justify-center max-w-[1400px] min-h-[140px] overflow-hidden py-[25px] rounded-[16px] w-full">
         {stats.map((s, i) => (
           <div
             key={i}
             className="flex flex-1 flex-wrap gap-[10px] items-center min-w-[160px] px-[20px]"
           >
-            <FigmaIcon src={s.icon} size={30} aspectW={s.iconW} aspectH={s.iconH} />
+            <FigmaIcon src={s.icon} size={36} aspectW={s.iconW} aspectH={s.iconH} />
             <div className="flex flex-col gap-[5px] flex-1 min-w-[100px]">
-              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#1f2e91]">{s.title}</p>
-              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] leading-[14px] text-[#2a2a2b]">{s.desc}</p>
+              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[17px] leading-[20px] text-[#1f2e91]">{s.title}</p>
+              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[17px] text-[#2a2a2b]">{s.desc}</p>
             </div>
           </div>
         ))}
-      </div>
+      </div>}
     </section>
   );
 }

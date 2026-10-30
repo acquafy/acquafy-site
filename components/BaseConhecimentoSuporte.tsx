@@ -199,12 +199,12 @@ export default function BaseConhecimentoSuporte() {
               <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] group-hover:text-white transition-colors text-center whitespace-nowrap">
                 {t.card1Btn}
               </span>
-              <div className="relative shrink-0" style={{ width: 9, height: 9 }}>
+              <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
                 <div className="absolute inset-0 transition-opacity opacity-100 group-hover:opacity-0">
-                  <FigmaIcon src={imgArrowBlue} size={9} aspectW={11.2} aspectH={8.84} />
+                  <FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} />
                 </div>
                 <div className="absolute inset-0 transition-opacity opacity-0 group-hover:opacity-100">
-                  <img src="/figma-assets/icon-arrow-white-bk.svg" alt="" className="block max-w-none size-full" />
+                  <img src="/figma-assets/icon-arrow-white-hover.svg" alt="" className="block max-w-none size-full" />
                 </div>
               </div>
             </a>
@@ -233,12 +233,12 @@ export default function BaseConhecimentoSuporte() {
               <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] group-hover:text-white transition-colors text-center whitespace-nowrap">
                 {t.card2Btn}
               </span>
-              <div className="relative shrink-0" style={{ width: 9, height: 9 }}>
+              <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
                 <div className="absolute inset-0 transition-opacity opacity-100 group-hover:opacity-0">
-                  <FigmaIcon src={imgArrowBlue} size={9} aspectW={11.2} aspectH={8.84} />
+                  <FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} />
                 </div>
                 <div className="absolute inset-0 transition-opacity opacity-0 group-hover:opacity-100">
-                  <img src="/figma-assets/icon-arrow-white-bk.svg" alt="" className="block max-w-none size-full" />
+                  <img src="/figma-assets/icon-arrow-white-hover.svg" alt="" className="block max-w-none size-full" />
                 </div>
               </div>
             </a>

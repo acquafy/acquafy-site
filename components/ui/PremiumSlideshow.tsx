@@ -34,7 +34,7 @@ export default function PremiumSlideshow() {
   const [active, setActive] = useState(0);
 
   return (
-    <div className="flex flex-col gap-[20px] h-[412px] items-center justify-center shrink-0 w-full">
+    <div className="flex flex-col gap-[20px] min-h-[412px] flex-1 items-center justify-center w-full">
       {/* Slide image — clicável para avançar slide */}
       <div
         className="flex-[1_0_0] min-h-px relative rounded-[16px] w-full cursor-pointer"

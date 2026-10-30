@@ -1,3 +1,39 @@
-<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path id="Vector" d="M1 7.44068V1H7.44068M41 7.44068V1H34.5593M1 34.5593V41H7.44068M41 34.5593V41H34.5593M17.822 17.822H7.65254V7.65254H17.822V17.822ZM25.0254 17.822H35.1949V7.65254H25.0254V17.822ZM17.822 25.0254H7.65254V35.1949H17.822V25.0254ZM27.2076 27.2076H33.0127V33.0127H27.2076V27.2076Z" stroke="var(--stroke-0, #0569FF)" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none"><svg x="0.42" y="0.42" width="41.16" height="41.16" viewBox="0 0 512 512" fill="none" stroke="#0569ff" stroke-width="23.137" stroke-linecap="round" stroke-linejoin="round">
+<g>
+	
+		<line x1="20" y1="256" x2="492" y2="256"/>
+	
+		<line x1="256" y1="492" x2="256" y2="20"/>
+	
+		<polyline points="&#10;&#9;&#9;20,100 20,20 100,20 &#9;"/>
+	
+		<polyline points="&#10;&#9;&#9;412,20 492,20 492,100 &#9;"/>
+	
+		<polyline points="&#10;&#9;&#9;100,492 20,492 20,412 &#9;"/>
+	
+		<polyline points="&#10;&#9;&#9;412,492 492,492 492,412 &#9;"/>
+	
+		<rect x="96" y="96" width="80" height="80"/>
+	
+		<rect x="96" y="336" width="80" height="80"/>
+	
+		<rect x="336" y="336" width="80" height="80"/>
+	
+		<rect x="336" y="96" width="80" height="80"/>
+</g>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</svg></svg>

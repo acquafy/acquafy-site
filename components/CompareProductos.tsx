@@ -13,8 +13,8 @@ import { useLang, type Lang } from "@/context/LanguageContext";
 const imgBannerBg       = "/figma-assets/compare-banner-bg.webp";
 const imgBannerProducts = "/figma-assets/compare-banner-products.webp";
 const imgBuyCursor      = "/figma-assets/cursor-buy.webp";
-const imgArrowWhite     = "/figma-assets/icon-arrow-white-b.svg";
-const imgArrowBlue      = "/figma-assets/icon-arrow-blue-a.svg";
+const imgArrowWhite     = "/figma-assets/icon-arrow-white-hover.svg";
+const imgArrowBlue      = "/figma-assets/icon-arrow-blue-b.svg";
 const imgMobile         = "/figma-assets/icon-mobile-a.svg";
 const imgLanguage       = "/figma-assets/icon-language-a.svg";
 const imgPlanetWeb      = "/figma-assets/icon-planetweb-a.svg";
@@ -1280,7 +1280,7 @@ export default function CompareProductos() {
                   <span className="font-['Articulat_CF:Bold'] text-[16px] leading-normal text-[#0233c3]">
                     {t.ctaSpecialist}
                   </span>
-                  <FigmaIcon src={imgArrowBlue} size={10} aspectW={30} aspectH={18} />
+                  <FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} />
                 </a>
               </div>
 
@@ -1363,7 +1363,7 @@ export default function CompareProductos() {
                     className="bg-[#0233c3] flex gap-[10px] items-center justify-center px-[20px] py-[10px] rounded-[8px] cursor-pointer hover:bg-[#002ba8] transition-colors"
                   >
                     <span className="font-['Articulat_CF:Bold'] text-[15px] leading-normal text-white whitespace-nowrap">{t.viewComparison}</span>
-                    <FigmaIcon src={imgArrowWhite} size={10} aspectW={30} aspectH={18} />
+                    <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
                   </button>
                 </div>
               )}
@@ -1418,7 +1418,7 @@ export default function CompareProductos() {
                       <span className="font-['Articulat_CF:Bold'] text-[15px] leading-normal text-white whitespace-nowrap">
                         Ver comparação
                       </span>
-                      <FigmaIcon src={imgArrowWhite} size={10} aspectW={30} aspectH={18} />
+                      <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
                     </button>
                   </div>
                 ) : (
@@ -1913,7 +1913,7 @@ export default function CompareProductos() {
                   {selectedIds.length > 0 ? t.modalCompare : t.modalClose}
                 </span>
                 {selectedIds.length > 0 && (
-                  <FigmaIcon src={imgArrowWhite} size={10} aspectW={30} aspectH={18} />
+                  <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
                 )}
               </button>
             </div>
