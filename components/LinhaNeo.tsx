@@ -909,10 +909,10 @@ function CardImage({ src, maxW = "170px" }: { src: string; maxW?: string }) {
 function PanelSlideshowEssentials() {
   const [active, setActive] = useState(0);
   return (
-    <div className="flex flex-col gap-[10px] items-center w-full">
+    <div className="flex flex-col gap-[10px] items-center justify-center w-full shrink-0">
       <div
         className="w-full min-w-[120px] shrink-0 cursor-pointer overflow-hidden bg-black box-border"
-        style={{ maxWidth: "300px", aspectRatio: "4561/2543", padding: "0.877%", borderRadius: "9.29% / 16.66%" }}
+        style={{ aspectRatio: "4561/2543", padding: "0.877%", borderRadius: "9.29% / 16.66%" }}
         onClick={() => setActive((active + 1) % panelEssentialsSrcs.length)}
         role="button"
         tabIndex={0}
@@ -995,7 +995,7 @@ export default function LinhaNeo() {
         <div className="flex flex-col gap-[20px] items-start w-full">
           <div className="flex flex-wrap gap-y-[20px] items-center justify-center w-full">
             <h2
-              className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] flex-1 min-w-[240px] bg-clip-text text-transparent text-center lg:text-left"
+              className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] flex-1 min-w-[240px] bg-clip-text text-transparent text-center lg:text-left"
               style={{ backgroundImage: "linear-gradient(to right, #0233c3, #0569ff)" }}
             >
               Neo Essentials
@@ -1019,7 +1019,7 @@ export default function LinhaNeo() {
                     <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] w-full">
                       {w.label}
                     </p>
-                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] leading-[14px] text-[#2a2a2b] w-full">
+                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[17px] text-[#2a2a2b] w-full">
                       {w.sub}
                     </p>
                   </div>
@@ -1054,11 +1054,11 @@ export default function LinhaNeo() {
                   <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#1f2e91] text-center win-1024:text-left w-full">
                     {t.panel.sub}
                   </p>
-                  <div className="flex flex-col h-[134px] items-start justify-between w-full shrink-0">
+                  <div className="flex flex-col gap-[10px] items-start w-full shrink-0">
                     {t.panel.checks.map((check, i) => (
                       <div key={i} className="flex gap-[10px] items-center w-full">
-                        <FigmaIcon src={imgFeatCheck} size={14} />
-                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] leading-[13px] text-[#2a2a2b] flex-1 min-w-0">
+                        <FigmaIcon src={imgFeatCheck} size={17} />
+                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#2a2a2b] flex-1 min-w-0">
                           {check}
                         </p>
                       </div>
@@ -1081,11 +1081,11 @@ export default function LinhaNeo() {
                   <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#1f2e91] text-center win-1024:text-left w-full">
                     {t.ai.sub}
                   </p>
-                  <div className="flex flex-col h-[134px] items-start justify-between w-full shrink-0">
+                  <div className="flex flex-col gap-[10px] items-start w-full shrink-0">
                     {t.ai.checks.map((check, i) => (
                       <div key={i} className="flex gap-[10px] items-center w-full">
-                        <FigmaIcon src={imgFeatCheck} size={14} />
-                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] leading-[13px] text-[#2a2a2b] flex-1 min-w-0">
+                        <FigmaIcon src={imgFeatCheck} size={17} />
+                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#2a2a2b] flex-1 min-w-0">
                           {check}
                         </p>
                       </div>
@@ -1105,11 +1105,11 @@ export default function LinhaNeo() {
               <div className="flex flex-col gap-[20px] items-center w-full">
                 <CardImage src={imgAppView} />
                 <div className="flex flex-col gap-[20px] items-center w-full win-1024:items-start">
-                  <div className="flex flex-col h-[134px] items-start justify-between w-full shrink-0">
+                  <div className="flex flex-col gap-[10px] items-start w-full shrink-0">
                     {t.ctrl.checks.map((check, i) => (
                       <div key={i} className="flex gap-[10px] items-center w-full">
-                        <FigmaIcon src={imgFeatCheck} size={14} />
-                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] leading-[13px] text-[#2a2a2b] flex-1 min-w-0">
+                        <FigmaIcon src={imgFeatCheck} size={17} />
+                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#2a2a2b] flex-1 min-w-0">
                           {check}
                         </p>
                       </div>
