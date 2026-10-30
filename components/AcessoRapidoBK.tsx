@@ -250,7 +250,7 @@ export default function AcessoRapidoBK() {
                 </p>
               </div>
               {!item.noPage && (
-                <FigmaIcon src={imgArrowAccent} size={12} aspectW={14.5333} aspectH={8.83675} />
+                <FigmaIcon src={imgArrowAccent} size={18} aspectW={18} aspectH={18} />
               )}
             </>
           );

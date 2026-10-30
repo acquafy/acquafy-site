@@ -3,11 +3,11 @@ import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
 const imgScale  = "/figma-assets/icon-scale-b.svg";  // 30×30
-const imgMoney  = "/figma-assets/icon-money-33px.svg";  // 33×30
-const imgGlobe  = "/figma-assets/icon-globe-30px-b.svg";  // 30×30
-const imgBrain  = "/figma-assets/icon-brain-30px-c.svg";  // 30×30
+const imgMoney  = "/figma-assets/icon-money-b.svg";  // 33×30
+const imgGlobe  = "/figma-assets/ts-icon-planet.svg";  // 30×30
+const imgBrain  = "/figma-assets/icon-brain-a.svg";  // 30×30
 const imgCrown  = "/figma-assets/icon-crown-30px.svg";  // 30×30
-const imgPhone  = "/figma-assets/icon-phone-30px.svg";  // 30×30
+const imgPhone  = "/figma-assets/icon-fone-list.svg";  // 30×30
 
 const T: Record<Lang, {
   heading1: string;
@@ -228,7 +228,7 @@ export default function PorqueParceiro() {
     <section className="bg-white flex flex-col gap-[40px] items-center justify-center px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
         {/* Header */}
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] text-center min-w-[240px] w-full">
+        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] text-center min-w-[240px] w-full">
           {t.heading1}
           <span className="text-[#0569ff]">{t.headingHighlight}</span>
         </h2>

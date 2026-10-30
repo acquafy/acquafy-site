@@ -225,9 +225,9 @@ export default function PlatformAppAiIot() {
 
   return (
     <section className="bg-white flex flex-col items-center justify-center overflow-hidden px-[20px] py-[40px] w-full">
-      <div className="bg-[#f6f9fe] flex flex-col gap-[40px] items-center justify-center max-w-[1400px] p-[20px] rounded-[16px] w-full">
+      <div className="bg-[#f6f9fe] flex flex-col gap-[20px] items-center justify-center max-w-[1400px] p-[20px] rounded-[16px] w-full">
 
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-center w-full">
+        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-center w-full">
           <span className="text-[#2a2a2b]">App + </span>
           <span className="text-[#6e54ef]">AI</span>
           <span className="text-[#2a2a2b]"> + </span>
@@ -237,10 +237,10 @@ export default function PlatformAppAiIot() {
         <div className="flex flex-wrap gap-[20px] items-stretch justify-center w-full">
           {items.map((item) => (
             <div key={item.label} className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center min-h-[135px] min-w-[140px] p-[20px] rounded-[12px]">
-              <div className="flex items-center justify-center shrink-0 size-[30px]">
-                <FigmaIcon src={item.icon} size={30} aspectW={item.iconW} aspectH={item.iconH} />
+              <div className="flex items-center justify-center shrink-0 size-[36px]">
+                <FigmaIcon src={item.icon} size={36} aspectW={item.iconW} aspectH={item.iconH} />
               </div>
-              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#1f2e91] text-center min-h-[45px] w-full flex items-center justify-center">
+              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[17px] leading-[20px] text-[#1f2e91] text-center min-h-[45px] w-full flex items-center justify-center">
                 {item.label}
               </p>
             </div>

@@ -33,11 +33,12 @@ const NAV_STRUCTURE = [
   },
   {
     href:  "/neo-line",
-    extra: ["/neo-media", "/filters", "/compare"],
+    extra: ["/neo-media", "/filters", "/accessories", "/compare"],
     dropdown: [
       { href: "/neo-line",  bg: "#0569ff", icon: "/figma-assets/icon-agua-pura-30px.svg" },
       { href: "/neo-media", bg: "#6e54ef", icon: "/figma-assets/icon-media.svg"          },
       { href: "/filters",   bg: "#ffa920", icon: "/figma-assets/icon-filtros-40px.svg"  },
+      { href: "/accessories", bg: "#0233c3", icon: "/figma-assets/icon-camisa.svg"      },
       { href: "/compare",   bg: "#36ae5c", icon: "/figma-assets/icon-check-a.svg"        },
     ],
   },
@@ -46,7 +47,7 @@ const NAV_STRUCTURE = [
     extra: ["/global-expansion", "/contact"],
     dropdown: [
       { href: "/about",            bg: "#0569ff", icon: "/figma-assets/icon-pessoas-foco-cliente.svg" },
-      { href: "/global-expansion", bg: "#6e54ef", icon: "/figma-assets/icon-globe-30px-b.svg"         },
+      { href: "/global-expansion", bg: "#6e54ef", icon: "/figma-assets/ts-icon-planet.svg"         },
       { href: "/contact",          bg: "#ffa920", icon: "/figma-assets/icon-phone-a.svg"              },
     ],
   },
@@ -66,7 +67,8 @@ const NAV_TEXT: Record<Lang, NavTxt[]> = {
     { label: "Produtos", dd: [
       { label: "Linha Neo",            desc: "Purificadores com Painel LED Touch, App, UV LED e filtros UF premium.",              cta: "Ver Linha Neo"   },
       { label: "Acquafy Media",        desc: "Comunicação e conteúdo multimídia integrados ao purificador.",                       cta: "Ver Media"       },
-      { label: "Filtros & Acessórios", desc: "Reposição inteligente com rastreabilidade e qualidade garantida.",                   cta: "Ver Filtros"     },
+      { label: "Filtros", desc: "Reposição inteligente com rastreabilidade e qualidade garantida.", cta: "Ver Filtros" },
+      { label: "Acessórios", desc: "Copos, camisetas, garrafas e brindes com a marca Acquafy.", cta: "Ver Acessórios" },
       { label: "Compare Produtos",     desc: "Encontre o modelo ideal comparando specs, capacidade e tecnologia.",                 cta: "Comparar Agora"  },
     ]},
     { label: "Empresa", dd: [
@@ -86,7 +88,8 @@ const NAV_TEXT: Record<Lang, NavTxt[]> = {
     { label: "Produtos", dd: [
       { label: "Linha Neo",            desc: "Purificadores com Painel LED Touch, Aplicação, UV LED e filtros UF premium.",              cta: "Ver Linha Neo"   },
       { label: "Acquafy Media",        desc: "Comunicação e conteúdo multimídia integrados ao purificador.",                             cta: "Ver Media"       },
-      { label: "Filtros & Acessórios", desc: "Reposição inteligente com rastreabilidade e qualidade garantida.",                         cta: "Ver Filtros"     },
+      { label: "Filtros", desc: "Reposição inteligente com rastreabilidade e qualidade garantida.", cta: "Ver Filtros" },
+      { label: "Acessórios", desc: "Copos, t-shirts, garrafas e brindes com a marca Acquafy.", cta: "Ver Acessórios" },
       { label: "Comparar Produtos",    desc: "Encontre o modelo ideal comparando especificações, capacidade e tecnologia.",              cta: "Comparar Agora"  },
     ]},
     { label: "Empresa", dd: [
@@ -106,7 +109,8 @@ const NAV_TEXT: Record<Lang, NavTxt[]> = {
     { label: "Products", dd: [
       { label: "Neo Line",              desc: "Purifiers with LED Touch Panel, App, UV LED and premium UF filters.",                   cta: "See Neo Line"    },
       { label: "Acquafy Media",         desc: "Multimedia communication and content integrated into the purifier.",                    cta: "See Media"       },
-      { label: "Filters & Accessories", desc: "Smart replacement with traceability and guaranteed quality.",                           cta: "See Filters"     },
+      { label: "Filters", desc: "Smart replacement with traceability and guaranteed quality.", cta: "See Filters" },
+      { label: "Accessories", desc: "Cups, shirts, bottles and gifts with the Acquafy brand.", cta: "See Accessories" },
       { label: "Compare Products",      desc: "Find the ideal model by comparing specs, capacity and technology.",                     cta: "Compare Now"     },
     ]},
     { label: "Company", dd: [
@@ -126,7 +130,8 @@ const NAV_TEXT: Record<Lang, NavTxt[]> = {
     { label: "Products", dd: [
       { label: "Neo Line",              desc: "Purifiers with LED Touch Panel, App, UV LED and premium UF filters.",                   cta: "See Neo Line"    },
       { label: "Acquafy Media",         desc: "Multimedia communication and content integrated into the purifier.",                    cta: "See Media"       },
-      { label: "Filters & Accessories", desc: "Smart replacement with traceability and guaranteed quality.",                           cta: "See Filters"     },
+      { label: "Filters", desc: "Smart replacement with traceability and guaranteed quality.", cta: "See Filters" },
+      { label: "Accessories", desc: "Cups, shirts, bottles and gifts with the Acquafy brand.", cta: "See Accessories" },
       { label: "Compare Products",      desc: "Find the ideal model by comparing specs, capacity and technology.",                     cta: "Compare Now"     },
     ]},
     { label: "Company", dd: [
@@ -146,7 +151,8 @@ const NAV_TEXT: Record<Lang, NavTxt[]> = {
     { label: "Productos", dd: [
       { label: "Línea Neo",            desc: "Purificadores con Panel LED Touch, App, UV LED y filtros UF premium.",                   cta: "Ver Línea Neo"      },
       { label: "Acquafy Media",        desc: "Comunicación y contenido multimedia integrados al purificador.",                         cta: "Ver Media"          },
-      { label: "Filtros y Accesorios", desc: "Reposición inteligente con trazabilidad y calidad garantizada.",                        cta: "Ver Filtros"        },
+      { label: "Filtros", desc: "Reposición inteligente con trazabilidad y calidad garantizada.", cta: "Ver Filtros" },
+      { label: "Accesorios", desc: "Vasos, camisetas, botellas y regalos con la marca Acquafy.", cta: "Ver Accesorios" },
       { label: "Comparar Productos",   desc: "Encuentra el modelo ideal comparando specs, capacidad y tecnología.",                   cta: "Comparar Ahora"     },
     ]},
     { label: "Empresa", dd: [
@@ -166,7 +172,8 @@ const NAV_TEXT: Record<Lang, NavTxt[]> = {
     { label: "Produits", dd: [
       { label: "Gamme Neo",               desc: "Purificateurs avec panneau LED tactile, App, UV LED et filtres UF premium.",               cta: "Voir la Gamme Neo"   },
       { label: "Acquafy Media",           desc: "Communication multimédia et contenu intégrés au purificateur.",                            cta: "Voir Media"          },
-      { label: "Filtres & Accessoires",   desc: "Remplacement intelligent avec traçabilité et qualité garantie.",                           cta: "Voir les Filtres"    },
+      { label: "Filtres", desc: "Remplacement intelligent avec traçabilité et qualité garantie.", cta: "Voir les Filtres" },
+      { label: "Accessoires", desc: "Verres, t-shirts, bouteilles et cadeaux à la marque Acquafy.", cta: "Voir les Accessoires" },
       { label: "Comparer les Produits",   desc: "Trouvez le modèle idéal en comparant specs, capacité et technologie.",                    cta: "Comparer"            },
     ]},
     { label: "Entreprise", dd: [
@@ -186,7 +193,8 @@ const NAV_TEXT: Record<Lang, NavTxt[]> = {
     { label: "Produkte", dd: [
       { label: "Neo-Linie",              desc: "Purifier mit LED-Touch-Panel, App, UV-LED und Premium-UF-Filtern.",                          cta: "Neo-Linie ansehen"  },
       { label: "Acquafy Media",          desc: "Multimedia-Kommunikation und Inhalte, integriert in den Purifier.",                         cta: "Media ansehen"      },
-      { label: "Filter & Zubehör",       desc: "Intelligenter Austausch mit Rückverfolgbarkeit und garantierter Qualität.",                  cta: "Filter ansehen"     },
+      { label: "Filter", desc: "Intelligenter Austausch mit Rückverfolgbarkeit und garantierter Qualität.", cta: "Filter ansehen" },
+      { label: "Zubehör", desc: "Becher, Shirts, Flaschen und Geschenke mit der Marke Acquafy.", cta: "Zubehör ansehen" },
       { label: "Produkte vergleichen",   desc: "Finden Sie das ideale Modell durch den Vergleich von Specs, Kapazität und Technologie.",    cta: "Jetzt vergleichen"  },
     ]},
     { label: "Unternehmen", dd: [
@@ -206,7 +214,8 @@ const NAV_TEXT: Record<Lang, NavTxt[]> = {
     { label: "Prodotti", dd: [
       { label: "Linea Neo",              desc: "Purificatori con pannello LED Touch, App, UV LED e filtri UF premium.",                      cta: "Vedi la Linea Neo"  },
       { label: "Acquafy Media",          desc: "Comunicazione multimediale e contenuti integrati nel purificatore.",                        cta: "Vedi Media"         },
-      { label: "Filtri & Accessori",     desc: "Sostituzione intelligente con tracciabilità e qualità garantita.",                           cta: "Vedi i Filtri"      },
+      { label: "Filtri", desc: "Sostituzione intelligente con tracciabilità e qualità garantita.", cta: "Vedi i Filtri" },
+      { label: "Accessori", desc: "Bicchieri, magliette, bottiglie e gadget con il marchio Acquafy.", cta: "Vedi gli Accessori" },
       { label: "Confronta Prodotti",     desc: "Trova il modello ideale confrontando specs, capacità e tecnologia.",                        cta: "Confronta ora"      },
     ]},
     { label: "Azienda", dd: [
@@ -226,7 +235,8 @@ const NAV_TEXT: Record<Lang, NavTxt[]> = {
     { label: "产品", dd: [
       { label: "Neo 系列",              desc: "配备 LED 触控面板、App、UV LED 及高级 UF 滤芯的净水机。",                                     cta: "查看 Neo 系列" },
       { label: "Acquafy Media",        desc: "集成于净水机的多媒体通信与内容系统。",                                                          cta: "查看 Media"   },
-      { label: "滤芯与配件",            desc: "具备可追溯性与质量保障的智能耗材更换方案。",                                                    cta: "查看滤芯"     },
+      { label: "滤芯", desc: "具备可追溯性与质量保障的智能耗材更换方案。", cta: "查看滤芯" },
+      { label: "配件", desc: "印有 Acquafy 品牌的杯子、T 恤、水瓶和礼品。", cta: "查看配件" },
       { label: "产品对比",              desc: "通过对比规格、容量和技术，找到最适合您的型号。",                                                 cta: "立即对比"     },
     ]},
     { label: "公司", dd: [
@@ -246,7 +256,8 @@ const NAV_TEXT: Record<Lang, NavTxt[]> = {
     { label: "製品", dd: [
       { label: "Neo ライン",             desc: "LED タッチパネル・App・UV LED・プレミアム UF フィルター搞載の浄水器。",                        cta: "Neo ラインを見る"  },
       { label: "Acquafy Media",         desc: "浄水器に統合されたマルチメディア通信とコンテンツ。",                                            cta: "Media を見る"      },
-      { label: "フィルター & アクセサリ", desc: "トレーサビリティと品質保証を備えたスマート交換サービス。",                                    cta: "フィルターを見る"  },
+      { label: "フィルター", desc: "トレーサビリティと品質保証を備えたスマート交換サービス。", cta: "フィルターを見る" },
+      { label: "アクセサリー", desc: "Acquafy ブランドのカップ、Tシャツ、ボトル、ノベルティ。", cta: "アクセサリーを見る" },
       { label: "製品を比較する",          desc: "スペック・容量・テクノロジーを比較して最適なモデルを見つけよう。",                            cta: "今すぐ比較"        },
     ]},
     { label: "企業情報", dd: [
@@ -266,7 +277,8 @@ const NAV_TEXT: Record<Lang, NavTxt[]> = {
     { label: "제품", dd: [
       { label: "Neo 라인",              desc: "LED 터치 패널, App, UV LED 및 프리미엄 UF 필터가 탑재된 정수기.",                              cta: "Neo 라인 보기"  },
       { label: "Acquafy Media",        desc: "정수기에 통합된 멀티미디어 커뮤니케이션 및 콘텐츠.",                                             cta: "Media 보기"     },
-      { label: "필터 & 액세서리",        desc: "추적성과 품질이 보장된 스마트 교체 솔루션.",                                                   cta: "필터 보기"      },
+      { label: "필터", desc: "추적성과 품질이 보장된 스마트 교체 솔루션.", cta: "필터 보기" },
+      { label: "액세서리", desc: "Acquafy 브랜드의 컵, 티셔츠, 물병, 기념품.", cta: "액세서리 보기" },
       { label: "제품 비교",              desc: "사양, 용량, 기술을 비교하여 최적의 모델을 찾아보세요.",                                        cta: "지금 비교하기"  },
     ]},
     { label: "회사", dd: [
@@ -286,7 +298,8 @@ const NAV_TEXT: Record<Lang, NavTxt[]> = {
     { label: "Produkter", dd: [
       { label: "Neo-linjen",              desc: "Reningsverk med LED-touchpanel, App, UV LED och premium UF-filter.",                        cta: "Se Neo-linjen"   },
       { label: "Acquafy Media",           desc: "Multimediakommunikation och innehåll integrerat i reningsverket.",                         cta: "Se Media"        },
-      { label: "Filter & Tillbehör",      desc: "Smart utbyte med spårbarhet och garanterad kvalitet.",                                     cta: "Se Filter"       },
+      { label: "Filter", desc: "Smart utbyte med spårbarhet och garanterad kvalitet.", cta: "Se Filter" },
+      { label: "Tillbehör", desc: "Muggar, tröjor, flaskor och present med Acquafy-märket.", cta: "Se Tillbehör" },
       { label: "Jämför Produkter",        desc: "Hitta den ideala modellen genom att jämföra specs, kapacitet och teknik.",                  cta: "Jämför Nu"       },
     ]},
     { label: "Företag", dd: [
@@ -306,7 +319,8 @@ const NAV_TEXT: Record<Lang, NavTxt[]> = {
     { label: "Tuotteet", dd: [
       { label: "Neo-linja",               desc: "Puhdistimet LED-kosketuspaneelilla, Appilla, UV LED:lla ja premium UF-suodattimilla.",     cta: "Katso Neo-linja"  },
       { label: "Acquafy Media",           desc: "Multimediaviestintä ja sisältö integroituna puhdistimeen.",                               cta: "Katso Media"      },
-      { label: "Suodattimet & Tarvikkeet", desc: "Älykäs vaihto jäljitettävyydellä ja taatulla laadulla.",                                cta: "Katso Suodattimet"},
+      { label: "Suodattimet", desc: "Älykäs vaihto jäljitettävyydellä ja taatulla laadulla.", cta: "Katso Suodattimet" },
+      { label: "Tarvikkeet", desc: "Acquafy-brändätyt mukit, paidat, pullot ja lahjat.", cta: "Katso Tarvikkeet" },
       { label: "Vertaile Tuotteita",      desc: "Löydä ihanteellinen malli vertaamalla speksejä, kapasiteettia ja teknologiaa.",            cta: "Vertaile Nyt"     },
     ]},
     { label: "Yritys", dd: [
@@ -326,7 +340,8 @@ const NAV_TEXT: Record<Lang, NavTxt[]> = {
     { label: "Продукция", dd: [
       { label: "Линейка Neo",              desc: "Очистители с LED-тачборным дисплеем, App, UV LED и премиум UF-фильтрами.",     cta: "См. линейку Neo"  },
       { label: "Acquafy Media",        desc: "Мультимедийная коммуникация и контент, интегрированные в очиститель.",   cta: "См. Media"    },
-      { label: "Фильтры & Аксессуары",       desc: "Умная замена с отслеживаемостью и гарантированным качеством.",   cta: "См. фильтры"    },
+      { label: "Фильтры", desc: "Умная замена с отслеживаемостью и гарантированным качеством.", cta: "См. фильтры" },
+      { label: "Аксессуары", desc: "Стаканы, футболки, бутылки и подарки с брендом Acquafy.", cta: "См. аксессуары" },
       { label: "Сравнить продукцию",       desc: "Найдите идеальную модель, сравнивая характеристики, емкость и технологии.",   cta: "Сравнить"   },
     ]},
     { label: "Компания", dd: [
@@ -346,7 +361,8 @@ const NAV_TEXT: Record<Lang, NavTxt[]> = {
     { label: "Produse", dd: [
       { label: "Linia Neo",              desc: "Purificatoare cu panou LED Touch, App, UV LED si filtre UF premium.",                        cta: "Vezi Linia Neo"   },
       { label: "Acquafy Media",          desc: "Comunicare multimedia si continut integrate in purificator.",                               cta: "Vezi Media"       },
-      { label: "Filtre & Accesorii",     desc: "Inlocuire inteligenta cu trasabilitate si calitate garantata.",                              cta: "Vezi Filtrele"    },
+      { label: "Filtre", desc: "Inlocuire inteligenta cu trasabilitate si calitate garantata.", cta: "Vezi Filtrele" },
+      { label: "Accesorii", desc: "Pahare, tricouri, sticle si cadouri cu marca Acquafy.", cta: "Vezi Accesoriile" },
       { label: "Compara Produse",        desc: "Gaseste modelul ideal comparand specificatii, capacitate si tehnologie.",                    cta: "Compara Acum"     },
     ]},
     { label: "Companie", dd: [
@@ -366,7 +382,8 @@ const NAV_TEXT: Record<Lang, NavTxt[]> = {
     { label: "מוצרים", dd: [
       { label: "קו Neo",              desc: "מטהרי מים עם לוח LED עם מגע, App, UV LED ופילטרי UF פרמיום.",    cta: "ראה קו Neo"   },
       { label: "Acquafy Media",        desc: "תקשורת מולטימדיה ותוכן משולבים במטהר המים.",   cta: "ראה Media"    },
-      { label: "פילטרים & אביזרים",       desc: "החלפה חכמה עם ניתנות מעקב ואיכות מובטחת.",   cta: "ראה פילטרים"   },
+      { label: "פילטרים", desc: "החלפה חכמה עם ניתנות מעקב ואיכות מובטחת.", cta: "ראה פילטרים" },
+      { label: "אביזרים", desc: "כוסות, חולצות, בקבוקים ומתנות עם המותג Acquafy.", cta: "ראה אביזרים" },
       { label: "השווה מוצרים",       desc: "מצא את הדגם האידאלי בהשוואת מפרטים, קיבולת וטכנולוגיה.",   cta: "השווה עכשו"   },
     ]},
     { label: "חברה", dd: [
@@ -378,7 +395,7 @@ const NAV_TEXT: Record<Lang, NavTxt[]> = {
   ],
 };
 
-const PARTNER_BTN: Record<Lang, string> = {
+export const PARTNER_BTN: Record<Lang, string> = {
   pt: "Seja um Parceiro",
   "pt-pt": "Seja um Parceiro",
   en: "Be a Partner",

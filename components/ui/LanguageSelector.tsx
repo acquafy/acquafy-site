@@ -5,9 +5,9 @@ import { useLang, type Lang } from "@/context/LanguageContext";
 
 // ── Assets ─────────────────────────────────────────────────────────────────
 const imgFlagBR_Full  = "/figma-assets/flag-br.svg";
-const imgArrowFooter  = "/figma-assets/icon-arrow-footer.svg";
+const imgArrowFooter  = "/figma-assets/icon-arrow-down.svg";
 const imgGlobeHeader  = "/figma-assets/icon-globe-header-18px.svg";
-const imgArrowHeader  = "/figma-assets/icon-arrow-header.svg";
+const imgArrowHeader  = "/figma-assets/icon-arrow-down.svg";
 
 const imgUSA     = "/figma-assets/flag-usa-30px.svg";
 const imgBR_Menu = "/figma-assets/flag-br.svg";

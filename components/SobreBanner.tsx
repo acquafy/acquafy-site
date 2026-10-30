@@ -5,15 +5,15 @@ import { useLang, type Lang } from "@/context/LanguageContext";
 // ── Assets ───────────────────────────────────────────────────────────────────
 const imgBg         = "/figma-assets/bg-desktop-lg.webp"; // lg+ bg fullscreen (≥1024px)
 const imgBannerCard = "/figma-assets/banner-card-mobile.webp"; // mobile card (<1024px)
-const imgGlobe      = "/figma-assets/icon-globe-badge.svg"; // badge globe  sq
+const imgGlobe      = "/figma-assets/icon-planet-b.svg"; // badge globe  sq
 const imgUsa        = "/figma-assets/flag-usa-sq.svg"; // USA flag     sq
 const imgInterfyIcon= "/figma-assets/icon-interfy.svg"; // Interfy icon sq
 const imgMobile     = "/figma-assets/icon-mobile-21px.svg"; // Mobile icon  21×30 portrait
-const imgArrowWhite = "/figma-assets/icon-arrow-white-solid-btn.svg"; // white arrow  (solid btn)
-const imgArrowBlue  = "/figma-assets/icon-arrow-blue-outline-c.svg"; // blue arrow   (outline btn)
+const imgArrowWhite = "/figma-assets/icon-arrow-white-hover.svg"; // white arrow  (solid btn)
+const imgArrowBlue  = "/figma-assets/icon-arrow-blue-b.svg"; // blue arrow   (outline btn)
 const imgAI         = "/figma-assets/icon-ai-40px.svg"; // AI IA        40×40 sq
 const imgWater      = "/figma-assets/icon-water-bubble-40px.svg"; // water bubble 40×40 sq
-const imgGlobe2     = "/figma-assets/icon-globe-connectivity-40px.svg"; // connectivity 40×40 sq
+const imgGlobe2     = "/figma-assets/ts-icon-planet.svg"; // connectivity 40×40 sq
 const imgSustent    = "/figma-assets/icon-sustent-b.svg"; // sustainability sq
 
 // ── Translations ──────────────────────────────────────────────────────────────
@@ -390,18 +390,18 @@ function CTAButtons({ stretch = false, btn1, btn2 }: { stretch?: boolean; btn1: 
         <span className="font-['Articulat_CF:Bold'] text-[16px] leading-normal text-white flex-1 text-center">
           {btn1}
         </span>
-        <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
+        <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
       </a>
       <a href="/contact" className={`group flex gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors cursor-pointer no-underline ${stretch ? "flex-[1_0_0]" : "shrink-0"}`}>
         <span className="font-['Articulat_CF:Bold'] text-[16px] leading-normal text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">
           {btn2}
         </span>
-        <div className="relative shrink-0" style={{ width: 9, height: 9 }}>
+        <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
           <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0 group-active:opacity-0">
-            <FigmaIcon src={imgArrowBlue} size={9} aspectW={11.2} aspectH={8.84} />
+            <FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} />
           </div>
           <div className="absolute inset-0 transition-opacity duration-150 opacity-0 group-hover:opacity-100 group-active:opacity-100">
-            <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
+            <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
           </div>
         </div>
       </a>

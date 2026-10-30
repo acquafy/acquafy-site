@@ -5,7 +5,7 @@ import { BtnAzulOutArrow } from "./ui/Buttons";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
 const imgMapaMundi = "/figma-assets/image-mapa-mundi.webp";
-const imgPlanetWeb = "/figma-assets/icon-planetweb-30px-c.svg";  // 30×30 sq
+const imgPlanetWeb = "/figma-assets/icon-globe-world.svg";  // 30×30 sq
 
 const T: Record<Lang, {
   heading1: string;
@@ -284,7 +284,7 @@ export default function ExpansaoGlobalPresenca() {
 
         {/* Section header */}
         <div className="flex flex-col gap-[10px] items-start text-center w-full">
-          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] w-full">
+          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] w-full">
             <span className="text-[#0569ff]">{t.heading1}</span>
             <span className="text-[#1f2e91]">{t.heading2}</span>
           </h2>
@@ -319,7 +319,7 @@ export default function ExpansaoGlobalPresenca() {
                     <div key={r.name} className="flex gap-[10px] items-start w-full">
                       <div className="bg-[#8bbaf2] rounded-full shrink-0 size-[14px] mt-[1px]" />
                       <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-0">
-                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#1f2e91] w-full">
+                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[17px] leading-[20px] text-[#1f2e91] w-full">
                           {r.name}
                         </p>
                         <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] leading-[14px] text-[#333] w-full">

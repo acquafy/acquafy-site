@@ -275,12 +275,12 @@ export default function CheckoutUp() {
           <div className="flex flex-wrap gap-[15px] items-center lg:justify-start justify-center w-full">
             {trustItems.map((item) => (
               <div key={item.title} className="flex flex-[1_0_0] gap-[10px] items-center min-w-[180px]">
-                <FigmaIcon src={item.icon} size={20} aspectW={item.aspectW} aspectH={item.aspectH} />
+                <FigmaIcon src={item.icon} size={24} aspectW={item.aspectW} aspectH={item.aspectH} />
                 <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-0">
-                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#1f2e91] w-full">
+                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[17px] leading-[20px] text-[#1f2e91] w-full">
                     {item.title}
                   </p>
-                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] leading-[14px] text-[#2a2a2b] w-full">
+                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[17px] text-[#2a2a2b] w-full">
                     {item.sub}
                   </p>
                 </div>

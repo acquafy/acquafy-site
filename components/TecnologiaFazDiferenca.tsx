@@ -4,8 +4,8 @@ import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
 const imgPurif    = "/figma-assets/ts-icon-agua-intel.svg";
-const imgBrain    = "/figma-assets/ts-icon-brain.svg";
-const imgIot      = "/figma-assets/ts-icon-iot.svg";
+const imgBrain    = "/figma-assets/icon-brain-a.svg";
+const imgIot      = "/figma-assets/icon-wifi-a.svg";
 const imgTela     = "/figma-assets/ts-icon-tela.svg";
 const imgShield   = "/figma-assets/ts-icon-shield-agua.svg";
 const imgScale    = "/figma-assets/ts-icon-scale.svg";
@@ -265,7 +265,7 @@ export default function TecnologiaFazDiferenca() {
 
         {/* Header */}
         <div className="flex flex-col gap-[10px] items-center text-center w-full">
-          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] max-w-[800px] w-full">
+          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] max-w-[800px] w-full">
             <span className="text-[#0569ff]">{t.heading1}</span>
             {t.heading2}
           </h2>

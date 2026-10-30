@@ -11,7 +11,7 @@ const imgWhatsApp  = "/figma-assets/icon-whatsapp.svg"; // 41.98×42   ~sq
 const imgPhone     = "/figma-assets/icon-phone-42px.svg"; // 42×42      sq
 const imgCalendar  = "/figma-assets/icon-calendar-b.svg"; // 38×42      portrait
 const imgMail      = "/figma-assets/icon-mail-42px.svg"; // 42×34      landscape
-const imgArrowBlue = "/figma-assets/icon-arrow-blue-small.svg"; // 11.2×8.84  landscape
+const imgArrowBlue = "/figma-assets/icon-arrow-blue-b.svg"; // 11.2×8.84  landscape
 
 const PHONE       = "+13218887963";
 const WHATSAPP    = `https://wa.me/${PHONE.replace("+", "")}`;
@@ -460,7 +460,7 @@ function CanalCard({
       <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] text-center whitespace-nowrap">
         {cta}
       </span>
-      <FigmaIcon src={imgArrowBlue} size={9} aspectW={11.2} aspectH={8.84} />
+      <FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} />
     </div>
   );
 
@@ -547,7 +547,7 @@ export default function OutrosCanais() {
         <div className="flex flex-col gap-[40px] items-center justify-center max-w-[1400px] w-full">
 
           <div className="flex flex-col gap-[10px] items-start text-center w-full">
-            <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] w-full">
+            <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] w-full">
               {t.heading}
             </h2>
             <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] w-full">

@@ -208,7 +208,7 @@ export default function FaleComEquipeSuporte() {
 
         {/* Header */}
         <div className="flex flex-col gap-[10px] items-start text-center w-full">
-          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91] w-full">
+          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] w-full">
             {t.heading}
           </h2>
           <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] w-full">

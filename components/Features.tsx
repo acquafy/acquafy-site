@@ -526,11 +526,11 @@ export default function Features() {
             <div className="flex flex-wrap justify-center gap-[20px] items-center min-h-[210px] w-full shrink-0">
               <CardImage src={imgPanel} outerAspect="4096/2265" />
               <div className="flex flex-1 flex-col gap-[20px] items-center min-w-[210px] win-1024:items-start">
-                <div className="flex flex-col h-[134px] items-start justify-between w-full shrink-0">
+                <div className="flex flex-col gap-[10px] items-start w-full shrink-0">
                   {t.card1Items.map((check, i) => (
                     <div key={i} className="flex gap-[10px] items-center w-full">
                       <FigmaIcon src={imgCheckin} size={14} />
-                      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] leading-[13px] text-[#2a2a2b] flex-1 min-w-0">
+                      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#2a2a2b] flex-1 min-w-0">
                         {check}
                       </p>
                     </div>
@@ -553,11 +553,11 @@ export default function Features() {
                 <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#1f2e91] text-center win-1024:text-left w-full">
                   {t.card2Subtitle}
                 </p>
-                <div className="flex flex-col h-[134px] items-start justify-between w-full shrink-0">
+                <div className="flex flex-col gap-[10px] items-start w-full shrink-0">
                   {t.card2Items.map((check, i) => (
                     <div key={i} className="flex gap-[10px] items-center w-full">
                       <FigmaIcon src={imgCheckin} size={14} />
-                      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] leading-[13px] text-[#2a2a2b] flex-1 min-w-0">
+                      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#2a2a2b] flex-1 min-w-0">
                         {check}
                       </p>
                     </div>
@@ -577,11 +577,11 @@ export default function Features() {
             <div className="flex flex-wrap justify-center gap-[20px] items-center min-h-[210px] w-full shrink-0">
               <CardImage src={imgAppView} outerAspect="1970/3639" />
               <div className="flex flex-1 flex-col gap-[20px] items-center min-w-[210px] win-1024:items-start">
-                <div className="flex flex-col h-[134px] items-start justify-between w-full shrink-0">
+                <div className="flex flex-col gap-[10px] items-start w-full shrink-0">
                   {t.card3Items.map((check, i) => (
                     <div key={i} className="flex gap-[10px] items-center w-full">
                       <FigmaIcon src={imgCheckin} size={14} />
-                      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] leading-[13px] text-[#2a2a2b] flex-1 min-w-0">
+                      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#2a2a2b] flex-1 min-w-0">
                         {check}
                       </p>
                     </div>

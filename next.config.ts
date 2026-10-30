@@ -22,6 +22,7 @@ const nextConfig: NextConfig = {
       { source: "/technology",       destination: "/tecnologia"           },
       { source: "/neo-line",         destination: "/linha-neo"            },
       { source: "/filters",          destination: "/filtros"              },
+      { source: "/accessories",      destination: "/acessorios"          },
       { source: "/about",            destination: "/sobre"                },
       { source: "/global-expansion", destination: "/expansao-global"      },
       { source: "/partnership",      destination: "/parceria"             },

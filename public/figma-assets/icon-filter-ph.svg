@@ -1,0 +1,11 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="36" height="38" viewBox="0 0 36 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="&#195;&#141;cone substitu&#195;&#173;vel">
+<path id="Vector" d="M25.8826 33.7976C24.01 35.7701 21.3628 37 18.4282 37C12.7522 37 8.15098 32.3987 8.15098 26.7228C8.15098 21.0468 12.7522 16.4455 18.4282 16.4455C24.1041 16.4455 28.7054 21.0468 28.7054 26.7228C28.7054 28.5778 28.214 30.3179 27.3542 31.8202M29.6033 6.99505V18.9852M26.219 9.96221L29.6033 6.99505L32.9876 9.96221M6.39667 6.99505V18.9852M3.01237 9.96221L6.39667 6.99505L9.78098 9.96221M18 1V12.9901M14.6157 3.96716L18 1L21.3843 3.96716M23.2188 28.0487C23.2188 30.6945 21.074 32.8393 18.4282 32.8393C15.7824 32.8393 13.6376 30.6945 13.6376 28.0487C13.6376 25.7099 17.1785 20.662 18.2151 19.571C18.3309 19.4492 18.5256 19.4492 18.6412 19.571C19.6778 20.662 23.2188 25.7099 23.2188 28.0487Z" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" stroke="url(#paint0_linear_0_75)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_0_75" x1="3.01237" y1="19" x2="32.9876" y2="19" gradientUnits="userSpaceOnUse">
+<stop stop-color="#0041FF"/>
+<stop offset="1" stop-color="#3F8CFF"/>
+</linearGradient>
+</defs>
+</svg>

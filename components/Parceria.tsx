@@ -8,9 +8,9 @@ const imgPlatinum = "/figma-assets/product-platinum-e.webp";
 const imgCheckin = "/figma-assets/icon-check-d.svg";
 
 const imgPartner      = "/figma-assets/icon-partner-a.svg";
-const imgCertificado  = "/figma-assets/icon-certificado-b.svg";
+const imgCertificado  = "/figma-assets/icon-certificate.svg";
 const imgMarketing    = "/figma-assets/icon-marketing-b.svg";
-const imgFone         = "/figma-assets/icon-fone-b.svg";
+const imgFone         = "/figma-assets/icon-phone-a.svg";
 
 const TIER_ICONS = [
   { icon: imgSilver,   name: "Silver",   nameColor: "#3e4650" },
@@ -313,7 +313,7 @@ export default function Parceria() {
   return (
     <section className="bg-white flex flex-col gap-[20px] items-center justify-center px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[5px] items-center max-w-[1400px] overflow-hidden w-full">
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] min-w-[240px] w-full text-center lg:text-left">
+        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] min-w-[240px] w-full text-center lg:text-left">
           <span className="text-[#2a2a2b]">{t.h2a}</span>
           <span className="text-[#0233c3]">{t.h2b}</span>
         </h2>
@@ -364,7 +364,7 @@ export default function Parceria() {
         <div className="bg-[#f6f9fe] flex flex-1 flex-col gap-[20px] items-center justify-between min-h-[206px] min-w-[280px] p-[20px] rounded-[16px]">
           {BENEFIT_ICONS.map((item, bi) => (
             <div key={bi} className="flex gap-[10px] items-center w-full">
-              <FigmaIcon src={item.icon} size={20} aspectW={item.aspectW} aspectH={item.aspectH} />
+              <FigmaIcon src={item.icon} size={24} aspectW={item.aspectW} aspectH={item.aspectH} />
               <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#2a2a2b] flex-1 min-w-0">
                 {t.benefits[bi]}
               </p>

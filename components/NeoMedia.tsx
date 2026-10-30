@@ -6,7 +6,7 @@ import { PartnerModal, FORM_T } from "./ModelosParceria";
 
 const imgBg          = "/figma-assets/bg-c.webp";
 const imgProduct     = "/figma-assets/acquafy-media-totem.webp";
-const imgArrowBlue   = "/figma-assets/icon-arrow-blue-outline-b.svg";
+const imgArrowBlue   = "/figma-assets/icon-arrow-blue-b.svg";
 const imgArrowWhite  = "/figma-assets/icon-arrow-white-hover.svg";
 
 const imgMarketing  = "/figma-assets/icon-marketing-landscape.svg";
@@ -362,7 +362,7 @@ export default function NeoMedia() {
         <div className="relative z-10 flex flex-col gap-[20px] items-start min-w-[240px] w-full lg:flex-[1_0_0]">
 
           <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start justify-center min-w-[240px] pt-[20px]">
-            <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-white w-full text-center lg:text-left">
+            <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-white w-full text-center lg:text-left">
               Neo Media
             </h2>
             <div className="flex flex-wrap gap-y-[20px] items-center w-full">
@@ -381,12 +381,12 @@ export default function NeoMedia() {
                     <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors text-center">
                       {t.btnInvest}
                     </span>
-                    <div className="relative shrink-0" style={{ width: 9, height: 9 }}>
+                    <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
                       <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0 group-active:opacity-0">
-                        <FigmaIcon src={imgArrowBlue} size={9} aspectW={11.2} aspectH={8.84} />
+                        <FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} />
                       </div>
                       <div className="absolute inset-0 transition-opacity duration-150 opacity-0 group-hover:opacity-100 group-active:opacity-100">
-                        <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
+                        <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
                       </div>
                     </div>
                   </button>
@@ -397,8 +397,8 @@ export default function NeoMedia() {
                     <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white text-center">
                       {t.btnBuy}
                     </span>
-                    <div className="relative shrink-0" style={{ width: 9, height: 9 }}>
-                      <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
+                    <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
+                      <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
                     </div>
                   </a>
                 </div>

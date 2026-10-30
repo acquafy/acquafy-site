@@ -11,7 +11,7 @@ const imgBg2    = "/figma-assets/bg-slide-2-xl.webp";
 const imgMockup  = "/figma-assets/image-banner-home.webp";
 const imgFrame36 = "/figma-assets/frame-36-mobile-product.webp";
 // Slide 1 feature icons
-const imgPlanetWeb = "/figma-assets/icon-planetweb-30px-b.svg";
+const imgPlanetWeb = "/figma-assets/icon-planet-b.svg";
 const imgCloud     = "/figma-assets/icon-cloud-30px.svg";
 const imgAI        = "/figma-assets/icon-ai-30px-b.svg";
 const imgGlobe     = "/figma-assets/icon-globe-30px-a.svg";
@@ -22,15 +22,15 @@ const imgWater20   = "/figma-assets/icon-water-20.svg";
 const imgPlugPlay  = "/figma-assets/icon-plug-play.svg";
 const imgGiftCTA   = "/figma-assets/icon-gift-cta.svg";
 // Arrows
-const imgArrowWhite = "/figma-assets/icon-arrow-white-a.svg";
-const imgArrowBlue  = "/figma-assets/icon-arrow-blue-outline-a.svg";
+const imgArrowWhite = "/figma-assets/icon-arrow-white-hover.svg";
+const imgArrowBlue  = "/figma-assets/icon-arrow-blue-b.svg";
 // Stats bar 1 icons
-const imgGlobeStats   = "/figma-assets/icon-globe-stats-30px.svg";
+const imgGlobeStats   = "/figma-assets/icon-globe-nova-fase.svg";
 const imgChatStats    = "/figma-assets/icon-chat-stats.svg";
-const imgMobileStats  = "/figma-assets/icon-mobile-stats.svg";
-const imgWifiStats    = "/figma-assets/icon-wifi-stats.svg";
+const imgMobileStats  = "/figma-assets/icon-app-control.svg";
+const imgWifiStats    = "/figma-assets/icon-wifi-2025.svg";
 const imgPessoasStats = "/figma-assets/icon-pessoas-stats.svg";
-const imgMediaStats   = "/figma-assets/icon-media-stats.svg";
+const imgMediaStats   = "/figma-assets/icon-bpm-play.svg";
 // Stats bar 2 icons
 const imgAguaPura = "/figma-assets/icon-agua-pura-30px.svg";
 const imgShield   = "/figma-assets/icon-shield-26px-b.svg";
@@ -803,13 +803,13 @@ export default function Hero() {
             <div className="flex flex-wrap gap-[20px] items-center justify-center max-w-[720px] w-full">
               <a href="/neo-line" className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
                 <span className="font-['Articulat_CF:Bold'] text-[16px] text-white flex-1 text-center">{t.s1Cta1}</span>
-                <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
+                <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
               </a>
               <a href="/compare" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
                 <span className="font-['Articulat_CF:Bold'] text-[16px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">{t.s1Cta2mob}</span>
-                <div className="relative shrink-0" style={{ width: 9, height: 9 }}>
-                  <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0 group-active:opacity-0"><FigmaIcon src={imgArrowBlue} size={9} aspectW={11.2} aspectH={8.84} /></div>
-                  <div className="absolute inset-0 transition-opacity duration-150 opacity-0 group-hover:opacity-100 group-active:opacity-100"><FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} /></div>
+                <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
+                  <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0 group-active:opacity-0"><FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} /></div>
+                  <div className="absolute inset-0 transition-opacity duration-150 opacity-0 group-hover:opacity-100 group-active:opacity-100"><FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} /></div>
                 </div>
               </a>
             </div>
@@ -877,7 +877,7 @@ export default function Hero() {
 
       {/* ══ DESKTOP LAYOUT (xl+) ══ */}
       <div
-        className="hidden xl:flex relative flex-1 flex-col gap-[20px] items-center justify-center w-full cursor-pointer"
+        className="hidden xl:flex relative flex-1 min-h-0 flex-col gap-[20px] items-center justify-center w-full cursor-pointer"
         onClick={(e) => {
           const target = e.target as HTMLElement;
           if (!target.closest("button, a")) setSlide((s) => (s + 1) % 2);
@@ -958,13 +958,13 @@ export default function Hero() {
               <div className="flex flex-wrap gap-[20px] items-center justify-start w-full">
                 <a href="/neo-line" className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
                   <span className="font-['Articulat_CF:Bold'] text-[16px] text-white flex-1 text-center">{t.s1Cta1}</span>
-                  <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
+                  <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
                 </a>
                 <a href="/platform" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
                   <span className="font-['Articulat_CF:Bold'] text-[16px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">{t.s1Cta2desk}</span>
-                  <div className="relative shrink-0" style={{ width: 9, height: 9 }}>
-                    <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0 group-active:opacity-0"><FigmaIcon src={imgArrowBlue} size={9} aspectW={11.2} aspectH={8.84} /></div>
-                    <div className="absolute inset-0 transition-opacity duration-150 opacity-0 group-hover:opacity-100 group-active:opacity-100"><FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} /></div>
+                  <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
+                    <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0 group-active:opacity-0"><FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} /></div>
+                    <div className="absolute inset-0 transition-opacity duration-150 opacity-0 group-hover:opacity-100 group-active:opacity-100"><FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} /></div>
                   </div>
                 </a>
               </div>
@@ -1003,7 +1003,7 @@ export default function Hero() {
 
       {/* ══ STATS BAR ══ */}
       {slide === 0 ? (
-        <div className="relative bg-[#0233c3] flex flex-wrap gap-y-[30px] items-center justify-center max-w-[1400px] overflow-hidden px-[20px] py-[25px] rounded-[16px] w-full">
+        <div className="relative shrink-0 bg-[#0233c3] flex flex-wrap gap-y-[30px] items-center justify-center max-w-[1400px] overflow-hidden px-[20px] py-[25px] rounded-[16px] w-full">
           {STATS1_ICONS.map((stat, i) => {
             const text = t.stats1[i];
             return (
@@ -1024,7 +1024,7 @@ export default function Hero() {
           })}
         </div>
       ) : (
-        <div className="relative bg-white flex flex-col xl:flex-row gap-[30px] xl:gap-x-[20px] items-center justify-center max-w-[1400px] min-h-[85px] overflow-hidden px-[20px] py-[25px] rounded-[16px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.1)] w-full">
+        <div className="relative shrink-0 bg-white flex flex-col xl:flex-row gap-[30px] xl:gap-x-[20px] items-center justify-center max-w-[1400px] min-h-[85px] overflow-hidden px-[20px] py-[25px] rounded-[16px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.1)] w-full">
           <div className="flex flex-[1_0_0] gap-[10px] items-center min-w-[240px] max-w-[480px]">
             <FigmaIcon src={imgAguaPura} size={30} />
             <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] flex-1 min-w-px">

@@ -25,3 +25,7 @@ Thumbs.db
 # Misc
 *.tmp
 .vercel
+
+# icon build
+tools/icons/node_modules/
+tools/icons/icon_report.json

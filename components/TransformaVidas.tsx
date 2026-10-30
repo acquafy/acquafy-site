@@ -8,7 +8,7 @@ const imgBgDesktop     = "/figma-assets/bg-desktop-city.webp";
 const imgFamilyDesktop = "/figma-assets/photo-family-desktop.webp";
 const imgBgMobile      = "/figma-assets/bg-mobile-gradient.webp";
 const imgFamilyMobile  = "/figma-assets/photo-family-mobile.webp";
-const imgArrowBlue     = "/figma-assets/icon-arrow-blue-outline-btn.svg";
+const imgArrowBlue     = "/figma-assets/icon-arrow-blue-b.svg";
 const imgArrowWhite    = "/figma-assets/icon-arrow-white-hover.svg";
 
 const T: Record<Lang, {
@@ -365,7 +365,7 @@ function CampaignModal({ ft, onClose }: { ft: CampaignFormLang; onClose: () => v
             <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-white text-center whitespace-nowrap">
               {ft.submitBtn}
             </span>
-            <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
+            <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
           </button>
 
           <label className="flex gap-[9px] items-center w-full cursor-pointer shrink-0">
@@ -437,12 +437,12 @@ function ParticipateButton({ label, onClick }: { label: string; onClick: () => v
       <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors text-center whitespace-nowrap">
         {label}
       </span>
-      <div className="relative shrink-0" style={{ width: 9, height: 9 }}>
+      <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
         <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0 group-active:opacity-0">
-          <FigmaIcon src={imgArrowBlue} size={9} aspectW={11.2} aspectH={8.84} />
+          <FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} />
         </div>
         <div className="absolute inset-0 transition-opacity duration-150 opacity-0 group-hover:opacity-100 group-active:opacity-100">
-          <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
+          <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
         </div>
       </div>
     </button>

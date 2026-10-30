@@ -5,7 +5,7 @@ import { useLang, type Lang } from "@/context/LanguageContext";
 
 const imgBg   = "/figma-assets/bg-k.webp";
 const imgChat = "/figma-assets/icon-chat-b.svg";
-const imgArrow= "/figma-assets/icon-arrow-b.svg";
+const imgArrow= "/figma-assets/icon-arrow-blue-b.svg";
 
 const T: Record<Lang, { heading: string; btnDemo: string; btnSpecialist: string }> = {
   pt: {
@@ -115,7 +115,7 @@ export default function PlatformCta() {
             <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors text-center whitespace-nowrap">
               {t.btnDemo}
             </span>
-            <div className="relative shrink-0" style={{ width: 9, height: 9 }}>
+            <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
               <img alt="" className="block max-w-none size-full" src={imgArrow} />
             </div>
           </a>

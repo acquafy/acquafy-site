@@ -8,19 +8,19 @@ import { PartnerModal, FORM_T } from "./ModelosParceria";
 
 const imgBg     = "/figma-assets/bg-h.webp";
 const imgFrame  = "/figma-assets/frame-image.webp";
-const imgPlanet = "/figma-assets/icon-planet-c.svg";
+const imgPlanet = "/figma-assets/icon-planet-b.svg";
 
 const imgPeople = "/figma-assets/icon-people-b.svg";
 const imgWater  = "/figma-assets/icon-water-d.svg";
 const imgScreen = "/figma-assets/icon-screen.svg";
 const imgMoneyS = "/figma-assets/icon-money-small-s.svg";
-const imgMobile = "/figma-assets/icon-mobile-d.svg";
+const imgMobile = "/figma-assets/icon-mobile-c.svg";
 const imgLocal  = "/figma-assets/icon-local-b.svg";
 
 const imgPlay   = "/figma-assets/icon-play-b.svg";
-const imgQR     = "/figma-assets/icon-qr-b.svg";
+const imgQR     = "/figma-assets/icon-qr-a.svg";
 const imgAI     = "/figma-assets/icon-ai-30px-e.svg";
-const imgMoneyL = "/figma-assets/icon-money-large-l.svg";
+const imgMoneyL = "/figma-assets/icon-money-b.svg";
 const imgWifi   = "/figma-assets/icon-wifi-a.svg";
 
 const T: Record<Lang, {
@@ -512,7 +512,7 @@ export default function NeoMediaBanner() {
             >
               Acquafy Media
             </h1>
-            <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91]">
+            <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91]">
               {t.h2}
             </h2>
             <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#333]">

@@ -112,7 +112,7 @@ const T: Record<Lang, {
 };
 
 const imgArrowBlue  = "/figma-assets/icon-arrow-blue-b.svg";
-const imgArrowWhite = "/figma-assets/icon-arrow-white-solid.svg";
+const imgArrowWhite = "/figma-assets/icon-arrow-white-hover.svg";
 
 type Props = {
   slug: string | null;
@@ -213,7 +213,7 @@ export default function TopicPopup({ slug, onClose }: Props) {
                 </p>
                 <div className="flex gap-[4px] items-center pt-[8px] border-t border-[#f0f4fb]">
                   <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] text-[#0233c3]">{t.readArticle}</span>
-                  <FigmaIcon src={imgArrowBlue} size={8} aspectW={11.2} aspectH={8.84} />
+                  <FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} />
                 </div>
               </Link>
             ))}
@@ -233,7 +233,7 @@ export default function TopicPopup({ slug, onClose }: Props) {
             <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white whitespace-nowrap">
               {t.viewKnowledgeBase}
             </span>
-            <FigmaIcon src={imgArrowWhite} size={9} aspectW={11.2} aspectH={8.84} />
+            <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
           </Link>
         </div>
       </div>

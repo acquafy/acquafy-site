@@ -8,8 +8,8 @@ const imgBgEssentials = "/figma-assets/bg-essentials.webp";
 const imgBgPremium    = "/figma-assets/bg-premium.webp";
 
 // Checkin icons
-const imgCheckinBlue   = "/figma-assets/icon-check-blue-essentials.svg"; // blue (essentials)
-const imgCheckinPurple = "/figma-assets/icon-check-purple-premium.svg"; // purple (premium)
+const imgCheckinBlue   = "/figma-assets/icon-check-blue-a.svg"; // blue (essentials)
+const imgCheckinPurple = "/figma-assets/icon-check-purple-a.svg"; // purple (premium)
 
 // Product images — catalog via fonte única (lib/products.ts)
 const imgNeoFit          = PRODUCT_IMAGES["neo-fit"];
@@ -297,7 +297,7 @@ export default function NeoVsPremium() {
       <div className="flex flex-col gap-[40px] items-center justify-center max-w-[1400px] w-full">
 
         {/* Title */}
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-center w-full">
+        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-center w-full">
           <span className="text-[#0569ff]">Neo Essentials</span>
           {" vs "}
           <span

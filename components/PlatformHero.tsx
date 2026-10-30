@@ -361,12 +361,12 @@ function BadgeRow({ badges }: { badges: { title: string; sub: string }[] }) {
     <>
       {badges.map((b, i) => (
         <div key={b.title} className="flex flex-[1_0_0] gap-[8px] items-center min-w-[160px]">
-          <div className="flex items-center justify-center shrink-0 size-[26px]">
-            <FigmaIcon src={trustBadgeIcons[i].icon} size={26} aspectW={trustBadgeIcons[i].iconW} aspectH={trustBadgeIcons[i].iconH} />
+          <div className="flex items-center justify-center shrink-0 size-[31px]">
+            <FigmaIcon src={trustBadgeIcons[i].icon} size={31} aspectW={trustBadgeIcons[i].iconW} aspectH={trustBadgeIcons[i].iconH} />
           </div>
           <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-px">
-            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#1f2e91]">{b.title}</p>
-            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] leading-[14px] text-[#2a2a2b]">{b.sub}</p>
+            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[17px] leading-[20px] text-[#1f2e91]">{b.title}</p>
+            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[17px] text-[#2a2a2b]">{b.sub}</p>
           </div>
         </div>
       ))}

@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "icons:build": "python -I tools/icons/build2.py",
+    "icons:watch": "node tools/icons/watch.js"
   },
   "dependencies": {
     "@stripe/react-stripe-js": "^6.6.0",

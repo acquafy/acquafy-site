@@ -202,7 +202,7 @@ const T: Record<Lang, {
 };
 
 const icons = [
-  { icon: "/figma-assets/icon-global-monitoring.svg",      aspectW: 30, aspectH: 30, bg: "#0569ff" },
+  { icon: "/figma-assets/icon-globe-nova-fase.svg",      aspectW: 30, aspectH: 30, bg: "#0569ff" },
   { icon: "/figma-assets/icon-preventive-maintenance.svg", aspectW: 30, aspectH: 30, bg: "#36ae5c" },
   { icon: "/figma-assets/icon-filter-365days.svg",         aspectW: 36, aspectH: 40, bg: "#ffa920" },
   { icon: "/figma-assets/icon-app-control.svg",            aspectW: 21, aspectH: 30, bg: "#6e54ef" },
@@ -221,7 +221,7 @@ export default function RecursosAppAiIot() {
       <div className="flex flex-col gap-[40px] items-start max-w-[1400px] w-full">
 
         {/* Título */}
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-center w-full">
+        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-center w-full">
           <span className="text-[#0569ff]">{t.heading1}</span>
           <span className="text-[#1f2e91]">{t.heading2}</span>
         </h2>

@@ -1,0 +1,22 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Vector">
+<path d="M9.00001 0H1.49998C0.750025 0 0 0.599976 0 1.49998V8.99999C0 9.89999 0.750025 10.5 1.49998 10.5H9.00001C9.75004 10.5 10.5 9.89999 10.5 8.99999V1.49998C10.5 0.599976 9.75004 0 9.00001 0ZM7.50004 7.50002H3.00003V3.00002H7.50004V7.50002Z" fill="var(--fill-0, white)"/>
+<path d="M9.00001 19.5H1.49998C0.750025 19.5 0 20.1 0 21V28.5C0 29.4 0.750025 30 1.49998 30H9.00001C9.75004 30 10.5 29.4 10.5 28.5V21C10.5 20.1 9.75004 19.5 9.00001 19.5ZM7.50004 27H3.00003V22.5H7.50004V27Z" fill="var(--fill-0, white)"/>
+<path d="M28.5 0H21.0001C20.25 0 19.5 0.599976 19.5 1.49998V8.99999C19.5 9.89999 20.25 10.5 21 10.5H28.5C29.25 10.5 30 9.89999 30 8.99999V1.49998C30.0001 0.599976 29.25 0 28.5 0ZM27 7.50002H22.5V3.00002H27V7.50002Z" fill="var(--fill-0, white)"/>
+<path d="M16.5001 7.50002H13.5V10.5H16.5001V7.50002Z" fill="var(--fill-0, white)"/>
+<path d="M16.5001 13.5H13.5V16.5H16.5001V13.5Z" fill="var(--fill-0, white)"/>
+<path d="M16.5001 19.5H13.5V22.5H16.5001V19.5Z" fill="var(--fill-0, white)"/>
+<path d="M16.5001 25.5H13.5V28.5H16.5001V25.5Z" fill="var(--fill-0, white)"/>
+<path d="M22.5 25.5H19.5V28.5H22.5V25.5Z" fill="var(--fill-0, white)"/>
+<path d="M28.5001 25.5H25.5001V28.5H28.5001V25.5Z" fill="var(--fill-0, white)"/>
+<path d="M22.5 13.5H19.5V16.5H22.5V13.5Z" fill="var(--fill-0, white)"/>
+<path d="M28.5001 13.5H25.5001V16.5H28.5001V13.5Z" fill="var(--fill-0, white)"/>
+<path d="M10.5001 13.5H7.50004V16.5H10.5001V13.5Z" fill="var(--fill-0, white)"/>
+<path d="M19.5001 16.5H16.5001V19.5H19.5001V16.5Z" fill="var(--fill-0, white)"/>
+<path d="M19.5001 22.5H16.5001V25.5H19.5001V22.5Z" fill="var(--fill-0, white)"/>
+<path d="M25.5001 22.5H22.5V25.5H25.5001V22.5Z" fill="var(--fill-0, white)"/>
+<path d="M25.5001 16.5H22.5V19.5H25.5001V16.5Z" fill="var(--fill-0, white)"/>
+<path d="M22.5 19.5H19.5V22.5H22.5V19.5Z" fill="var(--fill-0, white)"/>
+<path d="M28.5001 19.5H25.5001V22.5H28.5001V19.5Z" fill="var(--fill-0, white)"/>
+</g>
+</svg>

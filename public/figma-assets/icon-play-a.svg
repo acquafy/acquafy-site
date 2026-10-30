@@ -1,6 +1,1 @@
-<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 31.5 31.5" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="Icon">
-<path d="M15.75 30.75C24.0343 30.75 30.75 24.0343 30.75 15.75C30.75 7.46573 24.0343 0.75 15.75 0.75C7.46573 0.75 0.75 7.46573 0.75 15.75C0.75 24.0343 7.46573 30.75 15.75 30.75Z" stroke="var(--stroke-0, #FFA920)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M12.75 9.75L21.75 15.75L12.75 21.75V9.75Z" stroke="var(--stroke-0, #FFA920)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-</g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="31.5" height="31.5" viewBox="0 0 31.5 31.5" fill="none"><svg x="-1.89" y="-1.89" width="35.28" height="35.28" viewBox="0 0 24 24" fill="none" stroke="#ffa920" stroke-width="1.051" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path stroke-linejoin="round" d="M15.945 12.395c-.176.627-1.012 1.07-2.682 1.955c-1.615.856-2.422 1.285-3.073 1.113a1.66 1.66 0 0 1-.712-.393C9 14.62 9 13.746 9 12s0-2.62.478-3.07c.198-.186.443-.321.712-.392c.65-.173 1.458.256 3.073 1.112c1.67.886 2.506 1.329 2.682 1.955c.073.259.073.531 0 .79Z"/></svg></svg>

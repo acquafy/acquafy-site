@@ -1,0 +1,13 @@
+{
+  "name": "acquafy-icon-build",
+  "private": true,
+  "description": "Regenerates public/figma-assets icons from icon sets (see README.md)",
+  "dependencies": {
+    "@iconify-json/hugeicons": "*",
+    "@iconify-json/iconoir": "*",
+    "@iconify-json/iconoven": "*",
+    "@iconify-json/lucide": "*",
+    "@iconify-json/majesticons": "*",
+    "@iconify-json/tabler": "*"
+  }
+}

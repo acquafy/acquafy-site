@@ -8,8 +8,8 @@ const imgMockup = "/figma-assets/banner-app-ai-iot-menor.webp";
 const imgMobile = "/figma-assets/icon-mobile-20px.svg";
 const imgBrain  = "/figma-assets/icon-brain-d.svg";
 const imgIoT    = "/figma-assets/icon-iot-main.svg";
-const imgArrowW = "/figma-assets/icon-arrow-white-a.svg";
-const imgArrowB = "/figma-assets/icon-arrow-blue-outline-a.svg";
+const imgArrowW = "/figma-assets/icon-arrow-white-hover.svg";
+const imgArrowB = "/figma-assets/icon-arrow-blue-b.svg";
 
 // ── Traduções ─────────────────────────────────────────────────────────────────
 const T: Record<Lang, {
@@ -362,7 +362,7 @@ export default function HeroAppAiIot() {
               <span className="font-['Articulat_CF:Bold'] text-[16px] text-white flex-1 text-center">
                 {t.btnPrimary}
               </span>
-              <FigmaIcon src={imgArrowW} size={9} aspectW={11.2} aspectH={8.84} />
+              <FigmaIcon src={imgArrowW} size={18} aspectW={18} aspectH={18} />
             </button>
 
             {/* Secundário */}
@@ -374,12 +374,12 @@ export default function HeroAppAiIot() {
               <span className="font-['Articulat_CF:Bold'] text-[16px] text-[#0233c3] group-hover:text-white transition-colors flex-1 text-center">
                 {t.btnSecondary}
               </span>
-              <div className="relative shrink-0" style={{ width: 9, height: 9 }}>
+              <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
                 <div className="absolute inset-0 opacity-100 group-hover:opacity-0 transition-opacity duration-150">
-                  <FigmaIcon src={imgArrowB} size={9} aspectW={11.2} aspectH={8.84} />
+                  <FigmaIcon src={imgArrowB} size={18} aspectW={18} aspectH={18} />
                 </div>
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-150">
-                  <FigmaIcon src={imgArrowW} size={9} aspectW={11.2} aspectH={8.84} />
+                  <FigmaIcon src={imgArrowW} size={18} aspectW={18} aspectH={18} />
                 </div>
               </div>
             </button>

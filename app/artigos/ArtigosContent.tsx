@@ -8,7 +8,7 @@ import { CATEGORIAS, type ArtigoData, type CategoriaData } from "@/lib/artigos-d
 import { useLang, type Lang } from "@/context/LanguageContext";
 
 const imgArrowBlue  = "/figma-assets/icon-arrow-blue-b.svg";
-const imgArrowWhite = "/figma-assets/icon-arrow-white-solid.svg";
+const imgArrowWhite = "/figma-assets/icon-arrow-white-hover.svg";
 
 // ── Translations ──────────────────────────────────────────────────────────────
 const T: Record<Lang, {
@@ -618,7 +618,7 @@ function ArticleCard({ artigo, cat, query, showCategory, readLabel = "Ler artigo
         </span>
         <div className="flex gap-[4px] items-center opacity-60 group-hover:opacity-100 transition-opacity">
           <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] leading-[15px] text-[#0233c3]">{readLabel}</span>
-          <FigmaIcon src={imgArrowBlue} size={8} aspectW={11.2} aspectH={8.84} />
+          <FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} />
         </div>
       </div>
     </Link>
