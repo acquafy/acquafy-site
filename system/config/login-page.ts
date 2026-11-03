@@ -11,8 +11,10 @@ export const loginCopy = {
   formTitle: "Acesse sua conta",
   formSubtitle: "Entre para acompanhar seus purificadores e repasses.",
   secureTitle: "Acesso seguro",
-  secureText: "Seus dados são protegidos com criptografia de nível bancário.",
-  demoHint: "Demonstração: use qualquer e-mail válido e senha com 6+ caracteres.",
+  secureText: "Acesso exclusivo para usuários internos e parceiros autorizados.",
+  accessHint: "O acesso é liberado pela equipe Acquafy.",
+  unavailable: "Não foi possível acessar o serviço de autenticação. Tente novamente mais tarde.",
+  forbidden: "Sua conta não tem acesso ao portal. Entre em contato com a equipe Acquafy.",
   invalidCredentials: "E-mail ou senha inválidos. Confira os dados e tente novamente.",
 } as const;
 

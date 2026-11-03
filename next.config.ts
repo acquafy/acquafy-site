@@ -1,4 +1,4 @@
-﻿import type { NextConfig } from "next";
+import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
@@ -16,7 +16,10 @@ const nextConfig: NextConfig = {
     ];
   },
   async rewrites() {
+    const portalOrigin = (process.env.PORTAL_ORIGIN ?? "http://127.0.0.1:3001").replace(/\/$/, "");
     return [
+      { source: "/app", destination: `${portalOrigin}/app` },
+      { source: "/app/:path*", destination: `${portalOrigin}/app/:path*` },
       { source: "/platform",         destination: "/plataforma"           },
       { source: "/support-center",   destination: "/central-de-suporte"   },
       { source: "/technology",       destination: "/tecnologia"           },

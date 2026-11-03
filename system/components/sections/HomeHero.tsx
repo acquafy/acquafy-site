@@ -47,7 +47,7 @@ export function HomeHero() {
           <span className="absolute top-8 left-6 size-3 rounded-full bg-white/80" />
           <span className="absolute top-20 right-10 size-2 rounded-full bg-white/90" />
           <span className="absolute bottom-12 left-3 size-4 rounded-full bg-white/70" />
-          <Image src="/brand/neo-up.webp" alt="" width={420} height={536} priority sizes="208px" className="absolute right-4 bottom-3 h-[13rem] w-auto drop-shadow-2xl" />
+          <Image src="/app/brand/neo-up.webp" alt="" width={420} height={536} priority sizes="208px" className="absolute right-4 bottom-3 h-[13rem] w-auto drop-shadow-2xl" />
         </div>
       </div>
     </section>

@@ -3,12 +3,24 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
+    "dev": "node scripts/run-apps.mjs dev",
+    "build": "npm run build:site && npm run build:portal",
+    "start": "node scripts/run-apps.mjs start",
+    "lint": "eslint .",
     "icons:build": "python -I tools/icons/build2.py",
-    "icons:watch": "node tools/icons/watch.js"
+    "icons:watch": "node tools/icons/watch.js",
+    "dev:site": "next dev",
+    "dev:portal": "npm run dev --workspace=system",
+    "build:site": "next build",
+    "build:portal": "npm run build --workspace=system",
+    "start:site": "next start",
+    "start:portal": "npm run start --workspace=system",
+    "typecheck": "tsc --noEmit && npm run typecheck --workspace=system",
+    "test": "npm run test --workspace=system",
+    "supabase:start": "supabase start --exclude realtime,storage-api,imgproxy,postgres-meta,studio,edge-runtime,logflare,vector,supavisor",
+    "supabase:env": "node scripts/local-supabase-env.mjs",
+    "predev": "node system/scripts/generate-base-inventory.mjs",
+    "test:auth": "node scripts/verify-local-auth.mjs"
   },
   "dependencies": {
     "@stripe/react-stripe-js": "^6.6.0",
@@ -16,7 +28,8 @@
     "next": "^16.2.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "stripe": "^22.3.0"
+    "stripe": "^22.3.0",
+    "@next/env": "16.3.4"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -29,5 +42,11 @@
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
+  },
+  "workspaces": [
+    "system"
+  ],
+  "engines": {
+    "node": ">=22.0.0"
   }
 }

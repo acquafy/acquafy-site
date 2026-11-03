@@ -13,8 +13,13 @@ export function LogoutDialog({ open, onClose }: { open: boolean; onClose: () => 
   const router = useRouter();
   const toast = useToast();
 
-  const confirm = () => {
-    endSession();
+  const confirm = async () => {
+    try {
+      await endSession();
+    } catch {
+      toast({ title: "Não foi possível sair", description: "Tente novamente.", tone: "error" });
+      return;
+    }
     onClose();
     toast({ title: "Sessão encerrada", description: "Até logo! Você saiu do Portal do Investidor.", tone: "info" });
     router.replace("/login");

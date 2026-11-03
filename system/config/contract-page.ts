@@ -7,8 +7,8 @@ import { contract, purifiers, UNIT_PRICE } from "@/config/investor";
 import { formatUsd, formatUsdWhole, type IsoDate } from "@/lib/format";
 
 export const CONTRACT_NUMBER = "ACQ-WAAS-2026-0142";
-export const CONTRACT_PDF = { href: "/docs/contrato-participacao-acquafy.pdf", filename: "contrato-participacao-acquafy.pdf" };
-export const SIGNATURE_PDF = { href: "/docs/comprovante-assinatura-contrato.pdf", filename: "comprovante-assinatura-contrato.pdf" };
+export const CONTRACT_PDF = { href: "/app/docs/contrato-participacao-acquafy.pdf", filename: "contrato-participacao-acquafy.pdf" };
+export const SIGNATURE_PDF = { href: "/app/docs/comprovante-assinatura-contrato.pdf", filename: "comprovante-assinatura-contrato.pdf" };
 
 export const COUNTERPARTY = "Acquafy WaaS";
 

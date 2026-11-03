@@ -20,7 +20,7 @@ import { MobileLoginForgotSheet } from "./MobileLoginForgotSheet";
 
 type Errors = { email?: string; password?: string };
 
-/** Login screen: brand hero on top, the form card below (e-mail, password, remember me, "Esqueci", "Entrar", "Criar conta"). */
+/** Login screen: brand hero on top, the form card below (e-mail, password, remember me, "Esqueci", "Entrar", "Solicitar acesso"). */
 export function MobileLogin() {
   const router = useRouter();
   const platform = usePlatform();
@@ -54,7 +54,7 @@ export function MobileLogin() {
     const result = await signIn({ email, password, remember });
     if (!result.ok) {
       setLoading(false);
-      setErrors({ password: loginCopy.invalidCredentials });
+      setErrors({ password: result.error === "unavailable" ? loginCopy.unavailable : result.error === "forbidden" ? loginCopy.forbidden : loginCopy.invalidCredentials });
       focusField("password");
       return;
     }
@@ -125,7 +125,7 @@ export function MobileLogin() {
           </MobileButton>
           <MobileButton variant="secondary" size="lg" full onClick={() => setSheet("access")}>
             <UserPlus className="size-5" aria-hidden="true" />
-            Criar conta
+            Solicitar acesso
           </MobileButton>
         </form>
 
@@ -136,7 +136,7 @@ export function MobileLogin() {
             {loginCopy.secureText}
           </p>
         </div>
-        <p className="mt-3 text-center text-[12.5px] text-ink-mute">{loginCopy.demoHint}</p>
+        <p className="mt-3 text-center text-[12.5px] text-ink-mute">{loginCopy.accessHint}</p>
       </section>
 
       <MobileLoginForgotSheet open={sheet === "forgot"} initialEmail={email} onClose={() => setSheet("none")} />

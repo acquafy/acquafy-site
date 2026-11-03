@@ -39,8 +39,8 @@ export function Sidebar() {
               aria-label="Acquafy, ir para o Home"
               className="block w-full max-w-[10.5rem] justify-self-start rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
             >
-              <Image src="/brand/acquafy-logo.webp" alt="Acquafy" width={560} height={93} priority sizes="200px" className="h-auto w-full dark:hidden" />
-              <Image src="/brand/acquafy-logo-white.webp" alt="Acquafy" width={640} height={106} priority sizes="200px" className="hidden h-auto w-full dark:block" />
+              <Image src="/app/brand/acquafy-logo.webp" alt="Acquafy" width={560} height={93} priority sizes="200px" className="h-auto w-full dark:hidden" />
+              <Image src="/app/brand/acquafy-logo-white.webp" alt="Acquafy" width={640} height={106} priority sizes="200px" className="hidden h-auto w-full dark:block" />
             </Link>
           )}
           <button

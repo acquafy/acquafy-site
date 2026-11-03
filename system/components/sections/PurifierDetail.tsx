@@ -38,7 +38,7 @@ export function PurifierDetail({ purifier: p, requests, onMaintenance }: Props) 
     <aside aria-label={`Detalhes do purificador ${p.serial}`} className="card flex min-w-0 flex-col overflow-hidden @container">
       <div className="grid gap-3 p-4 @sm:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
         <div className="grid min-h-44 place-items-center overflow-hidden rounded-lg bg-[radial-gradient(ellipse_at_50%_60%,var(--photo-a),var(--photo-b)_70%)] p-2">
-          <Image src="/brand/neo-up.webp" alt={`Purificador ${p.model}`} width={420} height={536} sizes="160px" className="h-40 w-auto drop-shadow-lg" />
+          <Image src="/app/brand/neo-up.webp" alt={`Purificador ${p.model}`} width={420} height={536} sizes="160px" className="h-40 w-auto drop-shadow-lg" />
         </div>
         <div className="flex min-w-0 flex-col items-start gap-2">
           <div>

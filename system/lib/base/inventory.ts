@@ -1,26 +1,14 @@
 // lib/base/inventory.ts
 import "server-only";
-import fs from "node:fs";
-import path from "node:path";
-
-const ROOT = process.cwd();
+import inventory from "@/config/base-inventory.json";
 
 function list(dir: string, filter: (name: string) => boolean): string[] {
-  try {
-    return fs
-      .readdirSync(path.join(ROOT, dir), { withFileTypes: true })
-      .filter((e) => e.isFile() && filter(e.name))
-      .map((e) => e.name)
-      .sort();
-  } catch {
-    return [];
-  }
+  return (inventory.files[dir as keyof typeof inventory.files] ?? []).filter(filter);
 }
 
-/** Does `app/m/<platform>/<group>/<route>/page.tsx` exist? */
+/** Build-time inventory keeps source and reference images out of serverless functions. */
 export function mobileScreenExists(platform: "ios" | "android", group: "tabs" | "flow", route: string): boolean {
-  const base = path.join(ROOT, "app", "m", platform);
-  return fs.existsSync(path.join(base, `(${group})`, route, "page.tsx")) || fs.existsSync(path.join(base, route, "page.tsx"));
+  return inventory.mobileScreens.includes(`app/m/${platform}/(${group})/${route}/page.tsx`);
 }
 
 export type OrganismFile = { name: string; file: string; kind: "desktop" | "mobile"; prefix: string };
@@ -60,5 +48,5 @@ export function layoutComponents(): string[] {
 }
 
 export function referenceExists(name: string): boolean {
-  return fs.existsSync(path.join(ROOT, name));
+  return inventory.references.includes(name);
 }

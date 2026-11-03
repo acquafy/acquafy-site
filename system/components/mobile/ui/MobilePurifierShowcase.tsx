@@ -18,7 +18,7 @@ export function MobilePurifierShowcase({ className, priority = false, ripples = 
       <span className="absolute top-[14%] left-[8%] size-3 rounded-full border border-white/70 bg-white/30" />
       <span className="absolute top-[34%] right-[6%] size-2 rounded-full border border-white/70 bg-white/40" />
       <span className="absolute bottom-[26%] left-[2%] size-2.5 rounded-full border border-white/70 bg-white/30" />
-      <Image src="/brand/neo-up.webp" alt="" width={420} height={536} priority={priority} sizes="(max-width: 600px) 60vw, 240px" className="relative mx-auto h-full w-auto object-contain" />
+      <Image src="/app/brand/neo-up.webp" alt="" width={420} height={536} priority={priority} sizes="(max-width: 600px) 60vw, 240px" className="relative mx-auto h-full w-auto object-contain" />
     </div>
   );
 }

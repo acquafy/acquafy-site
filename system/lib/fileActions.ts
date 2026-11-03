@@ -1,3 +1,5 @@
+import { portalPath } from "./paths";
+
 // lib/fileActions.ts
 //
 // Browser helpers for files shared by the Documents and Contract screens: downloading a stored file,
@@ -6,7 +8,7 @@
 /** Starts the download of `href` (a file under /public, a data: or a blob: URL) saved as `filename`. */
 export function downloadFromUrl(href: string, filename: string): void {
   const a = document.createElement("a");
-  a.href = href;
+  a.href = portalPath(href);
   a.download = filename;
   a.rel = "noopener";
   document.body.append(a);
@@ -16,12 +18,12 @@ export function downloadFromUrl(href: string, filename: string): void {
 
 /** Opens `href` in a new tab. Returns false when the browser blocked the pop-up. */
 export function openInNewTab(href: string): boolean {
-  return window.open(href, "_blank", "noopener,noreferrer") !== null;
+  return window.open(portalPath(href), "_blank", "noopener,noreferrer") !== null;
 }
 
 /** Absolute URL of a path of this site ("/docs/x.pdf" → "https://host/docs/x.pdf"). */
 export function absoluteUrl(path: string): string {
-  return new URL(path, window.location.origin).href;
+  return new URL(portalPath(path), window.location.origin).href;
 }
 
 /** Copies text to the clipboard; resolves to whether it worked. */

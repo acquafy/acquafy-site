@@ -29,8 +29,8 @@ export function TopBar({ searchEntries }: { searchEntries: SearchEntry[] }) {
           aria-label="Acquafy, ir para o Home"
           className={cn("shrink-0 items-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand", collapsed ? "flex" : "flex lg:hidden")}
         >
-          <Image src="/brand/acquafy-logo.webp" alt="Acquafy" width={560} height={93} priority className="h-5 w-auto lg:h-[1.625rem] dark:hidden" />
-          <Image src="/brand/acquafy-logo-white.webp" alt="Acquafy" width={640} height={106} priority className="hidden h-5 w-auto lg:h-[1.625rem] dark:block" />
+          <Image src="/app/brand/acquafy-logo.webp" alt="Acquafy" width={560} height={93} priority className="h-5 w-auto lg:h-[1.625rem] dark:hidden" />
+          <Image src="/app/brand/acquafy-logo-white.webp" alt="Acquafy" width={640} height={106} priority className="hidden h-5 w-auto lg:h-[1.625rem] dark:block" />
         </Link>
       </div>
 

@@ -56,7 +56,7 @@ const DESKTOP_TO_MOBILE: Record<string, string> = {
 
 /** Translates a desktop href ("/extrato", "/perfil?secao=seguranca") into the mobile one, so shared config keeps one set of links. */
 export function mobileHref(platform: Platform, desktopHref: string): string {
-  if (/^(https?:|mailto:|tel:|\/docs\/)/.test(desktopHref)) return desktopHref;
+  if (/^(https?:|mailto:|tel:|\/(?:app\/)?docs\/)/.test(desktopHref)) return desktopHref;
   const [path, query] = desktopHref.split("?");
   const target = DESKTOP_TO_MOBILE[path];
   if (!target) return `/m/${platform}/home`;

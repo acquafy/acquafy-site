@@ -75,7 +75,7 @@ export function LoginBrandPanel() {
       </svg>
 
       <div className="px-6 pt-7 lg:px-14 lg:pt-10">
-        <Image src="/brand/acquafy-logo.webp" alt="Acquafy Investor Portal" width={560} height={93} priority className="h-auto w-[170px] lg:w-[210px]" />
+        <Image src="/app/brand/acquafy-logo.webp" alt="Acquafy Investor Portal" width={560} height={93} priority className="h-auto w-[170px] lg:w-[210px]" />
       </div>
 
       <div className="flex items-end gap-2 px-6 pt-6 pb-14 lg:min-h-0 lg:flex-1 lg:flex-col lg:items-stretch lg:gap-0 lg:px-14 lg:pt-8 lg:pb-0">
@@ -91,7 +91,7 @@ export function LoginBrandPanel() {
         <div className="relative h-52 w-40 shrink-0 lg:-mx-14 lg:h-auto lg:min-h-[220px] lg:w-auto lg:flex-1">
           <WaterScene />
           <Image
-            src="/brand/neo-up.webp"
+            src="/app/brand/neo-up.webp"
             alt="Purificador Acquafy Neo UP"
             width={420}
             height={536}

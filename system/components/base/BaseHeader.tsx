@@ -21,8 +21,8 @@ export function BaseHeader() {
   return (
     <header className="sticky top-0 z-30 flex h-16 items-center gap-6 border-b border-line bg-card px-4 lg:px-6">
       <Link href="/base" aria-label="Acquafy · Base" className="shrink-0 focus-visible:outline-2 focus-visible:outline-brand">
-        <Image src="/brand/acquafy-logo.webp" alt="Acquafy" width={560} height={93} priority sizes="140px" className="h-auto w-32 dark:hidden" />
-        <Image src="/brand/acquafy-logo-white.webp" alt="Acquafy" width={640} height={106} priority sizes="140px" className="hidden h-auto w-32 dark:block" />
+        <Image src="/app/brand/acquafy-logo.webp" alt="Acquafy" width={560} height={93} priority sizes="140px" className="h-auto w-32 dark:hidden" />
+        <Image src="/app/brand/acquafy-logo-white.webp" alt="Acquafy" width={640} height={106} priority sizes="140px" className="hidden h-auto w-32 dark:block" />
       </Link>
       <span className="hidden rounded-md bg-brand-soft px-2 py-1 text-[12px] font-bold tracking-wide text-brand uppercase sm:inline">Base</span>
       <nav aria-label="Base" className="flex min-w-0 flex-1 items-center gap-1 overflow-x-auto">

@@ -16,7 +16,7 @@ export function ThemeProvider({ initial, children }: { initial: Theme; children:
     setTheme((current) => {
       const next: Theme = current === "dark" ? "light" : "dark";
       document.documentElement.dataset.theme = next;
-      document.cookie = `${THEME_COOKIE}=${next}; path=/; max-age=31536000; samesite=lax`;
+      document.cookie = `${THEME_COOKIE}=${next}; path=/app; max-age=31536000; samesite=lax`;
       return next;
     });
   }, []);

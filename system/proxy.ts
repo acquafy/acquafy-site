@@ -1,59 +1,47 @@
-// proxy.ts
-//
-// Gate for the portal. Desktop: anonymous visitors go to /login, signed-in ones skip it.
-// Mobile app screens live under /m/ios/* and /m/android/* (one set of screens per platform); their
-// public entry point is the login screen (the app goes straight to it, there is no onboarding).
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
-import { SESSION_COOKIE } from "@/lib/auth";
+import { NextResponse, type NextRequest } from "next/server";
+import { authConfigured, createAuthClient } from "@/lib/supabase/server";
+import { internalPath, loginPath, portalRole } from "@/lib/portal-access";
+import { portalPath } from "@/lib/paths";
 
-const MOBILE_RE = /^\/m\/(ios|android|duo)(\/.*)?$/;
-const MOBILE_PUBLIC = new Set(["login"]);
+export async function proxy(request: NextRequest) {
+  const path = request.nextUrl.pathname;
+  const login = loginPath(path);
+  const isLogin = path === login;
+  const response = NextResponse.next();
+  response.headers.set("Cache-Control", "private, no-store");
 
-export function proxy(request: NextRequest) {
-  const { pathname } = request.nextUrl;
-  // The /base manual opens every screen: a page opened from /base (the referer) is let through even without a session, and (when it is a real
-  // navigation, not a `?preview` thumbnail) it starts the demo session, so moving around inside the screen keeps working. `?preview` also skips
-  // the signed-in redirect of the public screens, so the login stays on screen in thumbnails.
-  const preview = request.nextUrl.searchParams.has("preview");
-  const fromHub = (request.headers.get("referer") ?? "").includes("/base");
-  const hasSession = request.cookies.has(SESSION_COOKIE);
-  const signedIn = hasSession || fromHub;
-  const next = () => {
-    const res = NextResponse.next();
-    if (!hasSession && fromHub && !preview) res.cookies.set(SESSION_COOKIE, "1", { path: "/", sameSite: "lax" });
-    return res;
-  };
-  const skipLoginRedirect = preview || fromHub;
-
-  const mobile = pathname.match(MOBILE_RE);
-  if (mobile) {
-    const platform = mobile[1];
-    // The two-device stage (/m/duo) is part of the /base manual: every screen opens in it, with or without a session, and Login too.
-    if (platform === "duo") return NextResponse.next();
-    const screen = (mobile[2] ?? "").split("/").filter(Boolean)[0] ?? "";
-    const isPublic = MOBILE_PUBLIC.has(screen);
-    if (!signedIn && !isPublic) return NextResponse.redirect(new URL(`/m/${platform}/login`, request.url));
-    if (signedIn && isPublic && !skipLoginRedirect) return NextResponse.redirect(new URL(`/m/${platform}/home`, request.url));
-    return next();
+  function redirect(destination: string) {
+    const result = NextResponse.redirect(new URL(portalPath(destination), request.url));
+    for (const cookie of response.cookies.getAll()) result.cookies.set(cookie);
+    result.headers.set("Cache-Control", "private, no-store");
+    return result;
   }
 
-  // Internal hub of screens and components: open, so the links work without signing in.
-  if (pathname === "/" || pathname === "/base" || pathname.startsWith("/base/")) return NextResponse.next();
+  if (path === "/api/auth/login" || path === "/api/auth/logout") return response;
+  if (!authConfigured()) return isLogin ? response : redirect(login);
 
-  if (pathname === "/login") {
-    if (signedIn && !skipLoginRedirect) return NextResponse.redirect(new URL("/home", request.url));
-    return NextResponse.next();
+  try {
+    const { data: { user } } = await createAuthClient(request, response).auth.getUser();
+    const forwarded = NextResponse.next({ request: { headers: request.headers } });
+    for (const cookie of response.cookies.getAll()) forwarded.cookies.set(cookie);
+    forwarded.headers.set("Cache-Control", "private, no-store");
+    const role = portalRole(user);
+    if (!role) return isLogin ? forwarded : redirect(login);
+    if (internalPath(path) && role !== "internal") {
+      const denied = new NextResponse("Acesso restrito à equipe interna.", { status: 403, headers: { "Cache-Control": "private, no-store" } });
+      for (const cookie of response.cookies.getAll()) denied.cookies.set(cookie);
+      return denied;
+    }
+    if (isLogin && !(role === "internal" && request.nextUrl.searchParams.has("preview"))) {
+      return redirect(login.replace(/login$/, "home"));
+    }
+    return forwarded;
+  } catch {
+    return isLogin ? response : redirect(login);
   }
-
-  if (!signedIn) {
-    const url = new URL("/login", request.url);
-    return NextResponse.redirect(url);
-  }
-  return next();
 }
 
 export const config = {
-  // Everything except Next internals and static files.
-  matcher: ["/((?!_next/|brand/|docs/|favicon.ico|.*\\.[a-zA-Z0-9]+$).*)"],
+  // Documents stay protected. Only public branding and Next bundles bypass auth.
+  matcher: ["/", "/((?!_next/static|_next/image|_next/webpack-hmr|brand/|favicon.ico$).*)"],
 };

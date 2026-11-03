@@ -31,9 +31,14 @@ export function MobileProfileMenu() {
 
   const subtitleOf = (id: string, fallback: string) => (id === "idioma" ? (languageOptions.find((l) => l.value === profile.language)?.label ?? fallback) : fallback);
 
-  const logout = () => {
+  const logout = async () => {
     setLogoutOpen(false);
-    endSession();
+    try {
+      await endSession();
+    } catch {
+      toast({ title: "Não foi possível sair", description: "Tente novamente.", tone: "error" });
+      return;
+    }
     toast({ title: "Sessão encerrada", description: "Até logo! Você saiu do Portal do Investidor.", tone: "info" });
     router.replace(mobilePath(platform, "login"));
     router.refresh();

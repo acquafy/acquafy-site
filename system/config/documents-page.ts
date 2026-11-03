@@ -40,7 +40,7 @@ export const officialDocuments: DocumentItem[] = [
     date: "2026-10-26",
     kind: "PDF",
     sizeBytes: mb(1.2),
-    file: "/docs/contrato-participacao-acquafy.pdf",
+    file: "/app/docs/contrato-participacao-acquafy.pdf",
     filename: "contrato-participacao-acquafy.pdf",
   },
   {
@@ -51,7 +51,7 @@ export const officialDocuments: DocumentItem[] = [
     date: "2026-10-26",
     kind: "PDF",
     sizeBytes: kb(980),
-    file: "/docs/termos-e-condicoes.pdf",
+    file: "/app/docs/termos-e-condicoes.pdf",
     filename: "termos-e-condicoes.pdf",
   },
   {
@@ -62,7 +62,7 @@ export const officialDocuments: DocumentItem[] = [
     date: "2026-10-26",
     kind: "PDF",
     sizeBytes: kb(620),
-    file: "/docs/politica-de-privacidade.pdf",
+    file: "/app/docs/politica-de-privacidade.pdf",
     filename: "politica-de-privacidade.pdf",
   },
   {
@@ -73,7 +73,7 @@ export const officialDocuments: DocumentItem[] = [
     date: "2026-10-26",
     kind: "PDF",
     sizeBytes: kb(450),
-    file: "/docs/comprovante-pagamento-neo-up-3.pdf",
+    file: "/app/docs/comprovante-pagamento-neo-up-3.pdf",
     filename: "comprovante-pagamento-neo-up-3.pdf",
   },
   {
@@ -84,7 +84,7 @@ export const officialDocuments: DocumentItem[] = [
     date: "2026-10-26",
     kind: "PDF",
     sizeBytes: kb(462),
-    file: "/docs/comprovante-pagamento-neo-up-7.pdf",
+    file: "/app/docs/comprovante-pagamento-neo-up-7.pdf",
     filename: "comprovante-pagamento-neo-up-7.pdf",
   },
   {
@@ -95,7 +95,7 @@ export const officialDocuments: DocumentItem[] = [
     date: "2026-10-27",
     kind: "PDF",
     sizeBytes: kb(471),
-    file: "/docs/comprovante-pagamento-neo-up-10.pdf",
+    file: "/app/docs/comprovante-pagamento-neo-up-10.pdf",
     filename: "comprovante-pagamento-neo-up-10.pdf",
   },
   {
@@ -106,7 +106,7 @@ export const officialDocuments: DocumentItem[] = [
     date: "2026-10-26",
     kind: "PDF",
     sizeBytes: kb(388),
-    file: "/docs/comprovante-transferencia-investimento.pdf",
+    file: "/app/docs/comprovante-transferencia-investimento.pdf",
     filename: "comprovante-transferencia-investimento.pdf",
   },
   {
@@ -117,7 +117,7 @@ export const officialDocuments: DocumentItem[] = [
     date: "2026-10-27",
     kind: "PDF",
     sizeBytes: kb(512),
-    file: "/docs/nota-fiscal-unidades-neo-up.pdf",
+    file: "/app/docs/nota-fiscal-unidades-neo-up.pdf",
     filename: "nota-fiscal-unidades-neo-up.pdf",
   },
   {
@@ -128,7 +128,7 @@ export const officialDocuments: DocumentItem[] = [
     date: "2026-10-26",
     kind: "PDF",
     sizeBytes: mb(2.4),
-    file: "/docs/manual-do-investidor.pdf",
+    file: "/app/docs/manual-do-investidor.pdf",
     filename: "manual-do-investidor.pdf",
   },
   {
@@ -139,7 +139,7 @@ export const officialDocuments: DocumentItem[] = [
     date: "2026-10-26",
     kind: "PDF",
     sizeBytes: mb(1.8),
-    file: "/docs/manual-do-produto-neo-up.pdf",
+    file: "/app/docs/manual-do-produto-neo-up.pdf",
     filename: "manual-do-produto-neo-up.pdf",
   },
   {
@@ -150,7 +150,7 @@ export const officialDocuments: DocumentItem[] = [
     date: "2026-10-25",
     kind: "ZIP",
     sizeBytes: mb(12.3),
-    file: "/docs/materiais-de-marketing.zip",
+    file: "/app/docs/materiais-de-marketing.zip",
     filename: "materiais-de-marketing.zip",
   },
   {
@@ -161,7 +161,7 @@ export const officialDocuments: DocumentItem[] = [
     date: "2026-10-25",
     kind: "PDF",
     sizeBytes: kb(340),
-    file: "/docs/faq-do-programa.pdf",
+    file: "/app/docs/faq-do-programa.pdf",
     filename: "faq-do-programa.pdf",
   },
 ];
