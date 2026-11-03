@@ -934,9 +934,12 @@ function PanelSlideshowEssentials() {
         <SlideLightbox
           src={panelEssentialsSrcs[active]}
           alt=""
+          srcs={panelEssentialsSrcs}
+          index={active}
           onClose={() => setOpen(false)}
           onPrev={() => setActive((active - 1 + count) % count)}
           onNext={() => setActive((active + 1) % count)}
+          onGoTo={(i) => setActive(i)}
         />
       )}
       <div className="flex gap-[10px] items-center justify-center flex-wrap">

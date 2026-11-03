@@ -2,14 +2,7 @@
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
 
-/**
- * Fullscreen helpers for the panel slideshows.
- *   <SlideFullscreenButton onOpen={...} />  — shown at the top-right of the slide while the pointer is over it
- *   <SlideLightbox src alt onClose onPrev onNext /> — the current slide shown large, centred on the screen
- * The slide container needs the `group` class (and `relative`) for the button's hover state.
- */
-
-const ICON_STROKE = { fill: "none", stroke: "currentColor", strokeWidth: 1.5, strokeLinecap: "round", strokeLinejoin: "round" } as const;
+const ICON_STROKE = { fill: "none", stroke: "currentColor", strokeWidth: 1.5, strokeLinecap: "round" as const, strokeLinejoin: "round" as const };
 
 export function SlideFullscreenButton({ onOpen, label = "Tela cheia" }: { onOpen: () => void; label?: string }) {
   return (
@@ -28,31 +21,24 @@ export function SlideFullscreenButton({ onOpen, label = "Tela cheia" }: { onOpen
   );
 }
 
-function RoundButton({ onClick, label, className, children }: { onClick: () => void; label: string; className: string; children: React.ReactNode }) {
-  return (
-    <button
-      type="button"
-      aria-label={label}
-      onClick={(e) => { e.stopPropagation(); onClick(); }}
-      className={`absolute flex size-[44px] items-center justify-center rounded-full bg-white/15 text-white transition-colors hover:bg-white/30 cursor-pointer ${className}`}
-    >
-      <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">{children}</svg>
-    </button>
-  );
-}
-
 export function SlideLightbox({
   src,
   alt = "",
+  srcs,
+  index = 0,
   onClose,
   onPrev,
   onNext,
+  onGoTo,
 }: {
   src: string;
   alt?: string;
+  srcs?: string[];
+  index?: number;
   onClose: () => void;
   onPrev?: () => void;
   onNext?: () => void;
+  onGoTo?: (i: number) => void;
 }) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -69,31 +55,108 @@ export function SlideLightbox({
     };
   }, [onClose, onPrev, onNext]);
 
+  const showNav = !!srcs && srcs.length > 1;
+
   return createPortal(
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/85 p-[20px]"
+      className="fixed inset-0 z-[1000] flex flex-col items-center justify-center gap-[12px] bg-white/85 p-[20px]"
       onClick={onClose}
     >
-      <img
-        alt={alt}
-        src={src}
-        className="max-h-full max-w-full rounded-[16px] object-contain shadow-2xl"
+      {/* Image wrapper — buttons are relative to this, ensuring they're always above the image */}
+      <div
+        className="relative min-h-0 flex-1 flex items-center justify-center"
         onClick={(e) => e.stopPropagation()}
-      />
-      <RoundButton onClick={onClose} label="Fechar" className="top-[20px] right-[20px]">
-        <path {...ICON_STROKE} d="M18 6L6 18m12 0L6 6" />
-      </RoundButton>
-      {onPrev && (
-        <RoundButton onClick={onPrev} label="Slide anterior" className="left-[20px] top-1/2 -translate-y-1/2">
-          <path {...ICON_STROKE} d="M15 6s-6 4.419-6 6s6 6 6 6" />
-        </RoundButton>
+      >
+        <img
+          alt={alt}
+          src={src}
+          className="max-h-full max-w-full rounded-[16px] object-contain shadow-2xl block"
+        />
+
+        {/* Close */}
+        <button
+          type="button"
+          aria-label="Fechar"
+          onClick={(e) => { e.stopPropagation(); onClose(); }}
+          className="absolute top-[10px] right-[10px] z-10 flex size-[44px] items-center justify-center rounded-full bg-black/30 text-white transition-colors hover:bg-black/50 cursor-pointer"
+        >
+          <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+            <path {...ICON_STROKE} d="M18 6L6 18m12 0L6 6" />
+          </svg>
+        </button>
+
+        {/* Prev */}
+        {onPrev && (
+          <button
+            type="button"
+            aria-label="Slide anterior"
+            onClick={(e) => { e.stopPropagation(); onPrev(); }}
+            className="absolute left-[10px] top-1/2 -translate-y-1/2 z-10 flex size-[44px] items-center justify-center rounded-full bg-black/30 text-white transition-colors hover:bg-black/50 cursor-pointer"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+              <path {...ICON_STROKE} d="M15 6s-6 4.419-6 6s6 6 6 6" />
+            </svg>
+          </button>
+        )}
+
+        {/* Next */}
+        {onNext && (
+          <button
+            type="button"
+            aria-label="Próximo slide"
+            onClick={(e) => { e.stopPropagation(); onNext(); }}
+            className="absolute right-[10px] top-1/2 -translate-y-1/2 z-10 flex size-[44px] items-center justify-center rounded-full bg-black/30 text-white transition-colors hover:bg-black/50 cursor-pointer"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+              <path {...ICON_STROKE} d="M9 6s6 4.419 6 6s-6 6-6 6" />
+            </svg>
+          </button>
+        )}
+      </div>
+
+      {/* Thumbnails */}
+      {showNav && (
+        <div
+          className="flex gap-[8px] overflow-x-auto pb-[2px] max-w-full shrink-0"
+          style={{ scrollbarWidth: "thin" }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          {srcs!.map((s, i) => (
+            <button
+              key={i}
+              type="button"
+              aria-label={`Slide ${i + 1}`}
+              onClick={() => onGoTo?.(i)}
+              className={`shrink-0 h-[56px] rounded-[6px] overflow-hidden border-2 transition-opacity cursor-pointer ${
+                i === index ? "border-[#0233c3] opacity-100" : "border-transparent opacity-40 hover:opacity-70"
+              }`}
+            >
+              <img src={s} alt="" className="h-full w-auto block object-cover pointer-events-none" />
+            </button>
+          ))}
+        </div>
       )}
-      {onNext && (
-        <RoundButton onClick={onNext} label="Próximo slide" className="right-[20px] top-1/2 -translate-y-1/2">
-          <path {...ICON_STROKE} d="M9 6s6 4.419 6 6s-6 6-6 6" />
-        </RoundButton>
+
+      {/* Dots */}
+      {showNav && (
+        <div
+          className="flex gap-[8px] items-center shrink-0"
+          onClick={(e) => e.stopPropagation()}
+        >
+          {srcs!.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              aria-label={`Slide ${i + 1}`}
+              onClick={() => onGoTo?.(i)}
+              className={`rounded-full transition-all cursor-pointer ${
+                i === index ? "size-[10px] bg-[#0233c3]" : "size-[8px] bg-black/30 hover:bg-black/50"
+              }`}
+            />
+          ))}
+        </div>
       )}
     </div>,
     document.body,

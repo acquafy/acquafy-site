@@ -25,7 +25,7 @@ const imgPrimeSparkH2    = PRODUCT_IMAGES["neo-prime-spark-h2"];
 const panelSlideSrcs = [
   "/figma-assets/panel-premium-1.webp",
   "/figma-assets/panel-premium-2.webp",
-  "/figma-assets/panel-premium-3.webp",
+  "/figma-assets/panel-premium-3.png",
   "/figma-assets/panel-premium-4.webp",
   "/figma-assets/panel-premium-5.webp",
   "/figma-assets/panel-premium-6.webp",
@@ -513,9 +513,12 @@ function PanelSlideshow() {
         <SlideLightbox
           src={panelSlideSrcs[active]}
           alt="Painel Premium"
+          srcs={panelSlideSrcs}
+          index={active}
           onClose={() => setOpen(false)}
           onPrev={() => setActive((active - 1 + count) % count)}
           onNext={() => setActive((active + 1) % count)}
+          onGoTo={(i) => setActive(i)}
         />
       )}
       <div className="flex gap-[10px] items-center justify-center flex-wrap">

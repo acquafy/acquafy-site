@@ -2,7 +2,8 @@
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
-const imgBg          = "/figma-assets/bg-card.webp";
+const imgBg1024      = "/figma-assets/bg-campanha-1024.png";
+const imgBg1400      = "/figma-assets/bg-campanha-1400.png";
 const imgProduct     = "/figma-assets/product-water-image.webp";
 const imgShieldLabel = "/figma-assets/icon-shield-label.svg";
 const imgGift        = "/figma-assets/icon-gift-a.svg";
@@ -10,7 +11,7 @@ const imgShield      = "/figma-assets/icon-shield-24px.svg";
 const imgCert        = "/figma-assets/icon-cert.svg";
 const imgFone        = "/figma-assets/icon-fone-30px.svg";
 const imgLock        = "/figma-assets/icon-lock-a.svg";
-const imgLogoWhite   = "/figma-assets/logo-white.svg";
+const imgLogoWhite   = "/figma-assets/logo-white-b.svg";
 
 const TRUST_ICONS = [
   { icon: imgShield, aspectW: 24, aspectH: 30 },
@@ -231,8 +232,13 @@ export default function CheckoutUp() {
 
         <img
           alt=""
-          className="hidden lg:block absolute inset-0 w-full h-full object-cover pointer-events-none rounded-[16px]"
-          src={imgBg}
+          className="hidden lg:block win-1280:hidden absolute inset-0 w-full h-full object-cover pointer-events-none rounded-[16px]"
+          src={imgBg1024}
+        />
+        <img
+          alt=""
+          className="hidden win-1280:block absolute inset-0 w-full h-full object-cover pointer-events-none rounded-[16px]"
+          src={imgBg1400}
         />
 
         <div className="relative flex flex-col gap-[20px] lg:items-start items-center lg:max-w-[710px] w-full">

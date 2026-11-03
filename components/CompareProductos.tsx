@@ -10,8 +10,8 @@ import { useCart } from "@/components/CartProvider";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
 // ─── Assets ───────────────────────────────────────────────────────────────────
-const imgBannerBg       = "/figma-assets/compare-banner-bg.webp";
-const imgBannerProducts = "/figma-assets/compare-banner-products.webp";
+const imgBannerBg       = "/figma-assets/compare-banner-bg.png";
+const imgBannerProducts = "/figma-assets/compare-banner-products.png";
 const imgBuyCursor      = "/figma-assets/cursor-buy.webp";
 const imgArrowWhite     = "/figma-assets/icon-arrow-white-hover.svg";
 const imgArrowBlue      = "/figma-assets/icon-arrow-blue-b.svg";
@@ -1276,7 +1276,7 @@ export default function CompareProductos() {
 
               {/* CTA buttons */}
               <div className="flex gap-[20px] items-center justify-center 1024:justify-start w-full">
-                <a href="/contact" className="bg-white border border-[#0233c3] flex gap-[10px] items-center justify-center min-h-[50px] px-[20px] py-[10px] rounded-[8px] cursor-pointer hover:bg-[#f0f4ff] transition-colors no-underline">
+                <a href="/contact" className="bg-white flex gap-[10px] items-center justify-center min-h-[50px] px-[20px] py-[10px] rounded-[8px] cursor-pointer hover:bg-[#f0f4ff] transition-colors no-underline">
                   <span className="font-['Articulat_CF:Bold'] text-[16px] leading-normal text-[#0233c3]">
                     {t.ctaSpecialist}
                   </span>

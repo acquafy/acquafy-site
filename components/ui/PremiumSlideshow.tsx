@@ -5,9 +5,9 @@ import { useState } from "react";
 // ── Slide images (3 ambientes) — node 3285:5944 ─────────────────────────────
 // Frame250 = slide 0 (Padrão/dot-1 active), Frame251 = slide 2 (Variante3/dot-3 active)
 const slides = [
-  "/figma-assets/premium-slideshow-1.webp", // Frame250 — slide 1 (dot 1 active)
-  "/figma-assets/premium-slideshow-2.webp", // mármore  — slide 2 (dot 2 active)
-  "/figma-assets/premium-slideshow-3.webp", // Frame251 — slide 3 (dot 3 active)
+  "/figma-assets/premium-slideshow-1.png",
+  "/figma-assets/premium-slideshow-2.png",
+  "/figma-assets/premium-slideshow-3.png",
 ];
 
 // ── Dots (node 3285:5944 — Ellipse3/Ellipse4) ─────────────────────────────

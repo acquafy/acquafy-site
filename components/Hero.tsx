@@ -6,7 +6,7 @@ import { useLang, type Lang } from "@/context/LanguageContext";
 
 // Backgrounds
 const imgBg1    = "/figma-assets/bg-slide-1.webp";
-const imgBg2    = "/figma-assets/bg-slide-2-xl.webp";
+const imgBg2    = "/figma-assets/banner-campanha-home.png";
 // Images
 const imgMockup  = "/figma-assets/image-banner-home.webp";
 const imgFrame36 = "/figma-assets/frame-36-mobile-product.webp";
@@ -1003,7 +1003,7 @@ export default function Hero() {
 
       {/* ══ STATS BAR ══ */}
       {slide === 0 ? (
-        <div className="relative shrink-0 bg-[#0233c3] flex flex-wrap gap-y-[30px] items-center justify-center max-w-[1400px] overflow-hidden px-[20px] py-[25px] rounded-[16px] w-full">
+        <div className="relative shrink-0 bg-[#0233c3] flex flex-wrap items-center justify-center max-w-[1400px] min-h-[85px] overflow-hidden px-[20px] py-[22px] rounded-[16px] w-full">
           {STATS1_ICONS.map((stat, i) => {
             const text = t.stats1[i];
             return (
