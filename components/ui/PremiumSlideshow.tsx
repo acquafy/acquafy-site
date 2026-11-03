@@ -1,13 +1,13 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 
 // ── Slide images (3 ambientes) — node 3285:5944 ─────────────────────────────
 // Frame250 = slide 0 (Padrão/dot-1 active), Frame251 = slide 2 (Variante3/dot-3 active)
 const slides = [
-  "/figma-assets/premium-slideshow-1.png",
-  "/figma-assets/premium-slideshow-2.png",
-  "/figma-assets/premium-slideshow-3.png",
+  "/figma-assets/premium-slideshow-1.webp",
+  "/figma-assets/premium-slideshow-2.webp",
+  "/figma-assets/premium-slideshow-3.webp",
 ];
 
 // ── Dots (node 3285:5944 — Ellipse3/Ellipse4) ─────────────────────────────

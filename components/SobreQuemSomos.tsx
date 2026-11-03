@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
@@ -312,7 +312,7 @@ const T: Record<Lang, {
 };
 
 // ── Assets ───────────────────────────────────────────────────────────────────
-const imgInterfyCorpLogo = "/figma-assets/logo-interfy-corp.png";
+const imgInterfyCorpLogo = "/figma-assets/logo-interfy-corp.webp";
 const imgRatingIcon       = "/figma-assets/icon-rating-20anos.svg"; // +20 anos     sq
 const imgGlobeIcon        = "/figma-assets/icon-globe-world.svg"; // presenca     sq
 const imgEcosystemIcon    = "/figma-assets/icon-ecosystem.svg"; // ecossistemas sq

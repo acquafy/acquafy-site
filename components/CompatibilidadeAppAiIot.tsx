@@ -154,7 +154,7 @@ const T: Record<Lang, {
 
 const productImgs = [
   "/figma-assets/neo-ultra-spark-h2.webp",
-  "/figma-assets/premium-infinity-catalog.png",
+  "/figma-assets/premium-infinity-catalog.webp",
   "/figma-assets/acquafy-media-totem.webp",
 ];
 

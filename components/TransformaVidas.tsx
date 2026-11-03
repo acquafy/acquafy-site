@@ -3,7 +3,7 @@ import { useState } from "react";
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
-const imgProduct       = "/figma-assets/neo-up-bow.png";
+const imgProduct       = "/figma-assets/neo-up-bow.webp";
 const imgBgDesktop     = "/figma-assets/bg-desktop-city.webp";
 const imgFamilyDesktop = "/figma-assets/photo-family-desktop.webp";
 const imgBgMobile      = "/figma-assets/bg-mobile-gradient.webp";

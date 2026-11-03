@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useState, useMemo, useRef, useEffect } from "react";
 import FigmaIcon from "./FigmaIcon";
 import { PRODUCT_PRICES_BRL, formatPrice, PRODUCT_IMAGES as productImages } from "@/lib/products";
@@ -10,8 +10,8 @@ import { useCart } from "@/components/CartProvider";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
 // ─── Assets ───────────────────────────────────────────────────────────────────
-const imgBannerBg       = "/figma-assets/compare-banner-bg.png";
-const imgBannerProducts = "/figma-assets/compare-banner-products.png";
+const imgBannerBg       = "/figma-assets/compare-banner-bg.webp";
+const imgBannerProducts = "/figma-assets/compare-banner-products.webp";
 const imgBuyCursor      = "/figma-assets/cursor-buy.webp";
 const imgArrowWhite     = "/figma-assets/icon-arrow-white-hover.svg";
 const imgArrowBlue      = "/figma-assets/icon-arrow-blue-b.svg";

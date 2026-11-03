@@ -25,7 +25,7 @@ const imgPrimeSparkH2    = PRODUCT_IMAGES["neo-prime-spark-h2"];
 const panelSlideSrcs = [
   "/figma-assets/panel-premium-1.webp",
   "/figma-assets/panel-premium-2.webp",
-  "/figma-assets/panel-premium-3.png",
+  "/figma-assets/panel-premium-3.webp",
   "/figma-assets/panel-premium-4.webp",
   "/figma-assets/panel-premium-5.webp",
   "/figma-assets/panel-premium-6.webp",

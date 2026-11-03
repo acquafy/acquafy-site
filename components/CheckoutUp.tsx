@@ -2,8 +2,8 @@
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
-const imgBg1024      = "/figma-assets/bg-campanha-1024.png";
-const imgBg1400      = "/figma-assets/bg-campanha-1400.png";
+const imgBg1024      = "/figma-assets/bg-campanha-1024.webp";
+const imgBg1400      = "/figma-assets/bg-campanha-1400.webp";
 const imgProduct     = "/figma-assets/product-water-image.webp";
 const imgShieldLabel = "/figma-assets/icon-shield-label.svg";
 const imgGift        = "/figma-assets/icon-gift-a.svg";

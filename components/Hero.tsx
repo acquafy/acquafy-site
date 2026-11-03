@@ -6,7 +6,7 @@ import { useLang, type Lang } from "@/context/LanguageContext";
 
 // Backgrounds
 const imgBg1    = "/figma-assets/bg-slide-1.webp";
-const imgBg2    = "/figma-assets/banner-campanha-home.png";
+const imgBg2    = "/figma-assets/banner-campanha-home.webp";
 // Images
 const imgMockup  = "/figma-assets/image-banner-home.webp";
 const imgFrame36 = "/figma-assets/frame-36-mobile-product.webp";
