@@ -14,7 +14,7 @@ do $$ declare offer uuid; enrollment uuid;begin
 end $$;
 select set_config('request.jwt.claim.sub',current_setting('enrollment_test.other'),true);
 do $$begin
- if exists(select 1 from public.investor_enrollments) or exists(select 1 from public.agreement_acceptances) or exists(select 1 from public.enrollment_checkouts) then raise exception 'Enrollment privacy failed';end if;
+ if exists(select 1 from public.investor_offers) or exists(select 1 from public.investor_enrollments) or exists(select 1 from public.agreement_acceptances) or exists(select 1 from public.enrollment_checkouts) then raise exception 'Enrollment privacy failed';end if;
  begin perform public.enrollment_member('details',jsonb_build_object('enrollment_id',current_setting('enrollment_test.enrollment')));raise exception 'Foreign mutation allowed';exception when insufficient_privilege then null;end;
  begin perform public.enrollment_gateway('bind','{}');raise exception 'Public payment confirmation allowed';exception when insufficient_privilege then null;end;
 end $$;
