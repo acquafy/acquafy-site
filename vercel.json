@@ -1,4 +1,20 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "npm run build:site"
+  "services": {
+    "site": {
+      "root": ".",
+      "framework": "nextjs",
+      "buildCommand": "npm run build:site"
+    },
+    "portal": {
+      "root": "system",
+      "framework": "nextjs",
+      "buildCommand": "npm run build"
+    }
+  },
+  "rewrites": [
+    { "source": "/app", "destination": { "service": "portal" } },
+    { "source": "/app/(.*)", "destination": { "service": "portal" } },
+    { "source": "/(.*)", "destination": { "service": "site" } }
+  ]
 }

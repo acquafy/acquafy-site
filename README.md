@@ -43,20 +43,22 @@ where email = 'approved-user@example.com';
 
 Use `partner` for a partner account. Remove `portal_role` to withdraw access. Access requests and password recovery direct users to their Acquafy administrator; the interface no longer claims to send emails or create accounts. Partner-facing pages read real account-scoped records from Supabase. Profile and bank editing, automated acquisition, amendments and buyback are unavailable in this first slice; users can submit these requests through the real support queue. Old mobile product URLs redirect to the shared responsive portal. Legacy sample-document URLs return 404. Demo security controls and browser-only business mutations are no longer exposed on partner routes.
 
-## Vercel branch previews
+## Vercel deployment
 
-Both projects belong to team **Interfy** and use this Git repository:
+One Vercel project, **`acquafy-site`** (team **Interfy**), builds and ships both apps as two services of a single deployment, declared in the root `vercel.json`:
 
-| Project          | Root directory  | Build                | Purpose                       |
-| ---------------- | --------------- | -------------------- | ----------------------------- |
-| `acquafy-site`   | repository root | `npm run build:site` | Website and `/app` forwarding |
-| `acquafy-portal` | `system`        | `npm run build`      | Portal with `basePath: /app`  |
+| Service  | Root directory  | Build                | Public paths                      |
+| -------- | --------------- | -------------------- | --------------------------------- |
+| `site`   | repository root | `npm run build:site` | everything except `/app`          |
+| `portal` | `system`        | `npm run build`      | `/app` and `/app/*` (`basePath`)  |
 
-Deploy the portal preview first, then set the website's **branch-scoped Preview** `PORTAL_ORIGIN` to that portal deployment's HTTPS origin. Build the website preview afterward. This binds the website preview to the exact portal build under test. The origin excludes `/app`; the rewrites add it. Repoint this variable when deploying a new portal revision.
+The top-level rewrites send `/app` and `/app/(.*)` to `portal` and everything else to `site`. Both services deploy together, so every preview, promotion and rollback is atomic across the website and the portal; there is no `PORTAL_ORIGIN` to repoint. `PORTAL_ORIGIN` now only matters locally: `npm run dev` / `npm start` run the two apps as separate processes and set it so the website proxies `/app` to the portal (see above). The former `acquafy-portal` project is no longer used by this repository.
 
-Vercel deployment protection stays enabled. Interfy members authenticated on the website preview can follow Vercel's protected rewrites to the portal in the same team. An externally shared preview may still require separate Vercel access.
+The portal's server variables (`SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `STRIPE_SECRET_KEY`, `STRIPE_ACCOUNT_ID`, `STRIPE_ENVIRONMENT`, `STRIPE_WEBHOOK_SECRET`, `PORTAL_PUBLIC_ORIGIN`) must exist on `acquafy-site` for each environment. `PORTAL_PUBLIC_ORIGIN` is the HTTPS origin of that deployment's site (without `/app`). The Stripe webhook endpoint is `<origin>/app/api/stripe/webhook`.
 
-The hosted Supabase project is **acquafy** (`zfxyprckbcwzscyttwyq`) in **Interfy**, region **US East (Ohio)**. The portal's `feat/portal-app-supabase` branch Preview uses `https://zfxyprckbcwzscyttwyq.supabase.co` and its publishable key through Vercel environment variables. Local development continues to use the isolated local Supabase stack. Never deploy local administrator keys. No production domain promotion is required for branch previews.
+Vercel deployment protection stays enabled for previews; an externally shared preview may require separate Vercel access.
+
+The hosted Supabase project is **acquafy** (`zfxyprckbcwzscyttwyq`) in **Interfy**, region **US East (Ohio)**. The `feat/portal-app-supabase` branch Preview of `acquafy-site` uses `https://zfxyprckbcwzscyttwyq.supabase.co` and its publishable key through Vercel environment variables. Local development continues to use the isolated local Supabase stack. Never deploy local administrator keys. No production domain promotion is required for branch previews.
 
 Hosted public signup is disabled. The initial confirmed account is `dev@interfy.io`, with `app_metadata.portal_role` set to `internal`. Its generated login credentials are stored only in ignored `system/.local/hosted-admin-login.json`. Provision further approved accounts through the Auth Admin API with the roles described above. The functional portal schema is tracked in `supabase/migrations/`. No sample investments, contracts or payouts are seeded into the hosted database.
 

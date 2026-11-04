@@ -16,11 +16,17 @@ const nextConfig: NextConfig = {
     ];
   },
   async rewrites() {
-    const portalOrigin = (process.env.PORTAL_ORIGIN ?? "http://127.0.0.1:3001").replace(/\/$/, "");
+    // On Vercel the `portal` service (vercel.json) owns /app. Locally (`npm run dev`, `npm start`) the two apps run as
+    // separate processes, and scripts/run-apps.mjs sets PORTAL_ORIGIN so this app proxies /app to the portal.
+    const portalOrigin = process.env.PORTAL_ORIGIN?.replace(/\/$/, "");
     return [
-      { source: "/app", destination: `${portalOrigin}/app` },
-      { source: "/app/:path*", destination: `${portalOrigin}/app/:path*` },
-      { source: "/platform",         destination: "/plataforma"           },
+      ...(portalOrigin
+        ? [
+            { source: "/app", destination: `${portalOrigin}/app` },
+            { source: "/app/:path*", destination: `${portalOrigin}/app/:path*` },
+          ]
+        : []),
+      { source: "/platform",        destination: "/plataforma"           },
       { source: "/support-center",   destination: "/central-de-suporte"   },
       { source: "/technology",       destination: "/tecnologia"           },
       { source: "/neo-line",         destination: "/linha-neo"            },

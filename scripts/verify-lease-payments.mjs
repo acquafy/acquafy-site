@@ -90,7 +90,8 @@ try {
     const r = await fetch(process.argv[2] + "/app/api/stripe/webhook", {
       method: "POST",
       headers: {
-        "x-vercel-protection-bypass": preview.portalBypass,
+        "x-vercel-protection-bypass":
+          process.env.PORTAL_TEST_BYPASS ?? preview.portalBypass,
         "stripe-signature": signature,
         "Content-Type": "application/json",
       },
