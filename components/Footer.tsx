@@ -16,12 +16,11 @@ const imgFlagUSA   = "/figma-assets/flag-usa.svg";
 const imgGlobeSust = "/figma-assets/icon-globe-sust.svg";
 const imgArrowDown = "/figma-assets/icon-arrow-down.svg";
 
-const certLogos = [
-  "/figma-assets/cert-badge-a.svg",
-  "/figma-assets/cert-badge-b.svg",
-  "/figma-assets/cert-badge-c.svg",
-  "/figma-assets/cert-badge-d.svg",
-  "/figma-assets/cert-badge-e.svg",
+
+const socialLinks = [
+  { href: "https://www.instagram.com/acquafy_global/", src: "/figma-assets/cert-badge-a.svg", label: "Instagram" },
+  { href: "https://www.youtube.com/@acquafy7873",      src: "/figma-assets/cert-badge-d.svg", label: "YouTube"   },
+  { href: "https://www.facebook.com/Acquafyusa",       src: "/figma-assets/cert-badge-e.svg", label: "Facebook"  },
 ];
 
 // ── Translations ─────────────────────────────────────────────────────────────
@@ -759,11 +758,12 @@ export default function Footer() {
               {t.globalPlatform}
             </p>
           </div>
-          <div className="flex flex-wrap gap-[18px] items-center justify-center min-w-[320px] shrink-0 mob:min-w-0 mob:w-full">
-            {certLogos.map((src, i) => (
-              <div key={i} className="relative shrink-0 size-[50px] min-h-[50px] min-w-[50px]">
-                <img alt="" className="absolute inset-0 max-w-none size-full" src={src} />
-              </div>
+          <div className="flex flex-wrap gap-[18px] items-center justify-center min-w-[180px] shrink-0 mob:min-w-0 mob:w-full">
+            {socialLinks.map((s) => (
+              <a key={s.href} href={s.href} target="_blank" rel="noreferrer" aria-label={s.label}
+                className="relative shrink-0 size-[50px] min-h-[50px] min-w-[50px] hover:opacity-80 transition-opacity">
+                <img alt={s.label} className="absolute inset-0 max-w-none size-full" src={s.src} />
+              </a>
             ))}
           </div>
           <LanguageSelectorFull />
