@@ -24,10 +24,11 @@ export type SidebarItem = Pick<NavItem, "href" | "label" | "icon" | "group">;
 const defaultItems: SidebarItem[] = navItems.filter((item) => !item.hidden);
 
 /** Side-menu links. The "account" group (security, help) is drawn after a divider. */
-export function SidebarNav({ items = defaultItems }: { items?: SidebarItem[] }) {
+export function SidebarNav({ items = defaultItems, forceExpanded = false, onNavigate }: { items?: SidebarItem[]; forceExpanded?: boolean; onNavigate?: () => void }) {
   const pathname = usePathname();
   const secao = useSearchParams().get("secao");
-  const { collapsed } = useSidebar();
+  const sidebar = useSidebar();
+  const collapsed = !forceExpanded && sidebar.collapsed;
 
   return (
     <nav aria-label="Navegação principal">
@@ -40,6 +41,7 @@ export function SidebarNav({ items = defaultItems }: { items?: SidebarItem[] }) 
             <li key={href} className={cn(startsAccount && "mt-2 border-t border-line pt-3")}>
               <Link
                 href={href}
+                onClick={onNavigate}
                 aria-current={active ? "page" : undefined}
                 aria-label={collapsed ? label : undefined}
                 className={cn(

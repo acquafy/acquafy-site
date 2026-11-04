@@ -1,9 +1,14 @@
 // components/live/LiveShell.tsx
 "use client";
 
+import { useEffect, useState } from "react";
+import { Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Sidebar } from "@/components/layout/Sidebar";
+import { SidebarNav } from "@/components/layout/SidebarNav";
+import { LogoutButton } from "@/components/layout/LogoutButton";
+import { Modal } from "@/components/ui/Modal";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { PortalProviders } from "@/components/providers/PortalProviders";
 import { SidebarProvider, useSidebar } from "@/components/providers/SidebarProvider";
@@ -82,34 +87,54 @@ function LiveTopBar({
 }) {
   const { collapsed } = useSidebar();
   const name = email.split("@")[0];
+  const [menuOpen, setMenuOpen] = useState(false);
+  useEffect(() => {
+    const desktop = window.matchMedia("(min-width: 1024px)");
+    const closeOnDesktop = () => { if (desktop.matches) setMenuOpen(false); };
+    desktop.addEventListener("change", closeOnDesktop);
+    return () => desktop.removeEventListener("change", closeOnDesktop);
+  }, []);
+  const accountSwitcher = accounts.length > 1 || (accounts.length === 1 && kind !== "customer") ? (
+    <form action={switchAccount} className="flex min-w-0 flex-wrap items-center gap-2">
+      <Select
+        label="Conta"
+        hideLabel
+        name="account_id"
+        defaultValue={accountId}
+        options={accounts.map((a) => ({ value: a.id, label: a.name + (a.suspended ? " · Suspensa" : "") }))}
+        wrapperClassName="min-w-0 flex-1 lg:w-60"
+      />
+      <Button type="submit" variant="outline" size="sm">Abrir conta</Button>
+    </form>
+  ) : (
+    accounts[0] && <p className="min-w-0 truncate text-[14.5px] font-semibold text-ink-soft">{accounts[0].name}</p>
+  );
   return (
-    <header className="sticky top-0 z-20 flex h-16 w-full shrink-0 items-center justify-between gap-4 border-b border-line bg-card px-4 lg:h-[4.5rem] lg:px-6">
-      <div className="flex min-w-0 flex-1 items-center gap-4">
+    <header className="sticky top-0 z-20 flex h-16 w-full shrink-0 items-center justify-between gap-2 border-b border-line bg-card px-4 lg:h-[4.5rem] lg:px-6">
+      <div className="flex min-w-0 flex-1 items-center gap-2 sm:gap-4">
+        <button
+          type="button"
+          onClick={() => setMenuOpen(true)}
+          aria-label="Abrir menu principal"
+          aria-haspopup="dialog"
+          aria-expanded={menuOpen}
+          className="grid size-11 shrink-0 place-items-center rounded-lg text-ink-soft hover:bg-brand-soft focus-visible:outline-2 focus-visible:outline-brand lg:hidden"
+        >
+          <Menu className="size-6" aria-hidden="true" />
+        </button>
+        <Modal open={menuOpen} onClose={() => setMenuOpen(false)} title="Menu principal" size="sm" footer={<LogoutButton forceExpanded />}>
+          {accountSwitcher && <div className="mb-4 border-b border-line pb-4">{accountSwitcher}</div>}
+          <SidebarNav items={liveNavigation(kind)} forceExpanded onNavigate={() => setMenuOpen(false)} />
+        </Modal>
         <Link
           href={home}
           aria-label="Acquafy Account, ir para o início"
           className={cn("shrink-0 items-center rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand", collapsed ? "flex" : "flex lg:hidden")}
         >
-          <Image src="/app/brand/acquafy-logo.webp" alt="Acquafy" width={560} height={93} priority className="h-5 w-auto lg:h-[1.625rem] dark:hidden" />
-          <Image src="/app/brand/acquafy-logo-white.webp" alt="Acquafy" width={640} height={106} priority className="hidden h-5 w-auto lg:h-[1.625rem] dark:block" />
+          <Image src="/app/brand/acquafy-logo.webp" alt="Acquafy" width={560} height={93} priority className="h-[1.125rem] w-auto sm:h-5 lg:h-[1.625rem] dark:hidden" />
+          <Image src="/app/brand/acquafy-logo-white.webp" alt="Acquafy" width={640} height={106} priority className="hidden h-[1.125rem] w-auto sm:h-5 lg:h-[1.625rem] dark:block" />
         </Link>
-        {accounts.length > 1 || (accounts.length === 1 && kind !== "customer") ? (
-          <form action={switchAccount} className="flex min-w-0 items-center gap-2">
-            <Select
-              label="Conta"
-              hideLabel
-              name="account_id"
-              defaultValue={accountId}
-              options={accounts.map((a) => ({ value: a.id, label: a.name + (a.suspended ? " · Suspensa" : "") }))}
-              wrapperClassName="w-44 sm:w-60"
-            />
-            <Button type="submit" variant="outline" size="sm">
-              Abrir conta
-            </Button>
-          </form>
-        ) : (
-          accounts[0] && <p className="min-w-0 truncate text-[14.5px] font-semibold text-ink-soft">{accounts[0].name}</p>
-        )}
+        <div className="hidden min-w-0 lg:block">{accountSwitcher}</div>
       </div>
 
       <div className="flex shrink-0 items-center gap-2 lg:gap-3">

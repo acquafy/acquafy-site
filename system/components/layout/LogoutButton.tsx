@@ -9,9 +9,10 @@ import { LogoutDialog } from "./LogoutDialog";
 import { RailTooltip } from "./SidebarNav";
 
 /** Sidebar "Sair": opens the confirmation dialog. */
-export function LogoutButton() {
+export function LogoutButton({ forceExpanded = false }: { forceExpanded?: boolean }) {
   const [open, setOpen] = useState(false);
-  const { collapsed } = useSidebar();
+  const sidebar = useSidebar();
+  const collapsed = !forceExpanded && sidebar.collapsed;
 
   return (
     <>
