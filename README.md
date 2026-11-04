@@ -58,6 +58,34 @@ The portal's server variables (`SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, `SUPA
 
 Vercel deployment protection stays enabled for previews; an externally shared preview may require separate Vercel access.
 
+## Staging (`develop`)
+
+`develop` branches from `main` and uses the **Preview** target of the existing
+`acquafy-site` Vercel project. `main` remains the production branch. Do not create
+another Vercel or Supabase project, or a Vercel custom environment for staging.
+Both website and portal are included in the preview deployment.
+
+Configure Preview overrides scoped to `develop`: `STRIPE_ENVIRONMENT=test`,
+`STRIPE_SECRET_KEY` (a test key), `STRIPE_ACCOUNT_ID`, `STRIPE_WEBHOOK_SECRET`,
+`SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, and
+`PORTAL_PUBLIC_ORIGIN` (the stable develop branch preview origin, without `/app`).
+Store keys as sensitive variables. Preview code rejects live Stripe mode.
+The database is shared with the existing Supabase project: use dedicated test
+accounts and records; Stripe test mode does not isolate database writes.
+
+Register a **test mode** Stripe webhook at
+`<develop-preview-origin>/app/api/stripe/webhook`, using the event subscriptions
+of the existing integration. Ensure Vercel deployment protection permits Stripe
+webhook delivery (a protection bypass URL if necessary), and store this endpoint's
+signing secret in the develop Preview override. Add the develop origin's auth
+callback URL to the existing Supabase redirect allowlist.
+
+Before treating staging as ready, verify customer signup/confirmation, purchase
+Checkout with and without a promotion code, investor enrollment, monthly lease
+Checkout and invoice events, cancellations/failures, and webhook retries. Confirm
+payments are test mode and callbacks return to the develop preview. Existing
+Preview feature flags enable purchase and investor registration flows.
+
 ## Feature flags
 
 Three Vercel Flags on the `acquafy-site` project switch whole flows on and off without a redeploy. The website reads them in `lib/flags.ts` (the root layout hands them to client components through `components/FeatureFlags.tsx`) and the portal in `system/lib/flags.ts`, so a button and the page or server action behind it always change together.

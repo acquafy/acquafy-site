@@ -13,6 +13,8 @@ export function stripeClient() {
   const key = process.env.STRIPE_SECRET_KEY;
   if (!key) throw new Error("Stripe is not configured");
   const mode = process.env.STRIPE_ENVIRONMENT ?? "test";
+  if (process.env.VERCEL_ENV === "preview" && mode !== "test")
+    throw new Error("Preview deployments require Stripe test mode");
   if (mode !== "test" && mode !== "live")
     throw new Error("Invalid Stripe environment");
   if (!key.startsWith(`rk_${mode}_`) && !key.startsWith(`sk_${mode}_`))
