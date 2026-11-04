@@ -76,6 +76,16 @@ vercel flags inspect buy-now
 
 Hiding a button is never the only guard: pages return 404 and server actions refuse the request while the flag is off. If Vercel Flags cannot be reached (or locally before `vercel env pull`), each flag falls back to its code default: Be a Partner on, the two new flows off. Local development therefore needs the linked project's development credentials (`vercel env pull`, which provides `VERCEL_OIDC_TOKEN`) to see Buy Now and Investor Registration.
 
+### Bypassing the flags in production
+
+To test a gated flow (Buy Now, investor registration) in production without turning it on for everyone, one browser can opt in with a secret link. Set `FLAGS_BYPASS_SECRET` (at least 16 random characters, e.g. `openssl rand -hex 24`) on the `acquafy-site` project for the environment, then open:
+
+```
+https://<site>/api/flags-bypass?token=<FLAGS_BYPASS_SECRET>[&next=/buy]
+```
+
+That browser receives a signed, HttpOnly cookie (`acquafy-flags-bypass`, 7 days) and sees every flag as on, on the website and in `/app` (pages and server actions), while the flag stays as configured for everyone else. `/api/flags-bypass?clear=1` removes it. Without the variable the endpoint returns 404 and no cookie is accepted; wrong tokens also return 404. Rotating the secret revokes every issued cookie and link. Treat the link like a password: the token is in the URL, so it can appear in access logs and browser history. The portal verifies the same cookie (`system/lib/flags-bypass.ts`), which is shared because the site and `/app` use one origin.
+
 ## Auth e-mails
 
 Supabase sends account e-mails through Amazon SES (`email-smtp.us-east-1.amazonaws.com`, sender `no-reply@acquafy.com`, dedicated send-only IAM user). The pt-BR templates, subjects and `site_url` live in `scripts/supabase-auth-emails.mjs`: `node scripts/supabase-auth-emails.mjs preview` renders them to the OS temp directory and `apply` (with `SUPABASE_ACCESS_TOKEN_FILE`) updates the hosted project. SMTP credentials are never stored in the repository.
