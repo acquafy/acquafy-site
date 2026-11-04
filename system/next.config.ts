@@ -2,6 +2,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // These small WebP assets are already optimized. Serve them directly: the
+  // multi-service deployment does not expose the portal image optimizer route.
+  images: { unoptimized: true },
   experimental: { serverActions: { bodySizeLimit: "12mb" } },
   async headers() {
     return [
