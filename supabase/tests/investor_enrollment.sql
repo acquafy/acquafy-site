@@ -26,6 +26,7 @@ do $$declare rejected boolean:=false;begin
 end $$;
 select set_config('request.jwt.claim.sub',current_setting('enrollment_test.staff'),true);
 select public.enrollment_staff('approve',jsonb_build_object('enrollment_id',current_setting('enrollment_test.enrollment')));
+select public.enrollment_staff('withdraw',jsonb_build_object('offer_id',current_setting('enrollment_test.offer')));
 select set_config('request.jwt.claim.sub',current_setting('enrollment_test.partner'),true);
 do $$declare attempt uuid;rejected boolean:=false;begin
  begin perform public.enrollment_member('accept',jsonb_build_object('enrollment_id',current_setting('enrollment_test.enrollment'),'consent','yes','signer_name','Verification Investor','agreement_hash','tampered'));exception when raise_exception then rejected:=true;end;if not rejected then raise exception 'Unreviewed agreement hash accepted';end if;
@@ -36,6 +37,23 @@ do $$declare attempt uuid;rejected boolean:=false;begin
  if attempt<>public.enrollment_prepare_checkout(current_setting('enrollment_test.enrollment')::uuid) then raise exception 'Concurrent checkout allocation not reused';end if;
  perform set_config('enrollment_test.attempt',attempt::text,true);
 end $$;
+reset role;
+set local role service_role;
+select set_config('request.jwt.claims','{"role":"service_role"}',true);
+do $$declare base jsonb;begin
+ base:=jsonb_build_object('attempt_id',current_setting('enrollment_test.attempt'),'session_id','cs_test_'||current_setting('enrollment_test.attempt'),'amount_minor',80000,'currency','usd','livemode',false);
+ perform public.enrollment_gateway('bind',base);
+ update public.accounts set status='suspended' where id=(select account_id from public.investor_enrollments where id=current_setting('enrollment_test.enrollment')::uuid);
+ perform public.enrollment_gateway('event',base||jsonb_build_object('event_id','evt_blocked_'||gen_random_uuid(),'event_type','checkout.session.completed','state','paid','payment_intent_id','pi_test_'||current_setting('enrollment_test.attempt'),'paid_at',extract(epoch from now())::bigint));
+ if (select status from public.investor_enrollments where id=current_setting('enrollment_test.enrollment')::uuid)<>'payment_review' then raise exception 'Blocked account auto-activated';end if;
+ if exists(select 1 from public.contracts where account_id=(select account_id from public.investor_enrollments where id=current_setting('enrollment_test.enrollment')::uuid)) then raise exception 'Blocked account received contract';end if;
+end $$;
+reset role;
+set local role authenticated;
+select set_config('request.jwt.claims','{"role":"authenticated"}',true);
+select set_config('request.jwt.claim.sub',current_setting('enrollment_test.staff'),true);
+select public.portal_admin('account_status',jsonb_build_object('account_id',(select account_id from public.investor_enrollments where id=current_setting('enrollment_test.enrollment')::uuid),'status','active'));
+select public.enrollment_staff('review_payment',jsonb_build_object('enrollment_id',current_setting('enrollment_test.enrollment')));
 reset role;
 set local role service_role;
 select set_config('request.jwt.claims','{"role":"service_role"}',true);
@@ -55,4 +73,4 @@ do $$declare base jsonb;rejected boolean:=false;begin
 end $$;
 reset role;
 rollback;
-select 'PASS: enrollment privacy, staff review, server pricing, immutable agreement evidence, checkout reuse, server-only gateway, unpaid denial, amount verification, duplicate events, activation and sticky refunds' as result;
+select 'PASS: enrollment privacy, staff review, server pricing, immutable agreement evidence, checkout reuse, server-only gateway, unpaid denial, amount verification, duplicate events, activation, withdrawn-version preservation, suspension/review recovery and sticky refunds' as result;
