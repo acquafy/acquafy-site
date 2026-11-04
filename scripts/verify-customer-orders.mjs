@@ -13,6 +13,28 @@ const stripeSettings = JSON.parse(
 if (!/^(rk|sk)_test_/.test(stripeSettings.STRIPE_SECRET_KEY))
   throw Error("Test mode only");
 const stripe = new Stripe(stripeSettings.STRIPE_SECRET_KEY);
+// PORTAL_TEST_PROMO=1: pay with a real Stripe test promotion code (90% off) and verify the recorded discount.
+const promoMode = process.env.PORTAL_TEST_PROMO === "1";
+let promoCoupon = null,
+  promo = null;
+if (promoMode) {
+  promoCoupon = await stripe.coupons.create({
+    percent_off: 90,
+    duration: "once",
+    name: "Verification 90% off",
+    max_redemptions: 4,
+    metadata: { verification: "true" },
+  });
+  promo = await stripe.promotionCodes.create({
+    promotion: { type: "coupon", coupon: promoCoupon.id },
+    code: "VERIFY" + randomBytes(4).toString("hex").toUpperCase(),
+    max_redemptions: 4,
+  });
+}
+async function retirePromo() {
+  if (promo) await stripe.promotionCodes.update(promo.id, { active: false });
+  if (promoCoupon) await stripe.coupons.del(promoCoupon.id);
+}
 const cfg = JSON.parse(
   fs.readFileSync("system/.local/enrollment-server-env.json", "utf8"),
 );
@@ -104,7 +126,7 @@ function client() {
 }
 const admin = client(),
   partner = client();
-function paymentFixture(token, expectedAmount = 1000) {
+function paymentFixture(token, expectedAmount = 1000, promotionCode) {
   const file =
     "/private/tmp/acquafy-enrollment-fixture-" + randomUUID() + ".json";
   const fixture = {
@@ -115,6 +137,16 @@ function paymentFixture(token, expectedAmount = 1000) {
         path: "/v1/payment_pages/" + sessionId,
         method: "get",
       },
+      ...(promotionCode
+        ? [
+            {
+              name: "apply_promotion",
+              path: "/v1/payment_pages/" + sessionId,
+              method: "post",
+              params: { promotion_code: promotionCode },
+            },
+          ]
+        : []),
       {
         name: "payment_method",
         path: "/v1/payment_methods",
@@ -243,7 +275,7 @@ try {
     (await stripe.checkout.sessions.retrieve(sessionId)).amount_total,
     1000,
   );
-  const fixtureResult = paymentFixture("tok_visa");
+  const fixtureResult = paymentFixture("tok_visa", promoMode ? 100 : 1000, promo?.code);
   if (fixtureResult) throw Error(fixtureResult.slice(-300));
   const session = await stripe.checkout.sessions.retrieve(sessionId);
   assert.equal(session.payment_status, "paid");
@@ -281,6 +313,19 @@ try {
     )[0].status,
     "paid",
   );
+  if (promoMode) {
+    const row = (
+      await sql(
+        `select paid_minor,discount_minor,promotion from public.product_orders where id='${order.id}'`,
+      )
+    )[0];
+    assert.deepEqual(
+      row,
+      { paid_minor: 100, discount_minor: 900, promotion: promo.id },
+      "order records the discounted payment",
+    );
+    console.log("PASS (promo): purchase order paid 1.00 of 10.00 with", promo.code);
+  }
   const shipped = await admin.submit("/pedidos", "Atualizar entrega", {
     action: "fulfill",
     order_id: order.id,
@@ -365,7 +410,7 @@ try {
       `select checkout_id from public.customer_leases where id='${linkedLease}'`,
     )
   )[0].checkout_id;
-  const leasePayment = paymentFixture("tok_visa", 2000);
+  const leasePayment = paymentFixture("tok_visa", promoMode ? 200 : 2000, promo?.code);
   if (leasePayment) throw Error(leasePayment.slice(-300));
   const paidLeaseSession = await stripe.checkout.sessions.retrieve(sessionId);
   assert.equal(paidLeaseSession.payment_status, "paid");
@@ -378,6 +423,25 @@ try {
     )[0].status,
     "active",
   );
+  if (promoMode) {
+    const receipt = (
+      await sql(
+        `select amount_minor,subtotal_minor,discount_minor from public.lease_receipts where lease_id='${linkedLease}'`,
+      )
+    )[0];
+    assert.deepEqual(
+      receipt,
+      { amount_minor: 200, subtotal_minor: 2000, discount_minor: 1800 },
+      "lease receipt records the discounted invoice",
+    );
+    const share = (
+      await sql(
+        `select coalesce(sum(amount_minor),0)::int as total from public.lease_revenue where invoice_id in(select invoice_id from public.lease_receipts where lease_id='${linkedLease}')`,
+      )
+    )[0].total;
+    assert.equal(share, 100, "investor share is 50% of the 2.00 collected, not of 20.00");
+    console.log("PASS (promo): lease first invoice 2.00 of 20.00, investor share 1.00");
+  }
   const subscription =
     typeof paidLeaseSession.subscription === "string"
       ? paidLeaseSession.subscription
@@ -387,6 +451,7 @@ try {
     "PASS: verified customer signup and role isolation, private account, purchase request, staff quote, consent, server-priced Stripe test payment, duplicate delivery, shipment tracking, and customer lease acceptance with a real recurring test payment.",
   );
 } finally {
+  await retirePromo();
   if (sessionId) {
     const lastSession = await stripe.checkout.sessions.retrieve(sessionId);
     if (lastSession.subscription) {
