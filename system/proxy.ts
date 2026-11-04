@@ -60,7 +60,12 @@ export async function proxy(request: NextRequest) {
   if (!authConfigured())
     return isLogin
       ? response
-      : redirect(login + (path === "/adesao" ? "?next=adesao" : ""));
+      : redirect(
+          login +
+            (["/adesao", "/locacoes"].includes(path)
+              ? "?next=" + path.slice(1)
+              : ""),
+        );
 
   try {
     const {
@@ -76,7 +81,12 @@ export async function proxy(request: NextRequest) {
     if (!role)
       return isLogin
         ? forwarded
-        : redirect(login + (path === "/adesao" ? "?next=adesao" : ""));
+        : redirect(
+            login +
+              (["/adesao", "/locacoes"].includes(path)
+                ? "?next=" + path.slice(1)
+                : ""),
+          );
     if (internalPath(path) && role !== "internal") {
       const denied = new NextResponse("Acesso restrito à equipe interna.", {
         status: 403,
@@ -91,8 +101,10 @@ export async function proxy(request: NextRequest) {
       !(role === "internal" && request.nextUrl.searchParams.has("preview"))
     ) {
       return redirect(
-        request.nextUrl.searchParams.get("next") === "adesao"
-          ? "/adesao"
+        ["adesao", "locacoes"].includes(
+          request.nextUrl.searchParams.get("next") ?? "",
+        )
+          ? "/" + request.nextUrl.searchParams.get("next")
           : login.replace(/login$/, "home"),
       );
     }
@@ -100,7 +112,12 @@ export async function proxy(request: NextRequest) {
   } catch {
     return isLogin
       ? response
-      : redirect(login + (path === "/adesao" ? "?next=adesao" : ""));
+      : redirect(
+          login +
+            (["/adesao", "/locacoes"].includes(path)
+              ? "?next=" + path.slice(1)
+              : ""),
+        );
   }
 }
 

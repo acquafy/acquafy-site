@@ -1845,7 +1845,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                 ["dinheiro", lb.payCash],
                 ["financiar", lb.payLease],
               ] as const).map(([tab, label]) => (
-                <button key={tab} onClick={() => setPayTab(tab)}
+                <button key={tab} onClick={() => { if (tab === "financiar") { window.location.assign("/app/locacoes"); return; } setPayTab(tab); }}
                   className="flex-1 pb-[12px] pt-[4px] font-['Avenir_LT_Pro:85_Heavy'] text-[13px] transition-colors relative"
                   style={{ color: payTab === tab ? accent : "#aab2bc" }}
                 >

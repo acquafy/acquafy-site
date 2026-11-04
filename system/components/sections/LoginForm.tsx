@@ -15,7 +15,7 @@ import { LoginForgotModal } from "./LoginForgotModal";
 
 type Errors = { email?: string; password?: string };
 
-export function LoginForm({ destination = "/home" }: { destination?: "/home" | "/adesao" }) {
+export function LoginForm({ destination = "/home" }: { destination?: "/home" | "/adesao" | "/locacoes" }) {
   const router = useRouter();
   const toast = useToast();
   const form = useRef<HTMLFormElement>(null);

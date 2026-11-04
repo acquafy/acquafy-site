@@ -10,8 +10,9 @@ export default async function LoginPage({
 }: {
   searchParams: Promise<{ next?: string }>;
 }) {
+  const next = (await searchParams).next;
   const destination =
-    (await searchParams).next === "adesao" ? "/adesao" : "/home";
+    next === "locacoes" ? "/locacoes" : next === "adesao" ? "/adesao" : "/home";
   return (
     <main
       id="conteudo"

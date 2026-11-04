@@ -33,6 +33,8 @@ export async function POST(request: Request) {
     return new Response("Invalid signature", { status: 400 });
   }
   try {
+    const { processLeaseEvent } = await import("@/lib/leases/payments");
+    await processLeaseEvent(event);
     await processStripeEvent(event);
   } catch (error) {
     console.error("Stripe enrollment event failed", {

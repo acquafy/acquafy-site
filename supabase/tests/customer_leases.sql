@@ -1,0 +1,33 @@
+begin;
+do $$declare s uuid:=gen_random_uuid();c uuid:=gen_random_uuid();i uuid:=gen_random_uuid();a uuid;ia uuid;co uuid;p uuid;l uuid;begin
+ insert into auth.users(id,email,email_confirmed_at,raw_app_meta_data)values(s,s||'@test.invalid',now(),'{"portal_role":"internal"}'),(c,c||'@test.invalid',now(),'{"portal_role":"partner"}'),(i,i||'@test.invalid',now(),'{"portal_role":"partner"}');
+ insert into public.staff_role_grants(user_id,role)values(s,'admin');
+ insert into public.accounts(name)values('Lease test customer')returning id into a;
+ insert into public.accounts(name)values('Lease test investor')returning id into ia;
+ insert into public.account_memberships(account_id,user_id,role)values(a,c,'owner'),(ia,i,'owner');
+ insert into public.contracts(account_id,number,title,status,starts_on,ends_on,invested_amount)values(ia,gen_random_uuid()::text,'Test','active',current_date,current_date+365,100) returning id into co;
+ insert into public.purifiers(account_id,contract_id,serial,model,status,city,state)values(ia,co,gen_random_uuid()::text,'Test','available','Test','Test')returning id into p;
+ perform set_config('request.jwt.claim.sub',s::text,true);
+ l:=public.lease_command('create',jsonb_build_object('account_id',a,'title','Test lease','agreement_text',repeat('TEST ONLY ',20),'monthly_minor',1001,'share_bps',5000,'location','Test location','approved','yes'));
+ perform public.lease_command('assign',jsonb_build_object('lease_id',l,'purifier_id',p));
+ perform set_config('request.jwt.claim.sub',c::text,true);
+ perform public.lease_command('accept',jsonb_build_object('lease_id',l,'signer','Test customer','consent','yes'));
+ update public.customer_leases set subscription_id='sub_test_'||l where id=l;
+ perform public.lease_collect(jsonb_build_object('subscription_id','sub_test_'||l,'invoice_id','in_test_'||l,'amount_minor',1001,'period_start',extract(epoch from now())::bigint,'period_end',extract(epoch from now()+interval '1 month')::bigint));
+ perform public.lease_collect(jsonb_build_object('subscription_id','sub_test_'||l,'invoice_id','in_test_'||l,'amount_minor',1001,'period_start',extract(epoch from now())::bigint,'period_end',extract(epoch from now()+interval '1 month')::bigint));
+ if (select sum(amount_minor) from public.lease_revenue where invoice_id='in_test_'||l)<>500 then raise exception 'Allocation or duplicate failure';end if;
+ if (select state from public.lease_revenue where invoice_id='in_test_'||l)<>'pending_install' then raise exception 'Premature revenue';end if;
+ perform set_config('request.jwt.claim.sub',s::text,true);perform public.lease_command('install',jsonb_build_object('lease_id',l));
+ if (select state from public.lease_revenue where invoice_id='in_test_'||l)<>'accrued' then raise exception 'Installation accrual failure';end if;
+ perform set_config('lease_test.investor',i::text,true);
+end$$;
+set local role authenticated;
+select set_config('request.jwt.claim.sub',current_setting('lease_test.investor'),true);
+do $$begin
+ if exists(select 1 from public.customer_leases) or exists(select 1 from public.lease_receipts) then raise exception 'Investor customer privacy failure';end if;
+ if not exists(select 1 from public.lease_revenue) then raise exception 'Investor ledger inaccessible';end if;
+ begin perform public.lease_collect('{}');raise exception 'Client collection allowed';exception when insufficient_privilege then null;end;
+end$$;
+select set_config('request.jwt.claim.sub',gen_random_uuid()::text,true);
+do $$begin if exists(select 1 from public.customer_leases) or exists(select 1 from public.lease_units) or exists(select 1 from public.lease_revenue) then raise exception 'Foreign data exposed';end if;end$$;
+rollback;

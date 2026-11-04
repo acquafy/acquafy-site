@@ -14,6 +14,7 @@ const navigation = [
   ["suporte", "Suporte"],
   ["perfil", "Minha conta"],
   ["adesao", "Minha adesão"],
+  ["locacoes", "Locações"],
 ];
 export default async function Layout({
   children,
