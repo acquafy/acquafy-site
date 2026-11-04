@@ -1,26 +1,48 @@
-import Link from "next/link";
+import {
+  CalendarClock,
+  CircleCheck,
+  CircleDollarSign,
+  Download,
+  FileText,
+  Headset,
+  Link2Off,
+  ReceiptText,
+  ScrollText,
+} from "lucide-react";
 import {
   context,
   records,
   money,
   date,
-  labels,
   type Contract,
   type Unit,
   type Payout,
   type Document,
 } from "@/lib/live/data";
+import { Badge } from "@/components/ui/Badge";
+import { ButtonLink, buttonClass } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
+import { DefinitionList } from "@/components/ui/DefinitionList";
+import { EmptyState } from "@/components/ui/EmptyState";
+import { KpiCard } from "@/components/ui/KpiCard";
+import { PurifierIcon } from "@/components/ui/PurifierIcon";
+import { DataTable } from "./DataTable";
+import { Notice as NoticeBox } from "./Notice";
+import { PageHeader } from "./PageHeader";
+import { StatusPill } from "./StatusPill";
 import { Support } from "./Support";
+
 export type Query = {
   page?: string;
   saved?: string;
   error?: string;
   ticket?: string;
 };
+
 export function Notice({ query }: { query: Query }) {
   if (query.error)
     return (
-      <p role="alert" className="live-note live-error">
+      <NoticeBox tone="danger">
         {query.error === "account"
           ? "A conta selecionada mudou. Confira os dados e tente novamente."
           : query.error === "duplicate"
@@ -28,51 +50,13 @@ export function Notice({ query }: { query: Query }) {
             : query.error === "file"
               ? "Envie um PDF válido de até 10 MB."
               : "Não foi possível salvar. Confira os campos e suas permissões e tente novamente."}
-      </p>
+      </NoticeBox>
     );
-  return query.saved ? (
-    <p role="status" className="live-note live-success">
-      Registro salvo.
-    </p>
-  ) : null;
+  return query.saved ? <NoticeBox tone="success">Registro salvo.</NoticeBox> : null;
 }
-function Table({
-  headings,
-  rows,
-}: {
-  headings: string[];
-  rows: React.ReactNode[][];
-}) {
-  return rows.length ? (
-    <div className="live-card">
-      <table className="live-table">
-        <thead>
-          <tr>
-            {headings.map((h) => (
-              <th key={h} scope="col">
-                {h}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row, i) => (
-            <tr key={i}>
-              {row.map((cell, j) => (
-                <td key={j}>{cell}</td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  ) : (
-    <p className="live-card live-muted">
-      Nenhum registro cadastrado para esta conta.
-    </p>
-  );
-}
-function Pager({
+
+/** "N registros" plus Anterior / Próxima, 50 per page (`?page=`, zero-based). */
+export function Pager({
   page,
   count,
   path,
@@ -81,16 +65,31 @@ function Pager({
   count: number;
   path: string;
 }) {
+  const hasPrev = page > 0;
+  const hasNext = (page + 1) * 50 < count;
   return (
-    <div className="live-pager">
-      <span>{count} registros</span>
-      {page > 0 && <Link href={`${path}?page=${page - 1}`}>← Anterior</Link>}
-      {(page + 1) * 50 < count && (
-        <Link href={`${path}?page=${page + 1}`}>Próxima →</Link>
+    <div className="flex flex-wrap items-center justify-between gap-3">
+      <p className="text-[14px] text-ink-soft" aria-live="polite">
+        {count} {count === 1 ? "registro" : "registros"}
+      </p>
+      {(hasPrev || hasNext) && (
+        <nav aria-label="Paginação" className="flex items-center gap-2">
+          {hasPrev && (
+            <ButtonLink href={`${path}?page=${page - 1}`} variant="outline" size="sm">
+              ← Anterior
+            </ButtonLink>
+          )}
+          {hasNext && (
+            <ButtonLink href={`${path}?page=${page + 1}`} variant="outline" size="sm">
+              Próxima →
+            </ButtonLink>
+          )}
+        </nav>
       )}
     </div>
   );
 }
+
 const titles: Record<string, string> = {
   home: "Visão geral",
   dashboard: "Dashboard",
@@ -103,6 +102,9 @@ const titles: Record<string, string> = {
   solicitar: "Novas solicitações",
   suporte: "Suporte",
 };
+
+const fileLink = buttonClass({ variant: "outline", size: "sm" });
+
 export async function PortalPage({
   view,
   query = {},
@@ -118,50 +120,63 @@ export async function PortalPage({
   );
   return (
     <>
-      <h1>{titles[view]}</h1>
-      <p className="live-muted">{account?.name ?? "Nenhuma conta vinculada"}</p>
+      <PageHeader
+        title={titles[view]}
+        subtitle={account?.name ?? "Nenhuma conta vinculada"}
+      />
       <Notice query={query} />
       {!account ? (
-        <div className="live-card">
-          <h2>Seu acesso está ativo</h2>
-          <p>
-            Um administrador precisa vincular uma conta para liberar contratos,
-            equipamentos e documentos.
-          </p>
-          {ctx.staff === "admin" && (
-            <Link className="live-link" href="/admin">
-              Criar ou vincular uma conta
-            </Link>
-          )}
-        </div>
+        <Card>
+          <EmptyState
+            icon={Link2Off}
+            title="Seu acesso está ativo"
+            description="Um administrador precisa vincular uma conta para liberar contratos, equipamentos e documentos."
+            action={
+              ctx.staff === "admin" ? (
+                <ButtonLink href="/admin" variant="outline">
+                  Criar ou vincular uma conta
+                </ButtonLink>
+              ) : undefined
+            }
+          />
+        </Card>
       ) : view === "suporte" ? (
         <Support accountId={account.id} query={query} />
       ) : view === "home" || view === "dashboard" ? (
         await Overview(account.id)
       ) : view === "perfil" ? (
-        <div className="live-card">
-          <h2>Identidade autenticada</h2>
-          <p>{ctx.user.email}</p>
-          <p className="live-note">
-            Perfil e dados bancários não são editáveis nesta versão. Para
-            alterar dados ou recuperar acesso, abra um chamado. Não envie senhas
-            nem números completos de contas bancárias.
-          </p>
-          <Link className="live-link" href="/suporte">
-            Abrir chamado
-          </Link>
-        </div>
+        <Card title="Identidade autenticada">
+          <DefinitionList
+            rows={[
+              { label: "E-mail", value: ctx.user.email ?? "—" },
+              { label: "Conta", value: account.name },
+            ]}
+          />
+          <NoticeBox className="mt-4">
+            Perfil e dados bancários não são editáveis nesta versão. Para alterar
+            dados ou recuperar acesso, abra um chamado. Não envie senhas nem
+            números completos de contas bancárias.
+          </NoticeBox>
+          <div className="mt-4">
+            <ButtonLink href="/suporte" variant="outline">
+              <Headset className="size-4" aria-hidden="true" />
+              Abrir chamado
+            </ButtonLink>
+          </div>
+        </Card>
       ) : view === "solicitar" ? (
-        <div className="live-card">
-          <h2>Converse com a equipe</h2>
-          <p>
+        <Card title="Converse com a equipe">
+          <p className="max-w-2xl text-[14.5px] text-ink-soft">
             Novas aquisições, manutenção, aditivos e recompra são tratados pelo
             suporte nesta versão. Nenhum pagamento é iniciado pelo portal.
           </p>
-          <Link className="live-link" href="/suporte">
-            Enviar solicitação à equipe
-          </Link>
-        </div>
+          <div className="mt-4">
+            <ButtonLink href="/suporte">
+              <Headset className="size-4" aria-hidden="true" />
+              Enviar solicitação à equipe
+            </ButtonLink>
+          </div>
+        </Card>
       ) : view === "contrato" ? (
         await Contracts(account.id, page)
       ) : view === "purificadores" ? (
@@ -174,6 +189,7 @@ export async function PortalPage({
     </>
   );
 }
+
 async function Overview(account: string) {
   const { db } = await context();
   const { data, error } = await db.rpc("portal_summary", { account });
@@ -187,152 +203,215 @@ async function Overview(account: string) {
   };
   return (
     <>
-      <div className="live-grid">
-        {[
-          ["Contratos", s.contracts],
-          ["Purificadores", s.units],
-          ["Investimento registrado", money(s.invested)],
-          ["Repasses liquidados", money(s.settled)],
-          ["Repasses programados", money(s.scheduled)],
-        ].map(([label, value]) => (
-          <div className="live-card" key={label}>
-            <p className="live-muted">{label}</p>
-            <p className="live-metric">{value}</p>
-          </div>
-        ))}
+      <div className="grid gap-4 @2xl:grid-cols-2 @5xl:grid-cols-3">
+        <KpiCard icon={ScrollText} tone="blue" label="Contratos" value={s.contracts} />
+        <KpiCard icon={PurifierIcon} tone="violet" label="Purificadores" value={s.units} />
+        <KpiCard icon={CircleDollarSign} tone="blue" label="Investimento registrado" value={money(s.invested)} />
+        <KpiCard icon={CircleCheck} tone="green" label="Repasses liquidados" value={money(s.settled)} />
+        <KpiCard icon={CalendarClock} tone="orange" label="Repasses programados" value={money(s.scheduled)} />
       </div>
-      <p className="live-note">
+      <NoticeBox>
         Valores em USD, conforme os registros publicados pela equipe. A data de
         vencimento não confirma a liquidação de um repasse.
-      </p>
-      <div className="live-card">
-        <h2>Atalhos</h2>
-        <div className="live-pager">
-          <Link className="live-link" href="/documentos">
+      </NoticeBox>
+      <Card title="Atalhos">
+        <div className="flex flex-wrap gap-3">
+          <ButtonLink href="/documentos" variant="outline">
+            <FileText className="size-4" aria-hidden="true" />
             Documentos
-          </Link>
-          <Link className="live-link" href="/extrato">
+          </ButtonLink>
+          <ButtonLink href="/extrato" variant="outline">
+            <ReceiptText className="size-4" aria-hidden="true" />
             Extrato
-          </Link>
-          <Link className="live-link" href="/suporte">
+          </ButtonLink>
+          <ButtonLink href="/suporte" variant="outline">
+            <Headset className="size-4" aria-hidden="true" />
             Falar com a equipe
-          </Link>
+          </ButtonLink>
         </div>
-      </div>
+      </Card>
     </>
   );
 }
+
 async function Contracts(account: string, page: number) {
   const { rows, count } = await records<Contract>("contracts", account, page);
-  const {db}=await context();
-  const enrolled=rows.length?await db.from('investor_enrollments').select('id,contract_id').eq('account_id',account).in('contract_id',rows.map(row=>row.id)):{data:[],error:null};
-  if(enrolled.error)throw new Error('Não foi possível carregar os acordos.');
+  const { db } = await context();
+  const enrolled = rows.length
+    ? await db
+        .from("investor_enrollments")
+        .select("id,contract_id")
+        .eq("account_id", account)
+        .in(
+          "contract_id",
+          rows.map((row) => row.id),
+        )
+    : { data: [], error: null };
+  if (enrolled.error) throw new Error("Não foi possível carregar os acordos.");
   return (
     <>
-      <Table
-        headings={[
-          "Contrato",
-          "Título",
-          "Situação",
-          "Início",
-          "Término",
-          "Investimento (USD)",
-          "Acordo",
+      <DataTable
+        caption="Contratos da conta"
+        columns={[
+          { heading: "Contrato" },
+          { heading: "Título" },
+          { heading: "Situação" },
+          { heading: "Início", secondary: true },
+          { heading: "Término", secondary: true },
+          { heading: "Investimento (USD)", align: "right" },
+          { heading: "Acordo" },
         ]}
-        rows={rows.map((c) => [
-          c.number,
-          c.title,
-          labels[c.status],
-          date(c.starts_on),
-          date(c.ends_on),
-          money(c.invested_amount),
-          enrolled.data?.find(e=>e.contract_id===c.id)?<a key={c.id} className="live-link" href={'/app/api/agreements/'+enrolled.data.find(e=>e.contract_id===c.id)!.id}>Baixar acordo aceito</a>:<Link key={c.id} className="live-link" href="/documentos">Documentos</Link>,
-        ])}
+        rows={rows.map((c) => {
+          const agreement = enrolled.data?.find((e) => e.contract_id === c.id);
+          return [
+            c.number,
+            c.title,
+            <StatusPill key="s" status={c.status} />,
+            date(c.starts_on),
+            date(c.ends_on),
+            money(c.invested_amount),
+            agreement ? (
+              <a
+                key={c.id}
+                className={fileLink}
+                href={"/app/api/agreements/" + agreement.id}
+              >
+                <Download className="size-4" aria-hidden="true" />
+                Baixar acordo aceito
+              </a>
+            ) : (
+              <ButtonLink key={c.id} href="/documentos" variant="outline" size="sm">
+                Documentos
+              </ButtonLink>
+            ),
+          ];
+        })}
       />
       <Pager page={page} count={count} path="/contrato" />
-      <p className="live-note">
+      <NoticeBox>
         Consulte os arquivos publicados em Documentos para conferir o contrato
         assinado. Alterações contratuais devem ser solicitadas pelo suporte.
-      </p>
+      </NoticeBox>
     </>
   );
 }
+
 async function Units(account: string, page: number) {
   const { rows, count } = await records<Unit>("purifiers", account, page);
   return (
     <>
-      <Table
-        headings={["Série", "Modelo", "Situação", "Localização", "Ativação"]}
+      <DataTable
+        caption="Purificadores da conta"
+        columns={[
+          { heading: "Série" },
+          { heading: "Modelo", secondary: true },
+          { heading: "Situação" },
+          { heading: "Localização" },
+          { heading: "Ativação", secondary: true },
+        ]}
         rows={rows.map((u) => [
           u.serial,
           u.model,
-          labels[u.status],
+          <StatusPill key="s" status={u.status} />,
           [u.city, u.state].filter(Boolean).join(", ") || "—",
           date(u.activation_date),
         ])}
       />
       <Pager page={page} count={count} path="/purificadores" />
-      <Link className="live-link" href="/suporte">
-        Solicitar manutenção
-      </Link>
+      <div>
+        <ButtonLink href="/suporte" variant="outline">
+          <Headset className="size-4" aria-hidden="true" />
+          Solicitar manutenção
+        </ButtonLink>
+      </div>
     </>
   );
 }
+
 async function Documents(account: string, page: number) {
   const { rows, count } = await records<Document>("documents", account, page);
-  const {db}=await context();const agreements=await db.from('investor_enrollments').select('id,created_at').eq('account_id',account).in('status',['accepted','payment_pending','active','payment_review']).order('created_at',{ascending:false}).limit(100);
-  if(agreements.error)throw new Error('Não foi possível carregar os acordos.');
+  const { db } = await context();
+  const agreements = await db
+    .from("investor_enrollments")
+    .select("id,created_at")
+    .eq("account_id", account)
+    .in("status", ["accepted", "payment_pending", "active", "payment_review"])
+    .order("created_at", { ascending: false })
+    .limit(100);
+  if (agreements.error) throw new Error("Não foi possível carregar os acordos.");
   return (
     <>
-      <p className="live-note">
-        Arquivos privados publicados pela equipe para esta conta.
-      </p>
-      <Table
-        headings={["Documento", "Publicado em", "Tamanho", "Arquivo"]}
+      <DataTable
+        caption="Documentos publicados"
+        columns={[
+          { heading: "Documento" },
+          { heading: "Publicado em", secondary: true },
+          { heading: "Tamanho", secondary: true, align: "right" },
+          { heading: "Arquivo" },
+        ]}
         rows={rows.map((d) => [
           d.title,
           date(d.created_at),
           `${Math.ceil(d.size_bytes / 1024)} KB`,
-          <a
-            className="live-link"
-            key={d.id}
-            href={`/app/api/documents/${d.id}`}
-          >
+          <a key={d.id} className={fileLink} href={`/app/api/documents/${d.id}`}>
+            <Download className="size-4" aria-hidden="true" />
             Baixar PDF
           </a>,
         ])}
       />
       <Pager page={page} count={count} path="/documentos" />
-      {agreements.data.length>0&&<section className="live-card"><h2>Acordos aceitos na plataforma</h2><ul>{agreements.data.map(agreement=><li key={agreement.id}><a className="live-link" href={'/app/api/agreements/'+agreement.id}>Acordo e evidência do aceite · {date(agreement.created_at)}</a></li>)}</ul></section>}
+      {agreements.data.length > 0 && (
+        <Card title="Acordos aceitos na plataforma">
+          <ul className="divide-y divide-line">
+            {agreements.data.map((agreement) => (
+              <li key={agreement.id} className="flex flex-wrap items-center justify-between gap-3 py-2.5 text-[14.5px]">
+                <span className="min-w-0 text-ink">
+                  Acordo e evidência do aceite · {date(agreement.created_at)}
+                </span>
+                <a className={fileLink} href={"/app/api/agreements/" + agreement.id}>
+                  <Download className="size-4" aria-hidden="true" />
+                  Baixar
+                </a>
+              </li>
+            ))}
+          </ul>
+        </Card>
+      )}
     </>
   );
 }
+
 async function Payouts(account: string, page: number, view: string) {
   const { rows, count } = await records<Payout>("payouts", account, page);
+  const today = new Date().toISOString().slice(0, 10);
   return (
     <>
-      <p className="live-note">
+      <NoticeBox>
         Programado: obrigação registrada, sem confirmação de pagamento.
         Liquidado: a equipe registrou data e referência de liquidação. O portal
         não executa transferências.
-      </p>
-      <Table
-        headings={[
-          "Período",
-          "Vencimento",
-          "Valor (USD)",
-          "Situação",
-          "Liquidação",
-          "Referência",
+      </NoticeBox>
+      <DataTable
+        caption="Repasses da conta"
+        columns={[
+          { heading: "Período" },
+          { heading: "Vencimento" },
+          { heading: "Valor (USD)", align: "right" },
+          { heading: "Situação" },
+          { heading: "Liquidação", secondary: true },
+          { heading: "Referência", secondary: true },
         ]}
         rows={rows.map((p) => [
           `${date(p.period_start)} – ${date(p.period_end)}`,
           date(p.due_on),
           money(p.amount),
-          p.status === "scheduled" &&
-          p.due_on < new Date().toISOString().slice(0, 10)
-            ? "Programado · vencido"
-            : labels[p.status],
+          p.status === "scheduled" && p.due_on < today ? (
+            <Badge key="s" tone="danger" dot>
+              Programado · vencido
+            </Badge>
+          ) : (
+            <StatusPill key="s" status={p.status} />
+          ),
           date(p.settled_on),
           p.reference || "—",
         ])}

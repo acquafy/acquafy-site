@@ -21,7 +21,7 @@ export function LogoutDialog({ open, onClose }: { open: boolean; onClose: () => 
       return;
     }
     onClose();
-    toast({ title: "Sessão encerrada", description: "Até logo! Você saiu do Portal do Investidor.", tone: "info" });
+    toast({ title: "Sessão encerrada", description: "Até logo! Você saiu da Acquafy Account.", tone: "info" });
     router.replace("/login");
     router.refresh();
   };

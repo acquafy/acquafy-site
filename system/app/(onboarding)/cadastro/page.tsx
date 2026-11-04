@@ -1,55 +1,36 @@
 import Link from "next/link";
 import { ActionForm } from "@/components/enrollment/ActionForm";
-import { Field } from "@/components/live/Fields";
+import { AUTH_LINK, AuthSplit } from "@/components/live/AuthSplit";
+import { Consent, Field } from "@/components/live/Fields";
 import { customerSignup } from "@/lib/orders/actions";
 import { customerDestination } from "@/lib/orders/destination";
-import "../../(portal)/live.css";
+
 export const metadata = { title: "Criar Acquafy Account" };
-export default async function Signup({
-  searchParams,
-}: {
-  searchParams: Promise<{ next?: string }>;
-}) {
+
+export default async function Signup({ searchParams }: { searchParams: Promise<{ next?: string }> }) {
   const next = customerDestination((await searchParams).next);
   return (
-    <main
-      className="live-portal"
-      style={{ padding: "40px 20px", maxWidth: 650, margin: "auto" }}
+    <AuthSplit
+      title="Criar Acquafy Account"
+      subtitle="Acompanhe pedidos, entrega, instalação e locações com sua própria conta."
+      footer={
+        <Link className={AUTH_LINK} href={"/login?next=" + encodeURIComponent(next)}>
+          Já tenho conta · Entrar
+        </Link>
+      }
     >
-      <h1>Criar Acquafy Account</h1>
-      <p>
-        Acompanhe pedidos, entrega, instalação e locações com sua própria conta.
-      </p>
-      <ActionForm
-        action={customerSignup}
-        title="Seu cadastro"
-        submit="Criar conta"
-      >
+      <ActionForm plain action={customerSignup} title="Seu cadastro" submit="Criar conta">
         <input type="hidden" name="next" value={next} />
-        <Field name="email" label="E-mail" type="email" maxLength={254} />
-        <label className="live-field">
-          Senha (12 a 128 caracteres)
-          <input
-            name="password"
-            type="password"
-            required
-            minLength={12}
-            maxLength={128}
-            autoComplete="new-password"
-          />
-        </label>
-        <label>
-          <input required type="checkbox" name="consent" value="yes" /> Li e
-          aceito a{" "}
-          <a href="/privacy-policy" target="_blank" rel="noreferrer">
+        <Field name="email" label="E-mail" type="email" maxLength={254} autoComplete="email" placeholder="seu@email.com" />
+        <Field name="password" label="Senha" type="password" minLength={12} maxLength={128} autoComplete="new-password" hint="De 12 a 128 caracteres." />
+        <Consent name="consent">
+          Li e aceito a{" "}
+          <a className="font-semibold text-brand hover:underline" href="/privacy-policy" target="_blank" rel="noreferrer">
             Política de Privacidade
           </a>
           .
-        </label>
+        </Consent>
       </ActionForm>
-      <Link href={"/login?next=" + encodeURIComponent(next)}>
-        Já tenho conta · Entrar
-      </Link>
-    </main>
+    </AuthSplit>
   );
 }

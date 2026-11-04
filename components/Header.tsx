@@ -627,7 +627,7 @@ export default function Header() {
         </nav>
 
         <div className="flex gap-[10px] items-center justify-end shrink-0">
-          <a href="/app/pedidos" className="text-[13px] font-semibold text-[#0233c3] whitespace-nowrap">{lang.startsWith("pt") ? "Minha conta" : "My Account"}</a>
+          <a href="/app/pedidos" className="hidden lg:block font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] hover:text-[#002ba8] active:text-[#005ae0] transition-colors whitespace-nowrap px-[6px]">{lang.startsWith("pt") ? "Minha conta" : "My Account"}</a>
           <LanguageSelectorCompact />
           <a href="/partnership" className="hidden lg:flex bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors gap-[10px] items-center justify-center h-[40px] overflow-hidden px-[20px] rounded-[8px] shrink-0 cursor-pointer">
             <FigmaIcon src={imgPartner} size={16} aspectW={41} aspectH={40} />
@@ -656,7 +656,10 @@ export default function Header() {
                 onClose={() => setMenuOpen(false)}
               />
             ))}
-            <div className="pt-[16px] pb-[10px]">
+            <div className="flex flex-col gap-[10px] pt-[16px] pb-[10px]">
+              <a href="/app/pedidos" className="border border-[#0233c3] hover:bg-[#f6f9fe] transition-colors flex items-center justify-center h-[48px] px-[20px] rounded-[8px] w-full cursor-pointer">
+                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] whitespace-nowrap">{lang.startsWith("pt") ? "Minha conta" : "My Account"}</span>
+              </a>
               <a href="/partnership" className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex gap-[10px] items-center justify-center h-[48px] overflow-hidden px-[20px] rounded-[8px] w-full cursor-pointer">
                 <FigmaIcon src={imgPartner} size={16} aspectW={41} aspectH={40} />
                 <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white whitespace-nowrap">{partnerBtn}</span>

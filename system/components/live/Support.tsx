@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LifeBuoy, ShieldAlert } from "lucide-react";
 import {
   context,
   records,
@@ -8,8 +9,15 @@ import {
   type Message,
 } from "@/lib/live/data";
 import { ticketAction } from "@/lib/live/actions";
-import { Form, Field, Select } from "./Fields";
-import { type Query, Notice } from "./PortalPage";
+import { Card } from "@/components/ui/Card";
+import { ChatBubble } from "@/components/ui/ChatBubble";
+import { EmptyState } from "@/components/ui/EmptyState";
+import { cn } from "@/lib/cn";
+import { Form, Field, Select, Area } from "./Fields";
+import { Notice as NoticeBox } from "./Notice";
+import { type Query, Notice, Pager } from "./PortalPage";
+import { StatusPill } from "./StatusPill";
+
 export async function Support({
   accountId,
   query,
@@ -21,7 +29,12 @@ export async function Support({
 }) {
   const { db, staff } = await context();
   const page = Math.max(0, Math.min(100000, parseInt(query.page || "0") || 0));
-  if (queue && !staff) return <p role="alert">Acesso restrito à equipe.</p>;
+  if (queue && !staff)
+    return (
+      <Card>
+        <EmptyState icon={ShieldAlert} title="Acesso restrito à equipe." />
+      </Card>
+    );
   let tickets: Ticket[];
   let count: number;
   if (queue) {
@@ -64,77 +77,81 @@ export async function Support({
           title="Abrir chamado"
         >
           <Field name="subject" label="Assunto" />
-          <label className="live-field">
-            Mensagem
-            <textarea
-              name="body"
-              required
-              minLength={1}
-              maxLength={5000}
-              rows={4}
-            />
-          </label>
-          <p className="live-muted">
-            A equipe recebe este chamado no portal. Não inclua senhas nem dados
-            bancários completos.
-          </p>
+          <Area
+            name="body"
+            label="Mensagem"
+            minLength={1}
+            maxLength={5000}
+            hint="A equipe recebe este chamado no portal. Não inclua senhas nem dados bancários completos."
+          />
         </Form>
       )}
-      <div className="live-card">
-        <h2>{queue ? "Fila da equipe" : "Chamados da conta"}</h2>
-        {tickets.length === 0 && <p>Nenhum chamado registrado.</p>}
-        <ul>
-          {tickets.map((t) => (
-            <li className="live-ticket" key={t.id}>
-              <Link
-                className="live-link"
-                href={`${path}?page=${page}&ticket=${t.id}`}
-              >
-                #{t.number} · {t.subject}
-              </Link>
-              <p>
-                {labels[t.status]} · {date(t.updated_at)}
-                {t.assigned_to ? " · Atribuído à equipe" : ""}
-              </p>
-            </li>
-          ))}
-        </ul>
-        <div className="live-pager">
-          {page > 0 && (
-            <Link href={`${path}?page=${page - 1}`}>← Anterior</Link>
-          )}
-          {(page + 1) * 50 < count && (
-            <Link href={`${path}?page=${page + 1}`}>Próxima →</Link>
-          )}
+      <Card title={queue ? "Fila da equipe" : "Chamados da conta"}>
+        {tickets.length === 0 ? (
+          <EmptyState
+            icon={LifeBuoy}
+            title="Nenhum chamado registrado"
+            description="Quando você abrir um chamado, ele aparece aqui com a situação do atendimento."
+          />
+        ) : (
+          <ul className="divide-y divide-line">
+            {tickets.map((t) => (
+              <li key={t.id}>
+                <Link
+                  href={`${path}?page=${page}&ticket=${t.id}`}
+                  aria-current={t.id === selected?.id ? "true" : undefined}
+                  className={cn(
+                    "flex flex-wrap items-center justify-between gap-x-4 gap-y-1.5 rounded-lg px-2 py-3 hover:bg-brand-soft/50 focus-visible:outline-2 focus-visible:outline-brand",
+                    t.id === selected?.id && "bg-brand-soft/60",
+                  )}
+                >
+                  <span className="min-w-0 text-[15px] font-bold text-ink [overflow-wrap:anywhere]">
+                    #{t.number} · {t.subject}
+                  </span>
+                  <span className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[13.5px] text-ink-soft">
+                    <StatusPill status={t.status} />
+                    <span className="tabular">{date(t.updated_at)}</span>
+                    {t.assigned_to && <span>Atribuído à equipe</span>}
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
+        <div className="mt-4">
+          <Pager page={page} count={count} path={path} />
         </div>
-      </div>
+      </Card>
       {selected && (
-        <section className="live-card">
-          <h2>
-            #{selected.number} · {selected.subject}
-          </h2>
-          <p>{labels[selected.status]}</p>
-          {messages.map((m) => (
-            <div className="live-message" data-staff={m.from_staff} key={m.id}>
-              <strong>{m.from_staff ? "Equipe Acquafy" : "Parceiro"}</strong>
-              <p>{m.body}</p>
-              <small>{date(m.created_at)}</small>
-            </div>
-          ))}
-          {messages.length === 500 && (
-            <p>
-              Exibindo as primeiras 500 mensagens. Solicite à equipe o histórico
-              completo.
-            </p>
-          )}
+        <>
+          <Card
+            title={`#${selected.number} · ${selected.subject}`}
+            action={<StatusPill status={selected.status} label={labels[selected.status]} />}
+          >
+            <ul className="flex flex-col gap-3" aria-label="Mensagens do chamado">
+              {messages.map((m) => (
+                <ChatBubble
+                  key={m.id}
+                  from={m.from_staff === Boolean(staff) ? "me" : "them"}
+                  author={m.from_staff ? "Equipe Acquafy" : staff ? "Cliente" : "Você"}
+                  time={date(m.created_at)}
+                >
+                  {m.body}
+                </ChatBubble>
+              ))}
+            </ul>
+            {messages.length === 500 && (
+              <NoticeBox tone="warn" className="mt-4">
+                Exibindo as primeiras 500 mensagens. Solicite à equipe o histórico
+                completo.
+              </NoticeBox>
+            )}
+          </Card>
           <Form action={ticketAction} kind="reply" title="Responder">
             <input type="hidden" name="ticket_id" value={selected.id} />
             <input type="hidden" name="queue" value={queue ? "1" : "0"} />
             <input type="hidden" name="page" value={page} />
-            <label className="live-field">
-              Mensagem
-              <textarea name="body" required maxLength={5000} rows={3} />
-            </label>
+            <Area name="body" label="Mensagem" rows={3} maxLength={5000} minLength={1} />
           </Form>
           {staff && (
             <Form action={ticketAction} kind="status" title="Atendimento">
@@ -151,7 +168,7 @@ export async function Support({
               />
             </Form>
           )}
-        </section>
+        </>
       )}
     </>
   );

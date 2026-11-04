@@ -2133,7 +2133,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                         <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91]">{payTab === "financiar" ? lb.dueTodayTitle : lb.taxaPedidoTitle}</p>
                         <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af]">{lang.startsWith("pt") ? "Pagamento após proposta e aceite" : "Payment after quote acceptance"}</p>
                       </div>
-                      <span className="font-['Avenir_LT_Pro:95_Black'] text-[18px] text-[#1f2e91] shrink-0">{lang.startsWith("pt") ? "Sem cobrança agora" : "No payment now"}</span>
+                      <span className="font-['Avenir_LT_Pro:95_Black'] text-[15px] text-[#1f2e91] shrink-0">{lang.startsWith("pt") ? "Sem cobrança agora" : "No payment now"}</span>
                     </div>
                   </div>
                 </div>
@@ -2142,9 +2142,9 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
 
             <Sep />
 
-            <div className="rounded-xl bg-[#f6f9fe] p-5 text-[#1f2e91]">
-              <h3 className="font-bold">Acquafy Account</h3>
-              <p>{lang.startsWith("pt") ? "Crie sua conta de cliente para receber a proposta, confirmar o pedido e acompanhar entrega e instalação. Não há cobrança de reserva nesta etapa." : "Create your customer account to receive a quote, confirm your order, and track delivery and installation. No reservation fee is charged at this step."}</p>
+            <div className="flex flex-col gap-[4px] rounded-[12px] bg-[#f6f9fe] p-[16px]">
+              <h3 className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91]">Acquafy Account</h3>
+              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] leading-[1.5] text-[#6b7280]">{lang.startsWith("pt") ? "Crie sua conta de cliente para receber a proposta, confirmar o pedido e acompanhar entrega e instalação. Não há cobrança de reserva nesta etapa." : "Create your customer account to receive a quote, confirm your order, and track delivery and installation. No reservation fee is charged at this step."}</p>
             </div>
 
             <div className="h-[12px]" />

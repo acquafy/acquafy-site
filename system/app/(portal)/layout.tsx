@@ -1,108 +1,43 @@
-import Link from "next/link";
+// app/(portal)/layout.tsx
+import { cookies } from "next/headers";
 import { context } from "@/lib/live/data";
-import { switchAccount, logout } from "@/lib/live/actions";
-import { Submit } from "@/components/live/Submit";
+import { switchAccount } from "@/lib/live/actions";
+import { isSidebarMode, SIDEBAR_COOKIE } from "@/lib/sidebar";
+import type { LiveKind } from "@/config/live-navigation";
+import { ButtonLink } from "@/components/ui/Button";
 import { ClearDemo } from "@/components/live/ClearDemo";
-import "./live.css";
-const navigation = [
-  ["home", "Visão geral"],
-  ["pedidos", "Pedidos"],
-  ["contrato", "Contratos"],
-  ["purificadores", "Purificadores"],
-  ["extrato", "Extrato"],
-  ["calendario", "Calendário"],
-  ["documentos", "Documentos"],
-  ["suporte", "Suporte"],
-  ["perfil", "Minha conta"],
-  ["adesao", "Minha adesão"],
-  ["locacoes", "Locações"],
-];
-export default async function Layout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+import { LiveShell } from "@/components/live/LiveShell";
+import { Notice } from "@/components/live/Notice";
+
+export default async function PortalLayout({ children }: { children: React.ReactNode }) {
   const ctx = await context();
-  const review = await ctx.db
-    .from("investor_enrollments")
-    .select("id")
-    .eq("user_id", ctx.user.id)
-    .eq("status", "payment_review")
-    .limit(1);
-  if (review.error)
-    throw new Error("Não foi possível consultar a situação da parceria.");
+  const review = await ctx.db.from("investor_enrollments").select("id").eq("user_id", ctx.user.id).eq("status", "payment_review").limit(1);
+  if (review.error) throw new Error("Não foi possível consultar a situação da parceria.");
+
+  const role = ctx.user.app_metadata.portal_role;
+  const kind: LiveKind = role === "customer" ? "customer" : ctx.staff === "admin" ? "admin" : ctx.staff === "support" ? "support" : "partner";
+  const roleLabel = { customer: "Cliente", partner: "Parceiro", support: "Equipe · Atendimento", admin: "Equipe · Administração" }[kind];
+  const saved = (await cookies()).get(SIDEBAR_COOKIE)?.value;
+
   return (
-    <div className="live-portal">
+    <LiveShell
+      kind={kind}
+      email={ctx.user.email ?? ""}
+      roleLabel={roleLabel}
+      accounts={ctx.accounts.map((a) => ({ id: a.id, name: a.name, suspended: a.status === "suspended" }))}
+      accountId={ctx.account?.id}
+      switchAccount={switchAccount}
+      sidebar={isSidebarMode(saved) ? saved : "expanded"}
+    >
       <ClearDemo />
-      <a className="sr-only focus:not-sr-only" href="#conteudo">
-        Ir para o conteúdo
-      </a>
-      <header className="live-header">
-        <Link href="/home" className="live-brand">
-          ACQUAFY <span>Acquafy Account</span>
-        </Link>
-        <div>
-          <span>{ctx.user.email}</span>
-          <form action={logout}>
-            <Submit>Sair</Submit>
-          </form>
-        </div>
-      </header>
-      <div className="live-layout">
-        <aside>
-          <form action={switchAccount} className="live-account">
-            <label htmlFor="account">Conta</label>
-            <select
-              id="account"
-              name="account_id"
-              defaultValue={ctx.account?.id}
-              disabled={!ctx.accounts.length}
-            >
-              {ctx.accounts.map((a) => (
-                <option key={a.id} value={a.id}>
-                  {a.name}
-                  {a.status === "suspended" ? " · Suspensa" : ""}
-                </option>
-              ))}
-            </select>
-            {ctx.accounts.length > 0 && <Submit>Abrir conta</Submit>}
-          </form>
-          <nav aria-label="Navegação principal">
-            {navigation
-              .filter(
-                ([path]) =>
-                  ctx.user.app_metadata.portal_role !== "customer" ||
-                  ["pedidos", "locacoes", "suporte", "perfil"].includes(path),
-              )
-              .map(([path, label]) => (
-                <Link key={path} href={"/" + path}>
-                  {label}
-                </Link>
-              ))}
-            {ctx.staff && <Link href="/equipe">Fila de atendimento</Link>}
-            {ctx.staff === "admin" && (
-              <>
-                <Link href="/admin">Administração</Link>
-                <Link href="/parcerias">Ofertas e adesões</Link>
-              </>
-            )}
-          </nav>
-        </aside>
-        <main id="conteudo">
-          {review.data.length > 0 && (
-            <p className="live-note live-error">
-              Existe um pagamento da sua parceria em análise.{" "}
-              <Link
-                className="live-link"
-                href={"/adesao?enrollment=" + review.data[0].id}
-              >
-                Consultar pendência
-              </Link>
-            </p>
-          )}
-          {children}
-        </main>
-      </div>
-    </div>
+      {review.data.length > 0 && (
+        <Notice tone="warn" title="Existe um pagamento da sua parceria em análise.">
+          <ButtonLink href={"/adesao?enrollment=" + review.data[0].id} variant="outline" size="sm" className="mt-2">
+            Consultar pendência
+          </ButtonLink>
+        </Notice>
+      )}
+      {children}
+    </LiveShell>
   );
 }

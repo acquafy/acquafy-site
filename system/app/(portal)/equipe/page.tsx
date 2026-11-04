@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { context } from "@/lib/live/data";
 import { Support } from "@/components/live/Support";
+import { PageHeader } from "@/components/live/PageHeader";
 import type { Query } from "@/components/live/PortalPage";
 export default async function Page({
   searchParams,
@@ -11,11 +12,7 @@ export default async function Page({
   if (!staff) notFound();
   return (
     <>
-      <h1>Fila de atendimento</h1>
-      <p className="live-muted">
-        Chamados de todas as contas. Respostas ficam visíveis para os membros da
-        conta.
-      </p>
+      <PageHeader title="Fila de atendimento" subtitle="Chamados de todas as contas. Respostas ficam visíveis para os membros da conta." />
       <Support queue query={await searchParams} />
     </>
   );

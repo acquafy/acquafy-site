@@ -25,6 +25,13 @@ export type ScreenDef = {
 
 export const SCREENS: ScreenDef[] = [
   { id: "login", title: "Login", desktop: "/login", mobile: "login", mobileGroup: "flow", references: ["PORTAL DE LOGIN - MOBILE.jpeg"], organisms: ["Login"] },
+  { id: "cadastro", title: "Criar Acquafy Account", desktop: "/cadastro", mobile: null, references: ["PORTAL DE LOGIN - MOBILE.jpeg"], organisms: ["Login"], note: "Cadastro de cliente, no layout do login." },
+  { id: "ativar", title: "Ativar acesso", desktop: "/ativar", mobile: null, references: ["PORTAL DE LOGIN - MOBILE.jpeg"], organisms: ["Login"], note: "Convite de investidor: criar senha." },
+  { id: "cadastro-investidor", title: "Cadastro de investidor", desktop: "/cadastro-investidor", mobile: null, references: ["PORTAL DE LOGIN - MOBILE.jpeg"], organisms: ["Login"], note: "Interesse na parceria, vindo do site." },
+  { id: "pedido", title: "Novo pedido", desktop: "/pedido", mobile: null, references: [], organisms: [], note: "Compra ou locação, aberta antes do login; segue a barra superior do portal." },
+  { id: "pedidos", title: "Pedidos", desktop: "/pedidos", mobile: null, references: [], organisms: [], note: "Propostas, pagamento, entrega e instalação (cliente) e gestão (equipe)." },
+  { id: "locacoes", title: "Locações", desktop: "/locacoes", mobile: null, references: [], organisms: [], note: "Acordo, cobrança recorrente e instalação." },
+  { id: "adesao", title: "Minha adesão", desktop: "/adesao", mobile: null, references: [], organisms: [], note: "Acordo e pagamento da parceria do investidor." },
   { id: "home", title: "Home / Início", desktop: "/home", mobile: "home", mobileGroup: "tabs", references: ["DASHBOARD - MOBILE.jpeg"], organisms: ["Home"], note: "Atalhos e ações do dia a dia." },
   {
     id: "dashboard",

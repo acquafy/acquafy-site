@@ -92,7 +92,7 @@ function split(href: string): [string, string | null] {
 const CLAIMED_SECTIONS = new Set(navItems.map((i) => split(i.href)[1]).filter((s): s is string => !!s));
 
 /** Is `item` the current page? `secao` is the "?secao=" value of the URL (only /perfil uses it). */
-export function isNavActive(item: NavItem, pathname: string, secao: string | null): boolean {
+export function isNavActive(item: Pick<NavItem, "href">, pathname: string, secao: string | null): boolean {
   const [path, itemSection] = split(item.href);
   if (pathname !== path && !pathname.startsWith(`${path}/`)) return false;
   if (itemSection) return secao === itemSection;
