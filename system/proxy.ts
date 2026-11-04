@@ -49,7 +49,12 @@ export async function proxy(request: NextRequest) {
     return result;
   }
 
-  if (path === "/api/auth/login" || path === "/api/auth/logout")
+  if (
+    path === "/api/auth/login" ||
+    path === "/api/auth/logout" ||
+    path === "/api/stripe/webhook" ||
+    path === "/ativar"
+  )
     return response;
   if (!authConfigured()) return isLogin ? response : redirect(login);
 

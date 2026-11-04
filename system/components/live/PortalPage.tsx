@@ -224,6 +224,9 @@ async function Overview(account: string) {
 }
 async function Contracts(account: string, page: number) {
   const { rows, count } = await records<Contract>("contracts", account, page);
+  const {db}=await context();
+  const enrolled=rows.length?await db.from('investor_enrollments').select('id,contract_id').eq('account_id',account).in('contract_id',rows.map(row=>row.id)):{data:[],error:null};
+  if(enrolled.error)throw new Error('Não foi possível carregar os acordos.');
   return (
     <>
       <Table
@@ -234,6 +237,7 @@ async function Contracts(account: string, page: number) {
           "Início",
           "Término",
           "Investimento (USD)",
+          "Acordo",
         ]}
         rows={rows.map((c) => [
           c.number,
@@ -242,6 +246,7 @@ async function Contracts(account: string, page: number) {
           date(c.starts_on),
           date(c.ends_on),
           money(c.invested_amount),
+          enrolled.data?.find(e=>e.contract_id===c.id)?<a key={c.id} className="live-link" href={'/app/api/agreements/'+enrolled.data.find(e=>e.contract_id===c.id)!.id}>Baixar acordo aceito</a>:<Link key={c.id} className="live-link" href="/documentos">Documentos</Link>,
         ])}
       />
       <Pager page={page} count={count} path="/contrato" />
@@ -275,6 +280,8 @@ async function Units(account: string, page: number) {
 }
 async function Documents(account: string, page: number) {
   const { rows, count } = await records<Document>("documents", account, page);
+  const {db}=await context();const agreements=await db.from('investor_enrollments').select('id,created_at').eq('account_id',account).in('status',['accepted','payment_pending','active','payment_review']).order('created_at',{ascending:false}).limit(100);
+  if(agreements.error)throw new Error('Não foi possível carregar os acordos.');
   return (
     <>
       <p className="live-note">
@@ -296,6 +303,7 @@ async function Documents(account: string, page: number) {
         ])}
       />
       <Pager page={page} count={count} path="/documentos" />
+      {agreements.data.length>0&&<section className="live-card"><h2>Acordos aceitos na plataforma</h2><ul>{agreements.data.map(agreement=><li key={agreement.id}><a className="live-link" href={'/app/api/agreements/'+agreement.id}>Acordo e evidência do aceite · {date(agreement.created_at)}</a></li>)}</ul></section>}
     </>
   );
 }

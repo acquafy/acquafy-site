@@ -13,6 +13,7 @@ const navigation = [
   ["documentos", "Documentos"],
   ["suporte", "Suporte"],
   ["perfil", "Minha conta"],
+  ["adesao", "Minha adesão"],
 ];
 export default async function Layout({
   children,
@@ -20,6 +21,14 @@ export default async function Layout({
   children: React.ReactNode;
 }) {
   const ctx = await context();
+  const review = await ctx.db
+    .from("investor_enrollments")
+    .select("id")
+    .eq("user_id", ctx.user.id)
+    .eq("status", "payment_review")
+    .limit(1);
+  if (review.error)
+    throw new Error("Não foi possível consultar a situação da parceria.");
   return (
     <div className="live-portal">
       <ClearDemo />
@@ -63,10 +72,28 @@ export default async function Layout({
               </Link>
             ))}
             {ctx.staff && <Link href="/equipe">Fila de atendimento</Link>}
-            {ctx.staff === "admin" && <Link href="/admin">Administração</Link>}
+            {ctx.staff === "admin" && (
+              <>
+                <Link href="/admin">Administração</Link>
+                <Link href="/parcerias">Ofertas e adesões</Link>
+              </>
+            )}
           </nav>
         </aside>
-        <main id="conteudo">{children}</main>
+        <main id="conteudo">
+          {review.data.length > 0 && (
+            <p className="live-note live-error">
+              Existe um pagamento da sua parceria em análise.{" "}
+              <Link
+                className="live-link"
+                href={"/adesao?enrollment=" + review.data[0].id}
+              >
+                Consultar pendência
+              </Link>
+            </p>
+          )}
+          {children}
+        </main>
       </div>
     </div>
   );

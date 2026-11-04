@@ -87,3 +87,10 @@ it("routes mobile product screens to the shared live portal", async () => {
     (await proxy(request("/m/ios/login"))).headers.get("location"),
   ).toContain("/app/login");
 });
+it("leaves invitation activation and signed Stripe delivery to their own security boundaries", async () => {
+  auth.configured = false;
+  expect((await proxy(request("/ativar?token_hash=example"))).status).toBe(200);
+  expect((await proxy(request("/api/stripe/webhook"))).status).toBe(200);
+  expect(auth.getUser).not.toHaveBeenCalled();
+  expect((await proxy(request("/api/agreements/unknown"))).status).toBe(307);
+});

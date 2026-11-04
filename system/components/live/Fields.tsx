@@ -5,18 +5,21 @@ export function Field({
   type = "text",
   required = true,
   maxLength = 160,
+  defaultValue,
 }: {
   name: string;
   label: string;
   type?: string;
   required?: boolean;
   maxLength?: number;
+  defaultValue?: string;
 }) {
   return (
     <label className="live-field">
       {label}
       <input
         name={name}
+        defaultValue={defaultValue}
         type={type}
         required={required}
         maxLength={maxLength}
