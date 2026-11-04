@@ -15,7 +15,7 @@ import { LoginForgotModal } from "./LoginForgotModal";
 
 type Errors = { email?: string; password?: string };
 
-export function LoginForm() {
+export function LoginForm({ destination = "/home" }: { destination?: "/home" | "/adesao" }) {
   const router = useRouter();
   const toast = useToast();
   const form = useRef<HTMLFormElement>(null);
@@ -52,7 +52,7 @@ export function LoginForm() {
     }
     // Keep the button busy until the dashboard replaces this page.
     toast({ title: "Bem-vindo de volta!", description: "Acesso liberado ao Portal do Investidor." });
-    router.replace("/home");
+    router.replace(destination);
     router.refresh();
   };
 

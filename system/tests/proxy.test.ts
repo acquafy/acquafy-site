@@ -94,3 +94,20 @@ it("leaves invitation activation and signed Stripe delivery to their own securit
   expect(auth.getUser).not.toHaveBeenCalled();
   expect((await proxy(request("/api/agreements/unknown"))).status).toBe(307);
 });
+
+it("keeps investor registration public and resumes enrollment through login", async () => {
+  expect((await proxy(request("/cadastro-investidor"))).status).toBe(200);
+  expect(auth.getUser).not.toHaveBeenCalled();
+  expect((await proxy(request("/adesao"))).headers.get("location")).toContain(
+    "/app/login?next=adesao",
+  );
+  auth.getUser.mockResolvedValue({ data: { user: user("partner") } });
+  expect(
+    (await proxy(request("/login?next=adesao"))).headers.get("location"),
+  ).toContain("/app/adesao");
+  expect(
+    (await proxy(request("/login?next=https://evil.example"))).headers.get(
+      "location",
+    ),
+  ).toContain("/app/home");
+});

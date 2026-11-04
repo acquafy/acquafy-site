@@ -5,12 +5,21 @@ import { LoginForm } from "@/components/sections/LoginForm";
 
 export const metadata: Metadata = { title: "Entrar" };
 
-export default function LoginPage() {
+export default async function LoginPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ next?: string }>;
+}) {
+  const destination =
+    (await searchParams).next === "adesao" ? "/adesao" : "/home";
   return (
-    <main id="conteudo" className="min-h-dvh lg:grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]">
+    <main
+      id="conteudo"
+      className="min-h-dvh lg:grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)]"
+    >
       <LoginBrandPanel />
       <div className="relative z-10 -mt-8 flex justify-center rounded-t-2xl px-4 pt-0 pb-8 lg:mt-0 lg:items-center lg:px-10 lg:py-6">
-        <LoginForm />
+        <LoginForm destination={destination} />
       </div>
     </main>
   );

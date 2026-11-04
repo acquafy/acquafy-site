@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { context, date, money } from "@/lib/live/data";
 import {
@@ -11,8 +12,13 @@ import { Field, Select } from "@/components/live/Fields";
 import type { Offer, Enrollment } from "@/lib/enrollment/types";
 import { enrollmentLabels } from "@/lib/enrollment/types";
 export const metadata = { title: "Ofertas e adesões" };
-export default async function Partnerships() {
+export default async function Partnerships({
+  searchParams,
+}: {
+  searchParams: Promise<{ application?: string }>;
+}) {
   const ctx = await context();
+  const query = await searchParams;
   if (ctx.staff !== "admin") notFound();
   const [offersResult, enrollmentsResult] = await Promise.all([
     ctx.db
@@ -28,6 +34,17 @@ export default async function Partnerships() {
   ]);
   if (offersResult.error || enrollmentsResult.error)
     throw new Error("Não foi possível carregar as parcerias.");
+  const applicationsResult = await ctx.db
+    .from("investor_applications")
+    .select("*")
+    .order("created_at", { ascending: false })
+    .limit(100);
+  if (applicationsResult.error)
+    throw new Error("Não foi possível carregar os cadastros.");
+  const applications = applicationsResult.data;
+  const selectedApplication = applications.find(
+    (a) => a.id === (query.application ?? "") && !a.enrollment_id,
+  );
   const offers = offersResult.data as Offer[],
     enrollments = enrollmentsResult.data as Enrollment[];
   const unmatched = await ctx.db
@@ -41,6 +58,37 @@ export default async function Partnerships() {
   return (
     <>
       <h1>Ofertas e adesões</h1>
+      <section className="live-card">
+        <h2>Cadastros do site</h2>
+        <p>
+          Analise o interesse e confirme o contato antes de preparar o convite.
+          O cadastro público não libera acesso nem aceita condições comerciais.
+        </p>
+        {applications.length === 0 && <p>Nenhum cadastro recebido.</p>}
+        {applications.map((a) => (
+          <article className="live-card" key={a.id}>
+            <h3>{a.full_name}</h3>
+            <p>
+              {a.email} · {a.phone} · {a.country} · {date(a.created_at)}
+            </p>
+            {a.company && <p>Empresa: {a.company}</p>}
+            {a.message && <p style={{ whiteSpace: "pre-wrap" }}>{a.message}</p>}
+            {a.enrollment_id ? (
+              <p>
+                Convite preparado · adesão {a.enrollment_id}. Localize-a abaixo
+                para acompanhar ou renovar o link privado.
+              </p>
+            ) : (
+              <Link
+                className="live-link"
+                href={"/parcerias?application=" + a.id + "#convite"}
+              >
+                Preparar convite para este cadastro
+              </Link>
+            )}
+          </article>
+        ))}
+      </section>
       {unmatched.data.length > 0 && (
         <section className="live-card live-error">
           <h2>Pagamentos sem vínculo para análise</h2>
@@ -114,10 +162,38 @@ export default async function Partnerships() {
             title="Convidar investidor"
             submit="Preparar convite privado"
           >
-            <Field name="email" label="E-mail do investidor" type="email" />
+            <span id="convite" />
+            {selectedApplication && (
+              <>
+                <input
+                  type="hidden"
+                  name="application_id"
+                  value={selectedApplication.id}
+                />
+                <p>
+                  Cadastro selecionado: {selectedApplication.full_name} ·{" "}
+                  {selectedApplication.email}. O convite será vinculado a este
+                  cadastro.
+                </p>
+                <Link className="live-link" href="/parcerias">
+                  Limpar seleção
+                </Link>
+              </>
+            )}
+            <Field
+              key={selectedApplication?.id ?? "email"}
+              name="email"
+              label="E-mail do investidor"
+              type="email"
+              defaultValue={selectedApplication?.email}
+            />
             <Field
               required={false}
               name="account_name"
+              key={selectedApplication?.id ?? "account"}
+              defaultValue={
+                selectedApplication?.company || selectedApplication?.full_name
+              }
               label="Nome da nova conta (obrigatório para criar conta)"
             />
             <Select

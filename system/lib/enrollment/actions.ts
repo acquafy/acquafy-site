@@ -66,7 +66,19 @@ export async function inviteInvestor(
 ): Promise<ActionResult> {
   const ctx = await context();
   if (ctx.staff !== "admin") return { error: "Acesso restrito." };
-  const email = value(form, "email").toLowerCase(),
+  const applicationId = value(form, "application_id");
+  let applicantEmail = value(form, "email").toLowerCase();
+  if (applicationId) {
+    if (!uuid(applicationId)) return failure();
+    const { data, error } = await ctx.db
+      .from("investor_applications")
+      .select("email,enrollment_id")
+      .eq("id", applicationId)
+      .single();
+    if (error || !data || data.enrollment_id) return failure();
+    applicantEmail = data.email;
+  }
+  const email = applicantEmail,
     offerId = value(form, "offer_id"),
     quantity = Number(value(form, "quantity"));
   if (
@@ -128,16 +140,19 @@ export async function inviteInvestor(
       });
       if (r.error) return failure();
     }
-    const { data: id, error } = await ctx.db.rpc("enrollment_staff", {
-      action: "invite",
-      payload: {
-        email,
-        offer_id: offerId,
-        quantity,
-        account_id: value(form, "account_id"),
-        account_name: value(form, "account_name"),
-      },
-    });
+    const payload = {
+      email,
+      offer_id: offerId,
+      quantity,
+      account_id: value(form, "account_id"),
+      account_name: value(form, "account_name"),
+    };
+    const { data: id, error } = applicationId
+      ? await ctx.db.rpc("invite_investor_application", {
+          application_id: applicationId,
+          payload,
+        })
+      : await ctx.db.rpc("enrollment_staff", { action: "invite", payload });
     if (error) return failure();
     const link = inviteHash
       ? `${origin}/app/ativar?token_hash=${encodeURIComponent(inviteHash)}&type=${inviteType}&enrollment=${id}`
