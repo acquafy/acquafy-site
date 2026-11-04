@@ -65,6 +65,15 @@ Vercel deployment protection stays enabled for previews; an externally shared pr
 another Vercel or Supabase project, or a Vercel custom environment for staging.
 Both website and portal are included in the preview deployment.
 
+Stable staging URL: https://acquafy-site-git-develop-interfy.vercel.app
+
+The existing Supabase Preview credentials were moved from
+`feat/portal-app-supabase` to `develop`; the older feature preview no longer has
+database credentials. The develop test webhook uses the existing project
+protection bypass so Stripe can deliver events while preview protection stays on.
+Supabase allows the develop `/app/auth/confirm**` redirect; its production Site URL
+remains `https://www.acquafy.com`.
+
 Configure Preview overrides scoped to `develop`: `STRIPE_ENVIRONMENT=test`,
 `STRIPE_SECRET_KEY` (a test key), `STRIPE_ACCOUNT_ID`, `STRIPE_WEBHOOK_SECRET`,
 `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, and
@@ -176,7 +185,7 @@ The investor program is separate from the public site's Silver/Gold/Platinum par
 
 Onboarding and Stripe privileges are server-side. The portal now additionally needs `SUPABASE_SERVICE_ROLE_KEY`, `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `STRIPE_ENVIRONMENT`, and `PORTAL_PUBLIC_ORIGIN`. Supabase/Stripe secrets must never be client variables. Use a restricted Stripe key with Checkout Sessions read/write, PaymentIntents/Charges read and the permissions needed for inline product pricing. Creating the webhook endpoint additionally requires Webhook Endpoints read/write; sandbox card fixtures additionally need PaymentMethods/test payment permissions. No Stripe publishable key is needed for hosted Checkout.
 
-The current feature preview uses Stripe test mode. Its server settings are isolated to the feature branch; production settings are untouched. Live mode requires a matching live key, a separately registered live webhook endpoint, `STRIPE_ENVIRONMENT=live`, and `STRIPE_LIVE_APPROVED=true`. Confirm that the investor offering is approved for processing on the Stripe account before live enablement. The Checkout collects the final published price; automatic tax, separate shipping charges, outgoing investor payouts and Connect onboarding are not part of this enrollment checkout.
+The `develop` staging preview uses Stripe test mode. Its server settings are isolated to `develop`; production settings are untouched. Live mode requires a matching live key, a separately registered live webhook endpoint, `STRIPE_ENVIRONMENT=live`, and `STRIPE_LIVE_APPROVED=true`. Confirm that the investor offering is approved for processing on the Stripe account before live enablement. The Checkout collects the final published price; automatic tax, separate shipping charges, outgoing investor payouts and Connect onboarding are not part of this enrollment checkout.
 
 Webhook endpoint: `/app/api/stripe/webhook`, subscribed to `checkout.session.completed`, `checkout.session.async_payment_succeeded`, `checkout.session.async_payment_failed`, `checkout.session.expired`, `charge.refunded`, `charge.dispute.created` and `charge.dispute.closed`. It must be reachable by Stripe without a user login. For protected Vercel previews, the registered test endpoint uses the project's private automation bypass in its URL; keep that URL confidential. Portal authentication is bypassed only for this endpoint, which independently verifies the raw-body Stripe signature. Database/Stripe processing failures return a retryable error. In production, use the intended production origin and its matching endpoint signing secret.
 
