@@ -1,47 +1,73 @@
-// app/(portal)/layout.tsx
-import { cookies } from "next/headers";
-import { PageHeading } from "@/components/layout/PageHeading";
-import { Sidebar } from "@/components/layout/Sidebar";
-import { TopBar } from "@/components/layout/TopBar";
-import { PortalProviders } from "@/components/providers/PortalProviders";
-import { SidebarProvider } from "@/components/providers/SidebarProvider";
-import { CURRENCY_COOKIE, DEFAULT_CURRENCY, isCurrency } from "@/lib/currency";
-import { buildSearchIndex } from "@/lib/portal/search-index";
-import { isSidebarMode, SIDEBAR_COOKIE } from "@/lib/sidebar";
-
-export default async function PortalLayout({ children }: { children: React.ReactNode }) {
-  const jar = await cookies();
-  const savedCurrency = jar.get(CURRENCY_COOKIE)?.value;
-  const savedSidebar = jar.get(SIDEBAR_COOKIE)?.value;
-  const currency = isCurrency(savedCurrency) ? savedCurrency : DEFAULT_CURRENCY;
-
+import Link from "next/link";
+import { context } from "@/lib/live/data";
+import { switchAccount, logout } from "@/lib/live/actions";
+import { Submit } from "@/components/live/Submit";
+import { ClearDemo } from "@/components/live/ClearDemo";
+import "./live.css";
+const navigation = [
+  ["home", "Visão geral"],
+  ["contrato", "Contratos"],
+  ["purificadores", "Purificadores"],
+  ["extrato", "Extrato"],
+  ["calendario", "Calendário"],
+  ["documentos", "Documentos"],
+  ["suporte", "Suporte"],
+  ["perfil", "Minha conta"],
+];
+export default async function Layout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const ctx = await context();
   return (
-    <PortalProviders currency={currency}>
-      <SidebarProvider initial={isSidebarMode(savedSidebar) ? savedSidebar : "expanded"}>
-        <div className="flex min-h-dvh lg:h-dvh lg:overflow-hidden">
-          <a
-            href="#conteudo"
-            className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-lg focus:bg-card focus:px-4 focus:py-2 focus:font-semibold focus:text-brand"
-          >
-            Ir para o conteúdo
-          </a>
-          {/* Edge to edge, as in the Interfy admin: the menu is full height and flush with the left edge; the top bar
- and the content fill the rest, and the content scrolls all the way to the right edge. */}
-          <Sidebar />
-          <div className="flex min-w-0 flex-1 flex-col">
-            <TopBar searchEntries={buildSearchIndex()} />
-            {/* `@container`: every grid inside answers to the width of this column, not of the window. Children never
- shrink (`shrink-0`), so a short window scrolls the column instead of squashing cards. The top bar sits
- outside this scroll area, so it stays pinned. */}
-            <main id="conteudo" className="@container relative min-h-0 min-w-0 flex-1 bg-card lg:overflow-y-auto [scrollbar-color:var(--scroll-thumb)_transparent] [scrollbar-width:thin]">
-              <div className="flex flex-col gap-4 p-4 lg:p-6 [&>*]:shrink-0">
-                <PageHeading />
-                {children}
-              </div>
-            </main>
-          </div>
+    <div className="live-portal">
+      <ClearDemo />
+      <a className="sr-only focus:not-sr-only" href="#conteudo">
+        Ir para o conteúdo
+      </a>
+      <header className="live-header">
+        <Link href="/home" className="live-brand">
+          ACQUAFY <span>Portal do parceiro</span>
+        </Link>
+        <div>
+          <span>{ctx.user.email}</span>
+          <form action={logout}>
+            <Submit>Sair</Submit>
+          </form>
         </div>
-      </SidebarProvider>
-    </PortalProviders>
+      </header>
+      <div className="live-layout">
+        <aside>
+          <form action={switchAccount} className="live-account">
+            <label htmlFor="account">Conta</label>
+            <select
+              id="account"
+              name="account_id"
+              defaultValue={ctx.account?.id}
+              disabled={!ctx.accounts.length}
+            >
+              {ctx.accounts.map((a) => (
+                <option key={a.id} value={a.id}>
+                  {a.name}
+                  {a.status === "suspended" ? " · Suspensa" : ""}
+                </option>
+              ))}
+            </select>
+            {ctx.accounts.length > 0 && <Submit>Abrir conta</Submit>}
+          </form>
+          <nav aria-label="Navegação principal">
+            {navigation.map(([path, label]) => (
+              <Link key={path} href={"/" + path}>
+                {label}
+              </Link>
+            ))}
+            {ctx.staff && <Link href="/equipe">Fila de atendimento</Link>}
+            {ctx.staff === "admin" && <Link href="/admin">Administração</Link>}
+          </nav>
+        </aside>
+        <main id="conteudo">{children}</main>
+      </div>
+    </div>
   );
 }
