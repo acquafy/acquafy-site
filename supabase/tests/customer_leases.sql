@@ -19,6 +19,14 @@ do $$declare s uuid:=gen_random_uuid();c uuid:=gen_random_uuid();i uuid:=gen_ran
  if (select state from public.lease_revenue where invoice_id='in_test_'||l)<>'pending_install' then raise exception 'Premature revenue';end if;
  perform set_config('request.jwt.claim.sub',s::text,true);perform public.lease_command('install',jsonb_build_object('lease_id',l));
  if (select state from public.lease_revenue where invoice_id='in_test_'||l)<>'accrued' then raise exception 'Installation accrual failure';end if;
+ -- Stripe coupons: the subtotal must match the price; the investor share follows the amount collected.
+ perform public.lease_collect(jsonb_build_object('subscription_id','sub_test_'||l,'invoice_id','in_promo_'||l,'subtotal_minor',1001,'amount_minor',501,'discount_minor',500,'period_start',extract(epoch from now()+interval '1 month')::bigint,'period_end',extract(epoch from now()+interval '2 months')::bigint));
+ if (select amount_minor from public.lease_receipts where invoice_id='in_promo_'||l)<>501 or (select discount_minor from public.lease_receipts where invoice_id='in_promo_'||l)<>500 then raise exception 'Discounted receipt not recorded';end if;
+ if (select sum(amount_minor) from public.lease_revenue where invoice_id='in_promo_'||l)<>250 then raise exception 'Share not based on collected amount';end if;
+ perform public.lease_collect(jsonb_build_object('subscription_id','sub_test_'||l,'invoice_id','in_free_'||l,'subtotal_minor',1001,'amount_minor',0,'discount_minor',1001,'period_start',extract(epoch from now()+interval '2 months')::bigint,'period_end',extract(epoch from now()+interval '3 months')::bigint));
+ if (select sum(amount_minor) from public.lease_revenue where invoice_id='in_free_'||l)<>0 then raise exception 'Free invoice accrued revenue';end if;
+ begin perform public.lease_collect(jsonb_build_object('subscription_id','sub_test_'||l,'invoice_id','in_bad_'||l,'subtotal_minor',1001,'amount_minor',501,'discount_minor',100,'period_start',0,'period_end',0));raise exception 'Inconsistent discount accepted';exception when raise_exception then if sqlerrm<>'Invoice discount mismatch' then raise;end if;end;
+ begin perform public.lease_collect(jsonb_build_object('subscription_id','sub_test_'||l,'invoice_id','in_bad_'||l,'subtotal_minor',900,'amount_minor',900,'period_start',0,'period_end',0));raise exception 'Wrong price accepted';exception when raise_exception then if sqlerrm<>'Invoice amount mismatch' then raise;end if;end;
  perform set_config('lease_test.investor',i::text,true);
 end$$;
 set local role authenticated;

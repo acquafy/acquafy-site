@@ -1,6 +1,7 @@
 import "server-only";
 import type Stripe from "stripe";
 import { serviceClient, stripeClient } from "@/lib/enrollment/server";
+import { checkoutAmounts, invoiceAmounts } from "@/lib/payments/discounts";
 export async function processLeaseEvent(event: Stripe.Event) {
   if (
     event.type.startsWith("checkout.session.") &&
@@ -34,11 +35,14 @@ export async function processLeaseEvent(event: Stripe.Event) {
       .select("*")
       .eq("id", s.client_reference_id)
       .single();
+    // The monthly price is the pre-discount subtotal; a coupon only lowers invoices.
+    const amounts = checkoutAmounts(s);
     if (
       error ||
       !l ||
+      !amounts ||
       !l.accepted_at ||
-      s.amount_total !== l.monthly_minor ||
+      amounts.subtotal !== l.monthly_minor ||
       s.currency !== "usd" ||
       (l.checkout_id && l.checkout_id !== s.id)
     )
@@ -162,12 +166,8 @@ export async function processLeaseEvent(event: Stripe.Event) {
   }
   async function collect(i: Stripe.Invoice) {
     const sub = i.parent?.subscription_details?.subscription;
-    if (
-      !sub ||
-      i.currency !== "usd" ||
-      i.amount_remaining !== 0 ||
-      i.amount_paid !== i.total
-    )
+    const amounts = invoiceAmounts(i);
+    if (!sub || !amounts || i.currency !== "usd" || i.amount_remaining !== 0)
       throw Error("Unpaid invoice");
     const id = typeof sub === "string" ? sub : sub.id;
     const current = await stripe.subscriptions.retrieve(id);
@@ -190,7 +190,9 @@ export async function processLeaseEvent(event: Stripe.Event) {
         payload: {
           subscription_id: id,
           invoice_id: i.id,
-          amount_minor: i.amount_paid,
+          subtotal_minor: amounts.subtotal,
+          amount_minor: amounts.paid,
+          discount_minor: amounts.discount,
           period_start: i.period_start,
           period_end: i.period_end,
         },

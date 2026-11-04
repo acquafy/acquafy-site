@@ -152,6 +152,7 @@ export default async function EnrollmentPage({ searchParams }: { searchParams: P
             <p className="text-[15px] text-ink">
               Total: <strong>{money(selected.amount_minor / 100)}</strong>. Pagamento único.
             </p>
+            <p className="text-[14.5px] text-ink-soft">Tem um cupom? Informe o código promocional na página de pagamento do Stripe.</p>
             {(process.env.STRIPE_ENVIRONMENT ?? "test") === "test" && <Notice>Ambiente de teste. Use os dados de teste do Stripe; nenhuma cobrança real será efetuada.</Notice>}
             {!checkoutConfigured() && <Notice tone="warn">O pagamento ficará disponível quando a equipe concluir a configuração.</Notice>}
           </ActionForm>
