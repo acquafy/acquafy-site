@@ -34,6 +34,8 @@ export async function POST(request: Request) {
   }
   try {
     const { processLeaseEvent } = await import("@/lib/leases/payments");
+    const { processOrderEvent } = await import("@/lib/orders/payments");
+    await processOrderEvent(event);
     await processLeaseEvent(event);
     await processStripeEvent(event);
   } catch (error) {

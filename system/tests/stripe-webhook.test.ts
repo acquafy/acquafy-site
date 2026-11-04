@@ -1,3 +1,4 @@
+vi.mock("@/lib/orders/payments", () => ({ processOrderEvent: vi.fn().mockResolvedValue(undefined) }));
 vi.mock("@/lib/leases/payments", () => ({ processLeaseEvent: vi.fn().mockResolvedValue(undefined) }));
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import Stripe from "stripe";

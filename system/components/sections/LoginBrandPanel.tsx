@@ -75,7 +75,7 @@ export function LoginBrandPanel() {
       </svg>
 
       <div className="px-6 pt-7 lg:px-14 lg:pt-10">
-        <Image src="/app/brand/acquafy-logo.webp" alt="Acquafy Investor Portal" width={560} height={93} priority className="h-auto w-[170px] lg:w-[210px]" />
+        <Image src="/app/brand/acquafy-logo.webp" alt="Acquafy Account" width={560} height={93} priority className="h-auto w-[170px] lg:w-[210px]" />
       </div>
 
       <div className="flex items-end gap-2 px-6 pt-6 pb-14 lg:min-h-0 lg:flex-1 lg:flex-col lg:items-stretch lg:gap-0 lg:px-14 lg:pt-8 lg:pb-0">

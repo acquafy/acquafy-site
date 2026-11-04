@@ -5,7 +5,7 @@ import { leaseAction } from "@/lib/leases/actions";
 export const metadata = { title: "Locações" };
 export default async function Leases() {
   const ctx = await context();
-  const [leases, units, revenue, receipts] = await Promise.all([
+  const [leases, units, revenue, receipts, assignments] = await Promise.all([
     ctx.db
       .from("customer_leases")
       .select("*")
@@ -13,8 +13,15 @@ export default async function Leases() {
     ctx.db.from("purifiers").select("id,serial,status"),
     ctx.db.from("lease_revenue").select("*"),
     ctx.db.from("lease_receipts").select("*"),
+    ctx.db.from("lease_units").select("lease_id,purifier_id"),
   ]);
-  if (leases.error || units.error || revenue.error || receipts.error)
+  if (
+    leases.error ||
+    units.error ||
+    revenue.error ||
+    receipts.error ||
+    assignments.error
+  )
     throw Error("Não foi possível carregar as locações.");
   return (
     <>
@@ -74,6 +81,9 @@ export default async function Leases() {
             {l.status} · {money(l.monthly_minor / 100)}/mês · {l.location}
           </p>
           <p style={{ whiteSpace: "pre-wrap" }}>{l.agreement_text}</p>
+          {l.installed_at && (
+            <p>Instalação confirmada em {date(l.installed_at)}.</p>
+          )}
           {l.accepted_at && (
             <p>
               Aceito por {l.signer} em {date(l.accepted_at)} · Evidência
@@ -82,16 +92,28 @@ export default async function Leases() {
           )}
           {l.status === "offered" && (
             <>
-              <ActionForm action={leaseAction} title="Aceitar locação">
-                <input type="hidden" name="action" value="accept" />
-                <input type="hidden" name="lease_id" value={l.id} />
-                <Field name="signer" label="Nome completo do signatário" />
-                <label>
-                  <input required type="checkbox" name="consent" value="yes" />{" "}
-                  Li o acordo e autorizo a cobrança mensal recorrente no valor
-                  acima.
-                </label>
-              </ActionForm>
+              {assignments.data.some((u) => u.lease_id === l.id) ? (
+                <ActionForm action={leaseAction} title="Aceitar locação">
+                  <input type="hidden" name="action" value="accept" />
+                  <input type="hidden" name="lease_id" value={l.id} />
+                  <Field name="signer" label="Nome completo do signatário" />
+                  <label>
+                    <input
+                      required
+                      type="checkbox"
+                      name="consent"
+                      value="yes"
+                    />{" "}
+                    Li o acordo e autorizo a cobrança mensal recorrente no valor
+                    acima.
+                  </label>
+                </ActionForm>
+              ) : (
+                <p>
+                  Aguardando a equipe confirmar a disponibilidade e alocar o
+                  equipamento.
+                </p>
+              )}
               {ctx.staff === "admin" && (
                 <ActionForm
                   action={leaseAction}
@@ -163,20 +185,22 @@ export default async function Leases() {
             ))}
         </section>
       ))}
-      <section className="live-card">
-        <h2>Receita atribuída aos investidores</h2>
-        <p>
-          Apuração por unidade sobre mensalidades verificadas. Valores em
-          análise não estão disponíveis para repasse. A liquidação dos repasses
-          é controlada pela equipe.
-        </p>
-        {revenue.data.map((r) => (
-          <p key={r.invoice_id + r.purifier_id}>
-            Fatura {r.invoice_id} · unidade {r.purifier_id} ·{" "}
-            {money(r.amount_minor / 100)} · {r.state}
+      {ctx.user.app_metadata.portal_role !== "customer" && (
+        <section className="live-card">
+          <h2>Receita atribuída aos investidores</h2>
+          <p>
+            Apuração por unidade sobre mensalidades verificadas. Valores em
+            análise não estão disponíveis para repasse. A liquidação dos
+            repasses é controlada pela equipe.
           </p>
-        ))}
-      </section>
+          {revenue.data.map((r) => (
+            <p key={r.invoice_id + r.purifier_id}>
+              Fatura {r.invoice_id} · unidade {r.purifier_id} ·{" "}
+              {money(r.amount_minor / 100)} · {r.state}
+            </p>
+          ))}
+        </section>
+      )}
     </>
   );
 }

@@ -627,6 +627,7 @@ export default function Header() {
         </nav>
 
         <div className="flex gap-[10px] items-center justify-end shrink-0">
+          <a href="/app/pedidos" className="text-[13px] font-semibold text-[#0233c3] whitespace-nowrap">{lang.startsWith("pt") ? "Minha conta" : "My Account"}</a>
           <LanguageSelectorCompact />
           <a href="/partnership" className="hidden lg:flex bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors gap-[10px] items-center justify-center h-[40px] overflow-hidden px-[20px] rounded-[8px] shrink-0 cursor-pointer">
             <FigmaIcon src={imgPartner} size={16} aspectW={41} aspectH={40} />

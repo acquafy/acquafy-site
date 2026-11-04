@@ -6,6 +6,7 @@ import { ClearDemo } from "@/components/live/ClearDemo";
 import "./live.css";
 const navigation = [
   ["home", "Visão geral"],
+  ["pedidos", "Pedidos"],
   ["contrato", "Contratos"],
   ["purificadores", "Purificadores"],
   ["extrato", "Extrato"],
@@ -38,7 +39,7 @@ export default async function Layout({
       </a>
       <header className="live-header">
         <Link href="/home" className="live-brand">
-          ACQUAFY <span>Portal do parceiro</span>
+          ACQUAFY <span>Acquafy Account</span>
         </Link>
         <div>
           <span>{ctx.user.email}</span>
@@ -67,11 +68,17 @@ export default async function Layout({
             {ctx.accounts.length > 0 && <Submit>Abrir conta</Submit>}
           </form>
           <nav aria-label="Navegação principal">
-            {navigation.map(([path, label]) => (
-              <Link key={path} href={"/" + path}>
-                {label}
-              </Link>
-            ))}
+            {navigation
+              .filter(
+                ([path]) =>
+                  ctx.user.app_metadata.portal_role !== "customer" ||
+                  ["pedidos", "locacoes", "suporte", "perfil"].includes(path),
+              )
+              .map(([path, label]) => (
+                <Link key={path} href={"/" + path}>
+                  {label}
+                </Link>
+              ))}
             {ctx.staff && <Link href="/equipe">Fila de atendimento</Link>}
             {ctx.staff === "admin" && (
               <>

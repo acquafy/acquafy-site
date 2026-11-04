@@ -1,0 +1,25 @@
+begin;
+do $$declare c uuid:=gen_random_uuid();u uuid:=gen_random_uuid();s uuid:=gen_random_uuid();o uuid;begin
+ insert into auth.users(id,email,email_confirmed_at,raw_app_meta_data,raw_user_meta_data)values(c,c||'@test.invalid',now(),'{}','{"signup_kind":"customer","portal_role":"internal"}'),(u,u||'@test.invalid',now(),'{}','{"signup_kind":"customer"}'),(s,s||'@test.invalid',now(),'{"portal_role":"internal"}','{}');
+ if (select raw_app_meta_data->>'portal_role' from auth.users where id=c)<>'customer' then raise exception 'Signup escalation';end if;
+ insert into public.staff_role_grants(user_id,role)values(s,'admin');
+ perform set_config('request.jwt.claim.sub',c::text,true);
+ o:=public.order_command('request',jsonb_build_object('kind','purchase','items',jsonb_build_array(jsonb_build_object('product','neo-up','quantity',2,'price',1)),'delivery',jsonb_build_object('name','Test Customer','phone','+15551234567','address','123 Test Street, US')));
+ if (select items->0->>'catalog_unit_minor' from public.product_orders where id=o)<>'40000' then raise exception 'Client price trusted';end if;
+ perform set_config('request.jwt.claim.sub',s::text,true);
+ perform public.order_command('quote',jsonb_build_object('order_id',o,'total_minor',85000,'quote_text',repeat('APPROVED TEST TERMS ',10),'approved','yes'));
+ perform set_config('request.jwt.claim.sub',u::text,true);
+ begin perform public.order_command('accept',jsonb_build_object('order_id',o,'signer','Other User','consent','yes'));raise exception 'Foreign consent allowed';exception when raise_exception then if sqlerrm='Foreign consent allowed' then raise;end if;end;
+ perform set_config('request.jwt.claim.sub',c::text,true);
+ perform public.order_command('accept',jsonb_build_object('order_id',o,'signer','Test Customer','consent','yes'));
+ if not exists(select 1 from public.product_orders where id=o and evidence_hash is not null and total_minor=85000 and status='accepted') then raise exception 'Consent or pricing failure';end if;
+ perform set_config('orders_test.customer',c::text,true);perform set_config('orders_test.other',u::text,true);perform set_config('orders_test.order',o::text,true);
+end$$;
+set local role authenticated;
+select set_config('request.jwt.claim.sub',current_setting('orders_test.other'),true);
+do $$begin if exists(select 1 from public.product_orders)or exists(select 1 from public.order_events) then raise exception 'Cross-customer exposure';end if;end$$;
+select set_config('request.jwt.claim.sub',current_setting('orders_test.customer'),true);
+do $$begin if not exists(select 1 from public.product_orders where id=current_setting('orders_test.order')::uuid) then raise exception 'Own order inaccessible';end if;
+ begin update public.product_orders set status='paid';raise exception 'Customer spoofed paid';exception when insufficient_privilege then null;end;
+end$$;
+rollback;

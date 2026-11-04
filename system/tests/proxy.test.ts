@@ -109,5 +109,17 @@ it("keeps investor registration public and resumes enrollment through login", as
     (await proxy(request("/login?next=https://evil.example"))).headers.get(
       "location",
     ),
-  ).toContain("/app/home");
+  ).toContain("/app/pedidos");
+});
+
+it("keeps customer signup and order selection public while isolating customer navigation", async () => {
+  expect((await proxy(request("/cadastro"))).status).toBe(200);
+  expect((await proxy(request("/pedido?product=neo-up"))).status).toBe(200);
+  auth.getUser.mockResolvedValue({ data: { user: user("customer") } });
+  expect((await proxy(request("/pedidos"))).status).toBe(200);
+  expect((await proxy(request("/locacoes"))).status).toBe(200);
+  for (const path of ["/admin", "/parcerias", "/adesao", "/extrato", "/base"])
+    expect((await proxy(request(path))).headers.get("location")).toContain(
+      "/app/pedidos",
+    );
 });

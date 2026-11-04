@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { authConfigured, createAuthClient } from "@/lib/supabase/server";
 import { internalPath, loginPath, portalRole } from "@/lib/portal-access";
+import { customerDestination } from "@/lib/orders/destination";
 import { portalPath } from "@/lib/paths";
 
 export async function proxy(request: NextRequest) {
@@ -54,7 +55,10 @@ export async function proxy(request: NextRequest) {
     path === "/api/auth/logout" ||
     path === "/api/stripe/webhook" ||
     path === "/ativar" ||
-    path === "/cadastro-investidor"
+    path === "/cadastro-investidor" ||
+    path === "/cadastro" ||
+    path === "/pedido" ||
+    path === "/auth/confirm"
   )
     return response;
   if (!authConfigured())
@@ -62,7 +66,7 @@ export async function proxy(request: NextRequest) {
       ? response
       : redirect(
           login +
-            (["/adesao", "/locacoes"].includes(path)
+            (["/adesao", "/locacoes", "/pedidos"].includes(path)
               ? "?next=" + path.slice(1)
               : ""),
         );
@@ -83,10 +87,22 @@ export async function proxy(request: NextRequest) {
         ? forwarded
         : redirect(
             login +
-              (["/adesao", "/locacoes"].includes(path)
+              (["/adesao", "/locacoes", "/pedidos"].includes(path)
                 ? "?next=" + path.slice(1)
                 : ""),
           );
+    if (
+      role === "customer" &&
+      ![
+        "/pedidos",
+        "/locacoes",
+        "/perfil",
+        "/suporte",
+        "/login",
+        "/api/auth/logout",
+      ].some((p) => path === p || path.startsWith(p + "/"))
+    )
+      return redirect("/pedidos");
     if (internalPath(path) && role !== "internal") {
       const denied = new NextResponse("Acesso restrito à equipe interna.", {
         status: 403,
@@ -100,12 +116,13 @@ export async function proxy(request: NextRequest) {
       isLogin &&
       !(role === "internal" && request.nextUrl.searchParams.has("preview"))
     ) {
+      const target = request.nextUrl.searchParams.get("next");
       return redirect(
-        ["adesao", "locacoes"].includes(
-          request.nextUrl.searchParams.get("next") ?? "",
-        )
-          ? "/" + request.nextUrl.searchParams.get("next")
-          : login.replace(/login$/, "home"),
+        target
+          ? customerDestination(target.startsWith("/") ? target : "/" + target)
+          : role === "customer"
+            ? "/pedidos"
+            : login.replace(/login$/, "home"),
       );
     }
     return forwarded;
@@ -114,7 +131,7 @@ export async function proxy(request: NextRequest) {
       ? response
       : redirect(
           login +
-            (["/adesao", "/locacoes"].includes(path)
+            (["/adesao", "/locacoes", "/pedidos"].includes(path)
               ? "?next=" + path.slice(1)
               : ""),
         );

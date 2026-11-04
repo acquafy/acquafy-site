@@ -15,7 +15,7 @@ import { LoginForgotModal } from "./LoginForgotModal";
 
 type Errors = { email?: string; password?: string };
 
-export function LoginForm({ destination = "/home" }: { destination?: "/home" | "/adesao" | "/locacoes" }) {
+export function LoginForm({ destination = "/pedidos" }: { destination?: string }) {
   const router = useRouter();
   const toast = useToast();
   const form = useRef<HTMLFormElement>(null);
@@ -51,7 +51,7 @@ export function LoginForm({ destination = "/home" }: { destination?: "/home" | "
       return;
     }
     // Keep the button busy until the dashboard replaces this page.
-    toast({ title: "Bem-vindo de volta!", description: "Acesso liberado ao Portal do Investidor." });
+    toast({ title: "Bem-vindo de volta!", description: "Acesso liberado ao Acquafy Account." });
     router.replace(destination);
     router.refresh();
   };

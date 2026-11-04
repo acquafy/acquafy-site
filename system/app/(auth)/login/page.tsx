@@ -1,4 +1,6 @@
 // app/(auth)/login/page.tsx
+import Link from "next/link";
+import { customerDestination } from "@/lib/orders/destination";
 import type { Metadata } from "next";
 import { LoginBrandPanel } from "@/components/sections/LoginBrandPanel";
 import { LoginForm } from "@/components/sections/LoginForm";
@@ -11,8 +13,9 @@ export default async function LoginPage({
   searchParams: Promise<{ next?: string }>;
 }) {
   const next = (await searchParams).next;
-  const destination =
-    next === "locacoes" ? "/locacoes" : next === "adesao" ? "/adesao" : "/home";
+  const destination = next
+    ? customerDestination(next.startsWith("/") ? next : "/" + next)
+    : "/pedidos";
   return (
     <main
       id="conteudo"
@@ -20,7 +23,14 @@ export default async function LoginPage({
     >
       <LoginBrandPanel />
       <div className="relative z-10 -mt-8 flex justify-center rounded-t-2xl px-4 pt-0 pb-8 lg:mt-0 lg:items-center lg:px-10 lg:py-6">
-        <LoginForm destination={destination} />
+        <div>
+          <LoginForm destination={destination} />
+          <p className="mt-4 text-center">
+            <Link href={"/cadastro?next=" + encodeURIComponent(destination)}>
+              Novo cliente? Crie sua Acquafy Account
+            </Link>
+          </p>
+        </div>
       </div>
     </main>
   );
