@@ -18,6 +18,28 @@ const server = JSON.parse(
 if (!/^(rk|sk)_test_/.test(stripeSettings.STRIPE_SECRET_KEY))
   throw new Error("Only Stripe test keys are allowed");
 const stripe = new Stripe(stripeSettings.STRIPE_SECRET_KEY);
+// PORTAL_TEST_PROMO=1: pay with a real Stripe test promotion code (90% off) and verify the recorded discount.
+const promoMode = process.env.PORTAL_TEST_PROMO === "1";
+let promoCoupon = null,
+  promo = null;
+if (promoMode) {
+  promoCoupon = await stripe.coupons.create({
+    percent_off: 90,
+    duration: "once",
+    name: "Verification 90% off",
+    max_redemptions: 4,
+    metadata: { verification: "true" },
+  });
+  promo = await stripe.promotionCodes.create({
+    promotion: { type: "coupon", coupon: promoCoupon.id },
+    code: "VERIFY" + randomBytes(4).toString("hex").toUpperCase(),
+    max_redemptions: 4,
+  });
+}
+async function retirePromo() {
+  if (promo) await stripe.promotionCodes.update(promo.id, { active: false });
+  if (promoCoupon) await stripe.coupons.del(promoCoupon.id);
+}
 const service = createClient(
   server.SUPABASE_URL,
   server.SUPABASE_SERVICE_ROLE_KEY,
@@ -152,7 +174,7 @@ async function signedEvent(session, eventId) {
   });
   assert.equal(r.status, 200, "signed payment event");
 }
-function paymentFixture(token) {
+function paymentFixture(token, promotionCode) {
   const file =
     "/private/tmp/acquafy-enrollment-fixture-" + randomUUID() + ".json";
   const fixture = {
@@ -163,6 +185,16 @@ function paymentFixture(token) {
         path: "/v1/payment_pages/" + sessionId,
         method: "get",
       },
+      ...(promotionCode
+        ? [
+            {
+              name: "apply_promotion",
+              path: "/v1/payment_pages/" + sessionId,
+              method: "post",
+              params: { promotion_code: promotionCode },
+            },
+          ]
+        : []),
       {
         name: "payment_method",
         path: "/v1/payment_methods",
@@ -179,7 +211,7 @@ function paymentFixture(token) {
         method: "post",
         params: {
           payment_method: "${payment_method:id}",
-          expected_amount: 1000,
+          expected_amount: promotionCode ? 100 : 1000,
         },
       },
     ],
@@ -395,7 +427,7 @@ try {
     "payment_pending",
     "declined card did not activate",
   );
-  const paid = paymentFixture("tok_visa");
+  const paid = paymentFixture("tok_visa", promo?.code);
   if (paid)
     throw new Error("Stripe test payment fixture failed: " + paid.slice(-600));
   session = await stripe.checkout.sessions.retrieve(sessionId);
@@ -414,6 +446,25 @@ try {
   }
   assert.equal(state.status, "active", "verified webhook activation");
   assert(state.contract_id, "contract created");
+  if (promoMode) {
+    const attempt = (
+      await sql(
+        `select paid_minor,discount_minor,promotion from public.enrollment_checkouts where enrollment_id='${id}' and state='paid'`,
+      )
+    )[0];
+    assert.deepEqual(
+      attempt,
+      { paid_minor: 100, discount_minor: 900, promotion: promo.id },
+      "enrollment records the discounted payment",
+    );
+    const contract = (
+      await sql(
+        `select invested_amount::float as amount from public.contracts where id='${state.contract_id}'`,
+      )
+    )[0];
+    assert.equal(contract.amount, 1, "contract invested amount is what was paid");
+    console.log("PASS (promo): enrollment paid 1.00 of 10.00; contract invested_amount 1.00");
+  }
   const count = await sql(
     `select count(*)::int as count from public.contracts where id='${state.contract_id}'`,
   );
@@ -432,6 +483,7 @@ try {
     "PASS: public website registration, linked staff invitation, offer publishing, private invitation, OTP/password activation, details, staff review, agreement evidence, server-priced and resumable Stripe Checkout, declined test card, successful test payment, webhook activation and duplicate delivery",
   );
 } finally {
+  await retirePromo();
   // Find even partially created identities if a UI assertion failed before its id was captured.
   if (!createdUser) {
     const users = await service.auth.admin.listUsers({
