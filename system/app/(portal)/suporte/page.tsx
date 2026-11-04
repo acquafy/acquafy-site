@@ -1,10 +1,8 @@
-// app/(portal)/suporte/page.tsx
-import type { Metadata } from "next";
-import { SupportWorkspace } from "@/components/sections/SupportWorkspace";
-import { portalToday } from "@/lib/portal/schedule";
-
-export const metadata: Metadata = { title: "Suporte" };
-
-export default function SupportPage() {
-  return <SupportWorkspace today={portalToday()} />;
+import { PortalPage, type Query } from "@/components/live/PortalPage";
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: Promise<Query>;
+}) {
+  return <PortalPage view="suporte" query={await searchParams} />;
 }

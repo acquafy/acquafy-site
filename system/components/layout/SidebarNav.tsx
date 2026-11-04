@@ -4,7 +4,7 @@
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useSidebar } from "@/components/providers/SidebarProvider";
-import { isNavActive, navItems } from "@/config/navigation";
+import { isNavActive, navItems, type NavItem } from "@/config/navigation";
 import { cn } from "@/lib/cn";
 
 /** Hover/focus label shown next to an icon-only item. */
@@ -19,10 +19,12 @@ export function RailTooltip({ children }: { children: string }) {
   );
 }
 
-const visibleItems = navItems.filter((item) => !item.hidden);
+export type SidebarItem = Pick<NavItem, "href" | "label" | "icon" | "group">;
+
+const defaultItems: SidebarItem[] = navItems.filter((item) => !item.hidden);
 
 /** Side-menu links. The "account" group (security, help) is drawn after a divider. */
-export function SidebarNav() {
+export function SidebarNav({ items = defaultItems }: { items?: SidebarItem[] }) {
   const pathname = usePathname();
   const secao = useSearchParams().get("secao");
   const { collapsed } = useSidebar();
@@ -30,10 +32,10 @@ export function SidebarNav() {
   return (
     <nav aria-label="Navegação principal">
       <ul className="flex flex-col gap-1">
-        {visibleItems.map((item, index) => {
+        {items.map((item, index) => {
           const { href, label, icon: Icon } = item;
           const active = isNavActive(item, pathname, secao);
-          const startsAccount = item.group === "account" && visibleItems[index - 1]?.group !== "account";
+          const startsAccount = item.group === "account" && items[index - 1]?.group !== "account";
           return (
             <li key={href} className={cn(startsAccount && "mt-2 border-t border-line pt-3")}>
               <Link

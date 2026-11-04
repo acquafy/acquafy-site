@@ -1,5 +1,6 @@
 "use client";
 import { useState, type ReactNode } from "react";
+import { Feature } from "@/components/FeatureFlags";
 import FigmaIcon from "./FigmaIcon";
 import PremiumSlideshow from "./ui/PremiumSlideshow";
 import { SlideFullscreenButton, SlideLightbox } from "./ui/SlideFullscreen";
@@ -475,6 +476,7 @@ function PremiumCard({ product, color = "#6e0cc3" }: { product: Product; color?:
       <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-center w-full min-h-[55px] flex flex-col items-center justify-center" style={{ color }}>
         {product.name}
       </p>
+      <Feature name="buyNow">
       <a
         href="/buy"
         className="flex items-center justify-center min-h-[40px] px-[10px] py-[8px] rounded-[8px] w-full shrink-0 font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white hover:opacity-90 active:opacity-80 transition-opacity no-underline"
@@ -482,6 +484,7 @@ function PremiumCard({ product, color = "#6e0cc3" }: { product: Product; color?:
       >
         {BUY_NOW[lang]}
       </a>
+      </Feature>
     </div>
   );
 }

@@ -3,6 +3,7 @@ import Link from "next/link";
 import FigmaIcon from "./FigmaIcon";
 import { BtnAzulOutArrow } from "./ui/Buttons";
 import { useLang, type Lang } from "@/context/LanguageContext";
+import { useFeature } from "@/components/FeatureFlags";
 
 const imgMapaMundi = "/figma-assets/image-mapa-mundi.webp";
 const imgPlanetWeb = "/figma-assets/icon-globe-world.svg";  // 30×30 sq
@@ -277,6 +278,7 @@ const T: Record<Lang, {
 
 export default function ExpansaoGlobalPresenca() {
   const { lang } = useLang();
+  const bePartner = useFeature("bePartner");
   const t = T[lang];
   return (
     <section className="bg-white flex flex-col items-center justify-center overflow-hidden px-[20px] py-[40px] w-full">
@@ -348,11 +350,13 @@ export default function ExpansaoGlobalPresenca() {
               {t.cardDesc}
             </p>
 
-            <Link href="/parceria" className="w-full">
-              <BtnAzulOutArrow className="w-full min-h-[40px]">
-                {t.cta}
-              </BtnAzulOutArrow>
-            </Link>
+            {bePartner && (
+              <Link href="/parceria" className="w-full">
+                <BtnAzulOutArrow className="w-full min-h-[40px]">
+                  {t.cta}
+                </BtnAzulOutArrow>
+              </Link>
+            )}
           </div>
         </div>
       </div>

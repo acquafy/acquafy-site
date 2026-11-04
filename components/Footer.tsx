@@ -5,6 +5,7 @@ import FigmaIcon from "./FigmaIcon";
 import { PARTNER_BTN } from "./Header";
 import { LanguageSelectorFull } from "./ui/LanguageSelector";
 import { useLang, type Lang } from "@/context/LanguageContext";
+import { useFeature } from "@/components/FeatureFlags";
 
 const imgLogo      = "/figma-assets/logo-b.svg";
 const imgGlobe     = "/figma-assets/icon-globe-world.svg";
@@ -637,6 +638,7 @@ function MobileNavSection({
 export default function Footer() {
   const [openSection, setOpenSection] = useState<number | null>(null);
   const { lang } = useLang();
+  const bePartner = useFeature("bePartner");
   const t = T[lang];
 
   return (
@@ -688,7 +690,7 @@ export default function Footer() {
                   </div>
                 ))}
               </div>
-              {col === t.nav[t.nav.length - 1] && (
+              {bePartner && col === t.nav[t.nav.length - 1] && (
                 <a href="/partnership" className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex gap-[10px] items-center justify-center h-[40px] overflow-hidden px-[20px] rounded-[8px] cursor-pointer">
                   <FigmaIcon src="/figma-assets/icon-partner-b.svg" size={16} />
                   <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white whitespace-nowrap">{PARTNER_BTN[lang]}</span>

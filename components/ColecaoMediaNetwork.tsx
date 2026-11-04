@@ -1,6 +1,7 @@
 "use client";
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
+import { useFeature } from "@/components/FeatureFlags";
 
 const T: Record<Lang, {
   heading: string;
@@ -370,6 +371,7 @@ function ProductCard({ product }: { product: Product }) {
 
 export default function ColecaoMediaNetwork() {
   const { lang } = useLang();
+  const bePartner = useFeature("bePartner");
   const t = T[lang];
   const products: Product[] = productImgs.map((imgs, i) => ({
     imgs,
@@ -397,14 +399,16 @@ export default function ColecaoMediaNetwork() {
         </div>
 
         {/* CTA */}
-        <div className="flex justify-center w-full">
-          <a href="/parceria" className="flex bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors gap-[10px] items-center justify-center h-[40px] overflow-hidden px-[20px] rounded-[8px] shrink-0 cursor-pointer">
-            <FigmaIcon src={imgPartner} size={16} aspectW={41} aspectH={40} />
-            <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white whitespace-nowrap">
-              {t.cta}
-            </span>
-          </a>
-        </div>
+        {bePartner && (
+          <div className="flex justify-center w-full">
+            <a href="/parceria" className="flex bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors gap-[10px] items-center justify-center h-[40px] overflow-hidden px-[20px] rounded-[8px] shrink-0 cursor-pointer">
+              <FigmaIcon src={imgPartner} size={16} aspectW={41} aspectH={40} />
+              <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white whitespace-nowrap">
+                {t.cta}
+              </span>
+            </a>
+          </div>
+        )}
 
       </div>
     </section>

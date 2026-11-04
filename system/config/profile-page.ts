@@ -110,7 +110,7 @@ export const initialSecurity: { passwordChangedAt: string; sessions: ActiveSessi
 export const MOCK_TWO_FACTOR_CODE = "123456";
 export const TWO_FACTOR_SECRET = "ACQF 7K2M 9XQ4 LP3D";
 
-export const TERMS_PDF = "/docs/termos-e-condicoes.pdf";
+export const TERMS_PDF = "/app/docs/termos-e-condicoes.pdf";
 export const TERMS_VERSION = "Versão 1.2 · atualizada em 01/10/2026";
 
 export const termsSections: { title: string; body: string }[] = [

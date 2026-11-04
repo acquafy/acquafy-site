@@ -25,6 +25,7 @@ Thumbs.db
 # Misc
 *.tmp
 .vercel
+figma-assets-png-backup/
 
 # icon build
 tools/icons/node_modules/

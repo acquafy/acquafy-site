@@ -2,6 +2,7 @@
 "use client";
 
 import Link from "next/link";
+import { portalPath } from "@/lib/paths";
 import { useEffect, useRef, useState } from "react";
 import { useTheme } from "@/components/providers/ThemeProvider";
 import type { Platform } from "@/config/base-registry";
@@ -82,7 +83,7 @@ export function BaseScreenFrame({ platform, device = "phone", href, route, title
           <iframe
             title={`${title} · ${label}`}
             ref={frame}
-            src={src}
+            src={portalPath(src)}
             onLoad={syncTheme}
             tabIndex={-1}
             scrolling="no"

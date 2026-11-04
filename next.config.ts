@@ -1,4 +1,4 @@
-﻿import type { NextConfig } from "next";
+import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
@@ -16,8 +16,17 @@ const nextConfig: NextConfig = {
     ];
   },
   async rewrites() {
+    // On Vercel the `portal` service (vercel.json) owns /app. Locally (`npm run dev`, `npm start`) the two apps run as
+    // separate processes, and scripts/run-apps.mjs sets PORTAL_ORIGIN so this app proxies /app to the portal.
+    const portalOrigin = process.env.PORTAL_ORIGIN?.replace(/\/$/, "");
     return [
-      { source: "/platform",         destination: "/plataforma"           },
+      ...(portalOrigin
+        ? [
+            { source: "/app", destination: `${portalOrigin}/app` },
+            { source: "/app/:path*", destination: `${portalOrigin}/app/:path*` },
+          ]
+        : []),
+      { source: "/platform",        destination: "/plataforma"           },
       { source: "/support-center",   destination: "/central-de-suporte"   },
       { source: "/technology",       destination: "/tecnologia"           },
       { source: "/neo-line",         destination: "/linha-neo"            },

@@ -1,10 +1,8 @@
-// app/(portal)/documentos/page.tsx
-import type { Metadata } from "next";
-import { DocumentsLibrary } from "@/components/sections/DocumentsLibrary";
-import { portalToday } from "@/lib/portal/schedule";
-
-export const metadata: Metadata = { title: "Documentos" };
-
-export default function DocumentsPage() {
-  return <DocumentsLibrary today={portalToday()} />;
+import { PortalPage, type Query } from "@/components/live/PortalPage";
+export default async function Page({
+  searchParams,
+}: {
+  searchParams: Promise<Query>;
+}) {
+  return <PortalPage view="documentos" query={await searchParams} />;
 }

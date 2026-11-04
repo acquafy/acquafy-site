@@ -1,47 +1,43 @@
 // app/(portal)/layout.tsx
 import { cookies } from "next/headers";
-import { PageHeading } from "@/components/layout/PageHeading";
-import { Sidebar } from "@/components/layout/Sidebar";
-import { TopBar } from "@/components/layout/TopBar";
-import { PortalProviders } from "@/components/providers/PortalProviders";
-import { SidebarProvider } from "@/components/providers/SidebarProvider";
-import { CURRENCY_COOKIE, DEFAULT_CURRENCY, isCurrency } from "@/lib/currency";
-import { buildSearchIndex } from "@/lib/portal/search-index";
+import { context } from "@/lib/live/data";
+import { switchAccount } from "@/lib/live/actions";
 import { isSidebarMode, SIDEBAR_COOKIE } from "@/lib/sidebar";
+import type { LiveKind } from "@/config/live-navigation";
+import { ButtonLink } from "@/components/ui/Button";
+import { ClearDemo } from "@/components/live/ClearDemo";
+import { LiveShell } from "@/components/live/LiveShell";
+import { Notice } from "@/components/live/Notice";
 
 export default async function PortalLayout({ children }: { children: React.ReactNode }) {
-  const jar = await cookies();
-  const savedCurrency = jar.get(CURRENCY_COOKIE)?.value;
-  const savedSidebar = jar.get(SIDEBAR_COOKIE)?.value;
-  const currency = isCurrency(savedCurrency) ? savedCurrency : DEFAULT_CURRENCY;
+  const ctx = await context();
+  const review = await ctx.db.from("investor_enrollments").select("id").eq("user_id", ctx.user.id).eq("status", "payment_review").limit(1);
+  if (review.error) throw new Error("Não foi possível consultar a situação da parceria.");
+
+  const role = ctx.user.app_metadata.portal_role;
+  const kind: LiveKind = role === "customer" ? "customer" : ctx.staff === "admin" ? "admin" : ctx.staff === "support" ? "support" : "partner";
+  const roleLabel = { customer: "Cliente", partner: "Parceiro", support: "Equipe · Atendimento", admin: "Equipe · Administração" }[kind];
+  const saved = (await cookies()).get(SIDEBAR_COOKIE)?.value;
 
   return (
-    <PortalProviders currency={currency}>
-      <SidebarProvider initial={isSidebarMode(savedSidebar) ? savedSidebar : "expanded"}>
-        <div className="flex min-h-dvh lg:h-dvh lg:overflow-hidden">
-          <a
-            href="#conteudo"
-            className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-lg focus:bg-card focus:px-4 focus:py-2 focus:font-semibold focus:text-brand"
-          >
-            Ir para o conteúdo
-          </a>
-          {/* Edge to edge, as in the Interfy admin: the menu is full height and flush with the left edge; the top bar
- and the content fill the rest, and the content scrolls all the way to the right edge. */}
-          <Sidebar />
-          <div className="flex min-w-0 flex-1 flex-col">
-            <TopBar searchEntries={buildSearchIndex()} />
-            {/* `@container`: every grid inside answers to the width of this column, not of the window. Children never
- shrink (`shrink-0`), so a short window scrolls the column instead of squashing cards. The top bar sits
- outside this scroll area, so it stays pinned. */}
-            <main id="conteudo" className="@container relative min-h-0 min-w-0 flex-1 bg-card lg:overflow-y-auto [scrollbar-color:var(--scroll-thumb)_transparent] [scrollbar-width:thin]">
-              <div className="flex flex-col gap-4 p-4 lg:p-6 [&>*]:shrink-0">
-                <PageHeading />
-                {children}
-              </div>
-            </main>
-          </div>
-        </div>
-      </SidebarProvider>
-    </PortalProviders>
+    <LiveShell
+      kind={kind}
+      email={ctx.user.email ?? ""}
+      roleLabel={roleLabel}
+      accounts={ctx.accounts.map((a) => ({ id: a.id, name: a.name, suspended: a.status === "suspended" }))}
+      accountId={ctx.account?.id}
+      switchAccount={switchAccount}
+      sidebar={isSidebarMode(saved) ? saved : "expanded"}
+    >
+      <ClearDemo />
+      {review.data.length > 0 && (
+        <Notice tone="warn" title="Existe um pagamento da sua parceria em análise.">
+          <ButtonLink href={"/adesao?enrollment=" + review.data[0].id} variant="outline" size="sm" className="mt-2">
+            Consultar pendência
+          </ButtonLink>
+        </Notice>
+      )}
+      {children}
+    </LiveShell>
   );
 }

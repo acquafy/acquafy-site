@@ -8,14 +8,22 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
-    "docs:generate": "node scripts/generate-docs.mjs"
+    "docs:generate": "node scripts/generate-docs.mjs",
+    "typecheck": "tsc --noEmit",
+    "prebuild": "node scripts/generate-base-inventory.mjs",
+    "predev": "node scripts/generate-base-inventory.mjs"
   },
   "dependencies": {
+    "@flags-sdk/vercel": "^1.6.0",
+    "@supabase/ssr": "0.12.7",
+    "@supabase/supabase-js": "2.118.0",
+    "flags": "^4.4.0",
     "lucide-react": "^1.39.0",
-    "next": "16.3.4",
+    "next": "16.4.5",
     "react": "19.2.8",
     "react-dom": "19.2.8",
-    "server-only": "^0.0.1"
+    "server-only": "^0.0.1",
+    "stripe": "23.0.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -23,7 +31,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.3.4",
+    "eslint-config-next": "16.4.5",
     "sharp": "^0.35.4",
     "tailwindcss": "^4",
     "typescript": "^5",

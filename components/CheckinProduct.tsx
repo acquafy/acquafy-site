@@ -1,9 +1,9 @@
-﻿"use client";
+"use client";
 
+import Link from "next/link";
 import { useRef, useState, useCallback, useEffect } from "react";
 import { CHECKIN_FAMILIES, type CheckinFamily } from "@/lib/checkin-products";
-import StripePaymentForm, { type StripeFormHandle } from "@/components/StripePaymentForm";
-import { formatPrice, formatBRL, PRODUCT_PRICES_BRL, PRODUCT_LEASE_BRL, PRODUCT_IMAGES } from "@/lib/products";
+import { formatPrice, PRODUCT_PRICES_BRL, PRODUCT_IMAGES } from "@/lib/products";
 import FigmaIcon from "@/components/FigmaIcon";
 import { useCart } from "@/components/CartProvider";
 import { useLang } from "@/context/LanguageContext";
@@ -30,9 +30,6 @@ const CM_COMMA_LOCALES = new Set<Lang>(["pt", "pt-pt", "es", "fr", "de", "it", "
 function localizeNum(n: number, lang: Lang): string {
   const s = String(n);
   return CM_COMMA_LOCALES.has(lang) ? s.replace(".", ",") : s;
-}
-function fmtCm(cm: number, lang: Lang): string {
-  return `${localizeNum(cm, lang)}cm`;
 }
 function fmtCm2(pair: [number, number], lang: Lang): string {
   return `${localizeNum(pair[0], lang)} × ${localizeNum(pair[1], lang)}cm`;
@@ -1124,7 +1121,7 @@ function BoolCell({ value }: { value: boolean }) {
 }
 
 /* ── Table row ─────────────────────────────────────────────────────────────── */
-function SpecRow({ label, value, isBool, isPremium }: { label: string; value: string | boolean; isBool?: boolean; isPremium: boolean }) {
+function SpecRow({ label, value, isBool }: { label: string; value: string | boolean; isBool?: boolean; isPremium: boolean }) {
   return (
     <div className="grid grid-cols-subgrid col-span-2 items-stretch border-b border-[#e8ecf4] last:border-b-0">
       <div className="border-r border-[#e8ecf4] px-[14px] py-[12px] flex items-center">
@@ -1157,27 +1154,9 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
   );
 }
 
-const SECTION_LABELS: Record<string, string> = {
-  produto:   "Produto",
-  cores:     "Cores",
-  filtros:   "Filtros",
-  garantias: "Garantias",
-  cep:       "Entrega",
-  conta:     "Conta",
-};
 
 type PhoneCountry = { code: string; name: string; dial: string; flag: string; maxDigits: number; placeholder: string; fmt: (d: string) => string };
 
-const LANG_TO_LOCALE: Record<Lang, string> = {
-  pt:      "pt-BR", "pt-pt": "pt-PT",
-  en:      "en-GB", "en-gb": "en-US",
-  es:      "es-ES", fr:      "fr-FR",
-  de:      "de-DE", it:      "it-IT",
-  zh:      "zh-CN", ja:      "ja-JP",
-  ko:      "ko-KR", sv:      "sv-SE",
-  fi:      "fi-FI", ru:      "ru-RU",
-  ro:      "ro-RO", he:      "he-IL",
-};
 
 const fmtGen = (d: string): string =>
   d.length <= 3 ? d : d.length <= 7 ? `${d.slice(0,3)} ${d.slice(3)}` :
@@ -1458,7 +1437,7 @@ function getColorName(slug: string | undefined, lang: Lang, fallback: string): s
 }
 
 export default function CheckinProduct({ family, showSlide = true }: Props) {
-  const { addToCart, cart } = useCart();
+  const { cart } = useCart();
   const scrollRef = useRef<HTMLDivElement>(null);
   const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const [activeVariantIdx, setActiveVariantIdx] = useState(0);
@@ -1479,8 +1458,6 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
   const [pricingVisible, setPricingVisible] = useState(false);
   const pricingCardRef = useRef<HTMLDivElement>(null);
   const paymentBlockRef = useRef<HTMLDivElement>(null);
-  const stripeRef = useRef<StripeFormHandle | null>(null);
-  const [stripeProcessing, setStripeProcessing] = useState(false);
 
   // Unified slide state — shared across Produto + Cores, never resets on variant/color change
   const [slideIdx, setSlideIdx] = useState(0);
@@ -1504,16 +1481,14 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
   // Form state
   const [fv, setFv] = useState<Record<string, string>>({ cep: "", nome: "", email: "", email2: "", tel: "", zipDelivery: "", zipBilling: "" });
   const [ft, setFt] = useState<Record<string, boolean>>({});
-  const [phoneCountryIdx, setPhoneCountryIdx] = useState(0);
+  const [, setPhoneCountryIdx] = useState(0);
   const [phoneDropOpen, setPhoneDropOpen] = useState(false);
-  const [phoneSearch, setPhoneSearch] = useState("");
+  const [, setPhoneSearch] = useState("");
   const phoneDropRef = useRef<HTMLDivElement>(null);
   const [freteResult, setFreteResult] = useState<
     null | { state: "loading" } | { state: "ok"; city: string; uf: string } | { state: "err"; message: string }
   >(null);
   const [orderConfirmOpen, setOrderConfirmOpen] = useState(false);
-  const [consentChecked, setConsentChecked] = useState(false);
-  const [termsChecked, setTermsChecked] = useState(false);
   const [termsOpen, setTermsOpen] = useState(false);
 
   useEffect(() => {
@@ -1578,23 +1553,8 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
     }
   };
 
-  const handleTelChange = (raw: string) => {
-    const country = PHONE_COUNTRIES[phoneCountryIdx];
-    const d = raw.replace(/\D/g, "").slice(0, country.maxDigits);
-    setField("tel", country.fmt(d));
-  };
-
-  const isFormValid =
-    /^\d{5}-\d{3}$/.test(fv.cep) &&
-    fv.nome.trim().split(/\s+/).length >= 2 &&
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fv.email) &&
-    fv.email2 === fv.email &&
-    fv.tel.replace(/\D/g, "").length >= 8 &&
-    termsChecked;
-
   const { lang } = useLang();
   const lb = LABELS[lang];
-  const regionNames = new Intl.DisplayNames([LANG_TO_LOCALE[lang]], { type: "region" });
 
   useEffect(() => {
     const code = LANG_DEFAULT_COUNTRY[lang];
@@ -1651,13 +1611,9 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
     scrollRef.current.scrollTop += e.deltaY;
   }, []);
 
-  const leftImg =
-    family.scenes.length > 0
-      ? family.scenes[activeSceneIdx].img
-      : activeVariant.img;
 
-  const tabPrice = (variant: { id: string; price: number }, spaced = false) => {
-    if (payTab === "financiar") return `${formatPrice(PRODUCT_LEASE_BRL[variant.id] ?? 0, lang)}${spaced ? " " : ""}${lb.perMonth}`;
+  const tabPrice = (variant: { id: string; price: number }) => {
+    if (payTab === "financiar") return lang.startsWith("pt") ? "Sob proposta" : "Request a quote";
     return formatPrice(variant.price, lang);
   };
 
@@ -1896,7 +1852,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
               {/* Financing note */}
               {payTab === "financiar" && (
                 <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af] px-[2px]">
-                  {lb.finNote}
+                  {lang.startsWith("pt") ? "Locação sujeita à proposta aprovada e aceite do acordo." : "Rental subject to an approved quote and agreement."}
                 </p>
               )}
             </div>
@@ -2165,19 +2121,19 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                     <div className="flex items-start justify-between gap-[12px]">
                       <div className="flex flex-col gap-[3px]">
                         <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91]">{payTab === "financiar" ? lb.parcelaTitle : lb.valorEstimadoTitle}</p>
-                        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af]">{payTab === "financiar" ? lb.parcelaDesc : lb.valorEstimadoDesc}</p>
+                        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af]">{payTab === "financiar" ? (lang.startsWith("pt") ? "Condições na proposta" : "Terms in your quote") : lb.valorEstimadoDesc}</p>
                       </div>
                       <span className="font-['Avenir_LT_Pro:95_Black'] text-[18px] text-[#1f2e91] shrink-0">
-                        {tabPrice(activeVariant, true)}
+                        {tabPrice(activeVariant)}
                       </span>
                     </div>
                     <div className="h-px bg-[#f0f4ff]" />
                     <div className="flex items-start justify-between gap-[12px]">
                       <div className="flex flex-col gap-[3px]">
                         <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91]">{payTab === "financiar" ? lb.dueTodayTitle : lb.taxaPedidoTitle}</p>
-                        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af]">{lb.taxaPedidoDesc}</p>
+                        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af]">{lang.startsWith("pt") ? "Pagamento após proposta e aceite" : "Payment after quote acceptance"}</p>
                       </div>
-                      <span className="font-['Avenir_LT_Pro:95_Black'] text-[18px] text-[#1f2e91] shrink-0">{(lang === "pt" || lang === "pt-pt") ? formatBRL(125) : "US$ 25,00"}</span>
+                      <span className="font-['Avenir_LT_Pro:95_Black'] text-[15px] text-[#1f2e91] shrink-0">{lang.startsWith("pt") ? "Sem cobrança agora" : "No payment now"}</span>
                     </div>
                   </div>
                 </div>
@@ -2186,224 +2142,9 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
 
             <Sep />
 
-            {/* ── Form ────────────────────────────────────────────────────── */}
-            <div className="flex flex-col gap-[16px]"
-              ref={(el) => { sectionRefs.current["conta"] = el; }}
-              onMouseEnter={() => setHoverSection("conta")}
-              onMouseLeave={() => setHoverSection(null)}>
-              <SectionTitle>{lb.detalhesContaTitle}</SectionTitle>
-              <div className="flex flex-col gap-[10px]">
-
-                {/* Nome */}
-                <div className="flex flex-col gap-[6px]">
-                  <label htmlFor="checkin-nome"
-                    className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] text-[#6b7280] uppercase tracking-[0.05em]">
-                    {lb.nomeLabel}
-                  </label>
-                  <input id="checkin-nome" type="text" autoComplete="name"
-                    value={fv.nome}
-                    onChange={(e) => setField("nome", e.target.value)}
-                    onBlur={() => touchField("nome")}
-                    className={`h-[44px] px-[14px] rounded-[10px] bg-[#f6f9fe] font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#1f2e91] placeholder:text-[#aab2bc] outline-none border transition-colors ${fieldError("nome") ? "border-[#ef4444]" : "border-[#e8ecf4] focus:border-[#0233c3]"}`}
-                  />
-                  {fieldError("nome") && (
-                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#ef4444] flex items-center gap-[4px]">
-                      <span>⚠</span> {fieldError("nome")}
-                    </p>
-                  )}
-                </div>
-
-                {/* Email */}
-                <div className="flex flex-col gap-[6px]">
-                  <label htmlFor="checkin-email"
-                    className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] text-[#6b7280] uppercase tracking-[0.05em]">
-                    {lb.emailLabel}
-                  </label>
-                  <input id="checkin-email" type="email" autoComplete="email"
-                    value={fv.email}
-                    onChange={(e) => setField("email", e.target.value)}
-                    onBlur={() => touchField("email")}
-                    className={`h-[44px] px-[14px] rounded-[10px] bg-[#f6f9fe] font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#1f2e91] placeholder:text-[#aab2bc] outline-none border transition-colors ${fieldError("email") ? "border-[#ef4444]" : "border-[#e8ecf4] focus:border-[#0233c3]"}`}
-                  />
-                  {fieldError("email") && (
-                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#ef4444] flex items-center gap-[4px]">
-                      <span>⚠</span> {fieldError("email")}
-                    </p>
-                  )}
-                </div>
-
-                {/* Confirm Email */}
-                <div className="flex flex-col gap-[6px]">
-                  <label htmlFor="checkin-email2"
-                    className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] text-[#6b7280] uppercase tracking-[0.05em]">
-                    {lb.email2Label}
-                  </label>
-                  <input id="checkin-email2" type="email" autoComplete="off"
-                    value={fv.email2}
-                    onChange={(e) => setField("email2", e.target.value)}
-                    onBlur={() => touchField("email2")}
-                    className={`h-[44px] px-[14px] rounded-[10px] bg-[#f6f9fe] font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#1f2e91] placeholder:text-[#aab2bc] outline-none border transition-colors ${fieldError("email2") ? "border-[#ef4444]" : "border-[#e8ecf4] focus:border-[#0233c3]"}`}
-                  />
-                  {fieldError("email2") && (
-                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#ef4444] flex items-center gap-[4px]">
-                      <span>⚠</span> {fieldError("email2")}
-                    </p>
-                  )}
-                </div>
-
-                {/* Phone */}
-                <div className="flex flex-col gap-[6px]">
-                  <label htmlFor="checkin-tel"
-                    className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] text-[#6b7280] uppercase tracking-[0.05em]">
-                    {lb.telLabel}
-                  </label>
-                  <div className={`flex rounded-[10px] bg-[#f6f9fe] border overflow-visible transition-colors ${fieldError("tel") ? "border-[#ef4444]" : "border-[#e8ecf4] focus-within:border-[#0233c3]"}`}>
-                    <div className="relative shrink-0">
-                      <button type="button"
-                        className="h-[44px] px-[10px] flex items-center gap-[5px] font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#1f2e91] border-r border-[#e8ecf4] bg-transparent rounded-l-[10px]"
-                        onClick={() => setPhoneDropOpen((d) => !d)}>
-                        <span className="text-[15px] leading-none">{PHONE_COUNTRIES[phoneCountryIdx].flag}</span>
-                        <span>{PHONE_COUNTRIES[phoneCountryIdx].dial}</span>
-                        <svg className="size-[9px] text-[#9ca3af] shrink-0" viewBox="0 0 10 6" fill="none">
-                          <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      </button>
-                      {phoneDropOpen && (
-                        <div ref={phoneDropRef} className="absolute top-[calc(100%+4px)] left-0 bg-white rounded-[10px] border border-[#e8ecf4] shadow-lg z-30 w-[260px] flex flex-col overflow-hidden">
-                          <div className="p-[8px] border-b border-[#e8ecf4]">
-                            <input
-                              autoFocus
-                              type="text"
-                              value={phoneSearch}
-                              onChange={(e) => setPhoneSearch(e.target.value)}
-                              placeholder={lb.buscarPais}
-                              className="w-full h-[32px] px-[10px] rounded-[6px] bg-[#f6f9fe] border border-[#e8ecf4] font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#1f2e91] placeholder:text-[#aab2bc] outline-none"
-                            />
-                          </div>
-                          <div className="max-h-[220px] overflow-y-auto">
-                            {PHONE_COUNTRIES
-                              .map((c, i) => ({ c, i, localName: regionNames.of(c.code) ?? c.name }))
-                              .filter(({ c, localName }) => !phoneSearch ||
-                                localName.toLowerCase().includes(phoneSearch.toLowerCase()) ||
-                                c.code.toLowerCase().includes(phoneSearch.toLowerCase()) ||
-                                c.dial.includes(phoneSearch))
-                              .map(({ c, i, localName }) => (
-                                <button key={c.code} type="button"
-                                  className={`w-full px-[12px] py-[8px] flex items-center gap-[8px] hover:bg-[#f6f9fe] transition-colors text-left ${i === phoneCountryIdx ? "bg-[#f0f4ff]" : ""}`}
-                                  onClick={() => {
-                                    setPhoneCountryIdx(i);
-                                    setPhoneDropOpen(false);
-                                    setPhoneSearch("");
-                                    setField("tel", "");
-                                    setFt((t) => ({ ...t, tel: false }));
-                                  }}>
-                                  <span className="text-[16px] leading-none shrink-0">{c.flag}</span>
-                                  <span className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#1f2e91] flex-1 truncate text-left">{localName}</span>
-                                  <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[11px] text-[#6b7280] shrink-0">{c.dial}</span>
-                                </button>
-                              ))}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                    <input id="checkin-tel" type="tel"
-                      placeholder={PHONE_COUNTRIES[phoneCountryIdx].placeholder}
-                      value={fv.tel}
-                      onChange={(e) => handleTelChange(e.target.value)}
-                      onBlur={() => touchField("tel")}
-                      className="flex-1 h-[44px] px-[12px] min-w-0 bg-transparent font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#1f2e91] placeholder:text-[#aab2bc] outline-none"
-                    />
-                  </div>
-                  {fieldError("tel") && (
-                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#ef4444] flex items-center gap-[4px]">
-                      <span>⚠</span> {fieldError("tel")}
-                    </p>
-                  )}
-                </div>
-
-              </div>
-              <div className="flex flex-col gap-[10px]">
-                {/* Consent checkbox */}
-                <div className="flex items-start gap-[10px] cursor-pointer select-none" onClick={() => setConsentChecked(v => !v)}>
-                  <div className={`shrink-0 size-[18px] mt-[1px] rounded-[5px] border-2 flex items-center justify-center transition-colors ${consentChecked ? "border-[#0233c3] bg-[#0233c3]" : "border-[#d1d5db] bg-white"}`}>
-                    {consentChecked && (
-                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                        <path d="M1.5 5l2.5 2.5L8.5 2" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    )}
-                  </div>
-                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[11px] text-[#9ca3af] leading-[18px]">
-                    {lb.consentText}
-                  </p>
-                </div>
-                {/* Terms checkbox */}
-                <div className="flex items-center gap-[10px] select-none">
-                  <div className={`shrink-0 size-[18px] rounded-[5px] border-2 flex items-center justify-center transition-colors cursor-pointer ${termsChecked ? "border-[#0233c3] bg-[#0233c3]" : "border-[#d1d5db] bg-white"}`} onClick={() => setTermsChecked(v => !v)}>
-                    {termsChecked && (
-                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                        <path d="M1.5 5l2.5 2.5L8.5 2" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    )}
-                  </div>
-                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[11px] text-[#9ca3af] leading-[18px]">
-                    {lb.liAceito}{" "}
-                    <button
-                      type="button"
-                      onClick={() => setTermsOpen(true)}
-                      className="underline text-[#0233c3] hover:opacity-70 transition-opacity cursor-pointer"
-                    >
-                      {lb.termosDeUso}
-                    </button>
-                    .
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <Sep />
-
-            {/* ── Payment ─────────────────────────────────────────────────── */}
-            <div ref={paymentBlockRef} className="flex flex-col gap-[16px]">
-              <SectionTitle>{lb.pagamentoTitle}</SectionTitle>
-              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af] -mt-[4px]">
-                {lb.taxaReservaPrefix}{" "}
-                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[#1f2e91]">{(lang === "pt" || lang === "pt-pt") ? formatBRL(125) : "US$ 25,00"}</span>{" "}
-                {lb.taxaReservaSuffix}
-              </p>
-              <div className="flex gap-[12px]">
-                <div className="flex flex-col gap-[6px] flex-1">
-                  <label className="font-['Avenir_LT_Pro:85_Heavy'] text-[10px] text-[#aab2bc] uppercase tracking-[0.08em]">
-                    {lb.zipDeliveryLabel}
-                  </label>
-                  <input
-                    type="text"
-                    autoComplete="postal-code"
-                    placeholder="ZIP / Postal Code"
-                    value={fv.zipDelivery}
-                    onChange={(e) => setField("zipDelivery", e.target.value)}
-                    className="h-[44px] px-[14px] rounded-[10px] bg-[#f6f9fe] border border-[#e8ecf4] focus:border-[#0233c3] font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#1f2e91] placeholder:text-[#aab2bc] outline-none transition-colors"
-                  />
-                </div>
-                <div className="flex flex-col gap-[6px] flex-1">
-                  <label className="font-['Avenir_LT_Pro:85_Heavy'] text-[10px] text-[#aab2bc] uppercase tracking-[0.08em]">
-                    {lb.zipBillingLabel}
-                  </label>
-                  <input
-                    type="text"
-                    autoComplete="billing postal-code"
-                    placeholder="ZIP / Postal Code"
-                    value={fv.zipBilling}
-                    onChange={(e) => setField("zipBilling", e.target.value)}
-                    className="h-[44px] px-[14px] rounded-[10px] bg-[#f6f9fe] border border-[#e8ecf4] focus:border-[#0233c3] font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#1f2e91] placeholder:text-[#aab2bc] outline-none transition-colors"
-                  />
-                </div>
-              </div>
-              <StripePaymentForm
-                formRef={stripeRef}
-                processingLabel="Processando pagamento..."
-                locale={lang}
-                billingPostalCode={fv.zipBilling}
-              />
+            <div className="flex flex-col gap-[4px] rounded-[12px] bg-[#f6f9fe] p-[16px]">
+              <h3 className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91]">Acquafy Account</h3>
+              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] leading-[1.5] text-[#6b7280]">{lang.startsWith("pt") ? "Crie sua conta de cliente para receber a proposta, confirmar o pedido e acompanhar entrega e instalação. Não há cobrança de reserva nesta etapa." : "Create your customer account to receive a quote, confirm your order, and track delivery and installation. No reservation fee is charged at this step."}</p>
             </div>
 
             <div className="h-[12px]" />
@@ -2525,13 +2266,13 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                   >
                     {lb.sejaUmParceiro}
                   </a>
-                  <a
+                  <Link
                     href="/buy"
                     className="h-[46px] rounded-[12px] flex items-center justify-center font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-white transition-opacity hover:opacity-90"
                     style={{ background: accentGrad }}
                   >
                     {lb.comprarOutro}
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -2593,32 +2334,17 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
             </span>
             {payTab === "financiar" && (
               <span className="font-['Avenir_LT_Pro:55_Roman'] text-[11px] text-[#6b7280] leading-none">
-                {lb.parcelaDesc}
+                {lang.startsWith("pt") ? "Mensalidade e condições na proposta" : "Monthly price and terms in your quote"}
               </span>
             )}
           </div>
           <button
-            disabled={stripeProcessing}
-            onClick={async () => {
-              if (!isFormValid) {
-                touchField("cep"); touchField("nome"); touchField("email"); touchField("email2"); touchField("tel");
-                return;
-              }
-              setStripeProcessing(true);
-              const isPt = lang === "pt" || lang === "pt-pt";
-              const result = await stripeRef.current?.confirmPayment(isPt ? 125 : 25, fv.email, isPt ? "brl" : "usd");
-              setStripeProcessing(false);
-              if (result?.success) {
-                addToCart(activeVariant.id, activeVariant.name, true);
-                setOrderConfirmOpen(true);
-              }
+            onClick={() => {
+              window.location.assign("/app/pedido?" + new URLSearchParams({product: activeVariant.id, mode: payTab === "financiar" ? "lease" : "purchase", color: colorOptions[activeColorIdx]?.slug ?? ""}).toString());
             }}
             className="h-[48px] px-[28px] rounded-[14px] font-['Avenir_LT_Pro:85_Heavy'] text-[14px] text-white shrink-0 transition-opacity hover:opacity-90 disabled:opacity-60 flex items-center gap-[8px]"
-            style={{ background: accentGrad, opacity: isFormValid && !stripeProcessing ? 1 : 0.5 }}
+            style={{ background: accentGrad, opacity: 1 }}
           >
-            {stripeProcessing && (
-              <span className="size-[14px] border-2 border-white border-t-transparent rounded-full animate-spin" />
-            )}
             {lb.encomendar}
           </button>
         </div>

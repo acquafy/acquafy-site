@@ -5,6 +5,7 @@ import Link from "next/link";
 import { BtnAzulBaseArrow, BtnAzulOutArrow } from "./ui/Buttons";
 import { useLang, type Lang } from "@/context/LanguageContext";
 import { PartnerModal, FORM_T } from "./ModelosParceria";
+import { useFeature, Feature } from "@/components/FeatureFlags";
 
 const imgBg     = "/figma-assets/bg-h.webp";
 const imgFrame  = "/figma-assets/frame-image.webp";
@@ -420,6 +421,7 @@ export default function NeoMediaBanner() {
   const { lang } = useLang();
   const t = T[lang];
   const [modalOpen, setModalOpen] = useState(false);
+  const bePartner = useFeature("bePartner");
 
   const stats = [
     { icon: imgPeople, aspectW: 40.69, aspectH: 40,  ...t.stats[0] },
@@ -463,14 +465,18 @@ export default function NeoMediaBanner() {
           {t.pMobile}
         </p>
         <div className="flex flex-wrap gap-[16px] items-center justify-center w-full">
-          <BtnAzulBaseArrow className="flex-[1_0_0] min-w-[190px] min-h-[50px] px-[20px]" onClick={() => setModalOpen(true)}>
-            {t.btnPrimary}
-          </BtnAzulBaseArrow>
+          {bePartner && (
+            <BtnAzulBaseArrow className="flex-[1_0_0] min-w-[190px] min-h-[50px] px-[20px]" onClick={() => setModalOpen(true)}>
+              {t.btnPrimary}
+            </BtnAzulBaseArrow>
+          )}
+          <Feature name="buyNow">
           <Link href="/buy/checkin-acquafy-media" className="flex-[1_0_0] min-w-[190px]">
             <BtnAzulOutArrow className="w-full min-h-[50px] px-[20px]">
               {t.btnSecondary}
             </BtnAzulOutArrow>
           </Link>
+          </Feature>
         </div>
         <div className="flex flex-wrap gap-[30px_0] items-center justify-start w-full py-[25px]">
           {stats.map((s) => (
@@ -520,14 +526,18 @@ export default function NeoMediaBanner() {
             </p>
             {/* Botões — node 3258:5041 */}
             <div className="flex flex-wrap gap-[20px] items-center justify-center xl:justify-start w-full">
-              <BtnAzulBaseArrow className="min-h-[50px] px-[20px]" onClick={() => setModalOpen(true)}>
-                {t.btnPrimary}
-              </BtnAzulBaseArrow>
+              {bePartner && (
+                <BtnAzulBaseArrow className="min-h-[50px] px-[20px]" onClick={() => setModalOpen(true)}>
+                  {t.btnPrimary}
+                </BtnAzulBaseArrow>
+              )}
+              <Feature name="buyNow">
               <Link href="/buy/checkin-acquafy-media">
                 <BtnAzulOutArrow className="min-h-[50px] px-[20px]">
                   {t.btnSecondary}
                 </BtnAzulOutArrow>
               </Link>
+              </Feature>
             </div>
             {/* Stats — node 3410:13509 */}
             <div className="flex flex-wrap gap-[30px_0] items-center justify-center py-[25px] rounded-[16px] w-full">
@@ -552,7 +562,7 @@ export default function NeoMediaBanner() {
           </div>
         </div>
       </div>
-      {modalOpen && (
+      {bePartner && modalOpen && (
         <PartnerModal tier="gold" ft={FORM_T[lang]} onClose={() => setModalOpen(false)} />
       )}
     </section>

@@ -58,7 +58,7 @@ export function MobilePurifierDetailSheet({ purifier, requests, onClose, onMaint
       {p && (
         <div className="grid gap-4">
           <div className="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-4 rounded-[14px] bg-[radial-gradient(ellipse_at_50%_60%,var(--photo-a),var(--photo-b)_75%)] p-3">
-            <Image src="/brand/neo-up.webp" alt={`Purificador ${p.model}`} width={420} height={536} sizes="120px" className="h-[120px] w-auto" />
+            <Image src="/app/brand/neo-up.webp" alt={`Purificador ${p.model}`} width={420} height={536} sizes="120px" className="h-[120px] w-auto" />
             <div className="grid min-w-0 justify-items-start gap-2">
               <StatusBadge kind={p.status} />
               <p className="flex items-center gap-1.5 text-[14px] text-ink">

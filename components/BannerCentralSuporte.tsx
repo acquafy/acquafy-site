@@ -3,6 +3,7 @@
 import { useState } from "react";
 import FigmaIcon from "./FigmaIcon";
 import { useChatWidget } from "./ChatWidget";
+import { useFeature } from "@/components/FeatureFlags";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
 // ── Assets ────────────────────────────────────────────────────────────────────
@@ -977,6 +978,7 @@ export default function BannerCentralSuporte() {
   const { openChat } = useChatWidget();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const { lang } = useLang();
+  const bePartner = useFeature("bePartner");
   const t = T[lang];
 
   return (
@@ -1175,7 +1177,7 @@ export default function BannerCentralSuporte() {
                     {item.answer}
                   </p>
                   <a
-                    href={FAQ_META[i].href}
+                    href={FAQ_META[i].href === "/parceria" && !bePartner ? "/contact" : FAQ_META[i].href}
                     className="self-start bg-[#0233c3] hover:bg-[#002ba8] transition-colors
                       flex gap-[8px] items-center justify-center
                       h-[36px] overflow-hidden px-[16px] rounded-[8px] no-underline"

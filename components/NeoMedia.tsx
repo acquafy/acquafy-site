@@ -1,8 +1,8 @@
-﻿"use client";
-import { useState } from "react";
+"use client";
+import Link from "next/link";
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
-import { PartnerModal, FORM_T } from "./ModelosParceria";
+import { useFeature, Feature } from "@/components/FeatureFlags";
 
 const imgBg          = "/figma-assets/bg-c.webp";
 const imgProduct     = "/figma-assets/acquafy-media-totem.webp";
@@ -10,9 +10,7 @@ const imgArrowBlue   = "/figma-assets/icon-arrow-blue-b.svg";
 const imgArrowWhite  = "/figma-assets/icon-arrow-white-hover.svg";
 
 const imgMarketing  = "/figma-assets/icon-marketing-landscape.svg";
-const imgDivLine1   = "/figma-assets/divider-line-1.svg";
 const imgDashboard  = "/figma-assets/icon-dashboard-large.svg";
-const imgDivLine2   = "/figma-assets/divider-line-2.svg";
 const imgAI         = "/figma-assets/icon-ai-30px-e.svg";
 const imgMoney      = "/figma-assets/icon-money-large-a.svg";
 const imgLocations  = "/figma-assets/icon-locations.svg";
@@ -342,8 +340,8 @@ function BenefitIcon({ icon, aspectW, aspectH }: { icon: string; aspectW: number
 
 export default function NeoMedia() {
   const { lang } = useLang();
+  const investorRegistration = useFeature("investorRegistration");
   const t = T[lang];
-  const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <>
@@ -374,23 +372,26 @@ export default function NeoMedia() {
                 </p>
 
                 <div className="flex flex-wrap gap-[10px] w-full lg:w-fit">
-                  <button
-                    onClick={() => setModalOpen(true)}
-                    className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex gap-[10px] items-center justify-center min-h-[30px] px-[20px] py-[10px] rounded-[8px] shrink-0 w-full lg:w-fit cursor-pointer"
-                  >
-                    <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors text-center">
-                      {t.btnInvest}
-                    </span>
-                    <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
-                      <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0 group-active:opacity-0">
-                        <FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} />
+                  {investorRegistration && (
+                    <a
+                      href="/app/cadastro-investidor"
+                      className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex gap-[10px] items-center justify-center min-h-[30px] px-[20px] py-[10px] rounded-[8px] shrink-0 w-full lg:w-fit cursor-pointer"
+                    >
+                      <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors text-center">
+                        {t.btnInvest}
+                      </span>
+                      <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
+                        <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0 group-active:opacity-0">
+                          <FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} />
+                        </div>
+                        <div className="absolute inset-0 transition-opacity duration-150 opacity-0 group-hover:opacity-100 group-active:opacity-100">
+                          <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
+                        </div>
                       </div>
-                      <div className="absolute inset-0 transition-opacity duration-150 opacity-0 group-hover:opacity-100 group-active:opacity-100">
-                        <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
-                      </div>
-                    </div>
-                  </button>
-                  <a
+                    </a>
+                  )}
+                  <Feature name="buyNow">
+                  <Link
                     href="/buy/checkin"
                     className="group bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex gap-[10px] items-center justify-center min-h-[30px] px-[20px] py-[10px] rounded-[8px] shrink-0 w-full lg:w-fit cursor-pointer"
                   >
@@ -400,7 +401,8 @@ export default function NeoMedia() {
                     <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
                       <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
                     </div>
-                  </a>
+                  </Link>
+                  </Feature>
                 </div>
               </div>
             </div>
@@ -462,9 +464,6 @@ export default function NeoMedia() {
       </div>
     </section>
 
-    {modalOpen && (
-      <PartnerModal tier="gold" ft={FORM_T[lang]} onClose={() => setModalOpen(false)} />
-    )}
     </>
   );
 }

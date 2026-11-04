@@ -1,5 +1,6 @@
 "use client";
 import { useState, type ReactNode } from "react";
+import { Feature } from "@/components/FeatureFlags";
 import FigmaIcon from "./FigmaIcon";
 import { SlideFullscreenButton, SlideLightbox } from "./ui/SlideFullscreen";
 import { PRODUCT_IMAGES } from "@/lib/products";
@@ -971,6 +972,7 @@ function ProductCard({ product }: { product: Product }) {
       <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#0233c3] text-center w-full min-h-[55px] flex flex-col items-center justify-center">
         {product.name}
       </p>
+      <Feature name="buyNow">
       <a
         href={`/buy/checkin-${product.slug}?modelo=${product.id}`}
         className="flex items-center justify-center min-h-[40px] px-[10px] py-[8px] rounded-[8px] w-full shrink-0 font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white hover:opacity-90 active:opacity-80 transition-opacity no-underline"
@@ -978,6 +980,7 @@ function ProductCard({ product }: { product: Product }) {
       >
         {BUY_NOW[lang]}
       </a>
+      </Feature>
     </div>
   );
 }

@@ -58,7 +58,7 @@ export function DuoPhone({ platform, device, caption, embed = false, children }:
             // The minimized tab bar expands on tap (IosTabBar handles it) instead of navigating.
             if (target.closest("[data-minimized]")) return;
             const href = target.closest("a")?.getAttribute("href");
-            const match = href?.match(/^\/m\/(?:ios|android)\/(.*)$/);
+            const match = href?.match(/^\/app\/m\/(?:ios|android)\/(.*)$/);
             if (!match) return;
             e.preventDefault();
             e.stopPropagation();

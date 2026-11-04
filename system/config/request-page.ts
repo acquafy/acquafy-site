@@ -29,8 +29,8 @@ export const PRODUCT = {
   description:
     "Filtragem em múltiplos estágios, monitoramento remoto e manutenção inclusa. A Acquafy instala, opera e aluga o equipamento; você recebe 50% do lease todo mês, em dólar.",
   highlights: ["Instalação e manutenção por conta da Acquafy", "Repasse no dia 1º de cada mês", "Recompra opcional de 30% ao final do contrato"],
-  image: { src: "/brand/neo-up.webp", width: 420, height: 536 },
-  thumb: { src: "/brand/neo-up-thumb.webp", width: 112, height: 143 },
+  image: { src: "/app/brand/neo-up.webp", width: 420, height: 536 },
+  thumb: { src: "/app/brand/neo-up-thumb.webp", width: 112, height: 143 },
 } as const;
 
 export type InstallMode = "stock" | "address";

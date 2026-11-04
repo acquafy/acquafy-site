@@ -1,6 +1,7 @@
 "use client";
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
+import { useFeature } from "@/components/FeatureFlags";
 
 const imgSilver = "/figma-assets/product-silver-e.webp";
 const imgGold = "/figma-assets/product-gold-e.webp";
@@ -308,6 +309,7 @@ const T: Record<Lang, {
 
 export default function Parceria() {
   const { lang } = useLang();
+  const bePartner = useFeature("bePartner");
   const t = T[lang];
 
   return (
@@ -352,11 +354,13 @@ export default function Parceria() {
                   ))}
                 </div>
               </div>
-              <a href="/parceria" className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex items-center justify-center min-h-[30px] overflow-hidden px-[20px] py-[10px] rounded-[8px] w-full cursor-pointer">
-                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white text-center flex-1 min-w-0">
-                  {t.cta}
-                </span>
-              </a>
+              {bePartner && (
+                <a href="/parceria" className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex items-center justify-center min-h-[30px] overflow-hidden px-[20px] py-[10px] rounded-[8px] w-full cursor-pointer">
+                  <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white text-center flex-1 min-w-0">
+                    {t.cta}
+                  </span>
+                </a>
+              )}
             </div>
           </div>
         ))}

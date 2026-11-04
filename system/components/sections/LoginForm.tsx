@@ -15,7 +15,7 @@ import { LoginForgotModal } from "./LoginForgotModal";
 
 type Errors = { email?: string; password?: string };
 
-export function LoginForm() {
+export function LoginForm({ destination = "/pedidos" }: { destination?: string }) {
   const router = useRouter();
   const toast = useToast();
   const form = useRef<HTMLFormElement>(null);
@@ -46,13 +46,13 @@ export function LoginForm() {
     const result = await signIn({ email, password, remember });
     if (!result.ok) {
       setLoading(false);
-      setErrors({ password: loginCopy.invalidCredentials });
+      setErrors({ password: result.error === "unavailable" ? loginCopy.unavailable : result.error === "forbidden" ? loginCopy.forbidden : loginCopy.invalidCredentials });
       focusField("password");
       return;
     }
     // Keep the button busy until the dashboard replaces this page.
-    toast({ title: "Bem-vindo de volta!", description: "Acesso liberado ao Portal do Investidor." });
-    router.replace("/home");
+    toast({ title: "Bem-vindo de volta!", description: "Acesso liberado ao Acquafy Account." });
+    router.replace(destination);
     router.refresh();
   };
 
@@ -117,7 +117,7 @@ export function LoginForm() {
 
       <Button variant="outline" size="lg" className="w-full" onClick={() => setModal("access")}>
         <UserPlus className="size-5" aria-hidden="true" />
-        Criar conta
+        Solicitar acesso
       </Button>
 
       <div className="mt-5 flex items-start gap-3 rounded-xl bg-canvas/70 p-3.5">
@@ -127,7 +127,7 @@ export function LoginForm() {
           {loginCopy.secureText}
         </p>
       </div>
-      <p className="mt-3 text-center text-[12.5px] text-ink-mute">{loginCopy.demoHint}</p>
+      <p className="mt-3 text-center text-[12.5px] text-ink-mute">{loginCopy.accessHint}</p>
 
       <LoginForgotModal open={modal === "forgot"} initialEmail={email} onClose={() => setModal("none")} />
       <LoginAccessModal open={modal === "access"} onClose={() => setModal("none")} />

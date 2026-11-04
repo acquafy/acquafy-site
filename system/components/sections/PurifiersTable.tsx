@@ -74,7 +74,7 @@ export function PurifiersTable({ rows, selectedId, onSelect, onMaintenance }: Pr
               >
                 <td className="tabular px-2 py-1.5">{p.id}</td>
                 <td className="hidden px-2 py-1.5 @2xl:table-cell">
-                  <Image src="/brand/neo-up-thumb.webp" alt="" width={112} height={143} sizes="32px" className="h-10 w-auto" />
+                  <Image src="/app/brand/neo-up-thumb.webp" alt="" width={112} height={143} sizes="32px" className="h-10 w-auto" />
                 </td>
                 <td className="px-2 py-1.5 font-medium">{p.model}</td>
                 <td className="px-2 py-1.5">

@@ -3,6 +3,7 @@ import Link from "next/link";
 import FigmaIcon from "./FigmaIcon";
 import { BtnAzulBaseArrow, BtnAzulOutArrow } from "./ui/Buttons";
 import { useLang, type Lang } from "@/context/LanguageContext";
+import { useFeature } from "@/components/FeatureFlags";
 
 const imgBg          = "/figma-assets/bg-b.webp";
 const imgSuporte     = "/figma-assets/image-suporte.webp";
@@ -285,6 +286,7 @@ const T: Record<Lang, {
 
 export default function ExpansaoGlobalBanner() {
   const { lang } = useLang();
+  const bePartner = useFeature("bePartner");
   const t = T[lang];
   const stats = [
     { icon: imgPlanetGlobe, iconW: 30,    iconH: 30,    number: t.stats[0].number, label: t.stats[0].label, sub: t.stats[0].sub },
@@ -336,11 +338,13 @@ export default function ExpansaoGlobalBanner() {
 
           {/* CTA Buttons */}
           <div className="flex flex-wrap gap-[20px] items-center w-full">
-            <Link href="/parceria" className="flex-[1_0_0] min-w-[190px]">
-              <BtnAzulBaseArrow className="w-full min-h-[50px]">
-                {t.btn1}
-              </BtnAzulBaseArrow>
-            </Link>
+            {bePartner && (
+              <Link href="/parceria" className="flex-[1_0_0] min-w-[190px]">
+                <BtnAzulBaseArrow className="w-full min-h-[50px]">
+                  {t.btn1}
+                </BtnAzulBaseArrow>
+              </Link>
+            )}
             <Link href="/contact" className="flex-[1_0_0] min-w-[190px]">
               <BtnAzulOutArrow className="w-full min-h-[50px]">
                 {t.btn2}

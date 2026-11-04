@@ -10,8 +10,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans-stack", display: "swap" });
 
 export const metadata: Metadata = {
-  title: { default: "Acquafy Investor Portal", template: "%s · Acquafy Investor Portal" },
-  description: "Portal do Investidor Acquafy: purificadores, repasses, extrato e contrato do seu investimento em Água como Serviço.",
+  title: { default: "Acquafy Account", template: "%s · Acquafy Account" },
+  description: "Sua conta Acquafy: pedidos, entregas, produtos e locações.",
   robots: { index: false, follow: false },
 };
 

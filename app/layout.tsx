@@ -3,6 +3,8 @@ import "./globals.css";
 import { cookies, headers } from "next/headers";
 import { ChatProvider } from "@/components/ChatWidget";
 import { CartProvider } from "@/components/CartProvider";
+import { FeatureFlagsProvider } from "@/components/FeatureFlags";
+import { getFeatures } from "@/lib/flags";
 import { LanguageProvider } from "@/context/LanguageContext";
 import type { Lang } from "@/context/LanguageContext";
 
@@ -38,6 +40,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const features = await getFeatures();
   const cookieStore = await cookies();
   const raw = cookieStore.get("acquafy-lang")?.value;
 
@@ -57,11 +60,13 @@ export default async function RootLayout({
   return (
     <html lang={HTML_LANG[initialLang]}>
       <body className="bg-white pt-[80px]">
-        <LanguageProvider initialLang={initialLang}>
-          <CartProvider>
-            <ChatProvider>{children}</ChatProvider>
-          </CartProvider>
-        </LanguageProvider>
+        <FeatureFlagsProvider value={features}>
+          <LanguageProvider initialLang={initialLang}>
+            <CartProvider>
+              <ChatProvider>{children}</ChatProvider>
+            </CartProvider>
+          </LanguageProvider>
+        </FeatureFlagsProvider>
       </body>
     </html>
   );

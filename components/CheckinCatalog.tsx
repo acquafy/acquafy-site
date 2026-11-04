@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Feature } from "@/components/FeatureFlags";
 import { CHECKIN_FAMILIES, type CheckinFamily, type CheckinVariant } from "@/lib/checkin-products";
 import { useLang } from "@/context/LanguageContext";
 
@@ -51,6 +52,7 @@ function ProductCard({ variant, family }: { variant: CheckinVariant; family: Che
       >
         {variant.name}
       </p>
+      <Feature name="buyNow">
       <div className="w-full shrink-0">
         <Link
           href={`/buy/checkin-${family.slug}?modelo=${variant.id}`}
@@ -60,6 +62,7 @@ function ProductCard({ variant, family }: { variant: CheckinVariant; family: Che
           {t.comprarAgora}
         </Link>
       </div>
+      </Feature>
     </div>
   );
 }

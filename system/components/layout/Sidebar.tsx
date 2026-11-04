@@ -7,7 +7,7 @@ import { PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { useSidebar } from "@/components/providers/SidebarProvider";
 import { cn } from "@/lib/cn";
 import { LogoutButton } from "./LogoutButton";
-import { SidebarNav } from "./SidebarNav";
+import { SidebarNav, type SidebarItem } from "./SidebarNav";
 
 /**
  * Full-height side menu, flush with the left and bottom edges. Expanded: logo (centred, same height as the top bar)
@@ -15,7 +15,7 @@ import { SidebarNav } from "./SidebarNav";
  * moves to the top bar. The open/close toggle lives in the menu header (no divider line under it). The nav area
  * scrolls only when expanded, because a scroll container would clip the tooltips.
  */
-export function Sidebar() {
+export function Sidebar({ items, homeHref = "/home" }: { items?: SidebarItem[]; homeHref?: string }) {
   const { collapsed, toggle } = useSidebar();
   const ToggleIcon = collapsed ? PanelLeftOpen : PanelLeftClose;
 
@@ -35,12 +35,12 @@ export function Sidebar() {
         <div className={cn("grid h-[4.5rem] shrink-0 items-center", collapsed ? "place-items-center" : "grid-cols-[minmax(0,1fr)_2.25rem] gap-3 pr-3 pl-[1.875rem]")}>
           {!collapsed && (
             <Link
-              href="/home"
-              aria-label="Acquafy, ir para o Home"
+              href={homeHref}
+              aria-label="Acquafy, ir para o início"
               className="block w-full max-w-[10.5rem] justify-self-start rounded-md focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand"
             >
-              <Image src="/brand/acquafy-logo.webp" alt="Acquafy" width={560} height={93} priority sizes="200px" className="h-auto w-full dark:hidden" />
-              <Image src="/brand/acquafy-logo-white.webp" alt="Acquafy" width={640} height={106} priority sizes="200px" className="hidden h-auto w-full dark:block" />
+              <Image src="/app/brand/acquafy-logo.webp" alt="Acquafy" width={560} height={93} priority sizes="200px" className="h-auto w-full dark:hidden" />
+              <Image src="/app/brand/acquafy-logo-white.webp" alt="Acquafy" width={640} height={106} priority sizes="200px" className="hidden h-auto w-full dark:block" />
             </Link>
           )}
           <button
@@ -56,7 +56,7 @@ export function Sidebar() {
           </button>
         </div>
         <div className={cn("flex min-h-0 flex-col", collapsed ? "p-3 pt-4" : "overflow-y-auto p-4 [scrollbar-width:none]")}>
-          <SidebarNav />
+          <SidebarNav items={items} />
         </div>
       </div>
 

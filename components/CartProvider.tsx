@@ -3,6 +3,7 @@ import { createContext, useContext, useState, useEffect, useRef, useCallback } f
 import { usePathname } from "next/navigation";
 import { PRODUCT_CATALOG, PRODUCT_PRICES_BRL, formatPrice } from "@/lib/products";
 import { useLang, type Lang } from "@/context/LanguageContext";
+import { useFeature } from "@/components/FeatureFlags";
 
 type CartItem = { id: string; qty: number };
 
@@ -320,6 +321,7 @@ const T: Record<Lang, {
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const { lang } = useLang();
+  const buyNowOn = useFeature("buyNow");
   const t = T[lang];
   const [cart, setCart] = useState<CartItem[]>([]);
 
@@ -421,7 +423,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       {children}
 
       {/* ── BOTÃO FLUTUANTE CARRINHO (stand by) ── */}
-      {false && (pastBanner || pathname.startsWith('/buy') || isWideScreen) && (
+      {buyNowOn && false && (pastBanner || pathname.startsWith('/buy') || isWideScreen) && (
         <button
           onClick={() => setShowCartPanel(true)}
           suppressHydrationWarning
@@ -506,7 +508,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       </div>
 
       {/* ── PAINEL CARRINHO ── */}
-      {showCartPanel && (
+      {buyNowOn && showCartPanel && (
         <div className="fixed inset-0 z-[9998]" onClick={() => setShowCartPanel(false)}>
           <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.35)" }} />
           <div
