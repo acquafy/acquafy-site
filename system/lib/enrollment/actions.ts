@@ -355,6 +355,7 @@ export async function beginCheckout(
           mode: "payment",
           client_reference_id: attempt.id,
           integration_identifier: "acquafy_investor_qmvtlxpa",
+          allow_promotion_codes: true,
           line_items: [
             {
               price_data: {
@@ -386,14 +387,14 @@ export async function beginCheckout(
             Math.floor(new Date(attempt.created_at).getTime() / 1000) +
             23 * 3600,
         },
-        { idempotencyKey: `investor-checkout-${attempt.id}` },
+        { idempotencyKey: `investor-checkout-promo-${attempt.id}` },
       );
       const bound = await service.rpc("enrollment_gateway", {
         operation: "bind",
         payload: {
           attempt_id: attempt.id,
           session_id: session.id,
-          amount_minor: session.amount_total,
+          amount_minor: session.amount_subtotal,
           currency: session.currency,
           livemode: session.livemode,
         },

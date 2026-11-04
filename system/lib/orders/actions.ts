@@ -108,6 +108,7 @@ export async function orderAction(
           {
             mode: "payment",
             integration_identifier: "acquafy_orders_qmvtlxpa",
+            allow_promotion_codes: true,
             client_reference_id: o.id,
             metadata: { integration: "acquafy_order", order_id: o.id },
             payment_intent_data: {
@@ -128,7 +129,10 @@ export async function orderAction(
           },
           {
             idempotencyKey:
-              "product-order-" + o.id + "-" + (o.checkout_id ?? "initial"),
+              "product-order-promo-" +
+              o.id +
+              "-" +
+              (o.checkout_id ?? "initial"),
           },
         );
       const result = await serviceClient()

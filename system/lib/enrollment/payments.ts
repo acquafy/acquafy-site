@@ -1,13 +1,14 @@
 import "server-only";
 import type Stripe from "stripe";
 import { stripeClient, serviceClient } from "./server";
+import { checkoutAmounts, checkoutSettled } from "@/lib/payments/discounts";
 export function sessionState(
   session: Pick<Stripe.Checkout.Session, "payment_status" | "status">,
   risk?: { refunded: boolean; disputed: boolean },
 ) {
   if (risk?.refunded) return "refunded";
   if (risk?.disputed) return "disputed";
-  if (session.payment_status === "paid") return "paid";
+  if (checkoutSettled(session)) return "paid";
   if (session.status === "expired") return "expired";
   return "processing";
 }
@@ -56,13 +57,17 @@ export async function applySession(
   }
   if (row.data.enrollment_id !== session.metadata.enrollment_id)
     throw new Error("Checkout reference unavailable");
+  // The offer price is checked against the pre-discount subtotal; a Stripe
+  // promotion code only lowers what was actually charged.
+  const amounts = checkoutAmounts(session);
+  if (!amounts) throw new Error("Unexpected checkout amounts");
   if (!row.data.stripe_session_id) {
     const bound = await service.rpc("enrollment_gateway", {
       operation: "bind",
       payload: {
         attempt_id: attemptId,
         session_id: session.id,
-        amount_minor: session.amount_total,
+        amount_minor: amounts.subtotal,
         currency: session.currency,
         livemode: session.livemode,
       },
@@ -88,7 +93,10 @@ export async function applySession(
       event_id: event.id,
       event_type: event.type,
       session_id: session.id,
-      amount_minor: session.amount_total,
+      amount_minor: amounts.subtotal,
+      paid_minor: amounts.paid,
+      discount_minor: amounts.discount,
+      promotion: amounts.promotion,
       currency: session.currency,
       livemode: session.livemode,
       state,

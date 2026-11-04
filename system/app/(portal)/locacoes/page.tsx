@@ -110,6 +110,7 @@ export default async function Leases() {
                 <ActionForm bare action={leaseAction} title="Iniciar pagamento recorrente" submit="Abrir Stripe Checkout">
                   <input type="hidden" name="action" value="checkout" />
                   <input type="hidden" name="lease_id" value={l.id} />
+                  <p className="text-[14px] text-ink-soft">Tem um cupom? Informe o código promocional na página de pagamento do Stripe.</p>
                 </ActionForm>
               )}
               {l.subscription_id && (
@@ -143,6 +144,7 @@ export default async function Leases() {
                     value: (
                       <span className="inline-flex flex-wrap items-center justify-end gap-2">
                         {money(r.amount_minor / 100)}
+                        {r.discount_minor > 0 && <span className="text-ink-soft">(desconto de {money(r.discount_minor / 100)})</span>}
                         <StatusPill status={r.state} />
                       </span>
                     ),

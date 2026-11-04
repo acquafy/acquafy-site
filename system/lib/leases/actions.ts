@@ -70,6 +70,7 @@ export async function leaseAction(
             {
               mode: "subscription",
               integration_identifier: "acquafy_lease_qmvtlxpa",
+              allow_promotion_codes: true,
               client_reference_id: l.id,
               metadata: { integration: "acquafy_lease", lease_id: l.id },
               subscription_data: {
@@ -91,7 +92,10 @@ export async function leaseAction(
             },
             {
               idempotencyKey:
-                "lease-checkout-" + l.id + "-" + (l.checkout_id ?? "initial"),
+                "lease-checkout-promo-" +
+                l.id +
+                "-" +
+                (l.checkout_id ?? "initial"),
             },
           );
         const bound = await service

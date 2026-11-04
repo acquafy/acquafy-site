@@ -1,6 +1,7 @@
 import "server-only";
 import type Stripe from "stripe";
 import { stripeClient, serviceClient } from "@/lib/enrollment/server";
+import { checkoutAmounts, checkoutSettled } from "@/lib/payments/discounts";
 export async function processOrderEvent(event: Stripe.Event) {
   if (
     event.livemode !==
@@ -37,13 +38,16 @@ export async function processOrderEvent(event: Stripe.Event) {
       .select("*")
       .eq("id", orderId ?? "")
       .single();
+    // The quoted total is the pre-discount subtotal; a promotion code lowers the charge.
+    const amounts = checkoutAmounts(s);
     if (
       error ||
+      !amounts ||
       !o ||
       o.kind !== "purchase" ||
       o.id !== s.client_reference_id ||
       (o.checkout_id && o.checkout_id !== s.id) ||
-      o.total_minor !== s.amount_total ||
+      o.total_minor !== amounts.subtotal ||
       s.currency !== "usd" ||
       !o.accepted_at
     )
@@ -62,7 +66,7 @@ export async function processOrderEvent(event: Stripe.Event) {
     }
     if (
       event.type === "checkout.session.async_payment_failed" &&
-      s.payment_status !== "paid"
+      !checkoutSettled(s)
     )
       check(
         await db
@@ -72,7 +76,7 @@ export async function processOrderEvent(event: Stripe.Event) {
           .eq("checkout_id", s.id)
           .eq("status", "accepted"),
       );
-    if (s.payment_status === "paid")
+    if (checkoutSettled(s))
       check(
         await db
           .from("product_orders")
@@ -80,7 +84,12 @@ export async function processOrderEvent(event: Stripe.Event) {
             status: "paid",
             checkout_id: s.id,
             payment_intent_id:
-              typeof s.payment_intent === "string" ? s.payment_intent : pi?.id,
+              (typeof s.payment_intent === "string"
+                ? s.payment_intent
+                : pi?.id) ?? null,
+            paid_minor: amounts.paid,
+            discount_minor: amounts.discount,
+            promotion: amounts.promotion,
             updated_at: new Date().toISOString(),
           })
           .eq("id", o.id)

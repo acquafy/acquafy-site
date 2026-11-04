@@ -85,6 +85,11 @@ export default async function Orders() {
                   {money(o.total_minor / 100)}
                   {o.kind === "lease" && <span className="text-[15px] font-semibold text-ink-soft"> /mês</span>}
                 </p>
+                {o.discount_minor > 0 && o.paid_minor !== null && (
+                  <p className="mt-1 text-[14.5px] font-semibold text-ink">
+                    Pago com cupom: {money(o.paid_minor / 100)} (desconto de {money(o.discount_minor / 100)})
+                  </p>
+                )}
                 <p className="mt-2 text-[14.5px] whitespace-pre-wrap text-ink [overflow-wrap:anywhere]">{o.quote_text}</p>
               </section>
             )}
@@ -150,6 +155,7 @@ export default async function Orders() {
                 <ActionForm bare action={orderAction} title="Pagar pedido" submit="Abrir pagamento seguro Stripe">
                   <input type="hidden" name="action" value="checkout" />
                   <input type="hidden" name="order_id" value={o.id} />
+                  <p className="text-[14px] text-ink-soft">Tem um cupom? Informe o código promocional na página de pagamento do Stripe.</p>
                 </ActionForm>
               )}
               {o.lease_id && (
