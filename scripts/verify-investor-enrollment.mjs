@@ -53,6 +53,7 @@ async function sql(query) {
 const scope = `select id from public.accounts where name=${literal}`;
 const enrollmentScope = `select id from public.investor_enrollments where account_id in(${scope})`;
 const cleanup = `begin;
+ delete from public.investor_applications where email='${email}';
  delete from public.audit_events where account_id in(${scope}) or entity_id in(select id::text from public.investor_enrollments where account_id in(${scope})) or entity_id in(select id::text from public.enrollment_checkouts where enrollment_id in(${enrollmentScope})) or entity_id in(select id::text from public.agreement_acceptances where enrollment_id in(${enrollmentScope})) or entity_id in(select id::text from public.investor_offers where title=${literal});
  delete from public.agreement_acceptances where enrollment_id in(${enrollmentScope});
  delete from public.enrollment_checkouts where enrollment_id in(${enrollmentScope});
@@ -200,6 +201,30 @@ function paymentFixture(token) {
   }
 }
 try {
+  const application = await partner.submit(
+    "/cadastro-investidor",
+    "Cadastro de interesse",
+    {
+      full_name: marker,
+      email,
+      phone: "+15551234567",
+      country: "United States",
+      company: marker,
+      message: "TEST REGISTRATION",
+      consent: "yes",
+      website: "",
+    },
+  );
+  assert.equal(application.response.status, 200, "public registration");
+  assert(
+    application.html.includes("Solicitação recebida."),
+    "registration acknowledged",
+  );
+  const applicants = await sql(
+    `select id from public.investor_applications where email='${email}'`,
+  );
+  assert.equal(applicants.length, 1, "application stored");
+  const applicationId = applicants[0].id;
   const login = await admin.request("/api/auth/login", {
     method: "POST",
     headers: { "content-type": "application/json" },
@@ -236,13 +261,18 @@ try {
     `select id from public.investor_offers where title=${literal}`,
   );
   assert(offers[0]?.id, "published offer");
-  const invited = await admin.submit("/parcerias", "Convidar investidor", {
-    email,
-    offer_id: offers[0].id,
-    quantity: "2",
-    account_name: marker,
-    account_id: "",
-  });
+  const invited = await admin.submit(
+    "/parcerias?application=" + applicationId,
+    "Convidar investidor",
+    {
+      application_id: applicationId,
+      email,
+      offer_id: offers[0].id,
+      quantity: "2",
+      account_name: marker,
+      account_id: "",
+    },
+  );
   assert.equal(invited.response.status, 200);
   const link = [
     ...invited.html.matchAll(/<textarea\b[^>]*>([\s\S]*?)<\/textarea>/g),
@@ -253,6 +283,14 @@ try {
   const activation = new URL(link);
   const id = activation.searchParams.get("enrollment");
   assert(id, "enrollment reference");
+  const linked = await sql(
+    `select enrollment_id from public.investor_applications where id='${applicationId}'`,
+  );
+  assert.equal(
+    linked[0]?.enrollment_id,
+    id,
+    "registration linked to invited enrollment",
+  );
   const enrolled = await sql(
     `select user_id,amount_minor,status from public.investor_enrollments where id='${id}'`,
   );
@@ -391,7 +429,7 @@ try {
     "active partner screen",
   );
   console.log(
-    "PASS: offer publishing, private invitation, OTP/password activation, details, staff review, agreement evidence, server-priced and resumable Stripe Checkout, declined test card, successful test payment, webhook activation and duplicate delivery",
+    "PASS: public website registration, linked staff invitation, offer publishing, private invitation, OTP/password activation, details, staff review, agreement evidence, server-priced and resumable Stripe Checkout, declined test card, successful test payment, webhook activation and duplicate delivery",
   );
 } finally {
   // Find even partially created identities if a UI assertion failed before its id was captured.
