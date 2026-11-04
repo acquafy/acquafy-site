@@ -10,10 +10,13 @@ import { customerDestination } from "./destination";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import type { ActionResult } from "@/lib/enrollment/types";
+import { buyNow } from "@/lib/flags";
 export async function customerSignup(
   _state: ActionResult,
   f: FormData,
 ): Promise<ActionResult> {
+  if (!(await buyNow()))
+    return { error: "O cadastro de clientes não está disponível no momento." };
   const email = String(f.get("email") ?? "").trim(),
     password = String(f.get("password") ?? "");
   if (
@@ -55,6 +58,9 @@ export async function orderAction(
 ): Promise<ActionResult> {
   const ctx = await context(),
     action = String(f.get("action") ?? "");
+  // New orders stop with the flag; quotes, acceptance and payment of orders already placed keep working.
+  if (action === "request" && !(await buyNow()))
+    return { error: "Novos pedidos não estão disponíveis no momento." };
   const payload = Object.fromEntries(
     [...f.entries()].filter(
       (x): x is [string, string] => typeof x[1] === "string",

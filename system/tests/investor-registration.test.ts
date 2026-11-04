@@ -1,6 +1,10 @@
 import { beforeEach, expect, it, vi } from "vitest";
 const rpc = vi.hoisted(() => vi.fn());
+const enabled = vi.hoisted(() => ({ value: true }));
 vi.mock("@/lib/enrollment/server", () => ({ serviceClient: () => ({ rpc }) }));
+vi.mock("@/lib/flags", () => ({
+  investorRegistration: async () => enabled.value,
+}));
 import { registerInvestor } from "@/lib/enrollment/registration";
 function application(extra: Partial<Record<string, string>> = {}) {
   const form = new FormData();
@@ -15,7 +19,17 @@ function application(extra: Partial<Record<string, string>> = {}) {
     form.set(key, value ?? "");
   return form;
 }
-beforeEach(() => rpc.mockReset().mockResolvedValue({ error: null }));
+beforeEach(() => {
+  enabled.value = true;
+  rpc.mockReset().mockResolvedValue({ error: null });
+});
+it("refuses applications, without touching the database, while the investor-registration flag is off", async () => {
+  enabled.value = false;
+  const result = await registerInvestor({}, application());
+  expect(result.error).toMatch(/não está disponível/);
+  expect(result.success).toBeUndefined();
+  expect(rpc).not.toHaveBeenCalled();
+});
 it("records a normalized application without accepting client prices or access grants", async () => {
   expect(
     (

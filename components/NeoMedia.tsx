@@ -2,6 +2,7 @@
 import Link from "next/link";
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
+import { useFeature, Feature } from "@/components/FeatureFlags";
 
 const imgBg          = "/figma-assets/bg-c.webp";
 const imgProduct     = "/figma-assets/acquafy-media-totem.webp";
@@ -339,6 +340,7 @@ function BenefitIcon({ icon, aspectW, aspectH }: { icon: string; aspectW: number
 
 export default function NeoMedia() {
   const { lang } = useLang();
+  const investorRegistration = useFeature("investorRegistration");
   const t = T[lang];
 
   return (
@@ -370,22 +372,25 @@ export default function NeoMedia() {
                 </p>
 
                 <div className="flex flex-wrap gap-[10px] w-full lg:w-fit">
-                  <a
-                    href="/app/cadastro-investidor"
-                    className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex gap-[10px] items-center justify-center min-h-[30px] px-[20px] py-[10px] rounded-[8px] shrink-0 w-full lg:w-fit cursor-pointer"
-                  >
-                    <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors text-center">
-                      {t.btnInvest}
-                    </span>
-                    <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
-                      <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0 group-active:opacity-0">
-                        <FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} />
+                  {investorRegistration && (
+                    <a
+                      href="/app/cadastro-investidor"
+                      className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex gap-[10px] items-center justify-center min-h-[30px] px-[20px] py-[10px] rounded-[8px] shrink-0 w-full lg:w-fit cursor-pointer"
+                    >
+                      <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors text-center">
+                        {t.btnInvest}
+                      </span>
+                      <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
+                        <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0 group-active:opacity-0">
+                          <FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} />
+                        </div>
+                        <div className="absolute inset-0 transition-opacity duration-150 opacity-0 group-hover:opacity-100 group-active:opacity-100">
+                          <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
+                        </div>
                       </div>
-                      <div className="absolute inset-0 transition-opacity duration-150 opacity-0 group-hover:opacity-100 group-active:opacity-100">
-                        <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
-                      </div>
-                    </div>
-                  </a>
+                    </a>
+                  )}
+                  <Feature name="buyNow">
                   <Link
                     href="/buy/checkin"
                     className="group bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex gap-[10px] items-center justify-center min-h-[30px] px-[20px] py-[10px] rounded-[8px] shrink-0 w-full lg:w-fit cursor-pointer"
@@ -397,6 +402,7 @@ export default function NeoMedia() {
                       <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
                     </div>
                   </Link>
+                  </Feature>
                 </div>
               </div>
             </div>

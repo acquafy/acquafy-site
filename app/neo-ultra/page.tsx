@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import CheckinProduct from "@/components/CheckinProduct";
 import { CHECKIN_FAMILIES } from "@/lib/checkin-products";
+import { buyNow } from "@/lib/flags";
 import { snipcartCrawlerProps } from "@/lib/snipcart";
 
 export const metadata: Metadata = {
@@ -10,7 +12,11 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function NeoUltraPage() {
+// Evaluated per request: the Buy Now flag decides whether the purchase flow exists at all.
+export const dynamic = "force-dynamic";
+
+export default async function NeoUltraPage() {
+  if (!(await buyNow())) notFound();
   const family = CHECKIN_FAMILIES.find((f) => f.slug === "neo-ultra")!;
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
 

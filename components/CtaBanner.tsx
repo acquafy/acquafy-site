@@ -1,5 +1,6 @@
 "use client";
 import FigmaIcon from "./FigmaIcon";
+import { Feature } from "@/components/FeatureFlags";
 import { BtnFalaAcquafy } from "./ui/Buttons";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
@@ -46,6 +47,7 @@ export default function CtaBanner() {
 
         <div className="relative flex flex-1 flex-wrap gap-[10px] items-center justify-center xl:justify-end max-w-[500px] min-w-[240px]">
           <BtnFalaAcquafy className="flex-1 min-w-[200px]" />
+          <Feature name="buyNow">
           <a
             href="/buy"
             className="flex gap-[10px] items-center justify-center min-h-[30px] overflow-hidden p-[20px] rounded-[8px] transition-colors cursor-pointer bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] flex-1 min-w-[200px] no-underline"
@@ -55,6 +57,7 @@ export default function CtaBanner() {
             </span>
             <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
           </a>
+          </Feature>
         </div>
       </div>
     </section>

@@ -3,11 +3,13 @@ import { ActionForm } from "@/components/enrollment/ActionForm";
 import { AUTH_LINK, AuthSplit } from "@/components/live/AuthSplit";
 import { Consent, Field } from "@/components/live/Fields";
 import { customerSignup } from "@/lib/orders/actions";
+import { buyNow, requireFeature } from "@/lib/flags";
 import { customerDestination } from "@/lib/orders/destination";
 
 export const metadata = { title: "Criar Acquafy Account" };
 
 export default async function Signup({ searchParams }: { searchParams: Promise<{ next?: string }> }) {
+  await requireFeature(buyNow);
   const next = customerDestination((await searchParams).next);
   return (
     <AuthSplit

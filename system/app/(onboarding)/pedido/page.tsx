@@ -12,6 +12,7 @@ import { Card } from "@/components/ui/Card";
 import { DefinitionList } from "@/components/ui/DefinitionList";
 import { IconTile } from "@/components/ui/KpiCard";
 import { PurifierIcon } from "@/components/ui/PurifierIcon";
+import { buyNow, requireFeature } from "@/lib/flags";
 import { orderAction } from "@/lib/orders/actions";
 
 export const metadata = { title: "Seu pedido" };
@@ -21,6 +22,7 @@ export default async function Order({
 }: {
   searchParams: Promise<{ product?: string; mode?: string; color?: string; items?: string }>;
 }) {
+  await requireFeature(buyNow);
   const q = await searchParams;
   const kind = q.mode === "lease" ? "lease" : "purchase";
   const db = await serverClient();

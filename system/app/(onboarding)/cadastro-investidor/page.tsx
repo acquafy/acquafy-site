@@ -4,11 +4,13 @@ import { ActionForm } from "@/components/enrollment/ActionForm";
 import { AUTH_LINK, AuthSplit } from "@/components/live/AuthSplit";
 import { Area, Consent, Field } from "@/components/live/Fields";
 import { Notice } from "@/components/live/Notice";
+import { requireFeature, investorRegistration } from "@/lib/flags";
 import { registerInvestor } from "@/lib/enrollment/registration";
 
 export const metadata = { title: "Cadastro de investidor" };
 
-export default function InvestorRegistration() {
+export default async function InvestorRegistration() {
+  await requireFeature(investorRegistration);
   return (
     <AuthSplit
       title="Parceria investidor · Media Network"

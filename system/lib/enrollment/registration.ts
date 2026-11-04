@@ -1,10 +1,15 @@
 "use server";
 import { serviceClient } from "./server";
 import type { ActionResult } from "./types";
+import { investorRegistration } from "@/lib/flags";
 export async function registerInvestor(
   _state: ActionResult,
   form: FormData,
 ): Promise<ActionResult> {
+  if (!(await investorRegistration()))
+    return {
+      error: "O cadastro de investidores não está disponível no momento.",
+    };
   const text = (key: string) => String(form.get(key) ?? "").trim();
   const success = {
     success:

@@ -2,6 +2,7 @@
 import { useState } from "react";
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
+import { useFeature } from "@/components/FeatureFlags";
 
 const imgProduct       = "/figma-assets/neo-up-bow.webp";
 const imgBgDesktop     = "/figma-assets/bg-desktop-city.webp";
@@ -454,6 +455,7 @@ export default function TransformaVidas() {
   const t  = T[lang];
   const ft = FORM_T[lang];
   const [modalOpen, setModalOpen] = useState(false);
+  const bePartner = useFeature("bePartner");
 
   return (
     <section className="bg-white flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
@@ -477,7 +479,7 @@ export default function TransformaVidas() {
 
         <div className="lg:hidden relative flex flex-col gap-[10px] items-center justify-center min-w-[240px] shrink-0 w-full">
           <CampaignText centered t={t} />
-          <ParticipateButton label={t.btn} onClick={() => setModalOpen(true)} />
+          {bePartner && <ParticipateButton label={t.btn} onClick={() => setModalOpen(true)} />}
         </div>
 
         <div className="hidden lg:flex flex-[1_0_0] flex-wrap gap-[10px] min-w-px pl-[20px] py-[20px]">
@@ -485,7 +487,7 @@ export default function TransformaVidas() {
             <div className="max-w-[370px] rounded-[16px] w-full">
               <CampaignText t={t} />
             </div>
-            <ParticipateButton label={t.btn} onClick={() => setModalOpen(true)} />
+            {bePartner && <ParticipateButton label={t.btn} onClick={() => setModalOpen(true)} />}
           </div>
           <div className="flex flex-[1_0_0] items-center justify-center min-w-[240px]" style={{ height: 268 }}>
             <NeoUPProduct size={246} />
@@ -530,7 +532,7 @@ export default function TransformaVidas() {
 
       </div>
 
-      {modalOpen && <CampaignModal ft={ft} onClose={() => setModalOpen(false)} />}
+      {bePartner && modalOpen && <CampaignModal ft={ft} onClose={() => setModalOpen(false)} />}
     </section>
   );
 }

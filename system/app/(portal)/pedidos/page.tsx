@@ -11,6 +11,7 @@ import { Card } from "@/components/ui/Card";
 import { DefinitionList, type DefinitionRow } from "@/components/ui/DefinitionList";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { cn } from "@/lib/cn";
+import { buyNow } from "@/lib/flags";
 import { orderAction } from "@/lib/orders/actions";
 
 export const metadata = { title: "Pedidos" };
@@ -22,6 +23,7 @@ export default async function Orders() {
   if (history.error) throw Error("Histórico indisponível.");
   if (result.error) throw Error("Pedidos indisponíveis.");
   const admin = ctx.staff === "admin";
+  const canOrder = await buyNow();
 
   return (
     <>
@@ -29,10 +31,12 @@ export default async function Orders() {
         title={admin ? "Gestão de pedidos" : "Meus pedidos"}
         subtitle="Acompanhe propostas, pagamento, entrega e instalação de cada pedido."
         action={
-          <ButtonLink href="/pedido">
-            <Plus className="size-5" aria-hidden="true" />
-            Novo pedido
-          </ButtonLink>
+          canOrder && (
+            <ButtonLink href="/pedido">
+              <Plus className="size-5" aria-hidden="true" />
+              Novo pedido
+            </ButtonLink>
+          )
         }
       />
       {!result.data.length && (
@@ -41,7 +45,7 @@ export default async function Orders() {
             icon={ShoppingBag}
             title="Nenhum pedido recebido"
             description="Quando você pedir um produto ou solicitar uma locação, ele aparece aqui com cada etapa."
-            action={<ButtonLink href="/pedido">Fazer um pedido</ButtonLink>}
+            action={canOrder ? <ButtonLink href="/pedido">Fazer um pedido</ButtonLink> : undefined}
           />
         </Card>
       )}

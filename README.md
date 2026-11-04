@@ -58,6 +58,28 @@ The portal's server variables (`SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, `SUPA
 
 Vercel deployment protection stays enabled for previews; an externally shared preview may require separate Vercel access.
 
+## Feature flags
+
+Three Vercel Flags on the `acquafy-site` project switch whole flows on and off without a redeploy. The website reads them in `lib/flags.ts` (the root layout hands them to client components through `components/FeatureFlags.tsx`) and the portal in `system/lib/flags.ts`, so a button and the page or server action behind it always change together.
+
+| Flag                    | Controls                                                                                                                                                                  | Production | Preview / Development |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | --------------------- |
+| `be-a-partner`          | Be a Partner buttons, links, forms and the `/parceria` page on the website                                                                                                | on         | on                    |
+| `buy-now`               | Buy Now buttons, cart, `/buy` and `/checkout` on the website; in the portal `/pedido`, customer sign-up (`/cadastro`) and new orders. Existing orders and leases stay usable | off        | on                    |
+| `investor-registration` | Investor registration entry points on the website, `/app/cadastro-investidor` and its server action                                                                       | off        | on                    |
+
+```sh
+vercel flags ls
+vercel flags enable buy-now --environment production      # or: disable
+vercel flags inspect buy-now
+```
+
+Hiding a button is never the only guard: pages return 404 and server actions refuse the request while the flag is off. If Vercel Flags cannot be reached (or locally before `vercel env pull`), each flag falls back to its code default: Be a Partner on, the two new flows off. Local development therefore needs the linked project's development credentials (`vercel env pull`, which provides `VERCEL_OIDC_TOKEN`) to see Buy Now and Investor Registration.
+
+## Auth e-mails
+
+Supabase sends account e-mails through Amazon SES (`email-smtp.us-east-1.amazonaws.com`, sender `no-reply@acquafy.com`, dedicated send-only IAM user). The pt-BR templates, subjects and `site_url` live in `scripts/supabase-auth-emails.mjs`: `node scripts/supabase-auth-emails.mjs preview` renders them to the OS temp directory and `apply` (with `SUPABASE_ACCESS_TOKEN_FILE`) updates the hosted project. SMTP credentials are never stored in the repository.
+
 The hosted Supabase project is **acquafy** (`zfxyprckbcwzscyttwyq`) in **Interfy**, region **US East (Ohio)**. The `feat/portal-app-supabase` branch Preview of `acquafy-site` uses `https://zfxyprckbcwzscyttwyq.supabase.co` and its publishable key through Vercel environment variables. Local development continues to use the isolated local Supabase stack. Never deploy local administrator keys. No production domain promotion is required for branch previews.
 
 Hosted public signup is disabled. The initial confirmed account is `dev@interfy.io`, with `app_metadata.portal_role` set to `internal`. Its generated login credentials are stored only in ignored `system/.local/hosted-admin-login.json`. Provision further approved accounts through the Auth Admin API with the roles described above. The functional portal schema is tracked in `supabase/migrations/`. No sample investments, contracts or payouts are seeded into the hosted database.

@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useLang, type Lang } from "@/context/LanguageContext";
+import { useFeature } from "@/components/FeatureFlags";
 import FigmaIcon from "./FigmaIcon";
 
 /* ── Assets ──────────────────────────────────────────────────────── */
@@ -908,6 +909,7 @@ export function PartnerModal({ tier, ft, onClose }: {
 /* ── Component ───────────────────────────────────────────────────── */
 export default function ModelosParceria() {
   const { lang } = useLang();
+  const bePartner = useFeature("bePartner");
   const t  = T[lang];
   const ft = FORM_T[lang];
   const [openModal, setOpenModal] = useState<"silver" | "gold" | "platinum" | null>(null);
@@ -1045,16 +1047,20 @@ export default function ModelosParceria() {
                   </p>
                 </div>
 
-                {/* Partner button */}
-                <button
-                  onClick={() => setOpenModal(tier.key)}
-                  className={`flex items-center justify-center gap-[10px] min-h-[50px] px-[20px] py-[12px] rounded-[8px] w-full shrink-0 transition-opacity cursor-pointer ${tier.btnCls}`}
-                  style={tier.btnStyle}
-                >
-                  <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-center whitespace-nowrap" style={tier.btnTextStyle}>
-                    {btnLabel(tier.key)}
-                  </span>
-                </button>
+                {bePartner && (
+                  <>
+                    {/* Partner button */}
+                    <button
+                      onClick={() => setOpenModal(tier.key)}
+                      className={`flex items-center justify-center gap-[10px] min-h-[50px] px-[20px] py-[12px] rounded-[8px] w-full shrink-0 transition-opacity cursor-pointer ${tier.btnCls}`}
+                      style={tier.btnStyle}
+                    >
+                      <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-center whitespace-nowrap" style={tier.btnTextStyle}>
+                        {btnLabel(tier.key)}
+                      </span>
+                    </button>
+                  </>
+                )}
               </div>
             ))}
           </div>
@@ -1063,7 +1069,7 @@ export default function ModelosParceria() {
       </section>
 
       {/* Modal */}
-      {openModal && (
+      {bePartner && openModal && (
         <PartnerModal
           tier={openModal}
           ft={ft}

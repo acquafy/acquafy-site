@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { BtnAzulOutArrow, BtnAzulBaseArrow } from "./ui/Buttons";
 import { useLang, type Lang } from "@/context/LanguageContext";
+import { useFeature } from "@/components/FeatureFlags";
 
 const imgBg = "/figma-assets/bg-n.webp";
 
@@ -107,6 +108,7 @@ const T: Record<Lang, { heading: string; sub: string; btnPartner: string; btnSpe
 
 export default function ExpansaoGlobalCta() {
   const { lang } = useLang();
+  const bePartner = useFeature("bePartner");
   const t = T[lang];
 
   return (
@@ -131,11 +133,13 @@ export default function ExpansaoGlobalCta() {
 
         {/* Buttons */}
         <div className="relative flex flex-1 flex-wrap gap-[10px] items-center justify-center xl:justify-end max-w-[500px] min-w-[240px]">
-          <Link href="/parceria" className="flex-1 min-w-[200px]">
-            <BtnAzulOutArrow className="w-full min-h-[56px]">
-              {t.btnPartner}
-            </BtnAzulOutArrow>
-          </Link>
+          {bePartner && (
+            <Link href="/parceria" className="flex-1 min-w-[200px]">
+              <BtnAzulOutArrow className="w-full min-h-[56px]">
+                {t.btnPartner}
+              </BtnAzulOutArrow>
+            </Link>
+          )}
           <Link href="/contact" className="flex-1 min-w-[200px]">
             <BtnAzulBaseArrow className="w-full min-h-[56px]">
               {t.btnSpecialist}

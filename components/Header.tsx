@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import FigmaIcon from "./FigmaIcon";
 import { LanguageSelectorCompact } from "./ui/LanguageSelector";
 import { useLang, type Lang } from "@/context/LanguageContext";
+import { useFeature } from "@/components/FeatureFlags";
 
 const imgLogo    = "/figma-assets/logo-b.svg";
 const imgPartner = "/figma-assets/icon-partner-b.svg";
@@ -589,8 +590,11 @@ export default function Header() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const pathname   = usePathname();
   const { lang }   = useLang();
+  const bePartner  = useFeature("bePartner");
 
-  const navItems   = buildNavItems(NAV_TEXT[lang]);
+  const buyNowOn   = useFeature("buyNow");
+  // The Buy tab (/buy) only exists while the Buy Now flag is on.
+  const navItems   = buildNavItems(NAV_TEXT[lang]).filter((n) => buyNowOn || n.href !== "/buy");
   const partnerBtn = PARTNER_BTN[lang];
   const ariaMenu   = ARIA_MENU[lang];
   const activeNav  = navItems.find((n) => n.label === openDropdown);
@@ -629,10 +633,12 @@ export default function Header() {
         <div className="flex gap-[10px] items-center justify-end shrink-0">
           <a href="/app/pedidos" className="hidden lg:block font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] hover:text-[#002ba8] active:text-[#005ae0] transition-colors whitespace-nowrap px-[6px]">{lang.startsWith("pt") ? "Minha conta" : "My Account"}</a>
           <LanguageSelectorCompact />
-          <a href="/partnership" className="hidden lg:flex bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors gap-[10px] items-center justify-center h-[40px] overflow-hidden px-[20px] rounded-[8px] shrink-0 cursor-pointer">
-            <FigmaIcon src={imgPartner} size={16} aspectW={41} aspectH={40} />
-            <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white whitespace-nowrap">{partnerBtn}</span>
-          </a>
+          {bePartner && (
+            <a href="/partnership" className="hidden lg:flex bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors gap-[10px] items-center justify-center h-[40px] overflow-hidden px-[20px] rounded-[8px] shrink-0 cursor-pointer">
+              <FigmaIcon src={imgPartner} size={16} aspectW={41} aspectH={40} />
+              <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white whitespace-nowrap">{partnerBtn}</span>
+            </a>
+          )}
           <button
             className="lg:hidden flex items-center justify-center w-[40px] h-[40px] rounded-[8px] hover:bg-[#f6f9fe] transition-colors cursor-pointer"
             onClick={() => setMenuOpen((v) => !v)}
@@ -660,10 +666,12 @@ export default function Header() {
               <a href="/app/pedidos" className="border border-[#0233c3] hover:bg-[#f6f9fe] transition-colors flex items-center justify-center h-[48px] px-[20px] rounded-[8px] w-full cursor-pointer">
                 <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] whitespace-nowrap">{lang.startsWith("pt") ? "Minha conta" : "My Account"}</span>
               </a>
-              <a href="/partnership" className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex gap-[10px] items-center justify-center h-[48px] overflow-hidden px-[20px] rounded-[8px] w-full cursor-pointer">
-                <FigmaIcon src={imgPartner} size={16} aspectW={41} aspectH={40} />
-                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white whitespace-nowrap">{partnerBtn}</span>
-              </a>
+              {bePartner && (
+                <a href="/partnership" className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex gap-[10px] items-center justify-center h-[48px] overflow-hidden px-[20px] rounded-[8px] w-full cursor-pointer">
+                  <FigmaIcon src={imgPartner} size={16} aspectW={41} aspectH={40} />
+                  <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white whitespace-nowrap">{partnerBtn}</span>
+                </a>
+              )}
             </div>
           </div>
         </div>

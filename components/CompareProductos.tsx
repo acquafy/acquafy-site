@@ -1,5 +1,6 @@
 "use client";
 import { useState, useMemo, useRef, useEffect } from "react";
+import { Feature } from "@/components/FeatureFlags";
 import FigmaIcon from "./FigmaIcon";
 import { PRODUCT_PRICES_BRL, formatPrice, PRODUCT_IMAGES as productImages } from "@/lib/products";
 import { CHECKIN_FAMILIES } from "@/lib/checkin-products";
@@ -1600,6 +1601,7 @@ export default function CompareProductos() {
               ))}
 
               {/* ── Buy row ── */}
+              <Feature name="buyNow">
               <div className="flex" style={{ background: "linear-gradient(90deg, #f0f4ff 0%, #f8f4ff 100%)" }}>
                 <div className="sticky left-0 z-10 flex items-center w-[200px] shrink-0 px-[20px] py-[16px] border-r border-[#cbd0d4]" style={{ background: "linear-gradient(90deg, #f0f4ff, #f0f4ff)" }}>
                   <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#555]">{t.acquireLabel}</p>
@@ -1615,6 +1617,7 @@ export default function CompareProductos() {
                   </div>
                 ))}
               </div>
+              </Feature>
             </div>
           </div>
         )}
