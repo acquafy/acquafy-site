@@ -1,4 +1,5 @@
 import {
+  Building2,
   CalendarClock,
   CircleCheck,
   CircleDollarSign,
@@ -29,6 +30,7 @@ import { PurifierIcon } from "@/components/ui/PurifierIcon";
 import { DataTable } from "./DataTable";
 import { Notice as NoticeBox } from "./Notice";
 import { PageHeader } from "./PageHeader";
+import { ReplaceRoute } from "./ReplaceRoute";
 import { StatusPill } from "./StatusPill";
 import { Support } from "./Support";
 
@@ -67,6 +69,9 @@ export function Pager({
 }) {
   const hasPrev = page > 0;
   const hasNext = (page + 1) * 50 < count;
+  // `path` may already carry filters (`/pedidos?etapa=proposta`).
+  const link = (target: number) =>
+    `${path}${path.includes("?") ? "&" : "?"}page=${target}`;
   return (
     <div className="flex flex-wrap items-center justify-between gap-3">
       <p className="text-[14px] text-ink-soft" aria-live="polite">
@@ -75,12 +80,12 @@ export function Pager({
       {(hasPrev || hasNext) && (
         <nav aria-label="Paginação" className="flex items-center gap-2">
           {hasPrev && (
-            <ButtonLink href={`${path}?page=${page - 1}`} variant="outline" size="sm">
+            <ButtonLink href={link(page - 1)} variant="outline" size="sm">
               ← Anterior
             </ButtonLink>
           )}
           {hasNext && (
-            <ButtonLink href={`${path}?page=${page + 1}`} variant="outline" size="sm">
+            <ButtonLink href={link(page + 1)} variant="outline" size="sm">
               Próxima →
             </ButtonLink>
           )}
@@ -114,6 +119,8 @@ export async function PortalPage({
 }) {
   const ctx = await context();
   const account = ctx.account;
+  // The investor overview needs an account: an administrator without one starts on the global panel.
+  const toPanel = !account && ctx.staff === "admin" && (view === "home" || view === "dashboard");
   const page = Math.max(
     0,
     Math.min(100000, Number.parseInt(query.page || "0", 10) || 0),
@@ -122,48 +129,84 @@ export async function PortalPage({
     <>
       <PageHeader
         title={titles[view]}
-        subtitle={account?.name ?? "Nenhuma conta vinculada"}
+        subtitle={
+          account?.name ??
+          (ctx.staff === "admin"
+            ? "Visão global · nenhuma conta aberta"
+            : ctx.staff
+              ? "Equipe · sem conta vinculada"
+              : "Nenhuma conta vinculada")
+        }
       />
       <Notice query={query} />
-      {!account ? (
-        <Card>
-          <EmptyState
-            icon={Link2Off}
-            title="Seu acesso está ativo"
-            description="Um administrador precisa vincular uma conta para liberar contratos, equipamentos e documentos."
-            action={
-              ctx.staff === "admin" ? (
-                <ButtonLink href="/admin" variant="outline">
-                  Criar ou vincular uma conta
-                </ButtonLink>
-              ) : undefined
-            }
+      {toPanel && <ReplaceRoute href="/painel" />}
+      {view === "perfil" ? (
+        <Card title="Identidade autenticada">
+          <DefinitionList
+            rows={[
+              { label: "E-mail", value: ctx.user.email ?? "—" },
+              {
+                label: "Conta",
+                value:
+                  account?.name ??
+                  (ctx.staff === "admin" ? "Visão global" : "Nenhuma conta vinculada"),
+              },
+            ]}
           />
+          {account && (
+            <>
+              <NoticeBox className="mt-4">
+                Perfil e dados bancários não são editáveis nesta versão. Para
+                alterar dados ou recuperar acesso, abra um chamado. Não envie
+                senhas nem números completos de contas bancárias.
+              </NoticeBox>
+              <div className="mt-4">
+                <ButtonLink href="/suporte" variant="outline">
+                  <Headset className="size-4" aria-hidden="true" />
+                  Abrir chamado
+                </ButtonLink>
+              </div>
+            </>
+          )}
+        </Card>
+      ) : !account ? (
+        <Card>
+          {ctx.staff === "admin" ? (
+            <EmptyState
+              icon={Building2}
+              title="Selecione uma conta para visualizar"
+              description="Esta tela mostra os dados de uma conta. Abra uma conta para consultá-la como o investidor a vê."
+              action={
+                toPanel ? (
+                  <ButtonLink href="/painel">Abrir painel global</ButtonLink>
+                ) : (
+                  <ButtonLink href="/contas">Ver todas as contas</ButtonLink>
+                )
+              }
+            />
+          ) : ctx.staff === "support" ? (
+            <EmptyState
+              icon={Link2Off}
+              title="Esta tela mostra os dados de uma conta"
+              description="Sua função atende chamados de todas as contas pela fila de atendimento."
+              action={
+                <ButtonLink href="/equipe" variant="outline">
+                  Abrir fila de atendimento
+                </ButtonLink>
+              }
+            />
+          ) : (
+            <EmptyState
+              icon={Link2Off}
+              title="Seu acesso está ativo"
+              description="Um administrador precisa vincular uma conta para liberar contratos, equipamentos e documentos."
+            />
+          )}
         </Card>
       ) : view === "suporte" ? (
         <Support accountId={account.id} query={query} />
       ) : view === "home" || view === "dashboard" ? (
         await Overview(account.id)
-      ) : view === "perfil" ? (
-        <Card title="Identidade autenticada">
-          <DefinitionList
-            rows={[
-              { label: "E-mail", value: ctx.user.email ?? "—" },
-              { label: "Conta", value: account.name },
-            ]}
-          />
-          <NoticeBox className="mt-4">
-            Perfil e dados bancários não são editáveis nesta versão. Para alterar
-            dados ou recuperar acesso, abra um chamado. Não envie senhas nem
-            números completos de contas bancárias.
-          </NoticeBox>
-          <div className="mt-4">
-            <ButtonLink href="/suporte" variant="outline">
-              <Headset className="size-4" aria-hidden="true" />
-              Abrir chamado
-            </ButtonLink>
-          </div>
-        </Card>
       ) : view === "solicitar" ? (
         <Card title="Converse com a equipe">
           <p className="max-w-2xl text-[14.5px] text-ink-soft">

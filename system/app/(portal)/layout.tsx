@@ -4,7 +4,7 @@ import { context } from "@/lib/live/data";
 import { switchAccount } from "@/lib/live/actions";
 import { isSidebarMode, SIDEBAR_COOKIE } from "@/lib/sidebar";
 import type { LiveKind } from "@/config/live-navigation";
-import { ButtonLink } from "@/components/ui/Button";
+import { Button, ButtonLink } from "@/components/ui/Button";
 import { ClearDemo } from "@/components/live/ClearDemo";
 import { LiveShell } from "@/components/live/LiveShell";
 import { Notice } from "@/components/live/Notice";
@@ -30,6 +30,17 @@ export default async function PortalLayout({ children }: { children: React.React
       sidebar={isSidebarMode(saved) ? saved : "expanded"}
     >
       <ClearDemo />
+      {kind === "admin" && ctx.account && (
+        <Notice title={`Conta aberta: ${ctx.account.name}`}>
+          As telas de “Conta aberta” mostram os dados desta conta.
+          <form action={switchAccount} className="mt-2">
+            <input type="hidden" name="account_id" value="" />
+            <Button type="submit" variant="outline" size="sm">
+              Voltar à visão global
+            </Button>
+          </form>
+        </Notice>
+      )}
       {review.data.length > 0 && (
         <Notice tone="warn" title="Existe um pagamento da sua parceria em análise.">
           <ButtonLink href={"/adesao?enrollment=" + review.data[0].id} variant="outline" size="sm" className="mt-2">

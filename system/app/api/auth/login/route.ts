@@ -18,7 +18,8 @@ export async function POST(request: NextRequest) {
     const client = createAuthClient(request, response, input.remember);
     const { data, error } = await client.auth.signInWithPassword({ email: input.email.trim(), password: input.password });
     if (error || !data.user) return fail(401);
-    if (!portalRole(data.user)) {
+    const role = portalRole(data.user);
+    if (!role) {
       await client.auth.signOut({ scope: "local" });
       return fail(403);
     }
@@ -26,7 +27,10 @@ export async function POST(request: NextRequest) {
       path: "/app", httpOnly: true, sameSite: "lax", secure: process.env.NODE_ENV === "production",
       ...(input.remember ? { maxAge: 60 * 60 * 24 * 30 } : {}),
     });
-    return response;
+    // Tells the form where a person with no specific destination starts. The session cookies travel with it.
+    const result = NextResponse.json({ ok: true, internal: role === "internal" }, { headers: { "Cache-Control": "private, no-store" } });
+    for (const cookie of response.cookies.getAll()) result.cookies.set(cookie);
+    return result;
   } catch {
     return fail(503);
   }

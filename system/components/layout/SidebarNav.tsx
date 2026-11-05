@@ -19,7 +19,10 @@ export function RailTooltip({ children }: { children: string }) {
   );
 }
 
-export type SidebarItem = Pick<NavItem, "href" | "label" | "icon" | "group">;
+export type SidebarItem = Pick<NavItem, "href" | "label" | "icon" | "group"> & {
+  /** Items sharing a section are drawn after a divider and, when expanded, under this label. */
+  section?: string;
+};
 
 const defaultItems: SidebarItem[] = navItems.filter((item) => !item.hidden);
 
@@ -37,8 +40,10 @@ export function SidebarNav({ items = defaultItems, forceExpanded = false, onNavi
           const { href, label, icon: Icon } = item;
           const active = isNavActive(item, pathname, secao);
           const startsAccount = item.group === "account" && items[index - 1]?.group !== "account";
+          const startsSection = !!item.section && items[index - 1]?.section !== item.section;
           return (
-            <li key={href} className={cn(startsAccount && "mt-2 border-t border-line pt-3")}>
+            <li key={href} className={cn((startsAccount || startsSection) && "mt-2 border-t border-line pt-3")}>
+              {startsSection && !collapsed && <p className="mb-1 px-3.5 text-[12.5px] font-bold tracking-wide text-ink-mute uppercase">{item.section}</p>}
               <Link
                 href={href}
                 onClick={onNavigate}
