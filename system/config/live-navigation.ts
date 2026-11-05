@@ -5,18 +5,21 @@
 
 import {
   BadgeCheck,
+  Building2,
   CalendarDays,
   FileText,
   Handshake,
   Headset,
   House,
   Inbox,
+  LayoutDashboard,
   Repeat,
   ReceiptText,
   ScrollText,
   Settings2,
   ShoppingBag,
   UserRound,
+  UsersRound,
 } from "lucide-react";
 import type { SidebarItem } from "@/components/layout/SidebarNav";
 import { PurifierIcon } from "@/components/ui/PurifierIcon";
@@ -42,13 +45,26 @@ const investor: SidebarItem[] = [
   leases,
 ];
 
+const queue: SidebarItem = { href: "/equipe", label: "Fila de atendimento", icon: Inbox };
+
+/** Administrators work across every account first; the screens under the "Conta aberta" label show the one they opened. */
+const admin: SidebarItem[] = [
+  { href: "/painel", label: "Painel global", icon: LayoutDashboard },
+  { href: "/contas", label: "Contas", icon: Building2 },
+  { href: "/investidores", label: "Investidores", icon: UsersRound },
+  orders,
+  leases,
+  queue,
+  { href: "/parcerias", label: "Ofertas e adesões", icon: Handshake },
+  { href: "/admin", label: "Administração", icon: Settings2 },
+  ...investor.filter((item) => ![orders.href, leases.href, "/adesao"].includes(item.href)).map((item) => ({ ...item, section: "Conta aberta" })),
+];
+
 export function liveNavigation(kind: LiveKind): SidebarItem[] {
   if (kind === "customer") return [orders, leases, support, account];
-  const items = [...investor];
-  if (kind === "support" || kind === "admin") items.push({ href: "/equipe", label: "Fila de atendimento", icon: Inbox });
-  if (kind === "admin") items.push({ href: "/admin", label: "Administração", icon: Settings2 }, { href: "/parcerias", label: "Ofertas e adesões", icon: Handshake });
-  return [...items, account];
+  if (kind === "admin") return [...admin, account];
+  return kind === "support" ? [...investor, queue, account] : [...investor, account];
 }
 
 /** First screen of the menu: where the logo leads. */
-export const liveHome = (kind: LiveKind) => (kind === "customer" ? "/pedidos" : "/home");
+export const liveHome = (kind: LiveKind) => (kind === "customer" ? "/pedidos" : kind === "admin" ? "/painel" : "/home");

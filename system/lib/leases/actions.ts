@@ -104,7 +104,7 @@ export async function leaseAction(
           .eq("id", l.id);
         if (bound.error) throw Error("Binding failed");
         if (session.url) {
-          revalidatePath("/app/locacoes");
+          revalidatePath("/locacoes");
           redirect(session.url);
         }
         return { success: "Aguardando confirmação do Stripe." };
@@ -129,7 +129,7 @@ export async function leaseAction(
         redirect(portal.url);
       } else throw Error("Invalid action");
     }
-    revalidatePath("/app/locacoes");
+    revalidatePath("/locacoes");
     return { success: "Alteração registrada." };
   } catch (e) {
     if (e instanceof Error && e.message === "NEXT_REDIRECT") throw e;

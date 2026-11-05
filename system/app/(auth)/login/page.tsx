@@ -17,7 +17,7 @@ export default async function LoginPage({
   const signup = await buyNow();
   const destination = next
     ? customerDestination(next.startsWith("/") ? next : "/" + next)
-    : "/pedidos";
+    : undefined;
   return (
     <main
       id="conteudo"
@@ -31,7 +31,7 @@ export default async function LoginPage({
             <p className="mt-4 text-center text-[14.5px] text-ink-soft">
               <Link
                 className="rounded-md font-semibold text-brand hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
-                href={"/cadastro?next=" + encodeURIComponent(destination)}
+                href={"/cadastro?next=" + encodeURIComponent(destination ?? "/pedidos")}
               >
                 Novo cliente? Crie sua Acquafy Account
               </Link>

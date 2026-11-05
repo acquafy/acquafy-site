@@ -146,8 +146,8 @@ export async function orderAction(
     }
     const result = await ctx.db.rpc("order_command", { action, payload });
     if (result.error) throw Error();
-    revalidatePath("/app/pedidos");
-    if (action === "request") redirect("/app/pedidos");
+    revalidatePath("/pedidos");
+    if (action === "request") redirect("/pedidos");
     return { success: "Alteração registrada." };
   } catch (e) {
     if (e instanceof Error && e.message === "NEXT_REDIRECT") throw e;

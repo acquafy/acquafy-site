@@ -59,6 +59,7 @@ export default async function Leases() {
           <Card key={l.id} title={l.title} action={<StatusPill status={l.status} />}>
             <DefinitionList
               rows={[
+                ...(admin ? [{ label: "Conta", value: ctx.accounts.find((a) => a.id === l.account_id)?.name ?? l.account_id }] : []),
                 { label: "Mensalidade", value: `${money(l.monthly_minor / 100)}/mês` },
                 { label: "Endereço da instalação", value: l.location },
                 ...(l.installed_at ? [{ label: "Instalação confirmada em", value: date(l.installed_at) }] : []),

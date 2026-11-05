@@ -94,17 +94,20 @@ function LiveTopBar({
     desktop.addEventListener("change", closeOnDesktop);
     return () => desktop.removeEventListener("change", closeOnDesktop);
   }, []);
-  const accountSwitcher = accounts.length > 1 || (accounts.length === 1 && kind !== "customer") ? (
-    <form action={switchAccount} className="flex min-w-0 flex-wrap items-center gap-2">
+  const global = kind === "admin";
+  const options = accounts.map((a) => ({ value: a.id, label: a.name + (a.suspended ? " · Suspensa" : "") }));
+  const accountSwitcher = global || accounts.length > 1 || (accounts.length === 1 && kind !== "customer") ? (
+    // Keyed so the control follows the open account after a server redirect, not its first value.
+    <form key={accountId ?? "global"} action={switchAccount} className="flex min-w-0 flex-wrap items-center gap-2">
       <Select
         label="Conta"
         hideLabel
         name="account_id"
-        defaultValue={accountId}
-        options={accounts.map((a) => ({ value: a.id, label: a.name + (a.suspended ? " · Suspensa" : "") }))}
+        defaultValue={accountId ?? ""}
+        options={global ? [{ value: "", label: "Visão global" }, ...options] : options}
         wrapperClassName="min-w-0 flex-1 lg:w-60"
       />
-      <Button type="submit" variant="outline" size="sm">Abrir conta</Button>
+      <Button type="submit" variant="outline" size="sm">{global ? "Abrir" : "Abrir conta"}</Button>
     </form>
   ) : (
     accounts[0] && <p className="min-w-0 truncate text-[14.5px] font-semibold text-ink-soft">{accounts[0].name}</p>

@@ -15,7 +15,7 @@ import { LoginForgotModal } from "./LoginForgotModal";
 
 type Errors = { email?: string; password?: string };
 
-export function LoginForm({ destination = "/pedidos" }: { destination?: string }) {
+export function LoginForm({ destination }: { destination?: string }) {
   const router = useRouter();
   const toast = useToast();
   const form = useRef<HTMLFormElement>(null);
@@ -52,7 +52,8 @@ export function LoginForm({ destination = "/pedidos" }: { destination?: string }
     }
     // Keep the button busy until the dashboard replaces this page.
     toast({ title: "Bem-vindo de volta!", description: "Acesso liberado ao Acquafy Account." });
-    router.replace(destination);
+    // Staff start at /home, which sends administrators on to the global panel.
+    router.replace(destination ?? (result.internal ? "/home" : "/pedidos"));
     router.refresh();
   };
 

@@ -57,7 +57,7 @@ export async function staffEnrollment(
     });
     return failure();
   }
-  revalidatePath("/app", "layout");
+  revalidatePath("/", "layout");
   return { success: "Alteração registrada." };
 }
 export async function inviteInvestor(
@@ -157,7 +157,7 @@ export async function inviteInvestor(
     const link = inviteHash
       ? `${origin}/app/ativar?token_hash=${encodeURIComponent(inviteHash)}&type=${inviteType}&enrollment=${id}`
       : `${origin}/app/adesao?enrollment=${id}`;
-    revalidatePath("/app", "layout");
+    revalidatePath("/", "layout");
     return {
       success:
         "Convite preparado. Compartilhe o link de forma privada. Nenhum e-mail foi enviado automaticamente.",
@@ -262,7 +262,7 @@ export async function activateInvestor(
     sameSite: "lax",
   });
   const id = value(form, "enrollment");
-  redirect("/app/adesao" + (uuid(id) ? "?enrollment=" + id : ""));
+  redirect("/adesao" + (uuid(id) ? "?enrollment=" + id : ""));
 }
 export async function memberEnrollment(
   _previous: ActionResult,
@@ -278,7 +278,7 @@ export async function memberEnrollment(
   );
   const { error } = await db.rpc("enrollment_member", { action, payload });
   if (error) return failure();
-  revalidatePath("/app", "layout");
+  revalidatePath("/", "layout");
   return {
     success:
       action === "accept"
@@ -449,7 +449,7 @@ export async function refreshPayment(
         "Não foi possível consultar o pagamento. Tente novamente em instantes.",
     };
   }
-  revalidatePath("/app", "layout");
+  revalidatePath("/", "layout");
   return {
     success:
       "Situação consultada no Stripe. Se o método estiver em processamento, aguarde a confirmação.",

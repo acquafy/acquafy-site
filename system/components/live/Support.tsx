@@ -27,7 +27,7 @@ export async function Support({
   query: Query;
   queue?: boolean;
 }) {
-  const { db, staff } = await context();
+  const { db, staff, accounts } = await context();
   const page = Math.max(0, Math.min(100000, parseInt(query.page || "0") || 0));
   if (queue && !staff)
     return (
@@ -109,6 +109,7 @@ export async function Support({
                     #{t.number} · {t.subject}
                   </span>
                   <span className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[13.5px] text-ink-soft">
+                    {queue && accounts.find((a) => a.id === t.account_id)?.name}
                     <StatusPill status={t.status} />
                     <span className="tabular">{date(t.updated_at)}</span>
                     {t.assigned_to && <span>Atribuído à equipe</span>}

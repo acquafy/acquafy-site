@@ -1,9 +1,13 @@
 import { Package, Plus, ShoppingBag } from "lucide-react";
 import { context, money, date } from "@/lib/live/data";
+import { orderStageCounts, userEmails } from "@/lib/live/admin";
+import { orderStages, pageNumber, stageFor } from "@/lib/live/admin-view";
 import { ActionForm } from "@/components/enrollment/ActionForm";
 import { Area, Consent, Field, Select } from "@/components/live/Fields";
+import { FilterTabs } from "@/components/live/FilterTabs";
 import { Notice } from "@/components/live/Notice";
 import { PageHeader } from "@/components/live/PageHeader";
+import { Pager } from "@/components/live/PortalPage";
 import { StatusPill, statusLabel } from "@/components/live/StatusPill";
 import { ButtonLink } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
@@ -16,14 +20,23 @@ import { orderAction } from "@/lib/orders/actions";
 
 export const metadata = { title: "Pedidos" };
 
-export default async function Orders() {
+export default async function Orders({ searchParams }: { searchParams: Promise<{ etapa?: string; page?: string }> }) {
   const ctx = await context();
-  const result = await ctx.db.from("product_orders").select("*").order("created_at", { ascending: false }).limit(100);
-  const history = await ctx.db.from("order_events").select("*").order("created_at", { ascending: true }).limit(2000);
-  if (history.error) throw Error("Histórico indisponível.");
-  if (result.error) throw Error("Pedidos indisponíveis.");
+  const query = await searchParams;
   const admin = ctx.staff === "admin";
+  // Only administrators see other people's orders, so only they have enough volume to filter and page.
+  const stage = admin ? stageFor(orderStages, query.etapa) : undefined;
+  const page = admin ? pageNumber(query.page) : 0;
+  const size = admin ? 50 : 100;
+  let list = ctx.db.from("product_orders").select("*", { count: "exact" });
+  if (stage) list = list.in("status", stage.statuses);
+  const result = await list.order("created_at", { ascending: false }).order("id").range(page * size, page * size + size - 1);
+  if (result.error) throw Error("Pedidos indisponíveis.");
+  const history = await ctx.db.from("order_events").select("*").in("order_id", result.data.map((o) => o.id)).order("created_at", { ascending: true }).limit(2000);
+  if (history.error) throw Error("Histórico indisponível.");
   const canOrder = await buyNow();
+  const [counts, emails] = admin ? await Promise.all([orderStageCounts(), userEmails(result.data.map((o) => o.user_id))]) : [{}, new Map<string, string>()];
+  const stageCounts = counts as Record<string, number>;
 
   return (
     <>
@@ -39,13 +52,22 @@ export default async function Orders() {
           )
         }
       />
+      {admin && (
+        <FilterTabs
+          label="Filtrar por etapa"
+          tabs={[
+            { href: "/pedidos", label: "Todos", active: !stage },
+            ...orderStages.map((s) => ({ href: "/pedidos?etapa=" + s.key, label: s.label, count: stageCounts[s.key], active: s.key === stage?.key })),
+          ]}
+        />
+      )}
       {!result.data.length && (
         <Card>
           <EmptyState
             icon={ShoppingBag}
-            title="Nenhum pedido recebido"
-            description="Quando você pedir um produto ou solicitar uma locação, ele aparece aqui com cada etapa."
-            action={canOrder ? <ButtonLink href="/pedido">Fazer um pedido</ButtonLink> : undefined}
+            title={stage ? "Nenhum pedido nesta etapa" : "Nenhum pedido recebido"}
+            description={admin ? "Pedidos de todas as contas aparecem aqui com cada etapa." : "Quando você pedir um produto ou solicitar uma locação, ele aparece aqui com cada etapa."}
+            action={canOrder && !admin ? <ButtonLink href="/pedido">Fazer um pedido</ButtonLink> : undefined}
           />
         </Card>
       )}
@@ -53,6 +75,12 @@ export default async function Orders() {
         const events = history.data.filter((e) => e.order_id === o.id);
         const mine = o.user_id === ctx.user.id;
         const details: DefinitionRow[] = [
+          ...(admin
+            ? [
+                { label: "Conta", value: ctx.accounts.find((a) => a.id === o.account_id)?.name ?? o.account_id },
+                { label: "Cliente", value: emails.get(o.user_id) ?? "E-mail indisponível" },
+              ]
+            : []),
           { label: "Tipo", value: o.kind === "lease" ? "Locação" : "Compra" },
           { label: "Pedido feito em", value: date(o.created_at) },
           { label: "Destinatário", value: o.delivery.name },
@@ -187,6 +215,7 @@ export default async function Orders() {
           </Card>
         );
       })}
+      {admin && <Pager page={page} count={result.count ?? 0} path={stage ? "/pedidos?etapa=" + stage.key : "/pedidos"} />}
     </>
   );
 }

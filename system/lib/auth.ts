@@ -1,13 +1,16 @@
 import { portalPath } from "./paths";
 
-export type SignInResult = { ok: true } | { ok: false; error: "invalid" | "unavailable" | "forbidden" };
+export type SignInResult = { ok: true; internal: boolean } | { ok: false; error: "invalid" | "unavailable" | "forbidden" };
 
 export async function signIn(input: { email: string; password: string; remember: boolean }): Promise<SignInResult> {
   try {
     const response = await fetch(portalPath("/api/auth/login"), {
       method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(input),
     });
-    if (response.ok) return { ok: true };
+    if (response.ok) {
+      const body = (await response.json()) as { internal?: boolean };
+      return { ok: true, internal: body.internal === true };
+    }
     return { ok: false, error: response.status === 403 ? "forbidden" : response.status >= 500 ? "unavailable" : "invalid" };
   } catch {
     return { ok: false, error: "unavailable" };

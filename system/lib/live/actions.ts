@@ -14,23 +14,49 @@ function finish(
   ticket = "",
   page = "",
 ): never {
-  revalidatePath("/app", "layout");
+  revalidatePath("/", "layout");
   redirect(
-    `/app/${path}?${error ? "error=" + (reason || "save") : "saved=1"}${ticket ? "&ticket=" + encodeURIComponent(ticket) : ""}${page ? "&page=" + encodeURIComponent(page) : ""}`,
+    `/${path}?${error ? "error=" + (reason || "save") : "saved=1"}${ticket ? "&ticket=" + encodeURIComponent(ticket) : ""}${page ? "&page=" + encodeURIComponent(page) : ""}`,
   );
 }
 export async function switchAccount(form: FormData) {
   const ctx = await context();
   const id = text(form, "account_id");
+  // An administrator leaves the selected account by choosing the global view (empty value).
+  if (!id && ctx.staff === "admin") {
+    (await cookies()).set(accountCookie, "", { path: "/app", maxAge: 0 });
+    revalidatePath("/", "layout");
+    redirect("/painel");
+  }
   if (!ctx.accounts.some((a) => a.id === id)) finish("home", true);
+  await rememberAccount(id);
+  revalidatePath("/", "layout");
+  redirect(text(form, "next") === "admin" && ctx.staff === "admin" ? "/admin" : "/home");
+}
+async function rememberAccount(id: string) {
   (await cookies()).set(accountCookie, id, {
     path: "/app",
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",
   });
-  revalidatePath("/app", "layout");
-  redirect("/app/home");
+}
+/** Suspend or reactivate from the account directory, where no account has to be open first. */
+export async function setAccountStatus(form: FormData) {
+  const ctx = await context();
+  if (ctx.staff !== "admin") finish("home", true);
+  const status = text(form, "status");
+  if (status !== "active" && status !== "suspended") finish("contas", true);
+  const { error } = await ctx.db.rpc("portal_admin", {
+    action: "account_status",
+    payload: { account_id: text(form, "account_id"), status },
+  });
+  if (error)
+    console.error("portal_admin failed", {
+      action: "account_status",
+      code: error.code,
+    });
+  finish("contas", !!error);
 }
 export async function logout() {
   const { db } = await context();
@@ -39,7 +65,7 @@ export async function logout() {
   const jar = await cookies();
   jar.set(accountCookie, "", { path: "/app", maxAge: 0 });
   jar.set("acq-remember", "", { path: "/app", maxAge: 0 });
-  redirect("/app/login");
+  redirect("/login");
 }
 export async function ticketAction(form: FormData) {
   const { db, account, staff } = await context();
@@ -87,11 +113,13 @@ export async function adminAction(form: FormData) {
       (entry): entry is [string, string] => typeof entry[1] === "string",
     ),
   );
-  const { error } = await ctx.db.rpc("portal_admin", { action, payload });
+  const { data, error } = await ctx.db.rpc("portal_admin", { action, payload });
   if (error) {
     console.error("portal_admin failed", { action, code: error.code });
     finish("admin", true, error.code === "23505" ? "duplicate" : "save");
   }
+  // A new account opens right away, so its contract, member and document forms are on screen.
+  if (action === "account" && data) await rememberAccount(String(data));
   finish("admin", false);
 }
 export async function uploadDocument(form: FormData) {

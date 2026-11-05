@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { createServerClient } from "@supabase/ssr";
 import { portalRole } from "@/lib/portal-access";
+import { selectAccount } from "./admin-view";
 
 export type Account = { id: string; name: string; status: string };
 export type Contract = {
@@ -98,7 +99,7 @@ export const context = cache(async () => {
     data: { user },
     error,
   } = await db.auth.getUser();
-  if (error || !user || !portalRole(user)) redirect("/app/login");
+  if (error || !user || !portalRole(user)) redirect("/login");
   const [accounts, grant] = await Promise.all([
     db.from("accounts").select("id,name,status").order("name"),
     db
@@ -111,11 +112,11 @@ export const context = cache(async () => {
     throw new Error("Não foi possível carregar as contas. Tente novamente.");
   const visible = accounts.data as Account[];
   const chosen = (await cookies()).get(accountCookie)?.value;
-  const account = visible.find((a) => a.id === chosen) ?? visible[0] ?? null;
   const staff =
     user.app_metadata.portal_role === "internal"
       ? (grant.data?.role as "admin" | "support" | undefined)
       : undefined;
+  const account = selectAccount(visible, chosen, staff);
   return { db, user, accounts: visible, account, staff };
 });
 

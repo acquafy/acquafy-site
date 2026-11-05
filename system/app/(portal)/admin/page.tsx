@@ -14,6 +14,7 @@ import { Form, Field, Select } from "@/components/live/Fields";
 import { Notice } from "@/components/live/Notice";
 import { PageHeader } from "@/components/live/PageHeader";
 import type { Query } from "@/components/live/PortalPage";
+import { ButtonLink } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 const opts = (values: string[]) =>
   values.map((value) => ({ value, label: labels[value] ?? value }));
@@ -70,6 +71,16 @@ export default async function Admin({
           <Field name="name" label="Nome da pessoa ou empresa" />
         </Form>
       </div>
+      {!account && (
+        <Notice title="Nenhuma conta aberta">
+          Membros, contratos, documentos, purificadores e repasses são cadastrados dentro de uma conta. Crie uma acima ou abra uma existente.
+          <div className="mt-2">
+            <ButtonLink href="/contas" variant="outline" size="sm">
+              Ver todas as contas
+            </ButtonLink>
+          </div>
+        </Notice>
+      )}
       {account && (
         <>
           <h2 className="pt-2 text-[20px] leading-tight font-extrabold tracking-tight text-ink">Conta selecionada: {account.name}</h2>
