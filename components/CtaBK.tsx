@@ -332,10 +332,10 @@ export default function CtaBK() {
 
         {/* Header */}
         <div className="flex flex-col gap-[16px] items-center text-center w-full">
-          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-white w-full">
+          <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-white w-full">
             {t.heading}
           </h2>
-          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-white max-w-[600px] w-full">
+          <p className="font-avenir-roman text-[18px] leading-[26px] text-white max-w-[600px] w-full">
             {t.subheading}
           </p>
         </div>
@@ -349,7 +349,7 @@ export default function CtaBK() {
               min-h-[54px] min-w-[200px] overflow-hidden px-[28px] py-[12px] rounded-[8px] cursor-pointer shrink-0
               shadow-[0_2px_12px_0_rgba(255,255,255,0.15)] no-underline"
           >
-            <span className="font-['Articulat_CF:Bold'] text-[16px] text-[#0233c3] flex-1 text-center leading-normal">
+            <span className="font-avenir-heavy text-[16px] text-[#0233c3] flex-1 text-center leading-normal">
               {t.btnOpenTicket}
             </span>
             <FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} />
@@ -358,7 +358,7 @@ export default function CtaBK() {
           <a href="/contact" className="group border-2 border-white hover:bg-white active:bg-[#f0f4ff] transition-colors
             flex gap-[10px] items-center justify-center
             min-h-[54px] min-w-[200px] overflow-hidden px-[28px] py-[12px] rounded-[8px] cursor-pointer shrink-0">
-            <span className="font-['Articulat_CF:Bold'] text-[16px] text-white group-hover:text-[#0233c3] transition-colors flex-1 text-center leading-normal">
+            <span className="font-avenir-heavy text-[16px] text-white group-hover:text-[#0233c3] transition-colors flex-1 text-center leading-normal">
               {t.btnTalkSpecialist}
             </span>
             <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
@@ -397,12 +397,12 @@ export default function CtaBK() {
               {/* Text */}
               <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-px">
                 <div className="flex gap-[10px] items-center w-full flex-wrap">
-                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-white">
+                  <p className="font-avenir-heavy text-[16px] leading-[20px] text-white">
                     {canal.title}
                   </p>
                   {(canal.badge || canal.isChat) && (
                     <span
-                      className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] leading-[13px] px-[10px] py-[5px] rounded-full whitespace-nowrap"
+                      className="font-avenir-heavy text-[12px] leading-[13px] px-[10px] py-[5px] rounded-full whitespace-nowrap"
                       style={{
                         color: canal.isChat ? chatBadgeColor : canal.badgeColor,
                         backgroundColor: canal.isChat ? chatBadgeBg : canal.badgeBg,
@@ -412,11 +412,11 @@ export default function CtaBK() {
                     </span>
                   )}
                 </div>
-                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[rgba(255,255,255,0.7)]">
+                <p className="font-avenir-roman text-[14px] leading-[16px] text-[rgba(255,255,255,0.7)]">
                   {canal.desc}
                 </p>
                 {canal.isInfo ? (
-                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0569ff]">
+                  <p className="font-avenir-heavy text-[14px] leading-[17px] text-[#0569ff]">
                     {canal.action}
                   </p>
                 ) : canal.isChat ? (
@@ -424,7 +424,7 @@ export default function CtaBK() {
                     onClick={openChat}
                     className="bg-[rgba(255,255,255,0.12)] hover:bg-white hover:text-[#0233c3] transition-colors
                       flex items-center justify-center min-h-[34px] overflow-hidden px-[16px] py-[8px] rounded-[8px]
-                      font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white w-full text-center cursor-pointer"
+                      font-avenir-heavy text-[14px] leading-[17px] text-white w-full text-center cursor-pointer"
                   >
                     {canal.action}
                   </button>
@@ -433,7 +433,7 @@ export default function CtaBK() {
                     href={canal.href}
                     className="bg-[rgba(255,255,255,0.12)] hover:bg-white hover:text-[#0233c3] transition-colors
                       flex items-center justify-center min-h-[34px] overflow-hidden px-[16px] py-[8px] rounded-[8px] no-underline
-                      font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white w-full text-center"
+                      font-avenir-heavy text-[14px] leading-[17px] text-white w-full text-center"
                   >
                     {canal.action}
                   </a>

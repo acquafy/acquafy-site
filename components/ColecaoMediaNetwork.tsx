@@ -1,4 +1,5 @@
 "use client";
+import Img from "@/components/ui/Img";
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
 import { useFeature } from "@/components/FeatureFlags";
@@ -341,16 +342,16 @@ function ProductCard({ product }: { product: Product }) {
         {hasOverlap ? (
           <div className="relative flex items-center justify-center w-full h-full">
             <div className="relative z-0" style={{ width: "55%", aspectRatio: `${product.imgs[0].aspectW}/${product.imgs[0].aspectH}` }}>
-              <img alt="" className="absolute inset-0 w-full h-full object-contain" src={product.imgs[0].src} />
+              <Img alt="" className="absolute inset-0 w-full h-full object-contain" src={product.imgs[0].src} />
             </div>
             <div className="relative z-10 -ml-[20%]" style={{ width: "55%", aspectRatio: `${product.imgs[1].aspectW}/${product.imgs[1].aspectH}` }}>
-              <img alt="" className="absolute inset-0 w-full h-full object-contain" src={product.imgs[1].src} />
+              <Img alt="" className="absolute inset-0 w-full h-full object-contain" src={product.imgs[1].src} />
             </div>
           </div>
         ) : (
           <div className="flex items-center justify-center w-full h-full">
             <div className="relative max-h-[160px] max-w-[140px] w-full" style={{ aspectRatio: `${product.imgs[0].aspectW}/${product.imgs[0].aspectH}` }}>
-              <img alt="" className="absolute inset-0 w-full h-full object-contain" src={product.imgs[0].src} />
+              <Img alt="" className="absolute inset-0 w-full h-full object-contain" src={product.imgs[0].src} />
             </div>
           </div>
         )}
@@ -358,10 +359,10 @@ function ProductCard({ product }: { product: Product }) {
 
       {/* Info */}
       <div className="flex flex-1 flex-col gap-[10px] items-start min-w-0 pr-[10px] py-[10px]">
-        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] min-h-[40px] w-full">
+        <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91] min-h-[40px] w-full">
           {product.title}
         </p>
-        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#333] w-full">
+        <p className="font-avenir-roman text-[16px] leading-[20px] text-[#333] w-full">
           {product.desc}
         </p>
       </div>
@@ -384,7 +385,7 @@ export default function ColecaoMediaNetwork() {
 
         {/* Header */}
         <div className="flex gap-[10px] items-center justify-between w-full flex-wrap">
-          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] flex-1 min-w-[240px] text-center lg:text-left">
+          <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] flex-1 min-w-[240px] text-center lg:text-left">
             <span className="text-[#1f2e91]">{t.heading}</span>
             {" "}
             <span className="text-[#0569ff]">Media Network</span>
@@ -403,7 +404,7 @@ export default function ColecaoMediaNetwork() {
           <div className="flex justify-center w-full">
             <a href="/parceria" className="flex bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors gap-[10px] items-center justify-center h-[40px] overflow-hidden px-[20px] rounded-[8px] shrink-0 cursor-pointer">
               <FigmaIcon src={imgPartner} size={16} aspectW={41} aspectH={40} />
-              <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white whitespace-nowrap">
+              <span className="font-avenir-heavy text-[14px] leading-[17px] text-white whitespace-nowrap">
                 {t.cta}
               </span>
             </a>

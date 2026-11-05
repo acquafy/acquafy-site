@@ -1,4 +1,5 @@
 "use client";
+import Img from "@/components/ui/Img";
 
 import { useState } from "react";
 
@@ -20,7 +21,7 @@ function Dot({ active, onClick }: { active: boolean; onClick?: () => void }) {
       className={`relative shrink-0 size-[12px] ${onClick ? "cursor-pointer" : ""}`}
       onClick={onClick}
     >
-      <img
+      <Img
         alt=""
         className="absolute block inset-0 max-w-none size-full"
         src={active ? imgDotActive : imgDotInactive}
@@ -34,7 +35,7 @@ export default function PremiumSlideshow() {
   const [active, setActive] = useState(0);
 
   return (
-    <div className="flex flex-col gap-[20px] min-h-[412px] flex-1 items-center justify-center w-full">
+    <div className="flex flex-col gap-[20px] min-h-[412px] max-h-[412px] items-center justify-center w-full">
       {/* Slide image — clicável para avançar slide */}
       <div
         className="flex-[1_0_0] min-h-px relative rounded-[16px] w-full cursor-pointer"
@@ -44,7 +45,7 @@ export default function PremiumSlideshow() {
         tabIndex={0}
         onKeyDown={(e) => e.key === "Enter" && setActive((active + 1) % slides.length)}
       >
-        <img
+        <Img
           alt="Ambientes Acquafy Premium"
           className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[16px] size-full"
           src={slides[active]}

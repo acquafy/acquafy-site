@@ -781,7 +781,7 @@ const T: Record<Lang, {
 function FormField({ label, children }: { label: ReactNode; children: ReactNode }) {
   return (
     <div className="flex flex-col gap-[20px] items-start w-full">
-      <div className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#2a2a2b] w-full">
+      <div className="font-avenir-heavy text-[18px] leading-[22px] text-[#2a2a2b] w-full">
         {label}
       </div>
       {children}
@@ -791,7 +791,7 @@ function FormField({ label, children }: { label: ReactNode; children: ReactNode 
 
 const inputCls =
   "bg-white border-[0.5px] border-[#cbd0d4] flex gap-[10px] items-start overflow-clip p-[20px] rounded-[12px] w-full " +
-  "font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#333] placeholder:text-[#c8cfd8] " +
+  "font-avenir-roman text-[16px] leading-[20px] text-[#333] placeholder:text-[#c8cfd8] " +
   "outline-none focus:border-[#0233c3] transition-colors";
 
 export default function ContatoInfoForm() {
@@ -823,7 +823,7 @@ export default function ContatoInfoForm() {
         <div className="bg-white flex flex-[1_0_0] flex-col gap-[40px] items-start min-w-[280px] px-[20px] py-[40px] lg:p-[40px] rounded-[16px]">
 
           <p
-            className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] bg-clip-text text-transparent w-full shrink-0"
+            className="font-avenir-heavy text-[20px] leading-[28px] bg-clip-text text-transparent w-full shrink-0"
             style={{ backgroundImage: "linear-gradient(90deg, #0233c3, #0569ff)" }}
           >
             {t.formTitle}
@@ -880,7 +880,7 @@ export default function ContatoInfoForm() {
               type="submit"
               className="bg-[#0233c3] flex gap-[10px] items-center justify-center min-h-[50px] overflow-hidden px-[20px] py-[10px] rounded-[8px] w-full hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors cursor-pointer shrink-0"
             >
-              <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-white text-center whitespace-nowrap">
+              <span className="font-avenir-heavy text-[18px] leading-[22px] text-white text-center whitespace-nowrap">
                 {t.submitBtn}
               </span>
               <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
@@ -901,7 +901,7 @@ export default function ContatoInfoForm() {
                   />
                 </div>
               </div>
-              <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#2a2a2b]">
+              <span className="font-avenir-heavy text-[16px] leading-[20px] text-[#2a2a2b]">
                 {t.privacyPre}
                 <a href="/termos-de-uso" className="text-[#0569ff] hover:underline" onClick={e => e.stopPropagation()}>{t.privacyTerms}</a>
                 {t.privacyMid}

@@ -1,4 +1,5 @@
 "use client";
+import Img from "@/components/ui/Img";
 import { useState, type ReactNode } from "react";
 import { Feature } from "@/components/FeatureFlags";
 import FigmaIcon from "./FigmaIcon";
@@ -903,7 +904,7 @@ const BUY_NOW: Record<Lang, string> = {
 function CardImage({ src, maxW = "170px", grow = false }: { src: string; maxW?: string; grow?: boolean }) {
   return (
     <div className={`flex items-center justify-center ${grow ? "h-[314px]" : "h-[220px]"} w-full min-w-[120px] overflow-hidden relative shrink-0`} style={{ maxWidth: maxW }}>
-      <img alt="" className="max-h-full max-w-full object-contain pointer-events-none" src={src} />
+      <Img alt="" className="max-h-full max-w-full object-contain pointer-events-none" src={src} />
     </div>
   );
 }
@@ -923,7 +924,7 @@ function PanelSlideshowEssentials() {
         onKeyDown={(e) => e.key === "Enter" && setActive((active + 1) % panelEssentialsSrcs.length)}
         aria-label="Proximo slide"
       >
-        <img
+        <Img
           alt=""
           className="block w-full h-full object-cover pointer-events-none"
           style={{ borderRadius: "8.563% / 15.58%" }}
@@ -950,7 +951,7 @@ function PanelSlideshowEssentials() {
             className="relative shrink-0 size-[12px] cursor-pointer"
             onClick={() => setActive(i)}
           >
-            <img alt="" className="absolute block inset-0 max-w-none size-full" src={active === i ? imgDotActive : imgDotInactive} />
+            <Img alt="" className="absolute block inset-0 max-w-none size-full" src={active === i ? imgDotActive : imgDotInactive} />
           </div>
         ))}
       </div>
@@ -963,19 +964,19 @@ function ProductCard({ product }: { product: Product }) {
   return (
     <div className="bg-white flex flex-[1_0_0] flex-col gap-[10px] items-center min-h-[335px] min-w-[180px] overflow-hidden p-[20px] rounded-[12px]">
       <div className="w-full h-[220px] shrink-0">
-        <img
+        <Img
           alt=""
           className="w-full h-full object-contain pointer-events-none"
           src={product.img}
         />
       </div>
-      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#0233c3] text-center w-full min-h-[55px] flex flex-col items-center justify-center">
+      <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#0233c3] text-center w-full min-h-[55px] flex flex-col items-center justify-center">
         {product.name}
       </p>
       <Feature name="buyNow">
       <a
         href={`/buy/checkin-${product.slug}?modelo=${product.id}`}
-        className="flex items-center justify-center min-h-[40px] px-[10px] py-[8px] rounded-[8px] w-full shrink-0 font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white hover:opacity-90 active:opacity-80 transition-opacity no-underline"
+        className="flex items-center justify-center min-h-[40px] px-[10px] py-[8px] rounded-[8px] w-full shrink-0 font-avenir-heavy text-[14px] leading-[17px] text-white hover:opacity-90 active:opacity-80 transition-opacity no-underline"
         style={{ backgroundImage: "linear-gradient(90deg, #0233c3, #0569ff)" }}
       >
         {BUY_NOW[lang]}
@@ -1014,20 +1015,20 @@ export default function LinhaNeo() {
         <div className="flex flex-col gap-[20px] items-start w-full">
           <div className="flex flex-wrap gap-y-[20px] items-center justify-center w-full">
             <h2
-              className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] flex-1 min-w-[240px] bg-clip-text text-transparent text-center lg:text-left"
+              className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] flex-1 min-w-[240px] bg-clip-text text-transparent text-center lg:text-left"
               style={{ backgroundImage: "linear-gradient(to right, #0233c3, #0569ff)" }}
             >
               Neo Essentials
             </h2>
           </div>
-          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] w-full text-center lg:text-left">
+          <p className="font-avenir-roman text-[18px] leading-[19px] text-[#333] w-full text-center lg:text-left">
             {t.desc}
           </p>
 
           <div className="bg-white flex flex-col gap-[20px] items-center justify-center overflow-hidden p-[20px] rounded-[12px] w-full">
-            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#1f2e91] w-full">
+            <p className="font-avenir-roman text-[18px] leading-[19px] text-[#1f2e91] w-full">
               {t.waterHeader[0]}
-              <span className="font-['Avenir_LT_Pro:85_Heavy']">{t.waterHeader[1]}</span>
+              <span className="font-avenir-heavy">{t.waterHeader[1]}</span>
               {t.waterHeader[2]}
             </p>
             <div className="flex flex-wrap gap-[20px_10px] items-center w-full">
@@ -1035,10 +1036,10 @@ export default function LinhaNeo() {
                 <div key={w.label} className="flex flex-[0_0_calc(50%-5px)] lg:flex-[0_0_calc(25%-8px)] gap-[10px] items-center">
                   <FigmaIcon src={imgCheckin} size={20} />
                   <div className="flex flex-[1_0_0] flex-col gap-[5px] items-start min-w-0">
-                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] w-full">
+                    <p className="font-avenir-heavy text-[16px] leading-[20px] text-[#1f2e91] w-full">
                       {w.label}
                     </p>
-                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[17px] text-[#2a2a2b] w-full">
+                    <p className="font-avenir-roman text-[14px] leading-[17px] text-[#2a2a2b] w-full">
                       {w.sub}
                     </p>
                   </div>
@@ -1063,21 +1064,21 @@ export default function LinhaNeo() {
           {/* Card 1 – Painel LED Touch */}
           <div className="bg-white flex flex-1 flex-col gap-[20px] items-start min-h-[310px] min-w-[280px] p-[20px] rounded-[16px]">
             <div className="flex flex-1 flex-col gap-[20px] items-center w-full win-1024:items-start">
-              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-center win-1024:text-left w-full">
+              <p className="font-avenir-heavy text-[18px] leading-[22px] text-center win-1024:text-left w-full">
                 <span className="text-[#0569ff]">{t.panel.title1}</span>
                 <span className="text-[#1f2e91]">{t.panel.title2}</span>
               </p>
               <div className="flex flex-1 flex-col gap-[20px] items-center w-full">
                 <PanelSlideshowEssentials />
                 <div className="flex flex-col gap-[20px] items-center w-full win-1024:items-start">
-                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#1f2e91] text-center win-1024:text-left w-full">
+                  <p className="font-avenir-roman text-[16px] leading-[20px] text-[#1f2e91] text-center win-1024:text-left w-full">
                     {t.panel.sub}
                   </p>
                   <div className="flex flex-col gap-[10px] items-start w-full shrink-0">
                     {t.panel.checks.map((check, i) => (
                       <div key={i} className="flex gap-[10px] items-center w-full">
                         <FigmaIcon src={imgFeatCheck} size={17} />
-                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#2a2a2b] flex-1 min-w-0">
+                        <p className="font-avenir-heavy text-[14px] leading-[17px] text-[#2a2a2b] flex-1 min-w-0">
                           {check}
                         </p>
                       </div>
@@ -1091,20 +1092,20 @@ export default function LinhaNeo() {
           {/* Card 2 – Acquafy AI */}
           <div className="bg-white flex flex-1 flex-col gap-[20px] items-start min-h-[310px] min-w-[280px] max-w-[320px] p-[20px] rounded-[16px]">
             <div className="flex flex-1 flex-col gap-[20px] items-center w-full win-1024:items-start">
-              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#0569ff] text-center win-1024:text-left w-full">
+              <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#0569ff] text-center win-1024:text-left w-full">
                 {t.ai.title}
               </p>
               <div className="flex flex-1 flex-col gap-[20px] items-center w-full">
                 <CardImage src={imgHomeMob} grow />
                 <div className="flex flex-col gap-[20px] items-center w-full win-1024:items-start">
-                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#1f2e91] text-center win-1024:text-left w-full">
+                  <p className="font-avenir-roman text-[16px] leading-[20px] text-[#1f2e91] text-center win-1024:text-left w-full">
                     {t.ai.sub}
                   </p>
                   <div className="flex flex-col gap-[10px] items-start w-full shrink-0">
                     {t.ai.checks.map((check, i) => (
                       <div key={i} className="flex gap-[10px] items-center w-full">
                         <FigmaIcon src={imgFeatCheck} size={17} />
-                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#2a2a2b] flex-1 min-w-0">
+                        <p className="font-avenir-heavy text-[14px] leading-[17px] text-[#2a2a2b] flex-1 min-w-0">
                           {check}
                         </p>
                       </div>
@@ -1118,7 +1119,7 @@ export default function LinhaNeo() {
           {/* Card 3 – Controle pelo App */}
           <div className="bg-white flex flex-1 flex-col gap-[20px] items-start min-h-[310px] min-w-[280px] max-w-[320px] p-[20px] rounded-[16px]">
             <div className="flex flex-1 flex-col gap-[20px] items-center w-full win-1024:items-start">
-              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#0569ff] text-center win-1024:text-left w-full">
+              <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#0569ff] text-center win-1024:text-left w-full">
                 {t.ctrl.title}
               </p>
               <div className="flex flex-1 flex-col gap-[20px] items-center w-full">
@@ -1127,13 +1128,13 @@ export default function LinhaNeo() {
                   <div className="flex gap-[10px] items-center w-full shrink-0">
                     <div className="bg-[#f6f9fe] border border-[#0233c3] flex flex-wrap gap-[5px] items-center justify-center px-[12px] py-[8px] rounded-full shrink-0">
                       <FigmaIcon src={imgFeatWifi} size={12} aspectW={13.5} aspectH={9.5} />
-                      <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[9px] leading-[11px] text-[#0233c3] whitespace-nowrap">
+                      <span className="font-avenir-heavy text-[9px] leading-[11px] text-[#0233c3] whitespace-nowrap">
                         WiFi 5
                       </span>
                     </div>
                     <div className="bg-[#f6f9fe] border border-[#0233c3] flex flex-wrap gap-[5px] items-center justify-center px-[12px] py-[8px] rounded-full shrink-0">
                       <FigmaIcon src={imgBluetooth} size={12} aspectW={10} aspectH={15} />
-                      <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[9px] leading-[11px] text-[#0233c3] whitespace-nowrap">
+                      <span className="font-avenir-heavy text-[9px] leading-[11px] text-[#0233c3] whitespace-nowrap">
                         Bluetooth 5.3
                       </span>
                     </div>
@@ -1142,7 +1143,7 @@ export default function LinhaNeo() {
                     {t.ctrl.checks.map((check, i) => (
                       <div key={i} className="flex gap-[10px] items-center w-full">
                         <FigmaIcon src={imgFeatCheck} size={17} />
-                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#2a2a2b] flex-1 min-w-0">
+                        <p className="font-avenir-heavy text-[14px] leading-[17px] text-[#2a2a2b] flex-1 min-w-0">
                           {check}
                         </p>
                       </div>

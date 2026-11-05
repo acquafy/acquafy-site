@@ -1,4 +1,5 @@
 "use client";
+import Img from "@/components/ui/Img";
 
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
@@ -233,10 +234,10 @@ function FeatureCard({ icon, aspectW, aspectH, title, description }: {
   return (
     <div className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[20px] items-center min-h-[265px] min-w-[150px] px-[10px] py-[20px] rounded-[16px]">
       <FigmaIcon src={icon} size={40} aspectW={aspectW} aspectH={aspectH} />
-      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] text-center w-full min-h-[36px] flex items-center justify-center">
+      <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91] text-center w-full min-h-[36px] flex items-center justify-center">
         {title}
       </p>
-      <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#333] text-center w-full">
+      <p className="font-avenir-roman text-[14px] leading-[16px] text-[#333] text-center w-full">
         {description}
       </p>
     </div>
@@ -265,12 +266,12 @@ export default function TecnologiaFazDiferenca() {
 
         {/* Header */}
         <div className="flex flex-col gap-[10px] items-center text-center w-full">
-          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] max-w-[800px] w-full">
+          <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] max-w-[800px] w-full">
             <span className="text-[#0569ff]">{t.heading1}</span>
             {t.heading2}
           </h2>
           <p
-            className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[22px] text-[#333] max-w-[800px] w-full"
+            className="font-avenir-roman text-[18px] leading-[22px] text-[#333] max-w-[800px] w-full"
             style={{ fontFeatureSettings: '"case" 1' }}
           >
             {t.subtitle}
@@ -293,7 +294,7 @@ export default function TecnologiaFazDiferenca() {
           {/* Globe — inline flex item, overflows 135px upward from h-[265px] container */}
           <div className="flex flex-col h-[265px] items-center justify-end max-w-[260px] min-h-[250px] min-w-[260px] relative w-full md:flex-[1_0_0]">
             <div className="mix-blend-multiply relative shrink-0 size-[400px]">
-              <img
+              <Img
                 alt=""
                 className="absolute inset-0 max-w-none object-cover pointer-events-none size-full"
                 src={imgMagnific}

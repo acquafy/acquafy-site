@@ -1,4 +1,5 @@
 "use client";
+import Img from "@/components/ui/Img";
 import { useState } from "react";
 
 const ALL_IMAGES = [
@@ -44,7 +45,7 @@ export default function ImageReviewPage() {
                   <button onClick={() => remove(file)} style={{ position: "absolute", top: 8, right: 8, zIndex: 10, width: 28, height: 28, borderRadius: "50%", background: "rgba(255,255,255,0.12)", border: "none", color: "#fff", fontSize: 16, lineHeight: 1, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" }} aria-label="Remover">×</button>
                   <div style={{ background: "#1a1a1a", display: "flex", alignItems: "center", justifyContent: "center", minHeight: 200 }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={`/figma-assets/${file}`} alt={label} style={{ maxWidth: "100%", maxHeight: 280, objectFit: "contain", display: "block" }} />
+                    <Img src={`/figma-assets/${file}`} alt={label} style={{ maxWidth: "100%", maxHeight: 280, objectFit: "contain", display: "block" }} />
                   </div>
                   <div style={{ padding: "12px 14px" }}>
                     <div style={{ fontSize: 13, fontWeight: 600, color: "#e0e0e0", marginBottom: 4 }}>{label}</div>

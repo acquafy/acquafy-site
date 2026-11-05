@@ -1,4 +1,5 @@
 "use client";
+import Img from "@/components/ui/Img";
 import { useState } from "react";
 import { useLang, type Lang } from "@/context/LanguageContext";
 import { useFeature } from "@/components/FeatureFlags";
@@ -10,7 +11,7 @@ const imgSilver     = "/figma-assets/product-silver-d.webp";
 const imgGold       = "/figma-assets/product-gold-c.webp";
 const imgPlatinum   = "/figma-assets/product-platinum-d.webp";
 
-/* ── SVG stroke icons (rendered via CSS mask — NOT <img>) ────────── */
+/* ── SVG stroke icons (rendered via CSS mask — NOT <Img>) ────────── */
 const svgUser      = "/figma-assets/mp-icon-user.svg";
 const svgScale     = "/figma-assets/mp-icon-scale.svg";
 const svgCountry   = "/figma-assets/mp-icon-country.svg";
@@ -738,13 +739,13 @@ export const FORM_T: Record<Lang, FormLang> = {
 /* ── Shared styles ───────────────────────────────────────────────── */
 const inputCls =
   "bg-white border-[0.5px] border-[#cbd0d4] flex gap-[10px] items-start overflow-clip p-[20px] rounded-[12px] w-full " +
-  "font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#333] placeholder:text-[#c8cfd8] " +
+  "font-avenir-roman text-[16px] leading-[20px] text-[#333] placeholder:text-[#c8cfd8] " +
   "outline-none focus:border-[#0233c3] transition-colors";
 
 function FormField({ label, children }: { label: React.ReactNode; children: React.ReactNode }) {
   return (
     <div className="flex flex-col gap-[12px] items-start w-full">
-      <div className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#2a2a2b] w-full">
+      <div className="font-avenir-heavy text-[16px] leading-[20px] text-[#2a2a2b] w-full">
         {label}
       </div>
       {children}
@@ -785,7 +786,7 @@ export function PartnerModal({ tier, ft, onClose }: {
         {/* Header */}
         <div className="flex items-center justify-between shrink-0">
           <p
-            className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] bg-clip-text text-transparent"
+            className="font-avenir-heavy text-[20px] leading-[28px] bg-clip-text text-transparent"
             style={{ backgroundImage: "linear-gradient(90deg, #0233c3, #0569ff)" }}
           >
             {title}
@@ -872,7 +873,7 @@ export function PartnerModal({ tier, ft, onClose }: {
             type="submit"
             className="bg-[#0233c3] flex gap-[10px] items-center justify-center min-h-[50px] overflow-hidden px-[20px] py-[10px] rounded-[8px] w-full hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors cursor-pointer shrink-0"
           >
-            <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-white text-center whitespace-nowrap">
+            <span className="font-avenir-heavy text-[18px] leading-[22px] text-white text-center whitespace-nowrap">
               {ft.submitBtn}
             </span>
             <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
@@ -891,7 +892,7 @@ export function PartnerModal({ tier, ft, onClose }: {
                 <div className={`bg-[#0569ff] rounded-full w-full aspect-square transition-opacity ${aceito ? "opacity-100" : "opacity-0"}`} />
               </div>
             </div>
-            <span className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[18px] text-[#2a2a2b]">
+            <span className="font-avenir-roman text-[14px] leading-[18px] text-[#2a2a2b]">
               {ft.privacyPre}
               <a href="/terms-of-use" className="text-[#0569ff] hover:underline" onClick={(e) => e.stopPropagation()}>{ft.privacyTerms}</a>
               {ft.privacyMid}
@@ -997,7 +998,7 @@ export default function ModelosParceria() {
         <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
 
           {/* Header */}
-          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] text-center min-w-[240px] w-full">
+          <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] text-center min-w-[240px] w-full">
             {t.heading}
             <span className="text-[#0569ff]">{t.headingHL}</span>
           </h2>
@@ -1012,8 +1013,8 @@ export default function ModelosParceria() {
               >
                 {/* Medal + tier name */}
                 <div className="flex gap-[20px] items-center justify-center px-[20px] shrink-0 w-full">
-                  <img src={tier.medal} alt={tier.name} className="object-contain shrink-0 size-[55px]" />
-                  <p className="font-['Avenir_LT_Pro:95_Black'] flex-[1_0_0] min-w-px text-[32px] leading-[39px]" style={tier.nameStyle}>
+                  <Img src={tier.medal} alt={tier.name} className="object-contain shrink-0 size-[55px]" />
+                  <p className="font-avenir-black flex-[1_0_0] min-w-px text-[32px] leading-[39px]" style={tier.nameStyle}>
                     {tier.name}
                   </p>
                 </div>
@@ -1026,10 +1027,10 @@ export default function ModelosParceria() {
                         <StrokeIcon src={item.icon} color={tier.iconColor} aspectW={item.aspectW} aspectH={item.aspectH} />
                       </div>
                       <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-px">
-                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] shrink-0 w-full" style={tier.labelStyle}>
+                        <p className="font-avenir-heavy text-[18px] leading-[22px] shrink-0 w-full" style={tier.labelStyle}>
                           {item.label}
                         </p>
-                        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#3e4650] shrink-0 w-full">
+                        <p className="font-avenir-roman text-[16px] leading-[20px] text-[#3e4650] shrink-0 w-full">
                           {item.value}
                         </p>
                       </div>
@@ -1040,7 +1041,7 @@ export default function ModelosParceria() {
                 {/* Footer */}
                 <div className="flex items-center justify-center shrink-0 w-full">
                   <p
-                    className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] shrink-0 text-center w-full"
+                    className="font-avenir-heavy text-[18px] leading-[22px] shrink-0 text-center w-full"
                     style={tier.footerStyle ?? { color: "#3e4650" }}
                   >
                     {tier.footer}
@@ -1055,7 +1056,7 @@ export default function ModelosParceria() {
                       className={`flex items-center justify-center gap-[10px] min-h-[50px] px-[20px] py-[12px] rounded-[8px] w-full shrink-0 transition-opacity cursor-pointer ${tier.btnCls}`}
                       style={tier.btnStyle}
                     >
-                      <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-center whitespace-nowrap" style={tier.btnTextStyle}>
+                      <span className="font-avenir-heavy text-[16px] leading-[20px] text-center whitespace-nowrap" style={tier.btnTextStyle}>
                         {btnLabel(tier.key)}
                       </span>
                     </button>

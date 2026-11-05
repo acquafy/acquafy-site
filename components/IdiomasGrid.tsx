@@ -1,4 +1,5 @@
 "use client";
+import Img from "@/components/ui/Img";
 
 import { useLang, type Lang } from "@/context/LanguageContext";
 
@@ -70,7 +71,7 @@ function FlagImg({ code }: { code: Lang }) {
   return (
     <div className="flex flex-col items-center justify-center overflow-clip shrink-0 size-[24px]">
       <div className="flex-[1_0_0] min-h-px relative w-full" style={{ aspectRatio: `${f.aspectW}/${f.aspectH}` }}>
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={f.src} />
+        <Img alt="" className="absolute block inset-0 max-w-none size-full" src={f.src} />
       </div>
     </div>
   );
@@ -84,7 +85,7 @@ export default function IdiomasGrid() {
   return (
     <div className="bg-[#f6f9fe] flex flex-col gap-[20px] items-start p-[20px] rounded-[20px] w-full">
 
-      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[22px] text-[#07235c]">
+      <p className="font-avenir-heavy text-[20px] leading-[22px] text-[#07235c]">
         {t.titulo}
       </p>
 
@@ -102,7 +103,7 @@ export default function IdiomasGrid() {
               }`}
             >
               <FlagImg code={code} />
-              <span className="font-['Avenir_LT_Pro:85_Heavy'] not-italic text-[14px] leading-[normal] text-[#333] flex-[1_0_0] min-w-px">
+              <span className="font-avenir-heavy not-italic text-[14px] leading-[normal] text-[#333] flex-[1_0_0] min-w-px">
                 {NATIVE_LABELS[code]}
               </span>
             </button>

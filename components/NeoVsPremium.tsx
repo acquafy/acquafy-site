@@ -1,4 +1,5 @@
 "use client";
+import Img from "@/components/ui/Img";
 import FigmaIcon from "./FigmaIcon";
 import { PRODUCT_IMAGES } from "@/lib/products";
 import { useLang, type Lang } from "@/context/LanguageContext";
@@ -281,7 +282,7 @@ function CheckItem({ label, iconSrc }: { label: string; iconSrc: string }) {
   return (
     <div className="flex gap-[10px] items-center min-w-[170px] w-full">
       <FigmaIcon src={iconSrc} size={16} />
-      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#2a2a2b] flex-1 min-w-0">
+      <p className="font-avenir-heavy text-[14px] leading-[17px] text-[#2a2a2b] flex-1 min-w-0">
         {label}
       </p>
     </div>
@@ -297,7 +298,7 @@ export default function NeoVsPremium() {
       <div className="flex flex-col gap-[40px] items-center justify-center max-w-[1400px] w-full">
 
         {/* Title */}
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-center w-full">
+        <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-center w-full">
           <span className="text-[#0569ff]">Neo Essentials</span>
           {" vs "}
           <span
@@ -313,13 +314,13 @@ export default function NeoVsPremium() {
 
           {/* Essentials card */}
           <div className="border border-[#cbd0d4] flex flex-[1_0_0] flex-wrap gap-[20px] items-center justify-center min-w-[280px] overflow-hidden p-[40px] relative rounded-[16px]">
-            <img
+            <Img
               alt=""
               className="absolute inset-0 w-full h-full object-cover pointer-events-none rounded-[16px]"
               src={imgBgEssentials}
             />
             <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-[200px] relative">
-              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#0569ff] w-full">
+              <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#0569ff] w-full">
                 Neo Essentials
               </p>
               <div className="flex flex-col gap-[10px] items-start w-full">
@@ -329,7 +330,7 @@ export default function NeoVsPremium() {
               </div>
             </div>
             <div className="flex flex-[1_0_0] flex-col items-center justify-center h-[260px] max-w-[200px] min-w-[140px] relative">
-              <img
+              <Img
                 alt="Neo FIT"
                 className="w-auto h-full max-h-full object-contain pointer-events-none"
                 src={imgNeoFit}
@@ -339,13 +340,13 @@ export default function NeoVsPremium() {
 
           {/* Premium card */}
           <div className="border border-[#cbd0d4] flex flex-[1_0_0] flex-wrap gap-[20px] items-center justify-center min-w-[280px] overflow-hidden p-[40px] relative rounded-[16px]">
-            <img
+            <Img
               alt=""
               className="absolute inset-0 w-full h-full object-cover pointer-events-none rounded-[16px]"
               src={imgBgPremium}
             />
             <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-[200px] relative">
-              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#9f3df5] w-full">
+              <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#9f3df5] w-full">
                 Neo Premium
               </p>
               <div className="flex flex-col gap-[10px] items-start w-full">
@@ -355,7 +356,7 @@ export default function NeoVsPremium() {
               </div>
             </div>
             <div className="flex flex-[1_0_0] flex-col items-center justify-center h-[260px] max-w-[200px] min-w-[140px] relative">
-              <img
+              <Img
                 alt="Neo INFINITY SPARK H2"
                 className="w-auto h-full max-h-full object-contain pointer-events-none"
                 src={imgInfinitySparkH2}

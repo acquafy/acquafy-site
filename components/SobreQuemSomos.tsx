@@ -1,4 +1,5 @@
 "use client";
+import Img from "@/components/ui/Img";
 
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
@@ -325,10 +326,10 @@ function StatItem({
     <div className="flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-w-[150px] px-[20px]">
       <FigmaIcon src={icon} alt={iconAlt} size={40} />
       <div className="flex flex-col gap-[15px] items-start text-center w-full">
-        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] w-full min-h-[36px]">
+        <p className="font-avenir-heavy text-[16px] leading-[20px] text-[#1f2e91] w-full min-h-[36px]">
           {title}
         </p>
-        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#2a2a2b] w-full">
+        <p className="font-avenir-roman text-[14px] leading-[16px] text-[#2a2a2b] w-full">
           {description}
         </p>
       </div>
@@ -345,10 +346,10 @@ export default function SobreQuemSomos() {
 
         {/* Left: Quem Somos */}
         <div className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[20px] items-center max-w-[550px] min-w-[280px] px-[20px] py-[40px] rounded-[16px]">
-          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] w-full text-center lg:text-left">
+          <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] w-full text-center lg:text-left">
             {t.quemSomosTitle}
           </h2>
-          <div className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] w-full">
+          <div className="font-avenir-roman text-[18px] leading-[19px] text-[#333] w-full">
             <p className="leading-[19px] mb-[10px]">{t.p1}</p>
             <p className="leading-[19px] mb-[10px]">{t.p2}</p>
             <p className="leading-[19px] mb-[10px]">{t.p3}</p>
@@ -358,7 +359,7 @@ export default function SobreQuemSomos() {
 
         {/* Right: Interfy Corp */}
         <div className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[20px] items-center min-w-[280px] px-[20px] py-[40px] rounded-[16px]">
-          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] w-full text-center lg:text-left">
+          <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] w-full text-center lg:text-left">
             {t.interfyTitle}
           </h2>
 
@@ -371,7 +372,7 @@ export default function SobreQuemSomos() {
                 className="max-h-[82.47px] max-w-[300px] overflow-hidden relative w-full"
                 style={{ aspectRatio: "3060 / 794" }}
               >
-                <img
+                <Img
                   alt="Interfy Corp"
                   className="absolute inset-0 w-full h-full"
                   src={imgInterfyCorpLogo}
@@ -381,9 +382,9 @@ export default function SobreQuemSomos() {
 
             {/* Description column — border-l serves as divider */}
             <div className="flex flex-[1_0_0] flex-col items-center justify-center min-w-[280px] p-[15px] win-1024:border-l win-1024:border-solid win-1024:border-[#cbd0d4]">
-              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] w-full">
+              <p className="font-avenir-roman text-[18px] leading-[19px] text-[#333] w-full">
                 {t.interfyPrefix}{" "}
-                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[#0569ff]">Interfy Corp</span>
+                <span className="font-avenir-heavy text-[#0569ff]">Interfy Corp</span>
                 ,<br />
                 {t.interfyDesc}
               </p>

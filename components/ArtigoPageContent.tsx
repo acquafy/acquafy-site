@@ -41,7 +41,7 @@ function RenderBlock({ block, cor }: { block: ContentBlock; cor: string }) {
   switch (block.type) {
     case "p":
       return (
-        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[28px] text-[#444]">
+        <p className="font-avenir-roman text-[16px] leading-[28px] text-[#444]">
           {block.text}
         </p>
       );
@@ -49,14 +49,14 @@ function RenderBlock({ block, cor }: { block: ContentBlock; cor: string }) {
       return (
         <div className="flex items-start gap-[12px] mt-[8px]">
           <div className="mt-[5px] shrink-0 w-[4px] h-[20px] rounded-full" style={{ backgroundColor: cor }} />
-          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91]">
+          <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91]">
             {block.text}
           </h2>
         </div>
       );
     case "h3":
       return (
-        <h3 className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[22px] text-[#1f2e91] mt-[4px]">
+        <h3 className="font-avenir-heavy text-[16px] leading-[22px] text-[#1f2e91] mt-[4px]">
           {block.text}
         </h3>
       );
@@ -66,7 +66,7 @@ function RenderBlock({ block, cor }: { block: ContentBlock; cor: string }) {
           {block.items.map((item, i) => (
             <li key={i} className="flex gap-[12px] items-start">
               <span className="mt-[9px] shrink-0 size-[6px] rounded-full" style={{ backgroundColor: cor }} />
-              <span className="font-['Avenir_LT_Pro:55_Roman'] text-[15px] leading-[24px] text-[#444]">{item}</span>
+              <span className="font-avenir-roman text-[15px] leading-[24px] text-[#444]">{item}</span>
             </li>
           ))}
         </ul>
@@ -76,10 +76,10 @@ function RenderBlock({ block, cor }: { block: ContentBlock; cor: string }) {
         <ol className="flex flex-col gap-[10px] list-none m-0 p-0">
           {block.items.map((item, i) => (
             <li key={i} className="flex gap-[12px] items-start">
-              <span className="shrink-0 font-['Avenir_LT_Pro:85_Heavy'] text-[13px] leading-[24px] w-[20px] text-right" style={{ color: cor }}>
+              <span className="shrink-0 font-avenir-heavy text-[13px] leading-[24px] w-[20px] text-right" style={{ color: cor }}>
                 {i + 1}.
               </span>
-              <span className="font-['Avenir_LT_Pro:55_Roman'] text-[15px] leading-[24px] text-[#444]">{item}</span>
+              <span className="font-avenir-roman text-[15px] leading-[24px] text-[#444]">{item}</span>
             </li>
           ))}
         </ol>
@@ -91,7 +91,7 @@ function RenderBlock({ block, cor }: { block: ContentBlock; cor: string }) {
             <div key={i} className="flex gap-[16px] items-start">
               <div className="flex flex-col items-center shrink-0">
                 <div
-                  className="size-[34px] rounded-full flex items-center justify-center font-['Avenir_LT_Pro:85_Heavy'] text-[14px] text-white shadow-sm"
+                  className="size-[34px] rounded-full flex items-center justify-center font-avenir-heavy text-[14px] text-white shadow-sm"
                   style={{ backgroundColor: cor }}
                 >
                   {i + 1}
@@ -101,8 +101,8 @@ function RenderBlock({ block, cor }: { block: ContentBlock; cor: string }) {
                 )}
               </div>
               <div className={`flex flex-col gap-[4px] flex-1 pt-[5px] ${i < block.items.length - 1 ? "pb-[20px]" : ""}`}>
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] leading-[20px] text-[#1f2e91]">{step.title}</p>
-                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[22px] text-[#666]">{step.desc}</p>
+                <p className="font-avenir-heavy text-[15px] leading-[20px] text-[#1f2e91]">{step.title}</p>
+                <p className="font-avenir-roman text-[14px] leading-[22px] text-[#666]">{step.desc}</p>
               </div>
             </div>
           ))}
@@ -119,7 +119,7 @@ function RenderBlock({ block, cor }: { block: ContentBlock; cor: string }) {
               <path d="M6 5v4M6 3.5v.5" stroke={cor} strokeWidth="1.5" strokeLinecap="round" />
             </svg>
           </div>
-          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[22px]" style={{ color: cor }}>
+          <p className="font-avenir-roman text-[14px] leading-[22px]" style={{ color: cor }}>
             {block.text}
           </p>
         </div>
@@ -133,7 +133,7 @@ function RenderBlock({ block, cor }: { block: ContentBlock; cor: string }) {
               <path d="M6 5v2.5M6 9v.5" stroke="#d97706" strokeWidth="1.2" strokeLinecap="round" />
             </svg>
           </div>
-          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[22px] text-[#92400e]">
+          <p className="font-avenir-roman text-[14px] leading-[22px] text-[#92400e]">
             {block.text}
           </p>
         </div>
@@ -193,15 +193,15 @@ export default function ArtigoPageContent({ artigo, cat, relacionados, popularAr
 
             {/* Breadcrumb */}
             <nav className="flex flex-wrap gap-[6px] items-center">
-              <Link href="/artigos" className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-white/40 hover:text-white/70 transition-colors no-underline">
+              <Link href="/artigos" className="font-avenir-roman text-[12px] text-white/40 hover:text-white/70 transition-colors no-underline">
                 {ui.artigos}
               </Link>
               <span className="text-white/25 text-[12px]">/</span>
-              <Link href={`/artigos#${cat.slug}`} className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-white/70 hover:text-white/90 transition-colors no-underline">
+              <Link href={`/artigos#${cat.slug}`} className="font-avenir-roman text-[12px] text-white/70 hover:text-white/90 transition-colors no-underline">
                 {catTitulo}
               </Link>
               <span className="text-white/25 text-[12px]">/</span>
-              <span className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-white/30 truncate max-w-[200px]">
+              <span className="font-avenir-roman text-[12px] text-white/30 truncate max-w-[200px]">
                 {titulo}
               </span>
             </nav>
@@ -211,24 +211,24 @@ export default function ArtigoPageContent({ artigo, cat, relacionados, popularAr
               <div className="flex items-center justify-center shrink-0 size-[42px] rounded-[12px]" style={{ backgroundColor: "rgba(255,255,255,0.12)" }}>
                 <FigmaIcon src={cat.icon} size={20} aspectW={cat.aspectW} aspectH={cat.aspectH} className="brightness-0 invert" />
               </div>
-              <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] leading-[15px] px-[12px] py-[5px] rounded-full border text-white/90"
+              <span className="font-avenir-heavy text-[12px] leading-[15px] px-[12px] py-[5px] rounded-full border text-white/90"
                 style={{ backgroundColor: "rgba(255,255,255,0.12)", borderColor: "rgba(255,255,255,0.20)" }}>
                 {catTitulo}
               </span>
-              <span className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-white/40">
+              <span className="font-avenir-roman text-[12px] text-white/40">
                 · {artigo.tempoLeitura} {ui.minLeitura}
               </span>
             </div>
 
             {/* Title */}
-            <h1 className="font-['Avenir_LT_Pro:95_Black'] text-[clamp(24px,2.6vw+12px,42px)] leading-[1.13] text-white">
+            <h1 className="font-avenir-black text-[clamp(24px,2.6vw+12px,42px)] leading-[1.13] text-white">
               {titulo}
             </h1>
 
             {/* Tags */}
             <div className="flex flex-wrap gap-[6px]">
               {tags.map((tag) => (
-                <span key={tag} className="font-['Avenir_LT_Pro:85_Heavy'] text-[11px] leading-[14px] px-[10px] py-[4px] rounded-full text-white/90"
+                <span key={tag} className="font-avenir-heavy text-[11px] leading-[14px] px-[10px] py-[4px] rounded-full text-white/90"
                   style={{ backgroundColor: "rgba(255,255,255,0.14)" }}>
                   {tag}
                 </span>
@@ -238,7 +238,7 @@ export default function ArtigoPageContent({ artigo, cat, relacionados, popularAr
             {/* Resumo */}
             <div className="flex items-stretch">
               <div className="w-[4px] shrink-0 rounded-full mr-[16px]" style={{ backgroundColor: "rgba(255,255,255,0.40)" }} />
-              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[26px] text-white/75">
+              <p className="font-avenir-roman text-[16px] leading-[26px] text-white/75">
                 {resumo}
               </p>
             </div>
@@ -260,7 +260,7 @@ export default function ArtigoPageContent({ artigo, cat, relacionados, popularAr
                 <div className="flex items-center justify-center shrink-0 size-[26px] rounded-[7px]" style={{ backgroundColor: cat.corBg }}>
                   <FigmaIcon src={cat.icon} size={12} aspectW={cat.aspectW} aspectH={cat.aspectH} />
                 </div>
-                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[10px] leading-[13px] tracking-[0.09em] uppercase" style={{ color: cat.cor }}>
+                <span className="font-avenir-heavy text-[10px] leading-[13px] tracking-[0.09em] uppercase" style={{ color: cat.cor }}>
                   {ui.nestaCategoria}
                 </span>
               </div>
@@ -271,8 +271,8 @@ export default function ArtigoPageContent({ artigo, cat, relacionados, popularAr
                     href={`/artigos/${cat.slug}/${a.slug}`}
                     className={`block text-[12px] leading-[16px] px-[8px] py-[6px] rounded-[7px] transition-colors no-underline ${
                       a.slug === artigo.slug
-                        ? "font-['Avenir_LT_Pro:85_Heavy'] bg-[#f0f4ff]"
-                        : "font-['Avenir_LT_Pro:55_Roman'] text-[#666] hover:bg-[#f6f9fe] hover:text-[#0233c3]"
+                        ? "font-avenir-heavy bg-[#f0f4ff]"
+                        : "font-avenir-roman text-[#666] hover:bg-[#f6f9fe] hover:text-[#0233c3]"
                     }`}
                     style={a.slug === artigo.slug ? { color: cat.cor } : undefined}
                   >
@@ -284,7 +284,7 @@ export default function ArtigoPageContent({ artigo, cat, relacionados, popularAr
 
             {/* Artigos populares */}
             <div className="flex flex-col gap-[10px]">
-              <h3 className="font-['Avenir_LT_Pro:85_Heavy'] text-[10px] leading-[13px] text-[#aaa] uppercase tracking-[0.09em] px-[2px]">
+              <h3 className="font-avenir-heavy text-[10px] leading-[13px] text-[#aaa] uppercase tracking-[0.09em] px-[2px]">
                 {ui.artigosPopulares}
               </h3>
               {popularArticles.map(({ artigo: a, cat: c }) => {
@@ -299,10 +299,10 @@ export default function ArtigoPageContent({ artigo, cat, relacionados, popularAr
                       <FigmaIcon src={c.icon} size={24} aspectW={c.aspectW} aspectH={c.aspectH} className="brightness-0 invert" />
                     </div>
                     <div className="flex flex-col gap-[6px] flex-1 min-w-0">
-                      <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[18px] text-[#1f2e91] group-hover:text-[#0233c3] transition-colors">
+                      <span className="font-avenir-heavy text-[14px] leading-[18px] text-[#1f2e91] group-hover:text-[#0233c3] transition-colors">
                         {relTitulo(a)}
                       </span>
-                      <span className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] leading-[15px] text-[#888]">
+                      <span className="font-avenir-roman text-[12px] leading-[15px] text-[#888]">
                         {tPopCat?.titulo ?? c.titulo} · {a.tempoLeitura} {ui.minLeitura}
                       </span>
                     </div>
@@ -329,12 +329,12 @@ export default function ArtigoPageContent({ artigo, cat, relacionados, popularAr
           <div className="flex flex-col gap-[28px] max-w-[860px] w-full">
 
             <div className="flex items-center justify-between flex-wrap gap-[12px]">
-              <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[24px] text-[#1f2e91]">
+              <h2 className="font-avenir-heavy text-[18px] leading-[24px] text-[#1f2e91]">
                 {ui.outrosArtigos}{" "}
                 <span style={{ color: cat.cor }}>{catTitulo}</span>
               </h2>
               <Link href={`/artigos#${cat.slug}`} className="flex gap-[5px] items-center no-underline group">
-                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#0233c3] group-hover:underline">{ui.verTodos}</span>
+                <span className="font-avenir-heavy text-[13px] text-[#0233c3] group-hover:underline">{ui.verTodos}</span>
                 <FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} />
               </Link>
             </div>
@@ -349,10 +349,10 @@ export default function ArtigoPageContent({ artigo, cat, relacionados, popularAr
                   <div className="absolute left-0 top-0 bottom-0 w-[3px] opacity-0 group-hover:opacity-100 transition-opacity rounded-l-[12px]"
                     style={{ backgroundColor: cat.cor }} />
                   <div className="flex-1 min-w-0">
-                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[20px] text-[#333] group-hover:text-[#0233c3] transition-colors truncate">
+                    <p className="font-avenir-heavy text-[14px] leading-[20px] text-[#333] group-hover:text-[#0233c3] transition-colors truncate">
                       {relTitulo(rel)}
                     </p>
-                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#aaa] mt-[2px]">
+                    <p className="font-avenir-roman text-[12px] text-[#aaa] mt-[2px]">
                       {rel.tempoLeitura} {ui.minLeitura}
                     </p>
                   </div>

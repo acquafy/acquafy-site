@@ -1,4 +1,5 @@
 "use client";
+import Img from "@/components/ui/Img";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
 // ── Brand logo assets ─────────────────────────────────────────────────────────
@@ -55,7 +56,7 @@ export default function SobreEmpresas() {
     <section className="flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
 
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] text-center w-full">
+        <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] text-center w-full">
           {t.heading}
         </h2>
 
@@ -70,7 +71,7 @@ export default function SobreEmpresas() {
                 className="relative shrink-0 w-full overflow-hidden"
                 style={{ aspectRatio: `${brand.aw} / ${brand.ah}` }}
               >
-                <img
+                <Img
                   alt={brand.alt}
                   className="absolute inset-0 w-full h-full"
                   src={brand.src}

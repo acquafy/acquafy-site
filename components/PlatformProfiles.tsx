@@ -1,4 +1,5 @@
 "use client";
+import Img from "@/components/ui/Img";
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
@@ -196,7 +197,7 @@ export default function PlatformProfiles() {
     <section className="bg-white flex flex-col items-center justify-center overflow-hidden px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center justify-center max-w-[1400px] w-full">
 
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] text-center w-full">
+        <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] text-center w-full">
           {t.heading}
         </h2>
 
@@ -205,14 +206,14 @@ export default function PlatformProfiles() {
             <div key={p.title} className="bg-[#f6f9fe] flex flex-[1_0_0] gap-[20px] items-center justify-center min-w-[240px] p-[20px] rounded-[16px]">
               <div className="flex items-center justify-center shrink-0 size-[40px]">
                 {p.iconType === "png" ? (
-                  <img alt={p.title} className="size-full object-contain" src={p.icon} />
+                  <Img alt={p.title} className="size-full object-contain" src={p.icon} />
                 ) : (
                   <FigmaIcon src={p.icon} size={40} aspectW={p.iconW} aspectH={p.iconH} />
                 )}
               </div>
               <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-px">
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] w-full">{p.title}</p>
-                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#333] w-full">{p.desc}</p>
+                <p className="font-avenir-heavy text-[16px] leading-[20px] text-[#1f2e91] w-full">{p.title}</p>
+                <p className="font-avenir-roman text-[14px] leading-[16px] text-[#333] w-full">{p.desc}</p>
               </div>
             </div>
           ))}

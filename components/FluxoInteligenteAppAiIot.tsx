@@ -1,4 +1,5 @@
 "use client";
+import Img from "@/components/ui/Img";
 import React from "react";
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
@@ -259,7 +260,7 @@ export default function FluxoInteligenteAppAiIot() {
       <div className="flex flex-col gap-[40px] items-center justify-center max-w-[1400px] rounded-[16px] w-full">
 
         {/* Título */}
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-center w-full">
+        <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-center w-full">
           <span className="text-[#0569ff]">{t.heading1}</span>
           <span className="text-[#1f2e91]">{t.heading2}</span>
         </h2>
@@ -278,7 +279,7 @@ export default function FluxoInteligenteAppAiIot() {
                   {step.type === "icon" ? (
                     <FigmaIcon src={step.src} size={40} aspectW={step.aspectW} aspectH={step.aspectH} />
                   ) : (
-                    <img
+                    <Img
                       src={step.src}
                       alt={step.label}
                       className="w-full h-full object-contain"
@@ -288,7 +289,7 @@ export default function FluxoInteligenteAppAiIot() {
 
                 {/* Label */}
                 <p
-                  className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[18px] text-[#1f2e91] text-center w-full min-h-[36px] flex items-center justify-center"
+                  className="font-avenir-heavy text-[16px] leading-[18px] text-[#1f2e91] text-center w-full min-h-[36px] flex items-center justify-center"
                   style={{}}
                 >
                   {step.label}
@@ -301,7 +302,7 @@ export default function FluxoInteligenteAppAiIot() {
                   className="hidden lg:flex flex-1 items-start justify-center shrink-0"
                   style={{ paddingTop: 52 }}
                 >
-                  <img src={imgArrow} alt="" width={41} height={15} />
+                  <Img src={imgArrow} alt="" width={41} height={15} />
                 </div>
               )}
             </React.Fragment>
@@ -309,7 +310,7 @@ export default function FluxoInteligenteAppAiIot() {
         </div>
 
         {/* Subtítulo */}
-        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#2a2a2b] text-center w-full min-w-[240px]">
+        <p className="font-avenir-roman text-[18px] leading-[26px] text-[#2a2a2b] text-center w-full min-w-[240px]">
           {t.subtitle}
         </p>
       </div>

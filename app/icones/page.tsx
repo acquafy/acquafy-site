@@ -1,3 +1,4 @@
+import Img from "@/components/ui/Img";
 import type { Metadata } from "next";
 import data from "./icon-data.json";
 import version from "./icon-version.json";
@@ -25,7 +26,7 @@ function Tile({ e, src, label }: { e: Entry; src: string; label: string }) {
     <div className="flex flex-col items-center gap-[6px]">
       <div className="flex h-[64px] w-[64px] items-center justify-center rounded-[10px] bg-[#6f7d89]">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={`${src}?v=${VERSION}`} alt={`${label} ${e.file}`} className="h-[44px] w-[44px] object-contain" />
+        <Img src={`${src}?v=${VERSION}`} alt={`${label} ${e.file}`} className="h-[44px] w-[44px] object-contain" />
       </div>
       <span className="text-[11px] leading-[13px] text-[#6b7280]">{label}</span>
     </div>

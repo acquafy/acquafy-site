@@ -136,24 +136,24 @@ export default function PoliticasPrivacidadeBanner() {
         {/* Badge */}
         <div className="flex items-center justify-center">
           <span
-            className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] leading-[16px] text-[#0569ff] px-[16px] py-[8px] rounded-full border border-[#0569ff]/30"
+            className="font-avenir-heavy text-[13px] leading-[16px] text-[#0569ff] px-[16px] py-[8px] rounded-full border border-[#0569ff]/30"
             style={{ background: "rgba(5,105,255,0.08)" }}
           >
             {t.badge}
           </span>
         </div>
 
-        <h1 className="font-['Avenir_LT_Pro:95_Black'] text-[48px] leading-[56px] text-[#2a2a2b] mob:text-[32px] mob:leading-[40px]">
+        <h1 className="font-avenir-black text-[48px] leading-[56px] text-[#2a2a2b] mob:text-[32px] mob:leading-[40px]">
           {t.headingMain}{" "}
           <span className="text-[#0569ff]">{t.headingHighlight}</span>
         </h1>
 
-        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[28px] text-[#555] max-w-[620px]">
+        <p className="font-avenir-roman text-[18px] leading-[28px] text-[#555] max-w-[620px]">
           {t.sub}
         </p>
 
         {/* Última atualização */}
-        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[18px] text-[#888]">
+        <p className="font-avenir-roman text-[14px] leading-[18px] text-[#888]">
           {t.lastUpdate}
         </p>
       </div>

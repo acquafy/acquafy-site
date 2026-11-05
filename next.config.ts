@@ -1,13 +1,29 @@
 import type { NextConfig } from "next";
 
+// /public assets are not content-hashed, so they get a day of browser cache plus a week of stale-while-revalidate
+// (an asset replaced under the same name is picked up within a day). Fonts are versioned by hand: rename on change.
+const ASSET_CACHE = "public, max-age=86400, stale-while-revalidate=604800";
+const FONT_CACHE = "public, max-age=31536000, immutable";
+
 const nextConfig: NextConfig = {
   images: {
+    // components/ui/Img.tsx routes every raster in /public through the optimizer: AVIF first, WebP fallback.
+    formats: ["image/avif", "image/webp"],
+    // Optimized variants of the static /public sources can be cached for a month.
+    minimumCacheTTL: 60 * 60 * 24 * 31,
     remotePatterns: [
       {
         protocol: "https",
         hostname: "www.figma.com",
       },
     ],
+  },
+  async headers() {
+    return [
+      { source: "/fonts/:path*", headers: [{ key: "Cache-Control", value: FONT_CACHE }] },
+      { source: "/figma-assets/:path*", headers: [{ key: "Cache-Control", value: ASSET_CACHE }] },
+      { source: "/images/:path*", headers: [{ key: "Cache-Control", value: ASSET_CACHE }] },
+    ];
   },
   async redirects() {
     return [

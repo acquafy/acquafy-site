@@ -1,4 +1,5 @@
 "use client";
+import Img from "@/components/ui/Img";
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
@@ -230,12 +231,12 @@ export default function CheckoutUp() {
     <section className="flex flex-col items-center justify-center p-[20px] w-full lg:bg-transparent bg-gradient-to-b from-[#fafbff] to-[#e8f1f8]">
       <div className="relative flex flex-col lg:items-start items-center lg:max-w-[1400px] lg:p-[20px] lg:rounded-[16px] w-full lg:overflow-hidden gap-[20px]">
 
-        <img
+        <Img
           alt=""
           className="hidden lg:block win-1280:hidden absolute inset-0 w-full h-full object-cover pointer-events-none rounded-[16px]"
           src={imgBg1024}
         />
-        <img
+        <Img
           alt=""
           className="hidden win-1280:block absolute inset-0 w-full h-full object-cover pointer-events-none rounded-[16px]"
           src={imgBg1400}
@@ -245,12 +246,12 @@ export default function CheckoutUp() {
 
           <div className="bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center max-w-[280px] px-[12px] py-[8px] rounded-full shrink-0">
             <FigmaIcon src={imgShieldLabel} size={16} aspectW={26.14} aspectH={30} />
-            <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] whitespace-nowrap">
+            <span className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3] whitespace-nowrap">
               {t.badge}
             </span>
           </div>
 
-          <h2 className="font-['Avenir_LT_Pro:95_Black'] text-[32px] leading-[39px] text-[#2a2a2b] w-full lg:text-left text-center">
+          <h2 className="font-avenir-black text-[32px] leading-[39px] text-[#2a2a2b] w-full lg:text-left text-center">
             {t.h2a}{" "}
             <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(to bottom, #0233c3, #9f3df5)" }}>
               {t.h2b}
@@ -265,10 +266,10 @@ export default function CheckoutUp() {
               >
                 <FigmaIcon src={imgGift} size={26} />
               </div>
-              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] flex-1 min-w-0">
+              <p className="font-avenir-roman text-[18px] leading-[19px] text-[#333] flex-1 min-w-0">
                 {t.bonus1}
                 <span
-                  className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] bg-clip-text text-transparent"
+                  className="font-avenir-heavy text-[20px] leading-[28px] bg-clip-text text-transparent"
                   style={{ backgroundImage: "linear-gradient(to bottom, #0233c3, #9f3df5)" }}
                 >
                   R$100,00
@@ -283,10 +284,10 @@ export default function CheckoutUp() {
               <div key={item.title} className="flex flex-[1_0_0] gap-[10px] items-center min-w-[180px]">
                 <FigmaIcon src={item.icon} size={24} aspectW={item.aspectW} aspectH={item.aspectH} />
                 <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-0">
-                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[17px] leading-[20px] text-[#1f2e91] w-full">
+                  <p className="font-avenir-heavy text-[17px] leading-[20px] text-[#1f2e91] w-full">
                     {item.title}
                   </p>
-                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[17px] text-[#2a2a2b] w-full">
+                  <p className="font-avenir-roman text-[14px] leading-[17px] text-[#2a2a2b] w-full">
                     {item.sub}
                   </p>
                 </div>
@@ -300,18 +301,18 @@ export default function CheckoutUp() {
           >
             <FigmaIcon src={imgLock} size={30} aspectW={27} aspectH={30} />
             <div className="flex flex-[1_0_0] flex-col gap-[5px] items-start justify-center min-w-[240px]">
-              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-white w-full">
+              <p className="font-avenir-heavy text-[18px] leading-[22px] text-white w-full">
                 {t.bannerTitle}
               </p>
-              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-white w-full">
+              <p className="font-avenir-roman text-[14px] leading-[16px] text-white w-full">
                 {t.bannerSub1}
-                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[#73d0ff]">UP</span>
+                <span className="font-avenir-heavy text-[#73d0ff]">UP</span>
                 {t.bannerSub2}
               </p>
             </div>
-            <div className="flex flex-[1_0_0] flex-col items-start max-h-[33.57px] max-w-[160px] min-w-[160px]">
-              <div className="relative w-full" style={{ aspectRatio: "1133.86 / 237.88" }}>
-                <img
+            <div className="flex flex-[1_0_0] flex-col items-start max-w-[160px] min-w-[160px]">
+              <div className="relative w-full" style={{ aspectRatio: "200 / 33.0452" }}>
+                <Img
                   alt="Acquafy"
                   className="absolute inset-0 w-full h-full object-contain"
                   src={imgLogoWhite}
@@ -322,7 +323,7 @@ export default function CheckoutUp() {
         </div>
 
         <div className="lg:hidden flex flex-col h-[380px] items-center justify-center overflow-clip rounded-[16px] shrink-0 w-full">
-          <img
+          <Img
             alt="Acquafy Neo UP"
             className="w-full h-full object-cover"
             src={imgProduct}
