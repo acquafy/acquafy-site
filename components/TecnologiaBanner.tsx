@@ -1,4 +1,5 @@
 "use client";
+import Img from "@/components/ui/Img";
 
 import React from "react";
 import FigmaIcon from "./FigmaIcon";
@@ -264,7 +265,7 @@ function HeroStat({ icon, label, aspectW = 30, aspectH = 30 }: {
   return (
     <div className="flex flex-[1_0_0] flex-col gap-[20px] items-center min-w-[100px]">
       <FigmaIcon src={icon} size={40} aspectW={aspectW} aspectH={aspectH} />
-      <div className="[word-break:break-word] flex flex-col font-['Avenir_LT_Pro:85_Heavy'] justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[16px] text-[#1f2e91] text-center">
+      <div className="[word-break:break-word] flex flex-col font-avenir-heavy justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[16px] text-[#1f2e91] text-center">
         <p className="leading-[20px]">{label}</p>
       </div>
     </div>
@@ -277,7 +278,7 @@ function TrustItem({ icon, label, aspectW = 30, aspectH = 30 }: {
   return (
     <div className="content-center flex flex-[1_0_0] flex-wrap gap-[10px] items-center justify-center min-w-[280px] lg:justify-start lg:min-w-[160px]">
       <FigmaIcon src={icon} size={30} aspectW={aspectW} aspectH={aspectH} />
-      <div className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both] [word-break:break-word] flex flex-[1_0_0] flex-col font-['Avenir_LT_Pro:85_Heavy'] justify-center leading-[0] min-w-px not-italic relative text-[18px] text-white">
+      <div className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both] [word-break:break-word] flex flex-[1_0_0] flex-col font-avenir-heavy justify-center leading-[0] min-w-px not-italic relative text-[18px] text-white">
         <p className="leading-[22px]">{label}</p>
       </div>
     </div>
@@ -296,7 +297,7 @@ export default function TecnologiaBanner() {
       lg:bg-transparent lg:h-[calc(100vh-80px)] lg:overflow-hidden
     ">
       {/* Background photo — lg+ only */}
-      <img
+      <Img
         alt=""
         className="hidden lg:block absolute inset-0 w-full h-full object-cover pointer-events-none"
         src={imgBg}
@@ -317,24 +318,24 @@ export default function TecnologiaBanner() {
           {/* Badge */}
           <div className="bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center max-w-[280px] px-[12px] py-[8px] rounded-full shrink-0">
             <FigmaIcon src={imgGlobe} size={16} />
-            <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] whitespace-nowrap">
+            <span className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3] whitespace-nowrap">
               {t.badge}
             </span>
           </div>
 
           {/* Title */}
-          <h1 className="[word-break:break-word] font-['Avenir_LT_Pro:95_Black'] leading-[0] min-w-full not-italic relative shrink-0 text-hero-xl text-[#2a2a2b] text-center lg:text-left">
+          <h1 className="[word-break:break-word] font-avenir-black leading-[0] min-w-full not-italic relative shrink-0 text-hero-xl text-[#2a2a2b] text-center lg:text-left">
             <span className="leading-[clamp(36px,12.5vw-92px,68px)]">{t.titleLine1}</span>
             <span className="leading-[clamp(36px,12.5vw-92px,68px)] text-[#0569ff]">{t.titleLine2}</span>
           </h1>
 
           {/* Subtitle */}
-          <div className="[word-break:break-word] flex flex-col font-['Avenir_LT_Pro:85_Heavy'] justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[20px] text-[#0569ff] text-center lg:text-left">
+          <div className="[word-break:break-word] flex flex-col font-avenir-heavy justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[20px] text-[#0569ff] text-center lg:text-left">
             <p className="leading-[28px]">{t.subtitle}</p>
           </div>
 
           {/* Description */}
-          <div className="[word-break:break-word] flex flex-col font-['Avenir_LT_Pro:55_Roman'] justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[18px] text-[#333] text-center lg:text-left">
+          <div className="[word-break:break-word] flex flex-col font-avenir-roman justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[18px] text-[#333] text-center lg:text-left">
             <p className="leading-[26px]">{t.description}</p>
           </div>
 
@@ -349,7 +350,7 @@ export default function TecnologiaBanner() {
 
         {/* Card image — < lg only */}
         <div className="h-[300px] min-w-[280px] overflow-hidden relative rounded-[16px] shrink-0 w-full lg:hidden">
-          <img
+          <Img
             alt=""
             className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[16px] size-full"
             src={imgBgCard}

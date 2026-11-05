@@ -1,4 +1,5 @@
 "use client";
+import Img from "@/components/ui/Img";
 import Link from "next/link";
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
@@ -351,7 +352,7 @@ export default function NeoMedia() {
         flex-col gap-[20px] items-center justify-center
         lg:flex-row lg:flex-wrap lg:items-center lg:justify-center lg:gap-[20px]
       ">
-        <img
+        <Img
           alt=""
           className="absolute inset-0 w-full h-full object-cover pointer-events-none rounded-[16px] z-0"
           src={imgBg}
@@ -360,12 +361,12 @@ export default function NeoMedia() {
         <div className="relative z-10 flex flex-col gap-[20px] items-start min-w-[240px] w-full lg:flex-[1_0_0]">
 
           <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start justify-center min-w-[240px] pt-[20px]">
-            <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-white w-full text-center lg:text-left">
+            <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-white w-full text-center lg:text-left">
               Neo Media
             </h2>
             <div className="flex flex-wrap gap-y-[20px] items-center w-full">
               <div className="flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-w-[210px] lg:items-start">
-                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-white w-full text-center lg:text-left">
+                <p className="font-avenir-roman text-[16px] leading-[20px] text-white w-full text-center lg:text-left">
                   {t.descLine1}
                   <br />
                   {t.descLine2}
@@ -377,7 +378,7 @@ export default function NeoMedia() {
                       href="/app/cadastro-investidor"
                       className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex gap-[10px] items-center justify-center min-h-[30px] px-[20px] py-[10px] rounded-[8px] shrink-0 w-full lg:w-fit cursor-pointer"
                     >
-                      <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors text-center">
+                      <span className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors text-center">
                         {t.btnInvest}
                       </span>
                       <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
@@ -395,7 +396,7 @@ export default function NeoMedia() {
                     href="/buy/checkin"
                     className="group bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex gap-[10px] items-center justify-center min-h-[30px] px-[20px] py-[10px] rounded-[8px] shrink-0 w-full lg:w-fit cursor-pointer"
                   >
-                    <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white text-center">
+                    <span className="font-avenir-heavy text-[14px] leading-[17px] text-white text-center">
                       {t.btnBuy}
                     </span>
                     <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
@@ -415,11 +416,11 @@ export default function NeoMedia() {
                 <div key={i} className="flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-[150px]">
                   <div className="flex flex-col gap-[20px] h-[65px] items-start justify-center w-full shrink-0">
                     <BenefitIcon icon={b.icon} aspectW={b.aspectW} aspectH={b.aspectH} />
-                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] min-h-[25px] w-full">
+                    <p className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3] min-h-[25px] w-full">
                       {t.benefits[i].title}
                     </p>
                   </div>
-                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#2a2a2b] min-h-[75px] w-full">
+                  <p className="font-avenir-roman text-[14px] leading-[16px] text-[#2a2a2b] min-h-[75px] w-full">
                     {t.benefits[i].desc}
                   </p>
                 </div>
@@ -431,10 +432,10 @@ export default function NeoMedia() {
                 <div key={i} className="flex flex-[1_0_0] gap-[10px] items-start min-w-[120px]">
                   <BenefitIcon icon={f.icon} aspectW={f.aspectW} aspectH={f.aspectH} />
                   <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-0">
-                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[15px] text-[#1f2e91] w-full">
+                    <p className="font-avenir-heavy text-[14px] leading-[15px] text-[#1f2e91] w-full">
                       {t.bottomFeatures[i].title}
                     </p>
-                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] leading-[16px] text-[#2a2a2b] w-full">
+                    <p className="font-avenir-roman text-[12px] leading-[16px] text-[#2a2a2b] w-full">
                       {t.bottomFeatures[i].desc}
                     </p>
                   </div>
@@ -452,7 +453,7 @@ export default function NeoMedia() {
         ">
           <div className="flex flex-col items-center justify-center h-[430px] w-[151px] shrink-0">
             <div className="flex-[1_0_0] min-h-px relative" style={{ aspectRatio: "1441 / 4096" }}>
-              <img
+              <Img
                 alt="Acquafy Neo Media"
                 className="absolute inset-0 max-w-none object-cover pointer-events-none size-full"
                 src={imgProduct}

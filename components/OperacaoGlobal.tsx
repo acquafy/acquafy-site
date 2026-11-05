@@ -1,4 +1,5 @@
 "use client";
+import Img from "@/components/ui/Img";
 
 import { useLang, type Lang } from "@/context/LanguageContext";
 
@@ -217,7 +218,7 @@ export default function OperacaoGlobal() {
     <section className="bg-white flex items-center justify-center px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
 
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] not-italic text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-center min-w-[240px] w-full">
+        <h2 className="font-avenir-heavy not-italic text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-center min-w-[240px] w-full">
           <span className="text-[#1f2e91]">{t.headingA}</span>
           <span className="text-[#0569ff]">{t.headingB}</span>
         </h2>
@@ -228,12 +229,12 @@ export default function OperacaoGlobal() {
               key={i}
               className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[10px] items-center min-h-[110px] min-w-[200px] p-[20px] rounded-[16px]"
             >
-              <img src={f.icon} alt="" className="size-[30px] object-contain shrink-0" />
+              <Img src={f.icon} alt="" className="size-[30px] object-contain shrink-0" />
               <div className="flex flex-col gap-[10px] items-start text-center w-full shrink-0">
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] not-italic text-[16px] leading-[20px] text-[#1f2e91] min-h-[32px] shrink-0 w-full">
+                <p className="font-avenir-heavy not-italic text-[16px] leading-[20px] text-[#1f2e91] min-h-[32px] shrink-0 w-full">
                   {f.title}
                 </p>
-                <p className="font-['Avenir_LT_Pro:55_Roman'] not-italic text-[14px] leading-[16px] text-[#333] shrink-0 w-full">
+                <p className="font-avenir-roman not-italic text-[14px] leading-[16px] text-[#333] shrink-0 w-full">
                   {f.desc}
                 </p>
               </div>

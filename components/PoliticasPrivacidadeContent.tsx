@@ -2346,7 +2346,7 @@ function Section({ id, title, children }: SectionProps) {
   return (
     <section id={id} className="flex flex-col gap-[24px] scroll-mt-[100px]">
       <div className="flex flex-col gap-[12px]">
-        <h2 className="font-['Avenir_LT_Pro:95_Black'] text-[28px] leading-[34px] text-[#2a2a2b] mob:text-[22px] mob:leading-[28px]">
+        <h2 className="font-avenir-black text-[28px] leading-[34px] text-[#2a2a2b] mob:text-[22px] mob:leading-[28px]">
           {title}
         </h2>
         <div
@@ -2362,7 +2362,7 @@ function Section({ id, title, children }: SectionProps) {
 function Subsection({ title, children }: SubsectionProps) {
   return (
     <div className="flex flex-col gap-[12px]">
-      <h3 className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[24px] text-[#1f2e91]">
+      <h3 className="font-avenir-heavy text-[18px] leading-[24px] text-[#1f2e91]">
         {title}
       </h3>
       {children}
@@ -2372,7 +2372,7 @@ function Subsection({ title, children }: SubsectionProps) {
 
 function P({ children }: { children: React.ReactNode }) {
   return (
-    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[26px] text-[#444]">
+    <p className="font-avenir-roman text-[16px] leading-[26px] text-[#444]">
       {children}
     </p>
   );
@@ -2387,7 +2387,7 @@ function UL({ items }: { items: string[] }) {
             className="mt-[8px] shrink-0 size-[6px] rounded-full"
             style={{ background: "linear-gradient(135deg, #0569ff, #0035c1)" }}
           />
-          <span className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[26px] text-[#444]">
+          <span className="font-avenir-roman text-[16px] leading-[26px] text-[#444]">
             {item}
           </span>
         </li>
@@ -2407,14 +2407,14 @@ export default function PoliticasPrivacidadeContent() {
 
         {/* ── Sidebar de navegação (desktop only) ────────────────────────── */}
         <aside className="hidden xl:flex flex-col gap-[8px] sticky top-[100px] self-start">
-          <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] leading-[16px] text-[#888] uppercase tracking-[1px] mb-[8px]">
+          <p className="font-avenir-heavy text-[12px] leading-[16px] text-[#888] uppercase tracking-[1px] mb-[8px]">
             {t.onThisPage}
           </p>
           {t.nav.map((item) => (
             <a
               key={item.id}
               href={`#${item.id}`}
-              className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[20px] text-[#555] hover:text-[#0569ff] transition-colors py-[4px] border-l-[2px] border-transparent hover:border-[#0569ff] pl-[12px]"
+              className="font-avenir-roman text-[14px] leading-[20px] text-[#555] hover:text-[#0569ff] transition-colors py-[4px] border-l-[2px] border-transparent hover:border-[#0569ff] pl-[12px]"
             >
               {item.label}
             </a>
@@ -2439,10 +2439,10 @@ export default function PoliticasPrivacidadeContent() {
             <div className="flex flex-col gap-[8px] p-[24px] rounded-[12px] bg-[#f8faff] border border-[#e0e8ff]">
               {t.s1Labels.map(([label, value]) => (
                 <div key={label} className="flex gap-[12px] items-center">
-                  <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] text-[#1f2e91] w-[80px] shrink-0">
+                  <span className="font-avenir-heavy text-[14px] text-[#1f2e91] w-[80px] shrink-0">
                     {label}:
                   </span>
-                  <span className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#444]">
+                  <span className="font-avenir-roman text-[14px] text-[#444]">
                     {value}
                   </span>
                 </div>
@@ -2476,8 +2476,8 @@ export default function PoliticasPrivacidadeContent() {
               <div key={base} className="flex gap-[16px] items-start p-[20px] rounded-[12px] bg-[#f8faff] border border-[#e0e8ff]">
                 <div className="shrink-0 mt-[2px] size-[8px] rounded-full bg-[#0569ff] mt-[9px]" />
                 <div className="flex flex-col gap-[4px]">
-                  <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91]">{base}</span>
-                  <span className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[22px] text-[#555]">{desc}</span>
+                  <span className="font-avenir-heavy text-[15px] text-[#1f2e91]">{base}</span>
+                  <span className="font-avenir-roman text-[14px] leading-[22px] text-[#555]">{desc}</span>
                 </div>
               </div>
             ))}
@@ -2506,12 +2506,12 @@ export default function PoliticasPrivacidadeContent() {
             {t.s6Cookies.map(({ tipo, cor, desc }) => (
               <div key={tipo} className="flex gap-[16px] items-start">
                 <span
-                  className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] px-[10px] py-[4px] rounded-full shrink-0 mt-[2px]"
+                  className="font-avenir-heavy text-[12px] px-[10px] py-[4px] rounded-full shrink-0 mt-[2px]"
                   style={{ color: cor, background: `${cor}18`, border: `1px solid ${cor}40` }}
                 >
                   {tipo}
                 </span>
-                <span className="font-['Avenir_LT_Pro:55_Roman'] text-[15px] leading-[24px] text-[#444]">
+                <span className="font-avenir-roman text-[15px] leading-[24px] text-[#444]">
                   {desc}
                 </span>
               </div>
@@ -2539,8 +2539,8 @@ export default function PoliticasPrivacidadeContent() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-[16px]">
               {t.s9Rights.map(({ direito, desc }) => (
                 <div key={direito} className="flex flex-col gap-[8px] p-[20px] rounded-[12px] bg-[#f8faff] border border-[#e0e8ff]">
-                  <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] text-[#0569ff]">{direito}</span>
-                  <span className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[22px] text-[#555]">{desc}</span>
+                  <span className="font-avenir-heavy text-[14px] text-[#0569ff]">{direito}</span>
+                  <span className="font-avenir-roman text-[14px] leading-[22px] text-[#555]">{desc}</span>
                 </div>
               ))}
             </div>
@@ -2594,18 +2594,18 @@ export default function PoliticasPrivacidadeContent() {
                   : null;
                 return (
                   <div key={label} className="flex gap-[12px] items-center py-[8px] border-b border-[#e0e8ff] last:border-0">
-                    <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] text-[#1f2e91] w-[80px] shrink-0">
+                    <span className="font-avenir-heavy text-[14px] text-[#1f2e91] w-[80px] shrink-0">
                       {label}:
                     </span>
                     {href ? (
                       <a
                         href={href}
-                        className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#0569ff] hover:underline underline-offset-2 transition-colors"
+                        className="font-avenir-roman text-[14px] text-[#0569ff] hover:underline underline-offset-2 transition-colors"
                       >
                         {value}
                       </a>
                     ) : (
-                      <span className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#444]">
+                      <span className="font-avenir-roman text-[14px] text-[#444]">
                         {value}
                       </span>
                     )}

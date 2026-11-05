@@ -1,4 +1,5 @@
 "use client";
+import Img from "@/components/ui/Img";
 import { useState } from "react";
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
@@ -273,13 +274,13 @@ const FORM_T: Record<Lang, CampaignFormLang> = {
 
 const inputCls =
   "bg-white border-[0.5px] border-[#cbd0d4] flex gap-[10px] items-start overflow-clip p-[20px] rounded-[12px] w-full " +
-  "font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#333] placeholder:text-[#c8cfd8] " +
+  "font-avenir-roman text-[16px] leading-[20px] text-[#333] placeholder:text-[#c8cfd8] " +
   "outline-none focus:border-[#0233c3] transition-colors";
 
 function FormField({ label, children }: { label: React.ReactNode; children: React.ReactNode }) {
   return (
     <div className="flex flex-col gap-[12px] items-start w-full">
-      <div className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#2a2a2b] w-full">
+      <div className="font-avenir-heavy text-[16px] leading-[20px] text-[#2a2a2b] w-full">
         {label}
       </div>
       {children}
@@ -306,7 +307,7 @@ function CampaignModal({ ft, onClose }: { ft: CampaignFormLang; onClose: () => v
         {/* Header */}
         <div className="flex items-center justify-between shrink-0">
           <p
-            className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] bg-clip-text text-transparent"
+            className="font-avenir-heavy text-[20px] leading-[28px] bg-clip-text text-transparent"
             style={{ backgroundImage: "linear-gradient(90deg, #0233c3, #0569ff)" }}
           >
             {ft.modalTitle}
@@ -363,7 +364,7 @@ function CampaignModal({ ft, onClose }: { ft: CampaignFormLang; onClose: () => v
             type="submit"
             className="bg-[#0233c3] flex gap-[10px] items-center justify-center min-h-[50px] overflow-hidden px-[20px] py-[10px] rounded-[8px] w-full hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors cursor-pointer shrink-0"
           >
-            <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-white text-center whitespace-nowrap">
+            <span className="font-avenir-heavy text-[18px] leading-[22px] text-white text-center whitespace-nowrap">
               {ft.submitBtn}
             </span>
             <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
@@ -381,7 +382,7 @@ function CampaignModal({ ft, onClose }: { ft: CampaignFormLang; onClose: () => v
                 <div className={`bg-[#0569ff] rounded-full w-full aspect-square transition-opacity ${aceito ? "opacity-100" : "opacity-0"}`} />
               </div>
             </div>
-            <span className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[18px] text-[#2a2a2b]">
+            <span className="font-avenir-roman text-[14px] leading-[18px] text-[#2a2a2b]">
               {ft.privacyPre}
               <a href="/terms-of-use" className="text-[#0569ff] hover:underline" onClick={(e) => e.stopPropagation()}>{ft.privacyTerms}</a>
               {ft.privacyMid}
@@ -405,7 +406,7 @@ function NeoUPProduct({ size }: { size: number }) {
         className="flex-[1_0_0] min-h-px relative"
         style={{ aspectRatio: "1191 / 1456" }}
       >
-        <img
+        <Img
           alt="Acquafy Neo UP"
           className="absolute inset-0 max-w-none object-cover pointer-events-none size-full"
           src={imgProduct}
@@ -418,14 +419,14 @@ function NeoUPProduct({ size }: { size: number }) {
 function CampaignText({ centered, t }: { centered?: boolean; t: typeof T["pt"] }) {
   return (
     <div className={`flex flex-col gap-[20px] items-start text-white w-full ${centered ? "items-center text-center" : ""}`}>
-      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-white w-full">
+      <p className="font-avenir-heavy text-[20px] leading-[28px] text-white w-full">
         {t.title}
       </p>
-      <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-white w-full">
+      <p className="font-avenir-roman text-[18px] leading-[19px] text-white w-full">
         {t.sub1}
         <br />
         {t.sub2}
-        <span className="font-['Avenir_LT_Pro:85_Heavy']">Acquafy Neo UP</span>
+        <span className="font-avenir-heavy">Acquafy Neo UP</span>
         {t.sub3}
       </p>
     </div>
@@ -435,7 +436,7 @@ function CampaignText({ centered, t }: { centered?: boolean; t: typeof T["pt"] }
 function ParticipateButton({ label, onClick }: { label: string; onClick: () => void }) {
   return (
     <button onClick={onClick} className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex gap-[10px] items-center justify-center min-h-[30px] overflow-hidden px-[20px] py-[10px] rounded-[8px] shrink-0 cursor-pointer">
-      <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors text-center whitespace-nowrap">
+      <span className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors text-center whitespace-nowrap">
         {label}
       </span>
       <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
@@ -465,13 +466,13 @@ export default function TransformaVidas() {
         lg:flex-row lg:flex-wrap lg:gap-[10px] lg:pt-0 lg:px-0 lg:items-center lg:justify-center
       ">
 
-        <img
+        <Img
           alt=""
           className="hidden lg:block absolute inset-0 size-full object-cover pointer-events-none rounded-[16px]"
           src={imgBgDesktop}
         />
 
-        <img
+        <Img
           alt=""
           className="lg:hidden absolute inset-0 size-full object-cover pointer-events-none rounded-[16px]"
           src={imgBgMobile}
@@ -496,7 +497,7 @@ export default function TransformaVidas() {
 
         <div className="lg:hidden flex flex-col items-center justify-center relative shrink-0" style={{ width: 290, height: 290, maxWidth: 292, maxHeight: 292 }}>
           <div className="flex-[1_0_0] min-h-px relative" style={{ aspectRatio: "1191 / 1456" }}>
-            <img
+            <Img
               alt="Acquafy Neo UP"
               className="absolute inset-0 max-w-none object-cover pointer-events-none size-full"
               src={imgProduct}
@@ -509,7 +510,7 @@ export default function TransformaVidas() {
           style={{ height: 390, maxHeight: 390 }}
         >
           <div className="flex-[1_0_0] min-h-px relative w-full">
-            <img
+            <Img
               alt="Família Acquafy"
               className="absolute inset-0 max-w-none object-cover pointer-events-none size-full"
               src={imgFamilyDesktop}
@@ -522,7 +523,7 @@ export default function TransformaVidas() {
           style={{ maxHeight: 390 }}
         >
           <div className="relative shrink-0" style={{ height: 338.511, maxHeight: 338.511, width: 380, maxWidth: 380 }}>
-            <img
+            <Img
               alt="Família Acquafy"
               className="absolute inset-0 max-w-none object-cover pointer-events-none size-full"
               src={imgFamilyMobile}

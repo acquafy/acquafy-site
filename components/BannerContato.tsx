@@ -1,4 +1,5 @@
 "use client";
+import Img from "@/components/ui/Img";
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
@@ -208,12 +209,12 @@ function Feature({
       {/* linha: ícone + título */}
       <div className="flex gap-[20px] items-center w-full">
         <FigmaIcon src={icon} size={40} aspectW={42} aspectH={42} />
-        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] flex-1 min-w-0">
+        <p className="font-avenir-heavy text-[16px] leading-[20px] text-[#1f2e91] flex-1 min-w-0">
           {title}
         </p>
       </div>
       {/* descrição */}
-      <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#333] w-full">
+      <p className="font-avenir-roman text-[14px] leading-[16px] text-[#333] w-full">
         {description}
       </p>
     </div>
@@ -227,7 +228,7 @@ export default function BannerContato() {
   return (
     <section className="relative flex flex-col items-center justify-center overflow-hidden px-[20px] pt-[80px] pb-[40px] w-full min-h-[506px]">
       {/* Background */}
-      <img
+      <Img
         alt=""
         className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         src={imgBg}
@@ -238,12 +239,12 @@ export default function BannerContato() {
 
         {/* Left */}
         <div className="flex flex-[1_0_0] flex-col gap-[40px] items-center xl:items-start min-w-[280px] max-w-[640px]">
-          <h1 className="font-['Avenir_LT_Pro:95_Black'] text-hero text-[#2a2a2b] text-center xl:text-left">
+          <h1 className="font-avenir-black text-hero text-[#2a2a2b] text-center xl:text-left">
             {t.heading1}
             <span className="text-[#0569ff]">{t.heading2}</span>
           </h1>
 
-          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#333] text-center xl:text-left w-full">
+          <p className="font-avenir-roman text-[18px] leading-[26px] text-[#333] text-center xl:text-left w-full">
             {t.body}
           </p>
 
@@ -262,7 +263,7 @@ export default function BannerContato() {
 
         {/* Right — product image */}
         <div className="flex flex-[1_0_0] items-end justify-end min-w-[280px]">
-          <img
+          <Img
             alt={t.imgAlt}
             className="w-full max-w-[680px] h-auto object-contain"
             src={imgProdutos}

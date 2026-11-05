@@ -96,13 +96,13 @@ const StripeCardInner = forwardRef<StripeFormHandle, CardInnerProps>(
         </div>
 
         {cardError && (
-          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#dc2626]">{cardError}</p>
+          <p className="font-avenir-roman text-[13px] text-[#dc2626]">{cardError}</p>
         )}
 
         {processing && (
           <div className="flex items-center gap-[8px]">
             <div className="w-[16px] h-[16px] border-2 border-[#0233c3] border-t-transparent rounded-full animate-spin shrink-0" />
-            <span className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#555]">
+            <span className="font-avenir-roman text-[13px] text-[#555]">
               {processingLabel}
             </span>
           </div>

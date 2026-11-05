@@ -1,4 +1,5 @@
 ﻿"use client";
+import Img from "@/components/ui/Img";
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
@@ -103,7 +104,7 @@ export default function CtaBannerAppAiIot() {
         className="border border-[#cbd0d4] flex flex-col lg:flex-row gap-[20px] items-center justify-center max-w-[1400px] overflow-clip px-[20px] lg:px-[80px] py-[40px] relative rounded-[16px] w-full"
       >
         {/* Background image */}
-        <img
+        <Img
           src={imgBg}
           alt=""
           className="absolute inset-0 w-full h-full object-cover pointer-events-none rounded-[16px]"
@@ -111,7 +112,7 @@ export default function CtaBannerAppAiIot() {
 
         {/* Esquerda — título */}
         <div className="relative flex flex-[1_0_0] flex-col items-center justify-center min-w-[240px] pb-[40px]">
-          <h2 className="font-['Avenir_LT_Pro:95_Black'] text-[32px] leading-[39px] text-white w-full text-center lg:text-left">
+          <h2 className="font-avenir-black text-[32px] leading-[39px] text-white w-full text-center lg:text-left">
             {t.heading}
           </h2>
         </div>
@@ -121,7 +122,7 @@ export default function CtaBannerAppAiIot() {
 
           {/* Outline — Solicitar demonstração */}
           <a href="/contact" className="group bg-white border border-[#0233c3] flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[56px] min-w-[200px] overflow-clip px-[20px] py-[10px] rounded-[8px] cursor-pointer hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors">
-            <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors text-center whitespace-nowrap shrink-0">
+            <span className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors text-center whitespace-nowrap shrink-0">
               {t.btn1}
             </span>
             <div className="relative shrink-0 h-[18px] w-[18px]">
@@ -145,7 +146,7 @@ export default function CtaBannerAppAiIot() {
             style={{ backgroundImage: "linear-gradient(112.26deg, #0233c3 6.19%, #9f3df5 93.35%)" }}
           >
             <FigmaIcon src={imgChat} size={16} aspectW={30} aspectH={30} className="[filter:brightness(0)_invert(1)] shrink-0" />
-            <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white text-center whitespace-nowrap shrink-0">
+            <span className="font-avenir-heavy text-[14px] leading-[17px] text-white text-center whitespace-nowrap shrink-0">
               {t.btn2}
             </span>
           </a>

@@ -13,21 +13,16 @@
   display: none !important;
 }
 
-/* ─── Avenir LT Pro — via CDNFonts ────────────────────────────────── */
-/* Nomes mapeados exatamente ao que o Tailwind gera de cada classe      */
-/* font-['Avenir_LT_Pro:XX_YY'] → font-family: "Avenir LT Pro:XX YY"  */
+/* ─── Avenir LT Pro — self-hosted WOFF2 (public/fonts) ───────────────────────
+   Served from our own origin so there is no third-party connection on the critical path, and the two weights used
+   above the fold are preloaded by app/layout.tsx. Use the Tailwind utilities font-avenir-roman / -heavy / -black
+   (tailwind.config.ts): each one stacks the metric-matched Arial fallback below, so text keeps its size and position
+   while the web font loads (no layout shift on swap).
+   ──────────────────────────────────────────────────────────────────────────── */
 
 @font-face {
   font-family: 'Avenir LT Pro:55 Roman';
-  src: url('https://fonts.cdnfonts.com/s/36611/AvenirLTProRoman.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Avenir LT Pro:65 Medium';
-  src: url('https://fonts.cdnfonts.com/s/36611/AvenirLTProMedium.woff') format('woff');
+  src: url('/fonts/avenir-lt-pro-roman.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -35,7 +30,7 @@
 
 @font-face {
   font-family: 'Avenir LT Pro:85 Heavy';
-  src: url('https://fonts.cdnfonts.com/s/36611/AvenirLTProHeavy.woff') format('woff');
+  src: url('/fonts/avenir-lt-pro-heavy.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -43,29 +38,41 @@
 
 @font-face {
   font-family: 'Avenir LT Pro:95 Black';
-  src: url('https://fonts.cdnfonts.com/s/36611/AvenirLTProBlack.woff') format('woff');
+  src: url('/fonts/avenir-lt-pro-black.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
-/* ─── Articulat CF → Avenir LT Pro (exportação incorreta de outro projeto) */
-/* Ambas as variantes apontam para os arquivos Avenir LT Pro equivalentes  */
-
+/* Fallbacks: local Arial scaled to Avenir's advance widths (measured in Chrome on mixed PT/EN copy) and vertical
+   metrics (hhea ascent 756 / descent 244 / line gap 200 per 1000 em, divided by size-adjust). */
 @font-face {
-  font-family: 'Articulat CF:Regular';
-  src: url('https://fonts.cdnfonts.com/s/36611/AvenirLTProRoman.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
+  font-family: 'Avenir Roman Fallback';
+  src: local('Arial'), local('ArialMT'), local('Liberation Sans'), local('Helvetica');
+  size-adjust: 101.33%;
+  ascent-override: 74.61%;
+  descent-override: 24.08%;
+  line-gap-override: 19.74%;
 }
 
 @font-face {
-  font-family: 'Articulat CF:Bold';
-  src: url('https://fonts.cdnfonts.com/s/36611/AvenirLTProHeavy.woff') format('woff');
+  font-family: 'Avenir Heavy Fallback';
+  src: local('Arial Bold'), local('Arial-BoldMT'), local('Liberation Sans Bold'), local('Helvetica Bold');
   font-weight: normal;
-  font-style: normal;
-  font-display: swap;
+  size-adjust: 98.56%;
+  ascent-override: 76.71%;
+  descent-override: 24.76%;
+  line-gap-override: 20.29%;
+}
+
+@font-face {
+  font-family: 'Avenir Black Fallback';
+  src: local('Arial Bold'), local('Arial-BoldMT'), local('Liberation Sans Bold'), local('Helvetica Bold');
+  font-weight: normal;
+  size-adjust: 99.47%;
+  ascent-override: 76.00%;
+  descent-override: 24.53%;
+  line-gap-override: 20.11%;
 }
 
 /* ─── Reset & Base ─────────────────────────────────────────────────── */
@@ -94,7 +101,7 @@ body {
   max-width: 100vw;
   overflow-x: clip;
   background-color: #ffffff;
-  font-family: 'Avenir LT Pro:55 Roman', sans-serif;
+  font-family: 'Avenir LT Pro:55 Roman', 'Avenir Roman Fallback', Arial, sans-serif;
   color: var(--texto);
 }
 

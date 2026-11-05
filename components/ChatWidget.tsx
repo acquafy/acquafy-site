@@ -292,10 +292,10 @@ export function ChatProvider({ children }: { children: ReactNode }) {
               style={{ backgroundImage: "linear-gradient(112deg, #0233c3 6.19%, #9f3df5 93.35%)" }}
             >
               <div className="flex flex-col gap-[2px]">
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-white">
+                <p className="font-avenir-heavy text-[16px] leading-[20px] text-white">
                   {t.headerTitle}
                 </p>
-                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] leading-[14px] text-[rgba(255,255,255,0.7)]">
+                <p className="font-avenir-roman text-[12px] leading-[14px] text-[rgba(255,255,255,0.7)]">
                   {t.headerStatus}
                 </p>
               </div>
@@ -315,19 +315,19 @@ export function ChatProvider({ children }: { children: ReactNode }) {
                   <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                 </svg>
               </div>
-              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[20px] text-[#555]">
+              <p className="font-avenir-roman text-[14px] leading-[20px] text-[#555]">
                 {t.bodyMessage}
               </p>
               <a
                 href="/contact"
-                className="flex items-center justify-center min-h-[44px] w-full rounded-[8px] overflow-hidden px-[20px] py-[10px] text-white font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] hover:opacity-90 transition-opacity"
+                className="flex items-center justify-center min-h-[44px] w-full rounded-[8px] overflow-hidden px-[20px] py-[10px] text-white font-avenir-heavy text-[14px] leading-[17px] hover:opacity-90 transition-opacity"
                 style={{ backgroundImage: "linear-gradient(112deg, #0233c3 6.19%, #9f3df5 93.35%)" }}
               >
                 {t.sendMessage}
               </a>
               <button
                 onClick={() => setIsOpen(false)}
-                className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] leading-[16px] text-[#999] hover:text-[#333] transition-colors"
+                className="font-avenir-roman text-[13px] leading-[16px] text-[#999] hover:text-[#333] transition-colors"
               >
                 {t.close}
               </button>

@@ -1,4 +1,5 @@
 ﻿"use client";
+import Img from "@/components/ui/Img";
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
@@ -347,8 +348,8 @@ function FeaturePill({ icon, iconAlt, aspectW, aspectH, sub, title }: PillItem) 
         <FigmaIcon src={icon} alt={iconAlt} size={36} aspectW={aspectW} aspectH={aspectH} />
       </div>
       <div className="flex flex-[1_0_0] flex-col gap-[6px] items-start min-w-px">
-        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-[#2a2a2b] w-full">{sub}</p>
-        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[19px] text-[#2a2a2b] w-full">{title}</p>
+        <p className="font-avenir-roman text-[16px] leading-[21px] text-[#2a2a2b] w-full">{sub}</p>
+        <p className="font-avenir-heavy text-[18px] leading-[19px] text-[#2a2a2b] w-full">{title}</p>
       </div>
     </div>
   );
@@ -362,8 +363,8 @@ function FeaturePillDesktop({ icon, iconAlt, aspectW, aspectH, sub, title }: Pil
         <FigmaIcon src={icon} alt={iconAlt} size={36} aspectW={aspectW} aspectH={aspectH} />
       </div>
       <div className="flex flex-col gap-[6px] items-start justify-center text-center w-full">
-        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-[#2a2a2b] w-full">{sub}</p>
-        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[19px] text-[#2a2a2b] w-full">{title}</p>
+        <p className="font-avenir-roman text-[16px] leading-[21px] text-[#2a2a2b] w-full">{sub}</p>
+        <p className="font-avenir-heavy text-[18px] leading-[19px] text-[#2a2a2b] w-full">{title}</p>
       </div>
     </div>
   );
@@ -375,8 +376,8 @@ function BottomFeature({ icon, iconAlt, title, description }: BottomFeatureItem)
     <div className="flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-w-[160px] win-1280:flex-row win-1280:flex-wrap">
       <FigmaIcon src={icon} alt={iconAlt} size={40} />
       <div className="flex flex-[1_0_0] flex-col gap-[15px] items-start min-w-[200px] text-center win-1280:text-left">
-        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] w-full">{title}</p>
-        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-[#2a2a2b] w-full">{description}</p>
+        <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91] w-full">{title}</p>
+        <p className="font-avenir-roman text-[16px] leading-[21px] text-[#2a2a2b] w-full">{description}</p>
       </div>
     </div>
   );
@@ -387,13 +388,13 @@ function CTAButtons({ stretch = false, btn1, btn2 }: { stretch?: boolean; btn1: 
   return (
     <div className={`flex flex-wrap gap-[20px] items-center ${stretch ? "justify-center max-w-[800px] w-full" : "justify-center xl:justify-start w-full"}`}>
       <a href="#quem-somos" className={`flex gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors cursor-pointer no-underline ${stretch ? "flex-[1_0_0]" : "shrink-0"}`}>
-        <span className="font-['Articulat_CF:Bold'] text-[16px] leading-normal text-white flex-1 text-center">
+        <span className="font-avenir-heavy text-[16px] leading-normal text-white flex-1 text-center">
           {btn1}
         </span>
         <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
       </a>
       <a href="/contact" className={`group flex gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors cursor-pointer no-underline ${stretch ? "flex-[1_0_0]" : "shrink-0"}`}>
-        <span className="font-['Articulat_CF:Bold'] text-[16px] leading-normal text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">
+        <span className="font-avenir-heavy text-[16px] leading-normal text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">
           {btn2}
         </span>
         <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
@@ -414,7 +415,7 @@ function Badge() {
   return (
     <div className="bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center px-[12px] py-[8px] rounded-full shrink-0">
       <FigmaIcon src={imgGlobe} size={16} />
-      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] whitespace-nowrap">
+      <p className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3] whitespace-nowrap">
         GLOBAL SMART WATER PLATFORM
       </p>
     </div>
@@ -440,7 +441,7 @@ export default function SobreBanner() {
     <section className="relative flex flex-col gap-[20px] items-center px-[20px] py-[40px] w-full overflow-hidden xl:h-[calc(100vh-80px)]">
 
       {/* Background — apenas lg+ (≥1024px); hidden no mobile */}
-      <img
+      <Img
         alt=""
         className="hidden lg:block absolute inset-0 w-full h-full object-cover pointer-events-none"
         src={imgBg}
@@ -451,11 +452,11 @@ export default function SobreBanner() {
 
         <Badge />
 
-        <h1 className="font-['Avenir_LT_Pro:95_Black'] text-hero text-[#2a2a2b] text-center w-full">
+        <h1 className="font-avenir-black text-hero text-[#2a2a2b] text-center w-full">
           {t.headingPrefix}<span className="text-[#0569ff]">Acquafy</span>
         </h1>
 
-        <div className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] text-[#333] text-center">
+        <div className="font-avenir-roman text-[18px] text-[#333] text-center">
           <p className="leading-[26px] mb-[4px]">
             {t.para1}
           </p>
@@ -473,7 +474,7 @@ export default function SobreBanner() {
 
         {/* Card de imagem */}
         <div className="relative h-[380px] min-w-[280px] rounded-[16px] w-full overflow-hidden shrink-0">
-          <img
+          <Img
             alt="Acquafy Global Smart Water"
             className="absolute inset-0 w-full h-full object-cover pointer-events-none"
             src={imgBannerCard}
@@ -490,11 +491,11 @@ export default function SobreBanner() {
 
             <Badge />
 
-            <h1 className="font-['Avenir_LT_Pro:95_Black'] text-hero text-[#2a2a2b]">
+            <h1 className="font-avenir-black text-hero text-[#2a2a2b]">
               {t.headingPrefix}<span className="text-[#0569ff]">Acquafy</span>
             </h1>
 
-            <div className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] text-[#333]">
+            <div className="font-avenir-roman text-[18px] text-[#333]">
               <p className="leading-[26px] mb-[4px]">
                 {t.para1}
               </p>

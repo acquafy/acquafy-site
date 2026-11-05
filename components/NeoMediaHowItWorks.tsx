@@ -195,7 +195,7 @@ export default function NeoMediaHowItWorks() {
   return (
     <section className="bg-white flex flex-col items-center justify-center overflow-hidden px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center justify-center max-w-[1400px] rounded-[16px] w-full">
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] text-center w-full">
+        <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] text-center w-full">
           <span className="text-[#0569ff]">{t.heading1}</span>
           {t.heading2}
         </h2>
@@ -207,16 +207,16 @@ export default function NeoMediaHowItWorks() {
                 <div className="border border-[#cbd0d4] flex flex-col items-center justify-center p-[24px] rounded-full size-[100px] shrink-0">
                   <FigmaIcon src={s.icon} size={40} aspectW={s.aspectW} aspectH={s.aspectH} />
                 </div>
-                <span className="absolute right-0 top-0 font-['Avenir_LT_Pro:85_Heavy'] text-[40px] leading-[50px] text-[#0569ff]">
+                <span className="absolute right-0 top-0 font-avenir-heavy text-[40px] leading-[50px] text-[#0569ff]">
                   {s.num}
                 </span>
               </div>
               {/* Title */}
-              <h3 className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] text-center flex items-center justify-center min-h-[44px] w-full">
+              <h3 className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91] text-center flex items-center justify-center min-h-[44px] w-full">
                 {s.title}
               </h3>
               {/* Desc */}
-              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#333] text-center w-full">
+              <p className="font-avenir-roman text-[16px] leading-[20px] text-[#333] text-center w-full">
                 {s.desc}
               </p>
             </div>

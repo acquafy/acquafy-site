@@ -1,4 +1,5 @@
 ﻿"use client";
+import Img from "@/components/ui/Img";
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
@@ -365,8 +366,8 @@ function BadgeRow({ badges }: { badges: { title: string; sub: string }[] }) {
             <FigmaIcon src={trustBadgeIcons[i].icon} size={31} aspectW={trustBadgeIcons[i].iconW} aspectH={trustBadgeIcons[i].iconH} />
           </div>
           <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-px">
-            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[17px] leading-[20px] text-[#1f2e91]">{b.title}</p>
-            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[17px] text-[#2a2a2b]">{b.sub}</p>
+            <p className="font-avenir-heavy text-[17px] leading-[20px] text-[#1f2e91]">{b.title}</p>
+            <p className="font-avenir-roman text-[14px] leading-[17px] text-[#2a2a2b]">{b.sub}</p>
           </div>
         </div>
       ))}
@@ -397,7 +398,7 @@ export default function PlatformHero() {
     <section className="relative bg-[#f6f9fe] win-1280:bg-transparent flex flex-col items-center justify-center overflow-hidden px-[20px] py-[40px] w-full min-h-[600px] win-1280:h-[calc(100vh-80px)]">
 
       {/* Fundo — visível apenas em win-1280+ (TELA TOTAL) */}
-      <img
+      <Img
         alt=""
         aria-hidden="true"
         className="absolute inset-0 w-full h-full object-cover pointer-events-none select-none hidden win-1280:block"
@@ -411,13 +412,13 @@ export default function PlatformHero() {
 
           {/* Label */}
           <div className="bg-white border border-[#0233c3] flex gap-[10px] items-center justify-center max-w-[290px] px-[12px] py-[8px] rounded-full shrink-0">
-            <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] whitespace-nowrap">
+            <span className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3] whitespace-nowrap">
               {t.badge}
             </span>
           </div>
 
           {/* H1 */}
-          <h1 className="font-['Avenir_LT_Pro:95_Black'] text-hero text-[#2a2a2b] w-full text-center 1024:text-left">
+          <h1 className="font-avenir-black text-hero text-[#2a2a2b] w-full text-center 1024:text-left">
             {t.h1part1}
             <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(113deg, #0233c3 6.19%, #9f3df5 93.35%)" }}>
               Web
@@ -429,7 +430,7 @@ export default function PlatformHero() {
           </h1>
 
           {/* Subtítulo */}
-          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#333] w-full text-center 1024:text-left">
+          <p className="font-avenir-roman text-[18px] leading-[26px] text-[#333] w-full text-center 1024:text-left">
             {t.subtitle}
           </p>
 
@@ -441,7 +442,7 @@ export default function PlatformHero() {
               style={{ backgroundImage: "linear-gradient(112deg, #0233c3 6.19%, #9f3df5 93.35%)" }}
             >
               <FigmaIcon src={imgChat} size={16} />
-              <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white text-center whitespace-nowrap">
+              <span className="font-avenir-heavy text-[14px] leading-[17px] text-white text-center whitespace-nowrap">
                 {t.cta}
               </span>
             </a>
@@ -455,9 +456,9 @@ export default function PlatformHero() {
                   <FigmaIcon src={f.icon} size={30} aspectW={f.iconW} aspectH={f.iconH} />
                 </div>
                 <div className="flex items-center justify-center min-h-[44px] w-full">
-                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] text-center w-full">{f.title}</p>
+                  <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91] text-center w-full">{f.title}</p>
                 </div>
-                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#2a2a2b] text-center w-full">{f.desc}</p>
+                <p className="font-avenir-roman text-[14px] leading-[16px] text-[#2a2a2b] text-center w-full">{f.desc}</p>
               </div>
             ))}
           </div>
@@ -471,7 +472,7 @@ export default function PlatformHero() {
         {/* ── Coluna direita — mockup image ─────────────────────────────── */}
         {/* win-1280+: invisible — ocupa espaço mas bg image contém o mockup */}
         <div className="win-1280:invisible rounded-[16px] overflow-clip h-[481px] min-w-[280px] w-full 1024:flex-[1_0_0] 1024:self-center">
-          <img
+          <Img
             src={imgMockup}
             alt={t.mockupAlt}
             className="w-full h-full object-cover"

@@ -1,4 +1,5 @@
 "use client";
+import Img from "@/components/ui/Img";
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
@@ -237,7 +238,7 @@ export default function SobreImpacto() {
         {/* Dark background */}
         <div className="absolute inset-0 rounded-[16px] pointer-events-none" aria-hidden>
           <div className="absolute bg-[#1f2e91] inset-0 rounded-[16px]" />
-          <img
+          <Img
             alt=""
             className="absolute max-w-none object-cover opacity-40 rounded-[16px] size-full"
             src={imgBg}
@@ -246,10 +247,10 @@ export default function SobreImpacto() {
 
         {/* Title column */}
         <div className="flex flex-col gap-[20px] items-center w-full relative lg:flex-[1_0_0] lg:items-start lg:max-w-[340px] lg:min-w-[280px]">
-          <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-white text-center lg:text-left">
+          <p className="font-avenir-heavy text-[18px] leading-[22px] text-white text-center lg:text-left">
             {t.tagline}
           </p>
-          <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-white text-center lg:text-left">
+          <p className="font-avenir-heavy text-[20px] leading-[28px] text-white text-center lg:text-left">
             {t.heading}{" "}
             <span className="text-[#0569ff]">{t.headingHighlight}</span>{" "}
             {t.headingEnd}
@@ -266,16 +267,16 @@ export default function SobreImpacto() {
               {/* Icon + label */}
               <div className="flex flex-wrap gap-[10px] items-center justify-center w-full">
                 <FigmaIcon src={s.icon} alt={s.label} size={30} />
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white whitespace-nowrap">
+                <p className="font-avenir-heavy text-[14px] leading-[17px] text-white whitespace-nowrap">
                   {s.label}
                 </p>
               </div>
               {/* Count */}
-              <p className="font-['Avenir_LT_Pro:95_Black'] text-[32px] leading-[39px] text-white text-center w-full">
+              <p className="font-avenir-black text-[32px] leading-[39px] text-white text-center w-full">
                 {s.count}
               </p>
               {/* Description */}
-              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-white text-center w-full">
+              <p className="font-avenir-roman text-[16px] leading-[20px] text-white text-center w-full">
                 {s.description}
               </p>
             </div>

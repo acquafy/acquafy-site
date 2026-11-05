@@ -1,0 +1,103 @@
+{
+  "date": "2026-11-05",
+  "lighthouse": "12.8.2",
+  "conditions": "Local production webpack build, mobile defaults, simulated throttling, one run per route, warm image optimizer cache",
+  "rows": [
+    {
+      "route": "/",
+      "performance": 91,
+      "accessibility": 96,
+      "bestPractices": 100,
+      "seo": 100,
+      "fcpMs": 1074,
+      "lcpMs": 3531,
+      "tbtMs": 24,
+      "cls": 0.0001746293948702304,
+      "transferKiB": 492
+    },
+    {
+      "route": "/linha-neo",
+      "performance": 92,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 100,
+      "fcpMs": 1083,
+      "lcpMs": 3300,
+      "tbtMs": 39,
+      "cls": 0,
+      "transferKiB": 468
+    },
+    {
+      "route": "/plataforma",
+      "performance": 94,
+      "accessibility": 96,
+      "bestPractices": 100,
+      "seo": 100,
+      "fcpMs": 1065,
+      "lcpMs": 3045,
+      "tbtMs": 30,
+      "cls": 0,
+      "transferKiB": 359
+    },
+    {
+      "route": "/sobre",
+      "performance": 95,
+      "accessibility": 96,
+      "bestPractices": 100,
+      "seo": 100,
+      "fcpMs": 1077,
+      "lcpMs": 2819,
+      "tbtMs": 26,
+      "cls": 0,
+      "transferKiB": 396
+    },
+    {
+      "route": "/filtros",
+      "performance": 90,
+      "accessibility": 96,
+      "bestPractices": 100,
+      "seo": 100,
+      "fcpMs": 1092,
+      "lcpMs": 3601,
+      "tbtMs": 23,
+      "cls": 0,
+      "transferKiB": 361
+    },
+    {
+      "route": "/artigos",
+      "performance": 94,
+      "accessibility": 96,
+      "bestPractices": 100,
+      "seo": 100,
+      "fcpMs": 1068,
+      "lcpMs": 3044,
+      "tbtMs": 29,
+      "cls": 0,
+      "transferKiB": 358
+    },
+    {
+      "route": "/contact",
+      "performance": 94,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 100,
+      "fcpMs": 1064,
+      "lcpMs": 3031,
+      "tbtMs": 24,
+      "cls": 0.03857454243063563,
+      "transferKiB": 364
+    },
+    {
+      "route": "/neo-media",
+      "performance": 94,
+      "accessibility": 96,
+      "bestPractices": 100,
+      "seo": 100,
+      "fcpMs": 1062,
+      "lcpMs": 3118,
+      "tbtMs": 30,
+      "cls": 0,
+      "transferKiB": 399
+    }
+  ]
+}

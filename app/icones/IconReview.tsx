@@ -1,4 +1,5 @@
 "use client";
+import Img from "@/components/ui/Img";
 import { useEffect, useState } from "react";
 
 export type Entry = { file: string; lucide: string | null; color: string; alias?: string | null };
@@ -17,7 +18,7 @@ function Tile({ e, src, text, version, marked, onToggle }: { e: Entry; src: stri
   const box = "flex h-[64px] w-[64px] items-center justify-center rounded-[10px] bg-[#6f7d89]";
   const img = (
     // eslint-disable-next-line @next/next/no-img-element
-    <img src={`${src}?v=${version}`} alt={`${text} ${e.file}`} className="h-[44px] w-[44px] object-contain" />
+    <Img src={`${src}?v=${version}`} alt={`${text} ${e.file}`} className="h-[44px] w-[44px] object-contain" />
   );
   return (
     <div className="flex flex-col items-center gap-[6px]">

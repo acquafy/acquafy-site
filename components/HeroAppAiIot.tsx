@@ -1,4 +1,5 @@
 ﻿"use client";
+import Img from "@/components/ui/Img";
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
@@ -249,7 +250,7 @@ export default function HeroAppAiIot() {
     ].join(" ")}>
 
       {/* Imagem de fundo — apenas win-1280+ */}
-      <img
+      <Img
         src={imgBg} alt="" aria-hidden="true"
         className="hidden win-1280:block absolute inset-0 w-full h-full object-cover pointer-events-none select-none"
       />
@@ -278,7 +279,7 @@ export default function HeroAppAiIot() {
 
           {/* Label pill */}
           <div className="bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center max-w-[290px] px-[12px] py-[8px] rounded-full shrink-0 w-full">
-            <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] whitespace-nowrap">
+            <span className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3] whitespace-nowrap">
               {t.label}
             </span>
           </div>
@@ -287,7 +288,7 @@ export default function HeroAppAiIot() {
               Base     : centrado
               win-1024 : alinhado à esquerda
           */}
-          <h1 className="font-['Avenir_LT_Pro:95_Black'] text-hero text-[#2a2a2b] w-full text-center win-1024:text-left">
+          <h1 className="font-avenir-black text-hero text-[#2a2a2b] w-full text-center win-1024:text-left">
             {"App + "}
             <span className="text-[#6e54ef]">AI</span>
             {" "}
@@ -300,7 +301,7 @@ export default function HeroAppAiIot() {
               Base     : centrada
               win-1024 : alinhada à esquerda
           */}
-          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#333] w-full text-center win-1024:text-left">
+          <p className="font-avenir-roman text-[18px] leading-[26px] text-[#333] w-full text-center win-1024:text-left">
             {t.description}
           </p>
 
@@ -335,12 +336,12 @@ export default function HeroAppAiIot() {
                 </div>
 
                 {/* Título do card */}
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] w-full">
+                <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91] w-full">
                   {b.title}
                 </p>
 
                 {/* Descrição do card */}
-                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#2a2a2b] w-full">
+                <p className="font-avenir-roman text-[16px] leading-[20px] text-[#2a2a2b] w-full">
                   {b.desc}
                 </p>
               </div>
@@ -359,7 +360,7 @@ export default function HeroAppAiIot() {
               "flex flex-[1_0_0] win-1024:flex-none gap-[10px] items-center justify-center",
               "min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer",
             ].join(" ")}>
-              <span className="font-['Articulat_CF:Bold'] text-[16px] text-white flex-1 text-center">
+              <span className="font-avenir-heavy text-[16px] text-white flex-1 text-center">
                 {t.btnPrimary}
               </span>
               <FigmaIcon src={imgArrowW} size={18} aspectW={18} aspectH={18} />
@@ -371,7 +372,7 @@ export default function HeroAppAiIot() {
               "flex flex-[1_0_0] win-1024:flex-none gap-[10px] items-center justify-center",
               "min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer",
             ].join(" ")}>
-              <span className="font-['Articulat_CF:Bold'] text-[16px] text-[#0233c3] group-hover:text-white transition-colors flex-1 text-center">
+              <span className="font-avenir-heavy text-[16px] text-[#0233c3] group-hover:text-white transition-colors flex-1 text-center">
                 {t.btnSecondary}
               </span>
               <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
@@ -392,7 +393,7 @@ export default function HeroAppAiIot() {
             win-1280 : oculto — a imagem de fundo já mostra o mockup
         */}
         <div className="win-1280:hidden rounded-[16px] overflow-clip h-[481px] min-w-[280px] w-full win-1024:flex-[1_0_0]">
-          <img
+          <Img
             src={imgMockup}
             alt={t.mockupAlt}
             className="w-full h-full object-cover"

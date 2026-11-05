@@ -1,4 +1,5 @@
 "use client";
+import Img from "@/components/ui/Img";
 
 import Link from "next/link";
 import { Feature } from "@/components/FeatureFlags";
@@ -40,14 +41,14 @@ function ProductCard({ variant, family }: { variant: CheckinVariant; family: Che
   return (
     <div className="bg-white flex flex-[1_0_0] flex-col gap-[10px] items-center min-h-[360px] min-w-[160px] overflow-hidden p-[20px] rounded-[12px]">
       <div className="w-full h-[180px] shrink-0">
-        <img
+        <Img
           alt=""
           className="w-full h-full object-contain pointer-events-none"
           src={variant.img}
         />
       </div>
       <p
-        className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-center w-full min-h-[44px] flex items-center justify-center"
+        className="font-avenir-heavy text-[16px] leading-[20px] text-center w-full min-h-[44px] flex items-center justify-center"
         style={{ color: nameColor }}
       >
         {variant.name}
@@ -56,7 +57,7 @@ function ProductCard({ variant, family }: { variant: CheckinVariant; family: Che
       <div className="w-full shrink-0">
         <Link
           href={`/buy/checkin-${family.slug}?modelo=${variant.id}`}
-          className="flex items-center justify-center min-h-[40px] px-[10px] py-[8px] rounded-[8px] w-full font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white hover:opacity-90 active:opacity-80 transition-opacity"
+          className="flex items-center justify-center min-h-[40px] px-[10px] py-[8px] rounded-[8px] w-full font-avenir-heavy text-[14px] leading-[17px] text-white hover:opacity-90 active:opacity-80 transition-opacity"
           style={{ backgroundImage: grad }}
         >
           {t.comprarAgora}
@@ -108,10 +109,10 @@ export default function CheckinCatalog() {
 
         {/* Header */}
         <div className="flex flex-col gap-[10px] text-center">
-          <h1 className="font-['Avenir_LT_Pro:95_Black'] text-[40px] xl:text-[48px] leading-[1.1] text-[#1f2e91]">
+          <h1 className="font-avenir-black text-[40px] xl:text-[48px] leading-[1.1] text-[#1f2e91]">
             {t.h1}
           </h1>
-          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[17px] text-[#6b7280]">
+          <p className="font-avenir-roman text-[17px] text-[#6b7280]">
             {t.sub}
           </p>
         </div>

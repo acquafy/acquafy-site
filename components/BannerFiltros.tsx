@@ -1,4 +1,5 @@
 "use client";
+import Img from "@/components/ui/Img";
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
@@ -336,7 +337,7 @@ export default function BannerFiltros({ variant = "filtros" }: { variant?: "filt
       className="relative flex flex-col gap-[20px] items-center px-[20px] py-[40px] w-full overflow-hidden bg-[#f1f5fe] xl:bg-transparent xl:h-[calc(100vh-80px)]"
     >
       {/* ─── Background "Padrão" — visível apenas em xl+ ──────────────────────── */}
-      <img
+      <Img
         alt=""
         className="hidden xl:block absolute inset-0 w-full h-full object-cover pointer-events-none"
         src={isAcc ? imgAccBg : imgBg}
@@ -352,7 +353,7 @@ export default function BannerFiltros({ variant = "filtros" }: { variant?: "filt
         <div className="flex flex-col gap-[20px] items-center lg:items-start flex-1 min-w-[280px] lg:max-w-[500px] xl:max-w-[600px]">
 
           {/* Título */}
-          <h1 className="font-['Avenir_LT_Pro:95_Black'] text-hero w-full text-center lg:text-left">
+          <h1 className="font-avenir-black text-hero w-full text-center lg:text-left">
             <span
               className="bg-clip-text text-transparent"
               style={{ backgroundImage: "linear-gradient(to right, #0233c3, #0569ff)" }}
@@ -362,12 +363,12 @@ export default function BannerFiltros({ variant = "filtros" }: { variant?: "filt
           </h1>
 
           {/* Subtítulo azul */}
-          <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[24px] md:text-[24px] md:leading-[29px] text-[#0233c3] w-full text-center lg:text-left">
+          <p className="font-avenir-heavy text-[20px] leading-[24px] md:text-[24px] md:leading-[29px] text-[#0233c3] w-full text-center lg:text-left">
             {t.subtitle}
           </p>
 
           {/* Descrição */}
-          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#333] w-full text-center lg:text-left">
+          <p className="font-avenir-roman text-[18px] leading-[26px] text-[#333] w-full text-center lg:text-left">
             {desc}
           </p>
 
@@ -376,12 +377,12 @@ export default function BannerFiltros({ variant = "filtros" }: { variant?: "filt
           <div className="flex flex-col md:flex-row flex-wrap gap-[20px] items-center w-full justify-center xl:justify-start">
             {/* BT AZUL BASE ARROW */}
             <a href={isAcc ? "#acessorios-lista" : "#filtros-lista"} className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex w-full md:flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] md:min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
-              <span className="font-['Articulat_CF:Bold'] text-[16px] text-white flex-1 text-center">{btn1}</span>
+              <span className="font-avenir-heavy text-[16px] text-white flex-1 text-center">{btn1}</span>
               <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
             </a>
             {/* BT AZUL OUT ARROW */}
             <a href="/contact" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex w-full md:flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] md:min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
-              <span className="font-['Articulat_CF:Bold'] text-[16px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">{t.btn2}</span>
+              <span className="font-avenir-heavy text-[16px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">{t.btn2}</span>
               <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
                 <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0 group-active:opacity-0">
                   <FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} />
@@ -405,7 +406,7 @@ export default function BannerFiltros({ variant = "filtros" }: { variant?: "filt
                          w-full
                          lg:flex-[1_0_0] lg:min-w-[280px] lg:min-h-[192px] lg:[aspect-ratio:700/480]"
             >
-              <img
+              <Img
                 alt="Acessórios Acquafy"
                 className="block w-full aspect-[1.36/1] object-cover object-[93%_center] lg:aspect-auto lg:absolute lg:inset-0 lg:h-full lg:object-right"
                 src={imgAccBg}
@@ -420,8 +421,10 @@ export default function BannerFiltros({ variant = "filtros" }: { variant?: "filt
                      w-full
                      lg:flex-[1_0_0] lg:min-w-[280px] lg:min-h-[192px] lg:[aspect-ratio:700/480]"
         >
-          <img
+          <Img
             alt="Filtros Acquafy — linha completa"
+            width={3200}
+            height={2318}
             className="block w-full h-auto lg:absolute lg:inset-0 lg:h-full lg:object-cover"
             src={imgFilters}
           />
@@ -444,8 +447,8 @@ export default function BannerFiltros({ variant = "filtros" }: { variant?: "filt
           >
             <FigmaIcon src={s.icon} size={36} aspectW={s.iconW} aspectH={s.iconH} />
             <div className="flex flex-col gap-[5px] flex-1 min-w-[100px]">
-              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[17px] leading-[20px] text-[#1f2e91]">{s.title}</p>
-              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[17px] text-[#2a2a2b]">{s.desc}</p>
+              <p className="font-avenir-heavy text-[17px] leading-[20px] text-[#1f2e91]">{s.title}</p>
+              <p className="font-avenir-roman text-[14px] leading-[17px] text-[#2a2a2b]">{s.desc}</p>
             </div>
           </div>
         ))}

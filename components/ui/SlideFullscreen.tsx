@@ -1,4 +1,5 @@
 "use client";
+import Img from "@/components/ui/Img";
 import { useEffect } from "react";
 import { createPortal } from "react-dom";
 
@@ -69,7 +70,7 @@ export function SlideLightbox({
         className="relative min-h-0 flex-1 flex items-center justify-center"
         onClick={(e) => e.stopPropagation()}
       >
-        <img
+        <Img
           alt={alt}
           src={src}
           className="max-h-full max-w-full rounded-[16px] object-contain shadow-2xl block"
@@ -133,7 +134,7 @@ export function SlideLightbox({
                 i === index ? "border-[#0233c3] opacity-100" : "border-transparent opacity-40 hover:opacity-70"
               }`}
             >
-              <img src={s} alt="" className="h-full w-auto block object-cover pointer-events-none" />
+              <Img src={s} alt="" className="h-full w-auto block object-cover pointer-events-none" />
             </button>
           ))}
         </div>

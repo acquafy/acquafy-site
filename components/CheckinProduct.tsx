@@ -1,4 +1,5 @@
 "use client";
+import Img from "@/components/ui/Img";
 
 import Link from "next/link";
 import { useRef, useState, useCallback, useEffect } from "react";
@@ -1125,7 +1126,7 @@ function SpecRow({ label, value, isBool }: { label: string; value: string | bool
   return (
     <div className="grid grid-cols-subgrid col-span-2 items-stretch border-b border-[#e8ecf4] last:border-b-0">
       <div className="border-r border-[#e8ecf4] px-[14px] py-[12px] flex items-center">
-        <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#1f2e91]">{label}</span>
+        <span className="font-avenir-heavy text-[13px] text-[#1f2e91]">{label}</span>
       </div>
       <div className="flex-1 px-[14px] py-[12px] flex items-center">
         {isBool ? (
@@ -1133,7 +1134,7 @@ function SpecRow({ label, value, isBool }: { label: string; value: string | bool
         ) : value === "—" ? (
           <BoolCell value={false} />
         ) : (
-          <span className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#374151] whitespace-pre-line">{value as string}</span>
+          <span className="font-avenir-roman text-[13px] text-[#374151] whitespace-pre-line">{value as string}</span>
         )}
       </div>
     </div>
@@ -1148,7 +1149,7 @@ function Sep() {
 /* ── Section title ─────────────────────────────────────────────────────────── */
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] text-[#1f2e91] text-center w-full">
+    <p className="font-avenir-heavy text-[18px] text-[#1f2e91] text-center w-full">
       {children}
     </p>
   );
@@ -1625,7 +1626,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
 
         {/* ── FILTROS / GARANTIAS: filter banner (fills full outer container) ── */}
         <div className={`absolute inset-0 transition-opacity duration-500 z-10 ${displaySection === "filtros" || displaySection === "garantias" ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
-          <img
+          <Img
             src={specs.filtragem === "4 Filtros RO / Osmose Reversa"
               ? "/images/checkin/banner-filtros-rof.webp"
               : "/images/checkin/banner-filtros-uff.webp"}
@@ -1639,12 +1640,12 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
           <div className="w-full h-full flex">
             {/* Esquerda: produto */}
             <div className="w-1/2 h-full flex items-center justify-center bg-[#f6f9fe]">
-              <img src={activeVariant.img} alt={activeVariant.name} className="w-full h-1/2 object-contain" />
+              <Img src={activeVariant.img} alt={activeVariant.name} className="w-full h-1/2 object-contain" />
             </div>
             {/* Direita: filtros (cima) + mapa (baixo) */}
             <div className="w-1/2 h-full flex flex-col">
               <div className="flex-1 overflow-hidden">
-                <img
+                <Img
                   src={specs.filtragem === "4 Filtros RO / Osmose Reversa"
                     ? "/images/checkin/banner-filtros-rof.webp"
                     : "/images/checkin/banner-filtros-uff.webp"}
@@ -1670,7 +1671,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                       <circle cx="24" cy="22" r="3.5" fill="#0233c3"/>
                       <path d="M16 36c0-4 3.6-7 8-7s8 3 8 7" stroke="#0233c3" strokeWidth="2.5" strokeLinecap="round" opacity="0.5"/>
                     </svg>
-                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af] text-center px-[20px]">{lb.digitarCep}</p>
+                    <p className="font-avenir-roman text-[12px] text-[#9ca3af] text-center px-[20px]">{lb.digitarCep}</p>
                   </div>
                 )}
               </div>
@@ -1697,7 +1698,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                 <circle cx="24" cy="22" r="3.5" fill="#0233c3"/>
                 <path d="M16 36c0-4 3.6-7 8-7s8 3 8 7" stroke="#0233c3" strokeWidth="2.5" strokeLinecap="round" opacity="0.5"/>
               </svg>
-              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#9ca3af] text-center">
+              <p className="font-avenir-roman text-[13px] text-[#9ca3af] text-center">
                 {lb.digitarCep}
               </p>
             </div>
@@ -1715,31 +1716,31 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
           <div className={`absolute inset-0 transition-opacity duration-500 ${displaySection === "produto" || displaySection === "cores" ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
             {family.scenes.length > 0 ? (
               family.scenes.map((scene, i) => (
-                <img key={i} src={scene.img} alt=""
+                <Img key={i} src={scene.img} alt=""
                   className={`absolute inset-x-0 top-1/2 -translate-y-1/2 max-h-[500px] w-full object-contain transition-opacity duration-500 ${i === activeSceneIdx ? "opacity-100" : "opacity-0"}`}
                 />
               ))
             ) : activeColorImages.length > 0 && showSlide ? (
               // Render every color's slides (not just the active one) so the browser has already
-              // decoded them by the time the user switches color — reusing a single <img> per
+              // decoded them by the time the user switches color — reusing a single <Img> per
               // index and swapping its src caused the previous color's frame to flash briefly
               // while the new file loaded.
               (activeVariant.slides ?? []).flatMap((colorImgs, ci) =>
                 colorImgs.map((img, i) => (
-                  <img key={`${ci}-${i}`} src={img}
+                  <Img key={`${ci}-${i}`} src={img}
                     alt={`${activeVariant.name} – ${colorOptions[ci]?.name ?? ""} – ${i + 1}`}
                     className={`absolute inset-x-0 top-1/2 -translate-y-1/2 max-h-[500px] w-full object-contain transition-opacity duration-700 ease-in-out ${ci === activeColorIdx && i === slideIdx ? "opacity-100" : "opacity-0 pointer-events-none"}`}
                   />
                 ))
               )
             ) : activeColorImages.length > 0 ? (
-              <img src={activeVariant.img}
+              <Img src={activeVariant.img}
                 alt={activeVariant.name}
                 className="absolute inset-x-0 top-1/2 -translate-y-1/2 max-h-[500px] w-full object-contain"
               />
             ) : (
               family.variants.map((v, i) => (
-                <img key={v.id} src={v.img} alt={v.name}
+                <Img key={v.id} src={v.img} alt={v.name}
                   className={`absolute inset-x-0 top-1/2 -translate-y-1/2 max-h-[500px] w-full object-contain transition-opacity duration-500 ${i === activeVariantIdx ? "opacity-100" : "opacity-0"}`}
                 />
               ))
@@ -1789,7 +1790,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
 
             {/* ── Header ──────────────────────────────────────────────────── */}
             <div className="flex flex-col gap-[4px]">
-              <h1 className="font-['Avenir_LT_Pro:95_Black'] text-[26px] leading-[1.1]"
+              <h1 className="font-avenir-black text-[26px] leading-[1.1]"
                 style={{ background: accentGrad, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
                 {activeVariant.name}
               </h1>
@@ -1802,7 +1803,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                 ["financiar", lb.payLease],
               ] as const).map(([tab, label]) => (
                 <button key={tab} onClick={() => setPayTab(tab)}
-                  className="flex-1 pb-[12px] pt-[4px] font-['Avenir_LT_Pro:85_Heavy'] text-[13px] transition-colors relative"
+                  className="flex-1 pb-[12px] pt-[4px] font-avenir-heavy text-[13px] transition-colors relative"
                   style={{ color: payTab === tab ? accent : "#aab2bc" }}
                 >
                   {label}
@@ -1814,7 +1815,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
               ))}
               {/* FINANCIAR — standby */}
               <div className="flex-1 pb-[12px] pt-[4px] flex items-center justify-center">
-                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#d1d5db]">
+                <span className="font-avenir-heavy text-[13px] text-[#d1d5db]">
                   {lb.payFinance}
                 </span>
               </div>
@@ -1837,12 +1838,12 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                     }}
                   >
                     <div className="flex-1 min-w-0 flex flex-col gap-[2px]">
-                      <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px]"
+                      <span className="font-avenir-heavy text-[14px]"
                         style={{ color: isActive ? accent : "#1f2e91" }}>
                         {variant.name}
                       </span>
                     </div>
-                    <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] shrink-0 text-right"
+                    <span className="font-avenir-heavy text-[13px] shrink-0 text-right"
                       style={{ color: isActive ? accent : "#9ca3af" }}>
                       {displayPrice}
                     </span>
@@ -1851,7 +1852,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
               })}
               {/* Financing note */}
               {payTab === "financiar" && (
-                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af] px-[2px]">
+                <p className="font-avenir-roman text-[12px] text-[#9ca3af] px-[2px]">
                   {lang.startsWith("pt") ? "Locação sujeita à proposta aprovada e aceite do acordo." : "Rental subject to an approved quote and agreement."}
                 </p>
               )}
@@ -1862,7 +1863,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
               {/* Header */}
               <div className="col-span-2 px-[14px] py-[12px] border-b border-[#e8ecf4]"
                 style={{ background: "linear-gradient(135deg, #f6f9fe, #eef2ff)" }}>
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] text-[#1f2e91] text-center uppercase tracking-[0.06em]">
+                <p className="font-avenir-heavy text-[14px] text-[#1f2e91] text-center uppercase tracking-[0.06em]">
                   {lb.fichaTecnica}
                 </p>
               </div>
@@ -1900,7 +1901,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
               {/* Toggle */}
               <button onClick={() => setFichaTecnicaOpen((v) => !v)}
                 className="col-span-2 w-full flex items-center justify-between px-[14px] py-[14px] border-t border-[#e8ecf4] bg-[#f6f9fe] hover:bg-[#eef2ff] transition-colors">
-                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px]" style={{ color: accent }}>
+                <span className="font-avenir-heavy text-[13px]" style={{ color: accent }}>
                   {fichaTecnicaOpen ? lb.ocultarFuncionalidades : lb.demaisFuncionalidades}
                 </span>
                 <svg width="14" height="8" viewBox="0 0 14 8" fill="none"
@@ -1919,8 +1920,8 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                   onMouseEnter={() => setHoverSection("cores")}
                   onMouseLeave={() => setHoverSection(null)}>
                   <div className="flex flex-col gap-[4px] items-center">
-                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af] uppercase tracking-[0.06em]">{lb.coresLabel}</p>
-                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] text-[#1f2e91] text-center">
+                    <p className="font-avenir-roman text-[12px] text-[#9ca3af] uppercase tracking-[0.06em]">{lb.coresLabel}</p>
+                    <p className="font-avenir-heavy text-[18px] text-[#1f2e91] text-center">
                       {getColorName(colorOptions[activeColorIdx]?.slug, lang, colorOptions[activeColorIdx]?.name ?? "")}
                     </p>
                   </div>
@@ -1941,7 +1942,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                     })}
                   </div>
                   {!activeVariant.slides && (
-                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af] text-center">Em breve</p>
+                    <p className="font-avenir-roman text-[12px] text-[#9ca3af] text-center">Em breve</p>
                   )}
                 </div>
               </>
@@ -1958,15 +1959,15 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                   onMouseEnter={() => setHoverSection("filtros")}
                   onMouseLeave={() => setHoverSection(null)}>
                   <SectionTitle>{lb.filtrosAltaPerformance}</SectionTitle>
-                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#374151] leading-[20px] text-center">
+                  <p className="font-avenir-roman text-[13px] text-[#374151] leading-[20px] text-center">
                     {fs.description}
                   </p>
                   <ul className="flex flex-col gap-[6px] pl-[4px]">
                     {fs.bullets.map((b, i) => (
-                      <li key={i} className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#6b7280] leading-[18px] flex gap-[6px]">
+                      <li key={i} className="font-avenir-roman text-[12px] text-[#6b7280] leading-[18px] flex gap-[6px]">
                         <span className="shrink-0 mt-[3px] size-[5px] rounded-full bg-[#9ca3af] inline-block" />
                         <span>
-                          <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[#1f2e91]">{b.bold}</span>
+                          <span className="font-avenir-heavy text-[#1f2e91]">{b.bold}</span>
                           {b.text}
                         </span>
                       </li>
@@ -1976,7 +1977,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                   <div className="border border-[#e8ecf4] rounded-[16px] overflow-hidden">
                     <button onClick={() => setFilterOpen((v) => !v)}
                       className="w-full flex items-center justify-between px-[14px] py-[14px] bg-[#f6f9fe] hover:bg-[#eef2ff] transition-colors">
-                      <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#1f2e91]">
+                      <span className="font-avenir-heavy text-[13px] text-[#1f2e91]">
                         {lb.tabelaBeneficios}
                       </span>
                       <svg width="14" height="8" viewBox="0 0 14 8" fill="none"
@@ -1988,8 +1989,8 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                       <>
                         {fs.filters.map((f, i) => (
                           <div key={i} className="flex flex-col gap-[6px] px-[14px] py-[14px] border-t border-[#e8ecf4] bg-white">
-                            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#1f2e91]">{f.title}</p>
-                            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#6b7280] leading-[18px]">{f.desc}</p>
+                            <p className="font-avenir-heavy text-[13px] text-[#1f2e91]">{f.title}</p>
+                            <p className="font-avenir-roman text-[12px] text-[#6b7280] leading-[18px]">{f.desc}</p>
                           </div>
                         ))}
                       </>
@@ -2017,10 +2018,10 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                     </svg>
                   </div>
                   <div className="flex flex-col gap-[4px]">
-                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#1f2e91]">
+                    <p className="font-avenir-heavy text-[13px] text-[#1f2e91]">
                       {lb.garantiaTitulo}
                     </p>
-                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#6b7280] leading-[18px]">
+                    <p className="font-avenir-roman text-[12px] text-[#6b7280] leading-[18px]">
                       {lb.garantiaDesc}
                     </p>
                   </div>
@@ -2035,10 +2036,10 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                     </svg>
                   </div>
                   <div className="flex flex-col gap-[4px]">
-                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#1f2e91]">
+                    <p className="font-avenir-heavy text-[13px] text-[#1f2e91]">
                       {lb.filtroVidaTitulo}
                     </p>
-                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#6b7280] leading-[18px]">
+                    <p className="font-avenir-roman text-[12px] text-[#6b7280] leading-[18px]">
                       {lb.filtroVidaDesc}
                     </p>
                   </div>
@@ -2065,12 +2066,12 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                     value={fv.cep}
                     onChange={(e) => handleCEPChange(e.target.value)}
                     onBlur={() => touchField("cep")}
-                    className={`flex-1 h-[44px] px-[14px] rounded-[10px] bg-[#f6f9fe] font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#1f2e91] placeholder:text-[#aab2bc] outline-none border transition-colors ${fieldError("cep") ? "border-[#ef4444]" : "border-[#e8ecf4] focus:border-[#0233c3]"}`}
+                    className={`flex-1 h-[44px] px-[14px] rounded-[10px] bg-[#f6f9fe] font-avenir-roman text-[14px] text-[#1f2e91] placeholder:text-[#aab2bc] outline-none border transition-colors ${fieldError("cep") ? "border-[#ef4444]" : "border-[#e8ecf4] focus:border-[#0233c3]"}`}
                   />
                   <button
                     onClick={handleCalcularFrete}
                     disabled={freteResult?.state === "loading"}
-                    className="h-[44px] px-[20px] rounded-[10px] font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-white shrink-0 transition-opacity hover:opacity-90 disabled:opacity-60 flex items-center gap-[6px]"
+                    className="h-[44px] px-[20px] rounded-[10px] font-avenir-heavy text-[13px] text-white shrink-0 transition-opacity hover:opacity-90 disabled:opacity-60 flex items-center gap-[6px]"
                     style={{ background: accentGrad }}>
                     {freteResult?.state === "loading" && (
                       <span className="size-[13px] border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -2079,16 +2080,16 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                   </button>
                 </div>
                 {fieldError("cep") && (
-                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#ef4444] flex items-center gap-[4px]">
+                  <p className="font-avenir-roman text-[12px] text-[#ef4444] flex items-center gap-[4px]">
                     <span>⚠</span> {fieldError("cep")}
                   </p>
                 )}
                 {freteResult?.state === "ok" && (
                   <div className="flex flex-col gap-[4px] pt-[2px]">
-                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#6b7280]">
+                    <p className="font-avenir-roman text-[13px] text-[#6b7280]">
                       {freteResult.city}, {freteResult.uf}
                     </p>
-                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] flex items-center gap-[5px]" style={{ color: "#16a34a" }}>
+                    <p className="font-avenir-heavy text-[13px] flex items-center gap-[5px]" style={{ color: "#16a34a" }}>
                       <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                         <circle cx="7" cy="7" r="6.5" stroke="#16a34a" strokeWidth="1"/>
                         <path d="M4 7l2.5 2.5L10 4.5" stroke="#16a34a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -2098,7 +2099,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                   </div>
                 )}
                 {freteResult?.state === "err" && (
-                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#ef4444] flex items-center gap-[4px]">
+                  <p className="font-avenir-roman text-[12px] text-[#ef4444] flex items-center gap-[4px]">
                     <span>⚠</span> {freteResult.message}
                   </p>
                 )}
@@ -2107,11 +2108,11 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
               {/* ── Pre-order pricing breakdown ───────────────────────────── */}
               <div ref={pricingCardRef} className="flex flex-col gap-[4px]">
                 {/* Availability header */}
-                <p className="font-['Avenir_LT_Pro:95_Black'] text-[20px] leading-snug text-[#1f2e91]">
+                <p className="font-avenir-black text-[20px] leading-snug text-[#1f2e91]">
                   {lb.disponivelEm}
                 </p>
                 {freteResult?.state === "ok" && (
-                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#6b7280]">
+                  <p className="font-avenir-roman text-[13px] text-[#6b7280]">
                     {lb.entregaPrefix} {freteResult.city}, {freteResult.uf}, {fv.cep}
                   </p>
                 )}
@@ -2120,20 +2121,20 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                   <div className="bg-white px-[16px] py-[16px] flex flex-col gap-[14px]">
                     <div className="flex items-start justify-between gap-[12px]">
                       <div className="flex flex-col gap-[3px]">
-                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91]">{payTab === "financiar" ? lb.parcelaTitle : lb.valorEstimadoTitle}</p>
-                        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af]">{payTab === "financiar" ? (lang.startsWith("pt") ? "Condições na proposta" : "Terms in your quote") : lb.valorEstimadoDesc}</p>
+                        <p className="font-avenir-heavy text-[15px] text-[#1f2e91]">{payTab === "financiar" ? lb.parcelaTitle : lb.valorEstimadoTitle}</p>
+                        <p className="font-avenir-roman text-[12px] text-[#9ca3af]">{payTab === "financiar" ? (lang.startsWith("pt") ? "Condições na proposta" : "Terms in your quote") : lb.valorEstimadoDesc}</p>
                       </div>
-                      <span className="font-['Avenir_LT_Pro:95_Black'] text-[18px] text-[#1f2e91] shrink-0">
+                      <span className="font-avenir-black text-[18px] text-[#1f2e91] shrink-0">
                         {tabPrice(activeVariant)}
                       </span>
                     </div>
                     <div className="h-px bg-[#f0f4ff]" />
                     <div className="flex items-start justify-between gap-[12px]">
                       <div className="flex flex-col gap-[3px]">
-                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91]">{payTab === "financiar" ? lb.dueTodayTitle : lb.taxaPedidoTitle}</p>
-                        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af]">{lang.startsWith("pt") ? "Pagamento após proposta e aceite" : "Payment after quote acceptance"}</p>
+                        <p className="font-avenir-heavy text-[15px] text-[#1f2e91]">{payTab === "financiar" ? lb.dueTodayTitle : lb.taxaPedidoTitle}</p>
+                        <p className="font-avenir-roman text-[12px] text-[#9ca3af]">{lang.startsWith("pt") ? "Pagamento após proposta e aceite" : "Payment after quote acceptance"}</p>
                       </div>
-                      <span className="font-['Avenir_LT_Pro:95_Black'] text-[15px] text-[#1f2e91] shrink-0">{lang.startsWith("pt") ? "Sem cobrança agora" : "No payment now"}</span>
+                      <span className="font-avenir-black text-[15px] text-[#1f2e91] shrink-0">{lang.startsWith("pt") ? "Sem cobrança agora" : "No payment now"}</span>
                     </div>
                   </div>
                 </div>
@@ -2143,8 +2144,8 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
             <Sep />
 
             <div className="flex flex-col gap-[4px] rounded-[12px] bg-[#f6f9fe] p-[16px]">
-              <h3 className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91]">Acquafy Account</h3>
-              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] leading-[1.5] text-[#6b7280]">{lang.startsWith("pt") ? "Crie sua conta de cliente para receber a proposta, confirmar o pedido e acompanhar entrega e instalação. Não há cobrança de reserva nesta etapa." : "Create your customer account to receive a quote, confirm your order, and track delivery and installation. No reservation fee is charged at this step."}</p>
+              <h3 className="font-avenir-heavy text-[15px] text-[#1f2e91]">Acquafy Account</h3>
+              <p className="font-avenir-roman text-[13px] leading-[1.5] text-[#6b7280]">{lang.startsWith("pt") ? "Crie sua conta de cliente para receber a proposta, confirmar o pedido e acompanhar entrega e instalação. Não há cobrança de reserva nesta etapa." : "Create your customer account to receive a quote, confirm your order, and track delivery and installation. No reservation fee is charged at this step."}</p>
             </div>
 
             <div className="h-[12px]" />
@@ -2160,7 +2161,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
           >
             <div className="bg-white rounded-[24px] w-full max-w-[680px] h-[80vh] flex flex-col overflow-hidden shadow-2xl">
               <div className="flex items-center justify-between px-[24px] py-[18px] border-b border-[#e8ecf4] shrink-0">
-                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91]">{lb.termosModalTitulo}</span>
+                <span className="font-avenir-heavy text-[15px] text-[#1f2e91]">{lb.termosModalTitulo}</span>
                 <button
                   onClick={() => setTermsOpen(false)}
                   className="size-[32px] rounded-full flex items-center justify-center hover:bg-[#f6f9fe] transition-colors"
@@ -2201,8 +2202,8 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                   </svg>
                 </div>
                 <div className="flex flex-col items-center gap-[4px]">
-                  <p className="font-['Avenir_LT_Pro:95_Black'] text-[20px] text-[#1f2e91] text-center">{lb.adicionadoCarrinho}</p>
-                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#6b7280] text-center">
+                  <p className="font-avenir-black text-[20px] text-[#1f2e91] text-center">{lb.adicionadoCarrinho}</p>
+                  <p className="font-avenir-roman text-[14px] text-[#6b7280] text-center">
                     {activeVariant.name} · {formatPrice(activeVariant.price, lang)}
                   </p>
                 </div>
@@ -2222,14 +2223,14 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                       <div key={item.id} className="flex items-center gap-[12px]">
                         {variantImg && (
                           <div className="size-[52px] rounded-[10px] bg-[#f6f9fe] shrink-0 overflow-hidden flex items-center justify-center">
-                            <img src={variantImg} alt={variantName} className="w-full h-full object-contain" />
+                            <Img src={variantImg} alt={variantName} className="w-full h-full object-contain" />
                           </div>
                         )}
                         <div className="flex-1 min-w-0 flex flex-col gap-[2px]">
-                          <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#1f2e91] truncate">
+                          <span className="font-avenir-heavy text-[13px] text-[#1f2e91] truncate">
                             {variantName}{item.qty > 1 ? ` × ${item.qty}` : ""}
                           </span>
-                          <span className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#6b7280]">
+                          <span className="font-avenir-roman text-[12px] text-[#6b7280]">
                             {formatPrice(price * item.qty, lang)}
                           </span>
                         </div>
@@ -2237,8 +2238,8 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                     );
                   })}
                   <div className="flex items-center justify-between pt-[8px] border-t border-[#e8ecf4]">
-                    <span className="font-['Avenir_LT_Pro:55_Roman'] text-[11px] text-[#9ca3af] uppercase tracking-[0.05em]">{lb.totalLabel}</span>
-                    <span className="font-['Avenir_LT_Pro:95_Black'] text-[16px] leading-none" style={{ background: accentGrad, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+                    <span className="font-avenir-roman text-[11px] text-[#9ca3af] uppercase tracking-[0.05em]">{lb.totalLabel}</span>
+                    <span className="font-avenir-black text-[16px] leading-none" style={{ background: accentGrad, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
                       {formatPrice(cart.reduce((sum, i) => sum + (PRODUCT_PRICES_BRL[i.id] ?? 0) * i.qty, 0), lang)}
                     </span>
                   </div>
@@ -2246,29 +2247,29 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
               )}
               {/* Actions */}
               <div className="px-[24px] py-[24px] flex flex-col gap-[12px]">
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] text-[#9ca3af] uppercase tracking-[0.06em] text-center">{lb.precisaMaisAlgo}</p>
+                <p className="font-avenir-heavy text-[12px] text-[#9ca3af] uppercase tracking-[0.06em] text-center">{lb.precisaMaisAlgo}</p>
                 <div className="grid grid-cols-2 gap-[10px]">
                   <a
                     href="/compare"
-                    className="h-[46px] rounded-[12px] border border-[#e8ecf4] flex items-center justify-center font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#1f2e91] hover:bg-[#f6f9fe] transition-colors text-center px-[8px]"
+                    className="h-[46px] rounded-[12px] border border-[#e8ecf4] flex items-center justify-center font-avenir-heavy text-[13px] text-[#1f2e91] hover:bg-[#f6f9fe] transition-colors text-center px-[8px]"
                   >
                     {lb.compareProdutos}
                   </a>
                   <a
                     href="/acquafy-media"
-                    className="h-[46px] rounded-[12px] border border-[#e8ecf4] flex items-center justify-center font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#1f2e91] hover:bg-[#f6f9fe] transition-colors text-center px-[8px]"
+                    className="h-[46px] rounded-[12px] border border-[#e8ecf4] flex items-center justify-center font-avenir-heavy text-[13px] text-[#1f2e91] hover:bg-[#f6f9fe] transition-colors text-center px-[8px]"
                   >
                     {lb.acquafyMedia}
                   </a>
                   <a
                     href="/seja-um-parceiro"
-                    className="h-[46px] rounded-[12px] border border-[#e8ecf4] flex items-center justify-center font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#1f2e91] hover:bg-[#f6f9fe] transition-colors text-center px-[8px]"
+                    className="h-[46px] rounded-[12px] border border-[#e8ecf4] flex items-center justify-center font-avenir-heavy text-[13px] text-[#1f2e91] hover:bg-[#f6f9fe] transition-colors text-center px-[8px]"
                   >
                     {lb.sejaUmParceiro}
                   </a>
                   <Link
                     href="/buy"
-                    className="h-[46px] rounded-[12px] flex items-center justify-center font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-white transition-opacity hover:opacity-90"
+                    className="h-[46px] rounded-[12px] flex items-center justify-center font-avenir-heavy text-[13px] text-white transition-opacity hover:opacity-90"
                     style={{ background: accentGrad }}
                   >
                     {lb.comprarOutro}
@@ -2291,12 +2292,12 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
         <div className="flex-1 flex items-center gap-[12px] md:gap-[28px] flex-wrap min-w-0 px-[24px] md:px-[48px] py-[20px]">
           <div className="flex flex-col gap-[5px] min-w-0 justify-center">
             <span
-              className="font-['Avenir_LT_Pro:95_Black'] text-[22px] leading-tight"
+              className="font-avenir-black text-[22px] leading-tight"
               style={{ background: accentGrad, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
             >
               {activeVariant.name}
             </span>
-            <span className="font-['Avenir_LT_Pro:55_Roman'] text-[11px] text-[#6b7280] leading-snug [overflow-wrap:anywhere]">
+            <span className="font-avenir-roman text-[11px] text-[#6b7280] leading-snug [overflow-wrap:anywhere]">
               {[
                 getColorName(colorOptions[activeColorIdx]?.slug, lang, colorOptions[activeColorIdx]?.name ?? ""),
                 specs.filtragem.includes("UF") ? UF_LABEL[lang] : RO_LABEL[lang],
@@ -2327,13 +2328,13 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
         <div className="md:w-[400px] xl:w-[440px] shrink-0 px-[24px] py-[20px] flex items-center gap-[16px]">
           <div className="flex-1 flex flex-col gap-[4px] min-w-0">
             <span
-              className="font-['Avenir_LT_Pro:95_Black'] text-[20px] leading-none"
+              className="font-avenir-black text-[20px] leading-none"
               style={{ background: accentGrad, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
             >
               {tabPrice(activeVariant)}
             </span>
             {payTab === "financiar" && (
-              <span className="font-['Avenir_LT_Pro:55_Roman'] text-[11px] text-[#6b7280] leading-none">
+              <span className="font-avenir-roman text-[11px] text-[#6b7280] leading-none">
                 {lang.startsWith("pt") ? "Mensalidade e condições na proposta" : "Monthly price and terms in your quote"}
               </span>
             )}
@@ -2342,7 +2343,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
             onClick={() => {
               window.location.assign("/app/pedido?" + new URLSearchParams({product: activeVariant.id, mode: payTab === "financiar" ? "lease" : "purchase", color: colorOptions[activeColorIdx]?.slug ?? ""}).toString());
             }}
-            className="h-[48px] px-[28px] rounded-[14px] font-['Avenir_LT_Pro:85_Heavy'] text-[14px] text-white shrink-0 transition-opacity hover:opacity-90 disabled:opacity-60 flex items-center gap-[8px]"
+            className="h-[48px] px-[28px] rounded-[14px] font-avenir-heavy text-[14px] text-white shrink-0 transition-opacity hover:opacity-90 disabled:opacity-60 flex items-center gap-[8px]"
             style={{ background: accentGrad, opacity: 1 }}
           >
             {lb.encomendar}

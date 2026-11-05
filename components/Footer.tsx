@@ -1,4 +1,5 @@
 "use client";
+import Img from "@/components/ui/Img";
 
 import { useState } from "react";
 import FigmaIcon from "./FigmaIcon";
@@ -611,11 +612,11 @@ function MobileNavSection({
     <div className="flex flex-col w-full border-t border-[#cbd0d4]">
       <button onClick={onToggle} className="flex items-center justify-between w-full py-[16px] cursor-pointer">
         <div className="flex flex-col gap-[10px] items-start">
-          <p className="font-['Articulat_CF:Bold'] text-[18px] leading-[22px] text-[#0569ff]">{col.title}</p>
+          <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#0569ff]">{col.title}</p>
         </div>
         <div className={`shrink-0 transition-transform duration-200${isOpen ? "" : " rotate-180"}`}>
           <div className="relative h-[5px] w-[10px]">
-            <img alt="" className="absolute inset-0 max-w-none size-full" src={imgArrowDown} />
+            <Img alt="" className="absolute inset-0 max-w-none size-full" src={imgArrowDown} />
           </div>
         </div>
       </button>
@@ -623,7 +624,7 @@ function MobileNavSection({
         <div className="flex flex-col gap-[30px] items-start pb-[24px]">
           {col.links.map((link) => (
             <div key={link.href} className="flex gap-[10px] items-center w-full">
-              <a href={link.href} className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#2a2a2b] flex-[1_0_0] min-w-px hover:text-[#0233c3] transition-colors">
+              <a href={link.href} className="font-avenir-heavy text-[14px] leading-[17px] text-[#2a2a2b] flex-[1_0_0] min-w-px hover:text-[#0233c3] transition-colors">
                 {link.label}
               </a>
             </div>
@@ -652,13 +653,13 @@ export default function Footer() {
           <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-[240px] mob:items-center mob:pb-[40px]">
             <a href="/" className="flex flex-col items-center justify-center max-w-[200px] w-full">
               <div className="relative shrink-0 w-full" style={{ aspectRatio: "1133.84/187.34" }}>
-                <img alt="Acquafy" className="absolute block inset-0 max-w-none size-full" src={imgLogo} />
+                <Img alt="Acquafy" className="absolute block inset-0 max-w-none size-full" src={imgLogo} />
               </div>
             </a>
-            <p className="font-['Articulat_CF:Regular'] text-[16px] leading-[25px] text-[#333] w-full mob:text-center">
+            <p className="font-avenir-roman text-[16px] leading-[25px] text-[#333] w-full mob:text-center">
               {t.desc}
             </p>
-            <p className="font-['Articulat_CF:Regular'] text-[14px] leading-[20px] text-[#333] w-full mob:text-center">
+            <p className="font-avenir-roman text-[14px] leading-[20px] text-[#333] w-full mob:text-center">
               {t.groupCredit.prefix} <span className="font-bold">{t.groupCredit.brand}</span>
               {" · "}
               {t.groupCredit.middle}{" "}
@@ -677,13 +678,13 @@ export default function Footer() {
           {t.nav.map((col) => (
             <div key={col.title} className="flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-[200px] pl-[20px] mob:hidden">
               <div className="flex flex-col gap-[10px] items-start min-h-[30px] w-full">
-                <p className="font-['Articulat_CF:Bold'] text-[18px] leading-[22px] text-[#0569ff] w-full">{col.title}</p>
+                <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#0569ff] w-full">{col.title}</p>
                 <div className="h-[1.5px] rounded-full shrink-0 w-[30px]" style={gradientLine} />
               </div>
               <div className="flex flex-col gap-[20px] items-start w-full">
                 {col.links.map((link) => (
                   <div key={link.href} className="flex gap-[10px] items-center w-full">
-                    <a href={link.href} className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#2a2a2b] flex-[1_0_0] min-w-px hover:text-[#0233c3] transition-colors">
+                    <a href={link.href} className="font-avenir-heavy text-[14px] leading-[17px] text-[#2a2a2b] flex-[1_0_0] min-w-px hover:text-[#0233c3] transition-colors">
                       {link.label}
                     </a>
                   </div>
@@ -692,7 +693,7 @@ export default function Footer() {
               {bePartner && col === t.nav[t.nav.length - 1] && (
                 <a href="/partnership" className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex gap-[10px] items-center justify-center h-[40px] overflow-hidden px-[20px] rounded-[8px] cursor-pointer">
                   <FigmaIcon src="/figma-assets/icon-partner-b.svg" size={16} />
-                  <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white whitespace-nowrap">{PARTNER_BTN[lang]}</span>
+                  <span className="font-avenir-heavy text-[14px] leading-[17px] text-white whitespace-nowrap">{PARTNER_BTN[lang]}</span>
                 </a>
               )}
             </div>
@@ -730,8 +731,8 @@ export default function Footer() {
                   <FigmaIcon src={ic.src} size={40} aspectW={ic.aspectW} aspectH={ic.aspectH} />
                 </div>
                 <div className="flex flex-[1_0_0] flex-col gap-[5px] items-start min-w-px">
-                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#07235c] w-full">{s.sub}</p>
-                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[24px] text-[#0233c3] w-full">{s.main}</p>
+                  <p className="font-avenir-roman text-[16px] leading-[20px] text-[#07235c] w-full">{s.sub}</p>
+                  <p className="font-avenir-heavy text-[20px] leading-[24px] text-[#0233c3] w-full">{s.main}</p>
                 </div>
               </div>
             );
@@ -746,7 +747,7 @@ export default function Footer() {
             <div className="flex flex-col items-center justify-center shrink-0 size-[40px]">
               <FigmaIcon src={imgFlagUSA} alt="USA" size={40} />
             </div>
-            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] flex-[1_0_0] min-w-px mob:flex-none">
+            <p className="font-avenir-heavy text-[16px] leading-[20px] text-[#1f2e91] flex-[1_0_0] min-w-px mob:flex-none">
               {t.founded}
             </p>
           </div>
@@ -754,7 +755,7 @@ export default function Footer() {
             <div className="flex flex-col items-center justify-center shrink-0 size-[40px]">
               <FigmaIcon src={imgGlobeSust} size={40} aspectW={492} aspectH={474.82} />
             </div>
-            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] flex-[1_0_0] min-w-px mob:flex-none">
+            <p className="font-avenir-heavy text-[16px] leading-[20px] text-[#1f2e91] flex-[1_0_0] min-w-px mob:flex-none">
               {t.globalPlatform}
             </p>
           </div>
@@ -762,7 +763,7 @@ export default function Footer() {
             {socialLinks.map((s) => (
               <a key={s.href} href={s.href} target="_blank" rel="noreferrer" aria-label={s.label}
                 className="relative shrink-0 size-[50px] min-h-[50px] min-w-[50px] hover:opacity-80 transition-opacity">
-                <img alt={s.label} className="absolute inset-0 max-w-none size-full" src={s.src} />
+                <Img alt={s.label} className="absolute inset-0 max-w-none size-full" src={s.src} />
               </a>
             ))}
           </div>
@@ -773,12 +774,12 @@ export default function Footer() {
       {/* Copyright strip */}
       <div className="border-t border-[#dde5f0] flex items-center justify-center px-[20px] py-[14px] w-full bg-[#f6f9fe]">
         <div className="flex flex-wrap gap-[10px_20px] items-center justify-between max-w-[1400px] w-full mob:flex-col mob:items-center mob:gap-[10px]">
-          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#07235c] mob:text-center">
+          <p className="font-avenir-roman text-[13px] text-[#07235c] mob:text-center">
             {t.copyright}
           </p>
           <div className="flex gap-[20px] items-center shrink-0">
-            <a href="/terms-of-use" className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#07235c] hover:text-[#0233c3] transition-colors">{t.terms}</a>
-            <a href="/privacy-policy" className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#07235c] hover:text-[#0233c3] transition-colors">{t.privacy}</a>
+            <a href="/terms-of-use" className="font-avenir-roman text-[13px] text-[#07235c] hover:text-[#0233c3] transition-colors">{t.terms}</a>
+            <a href="/privacy-policy" className="font-avenir-roman text-[13px] text-[#07235c] hover:text-[#0233c3] transition-colors">{t.privacy}</a>
           </div>
         </div>
       </div>

@@ -208,10 +208,10 @@ export default function FaleComEquipeSuporte() {
 
         {/* Header */}
         <div className="flex flex-col gap-[10px] items-start text-center w-full">
-          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] w-full">
+          <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] w-full">
             {t.heading}
           </h2>
-          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] w-full">
+          <p className="font-avenir-roman text-[18px] leading-[19px] text-[#333] w-full">
             {t.subtitle}
           </p>
         </div>
@@ -227,22 +227,22 @@ export default function FaleComEquipeSuporte() {
               </div>
               <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-px">
                 <div className="flex gap-[10px] items-center w-full">
-                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] flex-1">
+                  <p className="font-avenir-heavy text-[16px] leading-[20px] text-[#1f2e91] flex-1">
                     Chat online
                   </p>
                   <div className="bg-[#e1f3e7] flex flex-col items-center justify-center px-[10px] py-[6px] rounded-full shrink-0">
-                    <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] leading-[13px] text-[#36ae5c] whitespace-nowrap">
+                    <span className="font-avenir-heavy text-[12px] leading-[13px] text-[#36ae5c] whitespace-nowrap">
                       {t.chatBadge}
                     </span>
                   </div>
                 </div>
-                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#333] w-full">
+                <p className="font-avenir-roman text-[14px] leading-[16px] text-[#333] w-full">
                   {t.chatDesc}
                 </p>
               </div>
             </div>
             <button onClick={openChat} className="mt-auto bg-white border border-[#0233c3] hover:bg-[#0233c3] hover:text-white transition-colors flex items-center justify-center min-h-[30px] overflow-hidden px-[20px] py-[10px] rounded-[8px]">
-              <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] hover:text-white text-center">
+              <span className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3] hover:text-white text-center">
                 {t.chatButton}
               </span>
             </button>
@@ -255,10 +255,10 @@ export default function FaleComEquipeSuporte() {
                 <FigmaIcon src={imgMailIcon} size={30} aspectW={30} aspectH={24} />
               </div>
               <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-px">
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] w-full">
+                <p className="font-avenir-heavy text-[16px] leading-[20px] text-[#1f2e91] w-full">
                   E-mail
                 </p>
-                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#333] w-full">
+                <p className="font-avenir-roman text-[14px] leading-[16px] text-[#333] w-full">
                   {t.emailDesc}
                 </p>
               </div>
@@ -267,7 +267,7 @@ export default function FaleComEquipeSuporte() {
               href="mailto:help@acquafy.com"
               className="mt-auto bg-white border border-[#0233c3] hover:bg-[#0233c3] group transition-colors flex items-center justify-center min-h-[30px] overflow-hidden px-[20px] py-[10px] rounded-[8px]"
             >
-              <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] group-hover:text-white transition-colors text-center">
+              <span className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3] group-hover:text-white transition-colors text-center">
                 help@acquafy.com
               </span>
             </a>
@@ -280,10 +280,10 @@ export default function FaleComEquipeSuporte() {
                 <FigmaIcon src={imgWhatsappIcon} size={30} />
               </div>
               <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-px">
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] w-full">
+                <p className="font-avenir-heavy text-[16px] leading-[20px] text-[#1f2e91] w-full">
                   WhatsApp
                 </p>
-                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#333] w-full">
+                <p className="font-avenir-roman text-[14px] leading-[16px] text-[#333] w-full">
                   {t.whatsappDesc}
                 </p>
               </div>
@@ -294,7 +294,7 @@ export default function FaleComEquipeSuporte() {
               rel="noopener noreferrer"
               className="mt-auto bg-white border border-[#0233c3] hover:bg-[#0233c3] group transition-colors flex items-center justify-center min-h-[30px] overflow-hidden px-[20px] py-[10px] rounded-[8px]"
             >
-              <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] group-hover:text-white transition-colors text-center">
+              <span className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3] group-hover:text-white transition-colors text-center">
                 +1 (321) 888-7963
               </span>
             </a>
@@ -307,15 +307,15 @@ export default function FaleComEquipeSuporte() {
                 <FigmaIcon src={imgTimeIcon} size={30} />
               </div>
               <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-px">
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] w-full">
+                <p className="font-avenir-heavy text-[16px] leading-[20px] text-[#1f2e91] w-full">
                   {t.hoursTitle}
                 </p>
-                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#333] w-full">
+                <p className="font-avenir-roman text-[14px] leading-[16px] text-[#333] w-full">
                   {t.hoursDesc}
                 </p>
               </div>
             </div>
-            <p className="mt-auto font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3]">
+            <p className="mt-auto font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3]">
               8h às 18h (EST)
             </p>
           </div>

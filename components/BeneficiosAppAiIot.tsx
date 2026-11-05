@@ -1,4 +1,5 @@
 "use client";
+import Img from "@/components/ui/Img";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
 // ── Ícones dos cartões ────────────────────────────────────────────────────────
@@ -370,25 +371,25 @@ function CardContent({ card }: { card: CardDef }) {
         style={{ border: `2px solid ${card.borderColor}` }}
       >
         <div className="size-[30px] flex items-center justify-center">
-          <img src={card.icon} alt="" className="max-w-full max-h-full object-contain" />
+          <Img src={card.icon} alt="" className="max-w-full max-h-full object-contain" />
         </div>
       </div>
 
       {/* Título + subtítulo */}
       <div className="flex flex-col gap-[10px] w-full">
         <p
-          className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] w-full"
+          className="font-avenir-heavy text-[18px] leading-[22px] w-full"
           style={{ color: card.titleColor }}
         >
           {card.title}
         </p>
-        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] w-full min-h-[40px] flex items-center">
+        <p className="font-avenir-heavy text-[16px] leading-[20px] text-[#1f2e91] w-full min-h-[40px] flex items-center">
           {card.subtitle}
         </p>
       </div>
 
       {/* Descrição */}
-      <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#2a2a2b] w-full">
+      <p className="font-avenir-roman text-[14px] leading-[16px] text-[#2a2a2b] w-full">
         {card.desc}
       </p>
     </>
@@ -437,7 +438,7 @@ export default function BeneficiosAppAiIot() {
       <div className="flex flex-col gap-[60px] items-start max-w-[1400px] w-full">
 
         {/* Título */}
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] w-full text-center lg:text-left">
+        <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] w-full text-center lg:text-left">
           {t.heading}
         </h2>
 
@@ -461,7 +462,7 @@ export default function BeneficiosAppAiIot() {
                     className="absolute right-0 inset-y-0 overflow-hidden pt-[10px]"
                     style={{ width: 160 }}
                   >
-                    <img
+                    <Img
                       src={card.photo}
                       alt={card.title}
                       className="w-full h-full object-contain object-bottom"
@@ -488,7 +489,7 @@ export default function BeneficiosAppAiIot() {
                     className="aspect-[4096/2591] max-h-[220px] mix-blend-multiply relative shrink-0 w-full"
                     style={{ maxWidth: 348, opacity: 0.49 }}
                   >
-                    <img
+                    <Img
                       src={card.photo}
                       alt=""
                       className="absolute inset-0 max-w-none object-cover pointer-events-none size-full"
