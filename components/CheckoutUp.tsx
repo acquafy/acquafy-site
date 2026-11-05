@@ -310,8 +310,8 @@ export default function CheckoutUp() {
                 {t.bannerSub2}
               </p>
             </div>
-            <div className="flex flex-[1_0_0] flex-col items-start max-h-[33.57px] max-w-[160px] min-w-[160px]">
-              <div className="relative w-full" style={{ aspectRatio: "1133.86 / 237.88" }}>
+            <div className="flex flex-[1_0_0] flex-col items-start max-w-[160px] min-w-[160px]">
+              <div className="relative w-full" style={{ aspectRatio: "200 / 33.0452" }}>
                 <Img
                   alt="Acquafy"
                   className="absolute inset-0 w-full h-full object-contain"
