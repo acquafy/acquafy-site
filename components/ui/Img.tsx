@@ -10,7 +10,7 @@ type ImgProps = ComponentProps<"img"> & {
   priority?: boolean;
 };
 
-/** Raster images in /public are served through the Next.js image optimizer; SVGs, data/blob URLs and remote URLs are not. */
+/** Local rasters use Next.js image props, respecting images.unoptimized in next.config.ts. */
 function isOptimizable(src: unknown): src is string {
   return typeof src === "string" && src.startsWith("/") && !src.startsWith("//") && !/\.svg($|\?)/i.test(src);
 }
@@ -25,8 +25,8 @@ function hasExplicitWidth(className: string | undefined, style: ComponentProps<"
 /**
  * Drop-in replacement for `<img>`. It keeps the element, classes and styles the Figma-derived layouts rely on (no
  * wrapper, no injected positioning) and adds what `next/image` provides:
- * - a responsive `srcSet` of resized AVIF/WebP variants from the Next.js image optimizer, so a 3200px source is not
- *   downloaded to fill a 380px card.
+ * - a responsive `srcSet` when the Next.js image optimizer is enabled. Deployments with images.unoptimized use the
+ *   original public asset instead.
  * - `loading="lazy"` and `decoding="async"` by default, so off-screen and `display:none` images cost nothing.
  *
  * `sizes` defaults to `100vw` (never blurry). Lazy images whose width and height are set by CSS also get `sizes="auto"`, which lets

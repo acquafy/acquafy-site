@@ -7,6 +7,9 @@ const FONT_CACHE = "public, max-age=31536000, immutable";
 
 const nextConfig: NextConfig = {
   images: {
+    // Vercel's multi-service deployment serves /_next/image as a 404. Use the
+    // existing public assets directly, as the portal does, until that route is supported.
+    unoptimized: true,
     // components/ui/Img.tsx routes every raster in /public through the optimizer: AVIF first, WebP fallback.
     formats: ["image/avif", "image/webp"],
     // Optimized variants of the static /public sources can be cached for a month.
