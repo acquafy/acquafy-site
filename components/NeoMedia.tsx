@@ -428,7 +428,7 @@ export default function NeoMedia() {
 
             <div className="bg-white border border-[#cbd0d4] flex flex-wrap gap-[10px] items-center justify-center overflow-hidden p-[20px] rounded-[16px] shrink-0 w-full">
               {BOTTOM_ICONS.map((f, i) => (
-                <div key={i} className="flex flex-[1_0_0] gap-[10px] items-center min-w-[120px]">
+                <div key={i} className="flex flex-[1_0_0] gap-[10px] items-start min-w-[120px]">
                   <BenefitIcon icon={f.icon} aspectW={f.aspectW} aspectH={f.aspectH} />
                   <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-0">
                     <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[15px] text-[#1f2e91] w-full">
