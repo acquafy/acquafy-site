@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import { cookies } from "next/headers";
 import { BaseBackLink } from "@/components/base/BaseBackLink";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { portalPath } from "@/lib/paths";
 import { isTheme, THEME_COOKIE } from "@/lib/theme";
 import "./globals.css";
 
@@ -12,6 +13,9 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-sans-stack", display
 export const metadata: Metadata = {
   title: { default: "Acquafy Account", template: "%s · Acquafy Account" },
   description: "Sua conta Acquafy: pedidos, entregas, produtos e locações.",
+  icons: {
+    icon: { url: portalPath("/brand/favicon.png"), type: "image/png", sizes: "256x256" },
+  },
   robots: { index: false, follow: false },
 };
 
