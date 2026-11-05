@@ -1,4 +1,5 @@
 ﻿"use client";
+import Img from "@/components/ui/Img";
 
 import { ReactNode, ButtonHTMLAttributes } from "react";
 import FigmaIcon from "../FigmaIcon";
@@ -63,7 +64,7 @@ function Ico({ src, aspectW = 1, aspectH = 1 }: { src: string; aspectW?: number;
     <div className="flex flex-col items-center justify-center relative shrink-0 size-[16px]">
       <div className="relative shrink-0" style={{ width: innerW, height: innerH }}>
         <div className="absolute" style={{ inset }}>
-          <img alt="" className="block max-w-none size-full" src={src} />
+          <Img alt="" className="block max-w-none size-full" src={src} />
         </div>
       </div>
     </div>
@@ -87,7 +88,7 @@ function IcoToggle({ defaultSrc, hoverSrc, aspectW = 1, aspectH = 1 }: {
 
 function Label({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
-    <span className={`font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-center whitespace-nowrap shrink-0 ${className}`}>
+    <span className={`font-avenir-heavy text-[14px] leading-[17px] text-center whitespace-nowrap shrink-0 ${className}`}>
       {children}
     </span>
   );

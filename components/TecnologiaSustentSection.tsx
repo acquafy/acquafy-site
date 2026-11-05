@@ -1,4 +1,5 @@
 ﻿"use client";
+import Img from "@/components/ui/Img";
 
 import Link from "next/link";
 import FigmaIcon from "./FigmaIcon";
@@ -341,10 +342,10 @@ function SustCard({ icon, aspectW, aspectH, title, description }: {
   return (
     <div className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center min-w-[160px] px-[10px] py-[20px] rounded-[16px] win-1024:min-h-[235px]">
       <FigmaIcon src={icon} size={40} aspectW={aspectW} aspectH={aspectH} />
-      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[19px] text-[#0b8650] text-center w-full">
+      <p className="font-avenir-heavy text-[18px] leading-[19px] text-[#0b8650] text-center w-full">
         {title}
       </p>
-      <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#333] text-center w-full">
+      <p className="font-avenir-roman text-[14px] leading-[16px] text-[#333] text-center w-full">
         {description}
       </p>
     </div>
@@ -362,7 +363,7 @@ export default function TecnologiaSustentSection() {
   return (
     <section className="relative flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
       {/* Background */}
-      <img
+      <Img
         alt=""
         className="absolute inset-0 w-full h-full object-cover pointer-events-none"
         src={imgBg}
@@ -373,11 +374,11 @@ export default function TecnologiaSustentSection() {
         <div className="flex flex-col gap-[20px] items-start w-full">
           {/* Info card */}
           <div className="bg-white flex flex-col gap-[20px] items-start min-w-[280px] overflow-hidden p-[20px] rounded-[16px] w-full">
-            <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#0b8650] text-center lg:text-left">
+            <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#0b8650] text-center lg:text-left">
               {t.infoTitle}
             </h2>
             <div className="bg-[#36ae5c] h-[2px] w-[80px] shrink-0" />
-            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-[#333] flex-1">
+            <p className="font-avenir-roman text-[16px] leading-[21px] text-[#333] flex-1">
               {t.infoParagraph}
             </p>
           </div>
@@ -396,10 +397,10 @@ export default function TecnologiaSustentSection() {
             <div key={s.value} className="content-start flex flex-[1_0_0] flex-wrap gap-[20px] items-start min-w-[160px] relative">
               <FigmaIcon src={s.icon} size={40} aspectW={s.aspectW} aspectH={s.aspectH} />
               <div className="[word-break:break-word] content-stretch flex flex-[1_0_0] flex-col gap-[15px] items-start leading-[0] min-w-px not-italic relative">
-                <div className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both] flex flex-col font-['Avenir_LT_Pro:95_Black'] justify-center relative shrink-0 text-[32px] text-[#0b8650] w-full">
+                <div className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both] flex flex-col font-avenir-black justify-center relative shrink-0 text-[32px] text-[#0b8650] w-full">
                   <p className="leading-[39px]">{s.value}</p>
                 </div>
-                <div className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both] flex flex-col font-['Avenir_LT_Pro:55_Roman'] justify-center relative shrink-0 text-[16px] text-[#2a2a2b] w-full">
+                <div className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both] flex flex-col font-avenir-roman justify-center relative shrink-0 text-[16px] text-[#2a2a2b] w-full">
                   <p className="leading-[20px]">{s.label}</p>
                 </div>
               </div>
@@ -412,7 +413,7 @@ export default function TecnologiaSustentSection() {
           {/* Fundo: verde-escuro + foto com opacidade */}
           <div aria-hidden className="absolute inset-0 pointer-events-none rounded-[16px]">
             <div className="absolute bg-[#0b8650] inset-0 rounded-[16px]" />
-            <img
+            <Img
               alt=""
               className="absolute max-w-none object-cover opacity-40 rounded-[16px] size-full"
               src={imgCtaBg}
@@ -424,7 +425,7 @@ export default function TecnologiaSustentSection() {
 
           {/* Título */}
           <div className="relative flex flex-col items-center justify-center w-full lg:flex-[1_0_0] lg:min-w-[240px]">
-            <p className="font-['Avenir_LT_Pro:95_Black'] text-[32px] leading-[39px] text-white w-full text-center lg:text-left">
+            <p className="font-avenir-black text-[32px] leading-[39px] text-white w-full text-center lg:text-left">
               {t.ctaTitle}
             </p>
           </div>

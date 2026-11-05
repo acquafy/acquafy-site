@@ -1,4 +1,5 @@
 "use client";
+import Img from "@/components/ui/Img";
 
 import Link from "next/link";
 import { BtnAzulOutArrow, BtnAzulBaseArrow } from "./ui/Buttons";
@@ -99,7 +100,7 @@ export default function CtaBannerContato() {
       <div className="border border-[#cbd0d4] flex flex-col lg:flex-row gap-[20px] items-center justify-center max-w-[1400px] overflow-hidden px-[20px] lg:px-[80px] py-[40px] relative rounded-[16px] w-full">
 
         {/* Imagem de fundo (gradiente azul/roxo) */}
-        <img
+        <Img
           alt=""
           className="absolute inset-0 w-full h-full object-cover pointer-events-none rounded-[16px]"
           src={imgBg}
@@ -107,7 +108,7 @@ export default function CtaBannerContato() {
 
         {/* Texto esquerdo */}
         <div className="relative flex flex-[1_0_0] flex-col items-center justify-center min-w-[240px]">
-          <h2 className="font-['Avenir_LT_Pro:95_Black'] text-[32px] leading-[39px] text-white w-full text-center lg:text-left">
+          <h2 className="font-avenir-black text-[32px] leading-[39px] text-white w-full text-center lg:text-left">
             {t.heading}
           </h2>
         </div>

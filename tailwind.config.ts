@@ -38,7 +38,11 @@ const config: Config = {
         border: "#cbd0d4",
       },
       fontFamily: {
-        sans: ["Avenir LT Pro:55 Roman", "sans-serif"],
+        sans: ['"Avenir LT Pro:55 Roman"', '"Avenir Roman Fallback"', "Arial", "sans-serif"],
+        /* Avenir LT Pro weights (app/globals.css), each with its metric-matched fallback */
+        "avenir-roman": ['"Avenir LT Pro:55 Roman"', '"Avenir Roman Fallback"', "Arial", "sans-serif"],
+        "avenir-heavy": ['"Avenir LT Pro:85 Heavy"', '"Avenir Heavy Fallback"', "Arial", "sans-serif"],
+        "avenir-black": ['"Avenir LT Pro:95 Black"', '"Avenir Black Fallback"', "Arial", "sans-serif"],
       },
       fontSize: {
         /* Heading hero — 56px em 1280px, fluid até 32px em 1024px */

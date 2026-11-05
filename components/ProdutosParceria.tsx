@@ -1,4 +1,5 @@
 'use client'
+import Img from "@/components/ui/Img";
 import { useRef } from 'react'
 import { PRODUCT_IMAGES } from "@/lib/products";
 import { useLang, type Lang } from "@/context/LanguageContext";
@@ -87,12 +88,12 @@ function ProductItem({ src, variant, name, sub2 }: ProductItemProps) {
     <div className="flex flex-col gap-[20px] items-center justify-center relative rounded-[12px] shrink-0">
       {/* imagem 80×80 */}
       <div className="flex items-center justify-center relative shrink-0 size-[80px]">
-        <img src={src} alt={name} className="w-full h-full object-contain pointer-events-none" />
+        <Img src={src} alt={name} className="w-full h-full object-contain pointer-events-none" />
       </div>
 
       {/* nome do produto */}
       <p
-        className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-center max-w-[140px] min-h-[44px] shrink-0 w-full"
+        className="font-avenir-heavy text-[18px] leading-[22px] text-center max-w-[140px] min-h-[44px] shrink-0 w-full"
         style={variant === "essentials" ? essGrad : premColor}
       >
         {sub2
@@ -352,12 +353,12 @@ function ProductLineCard({ variant }: { variant: "essentials" | "premium" }) {
       {/* header: título + descrição — centralizados */}
       <div className="flex flex-col gap-[10px] items-center text-center w-full shrink-0">
         <p
-          className="font-['Avenir_LT_Pro:85_Heavy'] not-italic text-[20px] leading-[28px] min-h-[36px] whitespace-nowrap shrink-0 w-full"
+          className="font-avenir-heavy not-italic text-[20px] leading-[28px] min-h-[36px] whitespace-nowrap shrink-0 w-full"
           style={titleStyle}
         >
           {isEssentials ? t.essentialsTitle : t.premiumTitle}
         </p>
-        <p className="font-['Avenir_LT_Pro:55_Roman'] not-italic text-[18px] leading-[19px] text-[#333] w-full shrink-0">
+        <p className="font-avenir-roman not-italic text-[18px] leading-[19px] text-[#333] w-full shrink-0">
           {isEssentials ? t.essentialsSub : t.premiumSub}
         </p>
       </div>
@@ -376,7 +377,7 @@ function ProductLineCard({ variant }: { variant: "essentials" | "premium" }) {
 
       {/* ícone de compra — absoluto, mix-blend-multiply */}
       <div className="absolute mix-blend-multiply right-[9px] top-[20px] size-[50px] pointer-events-none">
-        <img src={imgBuyCta} alt="" className="absolute inset-0 w-full h-full object-cover" />
+        <Img src={imgBuyCta} alt="" className="absolute inset-0 w-full h-full object-cover" />
       </div>
     </div>
   );
@@ -395,7 +396,7 @@ export default function ProdutosParceria() {
       <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
 
         {/* título da seção */}
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] not-italic text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] text-center min-w-[240px] w-full">
+        <h2 className="font-avenir-heavy not-italic text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] text-center min-w-[240px] w-full">
           {t.heading}
           <span className="text-[#0569ff]">{t.headingHL}</span>
         </h2>
@@ -414,10 +415,10 @@ export default function ProdutosParceria() {
 
             {/* header centralizado */}
             <div className="flex flex-col gap-[10px] items-center text-center w-full shrink-0">
-              <p className="font-['Avenir_LT_Pro:85_Heavy'] not-italic text-[20px] leading-[28px] text-[#0569ff] min-h-[36px] w-full">
+              <p className="font-avenir-heavy not-italic text-[20px] leading-[28px] text-[#0569ff] min-h-[36px] w-full">
                 {t.mediaTitle}
               </p>
-              <p className="font-['Avenir_LT_Pro:55_Roman'] not-italic text-[18px] leading-[19px] text-[#333] w-full">
+              <p className="font-avenir-roman not-italic text-[18px] leading-[19px] text-[#333] w-full">
                 {t.mediaSub}
               </p>
             </div>
@@ -425,7 +426,7 @@ export default function ProdutosParceria() {
             {/* imagem do totem — ocupa o restante da altura */}
             <div className="flex flex-[1_0_0] flex-col items-center justify-center min-h-0 w-full">
               <div className="relative h-full" style={{ aspectRatio: "1441 / 4096" }}>
-                <img
+                <Img
                   src={imgMedia}
                   alt="Acquafy Media"
                   className="absolute inset-0 w-full h-full object-contain pointer-events-none"

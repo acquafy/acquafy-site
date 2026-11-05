@@ -1,4 +1,5 @@
 ﻿"use client";
+import Img from "@/components/ui/Img";
 
 import FigmaIcon from "./FigmaIcon";
 import Link from "next/link";
@@ -147,7 +148,7 @@ const tiers = [
     alt:       "Silver",
     label:     "Silver",
     imgCls:    "size-[40px] object-contain shrink-0",
-    labelCls:  "font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#3e4650]",
+    labelCls:  "font-avenir-heavy text-[18px] leading-[22px] text-[#3e4650]",
     labelStyle: undefined as React.CSSProperties | undefined,
   },
   {
@@ -156,7 +157,7 @@ const tiers = [
     alt:       "Gold",
     label:     "Gold",
     imgCls:    "size-[40px] object-contain shrink-0",
-    labelCls:  "font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#dfa727]",
+    labelCls:  "font-avenir-heavy text-[18px] leading-[22px] text-[#dfa727]",
     labelStyle: undefined as React.CSSProperties | undefined,
   },
   {
@@ -165,7 +166,7 @@ const tiers = [
     alt:       "Platinum",
     label:     "Platinum",
     imgCls:    "size-[40px] object-contain shrink-0",
-    labelCls:  "font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] bg-clip-text text-transparent",
+    labelCls:  "font-avenir-heavy text-[18px] leading-[22px] bg-clip-text text-transparent",
     labelStyle: { backgroundImage: "linear-gradient(117.65deg, #0233c3 6.19%, #9f3df5 93.35%)" } as React.CSSProperties,
   },
 ];
@@ -177,7 +178,7 @@ export default function ParceriaBanner() {
     <section className="relative bg-white w-full px-[20px] py-[40px] flex items-center justify-center overflow-hidden xl:bg-transparent xl:min-h-[875px]">
 
       {/* ── BG image — tela total (≥1280px) ──────────────────── */}
-      <img
+      <Img
         alt=""
         className="hidden xl:block absolute inset-0 w-full h-full object-cover pointer-events-none"
         src={imgBgPadrao}
@@ -193,21 +194,21 @@ export default function ParceriaBanner() {
           {/* "Nova fase global" pill */}
           <div className="bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center px-[12px] py-[8px] rounded-full shrink-0">
             <FigmaIcon src={imgPlanet} size={16} />
-            <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] text-[#0233c3]">
+            <span className="font-avenir-heavy text-[14px] text-[#0233c3]">
               {t.pill}
             </span>
           </div>
 
           {/* Title */}
           <h1
-            className="font-['Avenir_LT_Pro:95_Black'] text-hero bg-clip-text text-transparent w-full text-center lg:text-left"
+            className="font-avenir-black text-hero bg-clip-text text-transparent w-full text-center lg:text-left"
             style={{ backgroundImage: "linear-gradient(110.27deg, #0233c3 6.19%, #9f3df5 93.35%)" }}
           >
             {t.title}
           </h1>
 
           {/* Subtitle */}
-          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[24px] lg:text-[18px] lg:leading-[26px] text-[#333] text-center lg:text-left">
+          <p className="font-avenir-roman text-[18px] leading-[24px] lg:text-[18px] lg:leading-[26px] text-[#333] text-center lg:text-left">
             {t.subtitle}
           </p>
 
@@ -227,7 +228,7 @@ export default function ParceriaBanner() {
                 key={tier.key}
                 className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center p-[10px] rounded-[16px]"
               >
-                <img src={tier.src} alt={tier.alt} className={tier.imgCls} />
+                <Img src={tier.src} alt={tier.alt} className={tier.imgCls} />
                 <span className={`${tier.labelCls} text-center`} style={tier.labelStyle}>
                   {tier.label}
                 </span>
@@ -239,7 +240,7 @@ export default function ParceriaBanner() {
         {/* ══ PRODUCT IMAGE ════════════════════════════════════ */}
         {/* mobile: abaixo do conteúdo (flex-col) | 1024–1279px: coluna direita | ≥1280px: oculto */}
         <div className="xl:hidden relative aspect-[750/745] min-h-[278px] min-w-[280px] rounded-[16px] shrink-0 w-full lg:flex-[1_0_0] lg:w-auto overflow-hidden">
-          <img
+          <Img
             src={imgFrame1024}
             alt={t.imgAlt}
             className="absolute inset-0 w-full h-full object-cover rounded-[16px]"

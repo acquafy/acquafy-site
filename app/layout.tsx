@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { cookies, headers } from "next/headers";
+import { preload } from "react-dom";
 import { ChatProvider } from "@/components/ChatWidget";
 import { CartProvider } from "@/components/CartProvider";
 import { FeatureFlagsProvider } from "@/components/FeatureFlags";
@@ -40,6 +41,10 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // The two Avenir weights used above the fold on every page (app/globals.css); Black loads on demand.
+  preload("/fonts/avenir-lt-pro-roman.woff2", { as: "font", type: "font/woff2", crossOrigin: "anonymous" });
+  preload("/fonts/avenir-lt-pro-heavy.woff2", { as: "font", type: "font/woff2", crossOrigin: "anonymous" });
+
   const features = await getFeatures();
   const cookieStore = await cookies();
   const raw = cookieStore.get("acquafy-lang")?.value;

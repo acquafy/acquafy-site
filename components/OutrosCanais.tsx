@@ -391,10 +391,10 @@ function NewsletterModal({
         className="bg-white flex flex-col gap-[20px] max-w-[480px] w-full p-[40px] rounded-[16px] shadow-lg"
         onClick={(e) => e.stopPropagation()}
       >
-        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[28px] text-[#1f2e91]">
+        <p className="font-avenir-heavy text-[20px] leading-[28px] text-[#1f2e91]">
           {modalT.title}
         </p>
-        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#333]">
+        <p className="font-avenir-roman text-[16px] leading-[20px] text-[#333]">
           {modalT.desc}
         </p>
 
@@ -403,7 +403,7 @@ function NewsletterModal({
           placeholder="seu@email.com"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="bg-white border-[0.5px] border-[#cbd0d4] p-[20px] rounded-[12px] w-full font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-[#333] placeholder:text-[#c8cfd8] outline-none focus:border-[#0233c3] transition-colors"
+          className="bg-white border-[0.5px] border-[#cbd0d4] p-[20px] rounded-[12px] w-full font-avenir-roman text-[16px] leading-[20px] text-[#333] placeholder:text-[#c8cfd8] outline-none focus:border-[#0233c3] transition-colors"
         />
 
         <label className="flex gap-[9px] items-start w-full cursor-pointer">
@@ -420,9 +420,9 @@ function NewsletterModal({
               />
             </div>
           </div>
-          <span className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[18px] text-[#2a2a2b]">
+          <span className="font-avenir-roman text-[14px] leading-[18px] text-[#2a2a2b]">
             {modalT.checkboxText}
-            <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[#0233c3]">{modalT.termsLink}</span>
+            <span className="font-avenir-heavy text-[#0233c3]">{modalT.termsLink}</span>
             {modalT.checkboxSuffix}
           </span>
         </label>
@@ -430,13 +430,13 @@ function NewsletterModal({
         <div className="flex gap-[10px] items-center justify-end w-full">
           <button
             onClick={onClose}
-            className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] text-[#666] px-[20px] py-[10px] rounded-[8px] hover:bg-[#f6f9fe] transition-colors cursor-pointer"
+            className="font-avenir-heavy text-[16px] text-[#666] px-[20px] py-[10px] rounded-[8px] hover:bg-[#f6f9fe] transition-colors cursor-pointer"
           >
             {modalT.cancelBtn}
           </button>
           <button
             disabled={!email || !aceito}
-            className="bg-[#0233c3] disabled:opacity-50 disabled:cursor-not-allowed font-['Avenir_LT_Pro:85_Heavy'] text-[16px] text-white px-[20px] py-[10px] rounded-[8px] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors cursor-pointer"
+            className="bg-[#0233c3] disabled:opacity-50 disabled:cursor-not-allowed font-avenir-heavy text-[16px] text-white px-[20px] py-[10px] rounded-[8px] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors cursor-pointer"
           >
             {modalT.submitBtn}
           </button>
@@ -457,7 +457,7 @@ function CanalCard({
 }) {
   const ctaRow = (
     <div className="flex gap-[5px] items-center justify-center w-full">
-      <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3] text-center whitespace-nowrap">
+      <span className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3] text-center whitespace-nowrap">
         {cta}
       </span>
       <FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} />
@@ -469,11 +469,11 @@ function CanalCard({
       <FigmaIcon src={icon} size={40} aspectW={aspectW} aspectH={aspectH} />
       <div className="flex flex-col gap-[20px] items-start w-full">
         <div className="flex items-center justify-center w-full min-h-[30px]">
-          <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] text-center flex-1">
+          <p className="font-avenir-heavy text-[16px] leading-[20px] text-[#1f2e91] text-center flex-1">
             {title}
           </p>
         </div>
-        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#333] text-center min-h-[30px] w-full">
+        <p className="font-avenir-roman text-[14px] leading-[16px] text-[#333] text-center min-h-[30px] w-full">
           {description}
         </p>
         {href ? (
@@ -547,10 +547,10 @@ export default function OutrosCanais() {
         <div className="flex flex-col gap-[40px] items-center justify-center max-w-[1400px] w-full">
 
           <div className="flex flex-col gap-[10px] items-start text-center w-full">
-            <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] w-full">
+            <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] w-full">
               {t.heading}
             </h2>
-            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] w-full">
+            <p className="font-avenir-roman text-[18px] leading-[19px] text-[#333] w-full">
               {t.subtitle}
             </p>
           </div>

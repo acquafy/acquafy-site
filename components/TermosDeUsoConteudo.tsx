@@ -1872,7 +1872,7 @@ function Section({ id, title, children }: SectionProps) {
   return (
     <section id={id} className="flex flex-col gap-[24px] scroll-mt-[100px]">
       <div className="flex flex-col gap-[12px]">
-        <h2 className="font-['Avenir_LT_Pro:95_Black'] text-[28px] leading-[34px] text-[#2a2a2b] mob:text-[22px] mob:leading-[28px]">
+        <h2 className="font-avenir-black text-[28px] leading-[34px] text-[#2a2a2b] mob:text-[22px] mob:leading-[28px]">
           {title}
         </h2>
         <div
@@ -1888,7 +1888,7 @@ function Section({ id, title, children }: SectionProps) {
 function Subsection({ title, children }: SubsectionProps) {
   return (
     <div className="flex flex-col gap-[12px]">
-      <h3 className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[24px] text-[#1f2e91]">
+      <h3 className="font-avenir-heavy text-[18px] leading-[24px] text-[#1f2e91]">
         {title}
       </h3>
       {children}
@@ -1898,7 +1898,7 @@ function Subsection({ title, children }: SubsectionProps) {
 
 function P({ children }: { children: React.ReactNode }) {
   return (
-    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[26px] text-[#444]">
+    <p className="font-avenir-roman text-[16px] leading-[26px] text-[#444]">
       {children}
     </p>
   );
@@ -1913,7 +1913,7 @@ function UL({ items }: { items: string[] }) {
             className="mt-[8px] shrink-0 size-[6px] rounded-full"
             style={{ background: "linear-gradient(135deg, #0569ff, #0035c1)" }}
           />
-          <span className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[26px] text-[#444]">
+          <span className="font-avenir-roman text-[16px] leading-[26px] text-[#444]">
             {item}
           </span>
         </li>
@@ -1934,14 +1934,14 @@ export default function TermosDeUsoConteudo() {
 
         {/* ── Sidebar de navegação (desktop only) ────────────────────────── */}
         <aside className="hidden xl:flex flex-col gap-[8px] shrink-0 w-[260px] sticky top-[100px] self-start">
-          <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] leading-[16px] text-[#888] uppercase tracking-[1px] mb-[8px]">
+          <p className="font-avenir-heavy text-[12px] leading-[16px] text-[#888] uppercase tracking-[1px] mb-[8px]">
             {t.sidebarLabel}
           </p>
           {navItems.map((item) => (
             <a
               key={item.id}
               href={`#${item.id}`}
-              className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[20px] text-[#555] hover:text-[#0569ff] transition-colors py-[4px] border-l-[2px] border-transparent hover:border-[#0569ff] pl-[12px]"
+              className="font-avenir-roman text-[14px] leading-[20px] text-[#555] hover:text-[#0569ff] transition-colors py-[4px] border-l-[2px] border-transparent hover:border-[#0569ff] pl-[12px]"
             >
               {item.label}
             </a>
@@ -2073,7 +2073,7 @@ export default function TermosDeUsoConteudo() {
               className="flex flex-col gap-[0px] p-[28px] rounded-[16px] border border-[#e0e8ff]"
               style={{ background: "linear-gradient(135deg, #f8faff, #f0f4ff)" }}
             >
-              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] text-[#1f2e91] mb-[16px]">
+              <p className="font-avenir-heavy text-[16px] text-[#1f2e91] mb-[16px]">
                 Acquafy Corporation
               </p>
               {[
@@ -2081,10 +2081,10 @@ export default function TermosDeUsoConteudo() {
                 ["Website", "acquafy.com/contact"],
               ].map(([label, value]) => (
                 <div key={label} className="flex gap-[12px] items-center py-[8px] border-b border-[#e0e8ff] last:border-0">
-                  <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] text-[#1f2e91] w-[80px] shrink-0">
+                  <span className="font-avenir-heavy text-[14px] text-[#1f2e91] w-[80px] shrink-0">
                     {label}:
                   </span>
-                  <span className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#444]">
+                  <span className="font-avenir-roman text-[14px] text-[#444]">
                     {value}
                   </span>
                 </div>

@@ -1,4 +1,5 @@
 "use client";
+import Img from "@/components/ui/Img";
 import { createContext, useContext, useState, useEffect, useRef, useCallback } from "react";
 import { usePathname } from "next/navigation";
 import { PRODUCT_CATALOG, PRODUCT_PRICES_BRL, formatPrice } from "@/lib/products";
@@ -438,7 +439,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
           </svg>
           {cartCount > 0 && (
             <span
-              className="absolute flex items-center justify-center rounded-full text-white font-['Avenir_LT_Pro:85_Heavy'] text-[10px] leading-none"
+              className="absolute flex items-center justify-center rounded-full text-white font-avenir-heavy text-[10px] leading-none"
               style={{ background: "#9f3df5", minWidth: 18, height: 18, top: -4, right: -4, padding: "0 4px" }}
             >
               {cartCount}
@@ -473,30 +474,30 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
                   <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                 </div>
                 <div className="flex flex-col gap-[2px] flex-1 min-w-0">
-                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] leading-[16px] text-[#2a2a2b]">{t.toastAdded}</p>
-                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] leading-[15px] text-[#8a8f97] truncate">{toast.label}</p>
+                  <p className="font-avenir-heavy text-[13px] leading-[16px] text-[#2a2a2b]">{t.toastAdded}</p>
+                  <p className="font-avenir-roman text-[12px] leading-[15px] text-[#8a8f97] truncate">{toast.label}</p>
                 </div>
                 <button onClick={dismissToast} aria-label={t.closeAriaLabel} className="text-[#8a8f97] hover:text-[#333] transition-colors shrink-0 mt-[2px] cursor-pointer text-[16px] leading-none">×</button>
               </div>
               {product && (
                 <div className="bg-[#f6f9fe] rounded-[10px] flex items-center gap-[10px] px-[12px] py-[8px]">
-                  <img src={product.img} alt={product.label} className="size-[40px] object-contain shrink-0" />
+                  <Img src={product.img} alt={product.label} className="size-[40px] object-contain shrink-0" />
                   <div className="flex flex-col gap-[2px] flex-1 min-w-0">
-                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] leading-[15px] text-[#1f2e91] truncate">{product.label}</p>
-                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] leading-[15px] text-[#0233c3]">{formatPrice(PRODUCT_PRICES_BRL[toast.id] ?? 0, lang)}</p>
+                    <p className="font-avenir-heavy text-[12px] leading-[15px] text-[#1f2e91] truncate">{product.label}</p>
+                    <p className="font-avenir-heavy text-[12px] leading-[15px] text-[#0233c3]">{formatPrice(PRODUCT_PRICES_BRL[toast.id] ?? 0, lang)}</p>
                   </div>
                 </div>
               )}
               <div className="flex gap-[8px]">
                 <button
                   onClick={dismissToast}
-                  className="flex-1 py-[8px] rounded-full font-['Avenir_LT_Pro:85_Heavy'] text-[12px] border border-[#cbd0d4] text-[#555] hover:border-[#0233c3] hover:text-[#0233c3] transition-colors cursor-pointer"
+                  className="flex-1 py-[8px] rounded-full font-avenir-heavy text-[12px] border border-[#cbd0d4] text-[#555] hover:border-[#0233c3] hover:text-[#0233c3] transition-colors cursor-pointer"
                 >
                   {t.continuar}
                 </button>
                 <button
                   onClick={() => { dismissToast(); setShowCartPanel(true); }}
-                  className="flex-1 py-[8px] rounded-full font-['Avenir_LT_Pro:85_Heavy'] text-[12px] text-white cursor-pointer hover:opacity-85 transition-opacity"
+                  className="flex-1 py-[8px] rounded-full font-avenir-heavy text-[12px] text-white cursor-pointer hover:opacity-85 transition-opacity"
                   style={{ background: "linear-gradient(135deg, #0233c3, #0569ff)" }}
                 >
                   {t.verCarrinho}
@@ -520,7 +521,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
                 <div className="flex items-center justify-center rounded-full size-[36px]" style={{ background: "linear-gradient(135deg, #0233c3, #0569ff)" }}>
                   <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 2h1.5l2 9h8l1.5-6H5.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><circle cx="8" cy="15" r="1.2" fill="white"/><circle cx="12.5" cy="15" r="1.2" fill="white"/></svg>
                 </div>
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91]">{t.cartTitle} ({cartCount})</p>
+                <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91]">{t.cartTitle} ({cartCount})</p>
               </div>
               <button onClick={() => setShowCartPanel(false)} aria-label={t.closeAriaLabel} className="bg-[#f2f6fd] flex items-center justify-center rounded-full size-[36px] hover:bg-[#e8f0ff] transition-colors cursor-pointer text-[20px] text-[#555]">×</button>
             </div>
@@ -531,16 +532,16 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
                   <div className="flex items-center justify-center rounded-full size-[56px] mb-[4px]" style={{ background: "linear-gradient(135deg, #f0f4ff, #f5f0ff)" }}>
                     <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M3 3h2.5l3 14h12l2.5-10H8" stroke="#0233c3" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><circle cx="12.5" cy="23" r="2" fill="#0233c3"/><circle cx="19.5" cy="23" r="2" fill="#0233c3"/></svg>
                   </div>
-                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91] text-center">{t.emptyTitle}</p>
-                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#8a8f97] text-center leading-[18px]">{t.emptySubtitle}</p>
+                  <p className="font-avenir-heavy text-[15px] text-[#1f2e91] text-center">{t.emptyTitle}</p>
+                  <p className="font-avenir-roman text-[13px] text-[#8a8f97] text-center leading-[18px]">{t.emptySubtitle}</p>
                   <div className="flex flex-col gap-[8px] w-full mt-[8px]">
-                    <a href="/linha-neo" className="flex items-center justify-center gap-[8px] py-[11px] rounded-full font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-white hover:opacity-85 transition-opacity" style={{ background: "linear-gradient(135deg, #0233c3, #0569ff)" }}>
+                    <a href="/linha-neo" className="flex items-center justify-center gap-[8px] py-[11px] rounded-full font-avenir-heavy text-[13px] text-white hover:opacity-85 transition-opacity" style={{ background: "linear-gradient(135deg, #0233c3, #0569ff)" }}>
                       {t.emptyLinkNeo}
                     </a>
-                    <a href="/compare" className="flex items-center justify-center gap-[8px] py-[11px] rounded-full font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#0233c3] border border-[#0233c3] hover:bg-[#f0f4ff] transition-colors">
+                    <a href="/compare" className="flex items-center justify-center gap-[8px] py-[11px] rounded-full font-avenir-heavy text-[13px] text-[#0233c3] border border-[#0233c3] hover:bg-[#f0f4ff] transition-colors">
                       {t.emptyLinkCompare}
                     </a>
-                    <a href="/buy" className="flex items-center justify-center gap-[8px] py-[11px] rounded-full font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#555] border border-[#cbd0d4] hover:border-[#0233c3] hover:text-[#0233c3] transition-colors">
+                    <a href="/buy" className="flex items-center justify-center gap-[8px] py-[11px] rounded-full font-avenir-heavy text-[13px] text-[#555] border border-[#cbd0d4] hover:border-[#0233c3] hover:text-[#0233c3] transition-colors">
                       {t.emptyLinkBuy}
                     </a>
                   </div>
@@ -550,15 +551,15 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
                 if (!product) return null;
                 return (
                   <div key={item.id} className="bg-[#f6f9fe] rounded-[12px] flex items-center gap-[12px] p-[12px]">
-                    <img src={product.img} alt={product.label} className="size-[56px] object-contain shrink-0" />
+                    <Img src={product.img} alt={product.label} className="size-[56px] object-contain shrink-0" />
                     <div className="flex flex-col gap-[4px] flex-1 min-w-0">
-                      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] leading-[16px] text-[#1f2e91] truncate">{product.label}</p>
-                      <p className="font-['Avenir_LT_Pro:55_Roman'] text-[11px] text-[#8a8f97]">{t.linhaNeo} {product.linha}</p>
-                      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#0233c3]">{formatPrice(PRODUCT_PRICES_BRL[item.id] ?? 0, lang)}</p>
+                      <p className="font-avenir-heavy text-[13px] leading-[16px] text-[#1f2e91] truncate">{product.label}</p>
+                      <p className="font-avenir-roman text-[11px] text-[#8a8f97]">{t.linhaNeo} {product.linha}</p>
+                      <p className="font-avenir-heavy text-[13px] text-[#0233c3]">{formatPrice(PRODUCT_PRICES_BRL[item.id] ?? 0, lang)}</p>
                     </div>
                     <div className="flex items-center gap-[6px]">
                       <button onClick={() => updateQty(item.id, -1)} className="size-[26px] flex items-center justify-center rounded-full bg-white border border-[#cbd0d4] text-[#333] hover:border-[#0233c3] hover:text-[#0233c3] transition-colors cursor-pointer text-[14px] font-bold">−</button>
-                      <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#2a2a2b] w-[20px] text-center">{item.qty}</span>
+                      <span className="font-avenir-heavy text-[13px] text-[#2a2a2b] w-[20px] text-center">{item.qty}</span>
                       <button onClick={() => updateQty(item.id, +1)} className="size-[26px] flex items-center justify-center rounded-full bg-white border border-[#cbd0d4] text-[#333] hover:border-[#0233c3] hover:text-[#0233c3] transition-colors cursor-pointer text-[14px] font-bold">+</button>
                     </div>
                     <button onClick={() => removeFromCart(item.id)} aria-label={t.remover} className="text-[#8a8f97] hover:text-[#e53935] transition-colors cursor-pointer text-[18px] shrink-0 leading-none">×</button>
@@ -570,12 +571,12 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
             {cart.length > 0 && (
               <div className="border-t border-[#e0e8f8] px-[24px] py-[20px] flex flex-col gap-[16px]">
                 <div className="flex items-center justify-between">
-                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#555]">{t.total}</p>
-                  <p className="font-['Avenir_LT_Pro:95_Black'] text-[20px] text-[#0233c3]">{formatPrice(cartTotal, lang)}</p>
+                  <p className="font-avenir-roman text-[14px] text-[#555]">{t.total}</p>
+                  <p className="font-avenir-black text-[20px] text-[#0233c3]">{formatPrice(cartTotal, lang)}</p>
                 </div>
                 <a
                   href="/checkout"
-                  className="flex items-center justify-center gap-[8px] py-[14px] rounded-full font-['Avenir_LT_Pro:85_Heavy'] text-[14px] text-white cursor-pointer hover:opacity-85 transition-opacity"
+                  className="flex items-center justify-center gap-[8px] py-[14px] rounded-full font-avenir-heavy text-[14px] text-white cursor-pointer hover:opacity-85 transition-opacity"
                   style={{ background: "linear-gradient(135deg, #0233c3, #0569ff)" }}
                 >
                   {t.checkout}

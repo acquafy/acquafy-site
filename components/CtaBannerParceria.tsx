@@ -1,4 +1,5 @@
 ﻿"use client";
+import Img from "@/components/ui/Img";
 
 import Link from "next/link";
 import { BtnAzulOutArrow, BtnAzulBaseArrow } from "./ui/Buttons";
@@ -113,7 +114,7 @@ export default function CtaBannerParceria() {
     <section className="bg-white flex items-center justify-center px-[20px] py-[40px] w-full">
       <div className="border border-[#cbd0d4] flex flex-col lg:flex-row gap-[20px] items-center justify-center max-w-[1400px] overflow-clip px-[20px] xl:px-[80px] py-[40px] relative rounded-[16px] w-full">
 
-        <img
+        <Img
           alt=""
           className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[16px] size-full"
           src={imgBg}
@@ -121,11 +122,11 @@ export default function CtaBannerParceria() {
 
         {/* texto esquerdo */}
         <div className="relative flex flex-[1_0_0] flex-col items-center justify-center min-w-[240px]">
-          <div className="font-['Avenir_LT_Pro:95_Black'] text-[0px] text-white w-full text-center xl:text-left">
+          <div className="font-avenir-black text-[0px] text-white w-full text-center xl:text-left">
             <p className="text-[32px] leading-[39px]">
               {t.heading}
             </p>
-            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px]">
+            <p className="font-avenir-heavy text-[18px] leading-[22px]">
               {t.sub}
             </p>
           </div>

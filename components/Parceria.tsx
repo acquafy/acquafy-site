@@ -1,4 +1,5 @@
 "use client";
+import Img from "@/components/ui/Img";
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
 import { useFeature } from "@/components/FeatureFlags";
@@ -315,11 +316,11 @@ export default function Parceria() {
   return (
     <section className="bg-white flex flex-col gap-[20px] items-center justify-center px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[5px] items-center max-w-[1400px] overflow-hidden w-full">
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] min-w-[240px] w-full text-center lg:text-left">
+        <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] min-w-[240px] w-full text-center lg:text-left">
           <span className="text-[#2a2a2b]">{t.h2a}</span>
           <span className="text-[#0233c3]">{t.h2b}</span>
         </h2>
-        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] w-full text-center lg:text-left">
+        <p className="font-avenir-roman text-[18px] leading-[19px] text-[#333] w-full text-center lg:text-left">
           {t.sub}
         </p>
       </div>
@@ -334,10 +335,10 @@ export default function Parceria() {
               <div className="flex flex-col gap-[20px] items-start w-full">
                 <div className="flex gap-[10px] items-center w-full">
                   <div className="flex flex-col items-center justify-center size-[46px] shrink-0">
-                    <img alt={tier.name} className="w-full h-full object-contain" src={tier.icon} />
+                    <Img alt={tier.name} className="w-full h-full object-contain" src={tier.icon} />
                   </div>
                   <p
-                    className="font-['Avenir_LT_Pro:85_Heavy'] text-[20px] leading-[24px] flex-1 min-w-0"
+                    className="font-avenir-heavy text-[20px] leading-[24px] flex-1 min-w-0"
                     style={{ color: tier.nameColor }}
                   >
                     {tier.name}
@@ -347,7 +348,7 @@ export default function Parceria() {
                   {t.tiers[ti].checks.map((check) => (
                     <div key={check} className="flex gap-[8px] items-center w-full">
                       <FigmaIcon src={imgCheckin} size={8} aspectW={9} aspectH={6.44} />
-                      <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[15px] text-[#2a2a2b] flex-1 min-w-0">
+                      <p className="font-avenir-heavy text-[14px] leading-[15px] text-[#2a2a2b] flex-1 min-w-0">
                         {check}
                       </p>
                     </div>
@@ -356,7 +357,7 @@ export default function Parceria() {
               </div>
               {bePartner && (
                 <a href="/parceria" className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex items-center justify-center min-h-[30px] overflow-hidden px-[20px] py-[10px] rounded-[8px] w-full cursor-pointer">
-                  <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-white text-center flex-1 min-w-0">
+                  <span className="font-avenir-heavy text-[14px] leading-[17px] text-white text-center flex-1 min-w-0">
                     {t.cta}
                   </span>
                 </a>
@@ -369,7 +370,7 @@ export default function Parceria() {
           {BENEFIT_ICONS.map((item, bi) => (
             <div key={bi} className="flex gap-[10px] items-center w-full">
               <FigmaIcon src={item.icon} size={24} aspectW={item.aspectW} aspectH={item.aspectH} />
-              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#2a2a2b] flex-1 min-w-0">
+              <p className="font-avenir-heavy text-[14px] leading-[17px] text-[#2a2a2b] flex-1 min-w-0">
                 {t.benefits[bi]}
               </p>
             </div>

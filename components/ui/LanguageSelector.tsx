@@ -1,4 +1,5 @@
 "use client";
+import Img from "@/components/ui/Img";
 
 import { useState, useRef, useEffect } from "react";
 import { useLang, type Lang } from "@/context/LanguageContext";
@@ -83,7 +84,7 @@ function FlagImg({ flag, aspectW, aspectH }: Pick<Language, "flag" | "aspectW" |
   return (
     <div className="flex flex-col items-center justify-center overflow-clip shrink-0 size-[20px]">
       <div className="flex-[1_0_0] min-h-px relative w-full" style={{ aspectRatio: `${aspectW}/${aspectH}` }}>
-        <img alt="" className="absolute block inset-0 max-w-none size-full" src={flag} />
+        <Img alt="" className="absolute block inset-0 max-w-none size-full" src={flag} />
       </div>
     </div>
   );
@@ -112,11 +113,11 @@ function DropdownMenu({
             }`}
           >
             <FlagImg flag={item.flag} aspectW={item.aspectW} aspectH={item.aspectH} />
-            <p className={`${isActive ? "font-['Avenir_LT_Pro:85_Heavy']" : "font-['Avenir_LT_Pro:55_Roman']"} text-[16px] leading-[20px] text-[#2a2a2b] whitespace-nowrap shrink-0 flex-1 min-w-0`}>
+            <p className={`${isActive ? "font-avenir-heavy" : "font-avenir-roman"} text-[16px] leading-[20px] text-[#2a2a2b] whitespace-nowrap shrink-0 flex-1 min-w-0`}>
               {item.label}
             </p>
             {!isAvailable && (
-              <span className="text-[10px] font-['Avenir_LT_Pro:55_Roman'] text-[#aaa] whitespace-nowrap shrink-0">
+              <span className="text-[10px] font-avenir-roman text-[#aaa] whitespace-nowrap shrink-0">
                 Em breve
               </span>
             )}
@@ -156,7 +157,7 @@ export function LanguageSelectorFull() {
         }`}
       >
         <FlagImg flag={info.flag} aspectW={info.aspectW} aspectH={info.aspectH} />
-        <p className={`font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] flex-[1_0_0] min-w-px text-left ${open ? "text-[#0233c3]" : "text-[#333]"}`}>
+        <p className={`font-avenir-heavy text-[14px] leading-[17px] flex-[1_0_0] min-w-px text-left ${open ? "text-[#0233c3]" : "text-[#333]"}`}>
           {info.label}
         </p>
         <div className="flex items-center justify-center shrink-0">
@@ -165,7 +166,7 @@ export function LanguageSelectorFull() {
               <div className="flex items-center justify-center shrink-0 w-full">
                 <div className="-scale-y-100 flex-none w-full">
                   <div className="relative size-full" style={{ aspectRatio: "30/18" }}>
-                    <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgArrowFooter} />
+                    <Img alt="" className="absolute block inset-0 max-w-none size-full" src={imgArrowFooter} />
                   </div>
                 </div>
               </div>
@@ -193,14 +194,14 @@ export function LanguageSelectorCompact() {
         }`}
       >
         <FlagImg flag={FULL_INFO[lang].flag} aspectW={FULL_INFO[lang].aspectW} aspectH={FULL_INFO[lang].aspectH} />
-        <p className={`font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] whitespace-nowrap shrink-0 ${open ? "text-[#0233c3]" : "text-[#333]"}`}>
+        <p className={`font-avenir-heavy text-[14px] leading-[17px] whitespace-nowrap shrink-0 ${open ? "text-[#0233c3]" : "text-[#333]"}`}>
           {COMPACT_LABEL[lang]}
         </p>
         <div className="flex flex-col items-center justify-center size-[10px] shrink-0">
           <div className="flex items-center justify-center shrink-0 w-full">
             <div className={`flex-none w-full transition-transform duration-200 ${open ? "" : "-scale-y-100"}`}>
               <div className="relative size-full" style={{ aspectRatio: "30/18" }}>
-                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgArrowHeader} />
+                <Img alt="" className="absolute block inset-0 max-w-none size-full" src={imgArrowHeader} />
               </div>
             </div>
           </div>

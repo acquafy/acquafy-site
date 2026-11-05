@@ -229,7 +229,7 @@ export default function PorqueNeo() {
         <div className="flex flex-col gap-[40px] items-start w-full">
 
           {/* Title */}
-          <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-center w-full">
+          <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-center w-full">
             <span className="text-[#1f2e91]">{t.heading1}</span>
             <span
               className="bg-clip-text text-transparent"
@@ -251,11 +251,11 @@ export default function PorqueNeo() {
                   <FigmaIcon src={item.icon} size={30} aspectW={item.aW} aspectH={item.aH} />
                 </div>
 
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] text-center w-full min-h-[35px] flex items-center justify-center">
+                <p className="font-avenir-heavy text-[16px] leading-[20px] text-[#1f2e91] text-center w-full min-h-[35px] flex items-center justify-center">
                   {item.title}
                 </p>
 
-                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] leading-[14px] text-[#333] text-center w-full">
+                <p className="font-avenir-roman text-[12px] leading-[14px] text-[#333] text-center w-full">
                   {item.desc}
                 </p>
               </div>

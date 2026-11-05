@@ -1,4 +1,5 @@
 "use client";
+import Img from "@/components/ui/Img";
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
@@ -321,7 +322,7 @@ export default function BannerLinhaNeo() {
     <section className="relative flex flex-col gap-[20px] items-center px-[20px] py-[40px] w-full overflow-hidden bg-[#f1f5fe] win-1280:bg-transparent win-1280:h-[calc(100vh-80px)]">
 
       {/* Imagem de fundo — win-1280+ apenas (variante TOTAL) */}
-      <img
+      <Img
         alt=""
         className="hidden win-1280:block absolute inset-0 w-full h-full object-cover pointer-events-none"
         src={imgBg}
@@ -334,19 +335,19 @@ export default function BannerLinhaNeo() {
         <div className="flex flex-col gap-[20px] items-center w-full win-1024:flex-[1_0_0] win-1024:gap-[40px] win-1024:items-start win-1024:justify-center win-1024:max-w-[500px] win-1024:min-w-[280px]">
 
           <h1
-            className="font-['Avenir_LT_Pro:95_Black'] text-hero bg-clip-text text-transparent text-center w-full win-1024:text-left"
+            className="font-avenir-black text-hero bg-clip-text text-transparent text-center w-full win-1024:text-left"
             style={{ backgroundImage: "linear-gradient(129deg, #0233c3 6.19%, #9f3df5 93.35%)" }}
           >
             Linha Neo
           </h1>
 
-          <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#333] text-center w-full win-1024:text-left">
+          <p className="font-avenir-roman text-[18px] leading-[26px] text-[#333] text-center w-full win-1024:text-left">
             {t.desc}
           </p>
 
           {/* Imagem de produto inline — visível apenas abaixo de win-1024 (variante 1024) */}
           <div className="win-1024:hidden aspect-[960/450] relative rounded-[16px] overflow-hidden shrink-0 w-full">
-            <img
+            <Img
               alt="Linha Neo — produtos"
               className="absolute inset-0 w-full h-full object-cover"
               src={imgProducts}
@@ -359,10 +360,10 @@ export default function BannerLinhaNeo() {
               <div key={f.title} className="flex flex-[1_0_0] gap-[20px] items-center justify-center min-w-[180px] win-1024:justify-start">
                 <FigmaIcon src={f.icon} size={30} aspectW={f.aW} aspectH={f.aH} />
                 <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start justify-center min-w-0">
-                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] w-full">
+                  <p className="font-avenir-heavy text-[16px] leading-[20px] text-[#1f2e91] w-full">
                     {f.title}
                   </p>
-                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] leading-[14px] text-[#333] w-full">
+                  <p className="font-avenir-roman text-[12px] leading-[14px] text-[#333] w-full">
                     {f.desc}
                   </p>
                 </div>
@@ -373,7 +374,7 @@ export default function BannerLinhaNeo() {
 
         {/* Coluna direita: imagem de produto — win-1024 apenas (variante 1280, oculta em win-1280+) */}
         <div className="hidden win-1024:flex win-1280:hidden flex-[1_0_0] items-stretch min-h-[480px] min-w-[280px] relative rounded-[16px] overflow-hidden">
-          <img
+          <Img
             alt="Linha Neo — produtos"
             className="absolute inset-0 w-full h-full object-cover"
             src={imgProducts}
@@ -393,10 +394,10 @@ export default function BannerLinhaNeo() {
           <div key={s.title} className="flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-w-[160px] win-1280:flex-row win-1280:flex-wrap">
             <FigmaIcon src={s.icon} size={40} />
             <div className="flex flex-[1_0_0] flex-col gap-[15px] items-start min-w-[200px] text-center win-1280:text-left">
-              <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#1f2e91] w-full">
+              <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91] w-full">
                 {s.title}
               </p>
-              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[21px] text-[#2a2a2b] w-full">
+              <p className="font-avenir-roman text-[16px] leading-[21px] text-[#2a2a2b] w-full">
                 {s.desc}
               </p>
             </div>

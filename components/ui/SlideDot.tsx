@@ -1,3 +1,4 @@
+import Img from "@/components/ui/Img";
 /**
  * SlideDot — componente de paginação / indicador de slide
  *
@@ -22,7 +23,7 @@ export function DotAtivo({ className }: { className?: string }) {
       className={`relative shrink-0 ${className ?? ""}`}
       style={{ width: 12, height: 12 }}
     >
-      <img
+      <Img
         alt="slide ativo"
         className="absolute block inset-0 max-w-none size-full"
         src={imgAtivo}
@@ -50,7 +51,7 @@ export function DotInativo({
       style={{ width: 12, height: 12 }}
     >
       {/* INATIVO: visível por padrão, some no hover */}
-      <img
+      <Img
         alt=""
         className="absolute block inset-0 max-w-none size-full
                    transition-opacity duration-150
@@ -66,7 +67,7 @@ export function DotInativo({
                    opacity-0 group-hover:opacity-100"
         style={{ inset: "-50%" }}
       >
-        <img alt="" className="block max-w-none size-full" src={imgHover} />
+        <Img alt="" className="block max-w-none size-full" src={imgHover} />
       </div>
     </button>
   );

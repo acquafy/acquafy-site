@@ -1,4 +1,5 @@
 "use client";
+import Img from "@/components/ui/Img";
 import { useState, useEffect } from "react";
 import FigmaIcon from "./FigmaIcon";
 import { DotAtivo, DotInativo } from "./ui/SlideDot";
@@ -713,9 +714,9 @@ function GiftCard({ earn, inText }: { earn: string; inText: string }) {
       <div className="bg-[rgba(255,255,255,0.4)] border border-white flex flex-col items-center justify-center p-[10px] rounded-full size-[41px] shrink-0 shadow-[0px_0px_4px_0px_rgba(0,0,0,0.1)]">
         <FigmaIcon src={imgGiftCTA} size={20} />
       </div>
-      <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] flex-1 min-w-[100px]">
+      <p className="font-avenir-roman text-[18px] leading-[19px] text-[#333] flex-1 min-w-[100px]">
         {earn}{" "}
-        <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] bg-clip-text text-transparent bg-gradient-to-b from-[#0233c3] to-[#9f3df5]">$100,00</span>
+        <span className="font-avenir-heavy text-[18px] leading-[22px] bg-clip-text text-transparent bg-gradient-to-b from-[#0233c3] to-[#9f3df5]">$100,00</span>
         {" "}{inText}
       </p>
     </div>
@@ -744,8 +745,8 @@ export default function Hero() {
     >
 
       {/* Backgrounds */}
-      {slide === 0 && <img src={imgBg1} alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none" />}
-      {slide === 1 && <img src={imgBg2} alt="" className="hidden xl:block absolute inset-0 w-full h-full object-cover pointer-events-none" />}
+      {slide === 0 && <Img src={imgBg1} priority alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none" />}
+      {slide === 1 && <Img src={imgBg2} alt="" className="hidden xl:block absolute inset-0 w-full h-full object-cover pointer-events-none" />}
 
       {/* ══ MOBILE LAYOUT (<xl) ══ */}
       <div className="xl:hidden relative flex-1 flex flex-col gap-[20px] items-center w-full">
@@ -755,17 +756,17 @@ export default function Hero() {
           <>
             <div className="bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center max-w-[280px] px-[12px] py-[8px] rounded-full shrink-0">
               <FigmaIcon src={imgPlanetWeb} size={16} />
-              <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3]">{t.s1Label}</span>
+              <span className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3]">{t.s1Label}</span>
             </div>
 
-            <h1 className="font-['Avenir_LT_Pro:95_Black'] text-hero text-[#333] w-full text-center">
+            <h1 className="font-avenir-black text-hero text-[#333] w-full text-center">
               {t.s1H1a}
               <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(103.83deg, #0233c3 6.19%, #9f3df5 93.35%)" }}>
                 {t.s1H1b}
               </span>
             </h1>
 
-            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#333] text-center w-full">
+            <p className="font-avenir-roman text-[18px] leading-[26px] text-[#333] text-center w-full">
               {t.s1Sub}
             </p>
 
@@ -775,8 +776,8 @@ export default function Hero() {
                   <div className="flex items-center justify-center size-[40px] rounded-[12px] p-[10px]" style={{ backgroundColor: f.bg }}>
                     <FigmaIcon src={f.icon} size={20} aspectW={f.aspectW} aspectH={f.aspectH} />
                   </div>
-                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#07235c] text-center w-full">{t.s1Features[i].title}</p>
-                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#333] text-center w-full">{t.s1Features[i].desc}</p>
+                  <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#07235c] text-center w-full">{t.s1Features[i].title}</p>
+                  <p className="font-avenir-roman text-[14px] leading-[16px] text-[#333] text-center w-full">{t.s1Features[i].desc}</p>
                 </div>
               ))}
             </div>
@@ -796,17 +797,17 @@ export default function Hero() {
               onKeyDown={(e) => e.key === "Enter" && setSlide(1)}
             >
               <div className="relative w-full" style={{ aspectRatio: "3160/2300" }}>
-                <img src={imgMockup} alt="Acquafy Platform Mockup" className="absolute inset-0 w-full h-full object-contain" />
+                <Img src={imgMockup} alt="Acquafy Platform Mockup" className="absolute inset-0 w-full h-full object-contain" />
               </div>
             </div>
 
             <div className="flex flex-wrap gap-[20px] items-center justify-center max-w-[720px] w-full">
               <a href="/neo-line" className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
-                <span className="font-['Articulat_CF:Bold'] text-[16px] text-white flex-1 text-center">{t.s1Cta1}</span>
+                <span className="font-avenir-heavy text-[16px] text-white flex-1 text-center">{t.s1Cta1}</span>
                 <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
               </a>
               <a href="/compare" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
-                <span className="font-['Articulat_CF:Bold'] text-[16px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">{t.s1Cta2mob}</span>
+                <span className="font-avenir-heavy text-[16px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">{t.s1Cta2mob}</span>
                 <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
                   <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0 group-active:opacity-0"><FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} /></div>
                   <div className="absolute inset-0 transition-opacity duration-150 opacity-0 group-hover:opacity-100 group-active:opacity-100"><FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} /></div>
@@ -821,22 +822,22 @@ export default function Hero() {
           <>
             <div className="bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center max-w-[280px] px-[12px] py-[8px] rounded-full shrink-0">
               <FigmaIcon src={imgGiftLabel} size={16} />
-              <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(126deg, #0233c3 6.19%, #9f3df5 93.35%)" }}>
+              <span className="font-avenir-heavy text-[14px] leading-[17px] bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(126deg, #0233c3 6.19%, #9f3df5 93.35%)" }}>
                 {t.s2Label}
               </span>
             </div>
 
-            <h1 className="font-['Avenir_LT_Pro:95_Black'] text-hero text-[#333] w-full text-center">
+            <h1 className="font-avenir-black text-hero text-[#333] w-full text-center">
               {t.s2H1a}{" "}
               <span className="bg-clip-text text-transparent bg-gradient-to-b from-[#0233c3] to-[#9f3df5]">
                 {t.s2H1b}
               </span>
             </h1>
 
-            <div className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#333] text-center w-full flex flex-col gap-[26px]">
+            <div className="font-avenir-roman text-[18px] leading-[26px] text-[#333] text-center w-full flex flex-col gap-[26px]">
               <p>{t.s2SubMobP1}</p>
               <p>{t.s2SubMobP2}
-                <span className="font-['Avenir_LT_Pro:85_Heavy'] bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(116.55deg, #0233c3 6.19%, #9f3df5 93.35%)" }}>
+                <span className="font-avenir-heavy bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(116.55deg, #0233c3 6.19%, #9f3df5 93.35%)" }}>
                   Acquafy Neo UP.
                 </span>
               </p>
@@ -846,7 +847,7 @@ export default function Hero() {
               {S2_CARD_ICONS.map((f, i) => (
                 <div key={i} className="bg-[rgba(255,255,255,0.4)] border border-white flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-h-[60px] min-w-[180px] p-[20px] rounded-[12px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.1)]">
                   <FigmaIcon src={f.icon} size={40} aspectW={f.aspectW} aspectH={f.aspectH} />
-                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#333] text-center w-full min-h-[44px]">{t.s2Cards[i].label}</p>
+                  <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#333] text-center w-full min-h-[44px]">{t.s2Cards[i].label}</p>
                 </div>
               ))}
             </div>
@@ -865,7 +866,7 @@ export default function Hero() {
               tabIndex={0}
               onKeyDown={(e) => e.key === "Enter" && setSlide(0)}
             >
-              <img src={imgFrame36} alt="Acquafy Neo UP" className="absolute inset-0 w-full h-full object-cover" />
+              <Img src={imgFrame36} alt="Acquafy Neo UP" className="absolute inset-0 w-full h-full object-cover" />
             </div>
 
             <div className="flex flex-wrap gap-[20px] items-center justify-center max-w-[720px] w-full">
@@ -892,23 +893,23 @@ export default function Hero() {
             {slide === 0 ? (
               <div className="bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center max-w-[280px] px-[12px] py-[8px] rounded-full shrink-0">
                 <FigmaIcon src={imgPlanetWeb} size={16} />
-                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-[#0233c3]">{t.s1Label}</span>
+                <span className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3]">{t.s1Label}</span>
               </div>
             ) : (
               <div className="bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center max-w-[280px] px-[12px] py-[8px] rounded-full shrink-0">
                 <FigmaIcon src={imgGiftLabel} size={16} />
-                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(126deg, #0233c3 6.19%, #9f3df5 93.35%)" }}>{t.s2Label}</span>
+                <span className="font-avenir-heavy text-[14px] leading-[17px] bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(126deg, #0233c3 6.19%, #9f3df5 93.35%)" }}>{t.s2Label}</span>
               </div>
             )}
 
             {/* H1 */}
             {slide === 0 ? (
-              <h1 className="font-['Avenir_LT_Pro:95_Black'] text-hero text-[#333] w-full">
+              <h1 className="font-avenir-black text-hero text-[#333] w-full">
                 {t.s1H1a}
                 <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(103.83deg, #0233c3 6.19%, #9f3df5 93.35%)" }}>{t.s1H1b}</span>
               </h1>
             ) : (
-              <h1 className="font-['Avenir_LT_Pro:95_Black'] text-hero text-[#333] w-full">
+              <h1 className="font-avenir-black text-hero text-[#333] w-full">
                 {t.s2H1a}<br />
                 <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(to bottom, #0233c3, #9f3df5)" }}>{t.s2H1b}</span>
               </h1>
@@ -916,15 +917,15 @@ export default function Hero() {
 
             {/* Subtitle */}
             {slide === 0 ? (
-              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#333] w-full">
+              <p className="font-avenir-roman text-[18px] leading-[26px] text-[#333] w-full">
                 {t.s1Sub}
               </p>
             ) : (
               <div className="flex flex-col gap-[12px] w-full">
-                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#333]">{t.s2SubDeskP1}</p>
-                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[26px] text-[#333]">
+                <p className="font-avenir-roman text-[18px] leading-[26px] text-[#333]">{t.s2SubDeskP1}</p>
+                <p className="font-avenir-roman text-[18px] leading-[26px] text-[#333]">
                   {t.s2SubDeskP2}
-                  <span className="font-['Avenir_LT_Pro:85_Heavy'] bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(116.55deg, #0233c3 6.19%, #9f3df5 93.35%)" }}>Acquafy Neo UP.</span>
+                  <span className="font-avenir-heavy bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(116.55deg, #0233c3 6.19%, #9f3df5 93.35%)" }}>Acquafy Neo UP.</span>
                 </p>
               </div>
             )}
@@ -937,8 +938,8 @@ export default function Hero() {
                     <div className="flex items-center justify-center size-[40px] rounded-[12px] p-[10px]" style={{ backgroundColor: f.bg }}>
                       <FigmaIcon src={f.icon} size={20} aspectW={f.aspectW} aspectH={f.aspectH} />
                     </div>
-                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#07235c] w-full">{t.s1Features[i].title}</p>
-                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] leading-[16px] text-[#333] w-full">{t.s1Features[i].desc}</p>
+                    <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#07235c] w-full">{t.s1Features[i].title}</p>
+                    <p className="font-avenir-roman text-[14px] leading-[16px] text-[#333] w-full">{t.s1Features[i].desc}</p>
                   </div>
                 ))}
               </div>
@@ -947,7 +948,7 @@ export default function Hero() {
                 {S2_CARD_ICONS.map((f, i) => (
                   <div key={i} className="bg-[rgba(255,255,255,0.4)] border border-white flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-h-[60px] min-w-[180px] p-[20px] rounded-[12px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.1)]">
                     <FigmaIcon src={f.icon} size={40} aspectW={f.aspectW} aspectH={f.aspectH} />
-                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-[#333] text-center w-full min-h-[44px]">{t.s2Cards[i].label}</p>
+                    <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#333] text-center w-full min-h-[44px]">{t.s2Cards[i].label}</p>
                   </div>
                 ))}
               </div>
@@ -957,11 +958,11 @@ export default function Hero() {
             {slide === 0 ? (
               <div className="flex flex-wrap gap-[20px] items-center justify-start w-full">
                 <a href="/neo-line" className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
-                  <span className="font-['Articulat_CF:Bold'] text-[16px] text-white flex-1 text-center">{t.s1Cta1}</span>
+                  <span className="font-avenir-heavy text-[16px] text-white flex-1 text-center">{t.s1Cta1}</span>
                   <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
                 </a>
                 <a href="/platform" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
-                  <span className="font-['Articulat_CF:Bold'] text-[16px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">{t.s1Cta2desk}</span>
+                  <span className="font-avenir-heavy text-[16px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">{t.s1Cta2desk}</span>
                   <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
                     <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0 group-active:opacity-0"><FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} /></div>
                     <div className="absolute inset-0 transition-opacity duration-150 opacity-0 group-hover:opacity-100 group-active:opacity-100"><FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} /></div>
@@ -979,7 +980,7 @@ export default function Hero() {
           {slide === 0 && (
             <div className="flex flex-1 items-end justify-end min-w-px">
               <div className="relative w-full" style={{ aspectRatio: "3160/2300" }}>
-                <img src={imgMockup} alt="Acquafy Platform Mockup" className="absolute inset-0 w-full h-full object-contain" />
+                <Img src={imgMockup} sizes="(min-width: 1280px) 50vw, 100vw" alt="Acquafy Platform Mockup" className="absolute inset-0 w-full h-full object-contain" />
               </div>
             </div>
           )}
@@ -1011,11 +1012,11 @@ export default function Hero() {
                 <FigmaIcon src={stat.icon} size={30} aspectW={stat.aspectW} aspectH={stat.aspectH} />
                 <div className="flex flex-col gap-[2px]">
                   {"lines" in text ? text.lines.map((l, li) => (
-                    <span key={li} className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-white">{l}</span>
+                    <span key={li} className="font-avenir-heavy text-[18px] leading-[22px] text-white">{l}</span>
                   )) : (
                     <>
-                      <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] leading-[22px] text-white">{text.top}</span>
-                      <span className="font-['Avenir_LT_Pro:55_Roman'] text-[16px] leading-[20px] text-white">{text.bottom}</span>
+                      <span className="font-avenir-heavy text-[18px] leading-[22px] text-white">{text.top}</span>
+                      <span className="font-avenir-roman text-[16px] leading-[20px] text-white">{text.bottom}</span>
                     </>
                   )}
                 </div>
@@ -1027,7 +1028,7 @@ export default function Hero() {
         <div className="relative shrink-0 bg-white flex flex-col xl:flex-row gap-[30px] xl:gap-x-[20px] items-center justify-center max-w-[1400px] min-h-[85px] overflow-hidden px-[20px] py-[25px] rounded-[16px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.1)] w-full">
           <div className="flex flex-[1_0_0] gap-[10px] items-center min-w-[240px] max-w-[480px]">
             <FigmaIcon src={imgAguaPura} size={30} />
-            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[18px] leading-[19px] text-[#333] flex-1 min-w-px">
+            <p className="font-avenir-roman text-[18px] leading-[19px] text-[#333] flex-1 min-w-px">
               {t.stats2tag[0]}
               <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(164.34deg, #0233c3 5.42%, #9f3df5 28.68%)" }}>{t.stats2tag[1]}</span>
             </p>
@@ -1036,7 +1037,7 @@ export default function Hero() {
             {t.stats2rules.map((text) => (
               <div key={text} className="drop-shadow-[0px_0px_2px_rgba(0,0,0,0.1)] flex flex-[1_0_0] gap-[10px] items-center min-w-[180px] rounded-[12px]">
                 <FigmaIcon src={imgShield} size={24} aspectW={26.14} aspectH={30} />
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#333] flex-1 min-w-px">{text}</p>
+                <p className="font-avenir-heavy text-[16px] leading-[20px] text-[#333] flex-1 min-w-px">{text}</p>
               </div>
             ))}
           </div>

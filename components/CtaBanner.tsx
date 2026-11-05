@@ -1,4 +1,5 @@
 "use client";
+import Img from "@/components/ui/Img";
 import FigmaIcon from "./FigmaIcon";
 import { Feature } from "@/components/FeatureFlags";
 import { BtnFalaAcquafy } from "./ui/Buttons";
@@ -33,14 +34,14 @@ export default function CtaBanner() {
   return (
     <section className="bg-white flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
       <div className="border border-[#cbd0d4] flex flex-col lg:flex-row gap-[20px] items-center justify-center max-w-[1400px] overflow-hidden px-[20px] lg:px-[80px] py-[40px] relative rounded-[16px] w-full">
-        <img
+        <Img
           alt=""
           className="absolute inset-0 w-full h-full object-cover pointer-events-none rounded-[16px]"
           src={imgBg}
         />
 
         <div className="relative flex flex-1 flex-col items-center justify-center min-w-[240px]">
-          <h2 className="font-['Avenir_LT_Pro:95_Black'] text-[32px] leading-[39px] text-white w-full text-center lg:text-left">
+          <h2 className="font-avenir-black text-[32px] leading-[39px] text-white w-full text-center lg:text-left">
             {t.title}
           </h2>
         </div>
@@ -52,7 +53,7 @@ export default function CtaBanner() {
             href="/buy"
             className="flex gap-[10px] items-center justify-center min-h-[30px] overflow-hidden p-[20px] rounded-[8px] transition-colors cursor-pointer bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] flex-1 min-w-[200px] no-underline"
           >
-            <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] leading-[17px] text-center whitespace-nowrap shrink-0 text-white">
+            <span className="font-avenir-heavy text-[14px] leading-[17px] text-center whitespace-nowrap shrink-0 text-white">
               {t.btnBuy}
             </span>
             <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />

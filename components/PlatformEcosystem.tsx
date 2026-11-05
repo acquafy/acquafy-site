@@ -1,4 +1,5 @@
 "use client";
+import Img from "@/components/ui/Img";
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
@@ -203,11 +204,11 @@ function ArrowConnector() {
   return (
     <div className="flex flex-[1_0_0] items-center max-w-[50px] min-h-[22px] min-w-px">
       <div className="flex-[1_0_0] h-[10px] min-w-px mr-[-8px] relative">
-        <img alt="" className="absolute inset-0 max-w-none size-full" src={imgArrowLine} />
+        <Img alt="" className="absolute inset-0 max-w-none size-full" src={imgArrowLine} />
       </div>
       <div className="flex items-center self-stretch">
         <div className="relative shrink-0" style={{ aspectRatio: "38.65/73.3", height: "100%" }}>
-          <img alt="" className="absolute inset-0 max-w-none size-full" src={imgArrowHead} />
+          <Img alt="" className="absolute inset-0 max-w-none size-full" src={imgArrowHead} />
         </div>
       </div>
     </div>
@@ -224,7 +225,7 @@ export default function PlatformEcosystem() {
     <section className="bg-white flex flex-col items-center justify-center overflow-hidden px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center justify-center max-w-[1400px] w-full">
 
-        <h2 className="font-['Avenir_LT_Pro:85_Heavy'] text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] text-center w-full">
+        <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] text-center w-full">
           {t.heading}
         </h2>
 
@@ -235,7 +236,7 @@ export default function PlatformEcosystem() {
                 <div className="bg-[#dae9ff] flex items-center justify-center p-[16px] rounded-full shrink-0 size-[64px]">
                   <FigmaIcon src={step.icon} size={32} aspectW={step.iconW} aspectH={step.iconH} />
                 </div>
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[16px] leading-[20px] text-[#1f2e91] text-center min-h-[32px] w-full flex items-center justify-center">
+                <p className="font-avenir-heavy text-[16px] leading-[20px] text-[#1f2e91] text-center min-h-[32px] w-full flex items-center justify-center">
                   {step.label}
                 </p>
               </div>

@@ -1,3 +1,4 @@
+import Img from "@/components/ui/Img";
 /**
  * FigmaIcon — replicates the Figma icon-component structure:
  *   outer fixed-size container → aspect-ratio inner wrapper → 2.5 % bleed div → img
@@ -56,7 +57,7 @@ export default function FigmaIcon({
           style={{ aspectRatio: "1 / 1", flex: "1 0 0" }}
         >
           <div className="absolute inset-[-2.5%]">
-            <img alt={alt} className="block max-w-none size-full" src={src} />
+            <Img alt={alt} className="block max-w-none size-full" src={src} />
           </div>
         </div>
       </div>
@@ -95,7 +96,7 @@ export default function FigmaIcon({
         style={{ width: innerW, height: innerH }}
       >
         <div className="absolute" style={{ inset }}>
-          <img alt={alt} className="block max-w-none size-full" src={src} />
+          <Img alt={alt} className="block max-w-none size-full" src={src} />
         </div>
       </div>
     </div>
