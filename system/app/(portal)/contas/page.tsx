@@ -3,16 +3,18 @@ import { Plus } from "lucide-react";
 import { requireAdmin, userEmails } from "@/lib/live/admin";
 import { literalSearch, pageNumber } from "@/lib/live/admin-view";
 import { money, type Account } from "@/lib/live/data";
-import { setAccountStatus } from "@/lib/live/actions";
+import { adminAction, setAccountStatus } from "@/lib/live/actions";
 import { DataTable } from "@/components/live/DataTable";
+import { Field, Form as ActionFormCard } from "@/components/live/Fields";
 import { FilterTabs } from "@/components/live/FilterTabs";
 import { OpenAccountButtons } from "@/components/live/OpenAccountButtons";
 import { PageHeader } from "@/components/live/PageHeader";
 import { Notice, Pager, type Query } from "@/components/live/PortalPage";
 import { StatusPill } from "@/components/live/StatusPill";
 import { Badge } from "@/components/ui/Badge";
-import { Button, ButtonLink } from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 import { SearchInput } from "@/components/ui/Field";
+import { FormDialog } from "@/components/ui/FormDialog";
 
 export const metadata = { title: "Contas" };
 
@@ -66,10 +68,11 @@ export default async function Accounts({ searchParams }: { searchParams: Promise
         title="Contas"
         subtitle="Todas as contas de investidores e clientes. Abra uma conta para consultá-la ou gerenciá-la."
         action={
-          <ButtonLink href="/admin">
-            <Plus className="size-5" aria-hidden="true" />
-            Criar conta
-          </ButtonLink>
+          <FormDialog trigger="Criar conta" icon={<Plus className="size-5" aria-hidden="true" />} title="Criar conta" description="A nova conta abre em seguida, pronta para receber membros, contratos e documentos." dialogSize="sm">
+            <ActionFormCard action={adminAction} kind="account" title="Criar conta" submit="Criar conta">
+              <Field name="name" label="Nome da pessoa ou empresa" />
+            </ActionFormCard>
+          </FormDialog>
         }
       />
       <Notice query={query} />
@@ -91,7 +94,7 @@ export default async function Accounts({ searchParams }: { searchParams: Promise
       <DataTable
         caption="Contas cadastradas"
         columns={[{ heading: "Conta" }, { heading: "Membros", secondary: true }, { heading: "Contratos", align: "right", secondary: true }, { heading: "Investimento (USD)", align: "right", secondary: true }, { heading: "Ações" }]}
-        empty={term || status ? "Nenhuma conta encontrada com esses filtros." : "Nenhuma conta cadastrada. Crie a primeira conta em Administração."}
+        empty={term || status ? "Nenhuma conta encontrada com esses filtros." : "Nenhuma conta cadastrada. Use o botão “Criar conta” para cadastrar a primeira."}
         rows={accounts.map((a) => {
           const own = contracts.data.filter((c) => c.account_id === a.id && c.status !== "draft");
           const investor = own.length > 0 || enrollments.data.some((e) => e.account_id === a.id);
@@ -122,28 +125,22 @@ export default async function Accounts({ searchParams }: { searchParams: Promise
             ),
             own.length,
             money(own.reduce((sum, c) => sum + Number(c.invested_amount), 0)),
-            <div key="actions" className="grid justify-items-start gap-2">
-              <OpenAccountButtons accountId={a.id} />
+            <div key="actions" className="flex flex-wrap items-center gap-2">
+              <OpenAccountButtons accountId={a.id} name={a.name} />
               {a.status === "suspended" ? (
                 <form action={setAccountStatus}>
                   <input type="hidden" name="account_id" value={a.id} />
                   <input type="hidden" name="status" value="active" />
-                  <Button type="submit" variant="ghost" size="sm">
+                  <Button type="submit" variant="ghost" size="sm" aria-label={`Reativar ${a.name}`}>
                     Reativar
                   </Button>
                 </form>
               ) : (
-                <details>
-                  <summary className="cursor-pointer rounded-md px-3 py-2 text-[13.5px] font-semibold text-danger focus-visible:outline-2 focus-visible:outline-brand">Suspender</summary>
-                  <form action={setAccountStatus} className="mt-1 grid justify-items-start gap-2 px-3">
-                    <input type="hidden" name="account_id" value={a.id} />
+                <FormDialog trigger="Suspender" triggerLabel={`Suspender ${a.name}`} variant="danger" size="sm" title={`Suspender ${a.name}?`} description="Os membros perdem o acesso até a reativação. Nenhum dado é apagado." dialogSize="sm">
+                  <ActionFormCard action={setAccountStatus} kind="account_status" account={a.id} title="Suspender conta" submit="Confirmar suspensão" variant="danger">
                     <input type="hidden" name="status" value="suspended" />
-                    <p className="text-[13px] text-ink-soft">Os membros perdem o acesso até a reativação.</p>
-                    <Button type="submit" variant="danger" size="sm">
-                      Confirmar suspensão
-                    </Button>
-                  </form>
-                </details>
+                  </ActionFormCard>
+                </FormDialog>
               )}
             </div>,
           ];

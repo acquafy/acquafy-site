@@ -52,8 +52,8 @@ export function LoginForm({ destination }: { destination?: string }) {
     }
     // Keep the button busy until the dashboard replaces this page.
     toast({ title: "Bem-vindo de volta!", description: "Acesso liberado ao Acquafy Account." });
-    // Staff start at /home, which sends administrators on to the global panel.
-    router.replace(destination ?? (result.internal ? "/home" : "/pedidos"));
+    // Staff and investors start at /home (administrators are sent on to the global panel); customers at their orders.
+    router.replace(destination ?? (result.internal || result.partner ? "/home" : "/pedidos"));
     router.refresh();
   };
 

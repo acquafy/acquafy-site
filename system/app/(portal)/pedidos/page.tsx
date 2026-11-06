@@ -2,7 +2,7 @@ import { Package, Plus, ShoppingBag } from "lucide-react";
 import { context, money, date } from "@/lib/live/data";
 import { orderStageCounts, userEmails } from "@/lib/live/admin";
 import { orderStages, pageNumber, stageFor } from "@/lib/live/admin-view";
-import { ActionForm } from "@/components/enrollment/ActionForm";
+import { ActionDialog } from "@/components/enrollment/ActionDialog";
 import { Area, Consent, Field, Select } from "@/components/live/Fields";
 import { FilterTabs } from "@/components/live/FilterTabs";
 import { Notice } from "@/components/live/Notice";
@@ -150,9 +150,9 @@ export default async function Orders({ searchParams }: { searchParams: Promise<{
               </Notice>
             )}
 
-            <div className="mt-4 grid gap-3">
+            <div className="mt-4 flex flex-wrap items-center gap-3">
               {admin && o.status === "requested" && (
-                <ActionForm bare action={orderAction} title="Publicar proposta aprovada">
+                <ActionDialog action={orderAction} title="Publicar proposta aprovada" trigger="Publicar proposta" submit="Publicar proposta" triggerVariant="primary" triggerSize="md" size="lg" description="O cliente recebe o valor e as condições abaixo para aceitar.">
                   <input type="hidden" name="action" value="quote" />
                   <input type="hidden" name="order_id" value={o.id} />
                   <Field
@@ -169,38 +169,30 @@ export default async function Orders({ searchParams }: { searchParams: Promise<{
                     maxLength={100000}
                   />
                   <Consent name="approved">Confirmo aprovação dos preços e das condições.</Consent>
-                </ActionForm>
+                </ActionDialog>
               )}
               {mine && o.kind === "purchase" && o.status === "quoted" && (
-                <ActionForm bare action={orderAction} title="Aceitar proposta" submit="Aceitar proposta">
+                <ActionDialog action={orderAction} title="Aceitar proposta" trigger="Aceitar proposta" triggerVariant="primary" triggerSize="md" description="Confira o preço final e as condições da proposta antes de aceitar.">
                   <input type="hidden" name="action" value="accept" />
                   <input type="hidden" name="order_id" value={o.id} />
                   <Field name="signer" label="Nome completo do signatário" autoComplete="name" />
                   <Consent name="consent">Li e aceito o pedido, o preço final e as condições acima.</Consent>
-                </ActionForm>
+                </ActionDialog>
               )}
               {mine && o.kind === "purchase" && o.status === "accepted" && (
-                <ActionForm bare action={orderAction} title="Pagar pedido" submit="Abrir pagamento seguro Stripe">
+                <ActionDialog action={orderAction} title="Pagar pedido" trigger="Pagar pedido" submit="Abrir pagamento seguro Stripe" triggerVariant="primary" triggerSize="md" size="sm" description="Você será levado à página segura do Stripe para concluir o pagamento.">
                   <input type="hidden" name="action" value="checkout" />
                   <input type="hidden" name="order_id" value={o.id} />
                   <p className="text-[14px] text-ink-soft">Tem um cupom? Informe o código promocional na página de pagamento do Stripe.</p>
-                </ActionForm>
+                </ActionDialog>
               )}
               {o.lease_id && (
-                <div>
-                  <ButtonLink href="/locacoes" variant="outline">
-                    Ver acordo de locação, pagamento e instalação
-                  </ButtonLink>
-                </div>
-              )}
-              {mine && ["requested", "quoted", "accepted"].includes(o.status) && !o.checkout_id && !o.lease_id && (
-                <ActionForm bare action={orderAction} title="Cancelar solicitação" submit="Cancelar solicitação">
-                  <input type="hidden" name="action" value="cancel" />
-                  <input type="hidden" name="order_id" value={o.id} />
-                </ActionForm>
+                <ButtonLink href="/locacoes" variant="outline">
+                  Ver acordo de locação, pagamento e instalação
+                </ButtonLink>
               )}
               {admin && ["paid", "processing", "shipped", "installed"].includes(o.status) && (
-                <ActionForm bare action={orderAction} title="Atualizar entrega" submit="Atualizar entrega">
+                <ActionDialog action={orderAction} title="Atualizar entrega" trigger="Atualizar entrega" triggerSize="md" size="sm">
                   <input type="hidden" name="action" value="fulfill" />
                   <input type="hidden" name="order_id" value={o.id} />
                   <Select
@@ -209,7 +201,13 @@ export default async function Orders({ searchParams }: { searchParams: Promise<{
                     options={["processing", "shipped", "installed", "completed"].map((value) => ({ value, label: statusLabel(value) }))}
                   />
                   <Field name="tracking_reference" label="Transportadora e referência de rastreamento" required={false} maxLength={300} />
-                </ActionForm>
+                </ActionDialog>
+              )}
+              {mine && ["requested", "quoted", "accepted"].includes(o.status) && !o.checkout_id && !o.lease_id && (
+                <ActionDialog action={orderAction} title="Cancelar esta solicitação?" trigger="Cancelar solicitação" submit="Cancelar solicitação" danger triggerSize="md" size="sm" description="O pedido será encerrado e não poderá ser retomado. Você pode fazer um novo pedido depois.">
+                  <input type="hidden" name="action" value="cancel" />
+                  <input type="hidden" name="order_id" value={o.id} />
+                </ActionDialog>
               )}
             </div>
           </Card>
