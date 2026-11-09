@@ -910,27 +910,22 @@ function CardImage({ src, maxW = "170px", grow = false }: { src: string; maxW?: 
 }
 
 function PanelSlideshowEssentials() {
-  const [active, setActive] = useState(0);
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState(0);
   const count = panelEssentialsSrcs.length;
   return (
     <div className="flex flex-col gap-[10px] items-center justify-center w-full h-[314px] shrink-0">
       <div
-        className="group relative w-full min-w-[120px] shrink-0 cursor-pointer overflow-hidden bg-black box-border"
+        className="group relative w-full min-w-[120px] shrink-0 overflow-hidden bg-black box-border"
         style={{ maxWidth: "480px", aspectRatio: "4561/2543", padding: "0.877%", borderRadius: "9.29% / 16.66%" }}
-        onClick={() => setActive((active + 1) % panelEssentialsSrcs.length)}
-        role="button"
-        tabIndex={0}
-        onKeyDown={(e) => e.key === "Enter" && setActive((active + 1) % panelEssentialsSrcs.length)}
-        aria-label="Proximo slide"
       >
         <Img
           alt=""
           className="block w-full h-full object-cover pointer-events-none"
           style={{ borderRadius: "8.563% / 15.58%" }}
-          src={panelEssentialsSrcs[active]}
+          src={panelEssentialsSrcs[0]}
         />
-        <SlideFullscreenButton onOpen={() => setOpen(true)} />
+        <SlideFullscreenButton onOpen={() => { setActive(0); setOpen(true); }} />
       </div>
       {open && (
         <SlideLightbox
@@ -944,17 +939,6 @@ function PanelSlideshowEssentials() {
           onGoTo={(i) => setActive(i)}
         />
       )}
-      <div className="flex gap-[10px] items-center justify-center flex-wrap">
-        {panelEssentialsSrcs.map((_, i) => (
-          <div
-            key={i}
-            className="relative shrink-0 size-[12px] cursor-pointer"
-            onClick={() => setActive(i)}
-          >
-            <Img alt="" className="absolute block inset-0 max-w-none size-full" src={active === i ? imgDotActive : imgDotInactive} />
-          </div>
-        ))}
-      </div>
     </div>
   );
 }
