@@ -7,6 +7,7 @@ import { useLang, type Lang } from "@/context/LanguageContext";
 const imgBg           = "/figma-assets/bg-g.webp";
 const imgFilters      = "/figma-assets/image-filters.webp";
 const imgAccBg        = "/figma-assets/banner-acessorios-bg.webp";
+const imgAccProducts  = "/figma-assets/banner-acessorios-products.webp";
 
 // ── Setas: mesmas do Hero (padrão do projeto) ─────────────────────────────────
 const imgArrowWhite = "/figma-assets/icon-arrow-white-hover.svg";
@@ -401,6 +402,7 @@ export default function BannerFiltros({ variant = "filtros" }: { variant?: "filt
             "Padrão" (xl+)  : oculta — os filtros aparecem pelo background image     */}
         {isAcc ? (
           <>
+            {/* Mobile/lg: product card */}
             <div
               className="relative rounded-[16px] overflow-hidden xl:hidden
                          w-full
@@ -408,11 +410,18 @@ export default function BannerFiltros({ variant = "filtros" }: { variant?: "filt
             >
               <Img
                 alt="Acessórios Acquafy"
-                className="block w-full aspect-[1.36/1] object-cover object-[93%_center] lg:aspect-auto lg:absolute lg:inset-0 lg:h-full lg:object-right"
-                src={imgAccBg}
+                className="block w-full aspect-[1.36/1] object-contain object-center lg:aspect-auto lg:absolute lg:inset-0 lg:h-full lg:object-contain lg:object-center"
+                src={imgAccProducts}
               />
             </div>
-            <div className="hidden xl:flex flex-1 min-w-[280px] min-h-[300px]" />
+            {/* xl+: product image centered in the right column */}
+            <div className="hidden xl:flex flex-1 relative items-center justify-center min-w-[280px] min-h-[300px]">
+              <Img
+                alt="Acessórios Acquafy"
+                className="absolute inset-0 w-full h-full object-contain object-center"
+                src={imgAccProducts}
+              />
+            </div>
           </>
         ) : (
           <>
