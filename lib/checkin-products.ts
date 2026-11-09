@@ -47,6 +47,16 @@ function positionSlides(familySlug: string, variantId: string): string[][] {
   );
 }
 
+// Single-color products (Premium): 1 color entry with 7 position slides.
+function singleSlides(familySlug: string, variantId: string): string[][] {
+  const base = `/images/checkin/${familySlug}/${variantId}/wt`;
+  return [Array.from({ length: 7 }, (_, i) => `${base}/${String(i + 1).padStart(2, "0")}.webp`)];
+}
+
+export const INFINITY_COLORS: CheckinColor[] = [
+  { gradient: "linear-gradient(133deg, #c0c4c8 8%, #8a9098 89%)", name: "Inox", slug: "wt" },
+];
+
 export const ULTRA_COLORS: CheckinColor[] = [
   { gradient: "linear-gradient(133deg, #1a3d4d 8%, #0d2530 89%)", name: "Azul Petróleo",   slug: "ap" },
   { gradient: "linear-gradient(133deg, #8a96a0 8%, #4e5a63 89%)", name: "Cinza Metrópole", slug: "cm" },
@@ -135,10 +145,11 @@ export const CHECKIN_FAMILIES: CheckinFamily[] = [
     title: "Neo INFINITY",
     subtitle: "IPS 15,6\" · Osmose Reversa",
     isPremium: true,
+    colors: INFINITY_COLORS,
     variants: [
-      v("neo-infinity",          "Neo INFINITY",          "6 em 1", "6 em 1",             "Bancada"),
-      v("neo-infinity-spark",    "Neo INFINITY SPARK",    "7 em 1", "7 em 1 · Gás",       "Bancada"),
-      v("neo-infinity-spark-h2", "Neo INFINITY SPARK H₂", "8 em 1", "8 em 1 · Gás + H₂", "Bancada"),
+      { ...v("neo-infinity",          "Neo INFINITY",          "6 em 1", "6 em 1",             "Bancada"), slides: singleSlides("neo-infinity", "neo-infinity")          },
+      { ...v("neo-infinity-spark",    "Neo INFINITY SPARK",    "7 em 1", "7 em 1 · Gás",       "Bancada"), slides: singleSlides("neo-infinity", "neo-infinity-spark")    },
+      { ...v("neo-infinity-spark-h2", "Neo INFINITY SPARK H₂", "8 em 1", "8 em 1 · Gás + H₂", "Bancada"), slides: singleSlides("neo-infinity", "neo-infinity-spark-h2") },
     ],
     scenes: [],
   },
