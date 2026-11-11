@@ -826,7 +826,6 @@ export default function Hero() {
         {slide === 1 && (
           <>
             <div className="bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center max-w-[280px] px-[12px] py-[8px] rounded-full shrink-0">
-              <FigmaIcon src={imgCalendar} size={16} />
               <span className="font-avenir-heavy text-[14px] leading-[17px] bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(126deg, #0233c3 6.19%, #9f3df5 93.35%)" }}>
                 {t.s2Label}
               </span>
@@ -907,7 +906,6 @@ export default function Hero() {
               </div>
             ) : (
               <div className="bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center max-w-[280px] px-[12px] py-[8px] rounded-full shrink-0">
-                <FigmaIcon src={imgCalendar} size={16} />
                 <span className="font-avenir-heavy text-[14px] leading-[17px] bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(126deg, #0233c3 6.19%, #9f3df5 93.35%)" }}>{t.s2Label}</span>
               </div>
             )}
