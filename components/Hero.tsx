@@ -6,9 +6,8 @@ import { DotAtivo, DotInativo } from "./ui/SlideDot";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
 // Backgrounds
-const imgBg1     = "/figma-assets/bg-slide-1.webp";
-const imgBg2a    = "/figma-assets/bg-campanha-1024.webp";
-const imgBg2b    = "/figma-assets/bg-campanha-1400.webp";
+const imgBg1    = "/figma-assets/bg-slide-1.webp";
+const imgBg2    = "/figma-assets/banner-campanha-home.webp";
 // Images
 const imgMockup  = "/figma-assets/image-banner-home.webp";
 const imgFrame36 = "/figma-assets/frame-36-mobile-product.webp";
@@ -752,8 +751,7 @@ export default function Hero() {
 
       {/* Backgrounds */}
       {slide === 0 && <Img src={imgBg1} priority alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none" />}
-      {slide === 1 && <Img src={imgBg2a} alt="" className="hidden win-1024:block win-1280:hidden absolute inset-0 w-full h-full object-cover pointer-events-none" />}
-      {slide === 1 && <Img src={imgBg2b} alt="" className="hidden win-1280:block absolute inset-0 w-full h-full object-cover pointer-events-none" />}
+      {slide === 1 && <Img src={imgBg2} alt="" className="hidden xl:block absolute inset-0 w-full h-full object-cover pointer-events-none" />}
 
       {/* ══ MOBILE LAYOUT (<xl) ══ */}
       <div className="xl:hidden relative flex-1 flex flex-col gap-[20px] items-center w-full">
