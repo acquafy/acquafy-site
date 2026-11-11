@@ -12,7 +12,7 @@ const imgShield      = "/figma-assets/icon-shield-24px.svg";
 const imgCert        = "/figma-assets/icon-cert.svg";
 const imgFone        = "/figma-assets/icon-fone-30px.svg";
 const imgLock        = "/figma-assets/icon-lock-a.svg";
-const imgLogoWhite   = "/figma-assets/logo-white-b.svg";
+const imgLogo        = "/figma-assets/logo-b.svg";
 
 const TRUST_ICONS = [
   { icon: imgShield, aspectW: 24, aspectH: 30 },
@@ -315,7 +315,7 @@ export default function CheckoutUp() {
                 <Img
                   alt="Acquafy"
                   className="absolute inset-0 w-full h-full object-contain"
-                  src={imgLogoWhite}
+                  src={imgLogo}
                 />
               </div>
             </div>
