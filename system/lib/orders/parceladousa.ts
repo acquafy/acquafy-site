@@ -43,7 +43,8 @@ async function call(path: string, init: RequestInit) {
   const headers = { Accept: "application/json", ...(init.body ? { "Content-Type": "application/json" } : {}), ...(init.headers as Record<string, string>) };
   const res = await fetch(baseUrl() + path, { ...init, headers, cache: "no-store", signal: AbortSignal.timeout(20000) });
   const body = await res.json().catch(() => null);
-  if (!res.ok || !body || typeof body !== "object" || (typeof body.statusCode === "number" && body.statusCode !== 200))
+  // Errors come as {statusCode: 300…475, statusType: "error", msg}; a success may carry statusCode 1.
+  if (!res.ok || !body || typeof body !== "object" || body.statusType === "error" || (typeof body.statusCode === "number" && body.statusCode >= 300))
     throw Object.assign(Error("ParceladoUSA request failed"), { status: res.status, code: body?.statusCode });
   return body as Record<string, unknown>;
 }
@@ -68,10 +69,9 @@ async function token() {
   });
   const value = body.token ?? obj(body.data).token;
   if (typeof value !== "string" || !value) throw Error("ParceladoUSA authentication failed");
-  // "expirate": "YYYY-MM-DD HH:mm:ss" (30 minutes ahead); without it, assume 25 minutes.
-  const raw = body.expirate ?? obj(body.data).expirate;
-  const parsed = typeof raw === "string" ? new Date(raw.replace(" ", "T")).getTime() : NaN;
-  const expiresAt = Number.isFinite(parsed) ? Math.min(parsed, Date.now() + 30 * 60_000) : Date.now() + 25 * 60_000;
+  // The token lasts 30 minutes. "expirate" is a local time without a time zone (Brasília), so it is not parsed:
+  // the token is kept for 25 minutes, and a token ParceladoUSA rejects (410/420) is replaced anyway.
+  const expiresAt = Date.now() + 25 * 60_000;
   cached = { key, token: value, expiresAt };
   return value;
 }

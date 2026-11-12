@@ -48,7 +48,8 @@ function api() {
   // /auth → token; POST /order → new order; GET /order/{id} → `order`.
   fetchMock.mockImplementation(async (url: string, init: RequestInit) => {
     const json = (body: unknown) => new Response(JSON.stringify(body), { status: 200 });
-    if (url.endsWith("/auth")) return json({ token: "tok", expirate: new Date(Date.now() + 30 * 60_000).toISOString().slice(0, 19).replace("T", " ") });
+    // The real success response: statusCode 1 and a Brasília local "expirate" (here: already past in UTC).
+    if (url.endsWith("/auth")) return json({ statusCode: 1, statusType: "success", expirate: "2000-01-01 00:00:00", token: "tok" });
     if (url.endsWith("/order") && init.method === "POST") return json({ data: { orderId: "77", url: "https://pay.parceladousa.com/77" } });
     return json(order);
   });
