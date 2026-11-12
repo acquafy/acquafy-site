@@ -19,6 +19,12 @@ begin
  perform public.order_payment_event(jsonb_build_object('payment_id',fee,'state','paid','session_id','pusa_1','subtotal_minor',12500,'paid_minor',12500,'discount_minor',0,'currency','brl','payment_intent_id','pusa_1'));
  if (select status from public.product_orders where id=o)<>'placed' then raise exception 'ParceladoUSA payment not recorded';end if;
 
+ -- A refund names its charge: refunding a replaced attempt's charge never settles the recorded one.
+ perform public.order_payment_event(jsonb_build_object('payment_id',fee,'state','refunded','full','yes','payment_intent_id','pi_other'));
+ if (select status from public.order_payments where id=fee)<>'paid' then raise exception 'Refund of another charge settled the payment';end if;
+ perform public.order_payment_event(jsonb_build_object('payment_id',fee,'state','refunded','full','yes'));
+ if (select status from public.order_payments where id=fee)<>'paid' then raise exception 'Refund without a charge settled the payment';end if;
+
  -- Stray: only a replaced attempt of the same payment; never the bound one or an unknown ref.
  begin perform public.order_payment_stray(jsonb_build_object('payment_id',fee,'ref','pusa_1'));raise exception 'Bound ref treated as stray';exception when raise_exception then if sqlerrm<>'Unknown payment' then raise;end if;end;
  begin perform public.order_payment_stray(jsonb_build_object('payment_id',fee,'ref','pusa_999'));raise exception 'Unknown ref accepted';exception when raise_exception then if sqlerrm<>'Unknown payment' then raise;end if;end;

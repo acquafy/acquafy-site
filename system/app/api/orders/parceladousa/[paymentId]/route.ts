@@ -1,6 +1,6 @@
 import { after } from "next/server";
 import { publicOrigin, serviceClient } from "@/lib/enrollment/server";
-import { reconcileParcelado } from "@/lib/orders/payments";
+import { CHECKED_RECENTLY, reconcileParcelado } from "@/lib/orders/payments";
 import { isParceladoRef, parceladoRef } from "@/lib/orders/parceladousa";
 
 export const runtime = "nodejs";
@@ -19,7 +19,7 @@ async function settle(paymentId: string, orderId: string | null) {
   if (!pay) return null;
   // Without an order id (the customer's return), the payment's current ParceladoUSA order is checked.
   const ref = orderId ? parceladoRef(orderId) : isParceladoRef(pay.checkout_id) ? pay.checkout_id : null;
-  if (ref) await reconcileParcelado(paymentId, ref);
+  if (ref) await reconcileParcelado(paymentId, ref, { throttle: true });
   return pay.order_id as string;
 }
 
@@ -65,6 +65,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ pay
   try {
     if (!(await settle(paymentId, orderId))) return new Response("Unknown payment", { status: 404 });
   } catch (error) {
+    if (error instanceof Error && error.message === CHECKED_RECENTLY) return new Response("Retry later", { status: 503, headers: { "Retry-After": "10" } });
     console.error("ParceladoUSA callback failed", { paymentId, kind: error instanceof Error ? error.message : "error" });
     return new Response("Retry delivery", { status: 503 });
   }

@@ -90,10 +90,10 @@ begin
  perform public.order_payment_event(jsonb_build_object('payment_id',fee,'state','paid','session_id','cs_fee4','subtotal_minor',2500,'paid_minor',2500,'currency','usd','payment_intent_id','pi_fee4'));
  perform public.order_command('cancel',jsonb_build_object('order_id',o4));
  if not exists(select 1 from public.order_payments where id=fee and status='refunding') then raise exception 'Refund not requested';end if;
- perform public.order_payment_event(jsonb_build_object('payment_id',fee,'state','refunded','full','yes'));
+ perform public.order_payment_event(jsonb_build_object('payment_id',fee,'state','refunded','full','yes','payment_intent_id','pi_fee4'));
  if not exists(select 1 from public.order_payments where id=fee and status='refunded') or not exists(select 1 from public.product_orders where id=o4 and status='cancelled') then raise exception 'Refund not recorded';end if;
  -- Late or replayed events never undo the recorded refund.
- perform public.order_payment_event(jsonb_build_object('payment_id',fee,'state','refunded','full','yes'));
+ perform public.order_payment_event(jsonb_build_object('payment_id',fee,'state','refunded','full','yes','payment_intent_id','pi_fee4'));
  perform public.order_payment_event(jsonb_build_object('payment_id',fee,'state','paid','session_id','cs_fee4','subtotal_minor',2500,'paid_minor',2500,'currency','usd','payment_intent_id','pi_fee4'));
  if (select status from public.order_payments where id=fee)<>'refunded' or (select status from public.product_orders where id=o4)<>'cancelled' then raise exception 'Stale event undid the refund';end if;
  -- Outside the withdrawal period the customer cannot cancel a placed order.

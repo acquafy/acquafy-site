@@ -3,6 +3,7 @@ vi.mock("server-only", () => ({}));
 
 // Fake service client: rows per table (filtered by eq), RPCs recorded.
 const db = vi.hoisted(() => ({ tables: {} as Record<string, Record<string, unknown>[]>, rpc: vi.fn() }));
+const cutoff = vi.hoisted(() => ({ value: "" }));
 const stripe = vi.hoisted(() => ({ session: null as Record<string, unknown> | null, expire: vi.fn(), create: vi.fn() }));
 vi.mock("@/lib/enrollment/server", () => ({
   serviceClient: () => ({
@@ -10,11 +11,21 @@ vi.mock("@/lib/enrollment/server", () => ({
     from: (table: string) => {
       const filters: [string, unknown][] = [];
       const rows = () => (db.tables[table] ?? []).filter((r) => filters.every(([k, v]) => r[k] === v));
+      let update: Record<string, unknown> | null = null;
+      let recentOnly = false;
       const q = {
-        select: () => q,
+        select: () => (update ? applyUpdate() : q),
         eq: (k: string, v: unknown) => (filters.push([k, v]), q),
+        update: (values: Record<string, unknown>) => ((update = values), q),
+        // Only the throttle uses .or(): rows never checked or checked before the cutoff.
+        or: (expr: string) => ((recentOnly = expr.startsWith("checked_at.is.null")), cutoff.value = expr.split("checked_at.lt.")[1], q),
         single: async () => (rows()[0] ? { data: rows()[0], error: null } : { data: null, error: { message: "none" } }),
         maybeSingle: async () => ({ data: rows()[0] ?? null, error: null }),
+      };
+      const applyUpdate = async () => {
+        const hit = rows().filter((r) => !recentOnly || !r.checked_at || String(r.checked_at) < cutoff.value);
+        for (const r of hit) Object.assign(r, update);
+        return { data: hit, error: null };
       };
       return q;
     },
@@ -24,7 +35,7 @@ vi.mock("@/lib/enrollment/server", () => ({
 }));
 import { createParceladoOrder, getParceladoOrder } from "@/lib/orders/parceladousa";
 import { reconcileParcelado } from "@/lib/orders/payments";
-import { PAYMENT_IN_PROGRESS, parceladoAvailable, parceladoCheckoutUrl, paymentCheckoutUrl } from "@/lib/orders/checkout";
+import { PARCELADO_OPEN, PAYMENT_IN_PROGRESS, parceladoAvailable, parceladoCheckoutUrl, paymentCheckoutUrl } from "@/lib/orders/checkout";
 import { POST } from "@/app/api/orders/parceladousa/[paymentId]/route";
 
 const PAY = "11111111-1111-4111-8111-111111111111";
@@ -52,7 +63,7 @@ beforeEach(() => {
   fetchMock.mockReset();
   api();
   db.rpc.mockReset().mockResolvedValue({ error: null });
-  db.tables = { order_payments: [balance()], order_payment_attempts: [{ ref: "pusa_42", payment_id: PAY }] };
+  db.tables = { order_payments: [balance()], order_payment_attempts: [{ ref: "pusa_42", payment_id: PAY, url: "https://pay.parceladousa.com/42", created_at: new Date().toISOString() }] };
   stripe.session = null;
   stripe.expire.mockReset();
   stripe.create.mockReset();
@@ -99,13 +110,13 @@ describe("ParceladoUSA API", () => {
 
 describe("ParceladoUSA reconciliation", () => {
   it("records an approved order of the bound payment as paid", async () => {
-    await expect(reconcileParcelado(PAY, "pusa_42")).resolves.toBe("approved");
+    await expect(reconcileParcelado(PAY, "pusa_42")).resolves.toEqual({ status: "approved", url: "https://pay.parceladousa.com/42" });
     expect(db.rpc).toHaveBeenCalledWith("order_payment_event", {
       payload: expect.objectContaining({ payment_id: PAY, state: "paid", session_id: "pusa_42", subtotal_minor: 187500, paid_minor: 187500, currency: "brl" }),
     });
   });
   it("rejects an order created for another payment, before calling ParceladoUSA", async () => {
-    db.tables.order_payment_attempts = [{ ref: "pusa_42", payment_id: "someone-else" }];
+    db.tables.order_payment_attempts = [{ ref: "pusa_42", payment_id: "someone-else", created_at: new Date().toISOString() }];
     await expect(reconcileParcelado(PAY, "pusa_42")).rejects.toThrow("Order payment mismatch");
     expect(fetchMock).not.toHaveBeenCalled();
     expect(db.rpc).not.toHaveBeenCalled();
@@ -150,7 +161,15 @@ describe("choosing how to pay", () => {
     await expect(paymentCheckoutUrl(balance())).resolves.toBeNull();
     expect(stripe.create).not.toHaveBeenCalled();
   });
-  it("opens Stripe over a ParceladoUSA order the customer left", async () => {
+  it("keeps an open ParceladoUSA page: Stripe is refused, ParceladoUSA reuses the same page", async () => {
+    order = { status: "open" };
+    await expect(paymentCheckoutUrl(balance())).rejects.toThrow(PARCELADO_OPEN);
+    await expect(parceladoCheckoutUrl(balance(), customer)).resolves.toBe("https://pay.parceladousa.com/42");
+    expect(stripe.create).not.toHaveBeenCalled();
+    expect(db.rpc).not.toHaveBeenCalled();
+  });
+  it("opens Stripe over a ParceladoUSA page left open for more than a day", async () => {
+    db.tables.order_payment_attempts[0].created_at = new Date(Date.now() - 25 * 3600_000).toISOString();
     order = { status: "open" };
     stripe.create.mockResolvedValue({ id: "cs_new", url: "https://checkout.stripe.example/cs_new" });
     await expect(paymentCheckoutUrl(balance())).resolves.toBe("https://checkout.stripe.example/cs_new");
@@ -162,7 +181,12 @@ describe("choosing how to pay", () => {
     expect(stripe.expire).toHaveBeenCalledWith("cs_1");
     const body = new URLSearchParams(String(fetchMock.mock.calls[1][1].body));
     expect(body.get("callback")).toBe(`https://acquafy.example/app/api/orders/parceladousa/${PAY}`);
-    expect(db.rpc).toHaveBeenCalledWith("order_payment_bind", { payload: { payment_id: PAY, session_id: "pusa_77", previous_session_id: "cs_1" } });
+    expect(db.rpc).toHaveBeenCalledWith("order_payment_bind", { payload: { payment_id: PAY, session_id: "pusa_77", previous_session_id: "cs_1", url: "https://pay.parceladousa.com/77" } });
+  });
+  it("opens a new ParceladoUSA order when the previous one was aborted", async () => {
+    order = { status: "aborted" };
+    await expect(parceladoCheckoutUrl(balance(), customer)).resolves.toBe("https://pay.parceladousa.com/77");
+    expect(db.rpc).toHaveBeenCalledWith("order_payment_bind", { payload: expect.objectContaining({ session_id: "pusa_77", previous_session_id: "pusa_42" }) });
   });
   it("refuses installments for the order fee", async () => {
     await expect(parceladoCheckoutUrl(balance({ kind: "fee", checkout_id: null }), customer)).rejects.toThrow("Payment unavailable");
@@ -180,6 +204,14 @@ describe("ParceladoUSA callback", () => {
     order = { status: "pending" };
     await post(JSON.stringify({ orderId: "42", status: "approved" }));
     expect(db.rpc).not.toHaveBeenCalled();
+  });
+  it("checks the same order at most once every few seconds, asking ParceladoUSA to retry", async () => {
+    expect((await post(JSON.stringify({ orderId: "42" }))).status).toBe(200);
+    const calls = fetchMock.mock.calls.length;
+    const again = await post(JSON.stringify({ orderId: "42" }));
+    expect(again.status).toBe(503);
+    expect(again.headers.get("Retry-After")).toBe("10");
+    expect(fetchMock.mock.calls.length).toBe(calls);
   });
   it("rejects malformed callbacks and asks for a retry when the order is not this payment's", async () => {
     expect((await post("{}")).status).toBe(400);

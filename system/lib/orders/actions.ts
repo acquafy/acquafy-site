@@ -7,7 +7,7 @@ import {
 } from "@/lib/enrollment/server";
 import { usdToMinor } from "@/lib/enrollment/validation";
 import { customerDestination } from "./destination";
-import { expireCheckout, PAYMENT_IN_PROGRESS, parceladoCheckoutUrl, paymentCheckoutUrl, refundPayment } from "./checkout";
+import { expireCheckout, PARCELADO_OPEN, PAYMENT_IN_PROGRESS, parceladoCheckoutUrl, paymentCheckoutUrl, refundPayment } from "./checkout";
 import { deliveryFromForm } from "./delivery";
 import { sendPendingNotifications } from "./notifications";
 import { after } from "next/server";
@@ -129,6 +129,8 @@ export async function orderAction(
       } catch (e) {
         if (e instanceof Error && e.message === PAYMENT_IN_PROGRESS)
           return { error: "Seu pagamento parcelado está em análise na ParceladoUSA. Aguarde a resposta antes de pagar de outra forma." };
+        if (e instanceof Error && e.message === PARCELADO_OPEN)
+          return { error: "Você tem um pagamento parcelado aberto na ParceladoUSA. Conclua ou cancele o pagamento lá, ou escolha “Parcelado em reais” para voltar a ele." };
         throw e;
       }
       if (url) redirect(url);

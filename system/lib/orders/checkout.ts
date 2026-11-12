@@ -14,7 +14,11 @@ type Payment = { id: string; order_id: string; kind: "fee" | "balance"; currency
 export async function paymentCheckoutUrl(payment: Payment): Promise<string | null> {
   if (!["open", "failed"].includes(payment.status)) throw Error("Payment unavailable");
   // Switching from ParceladoUSA: never while its order may still be paid, and record it if it already was.
-  if (isParceladoRef(payment.checkout_id) && !(await parceladoReplaceable(payment))) return null;
+  if (isParceladoRef(payment.checkout_id)) {
+    const current = await parceladoState(payment);
+    if (current.state === "paid") return null;
+    if (current.state === "open" && !(await parceladoAbandoned(payment.checkout_id))) throw Error(PARCELADO_OPEN);
+  }
   const stripe = stripeClient();
   let session = payment.checkout_id && !isParceladoRef(payment.checkout_id) ? await stripe.checkout.sessions.retrieve(payment.checkout_id) : null;
   if (session?.status === "complete" && payment.status === "open") {
@@ -59,19 +63,31 @@ export async function paymentCheckoutUrl(payment: Payment): Promise<string | nul
   return session.url;
 }
 
-/** Thrown when a ParceladoUSA order of the payment is still being processed: no second payment may be opened. */
+/** Thrown when a ParceladoUSA order of the payment may still be paid: no other way to pay may be opened. */
 export const PAYMENT_IN_PROGRESS = "Payment in progress";
+/** Thrown when the customer has an open ParceladoUSA page and asks for Stripe: they must finish or leave it first. */
+export const PARCELADO_OPEN = "ParceladoUSA page open";
+// ParceladoUSA's API cannot cancel an order, so an open page could be paid after switching to Stripe. A page left
+// open this long is treated as abandoned (a later payment on it still goes to staff review as a stray payment).
+const PARCELADO_ABANDONED_HOURS = 24;
 
 /**
- * Whether the payment's ParceladoUSA order can be replaced by a new payment page: only when the customer left it
- * (open), it was aborted or cancelled before paying. An approved order is recorded now (false); pending or in
- * analysis throws PAYMENT_IN_PROGRESS.
+ * State of the payment's current ParceladoUSA order, recorded now: "paid" when it was approved (nothing to open),
+ * "open" with its page while the customer can still pay it, or "closed" when it can no longer be paid (aborted,
+ * cancelled before paying). Pending or in analysis throws PAYMENT_IN_PROGRESS.
  */
-async function parceladoReplaceable(payment: Payment) {
-  const status = await reconcileParcelado(payment.id, payment.checkout_id!);
-  if (status === "approved") return false;
+async function parceladoState(payment: Payment) {
+  const { status, url } = await reconcileParcelado(payment.id, payment.checkout_id!);
+  if (status === "approved") return { state: "paid" as const };
   if (status === "pending" || status === "analysis") throw Error(PAYMENT_IN_PROGRESS);
-  return true;
+  if (status === "open") return { state: "open" as const, url };
+  return { state: "closed" as const };
+}
+
+/** Whether a ParceladoUSA page opened at `createdAt` counts as abandoned. */
+async function parceladoAbandoned(ref: string) {
+  const { data } = await serviceClient().from("order_payment_attempts").select("created_at").eq("ref", ref).single();
+  return !!data && Date.now() - new Date(data.created_at).getTime() > PARCELADO_ABANDONED_HOURS * 3600_000;
 }
 
 /** Whether the balance of this order can be paid in installments with ParceladoUSA. */
@@ -81,12 +97,16 @@ export function parceladoAvailable(payment: { kind: string; currency: string }) 
 
 /**
  * ParceladoUSA payment page for the balance of a BRL order, or null when the payment was already made (recorded
- * now). An open Stripe session of the payment is closed first, so only one way to pay stays open.
+ * now). An open ParceladoUSA page of the payment is reused; an open Stripe session is closed first, so only one
+ * way to pay stays open.
  */
 export async function parceladoCheckoutUrl(payment: Payment, customer: ParceladoCustomer): Promise<string | null> {
   if (!["open", "failed"].includes(payment.status) || !parceladoAvailable(payment)) throw Error("Payment unavailable");
   if (isParceladoRef(payment.checkout_id)) {
-    if (!(await parceladoReplaceable(payment))) return null;
+    const current = await parceladoState(payment);
+    if (current.state === "paid") return null;
+    // The open page is reused: a second ParceladoUSA order could be paid as well.
+    if (current.state === "open" && current.url) return current.url;
   } else if (payment.checkout_id) {
     const session = await stripeClient().checkout.sessions.retrieve(payment.checkout_id);
     if (session.status === "complete") {
@@ -104,7 +124,7 @@ export async function parceladoCheckoutUrl(payment: Payment, customer: Parcelado
     callback: publicOrigin() + "/app/api/orders/parceladousa/" + payment.id,
   });
   const bound = await serviceClient().rpc("order_payment_bind", {
-    payload: { payment_id: payment.id, session_id: parceladoRef(order.orderId), previous_session_id: payment.checkout_id ?? "" },
+    payload: { payment_id: payment.id, session_id: parceladoRef(order.orderId), previous_session_id: payment.checkout_id ?? "", url: order.url },
   });
   if (bound.error) throw Error("Binding failed");
   return order.url;
