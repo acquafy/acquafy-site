@@ -1,25 +1,7 @@
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import Header from "@/components/Header";
-import CheckinMain from "@/components/CheckinMain";
-import { buyNow } from "@/lib/flags";
+import { permanentRedirect } from "next/navigation";
 
-export const metadata: Metadata = {
-  title: "Finalizar Compra — Acquafy",
-  description: "Conclua seu pedido com segurança.",
-};
-
-// Evaluated per request: the Buy Now flag decides whether the purchase flow exists at all.
-export const dynamic = "force-dynamic";
-
-export default async function CheckoutPage() {
-  if (!(await buyNow())) notFound();
-  return (
-    <>
-      <Header />
-      <main>
-        <CheckinMain />
-      </main>
-    </>
-  );
+// The cart and this page were replaced by the order page of the Acquafy Account: one product per order,
+// configured on its product page. Old links land on the catalog (which follows the Buy Now flag).
+export default function CheckoutPage() {
+  permanentRedirect("/buy");
 }

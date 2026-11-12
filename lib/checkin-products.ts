@@ -21,7 +21,10 @@ export type CheckinVariant = {
 export type CheckinColor = {
   gradient: string;
   name: string;
+  /** Image folder of the colour (see positionSlides / singleSlides). */
   slug: string;
+  /** Translation key of the colour name when it differs from the folder slug. */
+  nameKey?: string;
 };
 
 export type CheckinFamily = {
@@ -54,7 +57,7 @@ function singleSlides(familySlug: string, variantId: string): string[][] {
 }
 
 export const INFINITY_COLORS: CheckinColor[] = [
-  { gradient: "linear-gradient(133deg, #c0c4c8 8%, #8a9098 89%)", name: "Inox", slug: "wt" },
+  { gradient: "linear-gradient(133deg, #c0c4c8 8%, #8a9098 89%)", name: "Inox", slug: "wt", nameKey: "inox" },
 ];
 
 export const ULTRA_COLORS: CheckinColor[] = [
