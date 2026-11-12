@@ -17,10 +17,22 @@ import { EmptyState } from "@/components/ui/EmptyState";
 import { cn } from "@/lib/cn";
 import { buyNow } from "@/lib/flags";
 import { orderAction } from "@/lib/orders/actions";
+import { formatMinor, type OrderCurrency } from "@/lib/orders/pricing";
+
+type Payment = { id: string; order_id: string; kind: "fee" | "balance"; status: string; amount_minor: number; paid_minor: number | null; discount_minor: number };
+const PAYMENT_STATUS: Record<string, string> = {
+  open: "a pagar",
+  failed: "pagamento recusado · tente de novo",
+  paid: "pago",
+  refunding: "reembolso solicitado",
+  refunded: "reembolsado",
+  void: "cancelada",
+  review: "em análise",
+};
 
 export const metadata = { title: "Pedidos" };
 
-export default async function Orders({ searchParams }: { searchParams: Promise<{ etapa?: string; page?: string }> }) {
+export default async function Orders({ searchParams }: { searchParams: Promise<{ etapa?: string; page?: string; pedido?: string }> }) {
   const ctx = await context();
   const query = await searchParams;
   const admin = ctx.staff === "admin";
@@ -34,6 +46,17 @@ export default async function Orders({ searchParams }: { searchParams: Promise<{
   if (result.error) throw Error("Pedidos indisponíveis.");
   const history = await ctx.db.from("order_events").select("*").in("order_id", result.data.map((o) => o.id)).order("created_at", { ascending: true }).limit(2000);
   if (history.error) throw Error("Histórico indisponível.");
+  const [paymentRows, settings] = await Promise.all([
+    ctx.db.from("order_payments").select("*").in("order_id", result.data.map((o) => o.id)),
+    ctx.db.from("order_settings").select("withdrawal_days").single(),
+  ]);
+  if (paymentRows.error || settings.error) throw Error("Pagamentos indisponíveis.");
+  const payments = paymentRows.data as Payment[];
+  const withdrawalDays: number = settings.data.withdrawal_days;
+  // Rendering happens per request; the withdrawal window is measured from now.
+  // eslint-disable-next-line react-hooks/purity
+  const now = Date.now();
+  const returned = result.data.find((o) => o.id === query.pedido);
   const canOrder = await buyNow();
   const [counts, emails] = admin ? await Promise.all([orderStageCounts(), userEmails(result.data.map((o) => o.user_id))]) : [{}, new Map<string, string>()];
   const stageCounts = counts as Record<string, number>;
@@ -61,6 +84,11 @@ export default async function Orders({ searchParams }: { searchParams: Promise<{
           ]}
         />
       )}
+      {returned && (
+        <Notice tone="success" title={`Pedido ${returned.id.slice(0, 8).toUpperCase()}`}>
+          Se você concluiu o pagamento, a confirmação aparece aqui em instantes. Atualize a página se o status não mudar.
+        </Notice>
+      )}
       {!result.data.length && (
         <Card>
           <EmptyState
@@ -74,6 +102,15 @@ export default async function Orders({ searchParams }: { searchParams: Promise<{
       {result.data.map((o) => {
         const events = history.data.filter((e) => e.order_id === o.id);
         const mine = o.user_id === ctx.user.id;
+        const fixed = o.flow === "fixed";
+        const currency = o.currency as OrderCurrency;
+        const fee = payments.find((p) => p.order_id === o.id && p.kind === "fee");
+        const balance = payments.find((p) => p.order_id === o.id && p.kind === "balance");
+        // Same rule as order_command 'cancel': until preparation starts (a lease, until its first monthly charge).
+        const inWithdrawal = !!o.placed_at && now - new Date(o.placed_at).getTime() < withdrawalDays * 86400000;
+        const cancellable = fixed && (o.kind === "lease" ? ["awaiting_fee", "placed", "confirmed", "accepted"] : ["awaiting_fee", "placed", "confirmed", "paid"]).includes(o.status);
+        const customerCancel = cancellable && mine && (o.status === "awaiting_fee" || inWithdrawal);
+        const adminCancel = cancellable && admin;
         const details: DefinitionRow[] = [
           ...(admin
             ? [
@@ -86,6 +123,7 @@ export default async function Orders({ searchParams }: { searchParams: Promise<{
           { label: "Destinatário", value: o.delivery.name },
           { label: "Endereço de entrega", value: o.delivery.address },
           { label: "Telefone", value: o.delivery.phone },
+          ...(o.delivery_estimate ? [{ label: "Entrega prevista", value: o.delivery_estimate }] : []),
           ...(o.tracking_reference ? [{ label: "Transportadora / rastreamento", value: o.tracking_reference }] : []),
         ];
         return (
@@ -105,6 +143,31 @@ export default async function Orders({ searchParams }: { searchParams: Promise<{
               ))}
             </ul>
             <DefinitionList rows={details} />
+
+            {fixed && (
+              <section aria-label="Preço do pedido" className="mt-4 rounded-xl bg-brand-soft p-4">
+                <p className="text-[13.5px] font-semibold text-brand">{o.kind === "lease" ? "Mensalidade" : "Preço do pedido"}</p>
+                <p className="tabular text-[26px] leading-tight font-extrabold tracking-tight text-ink">
+                  {formatMinor(o.total_minor, currency)}
+                  {o.kind === "lease" && <span className="text-[15px] font-semibold text-ink-soft"> /mês</span>}
+                </p>
+                <dl className="mt-2 grid gap-1 text-[14.5px]">
+                  {[
+                    { label: "Taxa do pedido", payment: fee },
+                    ...(o.kind === "purchase" ? [{ label: "Saldo", payment: balance }] : []),
+                  ].map(({ label, payment }) => (
+                    <div key={label} className="flex flex-wrap justify-between gap-x-4">
+                      <dt className="text-ink-soft">{label}</dt>
+                      <dd className="tabular font-semibold text-ink">
+                        {payment
+                          ? `${formatMinor(payment.amount_minor, currency)} · ${PAYMENT_STATUS[payment.status] ?? payment.status}${payment.discount_minor > 0 && payment.paid_minor !== null ? ` (pago ${formatMinor(payment.paid_minor, currency)} com cupom)` : ""}`
+                          : `${formatMinor(o.total_minor - (o.fee_minor ?? 0), currency)} · após a confirmação`}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+              </section>
+            )}
 
             {o.quote_text && (
               <section aria-label="Proposta final" className="mt-4 rounded-xl bg-violet-soft p-4">
@@ -144,7 +207,7 @@ export default async function Orders({ searchParams }: { searchParams: Promise<{
             )}
 
             {o.accepted_at && (
-              <Notice tone="success" className="mt-4" title="Proposta aceita">
+              <Notice tone="success" className="mt-4" title={fixed ? "Termos do pedido aceitos" : "Proposta aceita"}>
                 Aceita por {o.signer} em {date(o.accepted_at)}.
                 <span className="mt-1 block text-[12.5px] text-ink-soft">Evidência: {o.evidence_hash}</span>
               </Notice>
@@ -184,6 +247,39 @@ export default async function Orders({ searchParams }: { searchParams: Promise<{
                   <input type="hidden" name="action" value="checkout" />
                   <input type="hidden" name="order_id" value={o.id} />
                   <p className="text-[14px] text-ink-soft">Tem um cupom? Informe o código promocional na página de pagamento do Stripe.</p>
+                </ActionDialog>
+              )}
+              {mine && fixed && fee && o.status === "awaiting_fee" && (
+                <ActionDialog action={orderAction} title="Pagar taxa do pedido" trigger="Pagar taxa do pedido" submit="Abrir pagamento seguro Stripe" triggerVariant="primary" triggerSize="md" size="sm" description="A taxa confirma seu pedido. Você será levado ao Stripe para pagar com cartão.">
+                  <input type="hidden" name="action" value="pay" />
+                  <input type="hidden" name="payment_id" value={fee.id} />
+                  <p className="text-[14px] text-ink-soft">Taxa de {formatMinor(fee.amount_minor, currency)}, abatida do total.</p>
+                </ActionDialog>
+              )}
+              {mine && fixed && balance && o.status === "confirmed" && ["open", "failed"].includes(balance.status) && (
+                <ActionDialog action={orderAction} title="Pagar saldo" trigger={`Pagar saldo de ${formatMinor(balance.amount_minor, currency)}`} submit="Abrir pagamento seguro Stripe" triggerVariant="primary" triggerSize="md" size="sm" description="Pagamento do saldo do pedido antes da entrega.">
+                  <input type="hidden" name="action" value="pay" />
+                  <input type="hidden" name="payment_id" value={balance.id} />
+                  <p className="text-[14px] text-ink-soft">Tem um cupom? Informe o código promocional na página de pagamento do Stripe.</p>
+                </ActionDialog>
+              )}
+              {admin && fixed && o.status === "placed" && (
+                <ActionDialog action={orderAction} title="Confirmar pedido" trigger="Confirmar pedido" submit="Confirmar pedido" triggerVariant="primary" triggerSize="md" size="lg" description={o.kind === "lease" ? "Confirme disponibilidade e prazo. A locação é criada com a mensalidade de catálogo; depois atribua as unidades em Locações." : "Confirme disponibilidade e prazo. O cliente passa a poder pagar o saldo."}>
+                  <input type="hidden" name="action" value="confirm" />
+                  <input type="hidden" name="order_id" value={o.id} />
+                  <Field name="delivery_estimate" label="Entrega prevista (ex.: até 20/12/2026)" minLength={3} maxLength={200} />
+                  {o.kind === "lease" && (
+                    <>
+                      <Field name="share_bps" label="Participação dos investidores (5000 = 50%)" type="number" />
+                      <Area name="agreement_text" label="Termos do acordo de locação" rows={8} minLength={100} maxLength={100000} />
+                    </>
+                  )}
+                </ActionDialog>
+              )}
+              {(customerCancel || adminCancel) && (
+                <ActionDialog action={orderAction} title="Cancelar este pedido?" trigger={o.status === "awaiting_fee" ? "Cancelar pedido" : "Cancelar e receber reembolso"} submit="Cancelar pedido" danger triggerSize="md" size="sm" description={o.status === "awaiting_fee" ? "O pedido será encerrado. Nenhuma cobrança foi feita." : "O pedido será encerrado e tudo o que foi pago (taxa e saldo) volta para o cartão usado."}>
+                  <input type="hidden" name="action" value="cancel" />
+                  <input type="hidden" name="order_id" value={o.id} />
                 </ActionDialog>
               )}
               {o.lease_id && (

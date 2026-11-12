@@ -1,5 +1,6 @@
 import { CreditCard, Plus, Repeat, Wrench } from "lucide-react";
-import { context, money, date } from "@/lib/live/data";
+import { context, date } from "@/lib/live/data";
+import { formatMinor, type OrderCurrency } from "@/lib/orders/pricing";
 import { ActionDialog } from "@/components/enrollment/ActionDialog";
 import { ActionForm } from "@/components/enrollment/ActionForm";
 import { DataTable } from "@/components/live/DataTable";
@@ -73,7 +74,7 @@ export default async function Leases() {
             <DefinitionList
               rows={[
                 ...(admin ? [{ label: "Conta", value: ctx.accounts.find((a) => a.id === l.account_id)?.name ?? l.account_id }] : []),
-                { label: "Mensalidade", value: `${money(l.monthly_minor / 100)}/mês` },
+                { label: "Mensalidade", value: `${formatMinor(l.monthly_minor, l.currency as OrderCurrency)}/mês` },
                 { label: "Endereço da instalação", value: l.location },
                 ...(l.installed_at ? [{ label: "Instalação confirmada em", value: date(l.installed_at) }] : []),
               ]}
@@ -104,8 +105,8 @@ export default async function Leases() {
                     label: `${date(r.period_start)} – ${date(r.period_end)}`,
                     value: (
                       <span className="inline-flex flex-wrap items-center justify-end gap-2">
-                        {money(r.amount_minor / 100)}
-                        {r.discount_minor > 0 && <span className="text-ink-soft">(desconto de {money(r.discount_minor / 100)})</span>}
+                        {formatMinor(r.amount_minor, r.currency as OrderCurrency)}
+                        {r.discount_minor > 0 && <span className="text-ink-soft">(desconto de {formatMinor(r.discount_minor, r.currency as OrderCurrency)})</span>}
                         <StatusPill status={r.state} />
                       </span>
                     ),
@@ -127,7 +128,7 @@ export default async function Leases() {
             <DataTable
               caption="Receita de locação atribuída por fatura e unidade"
               columns={[{ heading: "Fatura" }, { heading: "Unidade", secondary: true }, { heading: "Valor", align: "right" }, { heading: "Situação" }]}
-              rows={revenue.data.map((r) => [r.invoice_id, r.purifier_id, money(r.amount_minor / 100), <StatusPill key={r.invoice_id + r.purifier_id} status={r.state} />])}
+              rows={revenue.data.map((r) => [r.invoice_id, r.purifier_id, formatMinor(r.amount_minor, r.currency as OrderCurrency), <StatusPill key={r.invoice_id + r.purifier_id} status={r.state} />])}
               empty="Nenhuma receita de locação apurada ainda."
             />
           )}

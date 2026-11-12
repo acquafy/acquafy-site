@@ -26,6 +26,8 @@ export async function processOrderEvent(event: Stripe.Event) {
   };
   if (event.type.startsWith("checkout.session.")) {
     const input = event.data.object as Stripe.Checkout.Session;
+    if (input.metadata?.integration === "acquafy_order_payment")
+      return reconcilePaymentSession(input.id, event.type);
     if (input.metadata?.integration !== "acquafy_order") return;
     const s = await stripe.checkout.sessions.retrieve(input.id, {
       expand: ["payment_intent.latest_charge"],
@@ -111,6 +113,20 @@ export async function processOrderEvent(event: Stripe.Event) {
         : charge.payment_intent?.id;
     if (!pi) return;
     const intent = await stripe.paymentIntents.retrieve(pi);
+    if (intent.metadata.integration === "acquafy_order_payment") {
+      // A full refund of a cancelled order completes it; anything else (partial refund, dispute) goes to staff review.
+      const full = event.type === "charge.refunded" && charge.refunded;
+      check(
+        await db.rpc("order_payment_event", {
+          payload: {
+            payment_id: intent.metadata.payment_id,
+            state: event.type === "charge.refunded" ? "refunded" : "disputed",
+            full: full ? "yes" : "no",
+          },
+        }),
+      );
+      return;
+    }
     if (intent.metadata.integration !== "acquafy_order") return;
     orderId = intent.metadata.order_id;
     check(
@@ -120,4 +136,54 @@ export async function processOrderEvent(event: Stripe.Event) {
         .eq("id", orderId),
     );
   }
+}
+
+/**
+ * Fixed-price orders: one Checkout session per payment (order fee or balance), checked by order_payment_event.
+ * Also called before opening a new session, so a completed payment is recorded even if its webhook is late.
+ */
+export async function reconcilePaymentSession(sessionId: string, type = "checkout.session.completed") {
+  const stripe = stripeClient();
+  const s = await stripe.checkout.sessions.retrieve(sessionId, {
+    expand: ["payment_intent.latest_charge"],
+  });
+  if (s.livemode !== ((process.env.STRIPE_ENVIRONMENT ?? "test") === "live"))
+    throw Error("Environment mismatch");
+  const amounts = checkoutAmounts(s);
+  const paymentId = s.metadata?.payment_id;
+  if (!amounts || !paymentId || s.client_reference_id !== paymentId)
+    throw Error("Order payment mismatch");
+  const pi = typeof s.payment_intent === "object" ? s.payment_intent : null;
+  const charge =
+    pi && typeof pi.latest_charge === "object" ? pi.latest_charge : null;
+  const settled = checkoutSettled(s);
+  // A late event can find the charge already refunded (after a cancellation): report the refund, not a dispute,
+  // so the database keeps it as refunded.
+  const state = charge?.disputed
+    ? "disputed"
+    : charge && charge.amount_refunded > 0
+      ? "refunded"
+      : settled
+        ? "paid"
+        : type === "checkout.session.async_payment_failed"
+          ? "failed"
+          : null;
+  if (!state) return;
+  const result = await serviceClient().rpc("order_payment_event", {
+    payload: {
+      payment_id: paymentId,
+      state,
+      session_id: s.id,
+      currency: s.currency,
+      subtotal_minor: amounts.subtotal,
+      paid_minor: amounts.paid,
+      discount_minor: amounts.discount,
+      promotion: amounts.promotion,
+      payment_intent_id:
+        (typeof s.payment_intent === "string" ? s.payment_intent : pi?.id) ??
+        null,
+      full: charge?.refunded ? "yes" : "no",
+    },
+  });
+  if (result.error) throw Error("Order payment update failed");
 }

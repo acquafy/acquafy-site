@@ -26,10 +26,10 @@ describe("global view stages", () => {
   });
   it("places every order status in exactly one stage", () => {
     const statuses = orderStages.flatMap((s) => s.statuses).sort();
-    expect(statuses).toEqual(["accepted", "cancelled", "completed", "installed", "paid", "processing", "quoted", "requested", "review", "shipped"]);
+    expect(statuses).toEqual(["accepted", "awaiting_fee", "cancelled", "completed", "confirmed", "installed", "paid", "placed", "processing", "quoted", "requested", "review", "shipped"]);
   });
   it("ignores an unknown stage in the URL", () => {
-    expect(stageFor(orderStages, "proposta")?.statuses).toEqual(["requested"]);
+    expect(stageFor(orderStages, "proposta")?.statuses).toEqual(["requested", "placed"]);
     expect(stageFor(orderStages, "nope")).toBeUndefined();
     expect(stageFor(orderStages, undefined)).toBeUndefined();
   });

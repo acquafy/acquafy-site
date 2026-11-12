@@ -26,8 +26,9 @@ export const enrollmentStages: Stage[] = [
 ];
 
 export const orderStages: Stage[] = [
-  { key: "proposta", label: "Aguardando proposta", statuses: ["requested"] },
-  { key: "cliente", label: "Com o cliente", statuses: ["quoted", "accepted"] },
+  // "proposta" is what staff must act on: quote requests (old flow) and placed orders to confirm (fixed price).
+  { key: "proposta", label: "Para confirmar", statuses: ["requested", "placed"] },
+  { key: "cliente", label: "Com o cliente", statuses: ["quoted", "accepted", "awaiting_fee", "confirmed"] },
   { key: "entrega", label: "Em entrega", statuses: ["paid", "processing", "shipped", "installed"] },
   { key: "pagamento", label: "Pagamento em análise", statuses: ["review"] },
   { key: "encerrados", label: "Encerrados", statuses: ["completed", "cancelled"] },
@@ -59,7 +60,7 @@ export function workQueues(counts: QueueCounts): WorkQueue[] {
     queue("leasesWithIssues", "Locações com pendência", "Mensalidade em atraso ou em análise.", "/locacoes"),
     queue("enrollmentReview", "Investidores para aprovar", "Dados enviados, aguardando liberação do acordo.", "/investidores?etapa=analise"),
     queue("applications", "Cadastros do site sem convite", "Interesse recebido, aguardando contato e convite.", `/investidores?etapa=${APPLICATIONS_STAGE}`),
-    queue("ordersToQuote", "Pedidos para responder", "Novos pedidos aguardando proposta final.", "/pedidos?etapa=proposta"),
+    queue("ordersToQuote", "Pedidos para confirmar", "Pedidos novos aguardando confirmação ou proposta.", "/pedidos?etapa=proposta"),
     queue("ordersToFulfill", "Pedidos em entrega", "Pagos, em preparação, enviados ou instalados, sem conclusão.", "/pedidos?etapa=entrega"),
     queue("leasesToAllocate", "Locações sem equipamento", "Oferecidas, aguardando alocação de unidade.", "/locacoes"),
     queue("leasesToInstall", "Instalações a confirmar", "Locações pagas sem instalação confirmada.", "/locacoes"),

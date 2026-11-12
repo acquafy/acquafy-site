@@ -43,7 +43,7 @@ export async function processLeaseEvent(event: Stripe.Event) {
       !amounts ||
       !l.accepted_at ||
       amounts.subtotal !== l.monthly_minor ||
-      s.currency !== "usd" ||
+      s.currency !== l.currency ||
       (l.checkout_id && l.checkout_id !== s.id)
     )
       throw Error("Lease mismatch");
@@ -167,9 +167,13 @@ export async function processLeaseEvent(event: Stripe.Event) {
   async function collect(i: Stripe.Invoice) {
     const sub = i.parent?.subscription_details?.subscription;
     const amounts = invoiceAmounts(i);
-    if (!sub || !amounts || i.currency !== "usd" || i.amount_remaining !== 0)
+    if (!sub || !amounts || i.amount_remaining !== 0)
       throw Error("Unpaid invoice");
     const id = typeof sub === "string" ? sub : sub.id;
+    // Each lease is billed in its own currency (USD, or BRL for orders placed in Brazil).
+    const bound = await db.from("customer_leases").select("currency").eq("subscription_id", id).maybeSingle();
+    if (bound.error || (bound.data && bound.data.currency !== i.currency))
+      throw Error("Invoice currency mismatch");
     const current = await stripe.subscriptions.retrieve(id);
     const payments = await stripe.invoicePayments.list({ invoice: i.id });
     let risk = false;
