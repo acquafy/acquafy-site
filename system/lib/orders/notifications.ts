@@ -1,6 +1,7 @@
 import "server-only";
 import { publicOrigin, serviceClient } from "@/lib/enrollment/server";
 import { renderOrderEmail, type EmailOrder, type NotificationKind } from "./emails";
+import { sendSesEmail, sesConfigured } from "./ses";
 
 type Row = {
   id: number;
@@ -12,13 +13,13 @@ type Row = {
   payload: EmailOrder & { booking?: { starts_at: string; ends_at: string } };
 };
 
-/** Resend is configured when the API key and the sender address exist; otherwise e-mails wait in the outbox. */
+/** E-mail is configured when Amazon SES and the sender address exist; otherwise e-mails wait in the outbox. */
 export function emailConfigured() {
-  return !!process.env.RESEND_API_KEY && !!process.env.ORDER_EMAIL_FROM;
+  return sesConfigured() && !!process.env.ORDER_EMAIL_FROM;
 }
 
 /**
- * Sends the queued order e-mails (public.order_notifications, filled by database triggers) through Resend.
+ * Sends the queued order e-mails (public.order_notifications, filled by database triggers) through Amazon SES.
  * Claims a batch so parallel runs never send the same row; a failed send goes back to the queue and is retried
  * up to 5 times. Called by the cron route and right after order actions and Stripe events.
  */
@@ -33,20 +34,9 @@ export async function sendPendingNotifications(batch = 20) {
     try {
       if (!row.payload?.id) throw Error("Payload missing");
       const email = renderOrderEmail(row.kind, row.payload, publicOrigin(), row.payload.booking);
-      const res = await fetch("https://api.resend.com/emails", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
-          "Content-Type": "application/json",
-          // Same row, same key: a retried request after a timeout is not sent twice.
-          "Idempotency-Key": `order-notification-${row.id}`,
-        },
-        body: JSON.stringify({ from: process.env.ORDER_EMAIL_FROM, to: [row.to_email], subject: email.subject, html: email.html, text: email.text }),
-        signal: AbortSignal.timeout(10000),
-      });
-      const body = (await res.json().catch(() => ({}))) as { id?: string; message?: string };
-      if (!res.ok) throw Error(`Resend ${res.status}: ${body.message ?? "error"}`);
-      await db.from("order_notifications").update({ status: "sent", sent_at: new Date().toISOString(), provider_id: body.id ?? null, last_error: null }).eq("id", row.id);
+      // The row is claimed ("sending") before this call, so parallel runs never send it twice.
+      const messageId = await sendSesEmail({ from: process.env.ORDER_EMAIL_FROM!, to: row.to_email, subject: email.subject, html: email.html, text: email.text });
+      await db.from("order_notifications").update({ status: "sent", sent_at: new Date().toISOString(), provider_id: messageId, last_error: null }).eq("id", row.id);
       sent++;
     } catch (e) {
       failed++;
