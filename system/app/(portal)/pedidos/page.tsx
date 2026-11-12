@@ -106,10 +106,11 @@ export default async function Orders({ searchParams }: { searchParams: Promise<{
         const currency = o.currency as OrderCurrency;
         const fee = payments.find((p) => p.order_id === o.id && p.kind === "fee");
         const balance = payments.find((p) => p.order_id === o.id && p.kind === "balance");
-        const balanceSettled = !!balance && !["open", "failed"].includes(balance.status);
+        // Same rule as order_command 'cancel': until preparation starts (a lease, until its first monthly charge).
         const inWithdrawal = !!o.placed_at && now - new Date(o.placed_at).getTime() < withdrawalDays * 86400000;
-        const customerCancel = fixed && mine && !balanceSettled && (o.status === "awaiting_fee" || (["placed", "confirmed"].includes(o.status) && inWithdrawal));
-        const adminCancel = fixed && admin && !balanceSettled && ["awaiting_fee", "placed", "confirmed"].includes(o.status);
+        const cancellable = fixed && (o.kind === "lease" ? ["awaiting_fee", "placed", "confirmed", "accepted"] : ["awaiting_fee", "placed", "confirmed", "paid"]).includes(o.status);
+        const customerCancel = cancellable && mine && (o.status === "awaiting_fee" || inWithdrawal);
+        const adminCancel = cancellable && admin;
         const details: DefinitionRow[] = [
           ...(admin
             ? [
@@ -276,7 +277,7 @@ export default async function Orders({ searchParams }: { searchParams: Promise<{
                 </ActionDialog>
               )}
               {(customerCancel || adminCancel) && (
-                <ActionDialog action={orderAction} title="Cancelar este pedido?" trigger={o.status === "awaiting_fee" ? "Cancelar pedido" : "Cancelar e devolver a taxa"} submit="Cancelar pedido" danger triggerSize="md" size="sm" description={o.status === "awaiting_fee" ? "O pedido será encerrado. Nenhuma cobrança foi feita." : "O pedido será encerrado e a taxa devolvida ao cartão usado."}>
+                <ActionDialog action={orderAction} title="Cancelar este pedido?" trigger={o.status === "awaiting_fee" ? "Cancelar pedido" : "Cancelar e receber reembolso"} submit="Cancelar pedido" danger triggerSize="md" size="sm" description={o.status === "awaiting_fee" ? "O pedido será encerrado. Nenhuma cobrança foi feita." : "O pedido será encerrado e tudo o que foi pago (taxa e saldo) volta para o cartão usado."}>
                   <input type="hidden" name="action" value="cancel" />
                   <input type="hidden" name="order_id" value={o.id} />
                 </ActionDialog>

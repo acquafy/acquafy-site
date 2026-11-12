@@ -32,12 +32,19 @@ begin
  select id into bal from public.order_payments where order_id=o and kind='balance' and amount_minor=387500 and currency='brl' and status='open';
  if bal is null or not exists(select 1 from public.product_orders where id=o and status='confirmed' and delivery_estimate='Até 20/12/2026') then raise exception 'Confirmation failed';end if;
 
- -- Balance with a coupon pays the order; it can no longer be cancelled.
+ -- A replacement session binds only over the session the server saw (compare-and-set).
+ begin perform public.order_payment_bind(jsonb_build_object('payment_id',bal,'session_id','cs_bal_x','previous_session_id','cs_other'));raise exception 'Stale bind accepted';exception when raise_exception then if sqlerrm<>'Payment changed' then raise;end if;end;
+ -- Balance with a coupon pays the order.
  perform public.order_payment_bind(jsonb_build_object('payment_id',bal,'session_id','cs_bal'));
  perform public.order_payment_event(jsonb_build_object('payment_id',bal,'state','paid','session_id','cs_bal','subtotal_minor',387500,'paid_minor',377500,'discount_minor',10000,'currency','brl','payment_intent_id','pi_bal','promotion','promo_x'));
  if not exists(select 1 from public.product_orders where id=o and status='paid' and paid_minor=390000 and discount_minor=10000) then raise exception 'Balance did not pay the order';end if;
+ -- Within the withdrawal period a paid order can still be cancelled: the fee and the balance are both refunded.
  perform set_config('request.jwt.claim.sub',c::text,true);
- begin perform public.order_command('cancel',jsonb_build_object('order_id',o));raise exception 'Paid order cancelled';exception when raise_exception then if sqlerrm<>'Cancellation unavailable' then raise;end if;end;
+ perform public.order_command('cancel',jsonb_build_object('order_id',o));
+ if (select count(*) from public.order_payments where order_id=o and status='refunding')<>2 then raise exception 'Paid order not refunded';end if;
+ -- Once preparation starts the customer can no longer cancel.
+ update public.product_orders set status='processing' where id=o;
+ begin perform public.order_command('cancel',jsonb_build_object('order_id',o));raise exception 'Order in preparation cancelled';exception when raise_exception then if sqlerrm<>'Cancellation unavailable' then raise;end if;end;
 
  -- Lease in USD: monthly price from the catalog (10% of US$ 1,000); confirmation creates the lease in the order's currency.
  o2:=public.order_command('place',jsonb_build_object('kind','lease','currency','usd','terms','yes','items',jsonb_build_array(jsonb_build_object('product','neo-ultra','quantity',1)),'delivery',jsonb_build_object('name','Test Customer','phone','+15551234567','address','123 Test Street, Austin, TX, US')));
@@ -49,6 +56,19 @@ begin
  perform public.order_command('confirm',jsonb_build_object('order_id',o2,'delivery_estimate','Janeiro de 2027','agreement_text',repeat('APPROVED LEASE TERMS ',10),'share_bps',5000));
  select lease_id into l from public.product_orders where id=o2 and status='confirmed';
  if l is null or not exists(select 1 from public.customer_leases where id=l and monthly_minor=10000 and currency='usd' and status='offered') or exists(select 1 from public.order_payments where order_id=o2 and kind='balance') then raise exception 'Lease confirmation failed';end if;
+ -- Receipts and investor revenue take the lease's currency.
+ update public.customer_leases set currency='brl' where id=l;
+ insert into public.lease_receipts(invoice_id,lease_id,amount_minor,period_start,period_end)values('in_test',l,10000,now(),now()+interval '1 month');
+ if (select currency from public.lease_receipts where invoice_id='in_test')<>'brl' then raise exception 'Receipt currency not set';end if;
+ delete from public.lease_receipts where invoice_id='in_test';
+ update public.customer_leases set currency='usd' where id=l;
+ -- After the customer accepts the lease agreement (no monthly charge yet) the order can still be cancelled.
+ update public.customer_leases set status='accepted',accepted_at=now(),signer='Test Customer' where id=l;
+ if (select status from public.product_orders where id=o2)<>'accepted' then raise exception 'Lease progress not mirrored';end if;
+ perform set_config('request.jwt.claim.sub',c::text,true);
+ perform public.order_command('cancel',jsonb_build_object('order_id',o2));
+ if (select status from public.product_orders where id=o2)<>'cancelled' or (select status from public.customer_leases where id=l)<>'ended' or (select status from public.order_payments where order_id=o2 and kind='fee')<>'refunding' then raise exception 'Accepted lease not cancelled';end if;
+ perform set_config('request.jwt.claim.sub',s::text,true);
 
  -- Cancelling before the fee voids the payment; cancelling within the withdrawal period refunds it.
  perform set_config('request.jwt.claim.sub',c::text,true);
@@ -72,6 +92,10 @@ begin
  if not exists(select 1 from public.order_payments where id=fee and status='refunding') then raise exception 'Refund not requested';end if;
  perform public.order_payment_event(jsonb_build_object('payment_id',fee,'state','refunded','full','yes'));
  if not exists(select 1 from public.order_payments where id=fee and status='refunded') or not exists(select 1 from public.product_orders where id=o4 and status='cancelled') then raise exception 'Refund not recorded';end if;
+ -- Late or replayed events never undo the recorded refund.
+ perform public.order_payment_event(jsonb_build_object('payment_id',fee,'state','refunded','full','yes'));
+ perform public.order_payment_event(jsonb_build_object('payment_id',fee,'state','paid','session_id','cs_fee4','subtotal_minor',2500,'paid_minor',2500,'currency','usd','payment_intent_id','pi_fee4'));
+ if (select status from public.order_payments where id=fee)<>'refunded' or (select status from public.product_orders where id=o4)<>'cancelled' then raise exception 'Stale event undid the refund';end if;
  -- Outside the withdrawal period the customer cannot cancel a placed order.
  o4:=public.order_command('place',jsonb_build_object('kind','purchase','currency','usd','terms','yes','items',jsonb_build_array(jsonb_build_object('product','neo-fit','quantity',1)),'delivery',jsonb_build_object('name','Test Customer','phone','+15551234567','address','123 Test Street, Austin, TX, US')));
  update public.product_orders set status='placed',placed_at=now()-interval '8 days' where id=o4;

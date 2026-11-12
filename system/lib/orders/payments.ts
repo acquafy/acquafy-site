@@ -27,7 +27,7 @@ export async function processOrderEvent(event: Stripe.Event) {
   if (event.type.startsWith("checkout.session.")) {
     const input = event.data.object as Stripe.Checkout.Session;
     if (input.metadata?.integration === "acquafy_order_payment")
-      return processPaymentSession(event.type, input.id);
+      return reconcilePaymentSession(input.id, event.type);
     if (input.metadata?.integration !== "acquafy_order") return;
     const s = await stripe.checkout.sessions.retrieve(input.id, {
       expand: ["payment_intent.latest_charge"],
@@ -138,8 +138,11 @@ export async function processOrderEvent(event: Stripe.Event) {
   }
 }
 
-/** Fixed-price orders: one Checkout session per payment (order fee or balance), checked by order_payment_event. */
-async function processPaymentSession(type: string, sessionId: string) {
+/**
+ * Fixed-price orders: one Checkout session per payment (order fee or balance), checked by order_payment_event.
+ * Also called before opening a new session, so a completed payment is recorded even if its webhook is late.
+ */
+export async function reconcilePaymentSession(sessionId: string, type = "checkout.session.completed") {
   const stripe = stripeClient();
   const s = await stripe.checkout.sessions.retrieve(sessionId, {
     expand: ["payment_intent.latest_charge"],
@@ -154,9 +157,12 @@ async function processPaymentSession(type: string, sessionId: string) {
   const charge =
     pi && typeof pi.latest_charge === "object" ? pi.latest_charge : null;
   const settled = checkoutSettled(s);
-  const state =
-    charge && (charge.amount_refunded > 0 || charge.disputed)
-      ? "disputed"
+  // A late event can find the charge already refunded (after a cancellation): report the refund, not a dispute,
+  // so the database keeps it as refunded.
+  const state = charge?.disputed
+    ? "disputed"
+    : charge && charge.amount_refunded > 0
+      ? "refunded"
       : settled
         ? "paid"
         : type === "checkout.session.async_payment_failed"
@@ -176,6 +182,7 @@ async function processPaymentSession(type: string, sessionId: string) {
       payment_intent_id:
         (typeof s.payment_intent === "string" ? s.payment_intent : pi?.id) ??
         null,
+      full: charge?.refunded ? "yes" : "no",
     },
   });
   if (result.error) throw Error("Order payment update failed");

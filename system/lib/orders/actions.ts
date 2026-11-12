@@ -104,7 +104,9 @@ export async function orderAction(
       if (placed.error || !placed.data) throw Error();
       const fee = await ctx.db.from("order_payments").select("*").eq("order_id", placed.data).eq("kind", "fee").single();
       if (fee.error || !fee.data) throw Error();
-      redirect(await paymentCheckoutUrl(fee.data));
+      const url = await paymentCheckoutUrl(fee.data);
+      if (!url) throw Error();
+      redirect(url);
     }
     if (action === "pay") {
       // Order fee (retry) or balance of a fixed-price order, paid by its owner.
@@ -119,14 +121,22 @@ export async function orderAction(
         !ctx.accounts.some((a) => a.id === o.account_id && a.status === "active")
       )
         throw Error();
-      redirect(await paymentCheckoutUrl(pay.data));
+      const url = await paymentCheckoutUrl(pay.data);
+      if (url) redirect(url);
+      // The previous Checkout was already completed: it was recorded now instead of charging again.
+      revalidatePath("/pedidos");
+      return { success: "Este pagamento já foi feito e está sendo confirmado. Atualize a página em instantes." };
     }
     if (action === "cancel") {
-      const { data: o } = await ctx.db.from("product_orders").select("id,flow").eq("id", String(f.get("order_id"))).single();
+      const { data: o } = await ctx.db.from("product_orders").select("id,flow,lease_id").eq("id", String(f.get("order_id"))).single();
       if (o?.flow === "fixed") {
-        // Close an unpaid fee session first so it cannot be paid after the cancellation.
+        // Close unpaid sessions first (order fee, balance, or the lease's first month) so they cannot be paid after the cancellation.
         const open = await ctx.db.from("order_payments").select("checkout_id").eq("order_id", o.id).eq("status", "open");
         for (const p of open.data ?? []) await expireCheckout(p.checkout_id);
+        if (o.lease_id) {
+          const lease = await ctx.db.from("customer_leases").select("checkout_id").eq("id", o.lease_id).single();
+          await expireCheckout(lease.data?.checkout_id ?? null);
+        }
         const cancelled = await ctx.db.rpc("order_command", { action: "cancel", payload: { order_id: o.id } });
         if (cancelled.error) throw Error();
         revalidatePath("/pedidos");
@@ -134,9 +144,9 @@ export async function orderAction(
         try {
           for (const p of refunds.data ?? []) await refundPayment(p);
         } catch {
-          return { success: "Pedido cancelado. O reembolso da taxa será concluído pela nossa equipe." };
+          return { success: "Pedido cancelado. O reembolso será concluído pela nossa equipe." };
         }
-        return { success: refunds.data?.length ? "Pedido cancelado. O reembolso da taxa foi solicitado ao cartão usado." : "Pedido cancelado." };
+        return { success: refunds.data?.length ? "Pedido cancelado. O reembolso foi solicitado ao cartão usado." : "Pedido cancelado." };
       }
     }
     if (action === "request") {

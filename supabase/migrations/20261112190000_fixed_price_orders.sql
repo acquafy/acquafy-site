@@ -96,12 +96,15 @@ begin
  select * into o from public.product_orders where id=(payload->>'order_id')::uuid for update;
  if o.id is null then raise exception 'Order unavailable';end if;
  if action='cancel' and o.flow='fixed' then
- -- The customer may cancel before paying the fee, or within the withdrawal period; staff may cancel until the balance is paid.
+ -- Cancellable until preparation starts: before the fee, after it, after confirmation and after the balance ('paid'),
+ -- and for leases after the agreement is accepted ('accepted') but before the first monthly charge.
+ -- The customer may cancel before paying the fee or within the withdrawal period; staff may cancel any time in these states.
+ -- Every payment already made is refunded.
  select * into s from public.order_settings;
- if not ((o.user_id=auth.uid() and portal_private.account_access(o.account_id) and (o.status='awaiting_fee' or (o.status in ('placed','confirmed') and o.placed_at>now()-make_interval(days=>s.withdrawal_days))))
- or (portal_private.staff('admin') and o.status in ('awaiting_fee','placed','confirmed'))) then raise exception 'Cancellation unavailable';end if;
- if exists(select 1 from public.order_payments where order_id=o.id and kind='balance' and status not in ('open','failed')) then raise exception 'Cancellation unavailable';end if;
- if o.lease_id is not null and exists(select 1 from public.customer_leases where id=o.lease_id and status<>'offered') then raise exception 'Cancellation unavailable';end if;
+ if o.status not in ('awaiting_fee','placed','confirmed','accepted','paid')
+ or not ((o.user_id=auth.uid() and portal_private.account_access(o.account_id) and (o.status='awaiting_fee' or o.placed_at>now()-make_interval(days=>s.withdrawal_days)))
+ or portal_private.staff('admin')) then raise exception 'Cancellation unavailable';end if;
+ if o.lease_id is not null and exists(select 1 from public.customer_leases where id=o.lease_id and (status not in ('offered','accepted') or subscription_id is not null)) then raise exception 'Cancellation unavailable';end if;
  update public.product_orders set status='cancelled',updated_at=now() where id=o.id;
  if o.lease_id is not null then
  delete from public.lease_units where lease_id=o.lease_id;
@@ -142,6 +145,8 @@ declare pay public.order_payments;
 begin
  select * into pay from public.order_payments where id=(payload->>'payment_id')::uuid for update;
  if pay.id is null or pay.status not in ('open','failed') or payload->>'session_id' is null then raise exception 'Payment unavailable';end if;
+ -- Compare-and-set: a replacement session binds only over the session the server checked, never over a newer one.
+ if pay.checkout_id is distinct from nullif(payload->>'previous_session_id','') then raise exception 'Payment changed';end if;
  update public.order_payments set checkout_id=payload->>'session_id',status='open',updated_at=now() where id=pay.id;
 end;$$;
 revoke all on function public.order_payment_bind(jsonb) from public,anon,authenticated;
@@ -172,6 +177,8 @@ begin
  end if;
  elsif state='failed' then
  if pay.status='open' then update public.order_payments set status='failed',updated_at=now() where id=pay.id;end if;
+ elsif state='refunded' and pay.status='refunded' then
+ return pay.id;
  elsif state='refunded' and payload->>'full'='yes' and (pay.status='refunding' or o.status='cancelled') then
  update public.order_payments set status='refunded',updated_at=now() where id=pay.id;
  elsif state in ('refunded','disputed') then
@@ -182,3 +189,15 @@ begin
 end;$$;
 revoke all on function public.order_payment_event(jsonb) from public,anon,authenticated;
 grant execute on function public.order_payment_event(jsonb) to service_role;
+
+-- Lease receipts and investor revenue carry the currency of their lease (BRL leases come from orders placed in Brazil).
+alter table public.lease_receipts add column currency text not null default 'usd' check(currency in ('usd','brl'));
+alter table public.lease_revenue add column currency text not null default 'usd' check(currency in ('usd','brl'));
+create function portal_private.lease_receipt_currency() returns trigger language plpgsql security definer set search_path='' as $$begin
+ new.currency:=(select currency from public.customer_leases where id=new.lease_id);return new;end;$$;
+revoke all on function portal_private.lease_receipt_currency() from public,anon,authenticated;
+create trigger lease_receipt_currency before insert on public.lease_receipts for each row execute function portal_private.lease_receipt_currency();
+create function portal_private.lease_revenue_currency() returns trigger language plpgsql security definer set search_path='' as $$begin
+ new.currency:=(select currency from public.lease_receipts where invoice_id=new.invoice_id);return new;end;$$;
+revoke all on function portal_private.lease_revenue_currency() from public,anon,authenticated;
+create trigger lease_revenue_currency before insert on public.lease_revenue for each row execute function portal_private.lease_revenue_currency();

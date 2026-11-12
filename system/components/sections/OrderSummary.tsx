@@ -92,7 +92,7 @@ export function OrderSummary({
         <li>
           {lease
             ? `A taxa reserva sua locação. A mensalidade começa com o acordo de locação, depois da confirmação.`
-            : `A taxa é abatida do total. Cancele em até ${withdrawalDays} dias e ela é devolvida.`}
+            : `A taxa é abatida do total. Cancele em até ${withdrawalDays} dias, antes do envio, e recebe tudo de volta.`}
         </li>
       </ul>
     </Card>

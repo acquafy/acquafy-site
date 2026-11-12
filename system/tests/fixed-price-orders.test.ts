@@ -2,10 +2,13 @@ import { beforeEach, describe, expect, it, vi } from "vitest";
 vi.mock("server-only", () => ({}));
 const session = vi.hoisted(() => ({ value: {} as Record<string, unknown> }));
 const rpc = vi.hoisted(() => vi.fn());
+const create = vi.hoisted(() => vi.fn());
 vi.mock("@/lib/enrollment/server", () => ({
-  stripeClient: () => ({ checkout: { sessions: { retrieve: async () => session.value } } }),
+  stripeClient: () => ({ checkout: { sessions: { retrieve: async () => session.value, create } } }),
   serviceClient: () => ({ rpc }),
+  publicOrigin: () => "https://acquafy.example",
 }));
+import { paymentCheckoutUrl } from "@/lib/orders/checkout";
 import { formatMinor, linesFromQuery, orderCurrency, previewOrder } from "@/lib/orders/pricing";
 import { processOrderEvent } from "@/lib/orders/payments";
 import { customerDestination } from "@/lib/orders/destination";
@@ -98,5 +101,42 @@ describe("fixed-price order payments (webhook)", () => {
     session.value = paidSession();
     rpc.mockResolvedValue({ error: { message: "Payment mismatch" } });
     await expect(processOrderEvent(event("checkout.session.completed"))).rejects.toThrow("Order payment update failed");
+  });
+});
+
+describe("fixed-price order review fixes", () => {
+  beforeEach(() => {
+    rpc.mockReset().mockResolvedValue({ error: null });
+    create.mockReset().mockResolvedValue({ id: "cs_new", url: "https://checkout.stripe.example/cs_new" });
+    vi.stubEnv("STRIPE_ENVIRONMENT", "test");
+  });
+  const base = {
+    id: "cs_1",
+    livemode: false,
+    client_reference_id: "pay_1",
+    metadata: { integration: "acquafy_order_payment", payment_id: "pay_1" },
+    currency: "brl",
+    amount_subtotal: 12500,
+    amount_total: 12500,
+    total_details: { amount_discount: 0, amount_tax: 0, amount_shipping: 0 },
+    discounts: [],
+  };
+  const payment = { id: "pay_1", order_id: "ord_1", kind: "fee" as const, currency: "brl", amount_minor: 12500, status: "open", checkout_id: "cs_1" };
+
+  it("records a completed session instead of opening a second charge when the webhook is late", async () => {
+    session.value = { ...base, status: "complete", payment_status: "paid", payment_intent: { id: "pi_1", latest_charge: { amount_refunded: 0, disputed: false, refunded: false } } };
+    await expect(paymentCheckoutUrl(payment)).resolves.toBeNull();
+    expect(create).not.toHaveBeenCalled();
+    expect(rpc).toHaveBeenCalledWith("order_payment_event", { payload: expect.objectContaining({ state: "paid", payment_id: "pay_1" }) });
+  });
+  it("binds a replacement session over the expired one only", async () => {
+    session.value = { ...base, status: "expired", payment_status: "unpaid" };
+    await expect(paymentCheckoutUrl(payment)).resolves.toBe("https://checkout.stripe.example/cs_new");
+    expect(rpc).toHaveBeenCalledWith("order_payment_bind", { payload: { payment_id: "pay_1", session_id: "cs_new", previous_session_id: "cs_1" } });
+  });
+  it("reports a late completion of a refunded charge as a refund, not a dispute", async () => {
+    session.value = { ...base, status: "complete", payment_status: "paid", payment_intent: { id: "pi_1", latest_charge: { amount_refunded: 12500, disputed: false, refunded: true } } };
+    await processOrderEvent({ type: "checkout.session.completed", livemode: false, data: { object: { id: "cs_1", metadata: { integration: "acquafy_order_payment" } } } } as unknown as Stripe.Event);
+    expect(rpc).toHaveBeenCalledWith("order_payment_event", { payload: expect.objectContaining({ state: "refunded", full: "yes" }) });
   });
 });

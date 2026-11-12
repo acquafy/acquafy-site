@@ -102,7 +102,7 @@ export default async function Order({ searchParams }: { searchParams: Promise<Qu
               <Consent name="terms">
                 Li e aceito os termos do pedido: preço de {formatMinor(order.total, currency)}
                 {kind === "lease" ? "/mês" : ""}, taxa do pedido de {formatMinor(order.fee, currency)} cobrada agora
-                {kind === "purchase" ? " e abatida do total" : ""}, cancelamento com devolução da taxa em até {settings.data.withdrawal_days} dias.
+                {kind === "purchase" ? " e abatida do total" : ""}, cancelamento com reembolso integral em até {settings.data.withdrawal_days} dias após o pedido, antes do envio.
               </Consent>
             </ActionForm>
           )}
