@@ -1,7 +1,7 @@
 ﻿"use client";
 
 import { useRef, useState, useCallback, useEffect } from "react";
-import { type CheckinFamily } from "@/lib/checkin-products";
+import { type CheckinColor, type CheckinFamily } from "@/lib/checkin-products";
 import { formatPrice, ORDER_FEE_BRL, PRODUCT_LEASE_BRL } from "@/lib/products";
 import FigmaIcon from "@/components/FigmaIcon";
 import { useLang } from "@/context/LanguageContext";
@@ -714,7 +714,7 @@ const imgNegative = "/figma-assets/icon-negative.svg";
 // Color swatches — images live on each variant (variant.slides[colorIdx][slideIdx])
 // File convention: /images/checkin/[family-slug]/[variant-id]/[color-slug]/01.jpg … 10.jpg
 // Positions: 0–6 = rotation views, 7–9 = detail close-ups
-const ESSENTIALS_COLORS = [
+const ESSENTIALS_COLORS: CheckinColor[] = [
   { gradient: "linear-gradient(133deg, #fcfcfb 8%, #dfe0db 89%)", name: "Pearl White", slug: "pearl-white" },
   { gradient: "linear-gradient(180deg, #626970, #2a3035)",         name: "Dark Gray",   slug: "dark-gray"   },
   { gradient: "linear-gradient(133deg, #cddedf 8%, #969ea3 89%)", name: "Silver Gray", slug: "silver-gray" },
@@ -1191,6 +1191,7 @@ const COLOR_NAMES_I18N: Record<string, Record<Lang, string>> = {
   cm: { pt: "Cinza Metrópole", "pt-pt": "Cinza Metrópole", en: "Metropolis Gray", "en-gb": "Metropolis Grey", es: "Gris Metrópoli", fr: "Gris Métropole", de: "Metropolgrau", it: "Grigio Metropoli", zh: "都市灰", ja: "メトロポリスグレー", ko: "메트로폴리스 그레이", sv: "Metropolgrå", fi: "Metropoliharmaa", ru: "Серый Мегаполис", ro: "Gri Metropolă", he: "אפור מטרופוליס" },
   cz: { pt: "Cinza", "pt-pt": "Cinza", en: "Gray", "en-gb": "Grey", es: "Gris", fr: "Gris", de: "Grau", it: "Grigio", zh: "灰色", ja: "グレー", ko: "회색", sv: "Grå", fi: "Harmaa", ru: "Серый", ro: "Gri", he: "אפור" },
   bg: { pt: "Branco Glacial", "pt-pt": "Branco Glacial", en: "Glacial White", "en-gb": "Glacial White", es: "Blanco Glacial", fr: "Blanc Glacial", de: "Glacialweiß", it: "Bianco Glaciale", zh: "冰川白", ja: "グレイシャルホワイト", ko: "글래시얼 화이트", sv: "Glacialvit", fi: "Jäinen Valkoinen", ru: "Ледниковый Белый", ro: "Alb Glaciar", he: "לבן קרחוני" },
+  inox: { pt: "Inox", "pt-pt": "Inox", en: "Stainless Steel", "en-gb": "Stainless Steel", es: "Acero Inoxidable", fr: "Inox", de: "Edelstahl", it: "Acciaio Inox", zh: "不锈钢", ja: "ステンレス", ko: "스테인리스", sv: "Rostfritt stål", fi: "Ruostumaton teräs", ru: "Нержавеющая сталь", ro: "Inox", he: "נירוסטה" },
   wt: { pt: "Branco", "pt-pt": "Branco", en: "White", "en-gb": "White", es: "Blanco", fr: "Blanc", de: "Weiß", it: "Bianco", zh: "白色", ja: "ホワイト", ko: "화이트", sv: "Vit", fi: "Valkoinen", ru: "Белый", ro: "Alb", he: "לבן" },
   "pearl-white": { pt: "Branco Pérola", "pt-pt": "Branco Pérola", en: "Pearl White", "en-gb": "Pearl White", es: "Blanco Perla", fr: "Blanc Nacré", de: "Perlweiß", it: "Bianco Perla", zh: "珍珠白", ja: "パールホワイト", ko: "펄 화이트", sv: "Pärlvit", fi: "Helmenvalkea", ru: "Жемчужный белый", ro: "Alb Perlat", he: "לבן פנינה" },
   "dark-gray":   { pt: "Cinza Escuro", "pt-pt": "Cinza Escuro", en: "Dark Gray", "en-gb": "Dark Grey", es: "Gris Oscuro", fr: "Gris Foncé", de: "Dunkelgrau", it: "Grigio Scuro", zh: "深灰色", ja: "ダークグレー", ko: "다크 그레이", sv: "Mörkgrå", fi: "Tummanharmaa", ru: "Тёмно-серый", ro: "Gri Închis", he: "אפור כהה" },
@@ -1199,6 +1200,11 @@ const COLOR_NAMES_I18N: Record<string, Record<Lang, string>> = {
   "silver":      { pt: "Prata", "pt-pt": "Prata", en: "Silver", "en-gb": "Silver", es: "Plata", fr: "Argent", de: "Silber", it: "Argento", zh: "银色", ja: "シルバー", ko: "실버", sv: "Silver", fi: "Hopea", ru: "Серебряный", ro: "Argintiu", he: "כסף" },
 };
 
+/** Translation key of a colour: its own name key (Inox shares the "wt" image folder with white), else the folder slug. */
+function colorKey(color: CheckinColor | undefined): string | undefined {
+  return color?.nameKey ?? color?.slug;
+}
+
 function getColorName(slug: string | undefined, lang: Lang, fallback: string): string {
   if (!slug) return fallback;
   return COLOR_NAMES_I18N[slug]?.[lang] ?? fallback;
@@ -1206,11 +1212,11 @@ function getColorName(slug: string | undefined, lang: Lang, fallback: string): s
 
 // Copy for the order summary. Other languages fall back to English.
 const ORDER_LABELS: Partial<Record<Lang, { title: string; fee: string; purchase: string; lease: string }>> = {
-  pt:      { title: "Resumo do pedido", fee: "Taxa do pedido · paga hoje", purchase: "Na próxima etapa você cria sua Acquafy Account, informa o endereço e paga a taxa. Ela é abatida do total; o saldo é cobrado antes da entrega. Frete grátis. Cancele em até 7 dias e receba tudo de volta.", lease: "Na próxima etapa você cria sua Acquafy Account, informa o endereço e paga a taxa, que reserva sua locação. A mensalidade começa com o acordo de locação. Cancele em até 7 dias e receba a taxa de volta." },
-  "pt-pt": { title: "Resumo da encomenda", fee: "Taxa da encomenda · paga hoje", purchase: "No passo seguinte cria a sua Acquafy Account, indica a morada e paga a taxa. Ela é descontada do total; o saldo é cobrado antes da entrega. Portes grátis. Cancele até 7 dias depois e recebe tudo de volta.", lease: "No passo seguinte cria a sua Acquafy Account, indica a morada e paga a taxa, que reserva o aluguer. A mensalidade começa com o contrato de aluguer. Cancele até 7 dias depois e recebe a taxa de volta." },
-  en:      { title: "Order summary", fee: "Order fee · due today", purchase: "Next you create your Acquafy Account, enter the delivery address and pay the order fee. It counts toward the total; the balance is charged before delivery. Free shipping. Cancel within 7 days for a full refund.", lease: "Next you create your Acquafy Account, enter the delivery address and pay the order fee, which reserves your lease. Monthly payments start with the lease agreement. Cancel within 7 days to get the fee back." },
-  "en-gb": { title: "Order summary", fee: "Order fee · due today", purchase: "Next you create your Acquafy Account, enter the delivery address and pay the order fee. It counts towards the total; the balance is charged before delivery. Free delivery. Cancel within 7 days for a full refund.", lease: "Next you create your Acquafy Account, enter the delivery address and pay the order fee, which reserves your lease. Monthly payments start with the lease agreement. Cancel within 7 days to get the fee back." },
-  es:      { title: "Resumen del pedido", fee: "Tasa del pedido · se paga hoy", purchase: "En el siguiente paso creas tu Acquafy Account, indicas la dirección y pagas la tasa. Se descuenta del total; el saldo se cobra antes de la entrega. Envío gratis. Cancela en 7 días y recibe todo de vuelta.", lease: "En el siguiente paso creas tu Acquafy Account, indicas la dirección y pagas la tasa, que reserva tu alquiler. La cuota mensual empieza con el contrato. Cancela en 7 días y recibe la tasa de vuelta." },
+  pt:      { title: "Resumo do pedido", fee: "Taxa do pedido · paga hoje", purchase: "Na próxima etapa você cria sua Acquafy Account, informa o endereço e paga a taxa. Ela é abatida do total; o saldo é cobrado antes da entrega. Frete grátis. Cancele em até 7 dias, antes de começarmos a preparar o pedido, e receba tudo de volta.", lease: "Na próxima etapa você cria sua Acquafy Account, informa o endereço e paga a taxa, que reserva sua locação. A mensalidade começa com o acordo de locação. Cancele em até 7 dias, antes da primeira mensalidade, e receba a taxa de volta." },
+  "pt-pt": { title: "Resumo da encomenda", fee: "Taxa da encomenda · paga hoje", purchase: "No passo seguinte cria a sua Acquafy Account, indica a morada e paga a taxa. Ela é descontada do total; o saldo é cobrado antes da entrega. Portes grátis. Cancele até 7 dias depois, antes de começarmos a preparar a encomenda, e recebe tudo de volta.", lease: "No passo seguinte cria a sua Acquafy Account, indica a morada e paga a taxa, que reserva o aluguer. A mensalidade começa com o contrato de aluguer. Cancele até 7 dias depois, antes da primeira mensalidade, e recebe a taxa de volta." },
+  en:      { title: "Order summary", fee: "Order fee · due today", purchase: "Next you create your Acquafy Account, enter the delivery address and pay the order fee. It counts toward the total; the balance is charged before delivery. Free shipping. Cancel within 7 days, before we start preparing your order, for a full refund.", lease: "Next you create your Acquafy Account, enter the delivery address and pay the order fee, which reserves your lease. Monthly payments start with the lease agreement. Cancel within 7 days, before the first monthly payment, to get the fee back." },
+  "en-gb": { title: "Order summary", fee: "Order fee · due today", purchase: "Next you create your Acquafy Account, enter the delivery address and pay the order fee. It counts towards the total; the balance is charged before delivery. Free delivery. Cancel within 7 days, before we start preparing your order, for a full refund.", lease: "Next you create your Acquafy Account, enter the delivery address and pay the order fee, which reserves your lease. Monthly payments start with the lease agreement. Cancel within 7 days, before the first monthly payment, to get the fee back." },
+  es:      { title: "Resumen del pedido", fee: "Tasa del pedido · se paga hoy", purchase: "En el siguiente paso creas tu Acquafy Account, indicas la dirección y pagas la tasa. Se descuenta del total; el saldo se cobra antes de la entrega. Envío gratis. Cancela en 7 días, antes de que empecemos a preparar tu pedido, y recibe todo de vuelta.", lease: "En el siguiente paso creas tu Acquafy Account, indicas la dirección y pagas la tasa, que reserva tu alquiler. La cuota mensual empieza con el contrato. Cancela en 7 días, antes de la primera cuota, y recibe la tasa de vuelta." },
 };
 
 export default function CheckinProduct({ family, showSlide = true }: Props) {
@@ -1329,7 +1335,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
     product: activeVariant.id,
     mode: payTab === "financiar" ? "lease" : "purchase",
     currency: lang === "pt" || lang === "pt-pt" ? "brl" : "usd",
-    ...(orderColor ? { color: getColorName(orderColor.slug, "pt", orderColor.name) } : {}),
+    ...(orderColor ? { color: getColorName(colorKey(orderColor), "pt", orderColor.name) } : {}),
   }).toString();
 
   const specs = SPECS[activeVariant.id] ?? SPECS["neo-fit"]!;
@@ -1688,7 +1694,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                   <div className="flex flex-col gap-[4px] items-center">
                     <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af] uppercase tracking-[0.06em]">{lb.coresLabel}</p>
                     <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] text-[#1f2e91] text-center">
-                      {getColorName(colorOptions[activeColorIdx]?.slug, lang, colorOptions[activeColorIdx]?.name ?? "")}
+                      {getColorName(colorKey(colorOptions[activeColorIdx]), lang, colorOptions[activeColorIdx]?.name ?? "")}
                     </p>
                   </div>
                   <div className="flex gap-[10px] items-center justify-center flex-wrap">
@@ -1903,7 +1909,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                 <div className="flex flex-col gap-[3px] min-w-0">
                   <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91]">{activeVariant.name}</p>
                   <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af]">
-                    {[orderColor ? getColorName(orderColor.slug, lang, orderColor.name) : null, payTab === "financiar" ? lb.payLease : lb.payCash].filter(Boolean).join(" · ")}
+                    {[orderColor ? getColorName(colorKey(orderColor), lang, orderColor.name) : null, payTab === "financiar" ? lb.payLease : lb.payCash].filter(Boolean).join(" · ")}
                   </p>
                 </div>
                 <div className="flex flex-col items-end gap-[3px] shrink-0">
@@ -1950,7 +1956,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
             </span>
             <span className="font-['Avenir_LT_Pro:55_Roman'] text-[11px] text-[#6b7280] leading-snug [overflow-wrap:anywhere]">
               {[
-                getColorName(colorOptions[activeColorIdx]?.slug, lang, colorOptions[activeColorIdx]?.name ?? ""),
+                getColorName(colorKey(colorOptions[activeColorIdx]), lang, colorOptions[activeColorIdx]?.name ?? ""),
                 specs.filtragem.includes("UF") ? UF_LABEL[lang] : RO_LABEL[lang],
                 specs.gas ? lb.gasLabel : null,
                 specs.h2 ? lb.h2Label : null,
@@ -1962,7 +1968,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
             <div className="flex gap-[8px] items-center shrink-0">
               {colorOptions.map((color, i) => {
                 const isActive = i === activeColorIdx;
-                const name = getColorName(color.slug, lang, color.name);
+                const name = getColorName(colorKey(color), lang, color.name);
                 return (
                   <button key={color.slug} onClick={() => setActiveColorIdx(i)}
                     title={name} aria-label={name}

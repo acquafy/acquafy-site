@@ -8,7 +8,6 @@ $files = @(
   "components/BannerLinhaNeo.tsx",
   "components/BaseConhecimentoSuporte.tsx",
   "components/BeneficiosAppAiIot.tsx",
-  "components/CartProvider.tsx",
   "components/ChatWidget.tsx",
   "components/CheckoutUp.tsx",
   "components/ColecaoAcessorios.tsx",
