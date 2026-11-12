@@ -3,6 +3,7 @@ import { ActionDialog } from "@/components/enrollment/ActionDialog";
 import { ActionForm } from "@/components/enrollment/ActionForm";
 import { Field } from "@/components/live/Fields";
 import { OrderAddress, OrderPhone } from "@/components/sections/OrderAddress";
+import { storedCountry } from "@/lib/orders/address-formats";
 import { ButtonLink } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { cn } from "@/lib/cn";
@@ -59,7 +60,7 @@ export function OrderTasks({
           <ActionDialog action={updateDelivery} title="Endereço e contato" trigger="Corrigir endereço" submit="Salvar" triggerVariant="outline" triggerSize="sm" size="lg">
             <input type="hidden" name="order_id" value={orderId} />
             <Field name="name" label="Nome completo / Razão social" autoComplete="name" defaultValue={delivery.name} />
-            <OrderPhone defaultCountry={currency === "brl" ? "BR" : "US"} initial={delivery.phone} />
+            <OrderPhone defaultCountry={storedCountry(delivery) ?? (currency === "brl" ? "BR" : "US")} initial={delivery.phone} />
             <OrderAddress defaultCountry={currency === "brl" ? "BR" : "US"} initial={delivery} />
           </ActionDialog>
         ) : null;

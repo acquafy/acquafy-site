@@ -37,7 +37,9 @@ export function normalizePostal(country: CountryCode, raw: string): string | nul
     const d = value.replace(/\D/g, "");
     return d.length === 5 ? d : d.length === 9 ? `${d.slice(0, 5)}-${d.slice(5)}` : null;
   }
-  return /^[A-Z0-9][A-Z0-9 -]{1,10}[A-Z0-9]$/.test(value) ? value : null;
+  // Some countries have no postal code: empty is allowed outside Brazil and the US.
+  if (!value) return "";
+  return /^[A-Z0-9][A-Z0-9 -]{0,10}[A-Z0-9]$/.test(value) ? value : null;
 }
 
 export function validState(country: CountryCode, state: string) {
@@ -45,6 +47,13 @@ export function validState(country: CountryCode, state: string) {
   if (country === "US") return US_STATES.some(([code]) => code === state);
   return state.length <= 40;
 }
+
+// Area codes (DDD) in use in Brazil (Anatel).
+const BR_DDD = new Set([
+  11, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 24, 27, 28, 31, 32, 33, 34, 35, 37, 38, 41, 42, 43, 44, 45, 46, 47, 48, 49,
+  51, 53, 54, 55, 61, 62, 63, 64, 65, 66, 67, 68, 69, 71, 73, 74, 75, 77, 79, 81, 82, 83, 84, 85, 86, 87, 88, 89,
+  91, 92, 93, 94, 95, 96, 97, 98, 99,
+]);
 
 export type PhoneCountry = "BR" | "US" | "OTHER";
 export const PHONE_COUNTRIES: { code: PhoneCountry; label: string }[] = [
@@ -61,7 +70,9 @@ export function normalizePhone(country: PhoneCountry, raw: string): string | nul
   const d = raw.replace(/\D/g, "");
   if (country === "BR") {
     const local = d.startsWith("55") && (d.length === 12 || d.length === 13) ? d.slice(2) : d;
-    return /^[1-9]{2}9?\d{8}$/.test(local) ? `+55${local}` : null;
+    // Mobile: DDD + 9 + 8 digits; landline: DDD + 8 digits starting with 2–5.
+    const valid = BR_DDD.has(Number(local.slice(0, 2))) && /^(9\d{8}|[2-5]\d{7})$/.test(local.slice(2));
+    return valid ? `+55${local}` : null;
   }
   if (country === "US") {
     const local = d.length === 11 && d.startsWith("1") ? d.slice(1) : d;
@@ -79,4 +90,14 @@ export function formatPhone(e164: string) {
   }
   if (e164.startsWith("+1") && d.length === 11) return `+1 (${d.slice(1, 4)}) ${d.slice(4, 7)}-${d.slice(7)}`;
   return e164;
+}
+
+/** Country of a stored address: its country_code, or for orders placed before it existed, the country name. */
+export function storedCountry(delivery: { country_code?: string; country?: string } | undefined): CountryCode | null {
+  if (!delivery) return null;
+  if (delivery.country_code) return asCountry(delivery.country_code);
+  const name = (delivery.country ?? "").trim().toLowerCase();
+  if (!name || /^bra[sz]il$/.test(name)) return "BR";
+  if (/^(us|usa|u\.s\.a?\.?|united states( of america)?|estados unidos( da américa)?|eua)$/.test(name)) return "US";
+  return "OTHER";
 }

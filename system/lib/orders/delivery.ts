@@ -38,7 +38,7 @@ export function deliveryFromForm(f: FormData): { delivery: Delivery } | { error:
             : "Telefone inválido: use o formato internacional com + e código do país.",
     };
   const postal = normalizePostal(country_code, field("postal_code", 20));
-  if (!postal) return { error: country_code === "BR" ? "CEP inválido (00000-000)." : country_code === "US" ? "ZIP code inválido (00000 ou 00000-0000)." : "Código postal inválido." };
+  if (postal === null || (country_code !== "OTHER" && !postal)) return { error: country_code === "BR" ? "CEP inválido (00000-000)." : country_code === "US" ? "ZIP code inválido (00000 ou 00000-0000)." : "Código postal inválido." };
   const state = country_code === "OTHER" ? field("state", 40) : field("state", 40).toUpperCase();
   if (!validState(country_code, state)) return { error: country_code === "BR" ? "Escolha a UF." : country_code === "US" ? "Escolha o estado (state)." : "Estado ou província inválido." };
   const parts = {

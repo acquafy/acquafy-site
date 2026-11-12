@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { formatPhone, normalizePhone, normalizePostal, validState } from "@/lib/orders/address-formats";
+import { formatPhone, normalizePhone, normalizePostal, storedCountry, validState } from "@/lib/orders/address-formats";
 import { deliveryFromForm } from "@/lib/orders/delivery";
 
 const form = (values: Record<string, string>) => {
@@ -67,5 +67,30 @@ describe("delivery from the order form", () => {
   it("explains what is wrong", () => {
     expect(deliveryFromForm(form({ name: "Jane Doe", phone_country: "US", phone: "555 1234", country_code: "US" }))).toEqual({ error: "Telefone inválido: informe os 10 dígitos (ex.: 512 555-1234)." });
     expect(deliveryFromForm(form({ name: "Jane Doe", phone_country: "US", phone: "512 555 1234", country_code: "US", street: "1 Main St", city: "Austin", state: "SP", postal_code: "78701" }))).toEqual({ error: "Escolha o estado (state)." });
+  });
+});
+
+describe("review fixes", () => {
+  it("rejects Brazilian numbers that cannot exist", () => {
+    expect(normalizePhone("BR", "11 0000-0000")).toBeNull();
+    expect(normalizePhone("BR", "11 8888-8888")).toBeNull(); // old 8-digit mobile, now 9 + 8 digits
+    expect(normalizePhone("BR", "20 99999-9999")).toBeNull(); // DDD 20 is not assigned
+    expect(normalizePhone("BR", "61 3333-4444")).toBe("+556133334444");
+  });
+  it("lets addresses abroad have no postal code", () => {
+    expect(normalizePostal("OTHER", "")).toBe("");
+    expect(normalizePostal("OTHER", "K1A 0B1")).toBe("K1A 0B1");
+    expect(normalizePostal("US", "")).toBeNull();
+    const result = deliveryFromForm(
+      form({ name: "Ana Pérez", phone_country: "OTHER", phone: "+56 2 2345 6789", country_code: "OTHER", country: "Hong Kong", street: "1 Queen's Road", city: "Central", postal_code: "" }),
+    );
+    expect(result).toEqual({ delivery: expect.objectContaining({ postal_code: "", address: "1 Queen's Road, Central, Hong Kong" }) });
+  });
+  it("knows the country of addresses saved before country_code existed", () => {
+    expect(storedCountry({ country: "Brasil" })).toBe("BR");
+    expect(storedCountry({})).toBe("BR");
+    expect(storedCountry({ country: "United States" })).toBe("US");
+    expect(storedCountry({ country: "Portugal" })).toBe("OTHER");
+    expect(storedCountry({ country_code: "US", country: "Brasil" })).toBe("US");
   });
 });
