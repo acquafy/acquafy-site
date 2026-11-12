@@ -8,6 +8,9 @@ import {
 import { usdToMinor } from "@/lib/enrollment/validation";
 import { customerDestination } from "./destination";
 import { expireCheckout, paymentCheckoutUrl, refundPayment } from "./checkout";
+import { deliveryFromForm } from "./delivery";
+import { sendPendingNotifications } from "./notifications";
+import { after } from "next/server";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import type { ActionResult } from "@/lib/enrollment/types";
@@ -74,32 +77,11 @@ export async function orderAction(
       if (!Array.isArray(items) || items.length < 1 || items.length > 30) throw Error();
       const quantity = Number(f.get("quantity"));
       if (items.length === 1 && Number.isInteger(quantity)) items[0].quantity = quantity;
-      const field = (name: string, max = 160) => String(f.get(name) ?? "").trim().slice(0, max);
-      const delivery = {
-        name: field("name"),
-        phone: field("phone", 40),
-        postal_code: field("postal_code", 20),
-        street: field("street"),
-        number: field("number", 20),
-        complement: field("complement", 80),
-        district: field("district", 80),
-        city: field("city", 80),
-        state: field("state", 40),
-        country: field("country", 80) || "Brasil",
-      };
-      const address = [
-        `${delivery.street}, ${delivery.number}${delivery.complement ? " - " + delivery.complement : ""}`,
-        delivery.district,
-        `${delivery.city} - ${delivery.state}`,
-        delivery.postal_code,
-        delivery.country,
-      ]
-        .filter((part) => part.replace(/[\s,-]/g, ""))
-        .join(", ");
-      if (!delivery.street || !delivery.number || !delivery.city || !delivery.postal_code) throw Error();
+      const delivery = deliveryFromForm(f);
+      if (!delivery) throw Error();
       const placed = await ctx.db.rpc("order_command", {
         action: "place",
-        payload: { kind: payload.kind, currency: payload.currency, terms: payload.terms, items, delivery: { ...delivery, address } },
+        payload: { kind: payload.kind, currency: payload.currency, terms: payload.terms, items, delivery },
       });
       if (placed.error || !placed.data) throw Error();
       const fee = await ctx.db.from("order_payments").select("*").eq("order_id", placed.data).eq("kind", "fee").single();
@@ -139,6 +121,7 @@ export async function orderAction(
         }
         const cancelled = await ctx.db.rpc("order_command", { action: "cancel", payload: { order_id: o.id } });
         if (cancelled.error) throw Error();
+        after(() => sendPendingNotifications().catch(() => undefined));
         revalidatePath("/pedidos");
         const refunds = await serviceClient().from("order_payments").select("id,payment_intent_id").eq("order_id", o.id).eq("status", "refunding");
         try {
@@ -228,6 +211,7 @@ export async function orderAction(
     }
     const result = await ctx.db.rpc("order_command", { action, payload });
     if (result.error) throw Error();
+    after(() => sendPendingNotifications().catch(() => undefined));
     revalidatePath("/pedidos");
     if (action === "request") redirect("/pedidos");
     return { success: "Alteração registrada." };

@@ -54,6 +54,7 @@ export async function proxy(request: NextRequest) {
     path === "/api/auth/login" ||
     path === "/api/auth/logout" ||
     path === "/api/stripe/webhook" ||
+    path === "/api/orders/notifications" ||
     path === "/ativar" ||
     path === "/cadastro-investidor" ||
     path === "/cadastro" ||
@@ -66,7 +67,7 @@ export async function proxy(request: NextRequest) {
       ? response
       : redirect(
           login +
-            (["/adesao", "/locacoes", "/pedidos"].includes(path)
+            (["/adesao", "/locacoes", "/pedidos"].includes(path) || /^\/pedidos\/[0-9a-f-]{36}$/.test(path)
               ? "?next=" + path.slice(1)
               : ""),
         );
@@ -87,7 +88,7 @@ export async function proxy(request: NextRequest) {
         ? forwarded
         : redirect(
             login +
-              (["/adesao", "/locacoes", "/pedidos"].includes(path)
+              (["/adesao", "/locacoes", "/pedidos"].includes(path) || /^\/pedidos\/[0-9a-f-]{36}$/.test(path)
                 ? "?next=" + path.slice(1)
                 : ""),
           );
@@ -131,7 +132,7 @@ export async function proxy(request: NextRequest) {
       ? response
       : redirect(
           login +
-            (["/adesao", "/locacoes", "/pedidos"].includes(path)
+            (["/adesao", "/locacoes", "/pedidos"].includes(path) || /^\/pedidos\/[0-9a-f-]{36}$/.test(path)
               ? "?next=" + path.slice(1)
               : ""),
         );
