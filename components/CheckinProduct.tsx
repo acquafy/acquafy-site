@@ -1211,12 +1211,13 @@ function getColorName(slug: string | undefined, lang: Lang, fallback: string): s
 }
 
 // Copy for the order summary. Other languages fall back to English.
-const ORDER_LABELS: Partial<Record<Lang, { title: string; fee: string; purchase: string; lease: string }>> = {
-  pt:      { title: "Resumo do pedido", fee: "Taxa do pedido · paga hoje", purchase: "Na próxima etapa você cria sua Acquafy Account, informa o endereço e paga a taxa. Ela é abatida do total; o saldo é cobrado antes da entrega. Frete grátis. Cancele em até 7 dias, antes de começarmos a preparar o pedido, e receba tudo de volta.", lease: "Na próxima etapa você cria sua Acquafy Account, informa o endereço e paga a taxa, que reserva sua locação. A mensalidade começa com o acordo de locação. Cancele em até 7 dias, antes da primeira mensalidade, e receba a taxa de volta." },
-  "pt-pt": { title: "Resumo da encomenda", fee: "Taxa da encomenda · paga hoje", purchase: "No passo seguinte cria a sua Acquafy Account, indica a morada e paga a taxa. Ela é descontada do total; o saldo é cobrado antes da entrega. Portes grátis. Cancele até 7 dias depois, antes de começarmos a preparar a encomenda, e recebe tudo de volta.", lease: "No passo seguinte cria a sua Acquafy Account, indica a morada e paga a taxa, que reserva o aluguer. A mensalidade começa com o contrato de aluguer. Cancele até 7 dias depois, antes da primeira mensalidade, e recebe a taxa de volta." },
-  en:      { title: "Order summary", fee: "Order fee · due today", purchase: "Next you create your Acquafy Account, enter the delivery address and pay the order fee. It counts toward the total; the balance is charged before delivery. Free shipping. Cancel within 7 days, before we start preparing your order, for a full refund.", lease: "Next you create your Acquafy Account, enter the delivery address and pay the order fee, which reserves your lease. Monthly payments start with the lease agreement. Cancel within 7 days, before the first monthly payment, to get the fee back." },
-  "en-gb": { title: "Order summary", fee: "Order fee · due today", purchase: "Next you create your Acquafy Account, enter the delivery address and pay the order fee. It counts towards the total; the balance is charged before delivery. Free delivery. Cancel within 7 days, before we start preparing your order, for a full refund.", lease: "Next you create your Acquafy Account, enter the delivery address and pay the order fee, which reserves your lease. Monthly payments start with the lease agreement. Cancel within 7 days, before the first monthly payment, to get the fee back." },
-  es:      { title: "Resumen del pedido", fee: "Tasa del pedido · se paga hoy", purchase: "En el siguiente paso creas tu Acquafy Account, indicas la dirección y pagas la tasa. Se descuenta del total; el saldo se cobra antes de la entrega. Envío gratis. Cancela en 7 días, antes de que empecemos a preparar tu pedido, y recibe todo de vuelta.", lease: "En el siguiente paso creas tu Acquafy Account, indicas la dirección y pagas la tasa, que reserva tu alquiler. La cuota mensual empieza con el contrato. Cancela en 7 días, antes de la primera cuota, y recibe la tasa de vuelta." },
+type OrderLabels = { title: string; fee: string; purchase: string; lease: string; share: string; copied: string; inStock: (days: number) => string; madeToOrder: (weeks: number) => string };
+const ORDER_LABELS: Partial<Record<Lang, OrderLabels>> = {
+  pt:      { title: "Resumo do pedido", fee: "Taxa do pedido · paga hoje", purchase: "Na próxima etapa você cria sua Acquafy Account, informa o endereço e paga a taxa. Ela é abatida do total; o saldo é cobrado antes da entrega. Frete grátis. Cancele em até 7 dias, antes de começarmos a preparar o pedido, e receba tudo de volta.", lease: "Na próxima etapa você cria sua Acquafy Account, informa o endereço e paga a taxa, que reserva sua locação. A mensalidade começa com o acordo de locação. Cancele em até 7 dias, antes da primeira mensalidade, e receba a taxa de volta.", share: "Compartilhar", copied: "Link copiado", inStock: (d) => `Disponível agora · entrega em até ${d} dias`, madeToOrder: (w) => `Sob encomenda · entrega em cerca de ${w} semanas` },
+  "pt-pt": { title: "Resumo da encomenda", fee: "Taxa da encomenda · paga hoje", purchase: "No passo seguinte cria a sua Acquafy Account, indica a morada e paga a taxa. Ela é descontada do total; o saldo é cobrado antes da entrega. Portes grátis. Cancele até 7 dias depois, antes de começarmos a preparar a encomenda, e recebe tudo de volta.", lease: "No passo seguinte cria a sua Acquafy Account, indica a morada e paga a taxa, que reserva o aluguer. A mensalidade começa com o contrato de aluguer. Cancele até 7 dias depois, antes da primeira mensalidade, e recebe a taxa de volta.", share: "Partilhar", copied: "Ligação copiada", inStock: (d) => `Disponível agora · entrega até ${d} dias`, madeToOrder: (w) => `Por encomenda · entrega em cerca de ${w} semanas` },
+  en:      { title: "Order summary", fee: "Order fee · due today", purchase: "Next you create your Acquafy Account, enter the delivery address and pay the order fee. It counts toward the total; the balance is charged before delivery. Free shipping. Cancel within 7 days, before we start preparing your order, for a full refund.", lease: "Next you create your Acquafy Account, enter the delivery address and pay the order fee, which reserves your lease. Monthly payments start with the lease agreement. Cancel within 7 days, before the first monthly payment, to get the fee back.", share: "Share", copied: "Link copied", inStock: (d) => `Available now · delivery within ${d} days`, madeToOrder: (w) => `Made to order · delivery in about ${w} weeks` },
+  "en-gb": { title: "Order summary", fee: "Order fee · due today", purchase: "Next you create your Acquafy Account, enter the delivery address and pay the order fee. It counts towards the total; the balance is charged before delivery. Free delivery. Cancel within 7 days, before we start preparing your order, for a full refund.", lease: "Next you create your Acquafy Account, enter the delivery address and pay the order fee, which reserves your lease. Monthly payments start with the lease agreement. Cancel within 7 days, before the first monthly payment, to get the fee back.", share: "Share", copied: "Link copied", inStock: (d) => `Available now · delivery within ${d} days`, madeToOrder: (w) => `Made to order · delivery in about ${w} weeks` },
+  es:      { title: "Resumen del pedido", fee: "Tasa del pedido · se paga hoy", purchase: "En el siguiente paso creas tu Acquafy Account, indicas la dirección y pagas la tasa. Se descuenta del total; el saldo se cobra antes de la entrega. Envío gratis. Cancela en 7 días, antes de que empecemos a preparar tu pedido, y recibe todo de vuelta.", lease: "En el siguiente paso creas tu Acquafy Account, indicas la dirección y pagas la tasa, que reserva tu alquiler. La cuota mensual empieza con el contrato. Cancela en 7 días, antes de la primera cuota, y recibe la tasa de vuelta.", share: "Compartir", copied: "Enlace copiado", inStock: (d) => `Disponible ahora · entrega en hasta ${d} días`, madeToOrder: (w) => `Bajo pedido · entrega en unas ${w} semanas` },
 };
 
 export default function CheckinProduct({ family, showSlide = true }: Props) {
@@ -1339,6 +1340,60 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
     image: activeColorImages[0] ?? activeVariant.img,
     ...(orderColor ? { color: getColorName(colorKey(orderColor), "pt", orderColor.name) } : {}),
   }).toString();
+
+  // Stock available now (Tesla's inventory), from the portal on the same origin. Without an answer the page simply
+  // shows no availability line. Leases use investor units, so only purchases show it.
+  const [stock, setStock] = useState<{ madeToOrderWeeks: number; rows: { product_id: string; color: string; available: boolean; ship_days: number }[] } | null>(null);
+  useEffect(() => {
+    let live = true;
+    fetch("/app/api/stock")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => { if (live && d?.rows) setStock(d); })
+      .catch(() => undefined);
+    return () => { live = false; };
+  }, []);
+  const orderColorPt = orderColor ? getColorName(colorKey(orderColor), "pt", orderColor.name) : "";
+  const stockRow = stock
+    ? stock.rows.find((r) => r.product_id === activeVariant.id && r.color === orderColorPt && r.available) ??
+      stock.rows.find((r) => r.product_id === activeVariant.id && r.color === "" && r.available)
+    : undefined;
+  const availabilityText = stock && payTab !== "financiar" ? (stockRow ? orderLb.inStock(stockRow.ship_days) : orderLb.madeToOrder(stock.madeToOrderWeeks)) : null;
+
+  // Shareable design (Tesla's design links): model, colour and payment type live in the URL. The URL is read once on
+  // arrival (with ?modelo= above) and only written back after that, so a shared link is never overwritten by defaults.
+  const [urlRead, setUrlRead] = useState(false);
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const cor = params.get("cor");
+    const idx = cor ? colorOptions.findIndex((c) => c.slug === cor) : -1;
+    if (idx >= 0) setActiveColorIdx(idx);
+    if (params.get("pagamento") === "locacao") setPayTab("financiar");
+    setUrlRead(true);
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- read once, on arrival
+  }, []);
+  useEffect(() => {
+    if (!urlRead) return;
+    const params = new URLSearchParams(window.location.search);
+    params.set("modelo", activeVariant.id);
+    const slug = orderColor?.slug;
+    if (slug) params.set("cor", slug);
+    else params.delete("cor");
+    if (payTab === "financiar") params.set("pagamento", "locacao");
+    else params.delete("pagamento");
+    window.history.replaceState(window.history.state, "", `${window.location.pathname}?${params}`);
+  }, [urlRead, activeVariant.id, orderColor?.slug, payTab]);
+  const [copied, setCopied] = useState(false);
+  async function shareDesign() {
+    const url = window.location.href;
+    try {
+      if (navigator.share) return await navigator.share({ title: `Acquafy ${activeVariant.name}`, url });
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      /* dismissed or not allowed: nothing to do */
+    }
+  }
 
   const specs = SPECS[activeVariant.id] ?? SPECS["neo-fit"]!;
   const accent = family.isPremium ? "#9f3df5" : "#0233c3";
@@ -1906,7 +1961,16 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
 
             {/* ── Order summary: configure here, confirm delivery and contact in the Acquafy Account ── */}
             <div ref={paymentBlockRef} className="flex flex-col gap-[16px]">
-              <SectionTitle>{orderLb.title}</SectionTitle>
+              <div className="flex items-center justify-between gap-[12px]">
+                <SectionTitle>{orderLb.title}</SectionTitle>
+                <button
+                  type="button"
+                  onClick={shareDesign}
+                  className="shrink-0 rounded-[10px] border border-[#e8ecf4] px-[12px] py-[6px] font-['Avenir_LT_Pro:85_Heavy'] text-[12px] text-[#0233c3] hover:border-[#0233c3] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#0233c3]"
+                >
+                  <span aria-live="polite">{copied ? orderLb.copied : orderLb.share}</span>
+                </button>
+              </div>
               <div className="border border-[#e0e9ff] rounded-[12px] bg-white px-[16px] py-[16px] flex items-start justify-between gap-[12px]">
                 <div className="flex flex-col gap-[3px] min-w-0">
                   <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91]">{activeVariant.name}</p>
@@ -1921,6 +1985,9 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                   )}
                 </div>
               </div>
+              {availabilityText && (
+                <p className={`font-['Avenir_LT_Pro:85_Heavy'] text-[13px] ${stockRow ? "text-[#2a9a50]" : "text-[#6b7280]"}`}>{availabilityText}</p>
+              )}
               <div className="rounded-[12px] bg-[#f0f4ff] px-[16px] py-[12px] flex items-center justify-between gap-[12px]">
                 <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] text-[#1f2e91]">{orderLb.fee}</p>
                 <span className="font-['Avenir_LT_Pro:95_Black'] text-[16px] text-[#1f2e91] shrink-0">{formatPrice(ORDER_FEE_BRL, lang)}</span>

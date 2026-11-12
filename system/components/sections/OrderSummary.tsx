@@ -19,6 +19,7 @@ export function OrderSummary({
   balance,
   withdrawalDays,
   quantityHref,
+  availability,
 }: {
   kind: OrderKind;
   currency: OrderCurrency;
@@ -28,6 +29,8 @@ export function OrderSummary({
   balance: number;
   withdrawalDays: number;
   quantityHref?: (quantity: number) => string;
+  /** "Disponível agora · entrega em até 3 dias" or the made-to-order estimate (purchases). */
+  availability?: string;
 }) {
   const money = (minor: number) => formatMinor(minor, currency);
   const lease = kind === "lease";
@@ -87,7 +90,7 @@ export function OrderSummary({
       <ul className="mt-4 grid gap-1.5 text-[13.5px] text-ink-soft">
         <li className="flex items-center gap-2">
           <Truck className="size-4 shrink-0 text-ok" aria-hidden="true" />
-          Frete grátis. A Acquafy confirma a data de entrega depois do pedido.
+          {availability ? `${availability}. Frete grátis.` : "Frete grátis. A Acquafy confirma a data de entrega depois do pedido."}
         </li>
         <li>
           {lease
