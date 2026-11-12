@@ -1,10 +1,9 @@
-"use client";
-import Img from "@/components/ui/Img";
+﻿"use client";
 
-import Link from "next/link";
 import { useRef, useState, useCallback, useEffect } from "react";
 import { CHECKIN_FAMILIES, type CheckinFamily } from "@/lib/checkin-products";
-import { formatPrice, PRODUCT_PRICES_BRL, PRODUCT_IMAGES } from "@/lib/products";
+import StripePaymentForm, { type StripeFormHandle } from "@/components/StripePaymentForm";
+import { formatPrice, formatBRL, PRODUCT_PRICES_BRL, PRODUCT_LEASE_BRL, PRODUCT_IMAGES } from "@/lib/products";
 import FigmaIcon from "@/components/FigmaIcon";
 import { useCart } from "@/components/CartProvider";
 import { useLang } from "@/context/LanguageContext";
@@ -31,6 +30,9 @@ const CM_COMMA_LOCALES = new Set<Lang>(["pt", "pt-pt", "es", "fr", "de", "it", "
 function localizeNum(n: number, lang: Lang): string {
   const s = String(n);
   return CM_COMMA_LOCALES.has(lang) ? s.replace(".", ",") : s;
+}
+function fmtCm(cm: number, lang: Lang): string {
+  return `${localizeNum(cm, lang)}cm`;
 }
 function fmtCm2(pair: [number, number], lang: Lang): string {
   return `${localizeNum(pair[0], lang)} × ${localizeNum(pair[1], lang)}cm`;
@@ -1122,11 +1124,11 @@ function BoolCell({ value }: { value: boolean }) {
 }
 
 /* ── Table row ─────────────────────────────────────────────────────────────── */
-function SpecRow({ label, value, isBool }: { label: string; value: string | boolean; isBool?: boolean; isPremium: boolean }) {
+function SpecRow({ label, value, isBool, isPremium }: { label: string; value: string | boolean; isBool?: boolean; isPremium: boolean }) {
   return (
     <div className="grid grid-cols-subgrid col-span-2 items-stretch border-b border-[#e8ecf4] last:border-b-0">
       <div className="border-r border-[#e8ecf4] px-[14px] py-[12px] flex items-center">
-        <span className="font-avenir-heavy text-[13px] text-[#1f2e91]">{label}</span>
+        <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#1f2e91]">{label}</span>
       </div>
       <div className="flex-1 px-[14px] py-[12px] flex items-center">
         {isBool ? (
@@ -1134,7 +1136,7 @@ function SpecRow({ label, value, isBool }: { label: string; value: string | bool
         ) : value === "—" ? (
           <BoolCell value={false} />
         ) : (
-          <span className="font-avenir-roman text-[13px] text-[#374151] whitespace-pre-line">{value as string}</span>
+          <span className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#374151] whitespace-pre-line">{value as string}</span>
         )}
       </div>
     </div>
@@ -1149,15 +1151,33 @@ function Sep() {
 /* ── Section title ─────────────────────────────────────────────────────────── */
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <p className="font-avenir-heavy text-[18px] text-[#1f2e91] text-center w-full">
+    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] text-[#1f2e91] text-center w-full">
       {children}
     </p>
   );
 }
 
+const SECTION_LABELS: Record<string, string> = {
+  produto:   "Produto",
+  cores:     "Cores",
+  filtros:   "Filtros",
+  garantias: "Garantias",
+  cep:       "Entrega",
+  conta:     "Conta",
+};
 
 type PhoneCountry = { code: string; name: string; dial: string; flag: string; maxDigits: number; placeholder: string; fmt: (d: string) => string };
 
+const LANG_TO_LOCALE: Record<Lang, string> = {
+  pt:      "pt-BR", "pt-pt": "pt-PT",
+  en:      "en-GB", "en-gb": "en-US",
+  es:      "es-ES", fr:      "fr-FR",
+  de:      "de-DE", it:      "it-IT",
+  zh:      "zh-CN", ja:      "ja-JP",
+  ko:      "ko-KR", sv:      "sv-SE",
+  fi:      "fi-FI", ru:      "ru-RU",
+  ro:      "ro-RO", he:      "he-IL",
+};
 
 const fmtGen = (d: string): string =>
   d.length <= 3 ? d : d.length <= 7 ? `${d.slice(0,3)} ${d.slice(3)}` :
@@ -1438,7 +1458,7 @@ function getColorName(slug: string | undefined, lang: Lang, fallback: string): s
 }
 
 export default function CheckinProduct({ family, showSlide = true }: Props) {
-  const { cart } = useCart();
+  const { addToCart, cart } = useCart();
   const scrollRef = useRef<HTMLDivElement>(null);
   const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const [activeVariantIdx, setActiveVariantIdx] = useState(0);
@@ -1459,6 +1479,8 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
   const [pricingVisible, setPricingVisible] = useState(false);
   const pricingCardRef = useRef<HTMLDivElement>(null);
   const paymentBlockRef = useRef<HTMLDivElement>(null);
+  const stripeRef = useRef<StripeFormHandle | null>(null);
+  const [stripeProcessing, setStripeProcessing] = useState(false);
 
   // Unified slide state — shared across Produto + Cores, never resets on variant/color change
   const [slideIdx, setSlideIdx] = useState(0);
@@ -1482,14 +1504,16 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
   // Form state
   const [fv, setFv] = useState<Record<string, string>>({ cep: "", nome: "", email: "", email2: "", tel: "", zipDelivery: "", zipBilling: "" });
   const [ft, setFt] = useState<Record<string, boolean>>({});
-  const [, setPhoneCountryIdx] = useState(0);
+  const [phoneCountryIdx, setPhoneCountryIdx] = useState(0);
   const [phoneDropOpen, setPhoneDropOpen] = useState(false);
-  const [, setPhoneSearch] = useState("");
+  const [phoneSearch, setPhoneSearch] = useState("");
   const phoneDropRef = useRef<HTMLDivElement>(null);
   const [freteResult, setFreteResult] = useState<
     null | { state: "loading" } | { state: "ok"; city: string; uf: string } | { state: "err"; message: string }
   >(null);
   const [orderConfirmOpen, setOrderConfirmOpen] = useState(false);
+  const [consentChecked, setConsentChecked] = useState(false);
+  const [termsChecked, setTermsChecked] = useState(false);
   const [termsOpen, setTermsOpen] = useState(false);
 
   useEffect(() => {
@@ -1554,8 +1578,23 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
     }
   };
 
+  const handleTelChange = (raw: string) => {
+    const country = PHONE_COUNTRIES[phoneCountryIdx];
+    const d = raw.replace(/\D/g, "").slice(0, country.maxDigits);
+    setField("tel", country.fmt(d));
+  };
+
+  const isFormValid =
+    /^\d{5}-\d{3}$/.test(fv.cep) &&
+    fv.nome.trim().split(/\s+/).length >= 2 &&
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fv.email) &&
+    fv.email2 === fv.email &&
+    fv.tel.replace(/\D/g, "").length >= 8 &&
+    termsChecked;
+
   const { lang } = useLang();
   const lb = LABELS[lang];
+  const regionNames = new Intl.DisplayNames([LANG_TO_LOCALE[lang]], { type: "region" });
 
   useEffect(() => {
     const code = LANG_DEFAULT_COUNTRY[lang];
@@ -1612,9 +1651,13 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
     scrollRef.current.scrollTop += e.deltaY;
   }, []);
 
+  const leftImg =
+    family.scenes.length > 0
+      ? family.scenes[activeSceneIdx].img
+      : activeVariant.img;
 
-  const tabPrice = (variant: { id: string; price: number }) => {
-    if (payTab === "financiar") return lang.startsWith("pt") ? "Sob proposta" : "Request a quote";
+  const tabPrice = (variant: { id: string; price: number }, spaced = false) => {
+    if (payTab === "financiar") return `${formatPrice(PRODUCT_LEASE_BRL[variant.id] ?? 0, lang)}${spaced ? " " : ""}${lb.perMonth}`;
     return formatPrice(variant.price, lang);
   };
 
@@ -1626,7 +1669,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
 
         {/* ── FILTROS / GARANTIAS: filter banner (fills full outer container) ── */}
         <div className={`absolute inset-0 transition-opacity duration-500 z-10 ${displaySection === "filtros" || displaySection === "garantias" ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
-          <Img
+          <img
             src={specs.filtragem === "4 Filtros RO / Osmose Reversa"
               ? "/images/checkin/banner-filtros-rof.webp"
               : "/images/checkin/banner-filtros-uff.webp"}
@@ -1640,12 +1683,12 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
           <div className="w-full h-full flex">
             {/* Esquerda: produto */}
             <div className="w-1/2 h-full flex items-center justify-center bg-[#f6f9fe]">
-              <Img src={activeVariant.img} alt={activeVariant.name} className="w-full h-1/2 object-contain" />
+              <img src={activeVariant.img} alt={activeVariant.name} className="w-full h-1/2 object-contain" />
             </div>
             {/* Direita: filtros (cima) + mapa (baixo) */}
             <div className="w-1/2 h-full flex flex-col">
               <div className="flex-1 overflow-hidden">
-                <Img
+                <img
                   src={specs.filtragem === "4 Filtros RO / Osmose Reversa"
                     ? "/images/checkin/banner-filtros-rof.webp"
                     : "/images/checkin/banner-filtros-uff.webp"}
@@ -1671,7 +1714,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                       <circle cx="24" cy="22" r="3.5" fill="#0233c3"/>
                       <path d="M16 36c0-4 3.6-7 8-7s8 3 8 7" stroke="#0233c3" strokeWidth="2.5" strokeLinecap="round" opacity="0.5"/>
                     </svg>
-                    <p className="font-avenir-roman text-[12px] text-[#9ca3af] text-center px-[20px]">{lb.digitarCep}</p>
+                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af] text-center px-[20px]">{lb.digitarCep}</p>
                   </div>
                 )}
               </div>
@@ -1698,7 +1741,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                 <circle cx="24" cy="22" r="3.5" fill="#0233c3"/>
                 <path d="M16 36c0-4 3.6-7 8-7s8 3 8 7" stroke="#0233c3" strokeWidth="2.5" strokeLinecap="round" opacity="0.5"/>
               </svg>
-              <p className="font-avenir-roman text-[13px] text-[#9ca3af] text-center">
+              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#9ca3af] text-center">
                 {lb.digitarCep}
               </p>
             </div>
@@ -1716,31 +1759,31 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
           <div className={`absolute inset-0 transition-opacity duration-500 ${displaySection === "produto" || displaySection === "cores" ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
             {family.scenes.length > 0 ? (
               family.scenes.map((scene, i) => (
-                <Img key={i} src={scene.img} alt=""
+                <img key={i} src={scene.img} alt=""
                   className={`absolute inset-x-0 top-1/2 -translate-y-1/2 max-h-[500px] w-full object-contain transition-opacity duration-500 ${i === activeSceneIdx ? "opacity-100" : "opacity-0"}`}
                 />
               ))
             ) : activeColorImages.length > 0 && showSlide ? (
               // Render every color's slides (not just the active one) so the browser has already
-              // decoded them by the time the user switches color — reusing a single <Img> per
+              // decoded them by the time the user switches color — reusing a single <img> per
               // index and swapping its src caused the previous color's frame to flash briefly
               // while the new file loaded.
               (activeVariant.slides ?? []).flatMap((colorImgs, ci) =>
                 colorImgs.map((img, i) => (
-                  <Img key={`${ci}-${i}`} src={img}
+                  <img key={`${ci}-${i}`} src={img}
                     alt={`${activeVariant.name} – ${colorOptions[ci]?.name ?? ""} – ${i + 1}`}
                     className={`absolute inset-x-0 top-1/2 -translate-y-1/2 max-h-[500px] w-full object-contain transition-opacity duration-700 ease-in-out ${ci === activeColorIdx && i === slideIdx ? "opacity-100" : "opacity-0 pointer-events-none"}`}
                   />
                 ))
               )
             ) : activeColorImages.length > 0 ? (
-              <Img src={activeVariant.img}
+              <img src={activeVariant.img}
                 alt={activeVariant.name}
                 className="absolute inset-x-0 top-1/2 -translate-y-1/2 max-h-[500px] w-full object-contain"
               />
             ) : (
               family.variants.map((v, i) => (
-                <Img key={v.id} src={v.img} alt={v.name}
+                <img key={v.id} src={v.img} alt={v.name}
                   className={`absolute inset-x-0 top-1/2 -translate-y-1/2 max-h-[500px] w-full object-contain transition-opacity duration-500 ${i === activeVariantIdx ? "opacity-100" : "opacity-0"}`}
                 />
               ))
@@ -1790,7 +1833,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
 
             {/* ── Header ──────────────────────────────────────────────────── */}
             <div className="flex flex-col gap-[4px]">
-              <h1 className="font-avenir-black text-[26px] leading-[1.1]"
+              <h1 className="font-['Avenir_LT_Pro:95_Black'] text-[26px] leading-[1.1]"
                 style={{ background: accentGrad, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
                 {activeVariant.name}
               </h1>
@@ -1803,7 +1846,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                 ["financiar", lb.payLease],
               ] as const).map(([tab, label]) => (
                 <button key={tab} onClick={() => setPayTab(tab)}
-                  className="flex-1 pb-[12px] pt-[4px] font-avenir-heavy text-[13px] transition-colors relative"
+                  className="flex-1 pb-[12px] pt-[4px] font-['Avenir_LT_Pro:85_Heavy'] text-[13px] transition-colors relative"
                   style={{ color: payTab === tab ? accent : "#aab2bc" }}
                 >
                   {label}
@@ -1815,7 +1858,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
               ))}
               {/* FINANCIAR — standby */}
               <div className="flex-1 pb-[12px] pt-[4px] flex items-center justify-center">
-                <span className="font-avenir-heavy text-[13px] text-[#d1d5db]">
+                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#d1d5db]">
                   {lb.payFinance}
                 </span>
               </div>
@@ -1838,12 +1881,12 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                     }}
                   >
                     <div className="flex-1 min-w-0 flex flex-col gap-[2px]">
-                      <span className="font-avenir-heavy text-[14px]"
+                      <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px]"
                         style={{ color: isActive ? accent : "#1f2e91" }}>
                         {variant.name}
                       </span>
                     </div>
-                    <span className="font-avenir-heavy text-[13px] shrink-0 text-right"
+                    <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] shrink-0 text-right"
                       style={{ color: isActive ? accent : "#9ca3af" }}>
                       {displayPrice}
                     </span>
@@ -1852,8 +1895,8 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
               })}
               {/* Financing note */}
               {payTab === "financiar" && (
-                <p className="font-avenir-roman text-[12px] text-[#9ca3af] px-[2px]">
-                  {lang.startsWith("pt") ? "Locação sujeita à proposta aprovada e aceite do acordo." : "Rental subject to an approved quote and agreement."}
+                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af] px-[2px]">
+                  {lb.finNote}
                 </p>
               )}
             </div>
@@ -1863,7 +1906,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
               {/* Header */}
               <div className="col-span-2 px-[14px] py-[12px] border-b border-[#e8ecf4]"
                 style={{ background: "linear-gradient(135deg, #f6f9fe, #eef2ff)" }}>
-                <p className="font-avenir-heavy text-[14px] text-[#1f2e91] text-center uppercase tracking-[0.06em]">
+                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] text-[#1f2e91] text-center uppercase tracking-[0.06em]">
                   {lb.fichaTecnica}
                 </p>
               </div>
@@ -1901,7 +1944,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
               {/* Toggle */}
               <button onClick={() => setFichaTecnicaOpen((v) => !v)}
                 className="col-span-2 w-full flex items-center justify-between px-[14px] py-[14px] border-t border-[#e8ecf4] bg-[#f6f9fe] hover:bg-[#eef2ff] transition-colors">
-                <span className="font-avenir-heavy text-[13px]" style={{ color: accent }}>
+                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px]" style={{ color: accent }}>
                   {fichaTecnicaOpen ? lb.ocultarFuncionalidades : lb.demaisFuncionalidades}
                 </span>
                 <svg width="14" height="8" viewBox="0 0 14 8" fill="none"
@@ -1920,8 +1963,8 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                   onMouseEnter={() => setHoverSection("cores")}
                   onMouseLeave={() => setHoverSection(null)}>
                   <div className="flex flex-col gap-[4px] items-center">
-                    <p className="font-avenir-roman text-[12px] text-[#9ca3af] uppercase tracking-[0.06em]">{lb.coresLabel}</p>
-                    <p className="font-avenir-heavy text-[18px] text-[#1f2e91] text-center">
+                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af] uppercase tracking-[0.06em]">{lb.coresLabel}</p>
+                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] text-[#1f2e91] text-center">
                       {getColorName(colorOptions[activeColorIdx]?.slug, lang, colorOptions[activeColorIdx]?.name ?? "")}
                     </p>
                   </div>
@@ -1942,7 +1985,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                     })}
                   </div>
                   {!activeVariant.slides && (
-                    <p className="font-avenir-roman text-[12px] text-[#9ca3af] text-center">Em breve</p>
+                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af] text-center">Em breve</p>
                   )}
                 </div>
               </>
@@ -1959,15 +2002,15 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                   onMouseEnter={() => setHoverSection("filtros")}
                   onMouseLeave={() => setHoverSection(null)}>
                   <SectionTitle>{lb.filtrosAltaPerformance}</SectionTitle>
-                  <p className="font-avenir-roman text-[13px] text-[#374151] leading-[20px] text-center">
+                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#374151] leading-[20px] text-center">
                     {fs.description}
                   </p>
                   <ul className="flex flex-col gap-[6px] pl-[4px]">
                     {fs.bullets.map((b, i) => (
-                      <li key={i} className="font-avenir-roman text-[12px] text-[#6b7280] leading-[18px] flex gap-[6px]">
+                      <li key={i} className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#6b7280] leading-[18px] flex gap-[6px]">
                         <span className="shrink-0 mt-[3px] size-[5px] rounded-full bg-[#9ca3af] inline-block" />
                         <span>
-                          <span className="font-avenir-heavy text-[#1f2e91]">{b.bold}</span>
+                          <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[#1f2e91]">{b.bold}</span>
                           {b.text}
                         </span>
                       </li>
@@ -1977,7 +2020,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                   <div className="border border-[#e8ecf4] rounded-[16px] overflow-hidden">
                     <button onClick={() => setFilterOpen((v) => !v)}
                       className="w-full flex items-center justify-between px-[14px] py-[14px] bg-[#f6f9fe] hover:bg-[#eef2ff] transition-colors">
-                      <span className="font-avenir-heavy text-[13px] text-[#1f2e91]">
+                      <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#1f2e91]">
                         {lb.tabelaBeneficios}
                       </span>
                       <svg width="14" height="8" viewBox="0 0 14 8" fill="none"
@@ -1989,8 +2032,8 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                       <>
                         {fs.filters.map((f, i) => (
                           <div key={i} className="flex flex-col gap-[6px] px-[14px] py-[14px] border-t border-[#e8ecf4] bg-white">
-                            <p className="font-avenir-heavy text-[13px] text-[#1f2e91]">{f.title}</p>
-                            <p className="font-avenir-roman text-[12px] text-[#6b7280] leading-[18px]">{f.desc}</p>
+                            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#1f2e91]">{f.title}</p>
+                            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#6b7280] leading-[18px]">{f.desc}</p>
                           </div>
                         ))}
                       </>
@@ -2018,10 +2061,10 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                     </svg>
                   </div>
                   <div className="flex flex-col gap-[4px]">
-                    <p className="font-avenir-heavy text-[13px] text-[#1f2e91]">
+                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#1f2e91]">
                       {lb.garantiaTitulo}
                     </p>
-                    <p className="font-avenir-roman text-[12px] text-[#6b7280] leading-[18px]">
+                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#6b7280] leading-[18px]">
                       {lb.garantiaDesc}
                     </p>
                   </div>
@@ -2036,10 +2079,10 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                     </svg>
                   </div>
                   <div className="flex flex-col gap-[4px]">
-                    <p className="font-avenir-heavy text-[13px] text-[#1f2e91]">
+                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#1f2e91]">
                       {lb.filtroVidaTitulo}
                     </p>
-                    <p className="font-avenir-roman text-[12px] text-[#6b7280] leading-[18px]">
+                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#6b7280] leading-[18px]">
                       {lb.filtroVidaDesc}
                     </p>
                   </div>
@@ -2066,12 +2109,12 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                     value={fv.cep}
                     onChange={(e) => handleCEPChange(e.target.value)}
                     onBlur={() => touchField("cep")}
-                    className={`flex-1 h-[44px] px-[14px] rounded-[10px] bg-[#f6f9fe] font-avenir-roman text-[14px] text-[#1f2e91] placeholder:text-[#aab2bc] outline-none border transition-colors ${fieldError("cep") ? "border-[#ef4444]" : "border-[#e8ecf4] focus:border-[#0233c3]"}`}
+                    className={`flex-1 h-[44px] px-[14px] rounded-[10px] bg-[#f6f9fe] font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#1f2e91] placeholder:text-[#aab2bc] outline-none border transition-colors ${fieldError("cep") ? "border-[#ef4444]" : "border-[#e8ecf4] focus:border-[#0233c3]"}`}
                   />
                   <button
                     onClick={handleCalcularFrete}
                     disabled={freteResult?.state === "loading"}
-                    className="h-[44px] px-[20px] rounded-[10px] font-avenir-heavy text-[13px] text-white shrink-0 transition-opacity hover:opacity-90 disabled:opacity-60 flex items-center gap-[6px]"
+                    className="h-[44px] px-[20px] rounded-[10px] font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-white shrink-0 transition-opacity hover:opacity-90 disabled:opacity-60 flex items-center gap-[6px]"
                     style={{ background: accentGrad }}>
                     {freteResult?.state === "loading" && (
                       <span className="size-[13px] border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -2080,16 +2123,16 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                   </button>
                 </div>
                 {fieldError("cep") && (
-                  <p className="font-avenir-roman text-[12px] text-[#ef4444] flex items-center gap-[4px]">
+                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#ef4444] flex items-center gap-[4px]">
                     <span>⚠</span> {fieldError("cep")}
                   </p>
                 )}
                 {freteResult?.state === "ok" && (
                   <div className="flex flex-col gap-[4px] pt-[2px]">
-                    <p className="font-avenir-roman text-[13px] text-[#6b7280]">
+                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#6b7280]">
                       {freteResult.city}, {freteResult.uf}
                     </p>
-                    <p className="font-avenir-heavy text-[13px] flex items-center gap-[5px]" style={{ color: "#16a34a" }}>
+                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] flex items-center gap-[5px]" style={{ color: "#16a34a" }}>
                       <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                         <circle cx="7" cy="7" r="6.5" stroke="#16a34a" strokeWidth="1"/>
                         <path d="M4 7l2.5 2.5L10 4.5" stroke="#16a34a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -2099,7 +2142,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                   </div>
                 )}
                 {freteResult?.state === "err" && (
-                  <p className="font-avenir-roman text-[12px] text-[#ef4444] flex items-center gap-[4px]">
+                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#ef4444] flex items-center gap-[4px]">
                     <span>⚠</span> {freteResult.message}
                   </p>
                 )}
@@ -2108,11 +2151,11 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
               {/* ── Pre-order pricing breakdown ───────────────────────────── */}
               <div ref={pricingCardRef} className="flex flex-col gap-[4px]">
                 {/* Availability header */}
-                <p className="font-avenir-black text-[20px] leading-snug text-[#1f2e91]">
+                <p className="font-['Avenir_LT_Pro:95_Black'] text-[20px] leading-snug text-[#1f2e91]">
                   {lb.disponivelEm}
                 </p>
                 {freteResult?.state === "ok" && (
-                  <p className="font-avenir-roman text-[13px] text-[#6b7280]">
+                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#6b7280]">
                     {lb.entregaPrefix} {freteResult.city}, {freteResult.uf}, {fv.cep}
                   </p>
                 )}
@@ -2121,20 +2164,20 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                   <div className="bg-white px-[16px] py-[16px] flex flex-col gap-[14px]">
                     <div className="flex items-start justify-between gap-[12px]">
                       <div className="flex flex-col gap-[3px]">
-                        <p className="font-avenir-heavy text-[15px] text-[#1f2e91]">{payTab === "financiar" ? lb.parcelaTitle : lb.valorEstimadoTitle}</p>
-                        <p className="font-avenir-roman text-[12px] text-[#9ca3af]">{payTab === "financiar" ? (lang.startsWith("pt") ? "Condições na proposta" : "Terms in your quote") : lb.valorEstimadoDesc}</p>
+                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91]">{payTab === "financiar" ? lb.parcelaTitle : lb.valorEstimadoTitle}</p>
+                        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af]">{payTab === "financiar" ? lb.parcelaDesc : lb.valorEstimadoDesc}</p>
                       </div>
-                      <span className="font-avenir-black text-[18px] text-[#1f2e91] shrink-0">
-                        {tabPrice(activeVariant)}
+                      <span className="font-['Avenir_LT_Pro:95_Black'] text-[18px] text-[#1f2e91] shrink-0">
+                        {tabPrice(activeVariant, true)}
                       </span>
                     </div>
                     <div className="h-px bg-[#f0f4ff]" />
                     <div className="flex items-start justify-between gap-[12px]">
                       <div className="flex flex-col gap-[3px]">
-                        <p className="font-avenir-heavy text-[15px] text-[#1f2e91]">{payTab === "financiar" ? lb.dueTodayTitle : lb.taxaPedidoTitle}</p>
-                        <p className="font-avenir-roman text-[12px] text-[#9ca3af]">{lang.startsWith("pt") ? "Pagamento após proposta e aceite" : "Payment after quote acceptance"}</p>
+                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91]">{payTab === "financiar" ? lb.dueTodayTitle : lb.taxaPedidoTitle}</p>
+                        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af]">{lb.taxaPedidoDesc}</p>
                       </div>
-                      <span className="font-avenir-black text-[15px] text-[#1f2e91] shrink-0">{lang.startsWith("pt") ? "Sem cobrança agora" : "No payment now"}</span>
+                      <span className="font-['Avenir_LT_Pro:95_Black'] text-[18px] text-[#1f2e91] shrink-0">{(lang === "pt" || lang === "pt-pt") ? formatBRL(125) : "US$ 25,00"}</span>
                     </div>
                   </div>
                 </div>
@@ -2143,9 +2186,224 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
 
             <Sep />
 
-            <div className="flex flex-col gap-[4px] rounded-[12px] bg-[#f6f9fe] p-[16px]">
-              <h3 className="font-avenir-heavy text-[15px] text-[#1f2e91]">Acquafy Account</h3>
-              <p className="font-avenir-roman text-[13px] leading-[1.5] text-[#6b7280]">{lang.startsWith("pt") ? "Crie sua conta de cliente para receber a proposta, confirmar o pedido e acompanhar entrega e instalação. Não há cobrança de reserva nesta etapa." : "Create your customer account to receive a quote, confirm your order, and track delivery and installation. No reservation fee is charged at this step."}</p>
+            {/* ── Form ────────────────────────────────────────────────────── */}
+            <div className="flex flex-col gap-[16px]"
+              ref={(el) => { sectionRefs.current["conta"] = el; }}
+              onMouseEnter={() => setHoverSection("conta")}
+              onMouseLeave={() => setHoverSection(null)}>
+              <SectionTitle>{lb.detalhesContaTitle}</SectionTitle>
+              <div className="flex flex-col gap-[10px]">
+
+                {/* Nome */}
+                <div className="flex flex-col gap-[6px]">
+                  <label htmlFor="checkin-nome"
+                    className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] text-[#6b7280] uppercase tracking-[0.05em]">
+                    {lb.nomeLabel}
+                  </label>
+                  <input id="checkin-nome" type="text" autoComplete="name"
+                    value={fv.nome}
+                    onChange={(e) => setField("nome", e.target.value)}
+                    onBlur={() => touchField("nome")}
+                    className={`h-[44px] px-[14px] rounded-[10px] bg-[#f6f9fe] font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#1f2e91] placeholder:text-[#aab2bc] outline-none border transition-colors ${fieldError("nome") ? "border-[#ef4444]" : "border-[#e8ecf4] focus:border-[#0233c3]"}`}
+                  />
+                  {fieldError("nome") && (
+                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#ef4444] flex items-center gap-[4px]">
+                      <span>⚠</span> {fieldError("nome")}
+                    </p>
+                  )}
+                </div>
+
+                {/* Email */}
+                <div className="flex flex-col gap-[6px]">
+                  <label htmlFor="checkin-email"
+                    className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] text-[#6b7280] uppercase tracking-[0.05em]">
+                    {lb.emailLabel}
+                  </label>
+                  <input id="checkin-email" type="email" autoComplete="email"
+                    value={fv.email}
+                    onChange={(e) => setField("email", e.target.value)}
+                    onBlur={() => touchField("email")}
+                    className={`h-[44px] px-[14px] rounded-[10px] bg-[#f6f9fe] font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#1f2e91] placeholder:text-[#aab2bc] outline-none border transition-colors ${fieldError("email") ? "border-[#ef4444]" : "border-[#e8ecf4] focus:border-[#0233c3]"}`}
+                  />
+                  {fieldError("email") && (
+                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#ef4444] flex items-center gap-[4px]">
+                      <span>⚠</span> {fieldError("email")}
+                    </p>
+                  )}
+                </div>
+
+                {/* Confirm Email */}
+                <div className="flex flex-col gap-[6px]">
+                  <label htmlFor="checkin-email2"
+                    className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] text-[#6b7280] uppercase tracking-[0.05em]">
+                    {lb.email2Label}
+                  </label>
+                  <input id="checkin-email2" type="email" autoComplete="off"
+                    value={fv.email2}
+                    onChange={(e) => setField("email2", e.target.value)}
+                    onBlur={() => touchField("email2")}
+                    className={`h-[44px] px-[14px] rounded-[10px] bg-[#f6f9fe] font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#1f2e91] placeholder:text-[#aab2bc] outline-none border transition-colors ${fieldError("email2") ? "border-[#ef4444]" : "border-[#e8ecf4] focus:border-[#0233c3]"}`}
+                  />
+                  {fieldError("email2") && (
+                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#ef4444] flex items-center gap-[4px]">
+                      <span>⚠</span> {fieldError("email2")}
+                    </p>
+                  )}
+                </div>
+
+                {/* Phone */}
+                <div className="flex flex-col gap-[6px]">
+                  <label htmlFor="checkin-tel"
+                    className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] text-[#6b7280] uppercase tracking-[0.05em]">
+                    {lb.telLabel}
+                  </label>
+                  <div className={`flex rounded-[10px] bg-[#f6f9fe] border overflow-visible transition-colors ${fieldError("tel") ? "border-[#ef4444]" : "border-[#e8ecf4] focus-within:border-[#0233c3]"}`}>
+                    <div className="relative shrink-0">
+                      <button type="button"
+                        className="h-[44px] px-[10px] flex items-center gap-[5px] font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#1f2e91] border-r border-[#e8ecf4] bg-transparent rounded-l-[10px]"
+                        onClick={() => setPhoneDropOpen((d) => !d)}>
+                        <span className="text-[15px] leading-none">{PHONE_COUNTRIES[phoneCountryIdx].flag}</span>
+                        <span>{PHONE_COUNTRIES[phoneCountryIdx].dial}</span>
+                        <svg className="size-[9px] text-[#9ca3af] shrink-0" viewBox="0 0 10 6" fill="none">
+                          <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </button>
+                      {phoneDropOpen && (
+                        <div ref={phoneDropRef} className="absolute top-[calc(100%+4px)] left-0 bg-white rounded-[10px] border border-[#e8ecf4] shadow-lg z-30 w-[260px] flex flex-col overflow-hidden">
+                          <div className="p-[8px] border-b border-[#e8ecf4]">
+                            <input
+                              autoFocus
+                              type="text"
+                              value={phoneSearch}
+                              onChange={(e) => setPhoneSearch(e.target.value)}
+                              placeholder={lb.buscarPais}
+                              className="w-full h-[32px] px-[10px] rounded-[6px] bg-[#f6f9fe] border border-[#e8ecf4] font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#1f2e91] placeholder:text-[#aab2bc] outline-none"
+                            />
+                          </div>
+                          <div className="max-h-[220px] overflow-y-auto">
+                            {PHONE_COUNTRIES
+                              .map((c, i) => ({ c, i, localName: regionNames.of(c.code) ?? c.name }))
+                              .filter(({ c, localName }) => !phoneSearch ||
+                                localName.toLowerCase().includes(phoneSearch.toLowerCase()) ||
+                                c.code.toLowerCase().includes(phoneSearch.toLowerCase()) ||
+                                c.dial.includes(phoneSearch))
+                              .map(({ c, i, localName }) => (
+                                <button key={c.code} type="button"
+                                  className={`w-full px-[12px] py-[8px] flex items-center gap-[8px] hover:bg-[#f6f9fe] transition-colors text-left ${i === phoneCountryIdx ? "bg-[#f0f4ff]" : ""}`}
+                                  onClick={() => {
+                                    setPhoneCountryIdx(i);
+                                    setPhoneDropOpen(false);
+                                    setPhoneSearch("");
+                                    setField("tel", "");
+                                    setFt((t) => ({ ...t, tel: false }));
+                                  }}>
+                                  <span className="text-[16px] leading-none shrink-0">{c.flag}</span>
+                                  <span className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#1f2e91] flex-1 truncate text-left">{localName}</span>
+                                  <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[11px] text-[#6b7280] shrink-0">{c.dial}</span>
+                                </button>
+                              ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                    <input id="checkin-tel" type="tel"
+                      placeholder={PHONE_COUNTRIES[phoneCountryIdx].placeholder}
+                      value={fv.tel}
+                      onChange={(e) => handleTelChange(e.target.value)}
+                      onBlur={() => touchField("tel")}
+                      className="flex-1 h-[44px] px-[12px] min-w-0 bg-transparent font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#1f2e91] placeholder:text-[#aab2bc] outline-none"
+                    />
+                  </div>
+                  {fieldError("tel") && (
+                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#ef4444] flex items-center gap-[4px]">
+                      <span>⚠</span> {fieldError("tel")}
+                    </p>
+                  )}
+                </div>
+
+              </div>
+              <div className="flex flex-col gap-[10px]">
+                {/* Consent checkbox */}
+                <div className="flex items-start gap-[10px] cursor-pointer select-none" onClick={() => setConsentChecked(v => !v)}>
+                  <div className={`shrink-0 size-[18px] mt-[1px] rounded-[5px] border-2 flex items-center justify-center transition-colors ${consentChecked ? "border-[#0233c3] bg-[#0233c3]" : "border-[#d1d5db] bg-white"}`}>
+                    {consentChecked && (
+                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                        <path d="M1.5 5l2.5 2.5L8.5 2" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    )}
+                  </div>
+                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[11px] text-[#9ca3af] leading-[18px]">
+                    {lb.consentText}
+                  </p>
+                </div>
+                {/* Terms checkbox */}
+                <div className="flex items-center gap-[10px] select-none">
+                  <div className={`shrink-0 size-[18px] rounded-[5px] border-2 flex items-center justify-center transition-colors cursor-pointer ${termsChecked ? "border-[#0233c3] bg-[#0233c3]" : "border-[#d1d5db] bg-white"}`} onClick={() => setTermsChecked(v => !v)}>
+                    {termsChecked && (
+                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                        <path d="M1.5 5l2.5 2.5L8.5 2" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    )}
+                  </div>
+                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[11px] text-[#9ca3af] leading-[18px]">
+                    {lb.liAceito}{" "}
+                    <button
+                      type="button"
+                      onClick={() => setTermsOpen(true)}
+                      className="underline text-[#0233c3] hover:opacity-70 transition-opacity cursor-pointer"
+                    >
+                      {lb.termosDeUso}
+                    </button>
+                    .
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <Sep />
+
+            {/* ── Payment ─────────────────────────────────────────────────── */}
+            <div ref={paymentBlockRef} className="flex flex-col gap-[16px]">
+              <SectionTitle>{lb.pagamentoTitle}</SectionTitle>
+              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af] -mt-[4px]">
+                {lb.taxaReservaPrefix}{" "}
+                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[#1f2e91]">{(lang === "pt" || lang === "pt-pt") ? formatBRL(125) : "US$ 25,00"}</span>{" "}
+                {lb.taxaReservaSuffix}
+              </p>
+              <div className="flex gap-[12px]">
+                <div className="flex flex-col gap-[6px] flex-1">
+                  <label className="font-['Avenir_LT_Pro:85_Heavy'] text-[10px] text-[#aab2bc] uppercase tracking-[0.08em]">
+                    {lb.zipDeliveryLabel}
+                  </label>
+                  <input
+                    type="text"
+                    autoComplete="postal-code"
+                    placeholder="ZIP / Postal Code"
+                    value={fv.zipDelivery}
+                    onChange={(e) => setField("zipDelivery", e.target.value)}
+                    className="h-[44px] px-[14px] rounded-[10px] bg-[#f6f9fe] border border-[#e8ecf4] focus:border-[#0233c3] font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#1f2e91] placeholder:text-[#aab2bc] outline-none transition-colors"
+                  />
+                </div>
+                <div className="flex flex-col gap-[6px] flex-1">
+                  <label className="font-['Avenir_LT_Pro:85_Heavy'] text-[10px] text-[#aab2bc] uppercase tracking-[0.08em]">
+                    {lb.zipBillingLabel}
+                  </label>
+                  <input
+                    type="text"
+                    autoComplete="billing postal-code"
+                    placeholder="ZIP / Postal Code"
+                    value={fv.zipBilling}
+                    onChange={(e) => setField("zipBilling", e.target.value)}
+                    className="h-[44px] px-[14px] rounded-[10px] bg-[#f6f9fe] border border-[#e8ecf4] focus:border-[#0233c3] font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#1f2e91] placeholder:text-[#aab2bc] outline-none transition-colors"
+                  />
+                </div>
+              </div>
+              <StripePaymentForm
+                formRef={stripeRef}
+                processingLabel="Processando pagamento..."
+                locale={lang}
+                billingPostalCode={fv.zipBilling}
+              />
             </div>
 
             <div className="h-[12px]" />
@@ -2161,7 +2419,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
           >
             <div className="bg-white rounded-[24px] w-full max-w-[680px] h-[80vh] flex flex-col overflow-hidden shadow-2xl">
               <div className="flex items-center justify-between px-[24px] py-[18px] border-b border-[#e8ecf4] shrink-0">
-                <span className="font-avenir-heavy text-[15px] text-[#1f2e91]">{lb.termosModalTitulo}</span>
+                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91]">{lb.termosModalTitulo}</span>
                 <button
                   onClick={() => setTermsOpen(false)}
                   className="size-[32px] rounded-full flex items-center justify-center hover:bg-[#f6f9fe] transition-colors"
@@ -2202,8 +2460,8 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                   </svg>
                 </div>
                 <div className="flex flex-col items-center gap-[4px]">
-                  <p className="font-avenir-black text-[20px] text-[#1f2e91] text-center">{lb.adicionadoCarrinho}</p>
-                  <p className="font-avenir-roman text-[14px] text-[#6b7280] text-center">
+                  <p className="font-['Avenir_LT_Pro:95_Black'] text-[20px] text-[#1f2e91] text-center">{lb.adicionadoCarrinho}</p>
+                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#6b7280] text-center">
                     {activeVariant.name} · {formatPrice(activeVariant.price, lang)}
                   </p>
                 </div>
@@ -2223,14 +2481,14 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                       <div key={item.id} className="flex items-center gap-[12px]">
                         {variantImg && (
                           <div className="size-[52px] rounded-[10px] bg-[#f6f9fe] shrink-0 overflow-hidden flex items-center justify-center">
-                            <Img src={variantImg} alt={variantName} className="w-full h-full object-contain" />
+                            <img src={variantImg} alt={variantName} className="w-full h-full object-contain" />
                           </div>
                         )}
                         <div className="flex-1 min-w-0 flex flex-col gap-[2px]">
-                          <span className="font-avenir-heavy text-[13px] text-[#1f2e91] truncate">
+                          <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#1f2e91] truncate">
                             {variantName}{item.qty > 1 ? ` × ${item.qty}` : ""}
                           </span>
-                          <span className="font-avenir-roman text-[12px] text-[#6b7280]">
+                          <span className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#6b7280]">
                             {formatPrice(price * item.qty, lang)}
                           </span>
                         </div>
@@ -2238,8 +2496,8 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                     );
                   })}
                   <div className="flex items-center justify-between pt-[8px] border-t border-[#e8ecf4]">
-                    <span className="font-avenir-roman text-[11px] text-[#9ca3af] uppercase tracking-[0.05em]">{lb.totalLabel}</span>
-                    <span className="font-avenir-black text-[16px] leading-none" style={{ background: accentGrad, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+                    <span className="font-['Avenir_LT_Pro:55_Roman'] text-[11px] text-[#9ca3af] uppercase tracking-[0.05em]">{lb.totalLabel}</span>
+                    <span className="font-['Avenir_LT_Pro:95_Black'] text-[16px] leading-none" style={{ background: accentGrad, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
                       {formatPrice(cart.reduce((sum, i) => sum + (PRODUCT_PRICES_BRL[i.id] ?? 0) * i.qty, 0), lang)}
                     </span>
                   </div>
@@ -2247,33 +2505,33 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
               )}
               {/* Actions */}
               <div className="px-[24px] py-[24px] flex flex-col gap-[12px]">
-                <p className="font-avenir-heavy text-[12px] text-[#9ca3af] uppercase tracking-[0.06em] text-center">{lb.precisaMaisAlgo}</p>
+                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] text-[#9ca3af] uppercase tracking-[0.06em] text-center">{lb.precisaMaisAlgo}</p>
                 <div className="grid grid-cols-2 gap-[10px]">
                   <a
                     href="/compare"
-                    className="h-[46px] rounded-[12px] border border-[#e8ecf4] flex items-center justify-center font-avenir-heavy text-[13px] text-[#1f2e91] hover:bg-[#f6f9fe] transition-colors text-center px-[8px]"
+                    className="h-[46px] rounded-[12px] border border-[#e8ecf4] flex items-center justify-center font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#1f2e91] hover:bg-[#f6f9fe] transition-colors text-center px-[8px]"
                   >
                     {lb.compareProdutos}
                   </a>
                   <a
                     href="/acquafy-media"
-                    className="h-[46px] rounded-[12px] border border-[#e8ecf4] flex items-center justify-center font-avenir-heavy text-[13px] text-[#1f2e91] hover:bg-[#f6f9fe] transition-colors text-center px-[8px]"
+                    className="h-[46px] rounded-[12px] border border-[#e8ecf4] flex items-center justify-center font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#1f2e91] hover:bg-[#f6f9fe] transition-colors text-center px-[8px]"
                   >
                     {lb.acquafyMedia}
                   </a>
                   <a
                     href="/seja-um-parceiro"
-                    className="h-[46px] rounded-[12px] border border-[#e8ecf4] flex items-center justify-center font-avenir-heavy text-[13px] text-[#1f2e91] hover:bg-[#f6f9fe] transition-colors text-center px-[8px]"
+                    className="h-[46px] rounded-[12px] border border-[#e8ecf4] flex items-center justify-center font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#1f2e91] hover:bg-[#f6f9fe] transition-colors text-center px-[8px]"
                   >
                     {lb.sejaUmParceiro}
                   </a>
-                  <Link
+                  <a
                     href="/buy"
-                    className="h-[46px] rounded-[12px] flex items-center justify-center font-avenir-heavy text-[13px] text-white transition-opacity hover:opacity-90"
+                    className="h-[46px] rounded-[12px] flex items-center justify-center font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-white transition-opacity hover:opacity-90"
                     style={{ background: accentGrad }}
                   >
                     {lb.comprarOutro}
-                  </Link>
+                  </a>
                 </div>
               </div>
             </div>
@@ -2292,12 +2550,12 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
         <div className="flex-1 flex items-center gap-[12px] md:gap-[28px] flex-wrap min-w-0 px-[24px] md:px-[48px] py-[20px]">
           <div className="flex flex-col gap-[5px] min-w-0 justify-center">
             <span
-              className="font-avenir-black text-[22px] leading-tight"
+              className="font-['Avenir_LT_Pro:95_Black'] text-[22px] leading-tight"
               style={{ background: accentGrad, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
             >
               {activeVariant.name}
             </span>
-            <span className="font-avenir-roman text-[11px] text-[#6b7280] leading-snug [overflow-wrap:anywhere]">
+            <span className="font-['Avenir_LT_Pro:55_Roman'] text-[11px] text-[#6b7280] leading-snug [overflow-wrap:anywhere]">
               {[
                 getColorName(colorOptions[activeColorIdx]?.slug, lang, colorOptions[activeColorIdx]?.name ?? ""),
                 specs.filtragem.includes("UF") ? UF_LABEL[lang] : RO_LABEL[lang],
@@ -2328,24 +2586,39 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
         <div className="md:w-[400px] xl:w-[440px] shrink-0 px-[24px] py-[20px] flex items-center gap-[16px]">
           <div className="flex-1 flex flex-col gap-[4px] min-w-0">
             <span
-              className="font-avenir-black text-[20px] leading-none"
+              className="font-['Avenir_LT_Pro:95_Black'] text-[20px] leading-none"
               style={{ background: accentGrad, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
             >
               {tabPrice(activeVariant)}
             </span>
             {payTab === "financiar" && (
-              <span className="font-avenir-roman text-[11px] text-[#6b7280] leading-none">
-                {lang.startsWith("pt") ? "Mensalidade e condições na proposta" : "Monthly price and terms in your quote"}
+              <span className="font-['Avenir_LT_Pro:55_Roman'] text-[11px] text-[#6b7280] leading-none">
+                {lb.parcelaDesc}
               </span>
             )}
           </div>
           <button
-            onClick={() => {
-              window.location.assign("/app/pedido?" + new URLSearchParams({product: activeVariant.id, mode: payTab === "financiar" ? "lease" : "purchase", color: colorOptions[activeColorIdx]?.slug ?? ""}).toString());
+            disabled={stripeProcessing}
+            onClick={async () => {
+              if (!isFormValid) {
+                touchField("cep"); touchField("nome"); touchField("email"); touchField("email2"); touchField("tel");
+                return;
+              }
+              setStripeProcessing(true);
+              const isPt = lang === "pt" || lang === "pt-pt";
+              const result = await stripeRef.current?.confirmPayment(isPt ? 125 : 25, fv.email, isPt ? "brl" : "usd");
+              setStripeProcessing(false);
+              if (result?.success) {
+                addToCart(activeVariant.id, activeVariant.name, true);
+                setOrderConfirmOpen(true);
+              }
             }}
-            className="h-[48px] px-[28px] rounded-[14px] font-avenir-heavy text-[14px] text-white shrink-0 transition-opacity hover:opacity-90 disabled:opacity-60 flex items-center gap-[8px]"
-            style={{ background: accentGrad, opacity: 1 }}
+            className="h-[48px] px-[28px] rounded-[14px] font-['Avenir_LT_Pro:85_Heavy'] text-[14px] text-white shrink-0 transition-opacity hover:opacity-90 disabled:opacity-60 flex items-center gap-[8px]"
+            style={{ background: accentGrad, opacity: isFormValid && !stripeProcessing ? 1 : 0.5 }}
           >
+            {stripeProcessing && (
+              <span className="size-[14px] border-2 border-white border-t-transparent rounded-full animate-spin" />
+            )}
             {lb.encomendar}
           </button>
         </div>
