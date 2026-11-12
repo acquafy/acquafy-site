@@ -2090,10 +2090,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
               </div>
             </div>
 
-            <Sep />
-
-            {/* ── CEP ─────────────────────────────────────────────────────── */}
-            <div className="flex flex-col gap-[16px]"
+            <div className="hidden"
               ref={(el) => { sectionRefs.current["cep"] = el; }}
               onMouseEnter={() => setHoverSection("cep")}
               onMouseLeave={() => setHoverSection(null)}>
@@ -2183,8 +2180,6 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                 </div>
               </div>
             </div>
-
-            <Sep />
 
             {/* ── Form ────────────────────────────────────────────────────── */}
             <div className="flex flex-col gap-[16px]"
