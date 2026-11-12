@@ -34,6 +34,17 @@ begin
  -- Cancelling the first order puts the unit back.
  perform public.order_command('cancel',jsonb_build_object('order_id',o));
  if (select on_hand from public.product_stock where id=st)<>1 or exists(select 1 from public.order_stock_reservations where order_id=o) then raise exception 'Unit not released';end if;
+ -- Two lines reserving from the same any-colour row are both released on cancellation.
+ perform set_config('request.jwt.claim.sub',s::text,true);
+ st:=public.stock_command('set',jsonb_build_object('product_id','neo-fit','color','','on_hand',5,'ship_days',4));
+ perform set_config('request.jwt.claim.sub',c::text,true);
+ o2:=public.order_command('place',jsonb_build_object('kind','purchase','currency','brl','terms','yes','items',jsonb_build_array(jsonb_build_object('product','neo-fit','quantity',2,'color','Branco'),jsonb_build_object('product','neo-fit','quantity',1,'color','Cinza')),'delivery',d));
+ select id into fee from public.order_payments where order_id=o2;
+ perform public.order_payment_bind(jsonb_build_object('payment_id',fee,'session_id','cs_s3'));
+ perform public.order_payment_event(jsonb_build_object('payment_id',fee,'state','paid','session_id','cs_s3','subtotal_minor',12500,'paid_minor',12500,'currency','brl','payment_intent_id','pi_s3'));
+ if (select on_hand from public.product_stock where id=st)<>2 or (select count(*) from public.order_stock_reservations where order_id=o2)<>2 then raise exception 'Multi-line reservation failed';end if;
+ perform public.order_command('cancel',jsonb_build_object('order_id',o2));
+ if (select on_hand from public.product_stock where id=st)<>5 then raise exception 'Stock lost on cancellation: %',(select on_hand from public.product_stock where id=st);end if;
  perform set_config('stock_test.customer',c::text,true);
 end$$;
 set local role authenticated;

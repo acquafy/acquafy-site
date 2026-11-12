@@ -52,9 +52,13 @@ export default async function Order({ searchParams }: { searchParams: Promise<Qu
     : undefined;
   const verified = !!user?.email_confirmed_at;
   // Purchases of one product show whether it ships from stock; leases use investor units, confirmed by staff.
+  // Availability says nothing about unit counts, so the stock promise is made for one unit only; for more,
+  // Acquafy confirms the date (the database reserves a line only when the whole quantity is on hand).
   const availability =
     kind === "purchase" && single
-      ? availabilityLabel(availabilityFor(stock.data as StockRow[], items[0].product, items[0].color, settings.data.made_to_order_weeks))
+      ? items[0].quantity === 1
+        ? availabilityLabel(availabilityFor(stock.data as StockRow[], items[0].product, items[0].color, settings.data.made_to_order_weeks))
+        : `A Acquafy confirma o prazo de entrega de ${items[0].quantity} unidades depois do pedido`
       : undefined;
 
   return (

@@ -79,7 +79,9 @@ begin
  end if;
  end loop;
  elsif new.status='cancelled' and old.status is distinct from 'cancelled' then
- update public.product_stock s set on_hand=s.on_hand+r.quantity,updated_at=now() from public.order_stock_reservations r where r.order_id=new.id and r.stock_id=s.id;
+ -- Summed per stock row: several lines of one order can reserve from the same row (e.g. two colours from "any colour").
+ update public.product_stock s set on_hand=s.on_hand+r.quantity,updated_at=now()
+ from (select stock_id,sum(quantity)::integer as quantity from public.order_stock_reservations where order_id=new.id group by stock_id) r where r.stock_id=s.id;
  delete from public.order_stock_reservations where order_id=new.id;
  end if;
  return new;

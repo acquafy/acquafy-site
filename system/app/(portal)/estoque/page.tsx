@@ -6,11 +6,10 @@ import { DataTable } from "@/components/live/DataTable";
 import { Field, Select } from "@/components/live/Fields";
 import { PageHeader } from "@/components/live/PageHeader";
 import { stockAction } from "@/lib/orders/stock-actions";
+import { COLOR_GROUPS } from "@/config/order-colors";
 
 export const metadata = { title: "Estoque" };
 
-// Colour names exactly as the website sends them with an order (Portuguese).
-const COLORS = ["Azul Petróleo", "Cinza Metrópole", "Cinza", "Branco Glacial", "Branco", "Branco Pérola", "Cinza Prata", "Inox"];
 
 /** Staff: units available now per model and colour (Tesla's inventory). Orders reserve units when the fee is paid. */
 export default async function Stock() {
@@ -34,11 +33,17 @@ export default async function Stock() {
         <input type="hidden" name="action" value="set" />
         <div className="grid gap-3.5 @2xl:grid-cols-4">
           <Select name="product_id" label="Modelo" options={products.data.map((p) => ({ value: p.id, label: p.title }))} />
-          <Field name="color" label="Cor (vazio = qualquer cor)" required={false} maxLength={80} placeholder={COLORS.join(", ")} />
+          <Field name="color" label="Cor (vazio = qualquer cor)" required={false} maxLength={80} placeholder="Ex.: Azul Petróleo" />
           <Field name="on_hand" label="Unidades disponíveis" type="number" defaultValue="0" />
           <Field name="ship_days" label="Entrega em até (dias)" type="number" defaultValue="5" />
         </div>
-        <p className="text-[13px] text-ink-soft">Cores aceitas: {COLORS.join(" · ")}.</p>
+        <ul className="grid gap-0.5 text-[13px] text-ink-soft">
+          {COLOR_GROUPS.map((g) => (
+            <li key={g.label}>
+              <strong className="text-ink">{g.label}:</strong> {g.colors.length ? g.colors.join(" · ") : "sem cor (deixe vazio)"}
+            </li>
+          ))}
+        </ul>
       </ActionForm>
       <DataTable
         caption="Estoque por modelo e cor"
