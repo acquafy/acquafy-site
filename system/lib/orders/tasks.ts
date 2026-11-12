@@ -2,7 +2,7 @@
 // order status, payments, the installation booking. No task state of its own.
 
 export type TaskState = "done" | "todo" | "waiting" | "later";
-export type TaskKey = "fee" | "address" | "confirmation" | "balance" | "lease" | "installation" | "installed" | "app";
+export type TaskKey = "fee" | "address" | "confirmation" | "balance" | "lease" | "trade_in" | "installation" | "installed" | "app";
 export type OrderTask = { key: TaskKey; title: string; state: TaskState; detail?: string };
 
 export type TaskOrder = {
@@ -10,6 +10,8 @@ export type TaskOrder = {
   status: string;
   delivery_estimate: string | null;
   placed_at: string | null;
+  /** declared → received | missing (the technician's check at installation); null when there is no trade-in. */
+  trade_in_status?: string | null;
 };
 export type TaskPayment = { kind: "fee" | "balance"; status: string };
 export type TaskBooking = { starts_at: string; ends_at: string } | null;
@@ -24,7 +26,10 @@ export function windowLabel(starts: string, ends: string) {
   return `${day} · ${time.format(new Date(starts))}–${time.format(new Date(ends))}`;
 }
 
-export function orderTasks(order: TaskOrder, payments: TaskPayment[], booking: TaskBooking): OrderTask[] {
+/** Trade-in offer of the order: whether its products qualify, and the credit as shown to the customer. */
+export type TradeInOffer = { eligible: boolean; credit: string } | null;
+
+export function orderTasks(order: TaskOrder, payments: TaskPayment[], booking: TaskBooking, tradeIn: TradeInOffer = null): OrderTask[] {
   const r = rank(order.status);
   const settled = (kind: TaskPayment["kind"]) => payments.some((p) => p.kind === kind && ["paid", "refunding", "refunded"].includes(p.status));
   const paidStage = AFTER_PAYMENT.includes(order.status);
@@ -60,6 +65,7 @@ export function orderTasks(order: TaskOrder, payments: TaskPayment[], booking: T
       state: booking ? "done" : paidStage && !installed ? "todo" : installed ? "done" : "later",
       detail: booking ? windowLabel(booking.starts_at, booking.ends_at) : undefined,
     },
+    ...tradeInTask(order, tradeIn, installed),
     { key: "installed", title: "Instalação", state: installed ? "done" : booking ? "waiting" : "later" },
     { key: "app", title: "Configurar o app Acquafy", state: installed ? "todo" : "later" },
   ];
@@ -79,4 +85,27 @@ export function canCancel(
   if (who.admin) return true;
   const inWithdrawal = !!order.placed_at && now - new Date(order.placed_at).getTime() < withdrawalDays * 86400000;
   return who.owner && (order.status === "awaiting_fee" || inWithdrawal);
+}
+
+/**
+ * Trade-in ("Seu purificador antigo vale um UP"): offered on eligible purchases until Acquafy confirms the order;
+ * once declared, the old unit is handed in at installation and staff record the technician's check.
+ */
+function tradeInTask(order: TaskOrder, offer: TradeInOffer, installed: boolean): OrderTask[] {
+  const status = order.trade_in_status ?? null;
+  if (status === "received") return [{ key: "trade_in", title: "Purificador antigo entregue", state: "done", detail: offer ? `Desconto de ${offer.credit} no saldo.` : undefined }];
+  if (status === "missing")
+    return [{ key: "trade_in", title: "Purificador antigo não recebido", state: "done", detail: "O técnico não recebeu o purificador antigo. Fale com o suporte." }];
+  if (status === "declared")
+    return [
+      {
+        key: "trade_in",
+        title: "Entregar o purificador antigo na instalação",
+        state: installed ? "waiting" : "later",
+        detail: offer ? `Desconto de ${offer.credit} no saldo.` : undefined,
+      },
+    ];
+  if (order.kind === "purchase" && offer?.eligible && ["awaiting_fee", "placed"].includes(order.status))
+    return [{ key: "trade_in", title: `Tem um purificador antigo? Ganhe ${offer.credit} (opcional)`, state: "todo", detail: "Entregue-o ao técnico na instalação." }];
+  return [];
 }

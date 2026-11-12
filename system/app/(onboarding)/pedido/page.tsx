@@ -51,6 +51,11 @@ export default async function Order({ searchParams }: { searchParams: Promise<Qu
     ? (n: number) => href({ items: JSON.stringify([{ ...items[0], quantity: Math.min(Math.max(n, 1), 20) }]) })
     : undefined;
   const verified = !!user?.email_confirmed_at;
+  // Trade-in ("Seu purificador antigo vale um UP"): offered on purchases that include an eligible product.
+  const tradeInCredit =
+    kind === "purchase" && items.some((i) => (settings.data.trade_in_products as string[]).includes(i.product))
+      ? formatMinor(currency === "brl" ? settings.data.trade_in_brl_minor : settings.data.trade_in_usd_minor, currency)
+      : null;
   // Purchases of one product show whether it ships from stock; leases use investor units, confirmed by staff.
   // Availability says nothing about unit counts, so the stock promise is made for one unit only; for more,
   // Acquafy confirms the date (the database reserves a line only when the whole quantity is on hand).
@@ -127,6 +132,19 @@ export default async function Order({ searchParams }: { searchParams: Promise<Qu
                 <Field name="phone" label="Telefone com DDD" type="tel" maxLength={40} autoComplete="tel" />
               </div>
               <OrderAddress brazil={currency === "brl"} />
+              {tradeInCredit && (
+                <fieldset className="grid gap-3 rounded-xl bg-canvas p-4">
+                  <legend className="sr-only">Purificador antigo</legend>
+                  <Consent name="trade_in" required={false}>
+                    Tenho um purificador antigo para entregar na instalação: <strong>{tradeInCredit} de desconto no saldo</strong>.
+                  </Consent>
+                  <div className="grid gap-3.5 @sm:grid-cols-[minmax(0,2fr)_minmax(0,2fr)_minmax(0,1fr)]">
+                    <Field name="trade_in_brand" label="Marca" required={false} maxLength={80} placeholder="Ex.: Electrolux" />
+                    <Field name="trade_in_model" label="Modelo (se souber)" required={false} maxLength={80} />
+                    <Field name="trade_in_years" label="Anos de uso" type="number" required={false} />
+                  </div>
+                </fieldset>
+              )}
               <Consent name="terms">
                 Li e aceito os termos do pedido: preço de {formatMinor(order.total, currency)}
                 {kind === "lease" ? "/mês" : ""}, taxa do pedido de {formatMinor(order.fee, currency)} cobrada agora

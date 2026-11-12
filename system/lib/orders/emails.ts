@@ -11,6 +11,8 @@ export type EmailOrder = {
   currency: OrderCurrency;
   total_minor: number;
   fee_minor: number | null;
+  /** Trade-in credit taken off the balance (R$ 100 for an old purifier on a Neo UP). */
+  trade_in_minor?: number;
   delivery_estimate: string | null;
   tracking_reference: string | null;
   items: { title: string; quantity: number; color?: string }[];
@@ -20,7 +22,7 @@ type Copy = { subject: string; lead: string };
 
 function copy(kind: NotificationKind, o: EmailOrder, pt: boolean, booking?: { starts_at: string; ends_at: string }): Copy {
   const money = (minor: number) => formatMinor(minor, o.currency);
-  const balance = o.total_minor - (o.fee_minor ?? 0);
+  const balance = o.total_minor - (o.fee_minor ?? 0) - (o.trade_in_minor ?? 0);
   const lease = o.kind === "lease";
   if (pt)
     switch (kind) {

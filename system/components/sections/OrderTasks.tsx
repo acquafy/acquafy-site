@@ -7,7 +7,7 @@ import { ButtonLink } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { cn } from "@/lib/cn";
 import { orderAction } from "@/lib/orders/actions";
-import { installationAction, updateDelivery } from "@/lib/orders/followup";
+import { installationAction, tradeInAction, updateDelivery } from "@/lib/orders/followup";
 import { formatMinor, type OrderCurrency } from "@/lib/orders/pricing";
 import { windowLabel, type OrderTask } from "@/lib/orders/tasks";
 
@@ -30,6 +30,7 @@ export function OrderTasks({
   owner,
   windows,
   canRebook,
+  tradeIn,
 }: {
   orderId: string;
   tasks: OrderTask[];
@@ -39,6 +40,8 @@ export function OrderTasks({
   owner: boolean;
   windows: Window[];
   canRebook: boolean;
+  /** The trade-in can be added or removed until Acquafy confirms the order. */
+  tradeIn: { editable: boolean; declared: boolean };
 }) {
   const fee = payments.find((p) => p.kind === "fee");
   const balance = payments.find((p) => p.kind === "balance");
@@ -72,6 +75,22 @@ export function OrderTasks({
         ) : task.state === "todo" ? (
           <p className="text-[13.5px] text-ink-soft">Ainda não há datas abertas para a sua região. Avisamos por e-mail quando abrirmos.</p>
         ) : null;
+      case "trade_in":
+        if (!tradeIn.editable) return null;
+        return tradeIn.declared ? (
+          <ActionDialog action={tradeInAction} title="Remover o purificador antigo?" trigger="Remover" submit="Remover" triggerVariant="ghost" triggerSize="sm" size="sm" description="O desconto sai do pedido.">
+            <input type="hidden" name="action" value="remove" />
+            <input type="hidden" name="order_id" value={orderId} />
+          </ActionDialog>
+        ) : (
+          <ActionDialog action={tradeInAction} title="Purificador antigo" trigger="Adicionar purificador antigo" submit="Adicionar" triggerVariant="outline" triggerSize="sm" size="md" description="Entregue o purificador antigo ao técnico na instalação. O desconto entra no saldo.">
+            <input type="hidden" name="action" value="declare" />
+            <input type="hidden" name="order_id" value={orderId} />
+            <Field name="brand" label="Marca" maxLength={80} placeholder="Ex.: Electrolux" />
+            <Field name="model" label="Modelo (se souber)" required={false} maxLength={80} />
+            <Field name="years" label="Anos de uso (aprox.)" type="number" required={false} />
+          </ActionDialog>
+        );
       case "app":
         return task.state === "todo" ? (
           <a href="/app-ai-iot" className="text-[14px] font-semibold text-brand hover:underline">

@@ -84,6 +84,18 @@ export async function orderAction(
         payload: { kind: payload.kind, currency: payload.currency, terms: payload.terms, items, delivery },
       });
       if (placed.error || !placed.data) throw Error();
+      // Trade-in declared on the order form. It never blocks the order: if it is incomplete, the customer can add it
+      // on the order page until Acquafy confirms.
+      if (f.get("trade_in") === "yes" && String(f.get("trade_in_brand") ?? "").trim())
+        await ctx.db.rpc("order_trade_in", {
+          action: "declare",
+          payload: {
+            order_id: placed.data,
+            brand: String(f.get("trade_in_brand")).trim(),
+            model: String(f.get("trade_in_model") ?? "").trim(),
+            years: Number(f.get("trade_in_years") || 0),
+          },
+        });
       const fee = await ctx.db.from("order_payments").select("*").eq("order_id", placed.data).eq("kind", "fee").single();
       if (fee.error || !fee.data) throw Error();
       const url = await paymentCheckoutUrl(fee.data);
