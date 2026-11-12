@@ -34,8 +34,8 @@ export async function paymentCheckoutUrl(payment: Payment): Promise<string | nul
       {
         mode: "payment",
         integration_identifier: "acquafy_orders_qmvtlxpa",
-        // Coupons apply to the balance; the order fee is the same for everyone.
-        allow_promotion_codes: payment.kind === "balance",
+        // Stripe promotion codes apply to the order fee and the balance (restrict them in Stripe as needed).
+        allow_promotion_codes: true,
         client_reference_id: payment.id,
         metadata,
         payment_intent_data: { metadata },

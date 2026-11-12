@@ -148,7 +148,7 @@ function PayForm({ paymentId, label, installments = false }: { paymentId: string
       <OrderPaymentMethod />
     </ActionDialog>
   ) : (
-    <ActionDialog action={orderAction} title="Pagamento seguro" trigger={label} submit="Abrir pagamento seguro Stripe" triggerVariant="primary" triggerSize="sm" size="sm" description="Você será levado ao Stripe para pagar com cartão.">
+    <ActionDialog action={orderAction} title="Pagamento seguro" trigger={label} submit="Abrir pagamento seguro Stripe" triggerVariant="primary" triggerSize="sm" size="sm" description="Você será levado ao Stripe para pagar com cartão. Tem um cupom? Informe o código na página do Stripe.">
       <input type="hidden" name="action" value="pay" />
       <input type="hidden" name="payment_id" value={paymentId} />
     </ActionDialog>
