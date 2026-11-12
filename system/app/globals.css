@@ -124,6 +124,60 @@ body {
   background-attachment: fixed;
 }
 
+/* Purchase flow (product page → order → payment → tracking): the same layout system as the website's product pages.
+   Avenir from the website (same origin: /fonts), the website's colours, light only. `.flow` re-points the portal tokens,
+   so every kit component inside it (Card, Button, Field, Badge…) takes this look. Website source: app/globals.css and
+   components/flow/FlowHeader.tsx at the repository root; keep both in step. */
+@font-face {
+  font-family: "Acquafy Avenir";
+  src: url("/fonts/avenir-lt-pro-roman.woff2") format("woff2");
+  font-weight: 100 499;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Acquafy Avenir";
+  src: url("/fonts/avenir-lt-pro-heavy.woff2") format("woff2");
+  font-weight: 500 849;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Acquafy Avenir";
+  src: url("/fonts/avenir-lt-pro-black.woff2") format("woff2");
+  font-weight: 850 1000;
+  font-display: swap;
+}
+.flow {
+  color-scheme: light;
+  --color-ink: #1f2e91;
+  --color-ink-soft: #4b5563;
+  --color-ink-mute: #8a8f97;
+  --color-line: #e8ecf4;
+  --color-canvas: #f6f9fe;
+  --color-card: #ffffff;
+  --color-page: #ffffff;
+  --color-brand: #0233c3;
+  --color-brand-soft: #eef2ff;
+  --color-violet: #6e0cc3;
+  --color-violet-soft: #f3ecff;
+  --color-ok: #2a9a50;
+  --color-ok-soft: #e6f6ec;
+  --color-warn: #b45309;
+  --color-warn-soft: #fff4e0;
+  --color-danger: #dc2626;
+  --color-danger-soft: #fdecec;
+  --flow-gradient: linear-gradient(135deg, #0233c3, #0569ff);
+  font-family: "Acquafy Avenir", Arial, sans-serif;
+  color: var(--color-ink);
+  background: #ffffff;
+}
+/* Main buttons take the website's blue gradient and 14px radius. */
+.flow .bg-brand-gradient {
+  background-image: var(--flow-gradient);
+}
+.flow :where(button, a).rounded-lg {
+  border-radius: 14px;
+}
+
 /* Receipts and other `Modal printable` dialogs: print only the dialog, without its action buttons. */
 @media print {
   body * {

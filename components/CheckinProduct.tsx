@@ -1335,6 +1335,8 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
     product: activeVariant.id,
     mode: payTab === "financiar" ? "lease" : "purchase",
     currency: lang === "pt" || lang === "pt-pt" ? "brl" : "usd",
+    // The order page shows the same picture: front view of the chosen colour, else the catalog image.
+    image: activeColorImages[0] ?? activeVariant.img,
     ...(orderColor ? { color: getColorName(colorKey(orderColor), "pt", orderColor.name) } : {}),
   }).toString();
 
@@ -1394,7 +1396,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
     <div className="flex flex-col md:flex-row w-full h-[calc(100vh-80px)] overflow-hidden">
 
       {/* ── LEFT: Sticky image ───────────────────────────────────────────── */}
-      <div className="shrink-0 h-[260px] md:h-auto md:flex-1 bg-[#f6f9fe] flex flex-col md:justify-center md:items-center overflow-hidden relative pb-[88px] md:pb-[88px]" onWheel={handleLeftWheel}>
+      <div className="shrink-0 h-[260px] md:h-auto md:flex-1 bg-[#f6f9fe] flex flex-col md:justify-center md:items-center overflow-hidden relative pb-0 md:pb-[88px]" onWheel={handleLeftWheel}>
 
         {/* ── FILTROS / GARANTIAS: filter banner (fills full outer container) ── */}
         <div className={`absolute inset-0 transition-opacity duration-500 z-10 ${displaySection === "filtros" || displaySection === "garantias" ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
@@ -1489,7 +1491,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
             {family.scenes.length > 0 ? (
               family.scenes.map((scene, i) => (
                 <img key={i} src={scene.img} alt=""
-                  className={`absolute inset-x-0 top-1/2 -translate-y-1/2 max-h-[500px] w-full object-contain transition-opacity duration-500 ${i === activeSceneIdx ? "opacity-100" : "opacity-0"}`}
+                  className={`absolute inset-x-0 top-1/2 -translate-y-1/2 max-h-full md:max-h-[500px] w-full object-contain transition-opacity duration-500 ${i === activeSceneIdx ? "opacity-100" : "opacity-0"}`}
                 />
               ))
             ) : activeColorImages.length > 0 && showSlide ? (
@@ -1501,19 +1503,19 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                 colorImgs.map((img, i) => (
                   <img key={`${ci}-${i}`} src={img}
                     alt={`${activeVariant.name} – ${colorOptions[ci]?.name ?? ""} – ${i + 1}`}
-                    className={`absolute inset-x-0 top-1/2 -translate-y-1/2 max-h-[500px] w-full object-contain transition-opacity duration-700 ease-in-out ${ci === activeColorIdx && i === slideIdx ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+                    className={`absolute inset-x-0 top-1/2 -translate-y-1/2 max-h-full md:max-h-[500px] w-full object-contain transition-opacity duration-700 ease-in-out ${ci === activeColorIdx && i === slideIdx ? "opacity-100" : "opacity-0 pointer-events-none"}`}
                   />
                 ))
               )
             ) : activeColorImages.length > 0 ? (
               <img src={activeVariant.img}
                 alt={activeVariant.name}
-                className="absolute inset-x-0 top-1/2 -translate-y-1/2 max-h-[500px] w-full object-contain"
+                className="absolute inset-x-0 top-1/2 -translate-y-1/2 max-h-full md:max-h-[500px] w-full object-contain"
               />
             ) : (
               family.variants.map((v, i) => (
                 <img key={v.id} src={v.img} alt={v.name}
-                  className={`absolute inset-x-0 top-1/2 -translate-y-1/2 max-h-[500px] w-full object-contain transition-opacity duration-500 ${i === activeVariantIdx ? "opacity-100" : "opacity-0"}`}
+                  className={`absolute inset-x-0 top-1/2 -translate-y-1/2 max-h-full md:max-h-[500px] w-full object-contain transition-opacity duration-500 ${i === activeVariantIdx ? "opacity-100" : "opacity-0"}`}
                 />
               ))
             )}
@@ -1946,7 +1948,8 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
         }`}
       >
         {/* Left: fills the image panel area */}
-        <div className="flex-1 flex items-center gap-[12px] md:gap-[28px] flex-wrap min-w-0 px-[24px] md:px-[48px] py-[20px]">
+        {/* On phones only the price and the button fit; name, specs and swatches are in the panel above. */}
+        <div className="hidden md:flex flex-1 items-center gap-[12px] md:gap-[28px] flex-wrap min-w-0 px-[24px] md:px-[48px] py-[20px]">
           <div className="flex flex-col gap-[5px] min-w-0 justify-center">
             <span
               className="font-['Avenir_LT_Pro:95_Black'] text-[22px] leading-tight"
@@ -1982,7 +1985,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
           )}
         </div>
         {/* Right: same width as the sidebar panel */}
-        <div className="md:w-[400px] xl:w-[440px] shrink-0 px-[24px] py-[20px] flex items-center gap-[16px]">
+        <div className="w-full md:w-[400px] xl:w-[440px] shrink-0 px-[24px] py-[16px] md:py-[20px] flex items-center gap-[16px]">
           <div className="flex-1 flex flex-col gap-[4px] min-w-0">
             <span
               className="font-['Avenir_LT_Pro:95_Black'] text-[20px] leading-none"

@@ -31,7 +31,7 @@ export function OrderAddress({ brazil }: { brazil: boolean }) {
   return (
     <fieldset className="grid gap-3.5">
       <legend className="mb-1 text-[15.5px] font-extrabold tracking-tight text-ink">Endereço de entrega</legend>
-      <div className="grid gap-3.5 sm:grid-cols-2">
+      <div className="grid gap-3.5 @sm:grid-cols-2">
         <TextField
           name="postal_code"
           label={brazil ? "CEP" : "Código postal"}
@@ -46,11 +46,11 @@ export function OrderAddress({ brazil }: { brazil: boolean }) {
         {!brazil && <TextField name="country" label="País" required maxLength={80} autoComplete="country-name" />}
       </div>
       <TextField name="street" label="Rua / avenida" required maxLength={160} autoComplete="address-line1" value={address.street} onChange={set("street")} />
-      <div className="grid gap-3.5 sm:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+      <div className="grid gap-3.5 @sm:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
         <TextField name="number" label="Número" required maxLength={20} />
         <TextField name="complement" label="Complemento" maxLength={80} autoComplete="address-line2" />
       </div>
-      <div className="grid gap-3.5 sm:grid-cols-[minmax(0,2fr)_minmax(0,2fr)_minmax(0,1fr)]">
+      <div className="grid gap-3.5 @sm:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] @lg:grid-cols-[minmax(0,2fr)_minmax(0,2fr)_minmax(0,1fr)]">
         <TextField name="district" label="Bairro" required={brazil} maxLength={80} value={address.district} onChange={set("district")} />
         <TextField name="city" label="Cidade" required maxLength={80} autoComplete="address-level2" value={address.city} onChange={set("city")} />
         <TextField name="state" label={brazil ? "UF" : "Estado"} required maxLength={40} autoComplete="address-level1" value={address.state} onChange={set("state")} />

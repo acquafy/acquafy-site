@@ -3,7 +3,8 @@ import { cookies } from "next/headers";
 import { context } from "@/lib/live/data";
 import { switchAccount } from "@/lib/live/actions";
 import { isSidebarMode, SIDEBAR_COOKIE } from "@/lib/sidebar";
-import type { LiveKind } from "@/config/live-navigation";
+import { liveNavigation, type LiveKind } from "@/config/live-navigation";
+import { FlowShell } from "@/components/flow/FlowShell";
 import { Button, ButtonLink } from "@/components/ui/Button";
 import { ClearDemo } from "@/components/live/ClearDemo";
 import { LiveShell } from "@/components/live/LiveShell";
@@ -18,6 +19,16 @@ export default async function PortalLayout({ children }: { children: React.React
   const kind: LiveKind = role === "customer" ? "customer" : ctx.staff === "admin" ? "admin" : ctx.staff === "support" ? "support" : "partner";
   const roleLabel = { customer: "Cliente", partner: "Parceiro", support: "Equipe · Atendimento", admin: "Equipe · Administração" }[kind];
   const saved = (await cookies()).get(SIDEBAR_COOKIE)?.value;
+
+  // Customers stay in the purchase-flow frame after ordering (step 4, "Acompanhar"), like the product and order pages;
+  // partners and staff keep the portal shell with the sidebar.
+  if (kind === "customer")
+    return (
+      <FlowShell step={4} account={{ email: ctx.user.email ?? "" }} nav={liveNavigation("customer").map(({ href, label }) => ({ href, label }))}>
+        <ClearDemo />
+        {children}
+      </FlowShell>
+    );
 
   return (
     <LiveShell

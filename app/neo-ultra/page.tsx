@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Header from "@/components/Header";
+import FlowHeader from "@/components/flow/FlowHeader";
 import CheckinProduct from "@/components/CheckinProduct";
 import { CHECKIN_FAMILIES } from "@/lib/checkin-products";
 import { buyNow } from "@/lib/flags";
@@ -22,7 +22,7 @@ export default async function NeoUltraPage() {
 
   return (
     <>
-      <Header />
+      <FlowHeader step={1} />
       <main>
         <CheckinProduct family={family} showSlide />
       </main>
