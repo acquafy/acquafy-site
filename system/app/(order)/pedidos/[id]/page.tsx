@@ -15,6 +15,7 @@ import { orderAction } from "@/lib/orders/actions";
 import { tradeInAction } from "@/lib/orders/followup";
 import { Select } from "@/components/live/Fields";
 import { formatMinor, type OrderCurrency } from "@/lib/orders/pricing";
+import { formatPhone } from "@/lib/orders/address-formats";
 import { canCancel, orderTasks, type TaskPayment } from "@/lib/orders/tasks";
 
 export const metadata = { title: "Pedido" };
@@ -42,7 +43,8 @@ export default async function OrderPage({ params }: { params: Promise<{ id: stri
   // Rendered per request; the 48-hour and withdrawal windows are measured from now.
   // eslint-disable-next-line react-hooks/purity
   const now = Date.now();
-  const region = String(o.delivery?.state ?? "").toUpperCase();
+  // Installation windows are published per Brazilian UF; addresses elsewhere (a US "PA" is not Pará) get none.
+  const region = (o.delivery?.country_code ?? "BR") === "BR" ? String(o.delivery?.state ?? "").toUpperCase() : "";
 
   const [events, paymentRows, booking, settings, open, reserved] = await Promise.all([
     ctx.db.from("order_events").select("*").eq("order_id", id).order("created_at", { ascending: true }),
@@ -169,7 +171,7 @@ export default async function OrderPage({ params }: { params: Promise<{ id: stri
           rows={[
             { label: "Destinatário", value: o.delivery?.name },
             { label: "Endereço", value: o.delivery?.address },
-            { label: "Telefone", value: o.delivery?.phone },
+            { label: "Telefone", value: o.delivery?.phone ? formatPhone(o.delivery.phone) : "" },
             ...(o.tracking_reference ? [{ label: "Rastreamento", value: o.tracking_reference }] : []),
           ]}
         />

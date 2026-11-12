@@ -11,7 +11,7 @@ import { PurifierIcon } from "@/components/ui/PurifierIcon";
 import { FlowShell, FlowStage } from "@/components/flow/FlowShell";
 import { OrderAccount } from "@/components/sections/OrderAccount";
 import { orderImage } from "@/config/order-images";
-import { OrderAddress } from "@/components/sections/OrderAddress";
+import { OrderAddress, OrderPhone } from "@/components/sections/OrderAddress";
 import { OrderSummary } from "@/components/sections/OrderSummary";
 import { buyNow, requireFeature } from "@/lib/flags";
 import { orderAction } from "@/lib/orders/actions";
@@ -127,11 +127,12 @@ export default async function Order({ searchParams }: { searchParams: Promise<Qu
               <p className="text-[14px] text-ink-soft">
                 Conectado como <strong className="text-ink [overflow-wrap:anywhere]">{user.email}</strong>.
               </p>
-              <div className="grid gap-3.5 @sm:grid-cols-2">
+              <div className="grid gap-3.5">
                 <Field name="name" label="Nome completo / Razão social" autoComplete="name" />
-                <Field name="phone" label="Telefone com DDD" type="tel" maxLength={40} autoComplete="tel" />
+                <OrderPhone defaultCountry={currency === "brl" ? "BR" : "US"} />
               </div>
-              <OrderAddress brazil={currency === "brl"} />
+              {/* The address follows where the customer lives, not the currency: BRL orders default to Brazil, USD to the US. */}
+              <OrderAddress defaultCountry={currency === "brl" ? "BR" : "US"} />
               {tradeInCredit && (
                 <fieldset className="grid gap-3 rounded-xl bg-canvas p-4">
                   <legend className="sr-only">Purificador antigo</legend>

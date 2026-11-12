@@ -18,6 +18,7 @@ import { cn } from "@/lib/cn";
 import { buyNow } from "@/lib/flags";
 import { orderAction } from "@/lib/orders/actions";
 import { formatMinor, type OrderCurrency } from "@/lib/orders/pricing";
+import { formatPhone } from "@/lib/orders/address-formats";
 import { canCancel } from "@/lib/orders/tasks";
 
 type Payment = { id: string; order_id: string; kind: "fee" | "balance"; status: string; amount_minor: number; paid_minor: number | null; discount_minor: number };
@@ -121,7 +122,7 @@ export default async function Orders({ searchParams }: { searchParams: Promise<{
           { label: "Pedido feito em", value: date(o.created_at) },
           { label: "Destinatário", value: o.delivery.name },
           { label: "Endereço de entrega", value: o.delivery.address },
-          { label: "Telefone", value: o.delivery.phone },
+          { label: "Telefone", value: formatPhone(o.delivery.phone) },
           ...(o.delivery_estimate ? [{ label: "Entrega prevista", value: o.delivery_estimate }] : []),
           ...(o.tracking_reference ? [{ label: "Transportadora / rastreamento", value: o.tracking_reference }] : []),
         ];
