@@ -42,7 +42,7 @@ export default async function OrderPage({ params }: { params: Promise<{ id: stri
   const now = Date.now();
   const region = String(o.delivery?.state ?? "").toUpperCase();
 
-  const [events, paymentRows, booking, settings, open] = await Promise.all([
+  const [events, paymentRows, booking, settings, open, reserved] = await Promise.all([
     ctx.db.from("order_events").select("*").eq("order_id", id).order("created_at", { ascending: true }),
     ctx.db.from("order_payments").select("*").eq("order_id", id),
     ctx.db.from("installation_bookings").select("window_id,installation_windows(starts_at,ends_at)").eq("order_id", id).maybeSingle(),
@@ -51,8 +51,9 @@ export default async function OrderPage({ params }: { params: Promise<{ id: stri
     /^[A-Z]{2}$/.test(region)
       ? ctx.db.rpc("installation_windows_open", { region_code: region, max_rows: 12 })
       : Promise.resolve({ data: [] as { id: string; starts_at: string; ends_at: string; free: number }[], error: null }),
+    ctx.db.from("order_stock_reservations").select("id", { count: "exact", head: true }).eq("order_id", id),
   ]);
-  if (events.error || paymentRows.error || booking.error || settings.error || open.error) throw Error("Pedido indisponível.");
+  if (events.error || paymentRows.error || booking.error || settings.error || open.error || reserved.error) throw Error("Pedido indisponível.");
   const payments = paymentRows.data as Payment[];
   const booked = (booking.data?.installation_windows ?? null) as { starts_at: string; ends_at: string } | null;
   const windows = (open.data as { id: string; starts_at: string; ends_at: string; free: number }[]).filter((w) => w.id !== booking.data?.window_id);
@@ -76,7 +77,14 @@ export default async function OrderPage({ params }: { params: Promise<{ id: stri
         <FlowStage
           image={orderImage(first?.product, undefined)}
           title={first ? `${first.title}${o.items.length > 1 ? ` + ${o.items.length - 1}` : ""}` : "Pedido"}
-          detail={[first?.color, o.kind === "lease" ? "Locação" : "Compra", o.delivery_estimate ? `Entrega prevista ${o.delivery_estimate}` : null].filter(Boolean).join(" · ")}
+          detail={[
+            first?.color,
+            o.kind === "lease" ? "Locação" : "Compra",
+            (reserved.count ?? 0) > 0 ? "Unidade reservada do estoque" : null,
+            o.delivery_estimate ? `Entrega prevista ${o.delivery_estimate}` : null,
+          ]
+            .filter(Boolean)
+            .join(" · ")}
         />
       }
     >

@@ -15,6 +15,7 @@ import { OrderAddress } from "@/components/sections/OrderAddress";
 import { OrderSummary } from "@/components/sections/OrderSummary";
 import { buyNow, requireFeature } from "@/lib/flags";
 import { orderAction } from "@/lib/orders/actions";
+import { availabilityFor, availabilityLabel, type StockRow } from "@/lib/orders/stock";
 import { formatMinor, linesFromQuery, orderCurrency, previewOrder, type CatalogProduct, type OrderSettings } from "@/lib/orders/pricing";
 
 export const metadata = { title: "Seu pedido" };
@@ -31,11 +32,12 @@ export default async function Order({ searchParams }: { searchParams: Promise<Qu
   const {
     data: { user },
   } = await db.auth.getUser();
-  const [catalog, settings] = await Promise.all([
+  const [catalog, settings, stock] = await Promise.all([
     db.from("order_products").select("id,title,unit_minor,lease_minor").eq("enabled", true).order("unit_minor"),
     db.from("order_settings").select("*").single(),
+    db.rpc("stock_availability"),
   ]);
-  if (catalog.error || settings.error) throw Error("Catálogo indisponível.");
+  if (catalog.error || settings.error || stock.error) throw Error("Catálogo indisponível.");
   const products = catalog.data as CatalogProduct[];
   const order = previewOrder(linesFromQuery(q), products, kind, currency, settings.data as OrderSettings);
   // The picture the customer configured on the product page (colour and angle); the catalog image otherwise.
@@ -49,6 +51,11 @@ export default async function Order({ searchParams }: { searchParams: Promise<Qu
     ? (n: number) => href({ items: JSON.stringify([{ ...items[0], quantity: Math.min(Math.max(n, 1), 20) }]) })
     : undefined;
   const verified = !!user?.email_confirmed_at;
+  // Purchases of one product show whether it ships from stock; leases use investor units, confirmed by staff.
+  const availability =
+    kind === "purchase" && single
+      ? availabilityLabel(availabilityFor(stock.data as StockRow[], items[0].product, items[0].color, settings.data.made_to_order_weeks))
+      : undefined;
 
   return (
     <FlowShell
@@ -97,6 +104,7 @@ export default async function Order({ searchParams }: { searchParams: Promise<Qu
             balance={order.balance}
             withdrawalDays={settings.data.withdrawal_days}
             quantityHref={quantityHref}
+            availability={availability}
           />
 
           {!verified ? (
