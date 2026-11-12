@@ -72,6 +72,13 @@ export async function orderAction(
   ) as Record<string, unknown>;
   try {
     if (action === "place") {
+      // A ticked trade-in must be valid before anything is placed (same rules as order_trade_in), so it never
+      // silently disappears from the order.
+      const tradeIn = f.get("trade_in") === "yes";
+      const tradeInBrand = String(f.get("trade_in_brand") ?? "").trim();
+      const tradeInYears = Number(f.get("trade_in_years") || 0);
+      if (tradeIn && (tradeInBrand.length < 2 || tradeInBrand.length > 80 || !Number.isInteger(tradeInYears) || tradeInYears < 0 || tradeInYears > 50))
+        return { error: "Para o desconto do purificador antigo, informe a marca e os anos de uso (0 a 50). Ou desmarque a opção." };
       // Fixed price: the order is created at the catalog price and the customer goes straight to the order fee.
       const items = JSON.parse(String(f.get("items") ?? "[]"));
       if (!Array.isArray(items) || items.length < 1 || items.length > 30) throw Error();
@@ -84,18 +91,17 @@ export async function orderAction(
         payload: { kind: payload.kind, currency: payload.currency, terms: payload.terms, items, delivery },
       });
       if (placed.error || !placed.data) throw Error();
-      // Trade-in declared on the order form. It never blocks the order: if it is incomplete, the customer can add it
-      // on the order page until Acquafy confirms.
-      if (f.get("trade_in") === "yes" && String(f.get("trade_in_brand") ?? "").trim())
-        await ctx.db.rpc("order_trade_in", {
+      if (tradeIn) {
+        const declared = await ctx.db.rpc("order_trade_in", {
           action: "declare",
-          payload: {
-            order_id: placed.data,
-            brand: String(f.get("trade_in_brand")).trim(),
-            model: String(f.get("trade_in_model") ?? "").trim(),
-            years: Number(f.get("trade_in_years") || 0),
-          },
+          payload: { order_id: placed.data, brand: tradeInBrand, model: String(f.get("trade_in_model") ?? "").trim(), years: tradeInYears },
         });
+        // The order exists but the credit could not be added: stop before payment so the customer sees it.
+        if (declared.error)
+          return {
+            error: "Seu pedido foi criado, mas o desconto do purificador antigo não pôde ser adicionado. Abra o pedido em Meus pedidos para adicioná-lo e pagar a taxa.",
+          };
+      }
       const fee = await ctx.db.from("order_payments").select("*").eq("order_id", placed.data).eq("kind", "fee").single();
       if (fee.error || !fee.data) throw Error();
       const url = await paymentCheckoutUrl(fee.data);

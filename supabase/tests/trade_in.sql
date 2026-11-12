@@ -41,8 +41,17 @@ begin
  perform set_config('request.jwt.claim.sub',c::text,true);
  begin perform public.order_trade_in('verify',jsonb_build_object('order_id',o,'result','received'));raise exception 'Customer verified own trade-in';exception when raise_exception then if sqlerrm<>'Invalid verification' then raise;end if;end;
  perform set_config('request.jwt.claim.sub',s::text,true);
+ begin perform public.order_trade_in('verify',jsonb_build_object('order_id',o));raise exception 'Verified without a result';exception when raise_exception then if sqlerrm<>'Invalid verification' then raise;end if;end;
+ if (select trade_in_status from public.product_orders where id=o)<>'declared' then raise exception 'Status lost';end if;
  perform public.order_trade_in('verify',jsonb_build_object('order_id',o,'result','received'));
  if (select trade_in_status from public.product_orders where id=o)<>'received' then raise exception 'Verification not recorded';end if;
+
+ -- A credit that would leave less than the minimum payable balance is refused (fee raised to R$ 1.950).
+ update public.order_settings set fee_brl_minor=195000;
+ perform set_config('request.jwt.claim.sub',c::text,true);
+ o2:=public.order_command('place',jsonb_build_object('kind','purchase','currency','brl','terms','yes','items',jsonb_build_array(jsonb_build_object('product','neo-up','quantity',1)),'delivery',d));
+ begin perform public.order_trade_in('declare',jsonb_build_object('order_id',o2,'brand','Electrolux','years',5));raise exception 'Credit beyond the balance';exception when raise_exception then if sqlerrm<>'Trade-in unavailable' then raise;end if;end;
+ update public.order_settings set fee_brl_minor=12500;
 
  -- Declared, then removed before confirmation: no credit.
  perform set_config('request.jwt.claim.sub',c::text,true);

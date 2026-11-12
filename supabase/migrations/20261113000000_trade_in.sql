@@ -28,6 +28,8 @@ begin
  end if;
  select * into s from public.order_settings;
  if not exists(select 1 from jsonb_array_elements(o.items) i where i->>'product'=any(s.trade_in_products)) then raise exception 'Trade-in unavailable';end if;
+ -- The credit must leave a payable balance (Stripe minimum), whatever fee and credit the settings hold.
+ if o.total_minor-coalesce(o.fee_minor,0)-(case when o.currency='brl' then s.trade_in_brl_minor else s.trade_in_usd_minor end)<50 then raise exception 'Trade-in unavailable';end if;
  if length(coalesce(trim(payload->>'brand'),'')) not between 2 and 80 or length(coalesce(trim(payload->>'model'),'')) > 80 or coalesce((payload->>'years')::integer,0) not between 0 and 50 then raise exception 'Invalid trade-in';end if;
  update public.product_orders set
   trade_in=jsonb_build_object('brand',trim(payload->>'brand'),'model',trim(coalesce(payload->>'model','')),'years',(payload->>'years')::integer),
@@ -37,7 +39,7 @@ begin
  return o.id;
  elsif action='verify' then
  -- Staff record what the technician found at installation.
- if not portal_private.staff('admin') or o.trade_in_status is null or o.status not in ('paid','processing','shipped','installed','completed') or payload->>'result' not in ('received','missing') then raise exception 'Invalid verification';end if;
+ if not portal_private.staff('admin') or o.trade_in_status is null or o.status not in ('paid','processing','shipped','installed','completed') or coalesce(payload->>'result','') not in ('received','missing') then raise exception 'Invalid verification';end if;
  update public.product_orders set trade_in_status=payload->>'result',updated_at=now() where id=o.id;
  return o.id;
  end if;
@@ -55,6 +57,7 @@ declare credit integer;
 begin
  if new.kind='balance' then
  select trade_in_minor into credit from public.product_orders where id=new.order_id;
+ if new.amount_minor-coalesce(credit,0)<50 then raise exception 'Trade-in exceeds balance';end if;
  new.amount_minor:=new.amount_minor-coalesce(credit,0);
  end if;
  return new;
