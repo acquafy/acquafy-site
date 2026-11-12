@@ -94,23 +94,27 @@ describe("order e-mail sender", () => {
     db.rpc.mockReset();
     db.updates = [];
     db.order = { ...emailOrder };
-    vi.stubEnv("RESEND_API_KEY", "re_test");
+    vi.stubEnv("SES_REGION", "us-east-1");
+    vi.stubEnv("SES_ACCESS_KEY_ID", "AKIDEXAMPLE");
+    vi.stubEnv("SES_SECRET_ACCESS_KEY", "wJalrXUtnFEMI/K7MDENG+bPxRfiCYEXAMPLEKEY");
     vi.stubEnv("ORDER_EMAIL_FROM", "Acquafy <pedidos@acquafy.example>");
   });
-  it("waits when Resend is not configured", async () => {
-    vi.stubEnv("RESEND_API_KEY", "");
+  it("waits when SES is not configured", async () => {
+    vi.stubEnv("SES_ACCESS_KEY_ID", "");
     expect(await sendPendingNotifications()).toEqual({ sent: 0, failed: 0, skipped: true });
     expect(db.rpc).not.toHaveBeenCalled();
   });
-  it("sends each claimed e-mail once, with an idempotency key, and records the result", async () => {
+  it("sends each claimed e-mail through SES, signed, and records the message id", async () => {
     db.rpc.mockResolvedValue({ data: [{ id: 7, order_id: emailOrder.id, kind: "placed", to_email: "cliente@example.com", attempts: 1, payload: emailOrder }], error: null });
-    const fetchMock = vi.fn().mockResolvedValue(new Response(JSON.stringify({ id: "email_1" }), { status: 200 }));
+    const fetchMock = vi.fn().mockResolvedValue(new Response(JSON.stringify({ MessageId: "email_1" }), { status: 200 }));
     vi.stubGlobal("fetch", fetchMock);
     expect(await sendPendingNotifications()).toEqual({ sent: 1, failed: 0, skipped: false });
     const [url, init] = fetchMock.mock.calls[0];
-    expect(url).toBe("https://api.resend.com/emails");
-    expect(init.headers["Idempotency-Key"]).toBe("order-notification-7");
-    expect(JSON.parse(init.body)).toMatchObject({ to: ["cliente@example.com"], subject: "Recebemos seu pedido · Pedido 8B8CD9D9" });
+    expect(url).toBe("https://email.us-east-1.amazonaws.com/v2/email/outbound-emails");
+    expect(init.headers.authorization).toMatch(/^AWS4-HMAC-SHA256 Credential=AKIDEXAMPLE\/\d{8}\/us-east-1\/ses\/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=[0-9a-f]{64}$/);
+    const body = JSON.parse(init.body);
+    expect(body).toMatchObject({ FromEmailAddress: "Acquafy <pedidos@acquafy.example>", Destination: { ToAddresses: ["cliente@example.com"] } });
+    expect(body.Content.Simple.Subject.Data).toBe("Recebemos seu pedido · Pedido 8B8CD9D9");
     expect(db.updates[0]).toMatchObject({ status: "sent", provider_id: "email_1" });
   });
   it("puts a failed e-mail back in the queue, and gives up after 5 attempts", async () => {
@@ -121,20 +125,20 @@ describe("order e-mail sender", () => {
       ],
       error: null,
     });
-    vi.stubGlobal("fetch", vi.fn().mockImplementation(async () => new Response(JSON.stringify({ message: "rate limited" }), { status: 429 })));
+    vi.stubGlobal("fetch", vi.fn().mockImplementation(async () => new Response(JSON.stringify({ message: "Maximum sending rate exceeded." }), { status: 429 })));
     expect(await sendPendingNotifications()).toEqual({ sent: 0, failed: 2, skipped: false });
     expect(db.updates).toEqual([
-      { status: "pending", last_error: "Resend 429: rate limited" },
-      { status: "failed", last_error: "Resend 429: rate limited" },
+      { status: "pending", last_error: "SES 429: Maximum sending rate exceeded." },
+      { status: "failed", last_error: "SES 429: Maximum sending rate exceeded." },
     ]);
   });
   it("renders the appointment the e-mail was queued for, not the current booking", async () => {
     const booking = { starts_at: "2026-12-15T11:00:00Z", ends_at: "2026-12-15T15:00:00Z" };
     db.rpc.mockResolvedValue({ data: [{ id: 10, order_id: emailOrder.id, kind: "installation_booked", to_email: "c@example.com", attempts: 1, payload: { ...emailOrder, booking } }], error: null });
-    const fetchMock = vi.fn().mockImplementation(async () => new Response(JSON.stringify({ id: "email_2" }), { status: 200 }));
+    const fetchMock = vi.fn().mockImplementation(async () => new Response(JSON.stringify({ MessageId: "email_2" }), { status: 200 }));
     vi.stubGlobal("fetch", fetchMock);
     await sendPendingNotifications();
-    expect(JSON.parse(fetchMock.mock.calls[0][1].body).text).toMatch(/15\/12 · 08:00–12:00/);
+    expect(JSON.parse(fetchMock.mock.calls[0][1].body).Content.Simple.Body.Text.Data).toMatch(/15\/12 · 08:00–12:00/);
   });
   it("only runs the cron route with the cron secret", async () => {
     vi.stubEnv("CRON_SECRET", "cron-secret");
@@ -142,5 +146,29 @@ describe("order e-mail sender", () => {
     expect((await GET(new Request("https://x/app/api/orders/notifications", { headers: { authorization: "Bearer wrong" } }))).status).toBe(401);
     db.rpc.mockResolvedValue({ data: [], error: null });
     expect((await GET(new Request("https://x/app/api/orders/notifications", { headers: { authorization: "Bearer cron-secret" } }))).status).toBe(200);
+  });
+});
+
+describe("SES request signing", () => {
+  it("matches AWS Signature Version 4 for a fixed request", async () => {
+    vi.resetModules();
+    const { signRequest } = await import("@/lib/orders/ses");
+    const headers = signRequest({
+      method: "POST",
+      host: "email.us-east-1.amazonaws.com",
+      path: "/v2/email/outbound-emails",
+      body: "{}",
+      region: "us-east-1",
+      service: "ses",
+      accessKeyId: "AKIDEXAMPLE",
+      secretAccessKey: "wJalrXUtnFEMI/K7MDENG+bPxRfiCYEXAMPLEKEY",
+      now: new Date("2026-11-12T23:15:00Z"),
+    });
+    expect(headers["x-amz-date"]).toBe("20261112T231500Z");
+    expect(headers["x-amz-content-sha256"]).toBe("44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a");
+    // Computed independently (Python hmac/hashlib) from the same canonical request.
+    expect(headers.authorization).toBe(
+      "AWS4-HMAC-SHA256 Credential=AKIDEXAMPLE/20261112/us-east-1/ses/aws4_request, SignedHeaders=content-type;host;x-amz-content-sha256;x-amz-date, Signature=ddfccdd9bd1c2e16a660045513cb331e53f470cfd5817da774136003aee751a1",
+    );
   });
 });
