@@ -7,6 +7,7 @@ import {
 } from "@/lib/enrollment/server";
 import { usdToMinor } from "@/lib/enrollment/validation";
 import { customerDestination } from "./destination";
+import { expireCheckout, paymentCheckoutUrl, refundPayment } from "./checkout";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import type { ActionResult } from "@/lib/enrollment/types";
@@ -67,6 +68,77 @@ export async function orderAction(
     ),
   ) as Record<string, unknown>;
   try {
+    if (action === "place") {
+      // Fixed price: the order is created at the catalog price and the customer goes straight to the order fee.
+      const items = JSON.parse(String(f.get("items") ?? "[]"));
+      if (!Array.isArray(items) || items.length < 1 || items.length > 30) throw Error();
+      const quantity = Number(f.get("quantity"));
+      if (items.length === 1 && Number.isInteger(quantity)) items[0].quantity = quantity;
+      const field = (name: string, max = 160) => String(f.get(name) ?? "").trim().slice(0, max);
+      const delivery = {
+        name: field("name"),
+        phone: field("phone", 40),
+        postal_code: field("postal_code", 20),
+        street: field("street"),
+        number: field("number", 20),
+        complement: field("complement", 80),
+        district: field("district", 80),
+        city: field("city", 80),
+        state: field("state", 40),
+        country: field("country", 80) || "Brasil",
+      };
+      const address = [
+        `${delivery.street}, ${delivery.number}${delivery.complement ? " - " + delivery.complement : ""}`,
+        delivery.district,
+        `${delivery.city} - ${delivery.state}`,
+        delivery.postal_code,
+        delivery.country,
+      ]
+        .filter((part) => part.replace(/[\s,-]/g, ""))
+        .join(", ");
+      if (!delivery.street || !delivery.number || !delivery.city || !delivery.postal_code) throw Error();
+      const placed = await ctx.db.rpc("order_command", {
+        action: "place",
+        payload: { kind: payload.kind, currency: payload.currency, terms: payload.terms, items, delivery: { ...delivery, address } },
+      });
+      if (placed.error || !placed.data) throw Error();
+      const fee = await ctx.db.from("order_payments").select("*").eq("order_id", placed.data).eq("kind", "fee").single();
+      if (fee.error || !fee.data) throw Error();
+      redirect(await paymentCheckoutUrl(fee.data));
+    }
+    if (action === "pay") {
+      // Order fee (retry) or balance of a fixed-price order, paid by its owner.
+      const pay = await ctx.db.from("order_payments").select("*").eq("id", String(f.get("payment_id"))).single();
+      if (pay.error || !pay.data) throw Error();
+      const { data: o, error } = await ctx.db.from("product_orders").select("*").eq("id", pay.data.order_id).single();
+      if (
+        error ||
+        !o ||
+        o.user_id !== ctx.user.id ||
+        o.status !== (pay.data.kind === "fee" ? "awaiting_fee" : "confirmed") ||
+        !ctx.accounts.some((a) => a.id === o.account_id && a.status === "active")
+      )
+        throw Error();
+      redirect(await paymentCheckoutUrl(pay.data));
+    }
+    if (action === "cancel") {
+      const { data: o } = await ctx.db.from("product_orders").select("id,flow").eq("id", String(f.get("order_id"))).single();
+      if (o?.flow === "fixed") {
+        // Close an unpaid fee session first so it cannot be paid after the cancellation.
+        const open = await ctx.db.from("order_payments").select("checkout_id").eq("order_id", o.id).eq("status", "open");
+        for (const p of open.data ?? []) await expireCheckout(p.checkout_id);
+        const cancelled = await ctx.db.rpc("order_command", { action: "cancel", payload: { order_id: o.id } });
+        if (cancelled.error) throw Error();
+        revalidatePath("/pedidos");
+        const refunds = await serviceClient().from("order_payments").select("id,payment_intent_id").eq("order_id", o.id).eq("status", "refunding");
+        try {
+          for (const p of refunds.data ?? []) await refundPayment(p);
+        } catch {
+          return { success: "Pedido cancelado. O reembolso da taxa será concluído pela nossa equipe." };
+        }
+        return { success: refunds.data?.length ? "Pedido cancelado. O reembolso da taxa foi solicitado ao cartão usado." : "Pedido cancelado." };
+      }
+    }
     if (action === "request") {
       const items = JSON.parse(String(f.get("items") ?? "[]"));
       if (!Array.isArray(items) || items.length > 30) throw Error();

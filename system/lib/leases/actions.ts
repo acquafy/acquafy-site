@@ -80,7 +80,7 @@ export async function leaseAction(
                 {
                   quantity: 1,
                   price_data: {
-                    currency: "usd",
+                    currency: l.currency,
                     unit_amount: l.monthly_minor,
                     recurring: { interval: "month" },
                     product_data: { name: l.title },
