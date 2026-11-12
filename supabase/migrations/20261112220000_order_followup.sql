@@ -43,7 +43,11 @@ revoke all on public.installation_windows,public.installation_bookings from anon
 grant select on public.installation_windows,public.installation_bookings to authenticated;
 grant all on public.installation_windows,public.installation_bookings to service_role;
 -- Customers see the open windows (date, period, region); staff see everything.
-create policy installation_windows_read on public.installation_windows for select to authenticated using(portal_private.staff('admin') or (active and portal_private.approved()));
+-- Customers see the open windows, and always the window of their own booking (even after staff close it).
+create policy installation_windows_read on public.installation_windows for select to authenticated using(
+ portal_private.staff('admin') or (active and portal_private.approved())
+ or exists(select 1 from public.installation_bookings b join public.product_orders o on o.id=b.order_id
+  where b.window_id=installation_windows.id and o.user_id=(select auth.uid()) and portal_private.account_access(o.account_id)));
 create policy installation_bookings_read on public.installation_bookings for select to authenticated using(portal_private.staff('admin') or exists(select 1 from public.product_orders o where o.id=installation_bookings.order_id and o.user_id=(select auth.uid()) and portal_private.account_access(o.account_id)));
 create trigger audit_installation_window after insert or update on public.installation_windows for each row execute function portal_private.audit_change();
 create trigger audit_installation_booking after insert or update on public.installation_bookings for each row execute function portal_private.audit_change();
@@ -55,6 +59,16 @@ create function public.installation_window_free(window_ids uuid[]) returns table
 $$;
 revoke all on function public.installation_window_free(uuid[]) from public,anon;
 grant execute on function public.installation_window_free(uuid[]) to authenticated;
+
+-- Windows a customer can book now in a state: active, at least 48 hours ahead, with room. Filtered before the limit,
+-- so full early windows never hide later ones.
+create function public.installation_windows_open(region_code text,max_rows integer) returns table(id uuid,starts_at timestamptz,ends_at timestamptz,free integer) language sql stable security definer set search_path='' as $$
+ select w.id,w.starts_at,w.ends_at,(w.capacity-count(b.order_id))::integer from public.installation_windows w left join public.installation_bookings b on b.window_id=w.id
+ where portal_private.approved() and w.active and w.region=upper(region_code) and w.starts_at>=now()+interval '48 hours'
+ group by w.id having count(b.order_id)<w.capacity order by w.starts_at limit least(greatest(max_rows,1),50);
+$$;
+revoke all on function public.installation_windows_open(text,integer) from public,anon;
+grant execute on function public.installation_windows_open(text,integer) to authenticated;
 
 create function portal_private.installation_command(action text,payload jsonb) returns uuid language plpgsql security definer set search_path='' as $$
 declare w public.installation_windows;o public.product_orders;b public.installation_bookings;result uuid;used integer;
@@ -95,12 +109,23 @@ create function public.installation_command(action text,payload jsonb) returns u
 revoke all on function public.installation_command(text,jsonb) from public,anon;
 grant execute on function public.installation_command(text,jsonb) to authenticated;
 
+-- A cancelled order releases its installation place (bookings only exist for paid orders, which can still be
+-- cancelled within the withdrawal period).
+create function portal_private.release_booking() returns trigger language plpgsql security definer set search_path='' as $$begin
+ if new.status='cancelled' and old.status is distinct from 'cancelled' then delete from public.installation_bookings where order_id=new.id;end if;
+ return new;end;$$;
+revoke all on function portal_private.release_booking() from public,anon,authenticated;
+create trigger release_booking after update on public.product_orders for each row execute function portal_private.release_booking();
+
 -- 3 · E-mail outbox. Rows are written by triggers and read only by the server job (service role).
 create table public.order_notifications(
  id bigint generated always as identity primary key,
  order_id uuid not null references public.product_orders(id),
  kind text not null check(kind in ('placed','confirmed','paid','installation_booked','shipped','installed','cancelled','refunded')),
  to_email text not null,
+ -- What the e-mail says, captured when it is queued (order and appointment at that moment): every attempt sends the
+ -- same message under the same idempotency key, even if the order or the booking changes before it goes out.
+ payload jsonb not null,
  status text not null default 'pending' check(status in ('pending','sending','sent','failed')),
  attempts integer not null default 0,last_error text,provider_id text,
  created_at timestamptz not null default now(),sent_at timestamptz,locked_at timestamptz
@@ -110,13 +135,15 @@ alter table public.order_notifications enable row level security;
 revoke all on public.order_notifications from anon,authenticated;
 grant all on public.order_notifications to service_role;
 
-create function portal_private.queue_order_notification(order_ref uuid,kind text) returns void language plpgsql security definer set search_path='' as $$
-declare email text;
+create function portal_private.queue_order_notification(order_ref uuid,kind text,extra jsonb default '{}') returns void language plpgsql security definer set search_path='' as $$
+declare email text;snapshot jsonb;
 begin
- select u.email into email from public.product_orders o join auth.users u on u.id=o.user_id where o.id=order_ref and o.flow='fixed';
- if email is not null then insert into public.order_notifications(order_id,kind,to_email)values(order_ref,kind,email);end if;
+ select u.email,jsonb_build_object('id',o.id,'kind',o.kind,'currency',o.currency,'total_minor',o.total_minor,'fee_minor',o.fee_minor,
+  'delivery_estimate',o.delivery_estimate,'tracking_reference',o.tracking_reference,'items',o.items)||extra
+ into email,snapshot from public.product_orders o join auth.users u on u.id=o.user_id where o.id=order_ref and o.flow='fixed';
+ if email is not null then insert into public.order_notifications(order_id,kind,to_email,payload)values(order_ref,kind,email,snapshot);end if;
 end;$$;
-revoke all on function portal_private.queue_order_notification(uuid,text) from public,anon,authenticated;
+revoke all on function portal_private.queue_order_notification(uuid,text,jsonb) from public,anon,authenticated;
 
 create function portal_private.order_event_notification() returns trigger language plpgsql security definer set search_path='' as $$begin
  if new.status in ('placed','confirmed','paid','shipped','installed','cancelled') then perform portal_private.queue_order_notification(new.order_id,new.status);end if;
@@ -125,7 +152,10 @@ revoke all on function portal_private.order_event_notification() from public,ano
 create trigger order_event_notification after insert on public.order_events for each row execute function portal_private.order_event_notification();
 
 create function portal_private.booking_notification() returns trigger language plpgsql security definer set search_path='' as $$begin
- if TG_OP='INSERT' or old.window_id is distinct from new.window_id then perform portal_private.queue_order_notification(new.order_id,'installation_booked');end if;
+ if TG_OP='INSERT' or old.window_id is distinct from new.window_id then
+ perform portal_private.queue_order_notification(new.order_id,'installation_booked',
+  (select jsonb_build_object('booking',jsonb_build_object('starts_at',w.starts_at,'ends_at',w.ends_at)) from public.installation_windows w where w.id=new.window_id));
+ end if;
  return new;end;$$;
 revoke all on function portal_private.booking_notification() from public,anon,authenticated;
 create trigger booking_notification after insert or update on public.installation_bookings for each row execute function portal_private.booking_notification();

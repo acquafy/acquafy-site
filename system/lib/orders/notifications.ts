@@ -2,7 +2,15 @@ import "server-only";
 import { publicOrigin, serviceClient } from "@/lib/enrollment/server";
 import { renderOrderEmail, type EmailOrder, type NotificationKind } from "./emails";
 
-type Row = { id: number; order_id: string; kind: NotificationKind; to_email: string; attempts: number };
+type Row = {
+  id: number;
+  order_id: string;
+  kind: NotificationKind;
+  to_email: string;
+  attempts: number;
+  /** The order (and appointment) captured when the e-mail was queued; every attempt renders the same message. */
+  payload: EmailOrder & { booking?: { starts_at: string; ends_at: string } };
+};
 
 /** Resend is configured when the API key and the sender address exist; otherwise e-mails wait in the outbox. */
 export function emailConfigured() {
@@ -23,13 +31,8 @@ export async function sendPendingNotifications(batch = 20) {
     failed = 0;
   for (const row of (claimed.data ?? []) as Row[]) {
     try {
-      const [{ data: order, error }, booking] = await Promise.all([
-        db.from("product_orders").select("id,kind,currency,total_minor,fee_minor,delivery_estimate,tracking_reference,items").eq("id", row.order_id).single(),
-        db.from("installation_bookings").select("installation_windows(starts_at,ends_at)").eq("order_id", row.order_id).maybeSingle(),
-      ]);
-      if (error || !order) throw Error("Order unavailable");
-      const window = (booking.data?.installation_windows ?? undefined) as { starts_at: string; ends_at: string } | undefined;
-      const email = renderOrderEmail(row.kind, order as EmailOrder, publicOrigin(), window);
+      if (!row.payload?.id) throw Error("Payload missing");
+      const email = renderOrderEmail(row.kind, row.payload, publicOrigin(), row.payload.booking);
       const res = await fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: {

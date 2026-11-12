@@ -103,7 +103,7 @@ describe("order e-mail sender", () => {
     expect(db.rpc).not.toHaveBeenCalled();
   });
   it("sends each claimed e-mail once, with an idempotency key, and records the result", async () => {
-    db.rpc.mockResolvedValue({ data: [{ id: 7, order_id: emailOrder.id, kind: "placed", to_email: "cliente@example.com", attempts: 1 }], error: null });
+    db.rpc.mockResolvedValue({ data: [{ id: 7, order_id: emailOrder.id, kind: "placed", to_email: "cliente@example.com", attempts: 1, payload: emailOrder }], error: null });
     const fetchMock = vi.fn().mockResolvedValue(new Response(JSON.stringify({ id: "email_1" }), { status: 200 }));
     vi.stubGlobal("fetch", fetchMock);
     expect(await sendPendingNotifications()).toEqual({ sent: 1, failed: 0, skipped: false });
@@ -116,8 +116,8 @@ describe("order e-mail sender", () => {
   it("puts a failed e-mail back in the queue, and gives up after 5 attempts", async () => {
     db.rpc.mockResolvedValue({
       data: [
-        { id: 8, order_id: emailOrder.id, kind: "paid", to_email: "a@example.com", attempts: 2 },
-        { id: 9, order_id: emailOrder.id, kind: "paid", to_email: "b@example.com", attempts: 5 },
+        { id: 8, order_id: emailOrder.id, kind: "paid", to_email: "a@example.com", attempts: 2, payload: emailOrder },
+        { id: 9, order_id: emailOrder.id, kind: "paid", to_email: "b@example.com", attempts: 5, payload: emailOrder },
       ],
       error: null,
     });
@@ -127,6 +127,14 @@ describe("order e-mail sender", () => {
       { status: "pending", last_error: "Resend 429: rate limited" },
       { status: "failed", last_error: "Resend 429: rate limited" },
     ]);
+  });
+  it("renders the appointment the e-mail was queued for, not the current booking", async () => {
+    const booking = { starts_at: "2026-12-15T11:00:00Z", ends_at: "2026-12-15T15:00:00Z" };
+    db.rpc.mockResolvedValue({ data: [{ id: 10, order_id: emailOrder.id, kind: "installation_booked", to_email: "c@example.com", attempts: 1, payload: { ...emailOrder, booking } }], error: null });
+    const fetchMock = vi.fn().mockImplementation(async () => new Response(JSON.stringify({ id: "email_2" }), { status: 200 }));
+    vi.stubGlobal("fetch", fetchMock);
+    await sendPendingNotifications();
+    expect(JSON.parse(fetchMock.mock.calls[0][1].body).text).toMatch(/15\/12 · 08:00–12:00/);
   });
   it("only runs the cron route with the cron secret", async () => {
     vi.stubEnv("CRON_SECRET", "cron-secret");
