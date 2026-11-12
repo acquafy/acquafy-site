@@ -84,8 +84,9 @@ export async function orderAction(
       if (!Array.isArray(items) || items.length < 1 || items.length > 30) throw Error();
       const quantity = Number(f.get("quantity"));
       if (items.length === 1 && Number.isInteger(quantity)) items[0].quantity = quantity;
-      const delivery = deliveryFromForm(f);
-      if (!delivery) throw Error();
+      const parsed = deliveryFromForm(f);
+      if ("error" in parsed) return { error: parsed.error };
+      const delivery = parsed.delivery;
       const placed = await ctx.db.rpc("order_command", {
         action: "place",
         payload: { kind: payload.kind, currency: payload.currency, terms: payload.terms, items, delivery },

@@ -9,9 +9,10 @@ import { sendPendingNotifications } from "./notifications";
 /** Order page: the customer corrects the delivery address and contact until Acquafy confirms the order. */
 export async function updateDelivery(_state: ActionResult, f: FormData): Promise<ActionResult> {
   const ctx = await context();
-  const delivery = deliveryFromForm(f);
+  const parsed = deliveryFromForm(f);
   const orderId = String(f.get("order_id") ?? "");
-  if (!delivery) return { error: "Preencha CEP, rua, número e cidade." };
+  if ("error" in parsed) return { error: parsed.error };
+  const delivery = parsed.delivery;
   const result = await ctx.db.rpc("order_delivery_update", { payload: { order_id: orderId, delivery } });
   if (result.error) return { error: "Não foi possível alterar. Depois da confirmação, fale com o suporte." };
   revalidatePath("/pedidos/" + orderId);

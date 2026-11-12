@@ -51,6 +51,14 @@ begin
  update public.installation_windows set starts_at=now()+interval '1 day',ends_at=now()+interval '1 day 4 hours' where id=w2;
  begin perform public.installation_command('book',jsonb_build_object('order_id',o,'window_id',w));raise exception 'Late reschedule';exception when raise_exception then if sqlerrm<>'Booking locked' then raise;end if;end;
 
+ -- A US address in "PA" (Pennsylvania) never books a Brazilian window in PA (Pará).
+ perform set_config('request.jwt.claim.sub',s::text,true);
+ perform public.installation_command('publish',jsonb_build_object('region','PA','starts_at',now()+interval '5 days','ends_at',now()+interval '5 days 4 hours','capacity',5));
+ perform set_config('request.jwt.claim.sub',c::text,true);
+ update public.product_orders set delivery=delivery||jsonb_build_object('country_code','US','state','PA') where id=o;
+ begin perform public.installation_command('book',jsonb_build_object('order_id',o,'window_id',(select id from public.installation_windows where region='PA')));raise exception 'US address booked a Brazilian window';exception when raise_exception then if sqlerrm<>'Window unavailable' then raise;end if;end;
+ update public.product_orders set delivery=delivery||jsonb_build_object('country_code','BR','state','SP') where id=o;
+
  -- Another customer cannot book someone else's order.
  perform set_config('request.jwt.claim.sub',u::text,true);
  begin perform public.installation_command('book',jsonb_build_object('order_id',o,'window_id',w));raise exception 'Foreign booking';exception when raise_exception then if sqlerrm<>'Booking unavailable' then raise;end if;end;
@@ -95,7 +103,7 @@ set local role authenticated;
 select set_config('request.jwt.claim.sub',current_setting('followup_test.other'),true);
 do $$begin
  if exists(select 1 from public.installation_bookings) then raise exception 'Foreign booking visible';end if;
- if (select count(*) from public.installation_windows)<>2 then raise exception 'Closed window visible to other customers';end if;
+ if (select count(*) from public.installation_windows)<>3 then raise exception 'Closed window visible to other customers';end if;
 end$$;
 select set_config('request.jwt.claim.sub',current_setting('followup_test.customer'),true);
 do $$begin

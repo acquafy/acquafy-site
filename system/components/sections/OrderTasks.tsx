@@ -2,7 +2,7 @@ import { Check, Clock, Circle } from "lucide-react";
 import { ActionDialog } from "@/components/enrollment/ActionDialog";
 import { ActionForm } from "@/components/enrollment/ActionForm";
 import { Field } from "@/components/live/Fields";
-import { OrderAddress } from "@/components/sections/OrderAddress";
+import { OrderAddress, OrderPhone } from "@/components/sections/OrderAddress";
 import { ButtonLink } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { cn } from "@/lib/cn";
@@ -59,8 +59,8 @@ export function OrderTasks({
           <ActionDialog action={updateDelivery} title="Endereço e contato" trigger="Corrigir endereço" submit="Salvar" triggerVariant="outline" triggerSize="sm" size="lg">
             <input type="hidden" name="order_id" value={orderId} />
             <Field name="name" label="Nome completo / Razão social" autoComplete="name" defaultValue={delivery.name} />
-            <Field name="phone" label="Telefone com DDD" type="tel" maxLength={40} autoComplete="tel" defaultValue={delivery.phone} />
-            <OrderAddress brazil={currency === "brl"} initial={delivery} />
+            <OrderPhone defaultCountry={currency === "brl" ? "BR" : "US"} initial={delivery.phone} />
+            <OrderAddress defaultCountry={currency === "brl" ? "BR" : "US"} initial={delivery} />
           </ActionDialog>
         ) : null;
       case "lease":
