@@ -1,11 +1,9 @@
 ﻿"use client";
 
 import { useRef, useState, useCallback, useEffect } from "react";
-import { CHECKIN_FAMILIES, type CheckinFamily } from "@/lib/checkin-products";
-import StripePaymentForm, { type StripeFormHandle } from "@/components/StripePaymentForm";
-import { formatPrice, formatBRL, PRODUCT_PRICES_BRL, PRODUCT_LEASE_BRL, PRODUCT_IMAGES } from "@/lib/products";
+import { type CheckinFamily } from "@/lib/checkin-products";
+import { formatPrice, PRODUCT_LEASE_BRL } from "@/lib/products";
 import FigmaIcon from "@/components/FigmaIcon";
-import { useCart } from "@/components/CartProvider";
 import { useLang } from "@/context/LanguageContext";
 import type { Lang } from "@/context/LanguageContext";
 
@@ -1166,257 +1164,6 @@ const SECTION_LABELS: Record<string, string> = {
   conta:     "Conta",
 };
 
-type PhoneCountry = { code: string; name: string; dial: string; flag: string; maxDigits: number; placeholder: string; fmt: (d: string) => string };
-
-const LANG_TO_LOCALE: Record<Lang, string> = {
-  pt:      "pt-BR", "pt-pt": "pt-PT",
-  en:      "en-GB", "en-gb": "en-US",
-  es:      "es-ES", fr:      "fr-FR",
-  de:      "de-DE", it:      "it-IT",
-  zh:      "zh-CN", ja:      "ja-JP",
-  ko:      "ko-KR", sv:      "sv-SE",
-  fi:      "fi-FI", ru:      "ru-RU",
-  ro:      "ro-RO", he:      "he-IL",
-};
-
-const fmtGen = (d: string): string =>
-  d.length <= 3 ? d : d.length <= 7 ? `${d.slice(0,3)} ${d.slice(3)}` :
-  d.length <= 10 ? `${d.slice(0,3)} ${d.slice(3,6)} ${d.slice(6)}` : `${d.slice(0,4)} ${d.slice(4,7)} ${d.slice(7)}`;
-
-const PHONE_COUNTRIES: PhoneCountry[] = [
-  { code: "BR", name: "Brasil",                    dial: "+55",   flag: "🇧🇷", maxDigits: 11, placeholder: "(99) 99999-9999",
-    fmt: (d) => d.length<=2?d:d.length<=7?`(${d.slice(0,2)}) ${d.slice(2)}`:`(${d.slice(0,2)}) ${d.slice(2,7)}-${d.slice(7)}` },
-  { code: "AF", name: "Afeganistão",               dial: "+93",   flag: "🇦🇫", maxDigits: 9,  placeholder: "99 999 9999",    fmt: fmtGen },
-  { code: "ZA", name: "África do Sul",             dial: "+27",   flag: "🇿🇦", maxDigits: 9,  placeholder: "99 999 9999",    fmt: fmtGen },
-  { code: "AL", name: "Albânia",                   dial: "+355",  flag: "🇦🇱", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "DE", name: "Alemanha",                  dial: "+49",   flag: "🇩🇪", maxDigits: 11, placeholder: "999 9999 9999",  fmt: fmtGen },
-  { code: "AD", name: "Andorra",                   dial: "+376",  flag: "🇦🇩", maxDigits: 6,  placeholder: "999 999",         fmt: fmtGen },
-  { code: "AO", name: "Angola",                    dial: "+244",  flag: "🇦🇴", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "AI", name: "Anguila",                   dial: "+1264", flag: "🇦🇮", maxDigits: 10, placeholder: "999 999 9999",   fmt: fmtGen },
-  { code: "AG", name: "Antígua e Barbuda",         dial: "+1268", flag: "🇦🇬", maxDigits: 10, placeholder: "999 999 9999",   fmt: fmtGen },
-  { code: "SA", name: "Arábia Saudita",            dial: "+966",  flag: "🇸🇦", maxDigits: 9,  placeholder: "99 999 9999",    fmt: fmtGen },
-  { code: "DZ", name: "Argélia",                   dial: "+213",  flag: "🇩🇿", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "AR", name: "Argentina",                 dial: "+54",   flag: "🇦🇷", maxDigits: 10, placeholder: "(11) 9999-9999",
-    fmt: (d) => d.length<=2?d:d.length<=6?`(${d.slice(0,2)}) ${d.slice(2)}`:`(${d.slice(0,2)}) ${d.slice(2,6)}-${d.slice(6)}` },
-  { code: "AM", name: "Armênia",                   dial: "+374",  flag: "🇦🇲", maxDigits: 8,  placeholder: "99 999 999",     fmt: fmtGen },
-  { code: "AW", name: "Aruba",                     dial: "+297",  flag: "🇦🇼", maxDigits: 7,  placeholder: "999 9999",        fmt: fmtGen },
-  { code: "AU", name: "Austrália",                 dial: "+61",   flag: "🇦🇺", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "AT", name: "Áustria",                   dial: "+43",   flag: "🇦🇹", maxDigits: 11, placeholder: "999 9999 9999",  fmt: fmtGen },
-  { code: "AZ", name: "Azerbaijão",                dial: "+994",  flag: "🇦🇿", maxDigits: 9,  placeholder: "99 999 9999",    fmt: fmtGen },
-  { code: "BS", name: "Bahamas",                   dial: "+1242", flag: "🇧🇸", maxDigits: 10, placeholder: "999 999 9999",   fmt: fmtGen },
-  { code: "BH", name: "Bahrein",                   dial: "+973",  flag: "🇧🇭", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "BD", name: "Bangladesh",                dial: "+880",  flag: "🇧🇩", maxDigits: 10, placeholder: "9999 999 999",   fmt: fmtGen },
-  { code: "BB", name: "Barbados",                  dial: "+1246", flag: "🇧🇧", maxDigits: 10, placeholder: "999 999 9999",   fmt: fmtGen },
-  { code: "BE", name: "Bélgica",                   dial: "+32",   flag: "🇧🇪", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "BZ", name: "Belize",                    dial: "+501",  flag: "🇧🇿", maxDigits: 7,  placeholder: "999 9999",        fmt: fmtGen },
-  { code: "BJ", name: "Benin",                     dial: "+229",  flag: "🇧🇯", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "BM", name: "Bermudas",                  dial: "+1441", flag: "🇧🇲", maxDigits: 10, placeholder: "999 999 9999",   fmt: fmtGen },
-  { code: "BY", name: "Bielorrússia",              dial: "+375",  flag: "🇧🇾", maxDigits: 9,  placeholder: "99 999 9999",    fmt: fmtGen },
-  { code: "BO", name: "Bolívia",                   dial: "+591",  flag: "🇧🇴", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "BA", name: "Bósnia e Herzegovina",      dial: "+387",  flag: "🇧🇦", maxDigits: 8,  placeholder: "99 999 999",     fmt: fmtGen },
-  { code: "BW", name: "Botswana",                  dial: "+267",  flag: "🇧🇼", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "BN", name: "Brunei",                    dial: "+673",  flag: "🇧🇳", maxDigits: 7,  placeholder: "999 9999",        fmt: fmtGen },
-  { code: "BG", name: "Bulgária",                  dial: "+359",  flag: "🇧🇬", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "BF", name: "Burkina Faso",              dial: "+226",  flag: "🇧🇫", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "BI", name: "Burundi",                   dial: "+257",  flag: "🇧🇮", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "BT", name: "Butão",                     dial: "+975",  flag: "🇧🇹", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "CV", name: "Cabo Verde",                dial: "+238",  flag: "🇨🇻", maxDigits: 7,  placeholder: "999 9999",        fmt: fmtGen },
-  { code: "CM", name: "Camarões",                  dial: "+237",  flag: "🇨🇲", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "KH", name: "Camboja",                   dial: "+855",  flag: "🇰🇭", maxDigits: 9,  placeholder: "99 999 9999",    fmt: fmtGen },
-  { code: "CA", name: "Canadá",                    dial: "+1",    flag: "🇨🇦", maxDigits: 10, placeholder: "(999) 999-9999",
-    fmt: (d) => d.length<=3?d:d.length<=6?`(${d.slice(0,3)}) ${d.slice(3)}`:`(${d.slice(0,3)}) ${d.slice(3,6)}-${d.slice(6)}` },
-  { code: "QA", name: "Catar",                     dial: "+974",  flag: "🇶🇦", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "KZ", name: "Cazaquistão",               dial: "+7",    flag: "🇰🇿", maxDigits: 10, placeholder: "999 999 9999",   fmt: fmtGen },
-  { code: "CF", name: "Rep. Centro-Africana",      dial: "+236",  flag: "🇨🇫", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "TD", name: "Chade",                     dial: "+235",  flag: "🇹🇩", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "CL", name: "Chile",                     dial: "+56",   flag: "🇨🇱", maxDigits: 9,  placeholder: "9 9999 9999",    fmt: fmtGen },
-  { code: "CN", name: "China",                     dial: "+86",   flag: "🇨🇳", maxDigits: 11, placeholder: "999 9999 9999",  fmt: fmtGen },
-  { code: "CY", name: "Chipre",                    dial: "+357",  flag: "🇨🇾", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "CO", name: "Colômbia",                  dial: "+57",   flag: "🇨🇴", maxDigits: 10, placeholder: "999 999 9999",   fmt: fmtGen },
-  { code: "KM", name: "Comores",                   dial: "+269",  flag: "🇰🇲", maxDigits: 7,  placeholder: "999 9999",        fmt: fmtGen },
-  { code: "CG", name: "Congo",                     dial: "+242",  flag: "🇨🇬", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "CD", name: "Congo (RD)",                dial: "+243",  flag: "🇨🇩", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "KP", name: "Coreia do Norte",           dial: "+850",  flag: "🇰🇵", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "KR", name: "Coreia do Sul",             dial: "+82",   flag: "🇰🇷", maxDigits: 10, placeholder: "99 9999 9999",   fmt: fmtGen },
-  { code: "CI", name: "Costa do Marfim",           dial: "+225",  flag: "🇨🇮", maxDigits: 10, placeholder: "99 99 999 999",  fmt: fmtGen },
-  { code: "CR", name: "Costa Rica",                dial: "+506",  flag: "🇨🇷", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "HR", name: "Croácia",                   dial: "+385",  flag: "🇭🇷", maxDigits: 9,  placeholder: "99 999 9999",    fmt: fmtGen },
-  { code: "CU", name: "Cuba",                      dial: "+53",   flag: "🇨🇺", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "CW", name: "Curaçao",                   dial: "+599",  flag: "🇨🇼", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "DK", name: "Dinamarca",                 dial: "+45",   flag: "🇩🇰", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "DJ", name: "Djibouti",                  dial: "+253",  flag: "🇩🇯", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "DM", name: "Dominica",                  dial: "+1767", flag: "🇩🇲", maxDigits: 10, placeholder: "999 999 9999",   fmt: fmtGen },
-  { code: "EG", name: "Egito",                     dial: "+20",   flag: "🇪🇬", maxDigits: 10, placeholder: "999 999 9999",   fmt: fmtGen },
-  { code: "SV", name: "El Salvador",               dial: "+503",  flag: "🇸🇻", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "AE", name: "Emirados Árabes Unidos",    dial: "+971",  flag: "🇦🇪", maxDigits: 9,  placeholder: "99 999 9999",    fmt: fmtGen },
-  { code: "EC", name: "Equador",                   dial: "+593",  flag: "🇪🇨", maxDigits: 9,  placeholder: "99 999 9999",    fmt: fmtGen },
-  { code: "GQ", name: "Guiné Equatorial",          dial: "+240",  flag: "🇬🇶", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "ER", name: "Eritreia",                  dial: "+291",  flag: "🇪🇷", maxDigits: 7,  placeholder: "999 9999",        fmt: fmtGen },
-  { code: "SK", name: "Eslováquia",                dial: "+421",  flag: "🇸🇰", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "SI", name: "Eslovênia",                 dial: "+386",  flag: "🇸🇮", maxDigits: 8,  placeholder: "99 999 999",     fmt: fmtGen },
-  { code: "ES", name: "Espanha",                   dial: "+34",   flag: "🇪🇸", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "SZ", name: "Essuatíni",                 dial: "+268",  flag: "🇸🇿", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "US", name: "Estados Unidos",            dial: "+1",    flag: "🇺🇸", maxDigits: 10, placeholder: "(999) 999-9999",
-    fmt: (d) => d.length<=3?d:d.length<=6?`(${d.slice(0,3)}) ${d.slice(3)}`:`(${d.slice(0,3)}) ${d.slice(3,6)}-${d.slice(6)}` },
-  { code: "EE", name: "Estônia",                   dial: "+372",  flag: "🇪🇪", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "ET", name: "Etiópia",                   dial: "+251",  flag: "🇪🇹", maxDigits: 9,  placeholder: "99 999 9999",    fmt: fmtGen },
-  { code: "FJ", name: "Fiji",                      dial: "+679",  flag: "🇫🇯", maxDigits: 7,  placeholder: "999 9999",        fmt: fmtGen },
-  { code: "PH", name: "Filipinas",                 dial: "+63",   flag: "🇵🇭", maxDigits: 10, placeholder: "999 999 9999",   fmt: fmtGen },
-  { code: "FI", name: "Finlândia",                 dial: "+358",  flag: "🇫🇮", maxDigits: 10, placeholder: "999 999 9999",   fmt: fmtGen },
-  { code: "FR", name: "França",                    dial: "+33",   flag: "🇫🇷", maxDigits: 9,  placeholder: "99 99 99 99 99", fmt: fmtGen },
-  { code: "GA", name: "Gabão",                     dial: "+241",  flag: "🇬🇦", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "GM", name: "Gâmbia",                    dial: "+220",  flag: "🇬🇲", maxDigits: 7,  placeholder: "999 9999",        fmt: fmtGen },
-  { code: "GH", name: "Gana",                      dial: "+233",  flag: "🇬🇭", maxDigits: 9,  placeholder: "99 999 9999",    fmt: fmtGen },
-  { code: "GE", name: "Geórgia",                   dial: "+995",  flag: "🇬🇪", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "GI", name: "Gibraltar",                 dial: "+350",  flag: "🇬🇮", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "GD", name: "Granada",                   dial: "+1473", flag: "🇬🇩", maxDigits: 10, placeholder: "999 999 9999",   fmt: fmtGen },
-  { code: "GR", name: "Grécia",                    dial: "+30",   flag: "🇬🇷", maxDigits: 10, placeholder: "999 999 9999",   fmt: fmtGen },
-  { code: "GL", name: "Groenlândia",               dial: "+299",  flag: "🇬🇱", maxDigits: 6,  placeholder: "99 99 99",        fmt: fmtGen },
-  { code: "GP", name: "Guadalupe",                 dial: "+590",  flag: "🇬🇵", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "GU", name: "Guam",                      dial: "+1671", flag: "🇬🇺", maxDigits: 10, placeholder: "999 999 9999",   fmt: fmtGen },
-  { code: "GT", name: "Guatemala",                 dial: "+502",  flag: "🇬🇹", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "GN", name: "Guiné",                     dial: "+224",  flag: "🇬🇳", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "GW", name: "Guiné-Bissau",              dial: "+245",  flag: "🇬🇼", maxDigits: 7,  placeholder: "999 9999",        fmt: fmtGen },
-  { code: "GY", name: "Guiana",                    dial: "+592",  flag: "🇬🇾", maxDigits: 7,  placeholder: "999 9999",        fmt: fmtGen },
-  { code: "GF", name: "Guiana Francesa",           dial: "+594",  flag: "🇬🇫", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "HT", name: "Haiti",                     dial: "+509",  flag: "🇭🇹", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "HN", name: "Honduras",                  dial: "+504",  flag: "🇭🇳", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "HK", name: "Hong Kong",                 dial: "+852",  flag: "🇭🇰", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "HU", name: "Hungria",                   dial: "+36",   flag: "🇭🇺", maxDigits: 9,  placeholder: "99 999 9999",    fmt: fmtGen },
-  { code: "YE", name: "Iêmen",                     dial: "+967",  flag: "🇾🇪", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "MH", name: "Ilhas Marshall",            dial: "+692",  flag: "🇲🇭", maxDigits: 7,  placeholder: "999 9999",        fmt: fmtGen },
-  { code: "VI", name: "Ilhas Virgens (EUA)",       dial: "+1340", flag: "🇻🇮", maxDigits: 10, placeholder: "999 999 9999",   fmt: fmtGen },
-  { code: "VG", name: "Ilhas Virgens (RU)",        dial: "+1284", flag: "🇻🇬", maxDigits: 10, placeholder: "999 999 9999",   fmt: fmtGen },
-  { code: "IN", name: "Índia",                     dial: "+91",   flag: "🇮🇳", maxDigits: 10, placeholder: "99999 99999",    fmt: fmtGen },
-  { code: "ID", name: "Indonésia",                 dial: "+62",   flag: "🇮🇩", maxDigits: 11, placeholder: "999 9999 9999",  fmt: fmtGen },
-  { code: "IQ", name: "Iraque",                    dial: "+964",  flag: "🇮🇶", maxDigits: 10, placeholder: "999 999 9999",   fmt: fmtGen },
-  { code: "IR", name: "Irã",                       dial: "+98",   flag: "🇮🇷", maxDigits: 10, placeholder: "999 999 9999",   fmt: fmtGen },
-  { code: "IE", name: "Irlanda",                   dial: "+353",  flag: "🇮🇪", maxDigits: 9,  placeholder: "99 999 9999",    fmt: fmtGen },
-  { code: "IS", name: "Islândia",                  dial: "+354",  flag: "🇮🇸", maxDigits: 7,  placeholder: "999 9999",        fmt: fmtGen },
-  { code: "IL", name: "Israel",                    dial: "+972",  flag: "🇮🇱", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "IT", name: "Itália",                    dial: "+39",   flag: "🇮🇹", maxDigits: 11, placeholder: "999 999 9999",   fmt: fmtGen },
-  { code: "JM", name: "Jamaica",                   dial: "+1876", flag: "🇯🇲", maxDigits: 10, placeholder: "999 999 9999",   fmt: fmtGen },
-  { code: "JP", name: "Japão",                     dial: "+81",   flag: "🇯🇵", maxDigits: 11, placeholder: "99 9999 9999",   fmt: fmtGen },
-  { code: "JO", name: "Jordânia",                  dial: "+962",  flag: "🇯🇴", maxDigits: 9,  placeholder: "99 999 9999",    fmt: fmtGen },
-  { code: "KE", name: "Quênia",                    dial: "+254",  flag: "🇰🇪", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "KG", name: "Quirguistão",               dial: "+996",  flag: "🇰🇬", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "KI", name: "Kiribati",                  dial: "+686",  flag: "🇰🇮", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "XK", name: "Kosovo",                    dial: "+383",  flag: "🇽🇰", maxDigits: 8,  placeholder: "99 999 999",     fmt: fmtGen },
-  { code: "KW", name: "Kuwait",                    dial: "+965",  flag: "🇰🇼", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "LA", name: "Laos",                      dial: "+856",  flag: "🇱🇦", maxDigits: 9,  placeholder: "99 999 9999",    fmt: fmtGen },
-  { code: "LS", name: "Lesoto",                    dial: "+266",  flag: "🇱🇸", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "LV", name: "Letônia",                   dial: "+371",  flag: "🇱🇻", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "LB", name: "Líbano",                    dial: "+961",  flag: "🇱🇧", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "LR", name: "Libéria",                   dial: "+231",  flag: "🇱🇷", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "LY", name: "Líbia",                     dial: "+218",  flag: "🇱🇾", maxDigits: 9,  placeholder: "99 999 9999",    fmt: fmtGen },
-  { code: "LI", name: "Liechtenstein",             dial: "+423",  flag: "🇱🇮", maxDigits: 7,  placeholder: "999 9999",        fmt: fmtGen },
-  { code: "LT", name: "Lituânia",                  dial: "+370",  flag: "🇱🇹", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "LU", name: "Luxemburgo",                dial: "+352",  flag: "🇱🇺", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "MO", name: "Macau",                     dial: "+853",  flag: "🇲🇴", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "MK", name: "Macedônia do Norte",        dial: "+389",  flag: "🇲🇰", maxDigits: 8,  placeholder: "99 999 999",     fmt: fmtGen },
-  { code: "MG", name: "Madagascar",                dial: "+261",  flag: "🇲🇬", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "MY", name: "Malásia",                   dial: "+60",   flag: "🇲🇾", maxDigits: 10, placeholder: "99 9999 9999",   fmt: fmtGen },
-  { code: "MW", name: "Malawi",                    dial: "+265",  flag: "🇲🇼", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "MV", name: "Maldivas",                  dial: "+960",  flag: "🇲🇻", maxDigits: 7,  placeholder: "999 9999",        fmt: fmtGen },
-  { code: "ML", name: "Mali",                      dial: "+223",  flag: "🇲🇱", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "MT", name: "Malta",                     dial: "+356",  flag: "🇲🇹", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "MA", name: "Marrocos",                  dial: "+212",  flag: "🇲🇦", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "MQ", name: "Martinica",                 dial: "+596",  flag: "🇲🇶", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "MR", name: "Mauritânia",                dial: "+222",  flag: "🇲🇷", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "MU", name: "Maurício",                  dial: "+230",  flag: "🇲🇺", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "MX", name: "México",                    dial: "+52",   flag: "🇲🇽", maxDigits: 10, placeholder: "99 9999 9999",
-    fmt: (d) => d.length<=2?d:d.length<=6?`${d.slice(0,2)} ${d.slice(2)}`:`${d.slice(0,2)} ${d.slice(2,6)} ${d.slice(6)}` },
-  { code: "FM", name: "Micronésia",                dial: "+691",  flag: "🇫🇲", maxDigits: 7,  placeholder: "999 9999",        fmt: fmtGen },
-  { code: "MZ", name: "Moçambique",                dial: "+258",  flag: "🇲🇿", maxDigits: 9,  placeholder: "99 999 9999",    fmt: fmtGen },
-  { code: "MD", name: "Moldávia",                  dial: "+373",  flag: "🇲🇩", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "MC", name: "Mônaco",                    dial: "+377",  flag: "🇲🇨", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "MN", name: "Mongólia",                  dial: "+976",  flag: "🇲🇳", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "ME", name: "Montenegro",                dial: "+382",  flag: "🇲🇪", maxDigits: 8,  placeholder: "99 999 999",     fmt: fmtGen },
-  { code: "MS", name: "Montserrat",                dial: "+1664", flag: "🇲🇸", maxDigits: 10, placeholder: "999 999 9999",   fmt: fmtGen },
-  { code: "MM", name: "Myanmar",                   dial: "+95",   flag: "🇲🇲", maxDigits: 9,  placeholder: "99 999 9999",    fmt: fmtGen },
-  { code: "NA", name: "Namíbia",                   dial: "+264",  flag: "🇳🇦", maxDigits: 9,  placeholder: "99 999 9999",    fmt: fmtGen },
-  { code: "NR", name: "Nauru",                     dial: "+674",  flag: "🇳🇷", maxDigits: 7,  placeholder: "999 9999",        fmt: fmtGen },
-  { code: "NP", name: "Nepal",                     dial: "+977",  flag: "🇳🇵", maxDigits: 10, placeholder: "999 999 9999",   fmt: fmtGen },
-  { code: "NI", name: "Nicarágua",                 dial: "+505",  flag: "🇳🇮", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "NE", name: "Níger",                     dial: "+227",  flag: "🇳🇪", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "NG", name: "Nigéria",                   dial: "+234",  flag: "🇳🇬", maxDigits: 10, placeholder: "999 999 9999",   fmt: fmtGen },
-  { code: "NO", name: "Noruega",                   dial: "+47",   flag: "🇳🇴", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "NC", name: "Nova Caledônia",            dial: "+687",  flag: "🇳🇨", maxDigits: 6,  placeholder: "99 9999",         fmt: fmtGen },
-  { code: "NZ", name: "Nova Zelândia",             dial: "+64",   flag: "🇳🇿", maxDigits: 9,  placeholder: "99 999 9999",    fmt: fmtGen },
-  { code: "NL", name: "Países Baixos",             dial: "+31",   flag: "🇳🇱", maxDigits: 9,  placeholder: "99 999 9999",    fmt: fmtGen },
-  { code: "PW", name: "Palau",                     dial: "+680",  flag: "🇵🇼", maxDigits: 7,  placeholder: "999 9999",        fmt: fmtGen },
-  { code: "PS", name: "Palestina",                 dial: "+970",  flag: "🇵🇸", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "PA", name: "Panamá",                    dial: "+507",  flag: "🇵🇦", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "PG", name: "Papua Nova Guiné",          dial: "+675",  flag: "🇵🇬", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "PK", name: "Paquistão",                 dial: "+92",   flag: "🇵🇰", maxDigits: 10, placeholder: "999 999 9999",   fmt: fmtGen },
-  { code: "PY", name: "Paraguai",                  dial: "+595",  flag: "🇵🇾", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "PE", name: "Peru",                      dial: "+51",   flag: "🇵🇪", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "PF", name: "Polinésia Francesa",        dial: "+689",  flag: "🇵🇫", maxDigits: 6,  placeholder: "99 99 99",        fmt: fmtGen },
-  { code: "PL", name: "Polônia",                   dial: "+48",   flag: "🇵🇱", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "PT", name: "Portugal",                  dial: "+351",  flag: "🇵🇹", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "PR", name: "Porto Rico",                dial: "+1787", flag: "🇵🇷", maxDigits: 10, placeholder: "999 999 9999",   fmt: fmtGen },
-  { code: "GB", name: "Reino Unido",               dial: "+44",   flag: "🇬🇧", maxDigits: 10, placeholder: "9999 999999",    fmt: fmtGen },
-  { code: "DO", name: "República Dominicana",      dial: "+1809", flag: "🇩🇴", maxDigits: 10, placeholder: "999 999 9999",   fmt: fmtGen },
-  { code: "CZ", name: "República Tcheca",          dial: "+420",  flag: "🇨🇿", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "RE", name: "Reunião",                   dial: "+262",  flag: "🇷🇪", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "RO", name: "Romênia",                   dial: "+40",   flag: "🇷🇴", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "RW", name: "Ruanda",                    dial: "+250",  flag: "🇷🇼", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "RU", name: "Rússia",                    dial: "+7",    flag: "🇷🇺", maxDigits: 10, placeholder: "999 999 9999",   fmt: fmtGen },
-  { code: "KN", name: "São Cristóvão e Nevis",     dial: "+1869", flag: "🇰🇳", maxDigits: 10, placeholder: "999 999 9999",   fmt: fmtGen },
-  { code: "LC", name: "Santa Lúcia",               dial: "+1758", flag: "🇱🇨", maxDigits: 10, placeholder: "999 999 9999",   fmt: fmtGen },
-  { code: "VC", name: "São Vicente e Granadinas",  dial: "+1784", flag: "🇻🇨", maxDigits: 10, placeholder: "999 999 9999",   fmt: fmtGen },
-  { code: "WS", name: "Samoa",                     dial: "+685",  flag: "🇼🇸", maxDigits: 7,  placeholder: "999 9999",        fmt: fmtGen },
-  { code: "SM", name: "San Marino",                dial: "+378",  flag: "🇸🇲", maxDigits: 10, placeholder: "999 999 9999",   fmt: fmtGen },
-  { code: "SH", name: "Santa Helena",              dial: "+290",  flag: "🇸🇭", maxDigits: 4,  placeholder: "9999",            fmt: fmtGen },
-  { code: "ST", name: "São Tomé e Príncipe",       dial: "+239",  flag: "🇸🇹", maxDigits: 7,  placeholder: "999 9999",        fmt: fmtGen },
-  { code: "SN", name: "Senegal",                   dial: "+221",  flag: "🇸🇳", maxDigits: 9,  placeholder: "99 999 9999",    fmt: fmtGen },
-  { code: "SL", name: "Serra Leoa",                dial: "+232",  flag: "🇸🇱", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "RS", name: "Sérvia",                    dial: "+381",  flag: "🇷🇸", maxDigits: 9,  placeholder: "99 999 9999",    fmt: fmtGen },
-  { code: "SC", name: "Seychelles",                dial: "+248",  flag: "🇸🇨", maxDigits: 7,  placeholder: "999 9999",        fmt: fmtGen },
-  { code: "SG", name: "Singapura",                 dial: "+65",   flag: "🇸🇬", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "SY", name: "Síria",                     dial: "+963",  flag: "🇸🇾", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "SO", name: "Somália",                   dial: "+252",  flag: "🇸🇴", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "LK", name: "Sri Lanka",                 dial: "+94",   flag: "🇱🇰", maxDigits: 9,  placeholder: "99 999 9999",    fmt: fmtGen },
-  { code: "SD", name: "Sudão",                     dial: "+249",  flag: "🇸🇩", maxDigits: 9,  placeholder: "99 999 9999",    fmt: fmtGen },
-  { code: "SS", name: "Sudão do Sul",              dial: "+211",  flag: "🇸🇸", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "SE", name: "Suécia",                    dial: "+46",   flag: "🇸🇪", maxDigits: 9,  placeholder: "99 999 9999",    fmt: fmtGen },
-  { code: "CH", name: "Suíça",                     dial: "+41",   flag: "🇨🇭", maxDigits: 9,  placeholder: "99 999 9999",    fmt: fmtGen },
-  { code: "SR", name: "Suriname",                  dial: "+597",  flag: "🇸🇷", maxDigits: 7,  placeholder: "999 9999",        fmt: fmtGen },
-  { code: "TJ", name: "Tadjiquistão",              dial: "+992",  flag: "🇹🇯", maxDigits: 9,  placeholder: "99 999 9999",    fmt: fmtGen },
-  { code: "TH", name: "Tailândia",                 dial: "+66",   flag: "🇹🇭", maxDigits: 9,  placeholder: "99 999 9999",    fmt: fmtGen },
-  { code: "TW", name: "Taiwan",                    dial: "+886",  flag: "🇹🇼", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "TZ", name: "Tanzânia",                  dial: "+255",  flag: "🇹🇿", maxDigits: 9,  placeholder: "999 999 999",    fmt: fmtGen },
-  { code: "TL", name: "Timor-Leste",               dial: "+670",  flag: "🇹🇱", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "TG", name: "Togo",                      dial: "+228",  flag: "🇹🇬", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "TO", name: "Tonga",                     dial: "+676",  flag: "🇹🇴", maxDigits: 7,  placeholder: "999 9999",        fmt: fmtGen },
-  { code: "TT", name: "Trinidad e Tobago",         dial: "+1868", flag: "🇹🇹", maxDigits: 10, placeholder: "999 999 9999",   fmt: fmtGen },
-  { code: "TN", name: "Tunísia",                   dial: "+216",  flag: "🇹🇳", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "TM", name: "Turcomenistão",             dial: "+993",  flag: "🇹🇲", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "TR", name: "Turquia",                   dial: "+90",   flag: "🇹🇷", maxDigits: 10, placeholder: "999 999 9999",   fmt: fmtGen },
-  { code: "TV", name: "Tuvalu",                    dial: "+688",  flag: "🇹🇻", maxDigits: 6,  placeholder: "999 999",         fmt: fmtGen },
-  { code: "UA", name: "Ucrânia",                   dial: "+380",  flag: "🇺🇦", maxDigits: 9,  placeholder: "99 999 9999",    fmt: fmtGen },
-  { code: "UG", name: "Uganda",                    dial: "+256",  flag: "🇺🇬", maxDigits: 9,  placeholder: "99 999 9999",    fmt: fmtGen },
-  { code: "UY", name: "Uruguai",                   dial: "+598",  flag: "🇺🇾", maxDigits: 8,  placeholder: "9999 9999",       fmt: fmtGen },
-  { code: "UZ", name: "Uzbequistão",               dial: "+998",  flag: "🇺🇿", maxDigits: 9,  placeholder: "99 999 9999",    fmt: fmtGen },
-  { code: "VU", name: "Vanuatu",                   dial: "+678",  flag: "🇻🇺", maxDigits: 7,  placeholder: "999 9999",        fmt: fmtGen },
-  { code: "VE", name: "Venezuela",                 dial: "+58",   flag: "🇻🇪", maxDigits: 10, placeholder: "999 999 9999",   fmt: fmtGen },
-  { code: "VN", name: "Vietnã",                    dial: "+84",   flag: "🇻🇳", maxDigits: 10, placeholder: "999 999 9999",   fmt: fmtGen },
-  { code: "WF", name: "Wallis e Futuna",           dial: "+681",  flag: "🇼🇫", maxDigits: 6,  placeholder: "99 9999",         fmt: fmtGen },
-  { code: "ZM", name: "Zâmbia",                    dial: "+260",  flag: "🇿🇲", maxDigits: 9,  placeholder: "99 999 9999",    fmt: fmtGen },
-  { code: "ZW", name: "Zimbábue",                  dial: "+263",  flag: "🇿🇼", maxDigits: 9,  placeholder: "99 999 9999",    fmt: fmtGen },
-];
-
-const LANG_DEFAULT_COUNTRY: Record<Lang, string> = {
-  pt:      "BR", "pt-pt": "PT",
-  en:      "US", "en-gb": "GB",
-  es:      "ES", fr:      "FR",
-  de:      "DE", it:      "IT",
-  zh:      "CN", ja:      "JP",
-  ko:      "KR", sv:      "SE",
-  fi:      "FI", ru:      "RU",
-  ro:      "RO", he:      "IL",
-};
-
 const UF_LABEL: Record<Lang, string> = {
   pt: "Filtro UF", "pt-pt": "Filtro UF",
   en: "UF Filter", "en-gb": "UF Filter",
@@ -1457,8 +1204,15 @@ function getColorName(slug: string | undefined, lang: Lang, fallback: string): s
   return COLOR_NAMES_I18N[slug]?.[lang] ?? fallback;
 }
 
+const ORDER_LABELS: Partial<Record<Lang, { title: string; note: string }>> = {
+  pt:      { title: "Resumo do pedido", note: "Na Acquafy Account você confirma entrega e contato e recebe a proposta final com frete, prazo e condições. Nenhuma cobrança é feita agora." },
+  "pt-pt": { title: "Resumo da encomenda", note: "Na Acquafy Account confirma a entrega e o contacto e recebe a proposta final com portes, prazo e condições. Nenhuma cobrança é feita agora." },
+  en:      { title: "Order summary", note: "In your Acquafy Account you confirm delivery and contact details and receive the final quote with shipping, timing and terms. Nothing is charged now." },
+  "en-gb": { title: "Order summary", note: "In your Acquafy Account you confirm delivery and contact details and receive the final quote with delivery, timing and terms. Nothing is charged now." },
+  es:      { title: "Resumen del pedido", note: "En tu Acquafy Account confirmas la entrega y el contacto y recibes la propuesta final con envío, plazo y condiciones. No se cobra nada ahora." },
+};
+
 export default function CheckinProduct({ family, showSlide = true }: Props) {
-  const { addToCart, cart } = useCart();
   const scrollRef = useRef<HTMLDivElement>(null);
   const sectionRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const [activeVariantIdx, setActiveVariantIdx] = useState(0);
@@ -1479,8 +1233,6 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
   const [pricingVisible, setPricingVisible] = useState(false);
   const pricingCardRef = useRef<HTMLDivElement>(null);
   const paymentBlockRef = useRef<HTMLDivElement>(null);
-  const stripeRef = useRef<StripeFormHandle | null>(null);
-  const [stripeProcessing, setStripeProcessing] = useState(false);
 
   // Unified slide state — shared across Produto + Cores, never resets on variant/color change
   const [slideIdx, setSlideIdx] = useState(0);
@@ -1504,29 +1256,9 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
   // Form state
   const [fv, setFv] = useState<Record<string, string>>({ cep: "", nome: "", email: "", email2: "", tel: "", zipDelivery: "", zipBilling: "" });
   const [ft, setFt] = useState<Record<string, boolean>>({});
-  const [phoneCountryIdx, setPhoneCountryIdx] = useState(0);
-  const [phoneDropOpen, setPhoneDropOpen] = useState(false);
-  const [phoneSearch, setPhoneSearch] = useState("");
-  const phoneDropRef = useRef<HTMLDivElement>(null);
   const [freteResult, setFreteResult] = useState<
     null | { state: "loading" } | { state: "ok"; city: string; uf: string } | { state: "err"; message: string }
   >(null);
-  const [orderConfirmOpen, setOrderConfirmOpen] = useState(false);
-  const [consentChecked, setConsentChecked] = useState(false);
-  const [termsChecked, setTermsChecked] = useState(false);
-  const [termsOpen, setTermsOpen] = useState(false);
-
-  useEffect(() => {
-    if (!phoneDropOpen) return;
-    const handler = (e: MouseEvent) => {
-      if (phoneDropRef.current && !phoneDropRef.current.contains(e.target as Node)) {
-        setPhoneDropOpen(false);
-        setPhoneSearch("");
-      }
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, [phoneDropOpen]);
 
   useEffect(() => {
     const el = paymentBlockRef.current;
@@ -1578,36 +1310,24 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
     }
   };
 
-  const handleTelChange = (raw: string) => {
-    const country = PHONE_COUNTRIES[phoneCountryIdx];
-    const d = raw.replace(/\D/g, "").slice(0, country.maxDigits);
-    setField("tel", country.fmt(d));
-  };
-
-  const isFormValid =
-    /^\d{5}-\d{3}$/.test(fv.cep) &&
-    fv.nome.trim().split(/\s+/).length >= 2 &&
-    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fv.email) &&
-    fv.email2 === fv.email &&
-    fv.tel.replace(/\D/g, "").length >= 8 &&
-    termsChecked;
-
   const { lang } = useLang();
   const lb = LABELS[lang];
-  const regionNames = new Intl.DisplayNames([LANG_TO_LOCALE[lang]], { type: "region" });
-
-  useEffect(() => {
-    const code = LANG_DEFAULT_COUNTRY[lang];
-    const idx = PHONE_COUNTRIES.findIndex(c => c.code === code);
-    if (idx >= 0) setPhoneCountryIdx(idx);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const activeVariant = family.variants[activeVariantIdx];
   // Active image set: variant's slides for selected color, fallback to single hero img
   const colorOptions = family.colors ?? ESSENTIALS_COLORS;
   const activeColorImages = activeVariant.slides?.[activeColorIdx] ?? [];
   const slideCount = activeColorImages.length > 0 ? activeColorImages.length : 1;
+
+  // Order hand-off: the configured product goes to the Acquafy Account (/app/pedido), where the customer confirms
+  // delivery and contact details and receives the final proposal. Nothing is charged on this page.
+  const orderLb = ORDER_LABELS[lang] ?? ORDER_LABELS.en!;
+  const orderColor = family.colors || !family.isPremium ? colorOptions[activeColorIdx] : undefined;
+  const orderHref = "/app/pedido?" + new URLSearchParams({
+    product: activeVariant.id,
+    mode: payTab === "financiar" ? "lease" : "purchase",
+    ...(orderColor ? { color: getColorName(orderColor.slug, "pt", orderColor.name) } : {}),
+  }).toString();
 
   const specs = SPECS[activeVariant.id] ?? SPECS["neo-fit"]!;
   const accent = family.isPremium ? "#9f3df5" : "#0233c3";
@@ -2168,370 +1888,41 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                         {tabPrice(activeVariant, true)}
                       </span>
                     </div>
-                    <div className="h-px bg-[#f0f4ff]" />
-                    <div className="flex items-start justify-between gap-[12px]">
-                      <div className="flex flex-col gap-[3px]">
-                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91]">{payTab === "financiar" ? lb.dueTodayTitle : lb.taxaPedidoTitle}</p>
-                        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af]">{lb.taxaPedidoDesc}</p>
-                      </div>
-                      <span className="font-['Avenir_LT_Pro:95_Black'] text-[18px] text-[#1f2e91] shrink-0">{(lang === "pt" || lang === "pt-pt") ? formatBRL(125) : "US$ 25,00"}</span>
-                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* ── Form ────────────────────────────────────────────────────── */}
-            <div className="flex flex-col gap-[16px]"
-              ref={(el) => { sectionRefs.current["conta"] = el; }}
-              onMouseEnter={() => setHoverSection("conta")}
-              onMouseLeave={() => setHoverSection(null)}>
-              <SectionTitle>{lb.detalhesContaTitle}</SectionTitle>
-              <div className="flex flex-col gap-[10px]">
-
-                {/* Nome */}
-                <div className="flex flex-col gap-[6px]">
-                  <label htmlFor="checkin-nome"
-                    className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] text-[#6b7280] uppercase tracking-[0.05em]">
-                    {lb.nomeLabel}
-                  </label>
-                  <input id="checkin-nome" type="text" autoComplete="name"
-                    value={fv.nome}
-                    onChange={(e) => setField("nome", e.target.value)}
-                    onBlur={() => touchField("nome")}
-                    className={`h-[44px] px-[14px] rounded-[10px] bg-[#f6f9fe] font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#1f2e91] placeholder:text-[#aab2bc] outline-none border transition-colors ${fieldError("nome") ? "border-[#ef4444]" : "border-[#e8ecf4] focus:border-[#0233c3]"}`}
-                  />
-                  {fieldError("nome") && (
-                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#ef4444] flex items-center gap-[4px]">
-                      <span>⚠</span> {fieldError("nome")}
-                    </p>
-                  )}
-                </div>
-
-                {/* Email */}
-                <div className="flex flex-col gap-[6px]">
-                  <label htmlFor="checkin-email"
-                    className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] text-[#6b7280] uppercase tracking-[0.05em]">
-                    {lb.emailLabel}
-                  </label>
-                  <input id="checkin-email" type="email" autoComplete="email"
-                    value={fv.email}
-                    onChange={(e) => setField("email", e.target.value)}
-                    onBlur={() => touchField("email")}
-                    className={`h-[44px] px-[14px] rounded-[10px] bg-[#f6f9fe] font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#1f2e91] placeholder:text-[#aab2bc] outline-none border transition-colors ${fieldError("email") ? "border-[#ef4444]" : "border-[#e8ecf4] focus:border-[#0233c3]"}`}
-                  />
-                  {fieldError("email") && (
-                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#ef4444] flex items-center gap-[4px]">
-                      <span>⚠</span> {fieldError("email")}
-                    </p>
-                  )}
-                </div>
-
-                {/* Confirm Email */}
-                <div className="flex flex-col gap-[6px]">
-                  <label htmlFor="checkin-email2"
-                    className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] text-[#6b7280] uppercase tracking-[0.05em]">
-                    {lb.email2Label}
-                  </label>
-                  <input id="checkin-email2" type="email" autoComplete="off"
-                    value={fv.email2}
-                    onChange={(e) => setField("email2", e.target.value)}
-                    onBlur={() => touchField("email2")}
-                    className={`h-[44px] px-[14px] rounded-[10px] bg-[#f6f9fe] font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#1f2e91] placeholder:text-[#aab2bc] outline-none border transition-colors ${fieldError("email2") ? "border-[#ef4444]" : "border-[#e8ecf4] focus:border-[#0233c3]"}`}
-                  />
-                  {fieldError("email2") && (
-                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#ef4444] flex items-center gap-[4px]">
-                      <span>⚠</span> {fieldError("email2")}
-                    </p>
-                  )}
-                </div>
-
-                {/* Phone */}
-                <div className="flex flex-col gap-[6px]">
-                  <label htmlFor="checkin-tel"
-                    className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] text-[#6b7280] uppercase tracking-[0.05em]">
-                    {lb.telLabel}
-                  </label>
-                  <div className={`flex rounded-[10px] bg-[#f6f9fe] border overflow-visible transition-colors ${fieldError("tel") ? "border-[#ef4444]" : "border-[#e8ecf4] focus-within:border-[#0233c3]"}`}>
-                    <div className="relative shrink-0">
-                      <button type="button"
-                        className="h-[44px] px-[10px] flex items-center gap-[5px] font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#1f2e91] border-r border-[#e8ecf4] bg-transparent rounded-l-[10px]"
-                        onClick={() => setPhoneDropOpen((d) => !d)}>
-                        <span className="text-[15px] leading-none">{PHONE_COUNTRIES[phoneCountryIdx].flag}</span>
-                        <span>{PHONE_COUNTRIES[phoneCountryIdx].dial}</span>
-                        <svg className="size-[9px] text-[#9ca3af] shrink-0" viewBox="0 0 10 6" fill="none">
-                          <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      </button>
-                      {phoneDropOpen && (
-                        <div ref={phoneDropRef} className="absolute top-[calc(100%+4px)] left-0 bg-white rounded-[10px] border border-[#e8ecf4] shadow-lg z-30 w-[260px] flex flex-col overflow-hidden">
-                          <div className="p-[8px] border-b border-[#e8ecf4]">
-                            <input
-                              autoFocus
-                              type="text"
-                              value={phoneSearch}
-                              onChange={(e) => setPhoneSearch(e.target.value)}
-                              placeholder={lb.buscarPais}
-                              className="w-full h-[32px] px-[10px] rounded-[6px] bg-[#f6f9fe] border border-[#e8ecf4] font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#1f2e91] placeholder:text-[#aab2bc] outline-none"
-                            />
-                          </div>
-                          <div className="max-h-[220px] overflow-y-auto">
-                            {PHONE_COUNTRIES
-                              .map((c, i) => ({ c, i, localName: regionNames.of(c.code) ?? c.name }))
-                              .filter(({ c, localName }) => !phoneSearch ||
-                                localName.toLowerCase().includes(phoneSearch.toLowerCase()) ||
-                                c.code.toLowerCase().includes(phoneSearch.toLowerCase()) ||
-                                c.dial.includes(phoneSearch))
-                              .map(({ c, i, localName }) => (
-                                <button key={c.code} type="button"
-                                  className={`w-full px-[12px] py-[8px] flex items-center gap-[8px] hover:bg-[#f6f9fe] transition-colors text-left ${i === phoneCountryIdx ? "bg-[#f0f4ff]" : ""}`}
-                                  onClick={() => {
-                                    setPhoneCountryIdx(i);
-                                    setPhoneDropOpen(false);
-                                    setPhoneSearch("");
-                                    setField("tel", "");
-                                    setFt((t) => ({ ...t, tel: false }));
-                                  }}>
-                                  <span className="text-[16px] leading-none shrink-0">{c.flag}</span>
-                                  <span className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#1f2e91] flex-1 truncate text-left">{localName}</span>
-                                  <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[11px] text-[#6b7280] shrink-0">{c.dial}</span>
-                                </button>
-                              ))}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                    <input id="checkin-tel" type="tel"
-                      placeholder={PHONE_COUNTRIES[phoneCountryIdx].placeholder}
-                      value={fv.tel}
-                      onChange={(e) => handleTelChange(e.target.value)}
-                      onBlur={() => touchField("tel")}
-                      className="flex-1 h-[44px] px-[12px] min-w-0 bg-transparent font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#1f2e91] placeholder:text-[#aab2bc] outline-none"
-                    />
-                  </div>
-                  {fieldError("tel") && (
-                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#ef4444] flex items-center gap-[4px]">
-                      <span>⚠</span> {fieldError("tel")}
-                    </p>
-                  )}
-                </div>
-
-              </div>
-              <div className="flex flex-col gap-[10px]">
-                {/* Consent checkbox */}
-                <div className="flex items-start gap-[10px] cursor-pointer select-none" onClick={() => setConsentChecked(v => !v)}>
-                  <div className={`shrink-0 size-[18px] mt-[1px] rounded-[5px] border-2 flex items-center justify-center transition-colors ${consentChecked ? "border-[#0233c3] bg-[#0233c3]" : "border-[#d1d5db] bg-white"}`}>
-                    {consentChecked && (
-                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                        <path d="M1.5 5l2.5 2.5L8.5 2" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    )}
-                  </div>
-                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[11px] text-[#9ca3af] leading-[18px]">
-                    {lb.consentText}
-                  </p>
-                </div>
-                {/* Terms checkbox */}
-                <div className="flex items-center gap-[10px] select-none">
-                  <div className={`shrink-0 size-[18px] rounded-[5px] border-2 flex items-center justify-center transition-colors cursor-pointer ${termsChecked ? "border-[#0233c3] bg-[#0233c3]" : "border-[#d1d5db] bg-white"}`} onClick={() => setTermsChecked(v => !v)}>
-                    {termsChecked && (
-                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                        <path d="M1.5 5l2.5 2.5L8.5 2" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                    )}
-                  </div>
-                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[11px] text-[#9ca3af] leading-[18px]">
-                    {lb.liAceito}{" "}
-                    <button
-                      type="button"
-                      onClick={() => setTermsOpen(true)}
-                      className="underline text-[#0233c3] hover:opacity-70 transition-opacity cursor-pointer"
-                    >
-                      {lb.termosDeUso}
-                    </button>
-                    .
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <Sep />
-
-            {/* ── Payment ─────────────────────────────────────────────────── */}
+            {/* ── Order summary: configure here, confirm delivery and contact in the Acquafy Account ── */}
             <div ref={paymentBlockRef} className="flex flex-col gap-[16px]">
-              <SectionTitle>{lb.pagamentoTitle}</SectionTitle>
-              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af] -mt-[4px]">
-                {lb.taxaReservaPrefix}{" "}
-                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[#1f2e91]">{(lang === "pt" || lang === "pt-pt") ? formatBRL(125) : "US$ 25,00"}</span>{" "}
-                {lb.taxaReservaSuffix}
-              </p>
-              <div className="flex gap-[12px]">
-                <div className="flex flex-col gap-[6px] flex-1">
-                  <label className="font-['Avenir_LT_Pro:85_Heavy'] text-[10px] text-[#aab2bc] uppercase tracking-[0.08em]">
-                    {lb.zipDeliveryLabel}
-                  </label>
-                  <input
-                    type="text"
-                    autoComplete="postal-code"
-                    placeholder="ZIP / Postal Code"
-                    value={fv.zipDelivery}
-                    onChange={(e) => setField("zipDelivery", e.target.value)}
-                    className="h-[44px] px-[14px] rounded-[10px] bg-[#f6f9fe] border border-[#e8ecf4] focus:border-[#0233c3] font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#1f2e91] placeholder:text-[#aab2bc] outline-none transition-colors"
-                  />
+              <SectionTitle>{orderLb.title}</SectionTitle>
+              <div className="border border-[#e0e9ff] rounded-[12px] bg-white px-[16px] py-[16px] flex items-start justify-between gap-[12px]">
+                <div className="flex flex-col gap-[3px] min-w-0">
+                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91]">{activeVariant.name}</p>
+                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af]">
+                    {[orderColor ? getColorName(orderColor.slug, lang, orderColor.name) : null, payTab === "financiar" ? lb.payLease : lb.payCash].filter(Boolean).join(" · ")}
+                  </p>
                 </div>
-                <div className="flex flex-col gap-[6px] flex-1">
-                  <label className="font-['Avenir_LT_Pro:85_Heavy'] text-[10px] text-[#aab2bc] uppercase tracking-[0.08em]">
-                    {lb.zipBillingLabel}
-                  </label>
-                  <input
-                    type="text"
-                    autoComplete="billing postal-code"
-                    placeholder="ZIP / Postal Code"
-                    value={fv.zipBilling}
-                    onChange={(e) => setField("zipBilling", e.target.value)}
-                    className="h-[44px] px-[14px] rounded-[10px] bg-[#f6f9fe] border border-[#e8ecf4] focus:border-[#0233c3] font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#1f2e91] placeholder:text-[#aab2bc] outline-none transition-colors"
-                  />
+                <div className="flex flex-col items-end gap-[3px] shrink-0">
+                  <span className="font-['Avenir_LT_Pro:95_Black'] text-[18px] text-[#1f2e91]">{tabPrice(activeVariant, true)}</span>
+                  {payTab === "financiar" && (
+                    <span className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af]">{lb.parcelaDesc}</span>
+                  )}
                 </div>
               </div>
-              <StripePaymentForm
-                formRef={stripeRef}
-                processingLabel="Processando pagamento..."
-                locale={lang}
-                billingPostalCode={fv.zipBilling}
-              />
+              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] leading-[18px] text-[#6b7280]">{orderLb.note}</p>
+              <a
+                href={orderHref}
+                className="h-[48px] rounded-[14px] flex items-center justify-center font-['Avenir_LT_Pro:85_Heavy'] text-[14px] text-white transition-opacity hover:opacity-90"
+                style={{ background: accentGrad }}
+              >
+                {lb.encomendar}
+              </a>
             </div>
 
             <div className="h-[12px]" />
           </div>
         </div>
-
-        {/* ── Terms of use modal ─────────────────────────────────────────── */}
-        {termsOpen && (
-          <div
-            className="fixed inset-0 z-50 flex items-center justify-center px-[20px]"
-            style={{ background: "rgba(15,23,42,0.55)", backdropFilter: "blur(6px)" }}
-            onClick={(e) => { if (e.target === e.currentTarget) setTermsOpen(false); }}
-          >
-            <div className="bg-white rounded-[24px] w-full max-w-[680px] h-[80vh] flex flex-col overflow-hidden shadow-2xl">
-              <div className="flex items-center justify-between px-[24px] py-[18px] border-b border-[#e8ecf4] shrink-0">
-                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91]">{lb.termosModalTitulo}</span>
-                <button
-                  onClick={() => setTermsOpen(false)}
-                  className="size-[32px] rounded-full flex items-center justify-center hover:bg-[#f6f9fe] transition-colors"
-                >
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M2 2l10 10M12 2L2 12" stroke="#6b7280" strokeWidth="2" strokeLinecap="round"/>
-                  </svg>
-                </button>
-              </div>
-              <iframe
-                src="/termos-de-uso"
-                className="flex-1 border-0 w-full"
-                title={lb.termosIframe}
-              />
-            </div>
-          </div>
-        )}
-
-        {/* ── Order confirmation modal ───────────────────────────────────── */}
-        {orderConfirmOpen && (
-          <div
-            className="fixed inset-0 z-50 flex items-center justify-center px-[20px]"
-            style={{ background: "rgba(15,23,42,0.55)", backdropFilter: "blur(6px)" }}
-            onClick={(e) => { if (e.target === e.currentTarget) setOrderConfirmOpen(false); }}
-          >
-            <div className="bg-white rounded-[24px] w-full max-w-[420px] overflow-hidden shadow-2xl">
-              {/* Header */}
-              <div
-                className="px-[32px] pt-[32px] pb-[28px] flex flex-col items-center gap-[14px]"
-                style={{ background: "linear-gradient(160deg, #eef2ff 0%, #f0eeff 100%)" }}
-              >
-                <div
-                  className="size-[60px] rounded-full flex items-center justify-center"
-                  style={{ background: accentGrad }}
-                >
-                  <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
-                    <path d="M5 13l6 6L21 6" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </div>
-                <div className="flex flex-col items-center gap-[4px]">
-                  <p className="font-['Avenir_LT_Pro:95_Black'] text-[20px] text-[#1f2e91] text-center">{lb.adicionadoCarrinho}</p>
-                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#6b7280] text-center">
-                    {activeVariant.name} · {formatPrice(activeVariant.price, lang)}
-                  </p>
-                </div>
-              </div>
-              {/* Cart items with images */}
-              {cart.length > 0 && (
-                <div className="px-[24px] py-[14px] border-b border-[#e8ecf4] flex flex-col gap-[10px] max-h-[220px] overflow-y-auto">
-                  {cart.map(item => {
-                    let variantName = item.id;
-                    let variantImg = PRODUCT_IMAGES[item.id] ?? "";
-                    for (const fam of CHECKIN_FAMILIES) {
-                      const v = fam.variants.find(v => v.id === item.id);
-                      if (v) { variantName = v.name; variantImg = v.img || variantImg; break; }
-                    }
-                    const price = PRODUCT_PRICES_BRL[item.id] ?? 0;
-                    return (
-                      <div key={item.id} className="flex items-center gap-[12px]">
-                        {variantImg && (
-                          <div className="size-[52px] rounded-[10px] bg-[#f6f9fe] shrink-0 overflow-hidden flex items-center justify-center">
-                            <img src={variantImg} alt={variantName} className="w-full h-full object-contain" />
-                          </div>
-                        )}
-                        <div className="flex-1 min-w-0 flex flex-col gap-[2px]">
-                          <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#1f2e91] truncate">
-                            {variantName}{item.qty > 1 ? ` × ${item.qty}` : ""}
-                          </span>
-                          <span className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#6b7280]">
-                            {formatPrice(price * item.qty, lang)}
-                          </span>
-                        </div>
-                      </div>
-                    );
-                  })}
-                  <div className="flex items-center justify-between pt-[8px] border-t border-[#e8ecf4]">
-                    <span className="font-['Avenir_LT_Pro:55_Roman'] text-[11px] text-[#9ca3af] uppercase tracking-[0.05em]">{lb.totalLabel}</span>
-                    <span className="font-['Avenir_LT_Pro:95_Black'] text-[16px] leading-none" style={{ background: accentGrad, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
-                      {formatPrice(cart.reduce((sum, i) => sum + (PRODUCT_PRICES_BRL[i.id] ?? 0) * i.qty, 0), lang)}
-                    </span>
-                  </div>
-                </div>
-              )}
-              {/* Actions */}
-              <div className="px-[24px] py-[24px] flex flex-col gap-[12px]">
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[12px] text-[#9ca3af] uppercase tracking-[0.06em] text-center">{lb.precisaMaisAlgo}</p>
-                <div className="grid grid-cols-2 gap-[10px]">
-                  <a
-                    href="/compare"
-                    className="h-[46px] rounded-[12px] border border-[#e8ecf4] flex items-center justify-center font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#1f2e91] hover:bg-[#f6f9fe] transition-colors text-center px-[8px]"
-                  >
-                    {lb.compareProdutos}
-                  </a>
-                  <a
-                    href="/acquafy-media"
-                    className="h-[46px] rounded-[12px] border border-[#e8ecf4] flex items-center justify-center font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#1f2e91] hover:bg-[#f6f9fe] transition-colors text-center px-[8px]"
-                  >
-                    {lb.acquafyMedia}
-                  </a>
-                  <a
-                    href="/seja-um-parceiro"
-                    className="h-[46px] rounded-[12px] border border-[#e8ecf4] flex items-center justify-center font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#1f2e91] hover:bg-[#f6f9fe] transition-colors text-center px-[8px]"
-                  >
-                    {lb.sejaUmParceiro}
-                  </a>
-                  <a
-                    href="/buy"
-                    className="h-[46px] rounded-[12px] flex items-center justify-center font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-white transition-opacity hover:opacity-90"
-                    style={{ background: accentGrad }}
-                  >
-                    {lb.comprarOutro}
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
 
       </div>
 
@@ -2592,30 +1983,13 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
               </span>
             )}
           </div>
-          <button
-            disabled={stripeProcessing}
-            onClick={async () => {
-              if (!isFormValid) {
-                touchField("cep"); touchField("nome"); touchField("email"); touchField("email2"); touchField("tel");
-                return;
-              }
-              setStripeProcessing(true);
-              const isPt = lang === "pt" || lang === "pt-pt";
-              const result = await stripeRef.current?.confirmPayment(isPt ? 125 : 25, fv.email, isPt ? "brl" : "usd");
-              setStripeProcessing(false);
-              if (result?.success) {
-                addToCart(activeVariant.id, activeVariant.name, true);
-                setOrderConfirmOpen(true);
-              }
-            }}
-            className="h-[48px] px-[28px] rounded-[14px] font-['Avenir_LT_Pro:85_Heavy'] text-[14px] text-white shrink-0 transition-opacity hover:opacity-90 disabled:opacity-60 flex items-center gap-[8px]"
-            style={{ background: accentGrad, opacity: isFormValid && !stripeProcessing ? 1 : 0.5 }}
+          <a
+            href={orderHref}
+            className="h-[48px] px-[28px] rounded-[14px] font-['Avenir_LT_Pro:85_Heavy'] text-[14px] text-white shrink-0 transition-opacity hover:opacity-90 flex items-center gap-[8px]"
+            style={{ background: accentGrad }}
           >
-            {stripeProcessing && (
-              <span className="size-[14px] border-2 border-white border-t-transparent rounded-full animate-spin" />
-            )}
             {lb.encomendar}
-          </button>
+          </a>
         </div>
       </div>
     </div>
