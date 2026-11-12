@@ -1,6 +1,6 @@
 import { portalPath } from "./paths";
 
-export type SignInResult = { ok: true; internal: boolean; partner: boolean } | { ok: false; error: "invalid" | "unavailable" | "forbidden" };
+export type SignInResult = { ok: true; internal: boolean } | { ok: false; error: "invalid" | "unavailable" | "forbidden" };
 
 export async function signIn(input: { email: string; password: string; remember: boolean }): Promise<SignInResult> {
   try {
@@ -8,8 +8,8 @@ export async function signIn(input: { email: string; password: string; remember:
       method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(input),
     });
     if (response.ok) {
-      const body = (await response.json()) as { internal?: boolean; partner?: boolean };
-      return { ok: true, internal: body.internal === true, partner: body.partner === true };
+      const body = (await response.json()) as { internal?: boolean };
+      return { ok: true, internal: body.internal === true };
     }
     return { ok: false, error: response.status === 403 ? "forbidden" : response.status >= 500 ? "unavailable" : "invalid" };
   } catch {

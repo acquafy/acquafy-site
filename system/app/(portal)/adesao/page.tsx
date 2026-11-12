@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { CreditCard, FileX2, Pencil, RefreshCw, Signature } from "lucide-react";
+import { FileX2 } from "lucide-react";
 import { context, date, money } from "@/lib/live/data";
 import { memberEnrollment, beginCheckout, refreshPayment } from "@/lib/enrollment/actions";
 import { checkoutConfigured } from "@/lib/enrollment/server";
 import type { Enrollment, Offer, Acceptance } from "@/lib/enrollment/types";
-import { ActionDialog } from "@/components/enrollment/ActionDialog";
+import { ActionForm } from "@/components/enrollment/ActionForm";
 import { Consent, Field, Select } from "@/components/live/Fields";
 import { DataTable } from "@/components/live/DataTable";
 import { EnrollmentStatus } from "@/components/live/EnrollmentStatus";
@@ -40,44 +40,6 @@ export default async function EnrollmentPage({ searchParams }: { searchParams: P
   if (offerResult.error || acceptanceResult.error) throw new Error("Acordo indisponível.");
   const offer = offerResult.data as Offer,
     acceptance = acceptanceResult.data as Acceptance | null;
-  const canEditDetails = ["invited", "changes_requested"].includes(selected.status);
-  const detailsDialog = (
-    <ActionDialog
-      action={memberEnrollment}
-      title="Dados do participante"
-      trigger={Object.keys(selected.details).length ? "Corrigir dados" : "Preencher dados"}
-      icon={<Pencil className="size-4" aria-hidden="true" />}
-      submit="Enviar para análise"
-      triggerVariant={Object.keys(selected.details).length ? "outline" : "primary"}
-      triggerSize={Object.keys(selected.details).length ? "sm" : "md"}
-      size="lg"
-      description="A equipe confere estes dados antes de liberar o acordo para aceite."
-    >
-      <input type="hidden" name="action" value="details" />
-      <input type="hidden" name="enrollment_id" value={selected.id} />
-      <Field defaultValue={selected.details.legal_name} name="legal_name" label="Nome completo ou razão social" />
-      <div className="grid gap-3.5 sm:grid-cols-2">
-        <Select
-          name="entity_type"
-          label="Tipo de participante"
-          defaultValue={selected.details.entity_type}
-          options={[
-            { value: "individual", label: "Pessoa física" },
-            { value: "company", label: "Pessoa jurídica" },
-          ]}
-        />
-        <Field defaultValue={selected.details.phone} name="phone" label="Telefone com código do país" maxLength={40} />
-      </div>
-      <Field defaultValue={selected.details.country} name="country" label="País (código de 2 letras, como US ou BR)" maxLength={2} />
-      <Field defaultValue={selected.details.address} name="address" label="Endereço completo" maxLength={200} />
-      <div className="grid gap-3.5 sm:grid-cols-3">
-        <Field defaultValue={selected.details.city} name="city" label="Cidade" maxLength={100} />
-        <Field defaultValue={selected.details.region} name="region" label="Estado ou região" maxLength={100} required={false} />
-        <Field defaultValue={selected.details.postal_code} name="postal_code" label="Código postal" maxLength={30} />
-      </div>
-      <Notice tone="warn">Não informe senhas, números de cartão, SSN ou dados bancários neste formulário.</Notice>
-    </ActionDialog>
-  );
   return (
     <>
       <PageHeader title="Adesão à parceria investidor" subtitle={`Identidade: ${ctx.user.email}`} />
@@ -114,7 +76,7 @@ export default async function EnrollmentPage({ searchParams }: { searchParams: P
       {query.checkout === "returned" && <Notice>Retorno do pagamento recebido. A ativação depende da confirmação verificada do Stripe; esta página não confirma uma cobrança.</Notice>}
       {query.checkout === "cancelled" && <Notice>Você saiu do Checkout. Seu acordo permanece registrado e a sessão pode ser retomada.</Notice>}
       {Object.keys(selected.details).length > 0 && (
-        <Card title="Participante" action={canEditDetails ? detailsDialog : undefined}>
+        <Card title="Participante">
           <DefinitionList
             rows={[
               { label: "Nome", value: selected.details.legal_name },
@@ -127,11 +89,27 @@ export default async function EnrollmentPage({ searchParams }: { searchParams: P
         </Card>
       )}
       {selected.review_note && <Notice tone="warn" title="Mensagem da equipe">{selected.review_note}</Notice>}
-      {canEditDetails && (
-        <Notice title={selected.status === "invited" ? "Próximo passo: preencha seus dados" : "Próximo passo: corrija seus dados"}>
-          Informe os dados do participante para a equipe analisar. O acordo é liberado para aceite depois da aprovação.
-          {Object.keys(selected.details).length === 0 && <div className="mt-3">{detailsDialog}</div>}
-        </Notice>
+      {["invited", "changes_requested"].includes(selected.status) && (
+        <ActionForm action={memberEnrollment} title="Dados do participante" submit="Enviar para análise">
+          <input type="hidden" name="action" value="details" />
+          <input type="hidden" name="enrollment_id" value={selected.id} />
+          <Field defaultValue={selected.details.legal_name} name="legal_name" label="Nome completo ou razão social" />
+          <Select
+            name="entity_type"
+            label="Tipo de participante"
+            options={[
+              { value: "individual", label: "Pessoa física" },
+              { value: "company", label: "Pessoa jurídica" },
+            ]}
+          />
+          <Field defaultValue={selected.details.phone} name="phone" label="Telefone com código do país" maxLength={40} />
+          <Field defaultValue={selected.details.country} name="country" label="País (código de 2 letras, como US ou BR)" maxLength={2} />
+          <Field defaultValue={selected.details.address} name="address" label="Endereço completo" maxLength={200} />
+          <Field defaultValue={selected.details.city} name="city" label="Cidade" maxLength={100} />
+          <Field defaultValue={selected.details.region} name="region" label="Estado ou região" maxLength={100} required={false} />
+          <Field defaultValue={selected.details.postal_code} name="postal_code" label="Código postal" maxLength={30} />
+          <Notice tone="warn">Não informe senhas, números de cartão, SSN ou dados bancários neste formulário.</Notice>
+        </ActionForm>
       )}
       {selected.status === "details_submitted" && <Notice>Seus dados estão com a equipe para análise. O acordo será liberado após aprovação.</Notice>}
       <Card title="Acordo de parceria" action={<span className="text-[14px] text-ink-soft">Versão {offer.version}</span>}>
@@ -154,39 +132,35 @@ export default async function EnrollmentPage({ searchParams }: { searchParams: P
               </a>
             </div>
           </div>
-        ) : selected.status === "approved" ? (
-          <div className="mt-4 flex flex-wrap items-center gap-3">
-            <ActionDialog action={memberEnrollment} title="Aceite do acordo" trigger="Aceitar acordo" icon={<Signature className="size-4" aria-hidden="true" />} submit="Registrar aceite" triggerVariant="primary" triggerSize="md" description="Confirme que você leu o texto integral do acordo acima.">
-              <input type="hidden" name="action" value="accept" />
-              <input type="hidden" name="enrollment_id" value={selected.id} />
-              <input type="hidden" name="agreement_hash" value={offer.agreement_hash} />
-              <Field name="signer_name" label="Seu nome completo, como representante autorizado" />
-              <Consent name="consent">Li integralmente o acordo e o quadro comercial. Tenho poderes para representar o participante e concordo com os termos desta versão.</Consent>
-            </ActionDialog>
-            <span className="text-[14px] text-ink-soft">Leia o texto integral antes de aceitar.</span>
-          </div>
         ) : (
-          <p className="mt-3 text-[14px] text-ink-soft">Leia o texto integral e confira o quadro comercial. O aceite é liberado depois da aprovação dos seus dados.</p>
+          <p className="mt-3 text-[14px] text-ink-soft">Leia o texto integral e confira o quadro comercial antes de aceitar.</p>
         )}
       </Card>
+      {selected.status === "approved" && (
+        <ActionForm action={memberEnrollment} title="Aceite do acordo" submit="Registrar aceite">
+          <input type="hidden" name="action" value="accept" />
+          <input type="hidden" name="enrollment_id" value={selected.id} />
+          <input type="hidden" name="agreement_hash" value={offer.agreement_hash} />
+          <Field name="signer_name" label="Seu nome completo, como representante autorizado" />
+          <Consent name="consent">Li integralmente o acordo e o quadro comercial. Tenho poderes para representar o participante e concordo com os termos desta versão.</Consent>
+        </ActionForm>
+      )}
       {["accepted", "payment_pending"].includes(selected.status) && (
-        <Card title="Pagamento da adesão">
-          <p className="text-[15px] text-ink">
-            Total: <strong>{money(selected.amount_minor / 100)}</strong>. Pagamento único.
-          </p>
-          <p className="mt-1 text-[14.5px] text-ink-soft">Métodos com compensação posterior permanecem em processamento até a confirmação.</p>
-          {(process.env.STRIPE_ENVIRONMENT ?? "test") === "test" && <Notice className="mt-3">Ambiente de teste. Use os dados de teste do Stripe; nenhuma cobrança real será efetuada.</Notice>}
-          {!checkoutConfigured() && <Notice tone="warn" className="mt-3">O pagamento ficará disponível quando a equipe concluir a configuração.</Notice>}
-          <div className="mt-4 flex flex-wrap gap-3">
-            <ActionDialog action={beginCheckout} title="Pagamento da adesão" trigger="Pagar no Stripe" icon={<CreditCard className="size-4" aria-hidden="true" />} submit="Abrir pagamento seguro no Stripe" triggerVariant="primary" triggerSize="md" size="sm" description="Você será levado à página segura do Stripe para concluir o pagamento.">
-              <input type="hidden" name="enrollment_id" value={selected.id} />
-              <p className="text-[14.5px] text-ink-soft">Tem um cupom? Informe o código promocional na página de pagamento do Stripe.</p>
-            </ActionDialog>
-            <ActionDialog action={refreshPayment} title="Consultar confirmação" trigger="Atualizar situação do pagamento" icon={<RefreshCw className="size-4" aria-hidden="true" />} triggerSize="md" size="sm" description="Consulta no Stripe se o pagamento já foi confirmado.">
-              <input type="hidden" name="enrollment_id" value={selected.id} />
-            </ActionDialog>
-          </div>
-        </Card>
+        <>
+          <ActionForm action={beginCheckout} title="Pagamento da adesão" submit="Abrir pagamento seguro no Stripe">
+            <input type="hidden" name="enrollment_id" value={selected.id} />
+            <p className="text-[15px] text-ink">
+              Total: <strong>{money(selected.amount_minor / 100)}</strong>. Pagamento único.
+            </p>
+            <p className="text-[14.5px] text-ink-soft">Tem um cupom? Informe o código promocional na página de pagamento do Stripe.</p>
+            {(process.env.STRIPE_ENVIRONMENT ?? "test") === "test" && <Notice>Ambiente de teste. Use os dados de teste do Stripe; nenhuma cobrança real será efetuada.</Notice>}
+            {!checkoutConfigured() && <Notice tone="warn">O pagamento ficará disponível quando a equipe concluir a configuração.</Notice>}
+          </ActionForm>
+          <ActionForm action={refreshPayment} title="Consultar confirmação" submit="Atualizar situação do pagamento">
+            <input type="hidden" name="enrollment_id" value={selected.id} />
+            <p className="text-[14.5px] text-ink-soft">Métodos com compensação posterior permanecem em processamento até a confirmação.</p>
+          </ActionForm>
+        </>
       )}
       {selected.status === "active" && (
         <Card title="Parceria ativa">

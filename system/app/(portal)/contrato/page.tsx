@@ -1,6 +1,4 @@
 import { PortalPage, type Query } from "@/components/live/PortalPage";
-
-export const metadata = { title: "Contratos" };
 export default async function Page({
   searchParams,
 }: {

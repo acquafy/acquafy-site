@@ -32,12 +32,7 @@ export function Modal({ open, onClose, title, description, children, footer, siz
   useEffect(() => {
     const dialog = ref.current;
     if (!dialog) return;
-    if (open && !dialog.open) {
-      dialog.showModal();
-      // Start on the first empty field of a form (a prefilled subject skips to the message), not on the close button.
-      const fields = [...dialog.querySelectorAll<HTMLInputElement>("form :is(input:not([type=hidden]):not([readonly]), select, textarea)")];
-      (fields.find((f) => !f.value) ?? fields[0])?.focus();
-    }
+    if (open && !dialog.open) dialog.showModal();
     if (!open && dialog.open) dialog.close();
     document.documentElement.style.overflow = open ? "hidden" : "";
     return () => {

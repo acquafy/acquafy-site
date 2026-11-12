@@ -36,7 +36,7 @@ export default async function Investors({ searchParams }: { searchParams: Promis
         title="Investidores"
         subtitle="Do cadastro no site à parceria ativa: analise, aprove e acompanhe cada investidor."
         action={
-          <ButtonLink href="/parcerias?convidar=1">
+          <ButtonLink href="/parcerias#convite">
             <UserPlus className="size-5" aria-hidden="true" />
             Convidar investidor
           </ButtonLink>

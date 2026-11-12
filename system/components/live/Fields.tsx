@@ -1,6 +1,6 @@
 import { Checkbox, Select as KitSelect, TextArea, TextField } from "@/components/ui/Field";
-import type { ButtonVariant } from "@/components/ui/Button";
-import { FormFrame } from "./FormFrame";
+import { Submit } from "./Submit";
+import { Card } from "@/components/ui/Card";
 
 /** Form controls of the live screens: thin wrappers over the kit (`components/ui/Field`), uncontrolled, for server-action forms. */
 export function Field({
@@ -49,15 +49,13 @@ export function Select({
   label,
   options,
   required = true,
-  defaultValue,
 }: {
   name: string;
   label: string;
   required?: boolean;
-  defaultValue?: string;
   options: { value: string; label: string }[];
 }) {
-  return <KitSelect name={name} label={label} required={required} options={options} defaultValue={defaultValue} />;
+  return <KitSelect name={name} label={label} required={required} options={options} />;
 }
 
 /** Multi-line text (addresses, quote conditions, agreement text). */
@@ -94,29 +92,29 @@ export function Consent({ name, children, required = true }: { name: string; chi
   );
 }
 
-/** Redirecting server-action form (`adminAction`, `ticketAction`…): a card on the page, or just the form inside a `FormDialog`. */
 export function Form({
   action,
   kind,
   account,
   title,
-  submit,
-  variant,
   children,
 }: {
   action: (form: FormData) => Promise<void>;
   kind: string;
   account?: string;
   title: string;
-  submit?: string;
-  variant?: ButtonVariant;
   children: React.ReactNode;
 }) {
   return (
-    <FormFrame action={action} title={title} submit={submit} variant={variant}>
-      <input type="hidden" name="action" value={kind} />
-      {account && <input type="hidden" name="account_id" value={account} />}
-      {children}
-    </FormFrame>
+    <Card title={title}>
+      <form action={action} aria-label={title} className="grid gap-3.5">
+        <input type="hidden" name="action" value={kind} />
+        {account && <input type="hidden" name="account_id" value={account} />}
+        {children}
+        <div>
+          <Submit />
+        </div>
+      </form>
+    </Card>
   );
 }

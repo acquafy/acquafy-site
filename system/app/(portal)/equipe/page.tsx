@@ -3,8 +3,6 @@ import { context } from "@/lib/live/data";
 import { Support } from "@/components/live/Support";
 import { PageHeader } from "@/components/live/PageHeader";
 import type { Query } from "@/components/live/PortalPage";
-
-export const metadata = { title: "Fila de atendimento" };
 export default async function Page({
   searchParams,
 }: {

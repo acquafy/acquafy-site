@@ -31,17 +31,15 @@ export default async function PortalLayout({ children }: { children: React.React
     >
       <ClearDemo />
       {kind === "admin" && ctx.account && (
-        <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2 rounded-xl bg-brand-soft px-4 py-2.5 text-[14.5px] text-ink">
-          <p className="min-w-0 [overflow-wrap:anywhere]">
-            Conta aberta: <strong>{ctx.account.name}</strong>.<span className="hidden sm:inline"> As telas de “Conta aberta” mostram os dados dela.</span>
-          </p>
-          <form action={switchAccount}>
+        <Notice title={`Conta aberta: ${ctx.account.name}`}>
+          As telas de “Conta aberta” mostram os dados desta conta.
+          <form action={switchAccount} className="mt-2">
             <input type="hidden" name="account_id" value="" />
             <Button type="submit" variant="outline" size="sm">
               Voltar à visão global
             </Button>
           </form>
-        </div>
+        </Notice>
       )}
       {review.data.length > 0 && (
         <Notice tone="warn" title="Existe um pagamento da sua parceria em análise.">

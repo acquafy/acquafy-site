@@ -1,6 +1,4 @@
 import { PortalPage, type Query } from "@/components/live/PortalPage";
-
-export const metadata = { title: "Calendário de repasses" };
 export default async function Page({
   searchParams,
 }: {
