@@ -28,7 +28,7 @@ export async function POST(request: NextRequest) {
       ...(input.remember ? { maxAge: 60 * 60 * 24 * 30 } : {}),
     });
     // Tells the form where a person with no specific destination starts. The session cookies travel with it.
-    const result = NextResponse.json({ ok: true, internal: role === "internal" }, { headers: { "Cache-Control": "private, no-store" } });
+    const result = NextResponse.json({ ok: true, internal: role === "internal", partner: role === "partner" }, { headers: { "Cache-Control": "private, no-store" } });
     for (const cookie of response.cookies.getAll()) result.cookies.set(cookie);
     return result;
   } catch {

@@ -96,7 +96,8 @@ function LiveTopBar({
   }, []);
   const global = kind === "admin";
   const options = accounts.map((a) => ({ value: a.id, label: a.name + (a.suspended ? " · Suspensa" : "") }));
-  const accountSwitcher = global || accounts.length > 1 || (accounts.length === 1 && kind !== "customer") ? (
+  // A single account needs no switcher: its name is shown instead.
+  const accountSwitcher = global || accounts.length > 1 ? (
     // Keyed so the control follows the open account after a server redirect, not its first value.
     <form key={accountId ?? "global"} action={switchAccount} className="flex min-w-0 flex-wrap items-center gap-2">
       <Select
