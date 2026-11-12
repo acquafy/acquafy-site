@@ -78,7 +78,7 @@ const PARCELADO_ABANDONED_HOURS = 24;
  */
 async function parceladoState(payment: Payment) {
   const { status, url } = await reconcileParcelado(payment.id, payment.checkout_id!);
-  if (status === "approved") return { state: "paid" as const };
+  if (status === "approved" || status === "delivered") return { state: "paid" as const };
   if (status === "pending" || status === "analysis") throw Error(PAYMENT_IN_PROGRESS);
   if (status === "open") return { state: "open" as const, url };
   return { state: "closed" as const };

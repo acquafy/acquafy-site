@@ -240,7 +240,7 @@ export async function reconcileParcelado(paymentId: string, ref: string, { throt
   if ((order.amountMinor !== null && order.amountMinor !== pay.amount_minor) || (order.currency !== null && order.currency !== pay.currency))
     throw Error("Order payment mismatch");
   const state =
-    order.status === "approved"
+    order.status === "approved" || order.status === "delivered"
       ? "paid"
       : order.status === "aborted" || (order.status === "canceled" && ["open", "failed"].includes(pay.status))
         ? "failed"
