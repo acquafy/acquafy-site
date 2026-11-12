@@ -55,6 +55,7 @@ export async function proxy(request: NextRequest) {
     path === "/api/auth/logout" ||
     path === "/api/stripe/webhook" ||
     path === "/api/orders/notifications" ||
+    path.startsWith("/api/orders/parceladousa/") ||
     path === "/api/stock" ||
     path === "/ativar" ||
     path === "/cadastro-investidor" ||

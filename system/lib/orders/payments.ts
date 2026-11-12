@@ -2,6 +2,7 @@ import "server-only";
 import type Stripe from "stripe";
 import { stripeClient, serviceClient } from "@/lib/enrollment/server";
 import { checkoutAmounts, checkoutSettled } from "@/lib/payments/discounts";
+import { getParceladoOrder, parceladoOrderId } from "./parceladousa";
 export async function processOrderEvent(event: Stripe.Event) {
   if (
     event.livemode !==
@@ -122,6 +123,8 @@ export async function processOrderEvent(event: Stripe.Event) {
             payment_id: intent.metadata.payment_id,
             state: event.type === "charge.refunded" ? "refunded" : "disputed",
             full: full ? "yes" : "no",
+            // Only the charge recorded on the payment settles it; a replaced session's refund does not.
+            payment_intent_id: intent.id,
           },
         }),
       );
@@ -169,7 +172,9 @@ export async function reconcilePaymentSession(sessionId: string, type = "checkou
           ? "failed"
           : null;
   if (!state) return;
-  const result = await serviceClient().rpc("order_payment_event", {
+  const db = serviceClient();
+  if (state === "paid" && (await strayAttempt(paymentId, s.id))) return;
+  const result = await db.rpc("order_payment_event", {
     payload: {
       payment_id: paymentId,
       state,
@@ -186,4 +191,82 @@ export async function reconcilePaymentSession(sessionId: string, type = "checkou
     },
   });
   if (result.error) throw Error("Order payment update failed");
+}
+
+/**
+ * A session or ParceladoUSA order that is no longer the one bound to the payment (the customer opened another one
+ * or switched method) was paid anyway: the payment and the order go to staff review instead of being rejected.
+ * Returns true when `ref` is such a replaced attempt of this payment.
+ */
+async function strayAttempt(paymentId: string, ref: string) {
+  const db = serviceClient();
+  const { data: pay, error } = await db.from("order_payments").select("checkout_id").eq("id", paymentId).single();
+  if (error || !pay) throw Error("Order payment mismatch");
+  if (pay.checkout_id === ref) return false;
+  const stray = await db.rpc("order_payment_stray", { payload: { payment_id: paymentId, ref } });
+  if (stray.error) throw Error("Order payment mismatch");
+  return true;
+}
+
+/** Thrown when the public callback asks about the same ParceladoUSA order again within THROTTLE_SECONDS. */
+export const CHECKED_RECENTLY = "Checked recently";
+const THROTTLE_SECONDS = 10;
+
+/**
+ * Records the state of a ParceladoUSA order of a payment, read from ParceladoUSA (never from the callback):
+ * approved = paid; aborted = failed; canceled = refunded once paid (failed before); open, pending and analysis
+ * wait for the next callback. Returns the order's status and its payment page.
+ * `throttle` (the public callback) checks each order at most once every THROTTLE_SECONDS, so the callback cannot
+ * be used to flood ParceladoUSA's API; a throttled call throws CHECKED_RECENTLY (ParceladoUSA retries).
+ */
+export async function reconcileParcelado(paymentId: string, ref: string, { throttle = false } = {}) {
+  const db = serviceClient();
+  const { data: attempt } = await db.from("order_payment_attempts").select("payment_id,url").eq("ref", ref).maybeSingle();
+  if (!attempt || attempt.payment_id !== paymentId) throw Error("Order payment mismatch");
+  if (throttle) {
+    const since = new Date(Date.now() - THROTTLE_SECONDS * 1000).toISOString();
+    const claimed = await db
+      .from("order_payment_attempts")
+      .update({ checked_at: new Date().toISOString() })
+      .eq("ref", ref)
+      .or(`checked_at.is.null,checked_at.lt.${since}`)
+      .select("ref");
+    if (claimed.error) throw Error("Order payment update failed");
+    if (!claimed.data?.length) throw Error(CHECKED_RECENTLY);
+  }
+  const { data: pay, error } = await db.from("order_payments").select("id,status,currency,amount_minor,checkout_id").eq("id", paymentId).single();
+  if (error || !pay) throw Error("Order payment mismatch");
+  const order = await getParceladoOrder(parceladoOrderId(ref));
+  if ((order.amountMinor !== null && order.amountMinor !== pay.amount_minor) || (order.currency !== null && order.currency !== pay.currency))
+    throw Error("Order payment mismatch");
+  const state =
+    order.status === "approved"
+      ? "paid"
+      : order.status === "aborted" || (order.status === "canceled" && ["open", "failed"].includes(pay.status))
+        ? "failed"
+        : order.status === "canceled"
+          ? "refunded"
+          : null;
+  const checked = { status: order.status, url: (attempt.url as string | null) ?? null };
+  if (!state) return checked;
+  if (pay.checkout_id !== ref) {
+    // A replaced order: only a payment on it matters.
+    if (state === "paid") await strayAttempt(paymentId, ref);
+    return checked;
+  }
+  const result = await db.rpc("order_payment_event", {
+    payload: {
+      payment_id: paymentId,
+      state,
+      session_id: ref,
+      currency: pay.currency,
+      subtotal_minor: pay.amount_minor,
+      paid_minor: pay.amount_minor,
+      discount_minor: 0,
+      payment_intent_id: ref,
+      full: "yes",
+    },
+  });
+  if (result.error) throw Error("Order payment update failed");
+  return checked;
 }

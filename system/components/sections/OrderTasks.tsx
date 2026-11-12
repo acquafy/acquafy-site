@@ -3,6 +3,8 @@ import { ActionDialog } from "@/components/enrollment/ActionDialog";
 import { ActionForm } from "@/components/enrollment/ActionForm";
 import { Field } from "@/components/live/Fields";
 import { OrderAddress, OrderPhone } from "@/components/sections/OrderAddress";
+import { OrderPaymentMethod } from "@/components/sections/OrderPaymentMethod";
+import { parceladoAvailable } from "@/lib/orders/checkout";
 import { storedCountry } from "@/lib/orders/address-formats";
 import { ButtonLink } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
@@ -53,7 +55,7 @@ export function OrderTasks({
         return task.state === "todo" && fee ? <PayForm paymentId={fee.id} label={`Pagar taxa de ${formatMinor(fee.amount_minor, currency)}`} /> : null;
       case "balance":
         return task.state === "todo" && balance && ["open", "failed"].includes(balance.status) ? (
-          <PayForm paymentId={balance.id} label={`Pagar saldo de ${formatMinor(balance.amount_minor, currency)}`} />
+          <PayForm paymentId={balance.id} label={`Pagar saldo de ${formatMinor(balance.amount_minor, currency)}`} installments={parceladoAvailable({ kind: "balance", currency })} />
         ) : null;
       case "address":
         return task.state === "todo" ? (
@@ -138,8 +140,14 @@ export function OrderTasks({
   );
 }
 
-function PayForm({ paymentId, label }: { paymentId: string; label: string }) {
-  return (
+function PayForm({ paymentId, label, installments = false }: { paymentId: string; label: string; installments?: boolean }) {
+  return installments ? (
+    <ActionDialog action={orderAction} title="Pagamento seguro" trigger={label} submit="Continuar para o pagamento" triggerVariant="primary" triggerSize="sm" size="sm" description="Escolha como pagar. Você será levado à página segura da forma escolhida.">
+      <input type="hidden" name="action" value="pay" />
+      <input type="hidden" name="payment_id" value={paymentId} />
+      <OrderPaymentMethod />
+    </ActionDialog>
+  ) : (
     <ActionDialog action={orderAction} title="Pagamento seguro" trigger={label} submit="Abrir pagamento seguro Stripe" triggerVariant="primary" triggerSize="sm" size="sm" description="Você será levado ao Stripe para pagar com cartão.">
       <input type="hidden" name="action" value="pay" />
       <input type="hidden" name="payment_id" value={paymentId} />
