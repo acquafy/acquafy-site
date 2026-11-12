@@ -18,6 +18,7 @@ import { cn } from "@/lib/cn";
 import { buyNow } from "@/lib/flags";
 import { orderAction } from "@/lib/orders/actions";
 import { formatMinor, type OrderCurrency } from "@/lib/orders/pricing";
+import { canCancel } from "@/lib/orders/tasks";
 
 type Payment = { id: string; order_id: string; kind: "fee" | "balance"; status: string; amount_minor: number; paid_minor: number | null; discount_minor: number };
 const PAYMENT_STATUS: Record<string, string> = {
@@ -106,11 +107,9 @@ export default async function Orders({ searchParams }: { searchParams: Promise<{
         const currency = o.currency as OrderCurrency;
         const fee = payments.find((p) => p.order_id === o.id && p.kind === "fee");
         const balance = payments.find((p) => p.order_id === o.id && p.kind === "balance");
-        // Same rule as order_command 'cancel': until preparation starts (a lease, until its first monthly charge).
-        const inWithdrawal = !!o.placed_at && now - new Date(o.placed_at).getTime() < withdrawalDays * 86400000;
-        const cancellable = fixed && (o.kind === "lease" ? ["awaiting_fee", "placed", "confirmed", "accepted"] : ["awaiting_fee", "placed", "confirmed", "paid"]).includes(o.status);
-        const customerCancel = cancellable && mine && (o.status === "awaiting_fee" || inWithdrawal);
-        const adminCancel = cancellable && admin;
+        // Same rule as order_command 'cancel' (lib/orders/tasks.ts).
+        const customerCancel = mine && canCancel(o, { owner: true, admin: false }, withdrawalDays, now);
+        const adminCancel = admin && canCancel(o, { owner: mine, admin: true }, withdrawalDays, now);
         const details: DefinitionRow[] = [
           ...(admin
             ? [
@@ -214,6 +213,11 @@ export default async function Orders({ searchParams }: { searchParams: Promise<{
             )}
 
             <div className="mt-4 flex flex-wrap items-center gap-3">
+              {fixed && (
+                <ButtonLink href={`/pedidos/${o.id}`} variant={mine ? "primary" : "outline"} size="md">
+                  {mine ? "Ver próximos passos" : "Abrir pedido"}
+                </ButtonLink>
+              )}
               {admin && o.status === "requested" && (
                 <ActionDialog action={orderAction} title="Publicar proposta aprovada" trigger="Publicar proposta" submit="Publicar proposta" triggerVariant="primary" triggerSize="md" size="lg" description="O cliente recebe o valor e as condições abaixo para aceitar.">
                   <input type="hidden" name="action" value="quote" />

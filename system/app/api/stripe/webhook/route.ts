@@ -1,5 +1,6 @@
 import { stripeClient } from "@/lib/enrollment/server";
 import { processStripeEvent } from "@/lib/enrollment/payments";
+import { after } from "next/server";
 export const runtime = "nodejs";
 export async function POST(request: Request) {
   const secret = process.env.STRIPE_WEBHOOK_SECRET,
@@ -45,6 +46,14 @@ export async function POST(request: Request) {
       kind: error instanceof Error ? error.message : "error",
     });
     return new Response("Retry delivery", { status: 503 });
+  }
+  // Payment steps queue order e-mails (database triggers): send them now instead of waiting for the cron.
+  // Never fails the event: whatever is not sent here goes out with the next cron run.
+  try {
+    const { sendPendingNotifications } = await import("@/lib/orders/notifications");
+    after(() => sendPendingNotifications().catch(() => undefined));
+  } catch {
+    /* sent by the cron */
   }
   return Response.json(
     { received: true },

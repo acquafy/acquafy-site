@@ -5,6 +5,7 @@ import { switchAccount } from "@/lib/live/actions";
 import { isSidebarMode, SIDEBAR_COOKIE } from "@/lib/sidebar";
 import { liveNavigation, type LiveKind } from "@/config/live-navigation";
 import { FlowShell } from "@/components/flow/FlowShell";
+import { PortalProviders } from "@/components/providers/PortalProviders";
 import { Button, ButtonLink } from "@/components/ui/Button";
 import { ClearDemo } from "@/components/live/ClearDemo";
 import { LiveShell } from "@/components/live/LiveShell";
@@ -24,10 +25,12 @@ export default async function PortalLayout({ children }: { children: React.React
   // partners and staff keep the portal shell with the sidebar.
   if (kind === "customer")
     return (
-      <FlowShell step={4} account={{ email: ctx.user.email ?? "" }} nav={liveNavigation("customer").map(({ href, label }) => ({ href, label }))}>
-        <ClearDemo />
-        {children}
-      </FlowShell>
+      <PortalProviders currency="USD">
+        <FlowShell step={4} account={{ email: ctx.user.email ?? "" }} nav={liveNavigation("customer").map(({ href, label }) => ({ href, label }))}>
+          <ClearDemo />
+          {children}
+        </FlowShell>
+      </PortalProviders>
     );
 
   return (

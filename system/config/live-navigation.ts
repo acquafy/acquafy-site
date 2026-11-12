@@ -6,6 +6,7 @@
 import {
   BadgeCheck,
   Building2,
+  CalendarCheck,
   CalendarDays,
   FileText,
   Handshake,
@@ -53,6 +54,7 @@ const admin: SidebarItem[] = [
   { href: "/contas", label: "Contas", icon: Building2 },
   { href: "/investidores", label: "Investidores", icon: UsersRound },
   orders,
+  { href: "/instalacoes", label: "Instalações", icon: CalendarCheck },
   leases,
   queue,
   { href: "/parcerias", label: "Ofertas e adesões", icon: Handshake },

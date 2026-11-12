@@ -7,8 +7,8 @@ import { lookupCep } from "@/lib/orders/account";
  * Delivery address of the order form. In Brazil the CEP fills street, district, city and state (ViaCEP, looked up on the server);
  * every field stays editable. Elsewhere the customer types the address and the country.
  */
-export function OrderAddress({ brazil }: { brazil: boolean }) {
-  const [address, setAddress] = useState({ street: "", district: "", city: "", state: "" });
+export function OrderAddress({ brazil, initial }: { brazil: boolean; initial?: Partial<Record<"postal_code" | "street" | "number" | "complement" | "district" | "city" | "state" | "country", string>> }) {
+  const [address, setAddress] = useState({ street: initial?.street ?? "", district: initial?.district ?? "", city: initial?.city ?? "", state: initial?.state ?? "" });
   const [notice, setNotice] = useState<string | null>(null);
   const [looking, startLookup] = useTransition();
   const set = (key: keyof typeof address) => (e: React.ChangeEvent<HTMLInputElement>) => setAddress((a) => ({ ...a, [key]: e.target.value }));
@@ -40,15 +40,16 @@ export function OrderAddress({ brazil }: { brazil: boolean }) {
           autoComplete="postal-code"
           inputMode={brazil ? "numeric" : undefined}
           placeholder={brazil ? "00000-000" : undefined}
+          defaultValue={initial?.postal_code}
           hint={looking ? "Buscando endereço…" : (notice ?? undefined)}
           onBlur={(e) => fill(e.target.value)}
         />
-        {!brazil && <TextField name="country" label="País" required maxLength={80} autoComplete="country-name" />}
+        {!brazil && <TextField name="country" label="País" required maxLength={80} autoComplete="country-name" defaultValue={initial?.country} />}
       </div>
       <TextField name="street" label="Rua / avenida" required maxLength={160} autoComplete="address-line1" value={address.street} onChange={set("street")} />
       <div className="grid gap-3.5 @sm:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
-        <TextField name="number" label="Número" required maxLength={20} />
-        <TextField name="complement" label="Complemento" maxLength={80} autoComplete="address-line2" />
+        <TextField name="number" label="Número" required maxLength={20} defaultValue={initial?.number} />
+        <TextField name="complement" label="Complemento" maxLength={80} autoComplete="address-line2" defaultValue={initial?.complement} />
       </div>
       <div className="grid gap-3.5 @sm:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] @lg:grid-cols-[minmax(0,2fr)_minmax(0,2fr)_minmax(0,1fr)]">
         <TextField name="district" label="Bairro" required={brazil} maxLength={80} value={address.district} onChange={set("district")} />

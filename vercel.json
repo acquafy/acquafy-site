@@ -13,8 +13,29 @@
     }
   },
   "rewrites": [
-    { "source": "/app", "destination": { "service": "portal" } },
-    { "source": "/app/(.*)", "destination": { "service": "portal" } },
-    { "source": "/(.*)", "destination": { "service": "site" } }
+    {
+      "source": "/app",
+      "destination": {
+        "service": "portal"
+      }
+    },
+    {
+      "source": "/app/(.*)",
+      "destination": {
+        "service": "portal"
+      }
+    },
+    {
+      "source": "/(.*)",
+      "destination": {
+        "service": "site"
+      }
+    }
+  ],
+  "crons": [
+    {
+      "path": "/app/api/orders/notifications",
+      "schedule": "*/10 * * * *"
+    }
   ]
 }
