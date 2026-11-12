@@ -91,6 +91,7 @@ it("leaves invitation activation and signed Stripe delivery to their own securit
   auth.configured = false;
   expect((await proxy(request("/ativar?token_hash=example"))).status).toBe(200);
   expect((await proxy(request("/api/stripe/webhook"))).status).toBe(200);
+  expect((await proxy(request("/api/orders/parceladousa/00000000-0000-0000-0000-000000000000"))).status).toBe(200);
   expect(auth.getUser).not.toHaveBeenCalled();
   expect((await proxy(request("/api/agreements/unknown"))).status).toBe(307);
 });

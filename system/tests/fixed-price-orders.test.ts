@@ -5,7 +5,8 @@ const rpc = vi.hoisted(() => vi.fn());
 const create = vi.hoisted(() => vi.fn());
 vi.mock("@/lib/enrollment/server", () => ({
   stripeClient: () => ({ checkout: { sessions: { retrieve: async () => session.value, create } } }),
-  serviceClient: () => ({ rpc }),
+  // order_payments row read to tell the bound session from a replaced one.
+  serviceClient: () => ({ rpc, from: () => ({ select: () => ({ eq: () => ({ single: async () => ({ data: { checkout_id: "cs_1" }, error: null }) }) }) }) }),
   publicOrigin: () => "https://acquafy.example",
 }));
 import { paymentCheckoutUrl } from "@/lib/orders/checkout";

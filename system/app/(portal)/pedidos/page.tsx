@@ -20,6 +20,8 @@ import { orderAction } from "@/lib/orders/actions";
 import { formatMinor, type OrderCurrency } from "@/lib/orders/pricing";
 import { formatPhone } from "@/lib/orders/address-formats";
 import { canCancel } from "@/lib/orders/tasks";
+import { parceladoAvailable } from "@/lib/orders/checkout";
+import { OrderPaymentMethod } from "@/components/sections/OrderPaymentMethod";
 
 type Payment = { id: string; order_id: string; kind: "fee" | "balance"; status: string; amount_minor: number; paid_minor: number | null; discount_minor: number };
 const PAYMENT_STATUS: Record<string, string> = {
@@ -262,10 +264,10 @@ export default async function Orders({ searchParams }: { searchParams: Promise<{
                 </ActionDialog>
               )}
               {mine && fixed && balance && o.status === "confirmed" && ["open", "failed"].includes(balance.status) && (
-                <ActionDialog action={orderAction} title="Pagar saldo" trigger={`Pagar saldo de ${formatMinor(balance.amount_minor, currency)}`} submit="Abrir pagamento seguro Stripe" triggerVariant="primary" triggerSize="md" size="sm" description="Pagamento do saldo do pedido antes da entrega.">
+                <ActionDialog action={orderAction} title="Pagar saldo" trigger={`Pagar saldo de ${formatMinor(balance.amount_minor, currency)}`} submit={parceladoAvailable({ kind: "balance", currency }) ? "Continuar para o pagamento" : "Abrir pagamento seguro Stripe"} triggerVariant="primary" triggerSize="md" size="sm" description="Pagamento do saldo do pedido antes da entrega.">
                   <input type="hidden" name="action" value="pay" />
                   <input type="hidden" name="payment_id" value={balance.id} />
-                  <p className="text-[14px] text-ink-soft">Tem um cupom? Informe o código promocional na página de pagamento do Stripe.</p>
+                  {parceladoAvailable({ kind: "balance", currency }) ? <OrderPaymentMethod /> : <p className="text-[14px] text-ink-soft">Tem um cupom? Informe o código promocional na página de pagamento do Stripe.</p>}
                 </ActionDialog>
               )}
               {admin && fixed && o.status === "placed" && (

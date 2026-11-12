@@ -7,7 +7,7 @@ import {
 } from "@/lib/enrollment/server";
 import { usdToMinor } from "@/lib/enrollment/validation";
 import { customerDestination } from "./destination";
-import { expireCheckout, paymentCheckoutUrl, refundPayment } from "./checkout";
+import { expireCheckout, PAYMENT_IN_PROGRESS, parceladoCheckoutUrl, paymentCheckoutUrl, refundPayment } from "./checkout";
 import { deliveryFromForm } from "./delivery";
 import { sendPendingNotifications } from "./notifications";
 import { after } from "next/server";
@@ -122,7 +122,15 @@ export async function orderAction(
         !ctx.accounts.some((a) => a.id === o.account_id && a.status === "active")
       )
         throw Error();
-      const url = await paymentCheckoutUrl(pay.data);
+      let url: string | null;
+      try {
+        // ParceladoUSA (installments) for the balance of a BRL order; Stripe (card) otherwise.
+        url = f.get("method") === "parcelado" ? await parceladoCheckoutUrl(pay.data, parceladoCustomer(o.delivery ?? {}, ctx.user.email ?? "")) : await paymentCheckoutUrl(pay.data);
+      } catch (e) {
+        if (e instanceof Error && e.message === PAYMENT_IN_PROGRESS)
+          return { error: "Seu pagamento parcelado está em análise na ParceladoUSA. Aguarde a resposta antes de pagar de outra forma." };
+        throw e;
+      }
       if (url) redirect(url);
       // The previous Checkout was already completed: it was recorded now instead of charging again.
       revalidatePath("/pedidos");
@@ -143,11 +151,10 @@ export async function orderAction(
         after(() => sendPendingNotifications().catch(() => undefined));
         revalidatePath("/pedidos");
         const refunds = await serviceClient().from("order_payments").select("id,payment_intent_id").eq("order_id", o.id).eq("status", "refunding");
-        try {
-          for (const p of refunds.data ?? []) await refundPayment(p);
-        } catch {
-          return { success: "Pedido cancelado. O reembolso será concluído pela nossa equipe." };
-        }
+        // Every refund is attempted; ParceladoUSA payments (and any that fail) are refunded by staff.
+        let manual = false;
+        for (const p of refunds.data ?? []) await refundPayment(p).catch(() => (manual = true));
+        if (manual) return { success: "Pedido cancelado. O reembolso será concluído pela nossa equipe." };
         return { success: refunds.data?.length ? "Pedido cancelado. O reembolso foi solicitado ao cartão usado." : "Pedido cancelado." };
       }
     }
@@ -241,4 +248,19 @@ export async function orderAction(
         "Não foi possível concluir. Confira os dados, as permissões e o estado do pedido.",
     };
   }
+}
+
+/** Customer data ParceladoUSA asks for, from the order's delivery (phone without the country code for Brazil). */
+function parceladoCustomer(d: Record<string, string>, email: string) {
+  const phone = String(d.phone ?? "");
+  return {
+    name: String(d.name ?? ""),
+    email,
+    phone: phone.startsWith("+55") ? phone.slice(3) : phone.replace(/^\+/, ""),
+    postal_code: String(d.postal_code ?? ""),
+    address: String(d.street ?? d.address ?? ""),
+    number: String(d.number ?? ""),
+    city: String(d.city ?? ""),
+    state: String(d.state ?? ""),
+  };
 }
