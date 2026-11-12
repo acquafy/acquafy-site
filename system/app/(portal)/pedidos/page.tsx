@@ -160,7 +160,7 @@ export default async function Orders({ searchParams }: { searchParams: Promise<{
                       <dd className="tabular font-semibold text-ink">
                         {payment
                           ? `${formatMinor(payment.amount_minor, currency)} · ${PAYMENT_STATUS[payment.status] ?? payment.status}${payment.discount_minor > 0 && payment.paid_minor !== null ? ` (pago ${formatMinor(payment.paid_minor, currency)} com cupom)` : ""}`
-                          : `${formatMinor(o.total_minor - (o.fee_minor ?? 0), currency)} · após a confirmação`}
+                          : `${formatMinor(o.total_minor - (o.fee_minor ?? 0) - (o.trade_in_minor ?? 0), currency)} · após a confirmação`}
                       </dd>
                     </div>
                   ))}

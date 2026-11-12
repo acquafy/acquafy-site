@@ -12,6 +12,8 @@ import { Card } from "@/components/ui/Card";
 import { DefinitionList } from "@/components/ui/DefinitionList";
 import { cn } from "@/lib/cn";
 import { orderAction } from "@/lib/orders/actions";
+import { tradeInAction } from "@/lib/orders/followup";
+import { Select } from "@/components/live/Fields";
 import { formatMinor, type OrderCurrency } from "@/lib/orders/pricing";
 import { canCancel, orderTasks, type TaskPayment } from "@/lib/orders/tasks";
 
@@ -46,7 +48,7 @@ export default async function OrderPage({ params }: { params: Promise<{ id: stri
     ctx.db.from("order_events").select("*").eq("order_id", id).order("created_at", { ascending: true }),
     ctx.db.from("order_payments").select("*").eq("order_id", id),
     ctx.db.from("installation_bookings").select("window_id,installation_windows(starts_at,ends_at)").eq("order_id", id).maybeSingle(),
-    ctx.db.from("order_settings").select("withdrawal_days").single(),
+    ctx.db.from("order_settings").select("withdrawal_days,trade_in_brl_minor,trade_in_usd_minor,trade_in_products").single(),
     // Bookable windows (active, 48 hours ahead, with room), filtered in the database before the limit.
     /^[A-Z]{2}$/.test(region)
       ? ctx.db.rpc("installation_windows_open", { region_code: region, max_rows: 12 })
@@ -61,7 +63,13 @@ export default async function OrderPage({ params }: { params: Promise<{ id: stri
   const fixed = o.flow === "fixed";
   const currency = o.currency as OrderCurrency;
   const first = (o.items as { product: string; title: string; quantity: number; color?: string }[])[0];
-  const tasks = fixed ? orderTasks(o, payments as TaskPayment[], booked) : [];
+  // Trade-in offer ("Seu purificador antigo vale um UP"): the credit as charged when declared, else the current offer.
+  const offerMinor = o.trade_in_minor || (currency === "brl" ? settings.data.trade_in_brl_minor : settings.data.trade_in_usd_minor);
+  const tradeIn = {
+    eligible: (o.items as { product: string }[]).some((i) => (settings.data.trade_in_products as string[]).includes(i.product)),
+    credit: formatMinor(offerMinor, currency),
+  };
+  const tasks = fixed ? orderTasks(o, payments as TaskPayment[], booked, tradeIn) : [];
   const canRebook = !!booked && new Date(booked.starts_at).getTime() - now > 48 * 3600000 && ["paid", "processing", "shipped"].includes(o.status);
   const cancellable = canCancel(o, { owner, admin }, settings.data.withdrawal_days, now);
   const number = o.id.slice(0, 8).toUpperCase();
@@ -107,6 +115,7 @@ export default async function OrderPage({ params }: { params: Promise<{ id: stri
           owner={owner}
           windows={windows}
           canRebook={canRebook}
+          tradeIn={{ editable: owner && ["awaiting_fee", "placed"].includes(o.status) && !payments.some((p) => p.kind === "balance"), declared: !!o.trade_in_status }}
         />
       )}
 
@@ -128,7 +137,30 @@ export default async function OrderPage({ params }: { params: Promise<{ id: stri
                   </dd>
                 </div>
               ))}
+            {o.trade_in_minor > 0 && (
+              <div className="flex flex-wrap justify-between gap-x-4">
+                <dt className="text-ink-soft">Desconto · purificador antigo</dt>
+                <dd className="tabular font-semibold text-ok">−{formatMinor(o.trade_in_minor, currency)}</dd>
+              </div>
+            )}
           </dl>
+        </Card>
+      )}
+
+      {admin && o.trade_in_status && (
+        <Card title="Purificador antigo">
+          <p className="text-[14px] text-ink-soft">
+            {[o.trade_in?.brand, o.trade_in?.model, o.trade_in?.years ? `${o.trade_in.years} anos de uso` : null].filter(Boolean).join(" · ")} · desconto de {formatMinor(o.trade_in_minor, currency)}
+          </p>
+          {["paid", "processing", "shipped", "installed", "completed"].includes(o.status) && (
+            <div className="mt-3">
+              <ActionDialog action={tradeInAction} title="Conferência do purificador antigo" trigger={o.trade_in_status === "declared" ? "Registrar conferência" : `Conferido: ${o.trade_in_status === "received" ? "recebido" : "não recebido"}`} submit="Salvar" triggerVariant="outline" triggerSize="sm" size="sm" description="O que o técnico encontrou na instalação.">
+                <input type="hidden" name="action" value="verify" />
+                <input type="hidden" name="order_id" value={o.id} />
+                <Select name="result" label="Resultado" options={[{ value: "received", label: "Recebido" }, { value: "missing", label: "Não recebido" }]} />
+              </ActionDialog>
+            </div>
+          )}
         </Card>
       )}
 

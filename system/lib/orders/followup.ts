@@ -51,3 +51,25 @@ export async function installationAction(_state: ActionResult, f: FormData): Pro
   revalidatePath("/pedidos", "layout");
   return { success: action === "book" ? "Instalação agendada." : action === "publish" ? "Janela publicada." : "Janela fechada." };
 }
+
+/** Trade-in: the owner declares or removes it before confirmation; staff record the technician's check. */
+export async function tradeInAction(_state: ActionResult, f: FormData): Promise<ActionResult> {
+  const ctx = await context();
+  const action = String(f.get("action") ?? "");
+  const orderId = String(f.get("order_id") ?? "");
+  const payload =
+    action === "declare"
+      ? { order_id: orderId, brand: String(f.get("brand") ?? "").trim(), model: String(f.get("model") ?? "").trim(), years: Number(f.get("years") || 0) }
+      : action === "verify"
+        ? { order_id: orderId, result: String(f.get("result") ?? "") }
+        : { order_id: orderId };
+  if (!["declare", "remove", "verify"].includes(action)) return { error: "Ação inválida." };
+  const result = await ctx.db.rpc("order_trade_in", { action, payload });
+  if (result.error) {
+    if (result.error.message.includes("Trade-in locked")) return { error: "Depois da confirmação do pedido não é possível alterar. Fale com o suporte." };
+    if (result.error.message.includes("Invalid trade-in")) return { error: "Informe a marca do purificador antigo." };
+    return { error: "Não foi possível concluir." };
+  }
+  revalidatePath("/pedidos", "layout");
+  return { success: action === "declare" ? "Purificador antigo adicionado. O desconto entra no saldo." : action === "remove" ? "Purificador antigo removido." : "Conferência registrada." };
+}

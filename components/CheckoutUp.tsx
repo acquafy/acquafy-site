@@ -1,7 +1,19 @@
 "use client";
 import Img from "@/components/ui/Img";
 import FigmaIcon from "./FigmaIcon";
+import Link from "next/link";
 import { useLang, type Lang } from "@/context/LanguageContext";
+import { Feature } from "@/components/FeatureFlags";
+import { formatPrice } from "@/lib/products";
+
+// Link to claim the trade-in: it is an optional step of the Neo UP order (portal /app/pedido). Other languages: English.
+const CLAIM: Partial<Record<Lang, string>> = {
+  pt: "Comprar o Neo UP com o desconto →",
+  "pt-pt": "Comprar o Neo UP com o desconto →",
+  en: "Buy the Neo UP with the credit →",
+  "en-gb": "Buy the Neo UP with the credit →",
+  es: "Comprar el Neo UP con el descuento →",
+};
 
 const imgBg1024      = "/figma-assets/bg-campanha-1024.webp";
 const imgBg1400      = "/figma-assets/bg-campanha-1400.webp";
@@ -272,11 +284,21 @@ export default function CheckoutUp() {
                   className="font-avenir-heavy text-[20px] leading-[28px] bg-clip-text text-transparent"
                   style={{ backgroundImage: "linear-gradient(to bottom, #0233c3, #9f3df5)" }}
                 >
-                  R$100,00
+                  {/* Same credit the order applies: R$ 100 for Portuguese, US$ 20 elsewhere (order_settings). */}
+                  {formatPrice(100, lang)}
                 </span>
                 {t.bonus2}
               </p>
             </div>
+            <Feature name="buyNow">
+              <Link
+                href="/buy/checkin-neo-up?modelo=neo-up"
+                className="mt-[12px] self-stretch flex items-center justify-center rounded-[14px] px-[16px] py-[10px] font-avenir-heavy text-[15px] text-white hover:opacity-90"
+                style={{ background: "linear-gradient(135deg, #0233c3, #0569ff)" }}
+              >
+                {CLAIM[lang] ?? CLAIM.en}
+              </Link>
+            </Feature>
           </div>
 
           <div className="flex flex-wrap gap-[15px] items-center lg:justify-start justify-center w-full">
