@@ -5,11 +5,12 @@ import { ActionForm } from "@/components/enrollment/ActionForm";
 import { Consent, Field } from "@/components/live/Fields";
 import { Notice } from "@/components/live/Notice";
 import { PageHeader } from "@/components/live/PageHeader";
-import { PublicShell } from "@/components/live/PublicShell";
 import { Card } from "@/components/ui/Card";
 import { IconTile } from "@/components/ui/KpiCard";
 import { PurifierIcon } from "@/components/ui/PurifierIcon";
+import { FlowShell, FlowStage } from "@/components/flow/FlowShell";
 import { OrderAccount } from "@/components/sections/OrderAccount";
+import { orderImage } from "@/config/order-images";
 import { OrderAddress } from "@/components/sections/OrderAddress";
 import { OrderSummary } from "@/components/sections/OrderSummary";
 import { buyNow, requireFeature } from "@/lib/flags";
@@ -18,7 +19,7 @@ import { formatMinor, linesFromQuery, orderCurrency, previewOrder, type CatalogP
 
 export const metadata = { title: "Seu pedido" };
 
-type Query = { product?: string; mode?: string; color?: string; items?: string; quantity?: string; currency?: string };
+type Query = { product?: string; mode?: string; color?: string; items?: string; quantity?: string; currency?: string; image?: string };
 
 /** The order page (Tesla-style): summary at the catalog price, account by e-mail code, delivery address, order fee. */
 export default async function Order({ searchParams }: { searchParams: Promise<Query> }) {
@@ -37,9 +38,12 @@ export default async function Order({ searchParams }: { searchParams: Promise<Qu
   if (catalog.error || settings.error) throw Error("Catálogo indisponível.");
   const products = catalog.data as CatalogProduct[];
   const order = previewOrder(linesFromQuery(q), products, kind, currency, settings.data as OrderSettings);
+  // The picture the customer configured on the product page (colour and angle); the catalog image otherwise.
+  const first = order.lines[0];
+  const image = orderImage(first?.product, q.image);
   const items = order.lines.map(({ product, quantity, color }) => ({ product, quantity, ...(color ? { color } : {}) }));
   const href = (extra: Record<string, string>) =>
-    "/pedido?" + new URLSearchParams({ mode: kind, currency, items: JSON.stringify(items), ...extra }).toString();
+    "/pedido?" + new URLSearchParams({ mode: kind, currency, items: JSON.stringify(items), ...(image ? { image } : {}), ...extra }).toString();
   const single = items.length === 1;
   const quantityHref = single
     ? (n: number) => href({ items: JSON.stringify([{ ...items[0], quantity: Math.min(Math.max(n, 1), 20) }]) })
@@ -47,7 +51,19 @@ export default async function Order({ searchParams }: { searchParams: Promise<Qu
   const verified = !!user?.email_confirmed_at;
 
   return (
-    <PublicShell signedIn={!!user}>
+    <FlowShell
+      step={2}
+      account={user?.email ? { email: user.email } : null}
+      stage={
+        first ? (
+          <FlowStage
+            image={image}
+            title={order.lines.length === 1 ? first.title : `${order.lines.length} produtos`}
+            detail={[first.color, kind === "lease" ? "Locação" : "Compra"].filter(Boolean).join(" · ")}
+          />
+        ) : undefined
+      }
+    >
       <PageHeader
         title={kind === "lease" ? "Sua locação" : "Seu pedido"}
         subtitle="Preço fixo de catálogo. Você paga a taxa do pedido agora e acompanha entrega e instalação na sua Acquafy Account."
@@ -94,7 +110,7 @@ export default async function Order({ searchParams }: { searchParams: Promise<Qu
               <p className="text-[14px] text-ink-soft">
                 Conectado como <strong className="text-ink [overflow-wrap:anywhere]">{user.email}</strong>.
               </p>
-              <div className="grid gap-3.5 sm:grid-cols-2">
+              <div className="grid gap-3.5 @sm:grid-cols-2">
                 <Field name="name" label="Nome completo / Razão social" autoComplete="name" />
                 <Field name="phone" label="Telefone com DDD" type="tel" maxLength={40} autoComplete="tel" />
               </div>
@@ -114,6 +130,6 @@ export default async function Order({ searchParams }: { searchParams: Promise<Qu
           </Notice>
         </>
       )}
-    </PublicShell>
+    </FlowShell>
   );
 }
