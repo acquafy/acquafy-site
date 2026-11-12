@@ -8,7 +8,6 @@ import { CHECKIN_FAMILIES } from "@/lib/checkin-products";
 
 const PRODUCT_TO_FAMILY: Record<string, string> = {};
 CHECKIN_FAMILIES.forEach(f => f.variants.forEach(v => { PRODUCT_TO_FAMILY[v.id] = f.slug; }));
-import { useCart } from "@/components/CartProvider";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
 // ─── Assets ───────────────────────────────────────────────────────────────────
@@ -1103,11 +1102,6 @@ export default function CompareProductos() {
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [activeFilter, setActiveFilter] = useState("Todos");
   const [showSelectorModal, setShowSelectorModal] = useState(false);
-
-  const { addToCart: addToCartCtx } = useCart();
-  function addToCart(product: Product) {
-    addToCartCtx(product.id, product.label);
-  }
 
   const selectedBarRef = useRef<HTMLElement>(null);
 

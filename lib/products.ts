@@ -33,7 +33,10 @@ const toBRL = (usd: number) => Math.round(usd * USD_TO_BRL * 100) / 100;
 const fromPricing = <T,>(pick: (p: { sales: number; lease: number }) => T) =>
   Object.fromEntries(Object.entries(PRODUCT_PRICING_USD).map(([id, p]) => [id, pick(p)])) as Record<string, T>;
 
-/** Preço de compra (Encomendar) em BRL — fonte única para CompareProductos e CheckinMain */
+/** Taxa do pedido em BRL (R$ 125 = US$ 25), cobrada ao fazer o pedido no portal. Espelha public.order_settings. */
+export const ORDER_FEE_BRL = 125;
+
+/** Preço de compra (Encomendar) em BRL — fonte única para CompareProductos e a página de produto */
 export const PRODUCT_PRICES_BRL: Record<string, number> = fromPricing((p) => toBRL(p.sales));
 /** Parcela mensal do Financiar (36x) em BRL */
 export const PRODUCT_LEASE_BRL: Record<string, number> = fromPricing((p) => toBRL(p.lease));

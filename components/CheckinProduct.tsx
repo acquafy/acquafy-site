@@ -2,7 +2,7 @@
 
 import { useRef, useState, useCallback, useEffect } from "react";
 import { type CheckinFamily } from "@/lib/checkin-products";
-import { formatPrice, PRODUCT_LEASE_BRL } from "@/lib/products";
+import { formatPrice, ORDER_FEE_BRL, PRODUCT_LEASE_BRL } from "@/lib/products";
 import FigmaIcon from "@/components/FigmaIcon";
 import { useLang } from "@/context/LanguageContext";
 import type { Lang } from "@/context/LanguageContext";
@@ -1204,12 +1204,13 @@ function getColorName(slug: string | undefined, lang: Lang, fallback: string): s
   return COLOR_NAMES_I18N[slug]?.[lang] ?? fallback;
 }
 
-const ORDER_LABELS: Partial<Record<Lang, { title: string; note: string }>> = {
-  pt:      { title: "Resumo do pedido", note: "Na Acquafy Account você confirma entrega e contato e recebe a proposta final com frete, prazo e condições. Nenhuma cobrança é feita agora." },
-  "pt-pt": { title: "Resumo da encomenda", note: "Na Acquafy Account confirma a entrega e o contacto e recebe a proposta final com portes, prazo e condições. Nenhuma cobrança é feita agora." },
-  en:      { title: "Order summary", note: "In your Acquafy Account you confirm delivery and contact details and receive the final quote with shipping, timing and terms. Nothing is charged now." },
-  "en-gb": { title: "Order summary", note: "In your Acquafy Account you confirm delivery and contact details and receive the final quote with delivery, timing and terms. Nothing is charged now." },
-  es:      { title: "Resumen del pedido", note: "En tu Acquafy Account confirmas la entrega y el contacto y recibes la propuesta final con envío, plazo y condiciones. No se cobra nada ahora." },
+// Copy for the order summary. Other languages fall back to English.
+const ORDER_LABELS: Partial<Record<Lang, { title: string; fee: string; purchase: string; lease: string }>> = {
+  pt:      { title: "Resumo do pedido", fee: "Taxa do pedido · paga hoje", purchase: "Na próxima etapa você cria sua Acquafy Account, informa o endereço e paga a taxa. Ela é abatida do total; o saldo é cobrado antes da entrega. Frete grátis. Cancele em até 7 dias e receba tudo de volta.", lease: "Na próxima etapa você cria sua Acquafy Account, informa o endereço e paga a taxa, que reserva sua locação. A mensalidade começa com o acordo de locação. Cancele em até 7 dias e receba a taxa de volta." },
+  "pt-pt": { title: "Resumo da encomenda", fee: "Taxa da encomenda · paga hoje", purchase: "No passo seguinte cria a sua Acquafy Account, indica a morada e paga a taxa. Ela é descontada do total; o saldo é cobrado antes da entrega. Portes grátis. Cancele até 7 dias depois e recebe tudo de volta.", lease: "No passo seguinte cria a sua Acquafy Account, indica a morada e paga a taxa, que reserva o aluguer. A mensalidade começa com o contrato de aluguer. Cancele até 7 dias depois e recebe a taxa de volta." },
+  en:      { title: "Order summary", fee: "Order fee · due today", purchase: "Next you create your Acquafy Account, enter the delivery address and pay the order fee. It counts toward the total; the balance is charged before delivery. Free shipping. Cancel within 7 days for a full refund.", lease: "Next you create your Acquafy Account, enter the delivery address and pay the order fee, which reserves your lease. Monthly payments start with the lease agreement. Cancel within 7 days to get the fee back." },
+  "en-gb": { title: "Order summary", fee: "Order fee · due today", purchase: "Next you create your Acquafy Account, enter the delivery address and pay the order fee. It counts towards the total; the balance is charged before delivery. Free delivery. Cancel within 7 days for a full refund.", lease: "Next you create your Acquafy Account, enter the delivery address and pay the order fee, which reserves your lease. Monthly payments start with the lease agreement. Cancel within 7 days to get the fee back." },
+  es:      { title: "Resumen del pedido", fee: "Tasa del pedido · se paga hoy", purchase: "En el siguiente paso creas tu Acquafy Account, indicas la dirección y pagas la tasa. Se descuenta del total; el saldo se cobra antes de la entrega. Envío gratis. Cancela en 7 días y recibe todo de vuelta.", lease: "En el siguiente paso creas tu Acquafy Account, indicas la dirección y pagas la tasa, que reserva tu alquiler. La cuota mensual empieza con el contrato. Cancela en 7 días y recibe la tasa de vuelta." },
 };
 
 export default function CheckinProduct({ family, showSlide = true }: Props) {
@@ -1319,13 +1320,15 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
   const activeColorImages = activeVariant.slides?.[activeColorIdx] ?? [];
   const slideCount = activeColorImages.length > 0 ? activeColorImages.length : 1;
 
-  // Order hand-off: the configured product goes to the Acquafy Account (/app/pedido), where the customer confirms
-  // delivery and contact details and receives the final proposal. Nothing is charged on this page.
+  // Order hand-off: the configured product goes to the order page of the Acquafy Account (/app/pedido), where the
+  // customer signs in, enters the address and pays the order fee. Portuguese pages order in BRL, the rest in USD,
+  // matching the prices shown here.
   const orderLb = ORDER_LABELS[lang] ?? ORDER_LABELS.en!;
   const orderColor = family.colors || !family.isPremium ? colorOptions[activeColorIdx] : undefined;
   const orderHref = "/app/pedido?" + new URLSearchParams({
     product: activeVariant.id,
     mode: payTab === "financiar" ? "lease" : "purchase",
+    currency: lang === "pt" || lang === "pt-pt" ? "brl" : "usd",
     ...(orderColor ? { color: getColorName(orderColor.slug, "pt", orderColor.name) } : {}),
   }).toString();
 
@@ -1910,7 +1913,11 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                   )}
                 </div>
               </div>
-              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] leading-[18px] text-[#6b7280]">{orderLb.note}</p>
+              <div className="rounded-[12px] bg-[#f0f4ff] px-[16px] py-[12px] flex items-center justify-between gap-[12px]">
+                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] text-[#1f2e91]">{orderLb.fee}</p>
+                <span className="font-['Avenir_LT_Pro:95_Black'] text-[16px] text-[#1f2e91] shrink-0">{formatPrice(ORDER_FEE_BRL, lang)}</span>
+              </div>
+              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] leading-[18px] text-[#6b7280]">{payTab === "financiar" ? orderLb.lease : orderLb.purchase}</p>
               <a
                 href={orderHref}
                 className="h-[48px] rounded-[14px] flex items-center justify-center font-['Avenir_LT_Pro:85_Heavy'] text-[14px] text-white transition-opacity hover:opacity-90"

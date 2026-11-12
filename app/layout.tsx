@@ -3,7 +3,6 @@ import "./globals.css";
 import { cookies, headers } from "next/headers";
 import { preload } from "react-dom";
 import { ChatProvider } from "@/components/ChatWidget";
-import { CartProvider } from "@/components/CartProvider";
 import { FeatureFlagsProvider } from "@/components/FeatureFlags";
 import { getFeatures } from "@/lib/flags";
 import { LanguageProvider } from "@/context/LanguageContext";
@@ -67,9 +66,7 @@ export default async function RootLayout({
       <body className="bg-white pt-[80px]">
         <FeatureFlagsProvider value={features}>
           <LanguageProvider initialLang={initialLang}>
-            <CartProvider>
-              <ChatProvider>{children}</ChatProvider>
-            </CartProvider>
+            <ChatProvider>{children}</ChatProvider>
           </LanguageProvider>
         </FeatureFlagsProvider>
       </body>
