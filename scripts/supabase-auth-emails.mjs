@@ -1,7 +1,7 @@
 // Acquafy Account auth e-mails (pt-BR) and the Supabase Auth settings they depend on, kept as code.
 //
 //   node scripts/supabase-auth-emails.mjs preview      writes the 13 HTML files to <os tmp>/acquafy-email-preview (open in a browser)
-//   node scripts/supabase-auth-emails.mjs apply        PATCHes subjects, templates and site_url on the hosted project
+//   node scripts/supabase-auth-emails.mjs apply        PATCHes subjects, templates, site_url and the 6-digit code length on the hosted project
 //
 // `apply` needs a Supabase management token in the file named by SUPABASE_ACCESS_TOKEN_FILE. Templates keep Supabase's
 // Go-template variables ({{ .ConfirmationURL }}, {{ .Token }}, ...). Nothing here touches SMTP credentials.
@@ -47,13 +47,16 @@ function layout({ title, body, button, note }) {
 const IGNORE = "Se você não fez esta solicitação, ignore este e-mail: nada será alterado na sua conta.";
 const SUPPORT = "Se você não fez esta alteração, redefina sua senha e fale com a equipe Acquafy imediatamente.";
 const url = "{{ .ConfirmationURL }}";
+// The order checkout signs customers in with a 6-digit code (verifyOtp) typed on the same page; the link is kept
+// for the other flows (portal login, investor invitations).
+const code = `<br><span style="display:inline-block;margin-top:16px;padding:12px 20px;border-radius:8px;background:${CANVAS};font-size:28px;font-weight:800;letter-spacing:8px;color:${INK}">{{ .Token }}</span><br><span style="display:inline-block;margin-top:8px;font-size:14px">Digite este código na página do pedido. Ou use o botão abaixo.</span>`;
 
 export const emails = {
   confirmation: {
-    subject: "Confirme seu e-mail na Acquafy Account",
+    subject: "{{ .Token }} é seu código da Acquafy Account",
     html: layout({
       title: "Confirme seu e-mail",
-      body: "Falta só um passo para ativar sua Acquafy Account e acompanhar pedidos, entrega, instalação e locações.",
+      body: "Falta só um passo para ativar sua Acquafy Account e acompanhar pedidos, entrega, instalação e locações." + code,
       button: { label: "Confirmar e-mail", href: url },
       note: IGNORE,
     }),
@@ -68,10 +71,10 @@ export const emails = {
     }),
   },
   magic_link: {
-    subject: "Seu link de acesso à Acquafy Account",
+    subject: "{{ .Token }} é seu código de acesso à Acquafy Account",
     html: layout({
-      title: "Seu link de acesso",
-      body: "Use o botão abaixo para entrar na sua Acquafy Account. O link é de uso único e expira em pouco tempo.",
+      title: "Seu código de acesso",
+      body: "Use o código abaixo para entrar na sua Acquafy Account. Ele é de uso único e expira em pouco tempo." + code,
       button: { label: "Entrar na minha conta", href: url },
       note: IGNORE,
     }),
@@ -162,7 +165,8 @@ if (mode === "preview") {
   const tokenFile = process.env.SUPABASE_ACCESS_TOKEN_FILE;
   if (!tokenFile) throw new Error("Set SUPABASE_ACCESS_TOKEN_FILE to a file containing a Supabase management token");
   const token = fs.readFileSync(tokenFile, "utf8").trim();
-  const body = { site_url: SITE_URL };
+  // The order checkout asks for a 6-digit code (OrderAccount.tsx / verifyOrderCode); keep the hosted length in step.
+  const body = { site_url: SITE_URL, mailer_otp_length: 6 };
   for (const [name, { subject, html }] of Object.entries(emails)) {
     body[`mailer_subjects_${name}`] = subject;
     body[`mailer_templates_${name}_content`] = html;
