@@ -20,7 +20,7 @@ export default function FlowHeader({
       {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- cross-app: full navigation required */}
       <a href="/" aria-label="Acquafy · voltar ao site" className="shrink-0 rounded-[6px] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0233c3]">
         {/* eslint-disable-next-line @next/next/no-img-element -- small SVG logo, same asset as the site header */}
-        <img src="/figma-assets/logo-b.svg" alt="Acquafy" width={132} height={28} className="h-[28px] w-auto" />
+        <img src="/figma-assets/logo-b.svg" alt="Acquafy" width={169} height={28} className="h-[28px] w-auto" />
       </a>
 
       <ol aria-label="Etapas da compra" className="mx-auto hidden md:flex items-center gap-[8px] text-[13px]">

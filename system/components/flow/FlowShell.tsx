@@ -38,7 +38,7 @@ export function FlowShell({
         {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
         <a href="/" aria-label="Acquafy · voltar ao site" className="shrink-0 rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand">
           {/* eslint-disable-next-line @next/next/no-img-element -- website asset outside the portal basePath */}
-          <img src="/figma-assets/logo-b.svg" alt="Acquafy" width={132} height={28} className="h-7 w-auto" />
+          <img src="/figma-assets/logo-b.svg" alt="Acquafy" width={169} height={28} className="h-7 w-auto" />
         </a>
         <FlowSteps step={step} stepHrefs={stepHrefs} />
         <nav aria-label="Conta" className="ml-auto flex shrink-0 items-center gap-1 text-[14px] md:gap-2">
