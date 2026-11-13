@@ -17,6 +17,7 @@ export function FlowShell({
   account,
   nav,
   stage,
+  stepHrefs,
   children,
 }: {
   step: FlowStep;
@@ -26,6 +27,8 @@ export function FlowShell({
   nav?: NavItem[];
   /** Left side of the split: the product being ordered. Without it the content is one centred column. */
   stage?: ReactNode;
+  /** Optional link for each step (index 0–3). When provided, the step label becomes a clickable link. */
+  stepHrefs?: (string | undefined)[];
   children: ReactNode;
 }) {
   return (
@@ -37,7 +40,7 @@ export function FlowShell({
           {/* eslint-disable-next-line @next/next/no-img-element -- website asset outside the portal basePath */}
           <img src="/figma-assets/logo-b.svg" alt="Acquafy" width={132} height={28} className="h-7 w-auto" />
         </a>
-        <FlowSteps step={step} />
+        <FlowSteps step={step} stepHrefs={stepHrefs} />
         <nav aria-label="Conta" className="ml-auto flex shrink-0 items-center gap-1 text-[14px] md:gap-2">
           {nav ? (
             <>
@@ -97,34 +100,49 @@ export function FlowShell({
 }
 
 /** The four steps of the purchase; the current one is marked, the ones before it are done. */
-export function FlowSteps({ step }: { step: FlowStep }) {
+export function FlowSteps({
+  step,
+  stepHrefs,
+}: {
+  step: FlowStep;
+  /** Optional link for each step (index 0–3). When provided, the step label becomes a clickable link. */
+  stepHrefs?: (string | undefined)[];
+}) {
   return (
     <>
       <ol aria-label="Etapas da compra" className="mx-auto hidden items-center gap-2 text-[13px] md:flex">
         {FLOW_STEPS.map((label, i) => {
           const n = i + 1;
           const state = n < step ? "done" : n === step ? "current" : "next";
+          const href = stepHrefs?.[i];
+          const inner = (
+            <span
+              aria-current={state === "current" ? "step" : undefined}
+              className={cn(
+                "flex items-center gap-1.5 font-semibold",
+                state === "current" ? "text-ink" : state === "done" ? "text-brand" : "text-ink-mute",
+              )}
+            >
+              <span
+                aria-hidden="true"
+                className={cn(
+                  "grid size-6 place-items-center rounded-full text-[12px]",
+                  state === "current" ? "bg-brand-gradient text-white" : state === "done" ? "bg-brand-soft text-brand" : "bg-canvas text-ink-mute",
+                )}
+              >
+                {state === "done" ? "✓" : n}
+              </span>
+              {label}
+            </span>
+          );
           return (
             <li key={label} className="flex items-center gap-2">
               {i > 0 && <span aria-hidden="true" className="h-px w-6 bg-line" />}
-              <span
-                aria-current={state === "current" ? "step" : undefined}
-                className={cn(
-                  "flex items-center gap-1.5 font-semibold",
-                  state === "current" ? "text-ink" : state === "done" ? "text-brand" : "text-ink-mute",
-                )}
-              >
-                <span
-                  aria-hidden="true"
-                  className={cn(
-                    "grid size-6 place-items-center rounded-full text-[12px]",
-                    state === "current" ? "bg-brand-gradient text-white" : state === "done" ? "bg-brand-soft text-brand" : "bg-canvas text-ink-mute",
-                  )}
-                >
-                  {state === "done" ? "✓" : n}
-                </span>
-                {label}
-              </span>
+              {href ? (
+                <Link href={href} className="rounded-md focus-visible:outline-2 focus-visible:outline-brand">
+                  {inner}
+                </Link>
+              ) : inner}
             </li>
           );
         })}

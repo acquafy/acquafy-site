@@ -1233,7 +1233,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
   }, [family]);
   const [activeColorIdx, setActiveColorIdx] = useState(0);
   const [activeSceneIdx, setActiveSceneIdx] = useState(0);
-  const [payTab, setPayTab] = useState<"dinheiro" | "financiar">("dinheiro");
+  const [payTab, setPayTab] = useState<"dinheiro" | "financiar">("financiar");
   const [fichaTecnicaOpen, setFichaTecnicaOpen] = useState(false);
   const [filterOpen, setFilterOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("produto");
@@ -1578,8 +1578,8 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
             {/* ── Payment tabs ────────────────────────────────────────────── */}
             <div className="border-b border-[#e8ecf4] flex">
               {([
-                ["dinheiro", lb.payCash],
                 ["financiar", lb.payLease],
+                ["dinheiro", lb.payCash],
               ] as const).map(([tab, label]) => (
                 <button key={tab} onClick={() => setPayTab(tab)}
                   className="flex-1 pb-[12px] pt-[4px] font-['Avenir_LT_Pro:85_Heavy'] text-[13px] transition-colors relative"

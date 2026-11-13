@@ -66,10 +66,13 @@ export default async function Order({ searchParams }: { searchParams: Promise<Qu
         : `A Acquafy confirma o prazo de entrega de ${items[0].quantity} unidades depois do pedido`
       : undefined;
 
+  const backHref = first?.product ? `/buy/checkin-${first.product}` : "/";
+
   return (
     <FlowShell
       step={2}
       account={user?.email ? { email: user.email } : null}
+      stepHrefs={[backHref, undefined, undefined, "/pedidos"]}
       stage={
         first ? (
           <FlowStage
