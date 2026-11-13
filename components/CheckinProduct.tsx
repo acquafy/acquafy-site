@@ -1471,67 +1471,17 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
             <div className="w-1/2 h-full flex items-center justify-center bg-[#f6f9fe]">
               <img src={activeVariant.img} alt={activeVariant.name} className="w-full h-1/2 object-contain" />
             </div>
-            {/* Direita: filtros (cima) + mapa (baixo) */}
-            <div className="w-1/2 h-full flex flex-col">
-              <div className="flex-1 overflow-hidden">
-                <img
-                  src={specs.filtragem === "4 Filtros RO / Osmose Reversa"
-                    ? "/images/checkin/banner-filtros-rof.webp"
-                    : "/images/checkin/banner-filtros-uff.webp"}
-                  alt={lb.filtrosBanner}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="flex-1 overflow-hidden">
-                {fv.cep.length === 9 ? (
-                  <iframe
-                    key={fv.cep}
-                    src={`https://www.google.com/maps?q=${encodeURIComponent(fv.cep + ", Brasil")}&output=embed`}
-                    className="w-full h-full border-0"
-                    loading="lazy"
-                    title={lb.mapaEntrega}
-                  />
-                ) : (
-                  <div className="w-full h-full flex flex-col items-center justify-center gap-[12px]"
-                    style={{ background: "linear-gradient(160deg, #eef2ff 0%, #f6f9fe 100%)" }}>
-                    <svg width="36" height="36" viewBox="0 0 48 48" fill="none">
-                      <circle cx="24" cy="22" r="10" stroke="#0233c3" strokeWidth="2.5"/>
-                      <path d="M24 12v-4M24 32v4M14 22H10M38 22h-4" stroke="#0233c3" strokeWidth="2" strokeLinecap="round" opacity="0.4"/>
-                      <circle cx="24" cy="22" r="3.5" fill="#0233c3"/>
-                      <path d="M16 36c0-4 3.6-7 8-7s8 3 8 7" stroke="#0233c3" strokeWidth="2.5" strokeLinecap="round" opacity="0.5"/>
-                    </svg>
-                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af] text-center px-[20px]">{lb.digitarCep}</p>
-                  </div>
-                )}
-              </div>
+            {/* Direita: filtros */}
+            <div className="w-1/2 h-full overflow-hidden">
+              <img
+                src={specs.filtragem === "4 Filtros RO / Osmose Reversa"
+                  ? "/images/checkin/banner-filtros-rof.webp"
+                  : "/images/checkin/banner-filtros-uff.webp"}
+                alt={lb.filtrosBanner}
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
-        </div>
-
-        {/* ── CEP: embedded map (fills full outer container) ─────────────── */}
-        <div className={`absolute inset-0 transition-opacity duration-500 z-10 ${displaySection === "cep" ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
-          {fv.cep.length === 9 ? (
-            <iframe
-              key={fv.cep}
-              src={`https://www.google.com/maps?q=${encodeURIComponent(fv.cep + ", Brasil")}&output=embed`}
-              className="w-full h-full border-0"
-              loading="lazy"
-              title={lb.mapaEntrega}
-            />
-          ) : (
-            <div className="w-full h-full flex flex-col items-center justify-center gap-[16px] p-[40px]"
-              style={{ background: "linear-gradient(160deg, #eef2ff 0%, #f6f9fe 100%)" }}>
-              <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
-                <circle cx="24" cy="22" r="10" stroke="#0233c3" strokeWidth="2.5"/>
-                <path d="M24 12v-4M24 32v4M14 22H10M38 22h-4" stroke="#0233c3" strokeWidth="2" strokeLinecap="round" opacity="0.4"/>
-                <circle cx="24" cy="22" r="3.5" fill="#0233c3"/>
-                <path d="M16 36c0-4 3.6-7 8-7s8 3 8 7" stroke="#0233c3" strokeWidth="2.5" strokeLinecap="round" opacity="0.5"/>
-              </svg>
-              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#9ca3af] text-center">
-                {lb.digitarCep}
-              </p>
-            </div>
-          )}
         </div>
 
         {/* Image area */}
