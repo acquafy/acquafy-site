@@ -43,12 +43,7 @@ export default async function BuyCheckinPage({
 
   return (
     <>
-      <FlowHeader step={1} stepHrefs={[
-        `/buy/checkin-${slug}`,
-        `/app/pedido`,
-        `/app/pedido`,
-        `/app/pedidos`,
-      ]} />
+      <FlowHeader step={1} />
       <main>
         <CheckinProduct family={family} />
       </main>

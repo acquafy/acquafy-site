@@ -139,9 +139,10 @@ export function FlowSteps({
             <li key={label} className="flex items-center gap-2">
               {i > 0 && <span aria-hidden="true" className="h-px w-6 bg-line" />}
               {href ? (
-                <Link href={href} className="rounded-md focus-visible:outline-2 focus-visible:outline-brand">
+                /* Use <a> (not Link) so basePath is not prepended — step hrefs may point to the website. */
+                <a href={href} className="rounded-md focus-visible:outline-2 focus-visible:outline-brand">
                   {inner}
-                </Link>
+                </a>
               ) : inner}
             </li>
           );
@@ -159,7 +160,7 @@ export function FlowStage({ image, title, detail }: { image: string; title: stri
   return (
     <figure className="flex h-full flex-col items-center justify-center gap-3 p-6">
       {/* eslint-disable-next-line @next/next/no-img-element -- website product image outside the portal basePath */}
-      <img src={image} alt={title} className="min-h-0 w-full max-w-[34rem] flex-1 object-contain" />
+      <img src={image} alt={title} className="min-h-0 w-full max-w-[34rem] flex-1 max-h-[500px] object-contain" />
       <figcaption className="text-center">
         <span className="block text-[20px] font-black tracking-tight text-ink">{title}</span>
         {detail && <span className="block text-[13.5px] text-ink-soft">{detail}</span>}

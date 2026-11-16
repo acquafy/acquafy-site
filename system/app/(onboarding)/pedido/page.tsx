@@ -72,7 +72,7 @@ export default async function Order({ searchParams }: { searchParams: Promise<Qu
     <FlowShell
       step={2}
       account={user?.email ? { email: user.email } : null}
-      stepHrefs={[backHref, undefined, undefined, "/pedidos"]}
+      stepHrefs={[backHref]}
       stage={
         first ? (
           <FlowStage
