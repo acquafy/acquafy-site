@@ -60,6 +60,10 @@ export const INFINITY_COLORS: CheckinColor[] = [
   { gradient: "linear-gradient(133deg, #c0c4c8 8%, #8a9098 89%)", name: "Inox", slug: "wt", nameKey: "inox" },
 ];
 
+export const METALLIC_COLORS: CheckinColor[] = [
+  { gradient: "linear-gradient(133deg, #d8dadc 8%, #9ba0a5 89%)", name: "Metalizado", slug: "wt", nameKey: "metalizado" },
+];
+
 export const ULTRA_COLORS: CheckinColor[] = [
   { gradient: "linear-gradient(133deg, #1a3d4d 8%, #0d2530 89%)", name: "Azul Petróleo",   slug: "ap" },
   { gradient: "linear-gradient(133deg, #8a96a0 8%, #4e5a63 89%)", name: "Cinza Metrópole", slug: "cm" },
@@ -125,6 +129,7 @@ export const CHECKIN_FAMILIES: CheckinFamily[] = [
     title: "Neo PRESTIGE",
     subtitle: "Embutido · Osmose Reversa",
     isPremium: true,
+    colors: METALLIC_COLORS,
     variants: [
       v("neo-prestige",          "Neo PRESTIGE",          "6 em 1", "6 em 1",             "Embutido"),
       v("neo-prestige-spark",    "Neo PRESTIGE SPARK",    "7 em 1", "7 em 1 · Gás",       "Embutido"),
@@ -137,6 +142,7 @@ export const CHECKIN_FAMILIES: CheckinFamily[] = [
     title: "Neo PRIME",
     subtitle: "Semi-Industrial · Osmose Reversa",
     isPremium: true,
+    colors: METALLIC_COLORS,
     variants: [
       { ...v("neo-prime",          "Neo PRIME",          "6 em 1", "6 em 1",             "Bancada"), slides: singleSlides("neo-prime", "neo-prime", 6) },
       { ...v("neo-prime-spark",    "Neo PRIME SPARK",    "7 em 1", "7 em 1 · Gás",       "Bancada"), slides: singleSlides("neo-prime", "neo-prime-spark", 6) },
