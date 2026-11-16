@@ -64,6 +64,9 @@ export default function FlowHeader({
       </p>
 
       <nav aria-label="Conta" className="ml-auto flex shrink-0 items-center gap-[4px] md:gap-[8px] text-[14px]">
+        <a href="/buy" className="hidden sm:inline-block rounded-[8px] px-[12px] py-[8px] font-avenir-heavy text-[#4b5563] hover:text-[#0233c3] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#0233c3]">
+          Escolher outro
+        </a>
         <a href="/app/pedidos" className="rounded-[8px] px-[12px] py-[8px] font-avenir-heavy text-[#4b5563] hover:text-[#0233c3] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#0233c3]">
           Meus pedidos
         </a>

@@ -3,7 +3,7 @@ import Hero from "@/components/Hero";
 import CheckoutUp from "@/components/CheckoutUp";
 import LinhaNeo from "@/components/LinhaNeo";
 import LinhasFiltros from "@/components/LinhasFiltros";
-import TransformaVidas from "@/components/TransformaVidas";
+// import TransformaVidas from "@/components/TransformaVidas"; // hidden for now: campaign returns in 2027 (Jan–Jun)
 import LinhaPremium from "@/components/LinhaPremium";
 import NeoMedia from "@/components/NeoMedia";
 import Parceria from "@/components/Parceria";
@@ -18,7 +18,7 @@ export default function Home() {
         <Hero />
         <CheckoutUp />
         <LinhaNeo />
-        <TransformaVidas />
+        {/* <TransformaVidas /> */}
         <LinhaPremium />
         <LinhasFiltros showPh={false} />
         <NeoMedia />

@@ -31,8 +31,8 @@ export default function CheckoutUp() {
 
   /* ─── shared fragments ─────────────────────────────────────── */
 
-  const Badge = () => (
-    <div className="bg-white border border-[#0233c3] flex gap-[10px] items-center px-[12px] py-[8px] rounded-full self-start shrink-0">
+  const Badge = ({ self: selfAlign = "self-start" }: { self?: string } = {}) => (
+    <div className={`bg-white border border-[#0233c3] flex gap-[10px] items-center px-[12px] py-[8px] rounded-full shrink-0 ${selfAlign}`}>
       <FigmaIcon src={imgDrop} size={16} />
       <span className="font-avenir-heavy text-[14px] leading-[17px] bg-clip-text text-transparent whitespace-nowrap"
             style={gdLabel}>
@@ -52,9 +52,8 @@ export default function CheckoutUp() {
 
         {/* text */}
         <div className="relative z-10 flex flex-col gap-[20px] items-center w-full p-[20px] pb-[10px]">
-          <Badge />
-          <h2 className="font-avenir-black text-[36px] leading-[1.15] text-[#2a2a2b] w-full text-center">
-            {t.h1a}<br />{t.h1b}
+          <h2 className="font-avenir-black text-[clamp(22px,2.6vw+12px,36px)] leading-[1.15] text-[#2a2a2b] w-full text-center">
+            {t.h1a} {t.h1b}
           </h2>
           <p className="font-avenir-roman text-[18px] leading-[26px] text-[#333] w-full text-center">{t.sub}</p>
         </div>
@@ -102,9 +101,9 @@ export default function CheckoutUp() {
           </div>
         </div>
 
-        {/* woman */}
-        <div aria-hidden="true" className="w-full max-w-[260px] mx-auto pointer-events-none">
-          <Img alt="" src={imgWoman} className="block w-full h-auto" />
+        {/* composite image */}
+        <div aria-hidden="true" className="relative w-full overflow-hidden pointer-events-none">
+          <Img alt="" src={imgGroupRight} className="block w-full h-auto" />
         </div>
       </div>
 
@@ -115,17 +114,24 @@ export default function CheckoutUp() {
       <div className="hidden lg:flex win-1190:hidden w-full max-w-[1400px] flex-col gap-[20px]">
 
         {/* Box 1 — woman + text */}
-        <div className="relative bg-[#edf5fa] rounded-[16px] overflow-hidden flex items-end gap-[40px] pr-[20px]">
+        <div className="relative bg-[#edf5fa] rounded-[16px] overflow-hidden flex items-end gap-[40px] pr-[20px] pt-[10px]">
           <div aria-hidden="true" className="absolute inset-0 z-[1] pointer-events-none">
             <Img alt="" src={imgBgLeft} className="absolute left-0 bottom-0 w-[728px] h-[544px] object-cover object-left" />
           </div>
-          <div aria-hidden="true" className="relative z-[2] shrink-0 w-[364px] h-[459px] pointer-events-none">
-            <Img alt="" src={imgWoman} className="absolute inset-0 w-full h-full object-cover object-left-bottom" />
+          <div aria-hidden="true" className="relative z-[2] shrink-0 pointer-events-none self-end">
+            <Img alt="" src={imgWoman} className="w-[240px] h-auto block" />
           </div>
-          <div className="relative z-[2] flex-[1_0_0] min-w-0 flex flex-col gap-[30px] pb-[30px] pt-[20px]">
-            <Badge />
+          <div className="relative z-[2] flex-[1_0_0] min-w-0 self-start flex flex-col gap-[20px] pt-[10px] pb-[20px] pl-[60px]">
             <h2 className="font-avenir-black text-[42px] leading-[48px] text-[#2a2a2b] w-full">{t.h1a}<br />{t.h1b}</h2>
             <p className="font-avenir-roman text-[16px] leading-[22px] text-[#333] w-full">{t.sub}</p>
+            <div className="flex flex-wrap gap-x-[20px] gap-y-[8px]">
+              {s2.bar.map((item, i) => (
+                <div key={i} className="flex gap-[8px] items-center">
+                  <div className="w-[6px] h-[6px] rounded-full shrink-0" style={gdBlue} />
+                  <span className="font-avenir-roman text-[14px] leading-[18px] text-[#555]">{item}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -140,9 +146,9 @@ export default function CheckoutUp() {
           <div className="relative z-[3] flex-[1_0_0] min-w-0 flex flex-col gap-[20px] py-[30px]">
             <div className="grid grid-cols-2 gap-[10px]">
               {CARD_ICONS.map((icon, i) => (
-                <div key={i} className="bg-[rgba(255,255,255,0.7)] border border-white flex flex-col gap-[10px] items-center justify-center px-[10px] py-[16px] rounded-[12px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.1)]">
+                <div key={i} className="bg-[rgba(255,255,255,0.7)] border border-white flex flex-col gap-[10px] items-center justify-start px-[10px] py-[16px] rounded-[12px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.1)]">
                   <FigmaIcon src={icon} size={36} />
-                  <p className="font-avenir-heavy text-[14px] leading-[17px] text-[#333] text-center w-full">{t.cards[i]}</p>
+                  <p className="font-avenir-heavy text-[14px] leading-[17px] text-[#333] text-center w-full min-h-[34px]">{t.cards[i]}</p>
                 </div>
               ))}
             </div>
@@ -183,60 +189,57 @@ export default function CheckoutUp() {
 
 
       {/* ══════════════════════════════════════════════════════════
-          WIN-1190+  (≥1190px) — single container, 2-col grid
-          Cards: flex-row (1190–1279) → flex-col (1280+)
+          WIN-1190+  (≥1190px) — flex + spacer (Figma: 1190>1289 / 1290>)
+          Text constrained by content flex-1; cards/buttons w-702 → w-500
       ══════════════════════════════════════════════════════════ */}
-      <div className="hidden win-1190:grid grid-cols-[364px_minmax(0,1fr)] relative w-full max-w-[1400px] rounded-[16px] overflow-hidden bg-[#f3f8ff] min-h-[500px]">
+      <div className="hidden win-1190:flex gap-[30px] items-stretch justify-center overflow-hidden relative w-full max-w-[1400px] rounded-[16px] bg-[#f3f8ff]">
 
         {/* absolute backgrounds */}
         <div aria-hidden="true" className="absolute inset-0 pointer-events-none">
           <Img alt="" src={imgBgLeft}
-               className="absolute left-0 bottom-0 w-[728px] h-[544px] object-cover object-left" />
+               className="absolute left-0 top-0 bottom-0 w-[728px] h-full object-cover object-left" />
           <Img alt="" src={imgGroupRight}
                className="absolute top-1/2 -translate-y-1/2 object-cover
-                          right-[-272px] w-[981px] h-[560px]
-                          win-1280:right-[-228px] win-1280:w-[893px] win-1280:h-[510px]"
-               style={{ WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 25%)", maskImage: "linear-gradient(to right, transparent 0%, black 25%)" }} />
+                          w-[981px] h-[600px]
+                          win-1280:w-[893px]"
+               style={{
+                 right: 'clamp(-360px, calc(-228px + (100vw - 1280px) * 1.25), -228px)',
+                 WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 35%)",
+                 maskImage: "linear-gradient(to right, transparent 0%, black 35%)"
+               }} />
         </div>
 
-        {/* woman — left col, rows 1–2, anchored to bottom */}
-        <div aria-hidden="true"
-             className="col-start-1 row-start-1 row-span-2 self-end relative z-10 h-[459px] pointer-events-none">
+        {/* woman */}
+        <div aria-hidden="true" className="relative z-10 self-end h-[459px] w-[364px] shrink-0 pointer-events-none">
           <Img alt="" src={imgWoman}
                className="absolute inset-0 w-full h-full object-cover object-left-bottom" />
         </div>
 
-        {/* text — right col row 1 */}
-        <div className="col-start-2 row-start-1 relative z-10 flex flex-col gap-[15px]
-                        pt-[30px] pb-[15px] win-1280:pr-[500px]">
+        {/* content — flex-1 keeps text narrow; cards/buttons overflow into spacer */}
+        <div className="relative z-10 flex flex-[1_0_0] flex-col gap-[15px] items-start justify-start min-w-[276px] py-[30px]">
           <Badge />
-          <h2 className="font-avenir-black text-[42px] leading-[48px] text-[#2a2a2b] w-full">
-            {t.h1a}<br />{t.h1b}
+          <h2 className="font-avenir-black text-[42px] leading-[48px] text-[#2a2a2b] max-w-[460px]">
+            {t.h1a} {t.h1b}
           </h2>
-          <p className="font-avenir-roman text-[16px] leading-[22px] text-[#333] w-full">{t.sub}</p>
-        </div>
+          <p className="font-avenir-roman text-[16px] leading-[22px] text-[#333] max-w-[460px]">{t.sub}</p>
 
-        {/* cards + buttons — right col row 2 */}
-        <div className="col-start-2 row-start-2 relative z-10 flex flex-col gap-[15px]
-                        pb-[30px] win-1280:pr-[500px]">
-
-          {/* cards: flex-row at win-1190, flex-col at win-1280 */}
-          <div className="flex gap-[10px] items-stretch w-full">
+          {/* cards: w-702 (1190–1279, flex-row) → w-500 (1280+, flex-col) */}
+          <div className="flex gap-[10px] items-stretch w-[702px] win-1280:w-[500px]">
             {CARD_ICONS.map((icon, i) => (
               <div key={i} className="bg-[rgba(255,255,255,0.7)] border border-white flex flex-[1_0_0] gap-[10px] items-center justify-start
-                                      flex-row win-1280:flex-col win-1280:justify-center
-                                      min-w-0 px-[10px] py-[16px] rounded-[12px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.1)]">
+                                      min-w-0 px-[10px] py-[16px] rounded-[12px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.1)]
+                                      win-1280:flex-col win-1280:justify-center">
                 <FigmaIcon src={icon} size={36} />
-                <p className="font-avenir-heavy text-[14px] leading-[1.2] text-[#333]
-                              win-1280:leading-[17px] win-1280:text-center win-1280:w-full win-1280:min-h-[34px] win-1280:flex win-1280:items-center win-1280:justify-center">
+                <p className="font-avenir-heavy text-[14px] leading-[1.2] text-[#333] flex-[1_0_0] min-w-0
+                              win-1280:flex-none win-1280:leading-[17px] win-1280:text-center win-1280:w-full">
                   {t.cards[i]}
                 </p>
               </div>
             ))}
           </div>
 
-          {/* buttons */}
-          <div className="flex gap-[8px] items-stretch w-full">
+          {/* buttons: w-702 (1190–1279) → w-full (1280+) */}
+          <div className="flex gap-[8px] items-stretch w-[702px] win-1280:w-full">
             <a href="/buy/checkin-neo-up?modelo=neo-up&pagamento=compra"
                className="flex shrink-0 gap-[8px] items-center justify-center min-h-[56px] overflow-hidden px-[12px] py-[10px] rounded-[8px] transition-opacity hover:opacity-90 active:opacity-80"
                style={gdBlue}>
@@ -254,7 +257,6 @@ export default function CheckoutUp() {
                 {s2.lease} <span className="font-avenir-heavy">US$ {NEO_UP.lease}{s2.perMonth}</span>
               </span>
             </a>
-            {/* Conheça: flex-1 at win-1190, shrink-0 at win-1280 */}
             <Link href="/neo-line"
                   className="flex flex-[1_0_0] win-1280:flex-none win-1280:shrink-0 gap-[8px] items-center justify-center min-h-[56px] min-w-0 overflow-hidden px-[12px] py-[10px] rounded-[8px] transition-opacity hover:opacity-90 active:opacity-80"
                   style={gdPurple}>
@@ -265,6 +267,10 @@ export default function CheckoutUp() {
             </Link>
           </div>
         </div>
+
+        {/* spacer — shrinks as viewport narrows (same rate as image shift) to give text more room */}
+        <div aria-hidden="true" className="relative z-10 self-end h-[490px] shrink-0"
+             style={{ width: 'clamp(360px, calc(490px + (100vw - 1280px) * 1.25), 490px)' }} />
 
       </div>
     </section>

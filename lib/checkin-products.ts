@@ -50,10 +50,10 @@ function positionSlides(familySlug: string, variantId: string, count = 7): strin
   );
 }
 
-// Single-color products (Premium): 1 color entry with 7 position slides.
-function singleSlides(familySlug: string, variantId: string): string[][] {
+// Single-color products (Premium): 1 color entry with `count` position slides (7 by default).
+function singleSlides(familySlug: string, variantId: string, count = 7): string[][] {
   const base = `/images/checkin/${familySlug}/${variantId}/wt`;
-  return [Array.from({ length: 7 }, (_, i) => `${base}/${String(i + 1).padStart(2, "0")}.webp`)];
+  return [Array.from({ length: count }, (_, i) => `${base}/${String(i + 1).padStart(2, "0")}.webp`)];
 }
 
 export const INFINITY_COLORS: CheckinColor[] = [
@@ -112,10 +112,11 @@ export const CHECKIN_FAMILIES: CheckinFamily[] = [
     title: "Neo MAX",
     subtitle: "Coluna · até 8 em 1",
     isPremium: false,
+    colors: ULTRA_COLORS,
     variants: [
-      v("neo-max",          "Neo MAX",          "6 em 1", "6 em 1",             "Coluna"),
-      v("neo-max-spark",    "Neo MAX SPARK",    "7 em 1", "7 em 1 · Gás",       "Coluna"),
-      v("neo-max-spark-h2", "Neo MAX SPARK H₂", "8 em 1", "8 em 1 · Gás + H₂", "Coluna"),
+      { ...v("neo-max",          "Neo MAX",          "6 em 1", "6 em 1",             "Coluna"), slides: positionSlides("neo-max", "neo-max") },
+      { ...v("neo-max-spark",    "Neo MAX SPARK",    "7 em 1", "7 em 1 · Gás",       "Coluna"), slides: positionSlides("neo-max", "neo-max-spark") },
+      { ...v("neo-max-spark-h2", "Neo MAX SPARK H₂", "8 em 1", "8 em 1 · Gás + H₂", "Coluna"), slides: positionSlides("neo-max", "neo-max-spark-h2") },
     ],
     scenes: [],
   },
@@ -137,9 +138,9 @@ export const CHECKIN_FAMILIES: CheckinFamily[] = [
     subtitle: "Semi-Industrial · Osmose Reversa",
     isPremium: true,
     variants: [
-      v("neo-prime",          "Neo PRIME",          "6 em 1", "6 em 1",             "Bancada"),
-      v("neo-prime-spark",    "Neo PRIME SPARK",    "7 em 1", "7 em 1 · Gás",       "Bancada"),
-      v("neo-prime-spark-h2", "Neo PRIME SPARK H₂", "8 em 1", "8 em 1 · Gás + H₂", "Bancada"),
+      { ...v("neo-prime",          "Neo PRIME",          "6 em 1", "6 em 1",             "Bancada"), slides: singleSlides("neo-prime", "neo-prime", 6) },
+      { ...v("neo-prime-spark",    "Neo PRIME SPARK",    "7 em 1", "7 em 1 · Gás",       "Bancada"), slides: singleSlides("neo-prime", "neo-prime-spark", 6) },
+      { ...v("neo-prime-spark-h2", "Neo PRIME SPARK H₂", "8 em 1", "8 em 1 · Gás + H₂", "Bancada"), slides: singleSlides("neo-prime", "neo-prime-spark-h2", 6) },
     ],
     scenes: [],
   },
