@@ -124,9 +124,9 @@ export default function CheckoutUp() {
           <div className="relative z-[2] flex-[1_0_0] min-w-0 self-start flex flex-col gap-[20px] pt-[10px] pb-[20px] pl-[60px]">
             <h2 className="font-avenir-black text-[42px] leading-[48px] text-[#2a2a2b] w-full">{t.h1a}<br />{t.h1b}</h2>
             <p className="font-avenir-roman text-[16px] leading-[22px] text-[#333] w-full">{t.sub}</p>
-            <div className="flex flex-wrap gap-x-[20px] gap-y-[8px]">
+            <div className="grid grid-cols-2 gap-[8px]">
               {s2.bar.map((item, i) => (
-                <div key={i} className="flex gap-[8px] items-center">
+                <div key={i} className="flex gap-[8px] items-center bg-white rounded-[8px] px-[12px] py-[10px]">
                   <div className="w-[6px] h-[6px] rounded-full shrink-0" style={gdBlue} />
                   <span className="font-avenir-roman text-[14px] leading-[18px] text-[#555]">{item}</span>
                 </div>
