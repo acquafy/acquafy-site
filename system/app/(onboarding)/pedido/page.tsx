@@ -1,4 +1,4 @@
-import { ChevronRight, ShieldCheck } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { serverClient } from "@/lib/live/data";
 import { ActionForm } from "@/components/enrollment/ActionForm";
@@ -157,10 +157,7 @@ export default async function Order({ searchParams }: { searchParams: Promise<Qu
             </ActionForm>
           )}
           <Notice>
-            <span className="inline-flex items-center gap-1.5">
-              <ShieldCheck className="size-4 text-violet" aria-hidden="true" />
-              Pagamento seguro pelo Stripe. {kind === "purchase" ? "O saldo só é cobrado quando a Acquafy confirmar a data de entrega." : "A mensalidade só começa depois do acordo de locação."}
-            </span>
+            Pagamento seguro pelo Stripe. {kind === "purchase" ? "O saldo só é cobrado quando a Acquafy confirmar a data de entrega." : "A mensalidade só começa depois do acordo de locação."}
           </Notice>
         </>
       )}

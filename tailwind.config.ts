@@ -14,6 +14,7 @@ const config: Config = {
            ≥ 1024px → Breakpoint 2
            ≥ 1280px → TELA TOTAL */
         "win-1024": "1024px",
+        "win-1190": "1190px",
         "win-1280": "1280px",
         /* Breakpoint calculado: 3 cards×380px + 2 gaps×20px + 2 paddings×20px = 1220px */
         "1220": "1220px",

@@ -1368,6 +1368,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
     const idx = cor ? colorOptions.findIndex((c) => c.slug === cor) : -1;
     if (idx >= 0) setActiveColorIdx(idx);
     if (params.get("pagamento") === "locacao") setPayTab("financiar");
+    else if (params.get("pagamento") === "compra") setPayTab("dinheiro");
     setUrlRead(true);
   // eslint-disable-next-line react-hooks/exhaustive-deps -- read once, on arrival
   }, []);

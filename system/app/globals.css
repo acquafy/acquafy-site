@@ -177,6 +177,26 @@ body {
 .flow :where(button, a).rounded-lg {
   border-radius: 14px;
 }
+/* Type scale of the website (Heavy 14/16/18, Roman, Black for page titles) for every screen of the flow (order, payment,
+   tracking). The kit components use half-pixel sizes (12.5, 13.5, 14.5, 15.5); they snap to the website's sizes here, and
+   page titles take Black like the website's h1. Headings and paragraphs also get the website's vertical trim
+   (app/globals.css) so spacing matches the Figma "Corte Vertical". Scoped to .flow: the rest of the portal keeps Inter. */
+.flow h1 {
+  font-weight: 900;
+}
+.flow :where(p, h1, h2, h3, h4, h5, h6) {
+  text-box-trim: trim-both;
+  text-box-edge: text;
+}
+.flow .text-\[12\.5px\] {
+  font-size: 12px;
+}
+.flow :is(.text-\[13px\], .text-\[13\.5px\], .text-\[14\.5px\]) {
+  font-size: 14px;
+}
+.flow :is(.text-\[15px\], .text-\[15\.5px\]) {
+  font-size: 16px;
+}
 
 /* Receipts and other `Modal printable` dialogs: print only the dialog, without its action buttons. */
 @media print {
