@@ -41,12 +41,12 @@ function v(id: string, name: string, subLabel: string, desc: string, formato: st
   return { id, name, subLabel, desc, formato, price: PRODUCT_PRICES_BRL[id] ?? 0, img: PRODUCT_IMAGES[id] ?? "" };
 }
 
-// Every color has the same 7 positions, in the numeric order of the source folders:
-// 00 front, 01 turn, 02 side, 03 back closed, 04 back open, 05 side, 06 turn.
-function positionSlides(familySlug: string, variantId: string): string[][] {
+// Colors in display order (ap, cm, cz, bg, wt).
+// count: how many slides exist per color (defaults to 7 for older products, 5 for Neo UP).
+function positionSlides(familySlug: string, variantId: string, count = 7): string[][] {
   const base = `/images/checkin/${familySlug}/${variantId}`;
   return (["ap", "cm", "cz", "bg", "wt"] as const).map((col) =>
-    Array.from({ length: 7 }, (_, i) => `${base}/${col}/${String(i + 1).padStart(2, "0")}.webp`)
+    Array.from({ length: count }, (_, i) => `${base}/${col}/${String(i + 1).padStart(2, "0")}.webp`)
   );
 }
 
@@ -76,7 +76,7 @@ export const CHECKIN_FAMILIES: CheckinFamily[] = [
     isPremium: false,
     colors: ULTRA_COLORS,
     variants: [
-      { ...v("neo-up", "Neo UP", "Apenas Natural", "Natural", "Bancada ou Parede"), slides: positionSlides("neo-up", "neo-up") },
+      { ...v("neo-up", "Neo UP", "Apenas Natural", "Natural", "Bancada ou Parede"), slides: positionSlides("neo-up", "neo-up", 5) },
     ],
     scenes: [],
   },
