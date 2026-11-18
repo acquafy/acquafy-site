@@ -95,11 +95,11 @@ export default function AddressPopover({ stretch = false }: { stretch?: boolean 
         </svg>
       </button>
 
+      {open && (
       <div
         id={panelId}
         role="group"
         aria-label={t.label}
-        hidden={!open}
         className="absolute left-1/2 top-full z-20 mt-[12px] flex w-[min(320px,calc(100vw-40px))] -translate-x-1/2 flex-col gap-[12px] rounded-[16px] border border-solid border-[#cbd0d4] bg-white p-[16px] text-left shadow-lg lg:left-0 lg:translate-x-0"
       >
         <address className="flex flex-col gap-[4px] not-italic">
@@ -130,6 +130,7 @@ export default function AddressPopover({ stretch = false }: { stretch?: boolean 
           </a>
         </div>
       </div>
+      )}
     </div>
   );
 }
