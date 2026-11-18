@@ -1,6 +1,7 @@
 ﻿"use client";
 import Img from "@/components/ui/Img";
 import FigmaIcon from "./FigmaIcon";
+import AddressPopover from "./AddressPopover";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
 // ── Assets ───────────────────────────────────────────────────────────────────
@@ -384,15 +385,10 @@ function BottomFeature({ icon, iconAlt, title, description }: BottomFeatureItem)
 }
 
 // ── CTA buttons ───────────────────────────────────────────────────────────────
-function CTAButtons({ stretch = false, btn1, btn2 }: { stretch?: boolean; btn1: string; btn2: string }) {
+function CTAButtons({ stretch = false, btn2 }: { stretch?: boolean; btn2: string }) {
   return (
     <div className={`flex flex-wrap gap-[20px] items-center ${stretch ? "justify-center max-w-[800px] w-full" : "justify-center xl:justify-start w-full"}`}>
-      <a href="#quem-somos" className={`flex gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors cursor-pointer no-underline ${stretch ? "flex-[1_0_0]" : "shrink-0"}`}>
-        <span className="font-avenir-heavy text-[16px] leading-normal text-white flex-1 text-center">
-          {btn1}
-        </span>
-        <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
-      </a>
+      <AddressPopover stretch={stretch} />
       <a href="/contact" className={`group flex gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors cursor-pointer no-underline ${stretch ? "flex-[1_0_0]" : "shrink-0"}`}>
         <span className="font-avenir-heavy text-[16px] leading-normal text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">
           {btn2}
@@ -470,7 +466,7 @@ export default function SobreBanner() {
           {pillItems.map((p) => <FeaturePill key={p.title} {...p} />)}
         </div>
 
-        <CTAButtons stretch btn1={t.btn1} btn2={t.btn2} />
+        <CTAButtons stretch btn2={t.btn2} />
 
         {/* Card de imagem */}
         <div className="relative h-[380px] min-w-[280px] rounded-[16px] w-full overflow-hidden shrink-0">
@@ -509,7 +505,7 @@ export default function SobreBanner() {
               {pillItems.map((p) => <FeaturePillDesktop key={p.title} {...p} />)}
             </div>
 
-            <CTAButtons btn1={t.btn1} btn2={t.btn2} />
+            <CTAButtons btn2={t.btn2} />
           </div>
 
           {/* Coluna direita — espaçador (bg image preenche) */}
