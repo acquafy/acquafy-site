@@ -5,7 +5,7 @@ import { ReactNode, ButtonHTMLAttributes } from "react";
 import FigmaIcon from "../FigmaIcon";
 import { useLang } from "@/context/LanguageContext";
 
-// ── Arrow icons  (11×9 landscape — fills 9px slot by width) ──────────────────
+// ── Arrow icons — 18px, the same size as the arrows of the banner buttons ────
 const imgArrowBlue  = "/figma-assets/icon-arrow-blue-outline-d.svg";
 const imgArrowWhite = "/figma-assets/icon-arrow-white-hover.svg";
 const imgArrowGray  = "/figma-assets/icon-arrow-gray.svg";
@@ -32,17 +32,17 @@ const imgPessoas = "/figma-assets/icon-pessoas-b.svg";
 // ─────────────────────────────────────────────────────────────────────────────
 
 function Arrow({ src }: { src: string }) {
-  return <FigmaIcon src={src} size={9} aspectW={11} aspectH={9} />;
+  return <FigmaIcon src={src} size={18} aspectW={18} aspectH={18} />;
 }
 
 function ArrowToggle({ defaultSrc, hoverSrc }: { defaultSrc: string; hoverSrc: string }) {
   return (
-    <div className="relative shrink-0" style={{ width: 9, height: 9 }}>
+    <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
       <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0 group-active:opacity-0">
-        <FigmaIcon src={defaultSrc} size={9} aspectW={11} aspectH={9} />
+        <FigmaIcon src={defaultSrc} size={18} aspectW={18} aspectH={18} />
       </div>
       <div className="absolute inset-0 transition-opacity duration-150 opacity-0 group-hover:opacity-100 group-active:opacity-100">
-        <FigmaIcon src={hoverSrc} size={9} aspectW={11} aspectH={9} />
+        <FigmaIcon src={hoverSrc} size={18} aspectW={18} aspectH={18} />
       </div>
     </div>
   );
@@ -88,7 +88,7 @@ function IcoToggle({ defaultSrc, hoverSrc, aspectW = 1, aspectH = 1 }: {
 
 function Label({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
-    <span className={`font-avenir-heavy text-f14 leading-l17 text-center whitespace-nowrap shrink-0 ${className}`}>
+    <span className={`font-avenir-heavy text-f14 leading-l17 text-center min-w-0 ${className}`}>
       {children}
     </span>
   );
@@ -387,23 +387,27 @@ export function BtnVerdeOut({ children, className = "", disabled, ...rest }: Btn
   );
 }
 
-export function BtnVerdeOutArrow({ children, className = "", disabled, ...rest }: BtnProps) {
-  return (
-    <button
-      disabled={disabled}
-      className={`group flex gap-[10px] items-center justify-center min-h-[30px] overflow-hidden px-[20px] py-[10px] rounded-[8px] transition-colors cursor-pointer
+export function BtnVerdeOutArrow({ children, className = "", disabled, href, ...rest }: BtnProps & { href?: string }) {
+  const cls = `group flex gap-[10px] items-center justify-center min-h-[30px] overflow-hidden px-[20px] py-[10px] rounded-[8px] transition-colors cursor-pointer no-underline
         ${disabled
           ? "bg-[#f6f9fe] border border-[#c8cfd8] cursor-not-allowed"
           : "bg-white border border-[#36ae5c] hover:bg-[#36ae5c] active:bg-[#0b8650]"}
-        ${className}`}
-      {...rest}
-    >
+        ${className}`;
+  const content = (
+    <>
       <Label className={disabled ? "text-[#c8cfd8]" : "text-[#36ae5c] group-hover:text-white group-active:text-white"}>
         {children}
       </Label>
       {disabled
         ? <Arrow src={imgArrowGray} />
         : <ArrowToggle defaultSrc={imgArrowGreen} hoverSrc={imgArrowWhite} />}
+    </>
+  );
+  // With href it is a real link (no button inside an anchor).
+  if (href && !disabled) return <a href={href} className={cls}>{content}</a>;
+  return (
+    <button disabled={disabled} className={cls} {...rest}>
+      {content}
     </button>
   );
 }

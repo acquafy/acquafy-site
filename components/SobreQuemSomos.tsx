@@ -323,7 +323,7 @@ function StatItem({
   icon, iconAlt, title, description,
 }: { icon: string; iconAlt: string; title: string; description: string }) {
   return (
-    <div className="flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-w-[150px] px-[20px]">
+    <div className="flex flex-col gap-[20px] items-center justify-center min-w-0 px-[20px]">
       <FigmaIcon src={icon} alt={iconAlt} size={40} />
       <div className="flex flex-col gap-[15px] items-start text-center w-full">
         <p className="font-avenir-heavy text-f16 leading-l20 text-[#1f2e91] w-full min-h-[36px]">
@@ -393,7 +393,7 @@ export default function SobreQuemSomos() {
           </div>
 
           {/* Stats — sem divisores */}
-          <div className="flex flex-wrap gap-[10px] items-center w-full">
+          <div className="card-row [--card-min:150px] gap-[10px] items-center w-full">
             <StatItem
               icon={imgRatingIcon}
               iconAlt={t.stat1Title}

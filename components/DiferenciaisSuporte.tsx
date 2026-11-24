@@ -160,7 +160,7 @@ export default function DiferenciaisSuporte() {
 
   return (
     <section className="bg-[#f6f9fe] flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
-      <div className="relative flex flex-wrap gap-[20px] items-center justify-center max-w-[1400px] overflow-hidden px-[20px] py-[40px] rounded-[16px] w-full">
+      <div className="relative card-row [--card-min:280px] gap-[20px] items-center max-w-[1400px] overflow-hidden px-[20px] py-[40px] rounded-[16px] w-full">
         {/* Background */}
         <div className="absolute inset-0 rounded-[16px] pointer-events-none" aria-hidden>
           <div className="absolute bg-[#1f2e91] inset-0 rounded-[16px]" />
@@ -175,7 +175,7 @@ export default function DiferenciaisSuporte() {
         {diferenciais.map((item) => (
           <div
             key={item.title}
-            className="relative flex flex-[1_0_0] gap-[20px] items-center justify-center min-w-[280px]"
+            className="relative flex gap-[20px] items-center justify-center min-w-0"
           >
             <div className="flex flex-col items-center justify-center shrink-0 size-[50px]">
               <FigmaIcon src={item.icon} size={40} aspectW={item.aspectW} aspectH={item.aspectH} />

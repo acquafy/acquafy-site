@@ -240,22 +240,22 @@ export default function PorqueNeo() {
           </h2>
 
           {/* Cards grid */}
-          <div className="card-row [--card-min:180px] bg-white gap-[20px] items-start justify-center overflow-hidden p-[20px] rounded-[12px] w-full">
+          <div className="card-row [--card-min:135px] auto-rows-fr gap-[12px] items-stretch justify-center w-full">
             {items.map((item) => (
               <div
                 key={item.title}
-                className="min-w-0 flex flex-col gap-[20px] items-center justify-center rounded-[14px]"
+                className="min-w-0 flex flex-col gap-[12px] items-center justify-center bg-white rounded-[12px] px-[12px] py-[20px]"
               >
                 {/* Circle icon */}
                 <div className="border border-[#cbd0d4] flex flex-col items-center justify-center p-[14px] rounded-full shrink-0 size-[60px]">
                   <FigmaIcon src={item.icon} size={30} aspectW={item.aW} aspectH={item.aH} />
                 </div>
 
-                <p className="font-avenir-heavy text-f16 leading-l20 text-[#1f2e91] text-center w-full min-h-[35px] flex items-center justify-center">
+                <p className="font-avenir-heavy text-f16 leading-l20 text-[#1f2e91] text-center w-full">
                   {item.title}
                 </p>
 
-                <p className="font-avenir-roman text-f12 leading-l14 text-[#333] text-center w-full">
+                <p className="font-avenir-roman text-f14 leading-l16 text-[#333] text-center w-full">
                   {item.desc}
                 </p>
               </div>

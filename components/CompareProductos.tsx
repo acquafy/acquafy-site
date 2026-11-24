@@ -1052,7 +1052,7 @@ function ProductName({ parts }: { parts: Product["nameParts"] }) {
     <>
       {parts.map((p, i) =>
         p.text === "2" && i > 0 ? (
-          <span key={i} className="text-[0.65em] align-sub">{p.text}</span>
+          <span key={i} className="align-sub" style={{ fontSize: "max(0.875rem, 0.65em)" }}>{p.text}</span>
         ) : p.highlight ? (
           <span key={i} className="text-[#0569ff]">{p.text}</span>
         ) : (
@@ -1065,7 +1065,7 @@ function ProductName({ parts }: { parts: Product["nameParts"] }) {
 
 function FeaturePill({ icon, label, aspectW, aspectH }: { icon: string; label: string; aspectW?: number; aspectH?: number }) {
   return (
-    <div className="flex flex-1 gap-[20px] items-center min-w-[220px]">
+    <div className="flex gap-[20px] items-center min-w-0">
       <div className="bg-white border-[0.5px] border-[#cbd0d4] flex items-center justify-center p-[16px] rounded-full shrink-0 size-[60px]">
         <FigmaIcon src={icon} size={28} aspectW={aspectW} aspectH={aspectH} />
       </div>
@@ -1291,7 +1291,7 @@ export default function CompareProductos() {
           </div>
 
           {/* Feature pills — fora do hero row, todos os breakpoints ≥1024px */}
-          <div className="flex flex-wrap gap-[20px] items-center justify-between w-full">
+          <div className="card-row [--card-min:220px] gap-[20px] items-center w-full">
             <FeaturePill icon={imgMobile} label={t.pills[0]} aspectW={211} aspectH={295} />
             <FeaturePill icon={imgLanguage} label={t.pills[1]} />
             <FeaturePill icon={imgPlanetGlobal} label={t.pills[2]} />
@@ -1646,7 +1646,7 @@ export default function CompareProductos() {
           {/* Neo Essentials card */}
           <div className="border border-[#cbd0d4] flex flex-wrap gap-[20px] items-center justify-center flex-1 min-w-[280px] p-[40px] relative rounded-[16px] overflow-hidden">
             <Img alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none rounded-[16px]" src={imgEssentialsBg} />
-            <div className="flex flex-col gap-[20px] items-start flex-1 min-w-[280px] relative">
+            <div className="flex flex-col gap-[20px] items-start flex-1 min-w-[min(280px,100%)] relative">
               <p className="font-avenir-heavy text-f18 leading-l22 text-[#0569ff]">
                 Neo Essentials
               </p>
@@ -1668,7 +1668,7 @@ export default function CompareProductos() {
           {/* Neo Premium card */}
           <div className="border border-[#cbd0d4] flex flex-wrap gap-[20px] items-center justify-center flex-1 min-w-[280px] p-[40px] relative rounded-[16px] overflow-hidden">
             <Img alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none rounded-[16px]" src={imgPremiumBg} />
-            <div className="flex flex-col gap-[20px] items-start flex-1 min-w-[280px] relative">
+            <div className="flex flex-col gap-[20px] items-start flex-1 min-w-[min(280px,100%)] relative">
               <p className="font-avenir-heavy text-f18 leading-l22 text-[#9f3df5]">
                 Neo Premium
               </p>

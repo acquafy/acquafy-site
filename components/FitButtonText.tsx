@@ -4,11 +4,11 @@ import { useEffect } from "react";
 
 /**
  * Keeps button labels on a single line. A label (the "flex-1 text-center" span inside a link/button) shrinks its font
- * together with the button when the button gets narrower than the text, down to MIN_PX, and goes back to its normal
+ * together with the button when the button gets narrower than the text, down to MIN_PX (14px, the site-wide minimum) and, if it still does not fit, wraps onto a second line; it goes back to its normal
  * size as soon as there is room again. Works for every language because it measures the real rendered text.
  */
 const SELECTOR = "a > span.flex-1.text-center, button > span.flex-1.text-center";
-const MIN_PX = 11;
+const MIN_PX = 14;
 
 function fit(el: HTMLElement) {
   el.style.whiteSpace = "nowrap";
@@ -18,7 +18,13 @@ function fit(el: HTMLElement) {
   const room = el.clientWidth;
   const need = el.scrollWidth;
   if (!room || !need || need <= room) return;
-  el.style.fontSize = `${Math.max(MIN_PX, Math.floor(natural * (room / need) * 10) / 10)}px`;
+  const size = Math.floor(natural * (room / need) * 10) / 10;
+  if (size < MIN_PX) {
+    el.style.fontSize = natural < MIN_PX ? "" : `${MIN_PX}px`;
+    el.style.whiteSpace = "normal";
+    return;
+  }
+  el.style.fontSize = `${size}px`;
 }
 
 export default function FitButtonText() {

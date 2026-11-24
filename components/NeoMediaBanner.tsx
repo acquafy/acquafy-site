@@ -495,9 +495,9 @@ export default function NeoMediaBanner() {
           />
         </div>
 
-        <div className="order-7 lg:order-none lg:basis-full flex flex-wrap gap-[30px_0] items-center justify-start w-full py-[25px]">
+        <div className="order-7 lg:order-none lg:basis-full card-row [--card-min:150px] gap-[30px_10px] items-center w-full py-[25px]">
           {stats.map((s) => (
-            <div key={s.title} className="flex flex-[1_0_0] gap-[10px] items-center min-w-[140px]">
+            <div key={s.title} className="flex gap-[10px] items-center min-w-0">
               <FigmaIcon src={s.icon} size={30} aspectW={s.aspectW} aspectH={s.aspectH} />
               <div className="flex flex-col gap-[10px]">
                 <p className="font-avenir-heavy text-f18 leading-l22 text-[#1f2e91]">{s.title}</p>

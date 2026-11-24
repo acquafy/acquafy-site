@@ -266,11 +266,11 @@ export default function FluxoInteligenteAppAiIot() {
         </h2>
 
         {/* Steps — itens flex-1; setas preenchem espaço disponível entre eles */}
-        <div className="flex flex-wrap gap-y-[30px] items-start justify-center w-full">
+        <div className="card-row [--card-min:120px] lg:flex lg:flex-nowrap gap-x-[10px] gap-y-[30px] items-start w-full">
           {steps.map((step, i) => (
             <React.Fragment key={step.label}>
               {/* Item */}
-              <div className="flex-[1_0_0] flex flex-col gap-[12px] items-center min-w-[120px]">
+              <div className="lg:flex-[1_0_0] flex flex-col gap-[12px] items-center min-w-0">
 
                 {/* Círculo */}
                 <div

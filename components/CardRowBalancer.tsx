@@ -14,6 +14,8 @@ import { useEffect } from "react";
  * ".card-row-content": the minimum card width is the natural width of the widest card (so lists never wrap), and --card-min
  * only acts as a floor.
  *
+ * ".card-row-equal": when the blocks end up stacked one per row they get the same height as well (side by side the grid already stretches them). The spare height goes to the CSS variable --equal-extra, which a card adds to the bottom padding of its list row (min-height is ignored by subgrid cards).
+ *
  * ".card-row-fit" (items of different widths, e.g. a stats strip): while every item fits on a single row the row is a
  * plain flex row and each item takes the width of its content, sharing the spare space, so a long label is not squeezed
  * into the same width as a short one. When it no longer fits on one row it falls back to the balanced grid above.
@@ -22,7 +24,11 @@ const SELECTOR = ".card-row";
 
 function layout(el: HTMLElement) {
   const kids = Array.from(el.children).filter(
-    (c): c is HTMLElement => c instanceof HTMLElement && getComputedStyle(c).display !== "none",
+    (c): c is HTMLElement => {
+      if (!(c instanceof HTMLElement)) return false;
+      const cs = getComputedStyle(c);
+      return cs.display !== "none" && cs.position !== "absolute" && cs.position !== "fixed";
+    },
   );
   const n = kids.length;
   if (n === 0) return;
@@ -62,6 +68,15 @@ function layout(el: HTMLElement) {
     el.style.display = "";
     el.style.flexWrap = "";
     kids.forEach((k) => (k.style.flex = ""));
+  }
+
+  if (el.classList.contains("card-row-equal")) {
+    kids.forEach((k) => k.style.removeProperty("--equal-extra"));
+    if (cols === 1 && n > 1) {
+      const heights = kids.map((k) => k.offsetHeight);
+      const tallest = Math.max(...heights);
+      kids.forEach((k, idx) => k.style.setProperty("--equal-extra", `${tallest - heights[idx]}px`));
+    }
   }
 
   const counts = Array.from({ length: rows }, (_, r) => (r < extra ? base + 1 : base));

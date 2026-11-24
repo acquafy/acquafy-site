@@ -340,9 +340,9 @@ function SustCard({ icon, aspectW, aspectH, title, description }: {
   icon: string; aspectW: number; aspectH: number; title: string; description: string;
 }) {
   return (
-    <div className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center min-w-[160px] px-[10px] py-[20px] rounded-[16px] win-1024:min-h-[235px]">
+    <div className="bg-white flex flex-col gap-[16px] items-center min-w-0 px-[14px] py-[24px] rounded-[16px]">
       <FigmaIcon src={icon} size={40} aspectW={aspectW} aspectH={aspectH} />
-      <p className="font-avenir-heavy text-f18 leading-l19 text-[#0b8650] text-center w-full">
+      <p className="font-avenir-heavy text-f18 leading-l19 text-[#0b8650] text-center w-full min-h-[38px] flex items-center justify-center">
         {title}
       </p>
       <p className="font-avenir-roman text-f14 leading-l16 text-[#333] text-center w-full">
@@ -374,17 +374,17 @@ export default function TecnologiaSustentSection() {
         <div className="flex flex-col gap-[20px] items-start w-full">
           {/* Info card */}
           <div className="bg-white flex flex-col gap-[20px] items-start min-w-[280px] overflow-hidden p-[20px] rounded-[16px] w-full">
-            <h2 className="font-avenir-heavy text-f22 leading-l28 md:text-f26 md:leading-l34 text-[#0b8650] text-center lg:text-left">
+            <h2 className="font-avenir-heavy text-f22 leading-l28 md:text-f26 md:leading-l34 text-[#0b8650] text-center lg:text-left w-full">
               {t.infoTitle}
             </h2>
-            <div className="bg-[#36ae5c] h-[2px] w-[80px] shrink-0" />
-            <p className="font-avenir-roman text-f16 leading-l21 text-[#333] flex-1">
+            <div className="bg-[#36ae5c] h-[2px] w-[80px] shrink-0 self-center lg:self-start" />
+            <p className="font-avenir-roman text-f16 leading-l21 text-[#333] flex-1 text-center lg:text-left">
               {t.infoParagraph}
             </p>
           </div>
 
           {/* Sustainability cards */}
-          <div className="flex flex-[1_0_0] flex-wrap gap-[20px] justify-center min-w-[280px]">
+          <div className="card-row [--card-min:160px] flex-[1_0_0] gap-[20px] items-stretch min-w-[280px]">
             {sustCards.map((c) => (
               <SustCard key={c.title} {...c} />
             ))}
@@ -392,7 +392,7 @@ export default function TecnologiaSustentSection() {
         </div>
 
         {/* Stats bar */}
-        <div className="card-row [--card-min:160px] bg-white content-start gap-[30px_20px] items-start justify-center max-w-[1400px] w-full overflow-hidden px-[20px] py-[40px] relative rounded-[16px]">
+        <div className="card-row [--card-min:160px] bg-white content-start gap-[24px_20px] items-start justify-center max-w-[1400px] w-full overflow-hidden px-[20px] py-[28px] relative rounded-[16px]">
           {stats.map((s) => (
             <div key={s.value} className="min-w-0 content-start flex flex-wrap gap-[20px] items-start relative">
               <FigmaIcon src={s.icon} size={40} aspectW={s.aspectW} aspectH={s.aspectH} />
@@ -432,7 +432,7 @@ export default function TecnologiaSustentSection() {
 
           {/* Botão */}
           <div className="relative flex items-center justify-center w-full lg:flex-[1_0_0] lg:max-w-[300px] lg:min-w-[200px]">
-            <BtnVerdeOutArrow className="w-full min-h-[56px]">
+            <BtnVerdeOutArrow href="/parceria" className="w-full min-h-[56px]">
               {t.ctaBtn}
             </BtnVerdeOutArrow>
           </div>

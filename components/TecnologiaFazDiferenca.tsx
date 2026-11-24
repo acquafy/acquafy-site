@@ -232,7 +232,7 @@ function FeatureCard({ icon, aspectW, aspectH, title, description }: {
   icon: string; aspectW: number; aspectH: number; title: string; description: string;
 }) {
   return (
-    <div className="bg-[#f6f9fe] flex flex-col gap-[20px] items-center min-h-[265px] min-w-0 px-[10px] py-[20px] rounded-[16px]">
+    <div className="bg-[#f6f9fe] flex flex-col gap-[20px] items-center min-w-0 px-[10px] py-[20px] rounded-[16px]">
       <FigmaIcon src={icon} size={40} aspectW={aspectW} aspectH={aspectH} />
       <p className="font-avenir-heavy text-f18 leading-l22 text-[#1f2e91] text-center w-full min-h-[36px] flex items-center justify-center">
         {title}
@@ -278,22 +278,21 @@ export default function TecnologiaFazDiferenca() {
           </p>
         </div>
 
-        {/* Cards + Globe — flex-col mobile / flex-row desktop */}
-        <div className="
-          flex flex-col gap-[100px] items-center justify-center min-w-[240px] relative w-full
-          md:content-center md:flex-row md:flex-wrap md:gap-[20px]
-        ">
+        {/* Cards + Globe — the globe goes beside the cards only while the cards keep 3 columns (container wider than 780px,
+            see .tfd-* in globals.css); narrower, it goes below them */}
+        <div className="tfd-wrap w-full">
+        <div className="tfd-row flex flex-col gap-[20px] items-center justify-center min-w-[240px] relative w-full">
 
           {/* Cards grid */}
-          <div className="content-start card-row [--card-min:150px] gap-[10px] items-stretch justify-center min-w-[180px] overflow-clip relative w-full md:flex-[1_0_0]">
+          <div className="tfd-cards content-start card-row [--card-min:150px] gap-[10px] items-stretch justify-center min-w-[180px] overflow-clip relative w-full">
             {features.map((f) => (
               <FeatureCard key={f.title} {...f} />
             ))}
           </div>
 
           {/* Globe — inline flex item, overflows 135px upward from h-[265px] container */}
-          <div className="flex flex-col h-[265px] items-center justify-end max-w-[260px] min-h-[250px] min-w-[260px] relative w-full md:flex-[1_0_0]">
-            <div className="mix-blend-multiply relative shrink-0 size-[400px]">
+          <div className="tfd-globe flex flex-col items-center justify-center relative w-full">
+            <div className="mix-blend-multiply relative shrink-0 w-[min(400px,100%)] aspect-square">
               <Img
                 alt=""
                 className="absolute inset-0 max-w-none object-cover pointer-events-none size-full"
@@ -302,6 +301,7 @@ export default function TecnologiaFazDiferenca() {
             </div>
           </div>
 
+        </div>
         </div>
       </div>
     </section>

@@ -310,26 +310,24 @@ export default function NeoVsPremium() {
         </h2>
 
         {/* Cards row */}
-        <div className="flex flex-wrap gap-[40px] items-center w-full">
+        <div className="card-row card-row-equal nvp-row [--card-min:280px] gap-[40px] w-full">
 
           {/* Essentials card */}
-          <div className="border border-[#cbd0d4] flex flex-[1_0_0] flex-wrap gap-[20px] items-center justify-center min-w-[280px] overflow-hidden p-[40px] relative rounded-[16px]">
+          <div className="nvp-card min-w-0 overflow-hidden relative rounded-[16px]">
             <Img
               alt=""
               className="absolute inset-0 w-full h-full object-cover pointer-events-none rounded-[16px]"
               src={imgBgEssentials}
             />
-            <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-[200px] relative">
-              <p className="font-avenir-heavy text-f18 leading-l22 text-[#0569ff] w-full">
+            <p className="nvp-title font-avenir-heavy text-f18 leading-l22 text-[#0569ff] relative">
                 Neo Essentials
               </p>
-              <div className="flex flex-col gap-[10px] items-start w-full">
+              <div className="nvp-list flex flex-col gap-[10px] items-start relative">
                 {t.essentialsFeatures.map((f) => (
                   <CheckItem key={f} label={f} iconSrc={imgCheckinBlue} />
                 ))}
               </div>
-            </div>
-            <div className="flex flex-[1_0_0] flex-col items-center justify-center h-[260px] max-w-[200px] min-w-[140px] relative">
+            <div className="nvp-img flex flex-col items-center justify-center relative">
               <Img
                 alt="Neo FIT"
                 className="w-auto h-full max-h-full object-contain pointer-events-none"
@@ -339,23 +337,21 @@ export default function NeoVsPremium() {
           </div>
 
           {/* Premium card */}
-          <div className="border border-[#cbd0d4] flex flex-[1_0_0] flex-wrap gap-[20px] items-center justify-center min-w-[280px] overflow-hidden p-[40px] relative rounded-[16px]">
+          <div className="nvp-card min-w-0 overflow-hidden relative rounded-[16px]">
             <Img
               alt=""
               className="absolute inset-0 w-full h-full object-cover pointer-events-none rounded-[16px]"
               src={imgBgPremium}
             />
-            <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-[200px] relative">
-              <p className="font-avenir-heavy text-f18 leading-l22 text-[#9f3df5] w-full">
+            <p className="nvp-title font-avenir-heavy text-f18 leading-l22 text-[#9f3df5] relative">
                 Neo Premium
               </p>
-              <div className="flex flex-col gap-[10px] items-start w-full">
+              <div className="nvp-list flex flex-col gap-[10px] items-start relative">
                 {t.premiumFeatures.map((f) => (
                   <CheckItem key={f} label={f} iconSrc={imgCheckinPurple} />
                 ))}
               </div>
-            </div>
-            <div className="flex flex-[1_0_0] flex-col items-center justify-center h-[260px] max-w-[200px] min-w-[140px] relative">
+            <div className="nvp-img flex flex-col items-center justify-center relative">
               <Img
                 alt="Neo INFINITY SPARK H2"
                 className="w-auto h-full max-h-full object-contain pointer-events-none"

@@ -76,7 +76,7 @@ export default function CheckoutUp() {
                  className="flex flex-[1_0_0] gap-[8px] items-center justify-center min-h-[42px] min-w-[160px] overflow-hidden px-[12px] py-[10px] rounded-[8px] transition-opacity hover:opacity-90 active:opacity-80"
                  style={gdBlue}>
                 <FigmaIcon src={imgCart} size={20} />
-                <span className="font-avenir-roman text-f15 leading-l19 text-white whitespace-nowrap">
+                <span className="font-avenir-roman text-f15 leading-l19 text-white min-w-0 text-center">
                   {s2.buy} <span className="font-avenir-heavy">US$ {NEO_UP.sales}</span>
                 </span>
               </a>
@@ -85,7 +85,7 @@ export default function CheckoutUp() {
                 <div className="transition-[filter] group-hover:[filter:brightness(0)_invert(1)]">
                   <FigmaIcon src={imgCalendar} size={20} />
                 </div>
-                <span className="font-avenir-roman text-f15 leading-l19 text-[#0233c3] group-hover:text-white transition-colors whitespace-nowrap">
+                <span className="font-avenir-roman text-f15 leading-l19 text-[#0233c3] group-hover:text-white transition-colors min-w-0 text-center">
                   {s2.lease} <span className="font-avenir-heavy">US$ {NEO_UP.lease}{s2.perMonth}</span>
                 </span>
               </a>
@@ -158,7 +158,7 @@ export default function CheckoutUp() {
                    className="flex flex-[1_0_0] gap-[8px] items-center justify-center min-h-[42px] min-w-[175px] overflow-hidden px-[12px] py-[10px] rounded-[8px] transition-opacity hover:opacity-90 active:opacity-80"
                    style={gdBlue}>
                   <FigmaIcon src={imgCart} size={20} />
-                  <span className="font-avenir-roman text-f15 leading-l19 text-white whitespace-nowrap">
+                  <span className="font-avenir-roman text-f15 leading-l19 text-white min-w-0 text-center">
                     {s2.buy} <span className="font-avenir-heavy">US$ {NEO_UP.sales}</span>
                   </span>
                 </a>
@@ -167,7 +167,7 @@ export default function CheckoutUp() {
                   <div className="transition-[filter] group-hover:[filter:brightness(0)_invert(1)]">
                     <FigmaIcon src={imgCalendar} size={20} />
                   </div>
-                  <span className="font-avenir-roman text-f15 leading-l19 text-[#0233c3] group-hover:text-white transition-colors whitespace-nowrap">
+                  <span className="font-avenir-roman text-f15 leading-l19 text-[#0233c3] group-hover:text-white transition-colors min-w-0 text-center">
                     {s2.lease} <span className="font-avenir-heavy">US$ {NEO_UP.lease}{s2.perMonth}</span>
                   </span>
                 </a>
@@ -244,7 +244,7 @@ export default function CheckoutUp() {
                className="flex shrink-0 gap-[8px] items-center justify-center min-h-[56px] overflow-hidden px-[12px] py-[10px] rounded-[8px] transition-opacity hover:opacity-90 active:opacity-80"
                style={gdBlue}>
               <FigmaIcon src={imgCart} size={20} />
-              <span className="font-avenir-roman text-f15 leading-l19 text-white whitespace-nowrap">
+              <span className="font-avenir-roman text-f15 leading-l19 text-white min-w-0 text-center">
                 {s2.buy} <span className="font-avenir-heavy">US$ {NEO_UP.sales}</span>
               </span>
             </a>
@@ -253,7 +253,7 @@ export default function CheckoutUp() {
               <div className="transition-[filter] group-hover:[filter:brightness(0)_invert(1)]">
                 <FigmaIcon src={imgCalendar} size={20} />
               </div>
-              <span className="font-avenir-roman text-f15 leading-l19 text-[#0233c3] group-hover:text-white transition-colors whitespace-nowrap">
+              <span className="font-avenir-roman text-f15 leading-l19 text-[#0233c3] group-hover:text-white transition-colors min-w-0 text-center">
                 {s2.lease} <span className="font-avenir-heavy">US$ {NEO_UP.lease}{s2.perMonth}</span>
               </span>
             </a>

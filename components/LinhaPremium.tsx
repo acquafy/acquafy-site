@@ -588,9 +588,9 @@ export default function LinhaPremium() {
               <span className="font-avenir-heavy">{t.waterHeader[1]}</span>
               {t.waterHeader[2]}
             </p>
-            <div className="flex flex-wrap gap-[20px_10px] items-center w-full">
+            <div className="card-row [--card-min:170px] gap-[20px_10px] items-center w-full">
               {t.waterTypes.map((w) => (
-                <div key={w.label} className="flex flex-[0_0_calc(50%-5px)] lg:flex-[0_0_calc(25%-8px)] gap-[10px] items-center">
+                <div key={w.label} className="min-w-0 flex gap-[10px] items-center">
                   <FigmaIcon src={imgCheckin} size={20} />
                   <div className="flex flex-1 flex-col gap-[5px] items-start min-w-0">
                     <p className="font-avenir-heavy text-f16 leading-l20 text-[#1f2e91] w-full">

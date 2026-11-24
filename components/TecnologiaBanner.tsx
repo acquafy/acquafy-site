@@ -263,7 +263,7 @@ function HeroStat({ icon, label, aspectW = 30, aspectH = 30 }: {
   icon: string; label: React.ReactNode; aspectW?: number; aspectH?: number;
 }) {
   return (
-    <div className="flex flex-[1_0_0] flex-col gap-[20px] items-center min-w-[100px]">
+    <div className="flex flex-col gap-[20px] items-center min-w-0">
       <FigmaIcon src={icon} size={40} aspectW={aspectW} aspectH={aspectH} />
       <div className="[word-break:break-word] flex flex-col font-avenir-heavy justify-center leading-[0] min-w-full not-italic relative shrink-0 text-f16 text-[#1f2e91] text-center">
         <p className="leading-l20">{label}</p>
@@ -340,7 +340,7 @@ export default function TecnologiaBanner() {
           </div>
 
           {/* Mini stats */}
-          <div className="hidden xl:flex flex-wrap gap-[20px] items-start justify-center shrink-0 w-full">
+          <div className="hidden xl:grid card-row [--card-min:110px] gap-[20px] items-start shrink-0 w-full">
             <HeroStat icon={imgAguaPura}  label={t.stat1} aspectW={643} aspectH={631} />
             <HeroStat icon={imgWifi}      label={t.stat2} aspectW={30}  aspectH={20}  />
             <HeroStat icon={imgGloboSust} label={t.stat3} aspectW={492} aspectH={475} />
@@ -362,7 +362,7 @@ export default function TecnologiaBanner() {
       </div>
 
       {/* Mini stats — abaixo de tudo (< xl) */}
-      <div className="relative xl:hidden flex flex-wrap gap-[20px] items-start justify-center shrink-0 w-full max-w-[1400px]">
+      <div className="relative xl:hidden card-row [--card-min:130px] gap-[20px] items-start shrink-0 w-full max-w-[1400px]">
         <HeroStat icon={imgAguaPura}  label={t.stat1} aspectW={643} aspectH={631} />
         <HeroStat icon={imgWifi}      label={t.stat2} aspectW={30}  aspectH={20}  />
         <HeroStat icon={imgGloboSust} label={t.stat3} aspectW={492} aspectH={475} />

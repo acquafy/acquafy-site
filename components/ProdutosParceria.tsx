@@ -97,7 +97,7 @@ function ProductItem({ src, variant, name, sub2 }: ProductItemProps) {
         style={variant === "essentials" ? essGrad : premColor}
       >
         {sub2
-          ? <>{name.slice(0, -1)}<span style={{ fontSize: "12.9px" }}>2</span></>
+          ? <>{name.slice(0, -1)}<span style={{ fontSize: "0.875rem" }}>2</span></>
           : name}
       </p>
     </div>

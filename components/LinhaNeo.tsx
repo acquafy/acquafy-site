@@ -1026,9 +1026,9 @@ export default function LinhaNeo() {
               <span className="font-avenir-heavy">{t.waterHeader[1]}</span>
               {t.waterHeader[2]}
             </p>
-            <div className="flex flex-wrap gap-[20px_10px] items-center w-full">
+            <div className="card-row [--card-min:170px] gap-[20px_10px] items-center w-full">
               {t.waterTypes.map((w) => (
-                <div key={w.label} className="flex flex-[0_0_calc(50%-5px)] lg:flex-[0_0_calc(25%-8px)] gap-[10px] items-center">
+                <div key={w.label} className="min-w-0 flex gap-[10px] items-center">
                   <FigmaIcon src={imgCheckin} size={20} />
                   <div className="flex flex-[1_0_0] flex-col gap-[5px] items-start min-w-0">
                     <p className="font-avenir-heavy text-f16 leading-l20 text-[#1f2e91] w-full">
@@ -1088,14 +1088,16 @@ export default function LinhaNeo() {
 
           {/* Card 2 – Acquafy AI */}
           <div className="bg-white flex flex-1 flex-col gap-[20px] items-start min-h-[310px] min-w-[280px] p-[20px] rounded-[16px]">
-            <div className="flex flex-1 flex-col gap-[20px] items-center w-full win-1024:items-start">
-              <p className="font-avenir-heavy text-f18 leading-l22 text-[#0569ff] text-center win-1024:text-left w-full">
-                {t.ai.title}
-              </p>
-              <div className="flex flex-1 flex-wrap gap-[20px] items-center justify-center w-full">
-                <CardImage src={imgHomeMob} grow />
-                <div className="flex flex-col gap-[20px] items-center sm:items-start flex-[1_1_240px] min-w-[220px]">
-                  <p className="font-avenir-roman text-f16 leading-l20 text-[#1f2e91] text-center sm:text-left w-full">
+            <div className="lnc-wrap flex-1 w-full">
+              <div className="lnc">
+                <p className="lnc-title font-avenir-heavy text-f18 leading-l22 text-[#0569ff] w-full">
+                  {t.ai.title}
+                </p>
+                <div className="lnc-img">
+                  <Img alt="" className="max-h-full max-w-full object-contain pointer-events-none" src={imgHomeMob} />
+                </div>
+                <div className="lnc-body flex flex-col gap-[20px]">
+                  <p className="font-avenir-roman text-f16 leading-l20 text-[#1f2e91] w-full">
                     {t.ai.sub}
                   </p>
                   <div className="flex flex-col gap-[10px] items-start w-full shrink-0">
@@ -1115,14 +1117,16 @@ export default function LinhaNeo() {
 
           {/* Card 3 – Controle pelo App */}
           <div className="bg-white flex flex-1 flex-col gap-[20px] items-start min-h-[310px] min-w-[280px] p-[20px] rounded-[16px]">
-            <div className="flex flex-1 flex-col gap-[20px] items-center w-full win-1024:items-start">
-              <p className="font-avenir-heavy text-f18 leading-l22 text-[#0569ff] text-center win-1024:text-left w-full">
-                {t.ctrl.title}
-              </p>
-              <div className="flex flex-1 flex-wrap gap-[20px] items-center justify-center w-full">
-                <CardImage src={imgAppView} grow />
-                <div className="flex flex-col gap-[20px] items-center sm:items-start flex-[1_1_240px] min-w-[220px]">
-                  <div className="flex gap-[10px] items-center w-full shrink-0">
+            <div className="lnc-wrap flex-1 w-full">
+              <div className="lnc">
+                <p className="lnc-title font-avenir-heavy text-f18 leading-l22 text-[#0569ff] w-full">
+                  {t.ctrl.title}
+                </p>
+                <div className="lnc-img">
+                  <Img alt="" className="max-h-full max-w-full object-contain pointer-events-none" src={imgAppView} />
+                </div>
+                <div className="lnc-body flex flex-col gap-[20px]">
+                  <div className="flex flex-wrap gap-[10px] items-center w-full shrink-0">
                     <div className="bg-[#f6f9fe] border border-[#0233c3] flex flex-wrap gap-[5px] items-center justify-center px-[12px] py-[8px] rounded-full shrink-0">
                       <FigmaIcon src={imgFeatWifi} size={12} aspectW={13.5} aspectH={9.5} />
                       <span className="font-avenir-heavy text-f9 leading-l11 text-[#0233c3] whitespace-nowrap">

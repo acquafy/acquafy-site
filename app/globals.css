@@ -169,18 +169,23 @@ p, h1, h2, h3, h4, h5, h6, span, a, li, label, button {
 }
 
 /* ─── Type scale steps (see lib/fluid-type.ts) ────────────────────────────────
-   Text in rem is multiplied by these on smaller screens. Headings (24px and up) shrink more than 18-22px text;
-   text under 18px is never scaled down.
+   Text in rem is multiplied by these on smaller screens: body text 13-17px (--fs-sm), 18-22px (--fs-lg) and headings
+   24px and up (--fs-xl). No text goes below 14px (see lib/fluid-type.ts).
    ──────────────────────────────────────────────────────────────────────────── */
 :root {
+  --fs-sm: 1;
   --fs-lg: 1;
   --fs-xl: 1;
 }
+sub,
+sup {
+  font-size: max(0.875rem, 0.83em);
+}
 @media (max-width: 767px) {
-  :root { --fs-xl: 0.9; }
+  :root { --fs-sm: 0.95; --fs-lg: 0.94; --fs-xl: 0.88; }
 }
 @media (max-width: 479px) {
-  :root { --fs-lg: 0.95; --fs-xl: 0.8; }
+  :root { --fs-sm: 0.9; --fs-lg: 0.88; --fs-xl: 0.78; }
 }
 
 /* ─── Benefícios (App + AI + IoT): person cards flow vertically when the card itself is narrow ──────────────────────
@@ -223,5 +228,148 @@ p, h1, h2, h3, h4, h5, h6, span, a, li, label, button {
     align-self: stretch;
     align-items: center;
     padding: 0 20px 20px;
+  }
+}
+
+/* ─── Tecnologia: globe beside the cards only while the cards keep 3 columns ──────────────────────────────────────────
+   The row is a container; wider than 780px the globe sits to the right (cards 3x2); narrower, the cards drop to fewer
+   columns, so the globe goes under them instead.
+   ──────────────────────────────────────────────────────────────────────────── */
+.tfd-wrap {
+  container-type: inline-size;
+}
+@container (min-width: 780px) {
+  .tfd-row {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    gap: 20px;
+  }
+  .tfd-row > .tfd-cards {
+    flex: 1 0 0;
+    width: auto;
+  }
+  .tfd-row > .tfd-globe {
+    flex: 1 0 0;
+    align-self: stretch;
+    min-width: 260px;
+    max-width: 260px;
+  }
+  .tfd-row > .tfd-globe > div {
+    width: 400px;
+  }
+}
+
+/* ─── Neo Essentials vs Neo Premium: aligned cards ────────────────────────────────────────────────────────────────────
+   Each card is a subgrid of three rows shared with its neighbour (title / list / product), so title lines up with title,
+   list with list and product with product, and both cards are the same height. The row is a container whose width gives
+   the card width (cards are min 280px, so 2 columns from 600px): a card narrower than 440px (text 200 + gap 20 + product
+   140 + padding 80) puts the product under the list, a wider one puts it beside title+list. (A container on the card itself would disable the subgrid.)
+   ──────────────────────────────────────────────────────────────────────────── */
+.nvp-row {
+  container-type: inline-size;
+  grid-auto-rows: max-content max-content 1fr;
+}
+.nvp-card {
+  display: grid;
+  grid-row: span 3;
+  grid-template-rows: subgrid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  row-gap: 0;
+  column-gap: 0;
+  padding: 40px;
+}
+.nvp-title {
+  grid-column: 1;
+  grid-row: 1;
+  padding-bottom: 20px;
+  padding-right: 20px;
+}
+.nvp-list {
+  grid-column: 1;
+  grid-row: 2;
+  padding-right: 20px;
+  padding-bottom: var(--equal-extra, 0px);
+}
+.nvp-img {
+  grid-column: 2;
+  grid-row: 1 / 4;
+  align-self: center;
+  width: 200px;
+  height: 260px;
+}
+@container (max-width: 439px) or ((min-width: 600px) and (max-width: 919px)) {
+  .nvp-title,
+  .nvp-list {
+    grid-column: 1 / -1;
+    padding-right: 0;
+  }
+  .nvp-list {
+    padding-bottom: calc(20px + var(--equal-extra, 0px));
+  }
+  .nvp-img {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    justify-self: center;
+    max-width: 100%;
+  }
+}
+
+/* ─── Linha Neo: App cards (Acquafy AI / Controle pelo App) ───────────────────────────────────────────────────────────
+   Narrow card: title, phone, then the text, one under the other (title centered). From 380px: the phone takes the whole
+   left column (as tall as the card allows) and the title sits above the text block on the right.
+   ──────────────────────────────────────────────────────────────────────────── */
+.lnc-wrap {
+  container-type: inline-size;
+}
+.lnc {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+.lnc-title {
+  text-align: center;
+}
+.lnc-body {
+  align-items: center;
+}
+.lnc-body > p {
+  text-align: center;
+}
+.lnc-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 260px;
+  position: relative;
+  overflow: hidden;
+}
+@container (min-width: 380px) {
+  .lnc {
+    grid-template-columns: minmax(130px, 210px) minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    align-items: start;
+    column-gap: 20px;
+  }
+  .lnc-title {
+    grid-column: 2;
+    grid-row: 1;
+    text-align: left;
+  }
+  .lnc-img {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    align-self: stretch;
+    height: auto;
+    min-height: 330px;
+  }
+  .lnc-body {
+    grid-column: 2;
+    grid-row: 2;
+    align-items: flex-start;
+  }
+  .lnc-body > p {
+    text-align: left;
   }
 }

@@ -459,11 +459,11 @@ export default function BannerFiltros({ variant = "filtros" }: { variant?: "filt
       </div>
 
       {/* ─── Stats bar — pinada ao rodapé (último elemento do flex-col da section) */}
-      {!isAcc && <div className="relative bg-white flex flex-wrap gap-y-[30px] items-center justify-center max-w-[1400px] min-h-[140px] overflow-hidden py-[25px] rounded-[16px] w-full">
+      {!isAcc && <div className="relative bg-white card-row [--card-min:200px] gap-y-[30px] items-center max-w-[1400px] min-h-[140px] overflow-hidden py-[25px] rounded-[16px] w-full">
         {stats.map((s, i) => (
           <div
             key={i}
-            className="flex flex-1 flex-wrap gap-[10px] items-center min-w-[160px] px-[20px]"
+            className="flex flex-wrap gap-[10px] items-center min-w-0 px-[20px]"
           >
             <FigmaIcon src={s.icon} size={36} aspectW={s.iconW} aspectH={s.iconH} />
             <div className="flex flex-col gap-[5px] flex-1 min-w-[100px]">

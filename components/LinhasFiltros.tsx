@@ -441,11 +441,11 @@ export default function LinhasFiltros({ showPh = true }: { showPh?: boolean }) {
                     <Img alt="" className="block max-w-none size-full" src={imgLineAcido} />
                   </div>
                 </div>
-                <span className="font-avenir-heavy text-[clamp(12px,1.8vw,20px)] leading-[clamp(14px,2.1vw,22px)] text-[#333] text-center">{t.labelAcido}</span>
+                <span className="font-avenir-heavy text-[clamp(14px,1.8vw,20px)] leading-[clamp(14px,2.1vw,22px)] text-[#333] text-center">{t.labelAcido}</span>
               </div>
               {/* Neutro — col 7 */}
               <div className="flex flex-col items-center justify-center">
-                <span className="font-avenir-heavy text-[clamp(12px,1.8vw,20px)] leading-[clamp(14px,2.1vw,22px)] text-[#333] text-center">{t.labelNeutro}</span>
+                <span className="font-avenir-heavy text-[clamp(14px,1.8vw,20px)] leading-[clamp(14px,2.1vw,22px)] text-[#333] text-center">{t.labelNeutro}</span>
               </div>
               {/* Alcalino — cols 8-10: seta dupla colorida (cool) */}
               <div className="flex flex-col gap-[10px] items-center justify-center" style={{ gridColumn: "8 / span 3" }}>
@@ -454,7 +454,7 @@ export default function LinhasFiltros({ showPh = true }: { showPh?: boolean }) {
                     <Img alt="" className="block max-w-none size-full" src={imgLineAlcalino} />
                   </div>
                 </div>
-                <span className="font-avenir-heavy text-[clamp(12px,1.8vw,20px)] leading-[clamp(14px,2.1vw,22px)] text-[#333] text-center">{t.labelAlcalino}</span>
+                <span className="font-avenir-heavy text-[clamp(14px,1.8vw,20px)] leading-[clamp(14px,2.1vw,22px)] text-[#333] text-center">{t.labelAlcalino}</span>
               </div>
             </div>
           </div>

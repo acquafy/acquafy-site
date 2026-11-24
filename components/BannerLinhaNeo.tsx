@@ -319,7 +319,7 @@ export default function BannerLinhaNeo() {
     { icon: imgSustain,  title: t.stats[3].title, desc: t.stats[3].desc },
   ];
   return (
-    <section className="relative flex flex-col gap-[20px] items-center px-[20px] py-[40px] w-full overflow-hidden bg-[#f1f5fe] win-1280:bg-transparent win-1280:h-[calc(100vh-80px)]">
+    <section className="relative flex flex-col gap-[20px] items-center px-[20px] py-[40px] w-full overflow-hidden bg-[#f1f5fe] win-1280:bg-transparent win-1280:min-h-[calc(100vh-80px)]">
 
       {/* Imagem de fundo — win-1280+ apenas (variante TOTAL) */}
       <Img
@@ -329,7 +329,7 @@ export default function BannerLinhaNeo() {
       />
 
       {/* Linha principal de conteúdo */}
-      <div className="relative flex flex-col gap-[20px] items-center max-w-[1400px] w-full win-1024:flex-row win-1024:flex-wrap win-1024:gap-[40px] win-1024:items-center win-1280:flex-[1_0_0] win-1280:min-h-px">
+      <div className="relative flex flex-col gap-[20px] items-center max-w-[1400px] w-full win-1024:flex-row win-1024:flex-wrap win-1024:gap-[40px] win-1024:items-center win-1280:flex-[1_0_0] win-1280:min-h-fit">
 
         {/* Coluna esquerda: título + descrição + img inline (mobile) + features */}
         <div className="flex flex-col gap-[20px] items-center w-full win-1024:flex-[1_0_0] win-1024:gap-[40px] win-1024:items-start win-1024:justify-center win-1024:max-w-[500px] win-1024:min-w-[280px]">
@@ -355,18 +355,19 @@ export default function BannerLinhaNeo() {
           </div>
 
           {/* Lista de features */}
-          <div className="hidden win-1280:flex flex-wrap gap-[20px] items-start justify-center rounded-[12px] w-full">
+          <div className="hidden win-1280:grid card-row [--card-min:220px] gap-[16px_20px] items-start rounded-[12px] w-full">
             {features.map((f) => (
-              <div key={f.title} className="flex flex-[1_0_0] gap-[20px] items-center justify-center min-w-[180px] win-1024:justify-start">
-                <FigmaIcon src={f.icon} size={30} aspectW={f.aW} aspectH={f.aH} />
-                <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start justify-center min-w-0">
-                  <p className="font-avenir-heavy text-f16 leading-l20 text-[#1f2e91] w-full">
+              <div key={f.title} className="flex flex-col gap-[8px] items-start min-w-0">
+                {/* Ícone + título num bloco; a descrição fica abaixo dele */}
+                <div className="flex gap-[12px] items-center w-full">
+                  <FigmaIcon src={f.icon} size={30} aspectW={f.aW} aspectH={f.aH} />
+                  <p className="font-avenir-heavy text-f16 leading-l20 text-[#1f2e91] flex-1 min-w-0">
                     {f.title}
                   </p>
-                  <p className="font-avenir-roman text-f12 leading-l14 text-[#333] w-full">
-                    {f.desc}
-                  </p>
                 </div>
+                <p className="font-avenir-roman text-f14 leading-l16 text-[#333] w-full">
+                  {f.desc}
+                </p>
               </div>
             ))}
           </div>
@@ -386,18 +387,19 @@ export default function BannerLinhaNeo() {
       </div>
 
       {/* Lista de features — abaixo de tudo (< win-1280) */}
-    <div className="relative win-1280:hidden flex flex-wrap gap-[20px] items-start justify-center rounded-[12px] max-w-[1400px] w-full">
+    <div className="relative win-1280:hidden card-row [--card-min:180px] gap-[20px] items-start rounded-[12px] max-w-[1400px] w-full">
       {features.map((f) => (
-        <div key={f.title} className="flex flex-[1_0_0] gap-[20px] items-center justify-center min-w-[180px] win-1024:justify-start">
-          <FigmaIcon src={f.icon} size={30} aspectW={f.aW} aspectH={f.aH} />
-          <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start justify-center min-w-0">
-            <p className="font-avenir-heavy text-f16 leading-l20 text-[#1f2e91] w-full">
+        <div key={f.title} className="flex flex-col gap-[8px] items-start min-w-0">
+          {/* Ícone + título num bloco; a descrição fica abaixo dele */}
+          <div className="flex gap-[12px] items-center w-full">
+            <FigmaIcon src={f.icon} size={30} aspectW={f.aW} aspectH={f.aH} />
+            <p className="font-avenir-heavy text-f16 leading-l20 text-[#1f2e91] flex-1 min-w-0">
               {f.title}
             </p>
-            <p className="font-avenir-roman text-f12 leading-l14 text-[#333] w-full">
-              {f.desc}
-            </p>
           </div>
+          <p className="font-avenir-roman text-f14 leading-l16 text-[#333] w-full">
+            {f.desc}
+          </p>
         </div>
       ))}
     </div>

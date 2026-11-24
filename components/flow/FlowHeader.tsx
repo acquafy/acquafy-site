@@ -23,7 +23,7 @@ export default function FlowHeader({
         <img src="/figma-assets/logo-b.svg" alt="Acquafy" width={169} height={28} className="h-[28px] w-auto" />
       </a>
 
-      <ol aria-label="Etapas da compra" className="mx-auto hidden md:flex items-center gap-[8px] text-f13">
+      <ol aria-label="Etapas da compra" className="mx-auto hidden xl:flex items-center gap-[8px] text-f13">
         {STEPS.map((label, i) => {
           const n = i + 1;
           const state = n < step ? "done" : n === step ? "current" : "next";
@@ -59,7 +59,7 @@ export default function FlowHeader({
           );
         })}
       </ol>
-      <p className="mx-auto hidden sm:block md:hidden whitespace-nowrap font-avenir-heavy text-f13 text-[#1f2e91]">
+      <p className="mx-auto hidden sm:block xl:hidden whitespace-nowrap font-avenir-heavy text-f13 text-[#1f2e91]">
         Etapa {step} de 4 · {STEPS[step - 1]}
       </p>
 
