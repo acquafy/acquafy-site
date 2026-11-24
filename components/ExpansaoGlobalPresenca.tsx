@@ -13,7 +13,6 @@ const T: Record<Lang, {
   heading1: string;
   heading2: string;
   subtitle: string;
-  regionsTitle: string;
   regions: { name: string; countries: string }[];
   cardTitle: string;
   cardDesc: string;
@@ -23,7 +22,6 @@ const T: Record<Lang, {
     heading1: "Presença global",
     heading2: " em crescimento",
     subtitle: "Uma rede internacional sólida, conectando pessoas, tecnologia e oportunidades.",
-    regionsTitle: "Regiões em expansão",
     regions: [
       { name: "América do Norte",       countries: "EUA • Canadá • México" },
       { name: "América do Sul",         countries: "Brasil • Argentina • Colômbia • Chile • Peru e outros" },
@@ -39,7 +37,6 @@ const T: Record<Lang, {
     heading1: "Presença global",
     heading2: " em crescimento",
     subtitle: "Uma rede internacional sólida, a ligar pessoas, tecnologia e oportunidades.",
-    regionsTitle: "Regiões em expansão",
     regions: [
       { name: "América do Norte",       countries: "EUA • Canadá • México" },
       { name: "América do Sul",         countries: "Brasil • Argentina • Colômbia • Chile • Peru e outros" },
@@ -55,7 +52,6 @@ const T: Record<Lang, {
     heading1: "Global presence",
     heading2: " in growth",
     subtitle: "A solid international network, connecting people, technology and opportunities.",
-    regionsTitle: "Expanding regions",
     regions: [
       { name: "North America",          countries: "USA • Canada • Mexico" },
       { name: "South America",          countries: "Brazil • Argentina • Colombia • Chile • Peru and others" },
@@ -71,7 +67,6 @@ const T: Record<Lang, {
     heading1: "Global presence",
     heading2: " in growth",
     subtitle: "A solid international network, connecting people, technology and opportunities.",
-    regionsTitle: "Expanding regions",
     regions: [
       { name: "North America",          countries: "USA • Canada • Mexico" },
       { name: "South America",          countries: "Brazil • Argentina • Colombia • Chile • Peru and others" },
@@ -87,7 +82,6 @@ const T: Record<Lang, {
     heading1: "Presencia global",
     heading2: " en crecimiento",
     subtitle: "Una sólida red internacional que conecta personas, tecnología y oportunidades.",
-    regionsTitle: "Regiones en expansión",
     regions: [
       { name: "América del Norte",      countries: "EE.UU. • Canadá • México" },
       { name: "América del Sur",        countries: "Brasil • Argentina • Colombia • Chile • Perú y otros" },
@@ -103,7 +97,6 @@ const T: Record<Lang, {
     heading1: "Présence mondiale",
     heading2: " en croissance",
     subtitle: "Un réseau international solide, connectant les personnes, la technologie et les opportunités.",
-    regionsTitle: "Régions en expansion",
     regions: [
       { name: "Amérique du Nord",        countries: "États-Unis • Canada • Mexique" },
       { name: "Amérique du Sud",         countries: "Brésil • Argentine • Colombie • Chili • Pérou et autres" },
@@ -119,7 +112,6 @@ const T: Record<Lang, {
     heading1: "Globale Präsenz",
     heading2: " im Wachstum",
     subtitle: "Ein solides internationales Netzwerk, das Menschen, Technologie und Chancen verbindet.",
-    regionsTitle: "Wachstumsregionen",
     regions: [
       { name: "Nordamerika",             countries: "USA • Kanada • Mexiko" },
       { name: "Südamerika",              countries: "Brasilien • Argentinien • Kolumbien • Chile • Peru und andere" },
@@ -135,7 +127,6 @@ const T: Record<Lang, {
     heading1: "Presenza globale",
     heading2: " in crescita",
     subtitle: "Una solida rete internazionale che connette persone, tecnologia e opportunità.",
-    regionsTitle: "Regioni in espansione",
     regions: [
       { name: "Nord America",            countries: "USA • Canada • Messico" },
       { name: "Sud America",             countries: "Brasile • Argentina • Colombia • Cile • Perù e altri" },
@@ -151,7 +142,6 @@ const T: Record<Lang, {
     heading1: "全球存在",
     heading2: "持续增长",
     subtitle: "坚实的国际网络，连接人员、技术与机遇。",
-    regionsTitle: "扩张中的地区",
     regions: [
       { name: "北美",       countries: "美国 • 加拿大 • 墨西哥" },
       { name: "南美",       countries: "巴西 • 阿根廷 • 哥伦比亚 • 智利 • 秘鲁等" },
@@ -167,7 +157,6 @@ const T: Record<Lang, {
     heading1: "グローバルプレゼンス",
     heading2: "成長中",
     subtitle: "人・技術・機会をつなぐ、強固な国際ネットワーク。",
-    regionsTitle: "拡大中の地域",
     regions: [
       { name: "北米",           countries: "米国 • カナダ • メキシコ" },
       { name: "南米",           countries: "ブラジル • アルゼンチン • コロンビア • チリ • ペルーほか" },
@@ -183,7 +172,6 @@ const T: Record<Lang, {
     heading1: "글로벌 존재감",
     heading2: "성장 중",
     subtitle: "사람, 기술, 기회를 연결하는 견고한 국제 네트워크.",
-    regionsTitle: "확장 중인 지역",
     regions: [
       { name: "북미",        countries: "미국 • 캐나다 • 멕시코" },
       { name: "남미",        countries: "브라질 • 아르헨티나 • 콜롬비아 • 칠레 • 페루 외" },
@@ -199,7 +187,6 @@ const T: Record<Lang, {
     heading1: "Global närvaro",
     heading2: " i tillväxt",
     subtitle: "Ett stabilt internationellt nätverk som förbinder människor, teknik och möjligheter.",
-    regionsTitle: "Expanderande regioner",
     regions: [
       { name: "Nordamerika",             countries: "USA • Kanada • Mexiko" },
       { name: "Sydamerika",              countries: "Brasilien • Argentina • Colombia • Chile • Peru och andra" },
@@ -215,7 +202,6 @@ const T: Record<Lang, {
     heading1: "Globaali läsnäolo",
     heading2: " kasvussa",
     subtitle: "Vahva kansainvälinen verkosto, joka yhdistää ihmiset, teknologian ja mahdollisuudet.",
-    regionsTitle: "Laajenevat alueet",
     regions: [
       { name: "Pohjois-Amerikka",        countries: "USA • Kanada • Meksiko" },
       { name: "Etelä-Amerikka",          countries: "Brasilia • Argentiina • Kolumbia • Chile • Peru ja muut" },
@@ -231,7 +217,6 @@ const T: Record<Lang, {
     heading1: "Глобальное присутствие",
     heading2: " в росте",
     subtitle: "Прочная международная сеть, объединяющая людей, технологии и возможности.",
-    regionsTitle: "Расширяющиеся регионы",
     regions: [
       { name: "Северная Америка",        countries: "США • Канада • Мексика" },
       { name: "Южная Америка",           countries: "Бразилия • Аргентина • Колумбия • Чили • Перу и другие" },
@@ -247,7 +232,6 @@ const T: Record<Lang, {
     heading1: "Prezenta globala",
     heading2: " in crestere",
     subtitle: "O retea internationala solida, care conecteaza oameni, tehnologie si oportunitati.",
-    regionsTitle: "Regiuni in expansiune",
     regions: [
       { name: "America de Nord",         countries: "SUA • Canada • Mexic" },
       { name: "America de Sud",          countries: "Brazilia • Argentina • Columbia • Chile • Peru si altele" },
@@ -263,7 +247,6 @@ const T: Record<Lang, {
     heading1: "נוכחות גלובלית",
     heading2: " בצמיחה",
     subtitle: "רשת בינלאומית איתנה המחברת אנשים, טכנולוגיה והזדמנויות.",
-    regionsTitle: "אזורים בהתרחבות",
     regions: [
       { name: "צפון אמריקה",             countries: "ארה\"ב • קנדה • מקסיקו" },
       { name: "דרום אמריקה",             countries: "ברזיל • ארגנטינה • קולומביה • צ'ילה • פרו ואחרים" },
@@ -297,10 +280,10 @@ export default function ExpansaoGlobalPresenca() {
         </div>
 
         {/* Cards row */}
-        <div className="flex flex-col lg:flex-row lg:flex-wrap gap-[20px] items-stretch justify-center w-full">
+        <div className="eg-wrap flex flex-col lg:flex-row lg:flex-wrap gap-[20px] items-stretch justify-center w-full">
 
           {/* Map card */}
-          <div className="bg-[#f6f9fe] flex w-full lg:flex-[1_0_0] flex-col items-center justify-center overflow-hidden px-[10px] py-[20px] rounded-[16px]">
+          <div className="bg-[#f6f9fe] flex w-full lg:flex-[1_0_0] flex-col items-center justify-center overflow-hidden px-[10px] py-[20px] rounded-[16px] eg-left">
             <div className="flex flex-wrap gap-[20px] items-center pl-[20px] w-full">
 
               {/* World map */}
@@ -314,13 +297,10 @@ export default function ExpansaoGlobalPresenca() {
 
               {/* Regions list */}
               <div className="flex flex-[1_0_0] flex-col gap-[40px] items-start max-w-[360px] min-w-[280px]">
-                <h3 className="font-avenir-heavy text-f18 leading-l22 text-[#1f2e91] w-full">
-                  {t.regionsTitle}
-                </h3>
                 <div className="flex flex-col gap-[20px] items-start w-full">
                   {t.regions.map((r) => (
                     <div key={r.name} className="flex gap-[10px] items-start w-full">
-                      <div className="bg-[#8bbaf2] rounded-full shrink-0 size-[14px] mt-[1px]" />
+                      <div className="bg-[#8bbaf2] rounded-full shrink-0 size-[14px] mt-[3px]" />
                       <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-0">
                         <p className="font-avenir-heavy text-f17 leading-l20 text-[#1f2e91] w-full">
                           {r.name}
@@ -337,22 +317,24 @@ export default function ExpansaoGlobalPresenca() {
           </div>
 
           {/* Opportunities card */}
-          <div className="bg-[#f1f5fe] flex w-full lg:flex-[1_0_0] flex-col gap-[20px] items-center self-start lg:self-auto lg:max-w-[370px] min-w-[280px] overflow-hidden p-[20px] rounded-[16px]">
+          <div className="bg-[#f1f5fe] eg-right flex w-full lg:flex-[1_0_0] flex-col gap-[20px] items-center self-start lg:self-auto lg:max-w-[370px] min-w-[280px] overflow-hidden p-[20px] rounded-[16px]">
             {/* Icon */}
             <div className="bg-[#f6f9fe] border border-[#e2e7fb] flex flex-col items-center justify-center rounded-full shrink-0 size-[100px]">
               <FigmaIcon src={imgPlanetWeb} size={40} />
             </div>
 
-            <h3 className="font-avenir-heavy text-f20 leading-l28 text-[#1f2e91] text-center min-h-[50px]">
-              {t.cardTitle}
-            </h3>
-
-            <p className="font-avenir-roman text-f18 leading-l19 text-[#333] text-center">
-              {t.cardDesc}
-            </p>
+            {/* Title and description: one block (side by side with the icon and the button when the card is full width) */}
+            <div className="eg-text flex flex-col gap-[10px] items-center">
+              <h3 className="font-avenir-heavy text-f20 leading-l28 text-[#1f2e91] text-center min-h-[50px]">
+                {t.cardTitle}
+              </h3>
+              <p className="font-avenir-roman text-f18 leading-l19 text-[#333] text-center">
+                {t.cardDesc}
+              </p>
+            </div>
 
             {bePartner && (
-              <Link href="/parceria" className="w-full">
+              <Link href="/parceria" className="eg-cta w-full">
                 <BtnAzulOutArrow className="w-full min-h-[40px]">
                   {t.cta}
                 </BtnAzulOutArrow>

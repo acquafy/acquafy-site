@@ -17,7 +17,7 @@ import { useEffect } from "react";
  * ".card-row-equal": when the blocks end up stacked one per row they get the same height as well (side by side the grid already stretches them). The spare height goes to the CSS variable --equal-extra, which a card adds to the bottom padding of its list row (min-height is ignored by subgrid cards).
  *
  * ".card-row-hug": every block keeps the width of its own content. While they all fit on one row the row is a flex row with
- * justify-content: space-between, so the free space becomes an equal gap between the blocks. When they no longer fit the
+ * justify-content: space-around when the row sits in a filled or padded block (equal space around each item, ends included) and space-between on a free background. When they no longer fit the
  * row falls back to the balanced grid (minimum column width from --card-min).
  *
  * ".card-row-fit" (items of different widths, e.g. a stats strip): while every item fits on a single row the row is a
@@ -57,7 +57,11 @@ function layout(el: HTMLElement) {
     if (total <= inner) {
       el.style.display = "flex";
       el.style.flexWrap = "nowrap";
-      el.style.justifyContent = "space-between";
+      // Inside a filled or padded block the free space goes around each item; on a free background it goes between them.
+      const bg = cs.backgroundColor;
+      const transparent = bg === "transparent" || bg === "rgba(0, 0, 0, 0)";
+      const filled = !transparent || parseFloat(cs.paddingLeft) > 0;
+      el.style.justifyContent = filled ? "space-around" : "space-between";
       el.style.gridTemplateColumns = "";
       kids.forEach((k) => (k.style.flex = "0 0 auto"));
       return;

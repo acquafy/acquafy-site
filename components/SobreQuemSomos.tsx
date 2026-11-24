@@ -11,7 +11,6 @@ const T: Record<Lang, {
   p3: string;
   p4: string;
   interfyPrefix: string;
-  interfyTitle: string;
   interfyDesc: string;
   stat1Title: string;
   stat1Desc: string;
@@ -24,12 +23,11 @@ const T: Record<Lang, {
 }> = {
   pt: {
     quemSomosTitle: "Quem Somos",
-    p1: "A Acquafy Corporation foi fundada em setembro de 2020, nos Estados Unidos, como parte do Interfy Corp.",
+    p1: "A Acquafy Corporation foi fundada em setembro de 2020, nos Estados Unidos, como parte do Interfy Corporation.",
     p2: "Há quase 6 anos desenvolvemos soluções que transformam a forma como famílias, empresas e comunidades têm acesso a água de qualidade.",
     p3: "Desde nossa fundação comercializamos purificadores, filtros, jarras, filtros de chuveiro e garrafas de água alcalina, sempre com foco em inovação, desempenho e bem-estar.",
     p4: "Em 2026 entramos em uma nova fase com o lançamento de nossas linhas exclusivas de produtos e a expansão da Acquafy Global Smart Water Platform.",
     interfyPrefix: "A Acquafy faz parte do",
-    interfyTitle: "Acquafy, uma empresa Interfy Corp",
     interfyDesc: "um grupo global de tecnologia com mais de 20 anos de história e experiência em inovação, transformação digital e soluções inteligentes.",
     stat1Title: "+20 anos",
     stat1Desc:  "de história e experiência global.",
@@ -42,12 +40,11 @@ const T: Record<Lang, {
   },
   "pt-pt": {
     quemSomosTitle: "Quem Somos",
-    p1: "A Acquafy Corporation foi fundada em setembro de 2020, nos Estados Unidos, como parte do Interfy Corp.",
+    p1: "A Acquafy Corporation foi fundada em setembro de 2020, nos Estados Unidos, como parte do Interfy Corporation.",
     p2: "Há quase 6 anos desenvolvemos soluções que transformam a forma como famílias, empresas e comunidades têm acesso a água de qualidade.",
     p3: "Desde a nossa fundação comercializamos purificadores, filtros, jarras, filtros de duche e garrafas de água alcalina, sempre com foco em inovação, desempenho e bem-estar.",
     p4: "Em 2026 entrámos numa nova fase com o lançamento das nossas linhas exclusivas de produtos e a expansão da Acquafy Global Smart Water Platform.",
     interfyPrefix: "A Acquafy faz parte do",
-    interfyTitle: "Acquafy, uma empresa do Interfy Corp",
     interfyDesc: "um grupo global de tecnologia com mais de 20 anos de história e experiência em inovação, transformação digital e soluções inteligentes.",
     stat1Title: "+20 anos",
     stat1Desc:  "de história e experiência global.",
@@ -60,12 +57,11 @@ const T: Record<Lang, {
   },
   en: {
     quemSomosTitle: "About Us",
-    p1: "Acquafy Corporation was founded in September 2020 in the United States as part of the Interfy Corp.",
+    p1: "Acquafy Corporation was founded in September 2020 in the United States as part of the Interfy Corporation.",
     p2: "For nearly 6 years we have developed solutions that transform the way families, businesses and communities access quality water.",
     p3: "Since our founding we have marketed purifiers, filters, pitchers, shower filters and alkaline water bottles, always focused on innovation, performance and well-being.",
     p4: "In 2026 we entered a new phase with the launch of our exclusive product lines and the expansion of the Acquafy Global Smart Water Platform.",
     interfyPrefix: "Acquafy is part of the",
-    interfyTitle: "Acquafy, an Interfy Corp company",
     interfyDesc: "a global technology group with over 20 years of history and experience in innovation, digital transformation and intelligent solutions.",
     stat1Title: "+20 years",
     stat1Desc:  "of global history and experience.",
@@ -78,12 +74,11 @@ const T: Record<Lang, {
   },
   "en-gb": {
     quemSomosTitle: "About Us",
-    p1: "Acquafy Corporation was founded in September 2020 in the United States as part of the Interfy Corp.",
+    p1: "Acquafy Corporation was founded in September 2020 in the United States as part of the Interfy Corporation.",
     p2: "For nearly 6 years we have developed solutions that transform the way families, businesses and communities access quality water.",
     p3: "Since our founding we have marketed purifiers, filters, jugs, shower filters and alkaline water bottles, always focused on innovation, performance and well-being.",
     p4: "In 2026 we entered a new phase with the launch of our exclusive product lines and the expansion of the Acquafy Global Smart Water Platform.",
     interfyPrefix: "Acquafy is part of the",
-    interfyTitle: "Acquafy, an Interfy Corp company",
     interfyDesc: "a global technology group with over 20 years of history and experience in innovation, digital transformation and intelligent solutions.",
     stat1Title: "+20 years",
     stat1Desc:  "of global history and experience.",
@@ -96,12 +91,11 @@ const T: Record<Lang, {
   },
   es: {
     quemSomosTitle: "Quiénes Somos",
-    p1: "Acquafy Corporation fue fundada en septiembre de 2020 en los Estados Unidos como parte del Interfy Corp.",
+    p1: "Acquafy Corporation fue fundada en septiembre de 2020 en los Estados Unidos como parte del Interfy Corporation.",
     p2: "Durante casi 6 años hemos desarrollado soluciones que transforman la forma en que familias, empresas y comunidades acceden al agua de calidad.",
     p3: "Desde nuestra fundación comercializamos purificadores, filtros, jarras, filtros de ducha y botellas de agua alcalina, siempre enfocados en innovación, rendimiento y bienestar.",
     p4: "En 2026 entramos en una nueva fase con el lanzamiento de nuestras líneas exclusivas de productos y la expansión de la Acquafy Global Smart Water Platform.",
     interfyPrefix: "Acquafy forma parte del",
-    interfyTitle: "Acquafy, una empresa del Interfy Corp",
     interfyDesc: "un grupo tecnológico global con más de 20 años de historia y experiencia en innovación, transformación digital y soluciones inteligentes.",
     stat1Title: "+20 años",
     stat1Desc:  "de historia y experiencia global.",
@@ -114,12 +108,11 @@ const T: Record<Lang, {
   },
   fr: {
     quemSomosTitle: "Qui Sommes-Nous",
-    p1: "Acquafy Corporation a été fondée en septembre 2020 aux États-Unis dans le cadre du Interfy Corp.",
+    p1: "Acquafy Corporation a été fondée en septembre 2020 aux États-Unis dans le cadre du Interfy Corporation.",
     p2: "Depuis près de 6 ans, nous développons des solutions qui transforment la façon dont les familles, les entreprises et les communautés accèdent à une eau de qualité.",
     p3: "Depuis notre fondation, nous commercialisons des purificateurs, des filtres, des carafes, des filtres de douche et des bouteilles d'eau alcaline, toujours axés sur l'innovation, la performance et le bien-être.",
     p4: "En 2026, nous sommes entrés dans une nouvelle phase avec le lancement de nos gammes exclusives de produits et l'expansion de la Acquafy Global Smart Water Platform.",
     interfyPrefix: "Acquafy fait partie du",
-    interfyTitle: "Acquafy, une entreprise du Interfy Corp",
     interfyDesc: "un groupe technologique mondial avec plus de 20 ans d'histoire et d'expérience en innovation, transformation numérique et solutions intelligentes.",
     stat1Title: "+20 ans",
     stat1Desc:  "d'histoire et d'expérience mondiale.",
@@ -132,12 +125,11 @@ const T: Record<Lang, {
   },
   de: {
     quemSomosTitle: "Über Uns",
-    p1: "Die Acquafy Corporation wurde im September 2020 in den Vereinigten Staaten als Teil der Interfy Corp gegründet.",
+    p1: "Die Acquafy Corporation wurde im September 2020 in den Vereinigten Staaten als Teil der Interfy Corporation gegründet.",
     p2: "Seit fast 6 Jahren entwickeln wir Lösungen, die die Art und Weise verändern, wie Familien, Unternehmen und Gemeinschaften Zugang zu qualitativ hochwertigem Wasser erhalten.",
     p3: "Seit unserer Gründung vermarkten wir Wasserfilter, Filter, Karaffen, Duschfilter und alkalische Wasserflaschen – stets mit Fokus auf Innovation, Leistung und Wohlbefinden.",
     p4: "Im Jahr 2026 haben wir mit dem Launch unserer exklusiven Produktlinien und der Expansion der Acquafy Global Smart Water Platform eine neue Phase eingeläutet.",
     interfyPrefix: "Acquafy ist Teil der",
-    interfyTitle: "Acquafy, ein Unternehmen der Interfy Corp",
     interfyDesc: "eine globale Technologiegruppe mit über 20 Jahren Geschichte und Erfahrung in Innovation, digitaler Transformation und intelligenten Lösungen.",
     stat1Title: "+20 Jahre",
     stat1Desc:  "globale Geschichte und Erfahrung.",
@@ -150,12 +142,11 @@ const T: Record<Lang, {
   },
   it: {
     quemSomosTitle: "Chi Siamo",
-    p1: "Acquafy Corporation è stata fondata nel settembre 2020 negli Stati Uniti come parte del Interfy Corp.",
+    p1: "Acquafy Corporation è stata fondata nel settembre 2020 negli Stati Uniti come parte del Interfy Corporation.",
     p2: "Da quasi 6 anni sviluppiamo soluzioni che trasformano il modo in cui famiglie, aziende e comunità accedono all'acqua di qualità.",
     p3: "Dalla nostra fondazione commercializziamo purificatori, filtri, caraffe, filtri doccia e bottiglie di acqua alcalina, sempre focalizzati su innovazione, prestazioni e benessere.",
     p4: "Nel 2026 siamo entrati in una nuova fase con il lancio delle nostre linee esclusive di prodotti e l'espansione della Acquafy Global Smart Water Platform.",
     interfyPrefix: "Acquafy fa parte del",
-    interfyTitle: "Acquafy, un'azienda del Interfy Corp",
     interfyDesc: "un gruppo tecnologico globale con oltre 20 anni di storia ed esperienza in innovazione, trasformazione digitale e soluzioni intelligenti.",
     stat1Title: "+20 anni",
     stat1Desc:  "di storia ed esperienza globale.",
@@ -168,12 +159,11 @@ const T: Record<Lang, {
   },
   zh: {
     quemSomosTitle: "关于我们",
-    p1: "Acquafy Corporation 于 2020 年 9 月在美国成立，隶属于 Interfy Corp。",
+    p1: "Acquafy Corporation 于 2020 年 9 月在美国成立，隶属于 Interfy Corporation。",
     p2: "近 6 年来，我们持续开发解决方案，改变家庭、企业和社区获取优质水资源的方式。",
     p3: "自成立以来，我们销售净水器、滤芯、滤水壶、淤浴过滤器和碱性水瓶，始终专注于创新、性能与健康。",
     p4: "2026 年，我们以独家产品线的推出和 Acquafy Global Smart Water Platform 的扩展进入新阶段。",
     interfyPrefix: "Acquafy 是",
-    interfyTitle: "Acquafy，Interfy Corp 旗下企业",
     interfyDesc: "一家拥有超过 20 年历史和经验的全球技术集团，专注于创新、数字化转型与智能解决方案。",
     stat1Title: "+20 年",
     stat1Desc:  "全球历史与经验。",
@@ -186,12 +176,11 @@ const T: Record<Lang, {
   },
   ja: {
     quemSomosTitle: "私たちについて",
-    p1: "Acquafy Corporation は、Interfy Corp の一員として 2020 年 9 月に米国で設立されました。",
+    p1: "Acquafy Corporation は、Interfy Corporation の一員として 2020 年 9 月に米国で設立されました。",
     p2: "約 6 年間、家庭・企業・コミュニティが質の高い水にアクセスする方法を変革するソリューションを開発してきました。",
     p3: "設立以来、浄水器・フィルター・ピッチャー・シャワーフィルター・アルカリウォーターボトルを販売し、常にイノベーション・パフォーマンス・ウェルネスに注力しています。",
     p4: "2026 年、独自製品ラインのローンチと Acquafy Global Smart Water Platform の拡大により、新たなフェーズに突入しました。",
     interfyPrefix: "Acquafy は",
-    interfyTitle: "Acquafy、Interfy Corp のグループ企業",
     interfyDesc: "20 年以上の歴史と経験を持つグローバルテクノロジーグループ。イノベーション・デジタルトランスフォーメーション・インテリジェントソリューションに精通しています。",
     stat1Title: "+20年",
     stat1Desc:  "グローバルな歴史と経験。",
@@ -204,12 +193,11 @@ const T: Record<Lang, {
   },
   ko: {
     quemSomosTitle: "회사 소개",
-    p1: "Acquafy Corporation은 Interfy Corp의 일원으로 2020년 9월 미국에서 설립되었습니다.",
+    p1: "Acquafy Corporation은 Interfy Corporation의 일원으로 2020년 9월 미국에서 설립되었습니다.",
     p2: "약 6년간 가정, 기업, 커뮤니티가 양질의 물에 접근하는 방식을 변화시키는 솔루션을 개발해 왔습니다.",
     p3: "설립 이후 정수기, 필터, 피처, 샤워 필터, 알칼리 워터 보틀을 판매하며 항상 혁신, 성능, 웰빙에 집중해 왔습니다.",
     p4: "2026년, 독점 제품 라인 출시와 Acquafy Global Smart Water Platform 확장을 통해 새로운 단계에 돌입했습니다.",
     interfyPrefix: "Acquafy는",
-    interfyTitle: "Acquafy, Interfy Corp 소속 기업",
     interfyDesc: "혁신, 디지털 전환, 지능형 솔루션 분야에서 20년 이상의 역사와 경험을 보유한 글로벌 기술 그룹.",
     stat1Title: "+20년",
     stat1Desc:  "글로벌 역사와 경험.",
@@ -222,12 +210,11 @@ const T: Record<Lang, {
   },
   sv: {
     quemSomosTitle: "Om oss",
-    p1: "Acquafy Corporation grundades i september 2020 i USA som en del av Interfy Corp.",
+    p1: "Acquafy Corporation grundades i september 2020 i USA som en del av Interfy Corporation.",
     p2: "I nästan 6 år har vi utvecklat lösningar som förändrar sättet familjer, företag och samhällen får tillgång till kvalitetsvatten.",
     p3: "Sedan grundandet har vi marknadsfört vattenrenar, filter, kannor, duschfilter och alkaliska vattenflaskor, alltid med fokus på innovation, prestanda och välbefinnande.",
     p4: "Under 2026 gick vi in i en ny fas med lanseringen av våra exklusiva produktlinjer och expansionen av Acquafy Global Smart Water Platform.",
     interfyPrefix: "Acquafy ar en del av",
-    interfyTitle: "Acquafy, ett företag inom Interfy Corp",
     interfyDesc: "en global teknikgrupp med över 20 års historia och erfarenhet inom innovation, digital transformation och intelligenta lösningar.",
     stat1Title: "+20 år",
     stat1Desc:  "global historia och erfarenhet.",
@@ -240,12 +227,11 @@ const T: Record<Lang, {
   },
   fi: {
     quemSomosTitle: "Tietoa meistä",
-    p1: "Acquafy Corporation perustettiin syyskuussa 2020 Yhdysvalloissa osana Interfy Corpia.",
+    p1: "Acquafy Corporation perustettiin syyskuussa 2020 Yhdysvalloissa osana Interfy Corporationia.",
     p2: "Lähes 6 vuoden ajan olemme kehittäneet ratkaisuja, jotka muuttavat tapaa, jolla perheet, yritykset ja yhteisöt pääsevät laadukkaaseen veteen.",
     p3: "Perustamisestamme lähtien olemme myyneet vedenpuhdistimia, suodattimia, kanuja, suihkusuodattimia ja alkaalivesipulloja, aina keskittyen innovaatioon, suorituskykyyn ja hyvinvointiin.",
     p4: "Vuonna 2026 siirryimme uuteen vaiheeseen eksklusiivisten tuotelinjojen lanseerauksen ja Acquafy Global Smart Water Platform -laajennuksen myötä.",
     interfyPrefix: "Acquafy on osa",
-    interfyTitle: "Acquafy, Interfy Corp -konsernin yritys",
     interfyDesc: "globaali teknologiakonserni, jolla on yli 20 vuoden historia ja kokemus innovaatiosta, digitaalisesta transformaatiosta ja älykkäistä ratkaisuista.",
     stat1Title: "+20 vuotta",
     stat1Desc:  "globaalia historiaa ja kokemusta.",
@@ -258,12 +244,11 @@ const T: Record<Lang, {
   },
   ru: {
     quemSomosTitle: "О нас",
-    p1: "Acquafy Corporation была основана в сентябре 2020 года в США как часть Interfy Corp.",
+    p1: "Acquafy Corporation была основана в сентябре 2020 года в США как часть Interfy Corporation.",
     p2: "Почти 6 лет мы разрабатываем решения, которые изменяют способ доступа семей, предприятий и сообществ к качественной воде.",
     p3: "С момента основания мы продаём очистители, фильтры, кувшины, душевые фильтры и бутылки с щелочной водой, всегда с фокусом на инновациях, производительности и благополучии.",
     p4: "В 2026 году мы вступили в новую фазу с запуском наших эксклюзивных продуктовых линеек и расширением Acquafy Global Smart Water Platform.",
     interfyPrefix: "Acquafy — часть",
-    interfyTitle: "Acquafy, компания Interfy Corp",
     interfyDesc: "глобальная технологическая группа с более чем 20-летней историей и опытом в инновациях, цифровой трансформации и интеллектуальных решениях.",
     stat1Title: "+20 лет",
     stat1Desc:  "глобальная история и опыт.",
@@ -276,12 +261,11 @@ const T: Record<Lang, {
   },
   ro: {
     quemSomosTitle: "Despre noi",
-    p1: "Acquafy Corporation a fost înfiinţată în septembrie 2020 în Statele Unite ca parte din Interfy Corp.",
+    p1: "Acquafy Corporation a fost înfiinţată în septembrie 2020 în Statele Unite ca parte din Interfy Corporation.",
     p2: "De aproape 6 ani dezvoltăm soluţii care transformă modul în care familiile, întreprinderile şi comunităţile accesează apa de calitate.",
     p3: "Încă de la înfiinţare comercializăm purificatoare, filtre, carafele, filtre de duş şi sticle de apă alcalină, mereu cu accent pe inovaţie, performanţă şi bunăstare.",
     p4: "În 2026 am intrat într-o nouă fază cu lansarea liniilor noastre exclusive de produse şi extinderea Acquafy Global Smart Water Platform.",
     interfyPrefix: "Acquafy face parte din",
-    interfyTitle: "Acquafy, o companie din Interfy Corp",
     interfyDesc: "un grup tehnologic global cu peste 20 de ani de istorie şi experienţă în inovaţie, transformare digitală şi soluţii inteligente.",
     stat1Title: "+20 ani",
     stat1Desc:  "de istorie şi experienţă globală.",
@@ -294,12 +278,11 @@ const T: Record<Lang, {
   },
   he: {
     quemSomosTitle: "עלינו",
-    p1: "Acquafy Corporation נוסדה בספטמבר 2020 בארצות הברית כחלק מקבוצת Interfy Corp.",
+    p1: "Acquafy Corporation נוסדה בספטמבר 2020 בארצות הברית כחלק מקבוצת Interfy Corporation.",
     p2: "כמעט 6 שנים אנו מפתחים פתרונות המשנים את האופן שבו משפחות, עסקים וקהילות נגשים למים איכותיים.",
     p3: "מאז הייסודנו משווקים מטהרי מים, מסננים, קנקנים, מסנני מקלחת ובקבוקי מים אלקליני, תמיד בדגש על חדשנות, ביצועים ורווחה.",
     p4: "בשנת 2026 נכנסנו לשלב חדש עם השקת קווי המוצרים הבלעדיים שלנו והרחבת Acquafy Global Smart Water Platform.",
     interfyPrefix: "Acquafy היא חלק מ",
-    interfyTitle: "Acquafy, חברה בקבוצת Interfy Corp",
     interfyDesc: "קבוצת טכנולוגיה עולמית עם יותר מ-20 שנות של היסטוריה וניסיון בחדשנות, הפיכה דיגיטלית ופתרונות חכמים.",
     stat1Title: "+20 שנים",
     stat1Desc:  "היסטוריה וניסיון עולמי.",
@@ -323,17 +306,46 @@ function StatItem({
   icon, iconAlt, title, description,
 }: { icon: string; iconAlt: string; title: string; description: string }) {
   return (
-    <div className="flex flex-col gap-[20px] items-center justify-center min-w-0 px-[20px]">
+    <div className="grid grid-rows-subgrid row-span-3 gap-y-[10px] justify-items-center content-start min-w-0 px-[20px] text-center">
       <FigmaIcon src={icon} alt={iconAlt} size={40} />
-      <div className="flex flex-col gap-[15px] items-start text-center w-full">
-        <p className="font-avenir-heavy text-f16 leading-l20 text-[#1f2e91] w-full min-h-[36px]">
-          {title}
-        </p>
-        <p className="font-avenir-roman text-f14 leading-l16 text-[#2a2a2b] w-full">
-          {description}
-        </p>
-      </div>
+      <p className="font-avenir-heavy text-f16 leading-l20 text-[#1f2e91] w-full">
+        {title}
+      </p>
+      <p className="font-avenir-roman text-f14 leading-l16 text-[#2a2a2b] w-full">
+        {description}
+      </p>
     </div>
+  );
+}
+
+function Stats({ t }: { t: (typeof T)[Lang] }) {
+  return (
+        <div className="card-row [--card-min:150px] gap-[10px] items-stretch w-full">
+          <StatItem
+            icon={imgRatingIcon}
+            iconAlt={t.stat1Title}
+            title={t.stat1Title}
+            description={t.stat1Desc}
+          />
+          <StatItem
+            icon={imgGlobeIcon}
+            iconAlt={t.stat2Title}
+            title={t.stat2Title}
+            description={t.stat2Desc}
+          />
+          <StatItem
+            icon={imgEcosystemIcon}
+            iconAlt={t.stat3Title}
+            title={t.stat3Title}
+            description={t.stat3Desc}
+          />
+          <StatItem
+            icon={imgScaleIcon}
+            iconAlt={t.stat4Title}
+            title={t.stat4Title}
+            description={t.stat4Desc}
+          />
+        </div>
   );
 }
 
@@ -342,14 +354,14 @@ export default function SobreQuemSomos() {
   const t = T[lang];
   return (
     <section id="quem-somos" className="scroll-mt-[80px] flex flex-col items-center justify-center overflow-hidden px-[20px] py-[40px] w-full">
-      <div className="flex flex-col gap-[40px] items-start justify-center max-w-[1400px] w-full win-1024:flex-row win-1024:flex-wrap">
+      <div className="flex flex-col gap-[40px] items-start justify-center max-w-[1400px] w-full win-1024:flex-row win-1024:flex-wrap win-1280:items-stretch">
 
         {/* Left: Quem Somos */}
-        <div className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[20px] items-center win-1024:max-w-[550px] min-w-[280px] px-[20px] py-[40px] rounded-[16px]">
+        <div className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-w-[280px] px-[20px] py-[40px] rounded-[16px]">
           <h2 className="font-avenir-heavy text-f22 leading-l28 md:text-f26 md:leading-l34 text-[#1f2e91] w-full text-center lg:text-left">
             {t.quemSomosTitle}
           </h2>
-          <div className="font-avenir-roman text-f18 leading-l19 text-[#333] w-full">
+          <div className="font-avenir-roman text-f18 leading-l19 text-[#333] w-full text-center lg:text-left">
             <p className="leading-l19 mb-[10px]">{t.p1}</p>
             <p className="leading-l19 mb-[10px]">{t.p2}</p>
             <p className="leading-l19 mb-[10px]">{t.p3}</p>
@@ -357,14 +369,10 @@ export default function SobreQuemSomos() {
           </div>
         </div>
 
-        {/* Right: Interfy Corp */}
-        <div className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[20px] items-center min-w-[280px] px-[20px] py-[40px] rounded-[16px]">
-          <h2 className="font-avenir-heavy text-f22 leading-l28 md:text-f26 md:leading-l34 text-[#1f2e91] w-full text-center lg:text-left">
-            {t.interfyTitle}
-          </h2>
-
+        {/* Right: Interfy Corporation */}
+        <div className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-w-[280px] px-[20px] py-[40px] rounded-[16px]">
           {/* Logo + description */}
-          <div className="flex flex-wrap gap-[20px] items-center w-full">
+          <div className="sq-row flex flex-wrap gap-[20px] items-center w-full">
 
             {/* Logo column */}
             <div className="flex flex-[1_0_0] flex-col items-center justify-center min-w-[240px] p-[15px] win-1024:max-w-[330px]">
@@ -373,7 +381,7 @@ export default function SobreQuemSomos() {
                 style={{ aspectRatio: "3060 / 794" }}
               >
                 <Img
-                  alt="Interfy Corp"
+                  alt="Interfy Corporation"
                   className="absolute inset-0 w-full h-full"
                   src={imgInterfyCorpLogo}
                 />
@@ -381,45 +389,23 @@ export default function SobreQuemSomos() {
             </div>
 
             {/* Description column — border-l serves as divider */}
-            <div className="flex flex-[1_0_0] flex-col items-center justify-center min-w-[280px] p-[15px] win-1024:border-l win-1024:border-solid win-1024:border-[#cbd0d4]">
+            <div className="flex flex-[1_0_0] flex-col items-center justify-center min-w-[280px] p-[15px] sq-text">
               <p className="font-avenir-roman text-f18 leading-l19 text-[#333] w-full">
                 {t.interfyPrefix}{" "}
-                <span className="font-avenir-heavy text-[#0569ff]">Interfy Corp</span>
-                ,<br />
+                <span className="font-avenir-heavy text-[#0569ff]">Interfy Corporation</span>
+                ,{" "}
                 {t.interfyDesc}
               </p>
             </div>
 
           </div>
 
-          {/* Stats — sem divisores */}
-          <div className="card-row [--card-min:150px] gap-[10px] items-center w-full">
-            <StatItem
-              icon={imgRatingIcon}
-              iconAlt={t.stat1Title}
-              title={t.stat1Title}
-              description={t.stat1Desc}
-            />
-            <StatItem
-              icon={imgGlobeIcon}
-              iconAlt={t.stat2Title}
-              title={t.stat2Title}
-              description={t.stat2Desc}
-            />
-            <StatItem
-              icon={imgEcosystemIcon}
-              iconAlt={t.stat3Title}
-              title={t.stat3Title}
-              description={t.stat3Desc}
-            />
-            <StatItem
-              icon={imgScaleIcon}
-              iconAlt={t.stat4Title}
-              title={t.stat4Title}
-              description={t.stat4Desc}
-            />
+          {/* Stats */}
+          <div className="w-full">
+            <Stats t={t} />
           </div>
         </div>
+
       </div>
     </section>
   );

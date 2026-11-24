@@ -43,7 +43,7 @@ const T: Record<Lang, {
     para2: "A Acquafy une tecnologia, inteligência artificial, conectividade e design premium para oferecer soluções modernas de purificação, gestão e experiência da água para casas, empresas e operações globais.",
     pillItems: [
       { sub: "100% americana",     title: "Fundada nos EUA em 2020" },
-      { sub: "Parte do",           title: "Interfy Corp" },
+      { sub: "Parte do grupo",           title: "Interfy Corporation" },
       { sub: "Presença global com", title: "App + IoT + Acquafy AI" },
     ],
     btn1: "Conheça nossa história",
@@ -61,7 +61,7 @@ const T: Record<Lang, {
     para2: "A Acquafy une tecnologia, inteligência artificial, conectividade e design premium para oferecer soluções modernas de purificação, gestão e experiência da água para habitações, empresas e operações globais.",
     pillItems: [
       { sub: "100% americana",      title: "Fundada nos EUA em 2020" },
-      { sub: "Parte do",            title: "Interfy Corp" },
+      { sub: "Parte do grupo",            title: "Interfy Corporation" },
       { sub: "Presença global com", title: "App + IoT + Acquafy AI" },
     ],
     btn1: "Conheça a nossa história",
@@ -79,7 +79,7 @@ const T: Record<Lang, {
     para2: "Acquafy combines technology, artificial intelligence, connectivity and premium design to offer modern solutions for water purification, management and experience for homes, businesses and global operations.",
     pillItems: [
       { sub: "100% American",      title: "Founded in the USA in 2020" },
-      { sub: "Part of",            title: "Interfy Corp" },
+      { sub: "Part of the group",            title: "Interfy Corporation" },
       { sub: "Global presence with", title: "App + IoT + Acquafy AI" },
     ],
     btn1: "Our Story",
@@ -97,7 +97,7 @@ const T: Record<Lang, {
     para2: "Acquafy combines technology, artificial intelligence, connectivity and premium design to offer modern solutions for water purification, management and experience for homes, businesses and global operations.",
     pillItems: [
       { sub: "100% American",      title: "Founded in the USA in 2020" },
-      { sub: "Part of",            title: "Interfy Corp" },
+      { sub: "Part of the group",            title: "Interfy Corporation" },
       { sub: "Global presence with", title: "App + IoT + Acquafy AI" },
     ],
     btn1: "Our Story",
@@ -115,7 +115,7 @@ const T: Record<Lang, {
     para2: "Acquafy une tecnología, inteligencia artificial, conectividad y diseño premium para ofrecer soluciones modernas de purificación, gestión y experiencia del agua para hogares, empresas y operaciones globales.",
     pillItems: [
       { sub: "100% americana",     title: "Fundada en EE.UU. en 2020" },
-      { sub: "Parte del",          title: "Interfy Corp" },
+      { sub: "Parte del grupo",          title: "Interfy Corporation" },
       { sub: "Presencia global con", title: "App + IoT + Acquafy AI" },
     ],
     btn1: "Nuestra Historia",
@@ -133,7 +133,7 @@ const T: Record<Lang, {
     para2: "Acquafy allie technologie, intelligence artificielle, connectivité et design premium pour offrir des solutions modernes de purification, de gestion et d'expérience de l'eau pour les foyers, les entreprises et les opérations mondiales.",
     pillItems: [
       { sub: "100% américaine",       title: "Fondée aux États-Unis en 2020" },
-      { sub: "Membre du",             title: "Interfy Corp" },
+      { sub: "Membre du groupe",             title: "Interfy Corporation" },
       { sub: "Présence mondiale avec", title: "App + IoT + Acquafy AI" },
     ],
     btn1: "Notre Histoire",
@@ -151,7 +151,7 @@ const T: Record<Lang, {
     para2: "Acquafy vereint Technologie, künstliche Intelligenz, Konnektivität und Premium-Design, um moderne Lösungen für Wasserreinigung, -management und -erlebnis für Haushalte, Unternehmen und globale Operationen anzubieten.",
     pillItems: [
       { sub: "100% amerikanisch",     title: "Gegründet in den USA 2020" },
-      { sub: "Teil der",              title: "Interfy Corp" },
+      { sub: "Teil der Gruppe",              title: "Interfy Corporation" },
       { sub: "Globale Präsenz mit",   title: "App + IoT + Acquafy AI" },
     ],
     btn1: "Unsere Geschichte",
@@ -169,7 +169,7 @@ const T: Record<Lang, {
     para2: "Acquafy unisce tecnologia, intelligenza artificiale, connettività e design premium per offrire soluzioni moderne di purificazione, gestione ed esperienza dell'acqua per case, aziende e operazioni globali.",
     pillItems: [
       { sub: "100% americana",        title: "Fondata negli USA nel 2020" },
-      { sub: "Parte del",             title: "Interfy Corp" },
+      { sub: "Parte del grupo",             title: "Interfy Corporation" },
       { sub: "Presenza globale con",  title: "App + IoT + Acquafy AI" },
     ],
     btn1: "La Nostra Storia",
@@ -187,7 +187,7 @@ const T: Record<Lang, {
     para2: "Acquafy 融合技术、人工智能、连接性与高端设计，为家庭、企业及全球运营提供现代化的水净化、管理与体验解决方案。",
     pillItems: [
       { sub: "百分百美国品牌",   title: "2020年于美国成立" },
-      { sub: "隶属于",           title: "Interfy Corp" },
+      { sub: "隶属集团",           title: "Interfy Corporation" },
       { sub: "全球存在，涵盖",   title: "App + IoT + Acquafy AI" },
     ],
     btn1: "我们的故事",
@@ -205,7 +205,7 @@ const T: Record<Lang, {
     para2: "Acquafy はテクノロジー、人工知能、コネクティビティ、プレミアムデザインを組み合わせ、家庭・企業・グローバルオペレーション向けに現代的な水の浄化・管理・体験ソリューションを提供します。",
     pillItems: [
       { sub: "100%アメリカ企業",   title: "2020年に米国で設立" },
-      { sub: "加盟",               title: "Interfy Corp" },
+      { sub: "グループ会社",               title: "Interfy Corporation" },
       { sub: "グローバル展開",     title: "App + IoT + Acquafy AI" },
     ],
     btn1: "私たちの歴史",
@@ -223,7 +223,7 @@ const T: Record<Lang, {
     para2: "Acquafy 는 기술, 인공지능, 연결성, 프리미엄 디자인을 결합하여 가정, 기업, 글로벌 운영을 위한 현대적인 정수, 관리 및 물 경험 솔루션을 제공합니다.",
     pillItems: [
       { sub: "100% 미국 브랜드",   title: "2020년 미국에서 설립" },
-      { sub: "소속",               title: "Interfy Corp" },
+      { sub: "그룹 소속",               title: "Interfy Corporation" },
       { sub: "글로벌 존재감",      title: "App + IoT + Acquafy AI" },
     ],
     btn1: "우리의 이야기",
@@ -241,7 +241,7 @@ const T: Record<Lang, {
     para2: "Acquafy kombinerar teknik, artificiell intelligens, anslutning och premiumdesign för att erbjuda moderna lösningar för vattenrening, -hantering och -upplevelse för hem, företag och globala verksamheter.",
     pillItems: [
       { sub: "100% amerikanskt",      title: "Grundat i USA 2020" },
-      { sub: "Del av",                title: "Interfy Corp" },
+      { sub: "Del av koncernen",                title: "Interfy Corporation" },
       { sub: "Global närvaro med",    title: "App + IoT + Acquafy AI" },
     ],
     btn1: "Vår Historia",
@@ -259,7 +259,7 @@ const T: Record<Lang, {
     para2: "Acquafy yhdistää teknologian, tekoälyn, yhteydet ja premium-muotoilun tarjotakseen moderneja ratkaisuja veden puhdistukseen, hallintaan ja kokemukseen kodeille, yrityksille ja globaaleille toiminnoille.",
     pillItems: [
       { sub: "100% amerikkalainen",   title: "Perustettu USA:ssa 2020" },
-      { sub: "Osa",                   title: "Interfy Corpia" },
+      { sub: "Osa konsernia",                   title: "Interfy Corporation" },
       { sub: "Globaali läsnäolo",     title: "App + IoT + Acquafy AI" },
     ],
     btn1: "Tarinamme",
@@ -277,7 +277,7 @@ const T: Record<Lang, {
     para2: "Acquafy ob'edinyaet tekhnologii, iskusstvennyj intellekt, svyaznost i premium-dizajn dlya predlozheniya sovremennykh reshenij po ochistke, upravleniyu i opyte vody dlya domov, predpriyatij i globalnykh operacij.",
     pillItems: [
       { sub: "100% amerikanskij",     title: "Osnovana v SShA v 2020 g." },
-      { sub: "Chast",                 title: "Interfy Corp" },
+      { sub: "Chast gruppy",                 title: "Interfy Corporation" },
       { sub: "Globalnoe prisutstvie", title: "App + IoT + Acquafy AI" },
     ],
     btn1: "Nasha istoriya",
@@ -295,7 +295,7 @@ const T: Record<Lang, {
     para2: "Acquafy combina tehnologia, inteligenta artificiala, conectivitatea si designul premium pentru a oferi solutii moderne de purificare, gestionare si experienta a apei pentru case, companii si operatiuni globale.",
     pillItems: [
       { sub: "100% americana",        title: "Fondata in SUA in 2020" },
-      { sub: "Parte din",             title: "Interfy Corp" },
+      { sub: "Parte din grupul",             title: "Interfy Corporation" },
       { sub: "Prezenta globala cu",   title: "App + IoT + Acquafy AI" },
     ],
     btn1: "Povestea noastra",
@@ -313,7 +313,7 @@ const T: Record<Lang, {
     para2: "Acquafy משלבת טכנולוגיה, בינה מלאכותית, קישוריות ועיצוב פרמיום כדי להציע פתרונות מודרניים לטיהור, ניהול וחוויית מים לבתים, עסקים ופעולות גלובליות.",
     pillItems: [
       { sub: "100% אמריקאי",          title: "נוסדה בארה\"ב ב-2020" },
-      { sub: "חלק מ-",                title: "Interfy Corp" },
+      { sub: "חלק מהקבוצה",                title: "Interfy Corporation" },
       { sub: "נוכחות גלובלית עם",     title: "App + IoT + Acquafy AI" },
     ],
     btn1: "הסיפור שלנו",
@@ -330,7 +330,7 @@ const T: Record<Lang, {
 // ── Static pill icon/alt data (no translation needed) ─────────────────────────
 const pillIconData: Pick<PillItem, "icon" | "iconAlt" | "aspectW" | "aspectH">[] = [
   { icon: imgUsa,         iconAlt: "EUA" },
-  { icon: imgInterfyIcon, iconAlt: "Interfy Corp" },
+  { icon: imgInterfyIcon, iconAlt: "Interfy Corporation" },
   { icon: imgMobile,      iconAlt: "App + IoT", aspectW: 21, aspectH: 30 },
 ];
 
@@ -344,12 +344,12 @@ const bottomIconData: Pick<BottomFeatureItem, "icon" | "iconAlt">[] = [
 // ── Feature pill — mobile (<lg): horizontal (ícone + texto lado a lado) ────────
 function FeaturePill({ icon, iconAlt, aspectW, aspectH, sub, title }: PillItem) {
   return (
-    <div className="flex flex-[1_0_0] flex-row gap-[10px] items-center min-w-[240px]">
+    <div className="flex flex-row gap-[10px] items-center min-w-0">
       <div className="bg-white flex flex-col items-center justify-center p-[12px] rounded-full shrink-0 size-[60px]">
         <FigmaIcon src={icon} alt={iconAlt} size={36} aspectW={aspectW} aspectH={aspectH} />
       </div>
-      <div className="flex flex-[1_0_0] flex-col gap-[6px] items-start min-w-px">
-        <p className="font-avenir-roman text-f16 leading-l21 text-[#2a2a2b] w-full">{sub}</p>
+      <div className="flex flex-col gap-[6px] items-start">
+        <p className="font-avenir-roman text-f16 leading-l21 text-[#2a2a2b]">{sub}</p>
         <p className="font-avenir-heavy text-f18 leading-l19 text-[#2a2a2b] w-full">{title}</p>
       </div>
     </div>
@@ -374,9 +374,9 @@ function FeaturePillDesktop({ icon, iconAlt, aspectW, aspectH, sub, title }: Pil
 // ── Bottom feature card ────────────────────────────────────────────────────────
 function BottomFeature({ icon, iconAlt, title, description }: BottomFeatureItem) {
   return (
-    <div className="flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-w-[160px] win-1280:flex-row win-1280:flex-wrap">
+    <div className="flex flex-col gap-[12px] items-center justify-center min-w-0 win-1280:flex-row win-1280:flex-wrap">
       <FigmaIcon src={icon} alt={iconAlt} size={40} />
-      <div className="flex flex-[1_0_0] flex-col gap-[15px] items-start min-w-[200px] text-center win-1280:text-left">
+      <div className="flex flex-[1_0_0] flex-col gap-[8px] items-start min-w-0 text-center win-1280:text-left">
         <p className="font-avenir-heavy text-f18 leading-l22 text-[#1f2e91] w-full">{title}</p>
         <p className="font-avenir-roman text-f16 leading-l21 text-[#2a2a2b] w-full">{description}</p>
       </div>
@@ -480,7 +480,7 @@ export default function SobreBanner() {
         </div>
 
         {/* Pills horizontais — abaixo de tudo */}
-        <div className="order-6 lg:order-none lg:basis-full flex flex-wrap gap-[20px] items-start justify-center w-full">
+        <div className="order-6 lg:order-none lg:basis-full card-row card-row-hug [--card-min:240px] gap-[20px] items-center w-full">
           {pillItems.map((p) => <FeaturePill key={p.title} {...p} />)}
         </div>
       </div>
@@ -522,7 +522,7 @@ export default function SobreBanner() {
 
       {/* ══ BOTTOM INFO BAR — sempre ════════════════════════════════════════ */}
       <div
-        className="relative flex flex-wrap gap-[30px_20px] items-start justify-center overflow-hidden px-[20px] py-[40px] rounded-[16px] w-full max-w-[1400px]"
+        className="relative card-row [--card-min:220px] gap-[20px_12px] items-start overflow-hidden px-[16px] py-[24px] rounded-[16px] w-full max-w-[1400px]"
         style={{ backgroundImage: "linear-gradient(92deg, rgb(243, 250, 255) 0%, rgb(206, 239, 255) 100%)" }}
       >
         {bottomFeatures.map((f) => <BottomFeature key={f.title} {...f} />)}

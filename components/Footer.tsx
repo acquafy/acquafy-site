@@ -733,7 +733,7 @@ export default function Footer() {
                 </div>
                 <div className="flex flex-[1_0_0] flex-col gap-[5px] items-start min-w-px">
                   <p className="font-avenir-roman text-f16 leading-l20 text-[#07235c] w-full">{s.sub}</p>
-                  <p className="font-avenir-heavy text-f20 leading-l24 text-[#0233c3] w-full">{s.main}</p>
+                  <p className="font-avenir-heavy text-f18 leading-l22 text-[#0233c3] w-full">{s.main}</p>
                 </div>
               </div>
             );

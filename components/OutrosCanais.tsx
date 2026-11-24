@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import FigmaIcon from "./FigmaIcon";
-import { useChatWidget } from "./ChatWidget";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
 // ── Assets ───────────────────────────────────────────────────────────────────
@@ -31,6 +30,7 @@ const T: Record<Lang, {
     submitBtn: string;
   };
   cards: Array<{ title: string; desc: string; cta: string }>;
+  chatBadge: string;
 }> = {
   pt: {
     heading: "Outros canais",
@@ -45,6 +45,7 @@ const T: Record<Lang, {
       cancelBtn: "Cancelar",
       submitBtn: "Inscrever-se",
     },
+    chatBadge: "Indisponível",
     cards: [
       { title: "Chat online",     desc: "Fale com nossa equipe em tempo real.",      cta: "Iniciar chat" },
       { title: "WhatsApp",        desc: "Atendimento rápido pelo WhatsApp.",         cta: "Abrir WhatsApp" },
@@ -66,6 +67,7 @@ const T: Record<Lang, {
       cancelBtn: "Cancel",
       submitBtn: "Subscribe",
     },
+    chatBadge: "Unavailable",
     cards: [
       { title: "Online Chat",        desc: "Talk to our team in real time.",               cta: "Start Chat" },
       { title: "WhatsApp",           desc: "Quick support via WhatsApp.",                  cta: "Open WhatsApp" },
@@ -87,6 +89,7 @@ const T: Record<Lang, {
       cancelBtn: "Cancel",
       submitBtn: "Subscribe",
     },
+    chatBadge: "Unavailable",
     cards: [
       { title: "Online Chat",        desc: "Talk to our team in real time.",               cta: "Start Chat" },
       { title: "WhatsApp",           desc: "Quick support via WhatsApp.",                  cta: "Open WhatsApp" },
@@ -108,6 +111,7 @@ const T: Record<Lang, {
       cancelBtn: "Cancelar",
       submitBtn: "Suscribirse",
     },
+    chatBadge: "No disponible",
     cards: [
       { title: "Chat en línea",   desc: "Habla con nuestro equipo en tiempo real.",        cta: "Iniciar Chat" },
       { title: "WhatsApp",        desc: "Atención rápida por WhatsApp.",                   cta: "Abrir WhatsApp" },
@@ -129,6 +133,7 @@ const T: Record<Lang, {
       cancelBtn: "Annuler",
       submitBtn: "S'inscrire",
     },
+    chatBadge: "Indisponible",
     cards: [
       { title: "Chat en ligne",      desc: "Parlez à notre équipe en temps réel.",              cta: "Démarrer le chat" },
       { title: "WhatsApp",           desc: "Assistance rapide via WhatsApp.",                   cta: "Ouvrir WhatsApp" },
@@ -150,6 +155,7 @@ const T: Record<Lang, {
       cancelBtn: "Abbrechen",
       submitBtn: "Abonnieren",
     },
+    chatBadge: "Nicht verfügbar",
     cards: [
       { title: "Online-Chat",     desc: "Sprechen Sie in Echtzeit mit unserem Team.",           cta: "Chat starten" },
       { title: "WhatsApp",        desc: "Schneller Support via WhatsApp.",                      cta: "WhatsApp öffnen" },
@@ -171,6 +177,7 @@ const T: Record<Lang, {
       cancelBtn: "Annulla",
       submitBtn: "Iscriviti",
     },
+    chatBadge: "Non disponibile",
     cards: [
       { title: "Chat online",          desc: "Parla con il nostro team in tempo reale.",             cta: "Avvia Chat" },
       { title: "WhatsApp",             desc: "Assistenza rapida via WhatsApp.",                      cta: "Apri WhatsApp" },
@@ -192,6 +199,7 @@ const T: Record<Lang, {
       cancelBtn: "取消",
       submitBtn: "订阅",
     },
+    chatBadge: "暂不可用",
     cards: [
       { title: "在线聊天",   desc: "与我们的团队实时交流。",              cta: "开始聊天" },
       { title: "WhatsApp",  desc: "通过 WhatsApp 快速获得支持。",         cta: "打开 WhatsApp" },
@@ -213,6 +221,7 @@ const T: Record<Lang, {
       cancelBtn: "キャンセル",
       submitBtn: "登録する",
     },
+    chatBadge: "現在利用不可",
     cards: [
       { title: "オンラインチャット",     desc: "チームとリアルタイムで話しましょう。",       cta: "チャットを開始" },
       { title: "WhatsApp",             desc: "WhatsApp で迅速なサポートを提供します。",    cta: "WhatsApp を開く" },
@@ -234,6 +243,7 @@ const T: Record<Lang, {
       cancelBtn: "취소",
       submitBtn: "구독하기",
     },
+    chatBadge: "이용 불가",
     cards: [
       { title: "온라인 채팅",   desc: "우리 팀과 실시간으로 대화하세요.",          cta: "채팅 시작" },
       { title: "WhatsApp",     desc: "WhatsApp으로 빠른 지원을 받으세요.",         cta: "WhatsApp 열기" },
@@ -255,6 +265,7 @@ const T: Record<Lang, {
       cancelBtn: "Avbryt",
       submitBtn: "Prenumerera",
     },
+    chatBadge: "Ej tillgänglig",
     cards: [
       { title: "Online-chatt",   desc: "Prata med vårt team i realtid.",                 cta: "Starta chatt" },
       { title: "WhatsApp",       desc: "Snabb support via WhatsApp.",                    cta: "Öppna WhatsApp" },
@@ -276,6 +287,7 @@ const T: Record<Lang, {
       cancelBtn: "Peruuta",
       submitBtn: "Tilaa",
     },
+    chatBadge: "Ei saatavilla",
     cards: [
       { title: "Verkkochat",     desc: "Keskustele tiimimme kanssa reaaliajassa.",       cta: "Aloita chat" },
       { title: "WhatsApp",       desc: "Nopea tuki WhatsAppin kautta.",                  cta: "Avaa WhatsApp" },
@@ -297,6 +309,7 @@ const T: Record<Lang, {
       cancelBtn: "Отмена",
       submitBtn: "Подписаться",
     },
+    chatBadge: "Недоступен",
     cards: [
       { title: "Онлайн-чат",          desc: "Общайтесь с нашей командой в реальном времени.",    cta: "Начать чат" },
       { title: "WhatsApp",             desc: "Быстрая поддержка через WhatsApp.",                 cta: "Открыть WhatsApp" },
@@ -318,6 +331,7 @@ const T: Record<Lang, {
       cancelBtn: "Anuleaza",
       submitBtn: "Aboneaza-te",
     },
+    chatBadge: "Indisponibil",
     cards: [
       { title: "Chat online",          desc: "Vorbeste cu echipa noastra in timp real.",          cta: "Incepe chat-ul" },
       { title: "WhatsApp",             desc: "Suport rapid prin WhatsApp.",                       cta: "Deschide WhatsApp" },
@@ -339,6 +353,7 @@ const T: Record<Lang, {
       cancelBtn: "ביטול",
       submitBtn: "הירשם",
     },
+    chatBadge: "לא זמין",
     cards: [
       { title: "צ'אט מקוון",   desc: "שוחח עם הצוות שלנו בזמן אמת.",              cta: "התחל צ'אט" },
       { title: "WhatsApp",     desc: "תמיכה מהירה דרך WhatsApp.",                  cta: "פתח WhatsApp" },
@@ -361,6 +376,7 @@ const T: Record<Lang, {
       cancelBtn: "Cancelar",
       submitBtn: "Subscrever",
     },
+    chatBadge: "Indisponível",
     cards: [
       { title: "Chat online",     desc: "Fale com a nossa equipa em tempo real.",      cta: "Iniciar chat" },
       { title: "WhatsApp",        desc: "Atendimento rápido pelo WhatsApp.",           cta: "Abrir WhatsApp" },
@@ -448,12 +464,13 @@ function NewsletterModal({
 
 // ── Card individual ───────────────────────────────────────────────────────────
 function CanalCard({
-  icon, aspectW, aspectH, title, description, cta, href, onClick,
+  icon, aspectW, aspectH, title, description, cta, href, onClick, badge,
 }: {
   icon: string; aspectW: number; aspectH: number;
   title: string; description: string; cta: string;
   href?: string;
   onClick?: () => void;
+  badge?: string;
 }) {
   const ctaRow = (
     <div className="flex gap-[5px] items-center justify-center w-full">
@@ -465,7 +482,12 @@ function CanalCard({
   );
 
   return (
-    <div className="bg-white flex flex-col gap-[20px] items-center justify-center min-w-0 p-[20px] rounded-[16px]">
+    <div className="relative bg-white flex flex-col gap-[20px] items-center justify-center min-w-0 p-[20px] rounded-[16px]">
+      {badge && (
+        <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#eef0f3] border border-[#cbd0d4] font-avenir-heavy text-[11px] leading-[13px] text-[#6b7280] px-[8px] py-[1px] rounded-full whitespace-nowrap">
+          {badge}
+        </span>
+      )}
       <FigmaIcon src={icon} size={40} aspectW={aspectW} aspectH={aspectH} />
       <div className="flex flex-col gap-[20px] items-start w-full">
         <div className="flex items-center justify-center w-full min-h-[30px]">
@@ -499,8 +521,13 @@ function CanalCard({
 export default function OutrosCanais() {
   const { lang }                         = useLang();
   const t                                = T[lang];
-  const { openChat }                     = useChatWidget();
   const [newsletterOpen, setNewsletter]  = useState(false);
+
+  function goToForm() {
+    document
+      .getElementById("contato-form")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 
   function handleAgendar() {
     window.dispatchEvent(new CustomEvent("prefill-assunto", { detail: t.agendarAssunto }));
@@ -513,7 +540,8 @@ export default function OutrosCanais() {
     {
       icon: imgChat, aspectW: 42, aspectH: 42,
       title: t.cards[0].title, description: t.cards[0].desc, cta: t.cards[0].cta,
-      onClick: openChat,
+      onClick: goToForm,
+      badge: t.chatBadge,
     },
     {
       icon: imgWhatsApp, aspectW: 41.98, aspectH: 42,

@@ -114,34 +114,36 @@ export default function ExpansaoGlobalCta() {
 
   return (
     <section className="bg-white flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
-      <div className="border border-[#cbd0d4] flex flex-col lg:flex-row gap-[20px] items-center justify-center max-w-[1400px] overflow-hidden px-[20px] lg:px-[80px] py-[40px] relative rounded-[16px] w-full">
+      <div className="border border-[#cbd0d4] flex flex-col win-1190:flex-row gap-[20px] items-center justify-center max-w-[1400px] overflow-hidden px-[20px] win-1190:px-[40px] win-1280:px-[80px] py-[40px] relative rounded-[16px] w-full">
         {/* Background */}
         <Img
           alt=""
-          className="absolute inset-0 w-full h-full object-cover pointer-events-none rounded-[16px]"
+          className="absolute inset-0 w-full h-full object-cover origin-right scale-[1.35] pointer-events-none rounded-[16px]"
           src={imgBg}
         />
+        {/* Legibility: the left/center, where the text sits, is darkened; the globe on the right stays clear */}
+        <div aria-hidden="true" className="absolute inset-0 rounded-[16px] pointer-events-none" style={{ background: "linear-gradient(90deg, rgba(2,40,170,0.8) 0%, rgba(2,40,170,0.6) 55%, rgba(2,40,170,0) 88%)" }} />
 
         {/* Text */}
-        <div className="relative flex flex-1 flex-col items-center justify-center min-w-[240px]">
-          <h2 className="font-avenir-black text-f32 leading-l39 text-white w-full text-center lg:text-left">
+        <div className="relative flex flex-1 win-1190:flex-none win-1190:w-min flex-col items-center justify-center min-w-[240px]">
+          <h2 className="font-avenir-black text-f32 leading-l39 text-white w-full text-center win-1190:text-left sm:whitespace-nowrap [text-shadow:0_1px_6px_rgba(2,30,120,0.7)]">
             {t.heading}
           </h2>
-          <p className="font-avenir-heavy text-f18 leading-l22 text-white w-full mt-[4px] text-center lg:text-left">
+          <p className="font-avenir-heavy text-f18 leading-l22 text-white w-full max-w-[640px] mt-[4px] text-center win-1190:text-left [text-shadow:0_1px_6px_rgba(2,30,120,0.7)]">
             {t.sub}
           </p>
         </div>
 
         {/* Buttons */}
-        <div className="relative flex flex-1 flex-wrap gap-[10px] items-center justify-center xl:justify-end max-w-[500px] min-w-[240px]">
+        <div className="relative flex flex-1 flex-wrap gap-[10px] items-center justify-center win-1280:justify-end max-w-[500px] min-w-[240px]">
           {bePartner && (
-            <Link href="/parceria" className="flex-1 min-w-[200px]">
+            <Link href="/parceria" className="flex-1 min-w-max">
               <BtnAzulOutArrow className="w-full min-h-[56px]">
                 {t.btnPartner}
               </BtnAzulOutArrow>
             </Link>
           )}
-          <Link href="/contact" className="flex-1 min-w-[200px]">
+          <Link href="/contact" className="flex-1 min-w-max">
             <BtnAzulBaseArrow className="w-full min-h-[56px]">
               {t.btnSpecialist}
             </BtnAzulBaseArrow>

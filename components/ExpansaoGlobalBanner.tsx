@@ -39,7 +39,7 @@ const T: Record<Lang, {
     stats: [
       { number: "16",       label: "idiomas",           sub: "com presença ativa" },
       { number: "+150",     label: "parceiros",          sub: "distribuidores e integradores" },
-      { number: "+2.000",   label: "pontos instalados",  sub: "em operação" },
+      { number: "+2.000",   label: "pontos",  sub: "instalados e em operação" },
       { number: "Expansão", label: "contínua",           sub: "novos mercados toda semana" },
     ],
   },
@@ -55,7 +55,7 @@ const T: Record<Lang, {
     stats: [
       { number: "16",       label: "idiomas",           sub: "com presença ativa" },
       { number: "+150",     label: "parceiros",          sub: "distribuidores e integradores" },
-      { number: "+2.000",   label: "pontos instalados",  sub: "em operação" },
+      { number: "+2.000",   label: "pontos",  sub: "instalados e em operação" },
       { number: "Expansão", label: "contínua",           sub: "novos mercados todas as semanas" },
     ],
   },
@@ -71,7 +71,7 @@ const T: Record<Lang, {
     stats: [
       { number: "16",        label: "languages",          sub: "with active presence" },
       { number: "+150",      label: "partners",           sub: "distributors and integrators" },
-      { number: "+2,000",    label: "installed points",   sub: "in operation" },
+      { number: "+2,000",    label: "points",   sub: "installed and in operation" },
       { number: "Expansion", label: "continuous",         sub: "new markets every week" },
     ],
   },
@@ -87,7 +87,7 @@ const T: Record<Lang, {
     stats: [
       { number: "16",        label: "languages",          sub: "with active presence" },
       { number: "+150",      label: "partners",           sub: "distributors and integrators" },
-      { number: "+2,000",    label: "installed points",   sub: "in operation" },
+      { number: "+2,000",    label: "points",   sub: "installed and in operation" },
       { number: "Expansion", label: "continuous",         sub: "new markets every week" },
     ],
   },
@@ -103,7 +103,7 @@ const T: Record<Lang, {
     stats: [
       { number: "16",       label: "idiomas",            sub: "con presencia activa" },
       { number: "+150",     label: "socios",             sub: "distribuidores e integradores" },
-      { number: "+2.000",   label: "puntos instalados",  sub: "en operación" },
+      { number: "+2.000",   label: "puntos",  sub: "instalados y en operación" },
       { number: "Expansión",label: "continua",           sub: "nuevos mercados cada semana" },
     ],
   },
@@ -119,7 +119,7 @@ const T: Record<Lang, {
     stats: [
       { number: "16",        label: "langues",             sub: "avec présence active" },
       { number: "+150",      label: "partenaires",         sub: "distributeurs et intégrateurs" },
-      { number: "+2 000",    label: "points installés",    sub: "en opération" },
+      { number: "+2 000",    label: "points",    sub: "installés et en opération" },
       { number: "Expansion", label: "continue",            sub: "nouveaux marchés chaque semaine" },
     ],
   },
@@ -135,7 +135,7 @@ const T: Record<Lang, {
     stats: [
       { number: "16",        label: "Sprachen",            sub: "mit aktiver Präsenz" },
       { number: "+150",      label: "Partner",             sub: "Distributoren und Integratoren" },
-      { number: "+2.000",    label: "installierte Punkte", sub: "in Betrieb" },
+      { number: "+2.000",    label: "Punkte", sub: "installiert und in Betrieb" },
       { number: "Expansion", label: "kontinuierlich",      sub: "neue Märkte jede Woche" },
     ],
   },
@@ -151,7 +151,7 @@ const T: Record<Lang, {
     stats: [
       { number: "16",        label: "lingue",              sub: "con presenza attiva" },
       { number: "+150",      label: "partner",             sub: "distributori e integratori" },
-      { number: "+2.000",    label: "punti installati",    sub: "in operazione" },
+      { number: "+2.000",    label: "punti",    sub: "installati e in operazione" },
       { number: "Espansione",label: "continua",            sub: "nuovi mercati ogni settimana" },
     ],
   },
@@ -167,7 +167,7 @@ const T: Record<Lang, {
     stats: [
       { number: "16",   label: "种语言",     sub: "活跃覆盖" },
       { number: "+150", label: "合作伙伴",   sub: "经销商与集成商" },
-      { number: "+2,000", label: "安装节点", sub: "正在运营中" },
+      { number: "+2,000", label: "节点", sub: "已安装并投入运营" },
       { number: "持续", label: "扩张",       sub: "每周开拓新市场" },
     ],
   },
@@ -183,7 +183,7 @@ const T: Record<Lang, {
     stats: [
       { number: "16",        label: "言語",           sub: "アクティブなプレゼンス" },
       { number: "+150",      label: "パートナー",     sub: "ディストリビューター・インテグレーター" },
-      { number: "+2,000",    label: "設置拠点",       sub: "稼働中" },
+      { number: "+2,000",    label: "拠点",       sub: "設置済みで稼働中" },
       { number: "継続的",    label: "エクスパンション", sub: "毎週新市場を開拓" },
     ],
   },
@@ -199,7 +199,7 @@ const T: Record<Lang, {
     stats: [
       { number: "16",   label: "개 언어",     sub: "활성 존재감 보유" },
       { number: "+150", label: "파트너",       sub: "유통사 및 통합업체" },
-      { number: "+2,000", label: "설치 거점", sub: "운영 중" },
+      { number: "+2,000", label: "거점", sub: "설치되어 운영 중" },
       { number: "지속적", label: "확장",      sub: "매주 새로운 시장 개척" },
     ],
   },
@@ -215,7 +215,7 @@ const T: Record<Lang, {
     stats: [
       { number: "16",        label: "språk",              sub: "med aktiv närvaro" },
       { number: "+150",      label: "partners",            sub: "distributörer och integratörer" },
-      { number: "+2 000",    label: "installerade punkter",sub: "i drift" },
+      { number: "+2 000",    label: "punkter",sub: "installerade och i drift" },
       { number: "Expansion", label: "kontinuerlig",        sub: "nya marknader varje vecka" },
     ],
   },
@@ -231,7 +231,7 @@ const T: Record<Lang, {
     stats: [
       { number: "16",          label: "kieltä",              sub: "aktiivisella läsnäololla" },
       { number: "+150",        label: "kumppania",           sub: "jakelijat ja integraattorit" },
-      { number: "+2 000",      label: "asennuspistettä",     sub: "toiminnassa" },
+      { number: "+2 000",      label: "pistettä",     sub: "asennettu ja toiminnassa" },
       { number: "Jatkuva",     label: "laajentuminen",       sub: "uusia markkinoita joka viikko" },
     ],
   },
@@ -247,7 +247,7 @@ const T: Record<Lang, {
     stats: [
       { number: "16",          label: "языков",              sub: "с активным присутствием" },
       { number: "+150",        label: "партнёров",           sub: "дистрибьюторы и интеграторы" },
-      { number: "+2 000",      label: "установленных точек", sub: "в эксплуатации" },
+      { number: "+2 000",      label: "точек", sub: "установлены и в эксплуатации" },
       { number: "Постоянное",  label: "расширение",          sub: "новые рынки каждую неделю" },
     ],
   },
@@ -263,7 +263,7 @@ const T: Record<Lang, {
     stats: [
       { number: "16",          label: "limbi",               sub: "cu prezenta activa" },
       { number: "+150",        label: "parteneri",           sub: "distribuitori si integratori" },
-      { number: "+2.000",      label: "puncte instalate",    sub: "in operatiune" },
+      { number: "+2.000",      label: "puncte",    sub: "instalate si in operatiune" },
       { number: "Expansiune",  label: "continua",            sub: "piete noi in fiecare saptamana" },
     ],
   },
@@ -279,7 +279,7 @@ const T: Record<Lang, {
     stats: [
       { number: "16",          label: "שפות",                sub: "עם נוכחות פעילה" },
       { number: "+150",        label: "שותפים",              sub: "מפיצים ואינטגרטורים" },
-      { number: "+2,000",      label: "נקודות מותקנות",      sub: "בפעולה" },
+      { number: "+2,000",      label: "נקודות",      sub: "מותקנות ובפעולה" },
       { number: "התרחבות",    label: "מתמשכת",              sub: "שווקים חדשים כל שבוע" },
     ],
   },
@@ -368,15 +368,16 @@ export default function ExpansaoGlobalBanner() {
       </div>
 
       {/* Stats bar — pinned to bottom of section */}
-      <div className="relative bg-[#1f2e91] flex flex-wrap gap-[30px_20px] items-start justify-center max-w-[1400px] overflow-clip px-[20px] py-[40px] rounded-[16px] shrink-0 w-full">
+      <div className="relative bg-[#1f2e91] card-row card-row-hug [--card-min:300px] gap-[30px_20px] items-start max-w-[1400px] overflow-clip px-[20px] py-[40px] rounded-[16px] shrink-0 w-full">
         {stats.map((s) => (
-          <div key={s.label} className="flex flex-[1_0_0] flex-wrap gap-[20px] items-start min-w-[160px]">
-            <FigmaIcon src={s.icon} size={32} aspectW={s.iconW} aspectH={s.iconH} />
-            <div className="flex flex-[1_0_0] flex-col gap-[15px] items-start leading-[0] min-w-[200px]">
-              <p className="[text-box-trim:trim-both] [text-box-edge:cap_alphabetic] font-avenir-black text-f32 leading-l39 text-white w-full">{s.number}</p>
-              <p className="[text-box-trim:trim-both] [text-box-edge:cap_alphabetic] font-avenir-heavy text-f20 leading-l28 text-white w-full">{s.label}</p>
-              <p className="[text-box-trim:trim-both] [text-box-edge:cap_alphabetic] font-avenir-roman text-f16 leading-l20 text-white w-full">{s.sub}</p>
+          <div key={s.label} className="flex flex-col gap-[10px] items-start min-w-0">
+            <div className="flex gap-[12px] items-center w-full">
+              <FigmaIcon src={s.icon} size={32} aspectW={s.iconW} aspectH={s.iconH} />
+              <p className="font-avenir-heavy text-f24 leading-l29 text-white min-w-0 whitespace-nowrap">
+                <span className="font-avenir-black">{s.number}</span> {s.label}
+              </p>
             </div>
+            <p className="font-avenir-roman text-f18 leading-l21 text-white w-full">{s.sub}</p>
           </div>
         ))}
       </div>

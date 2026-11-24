@@ -258,14 +258,14 @@ export default function SobreImpacto() {
         </div>
 
         {/* Stats grid */}
-        <div className="card-row [--card-min:110px] flex-[1_0_0] gap-[20px] items-start min-w-[280px] relative">
+        <div className="card-row [--card-min:110px] flex-[1_0_0] gap-[20px] items-stretch min-w-[280px] relative">
           {t.stats.map((s) => (
             <div
               key={s.label}
-              className="flex flex-col gap-[25px] items-center justify-center min-w-0"
+              className="grid grid-rows-subgrid row-span-3 gap-y-[20px] justify-items-center content-start min-w-0"
             >
               {/* Icon + label */}
-              <div className="flex flex-wrap gap-[10px] items-center justify-center w-full">
+              <div className="flex flex-col gap-[10px] items-center justify-center w-full">
                 <FigmaIcon src={s.icon} alt={s.label} size={30} />
                 <p className="font-avenir-heavy text-f14 leading-l17 text-white whitespace-nowrap">
                   {s.label}

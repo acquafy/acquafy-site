@@ -1230,6 +1230,29 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
   // Unified slide state — shared across Produto + Cores, never resets on variant/color change
   const [slideIdx, setSlideIdx] = useState(0);
   const [imageHovered, setImageHovered] = useState(false);
+  // in-place zoom like the Ecofy product page: a click on the photo scales it 2.5x; moving the pointer pans it; a new click,
+  // leaving the area or changing slide zooms back out. The pan is limited to the frame: the zoomed product always covers the
+  // frame edge to edge (top edge at the frame top when the pointer is at the top, bottom edge at the frame bottom at the bottom).
+  // the MAX is a tall, narrow column, so it needs a stronger zoom than the other products to show its details
+  const ZOOM = family.slug === "neo-max" ? 4 : 2.5;
+  const [zoomOn, setZoomOn] = useState(false);
+  const zoomGeom = useRef<{ cx: number; cy: number; cw: number; ch: number; boxH: number; frame: DOMRect } | null>(null);
+  const panZoom = (el: HTMLElement, clientX: number, clientY: number) => {
+    const g = zoomGeom.current;
+    if (!g) return;
+    const axis = (pointer: number, start: number, size: number, center: number, content: number) => {
+      const big = content * ZOOM;
+      if (big <= size) return 0; // fits: stays centered
+      const f = Math.min(1, Math.max(0, (pointer - start) / size));
+      const left = start + f * (size - big); // zoomed content edge to edge with the frame
+      return left - (center - big / 2);
+    };
+    const PAD = 32; // breathing room: the zoomed product never touches the header or the bottom bar
+    const tx = axis(clientX, g.frame.left + PAD, g.frame.width - 2 * PAD, g.cx, g.cw);
+    const ty = axis(clientY, g.frame.top + PAD, g.frame.height - 2 * PAD, g.cy, g.ch);
+    // full transform in pixels: the pan (not scaled), then the scale about the photo centre
+    el.style.setProperty("--zt", `translate(${tx}px, ${ty}px) scale(${ZOOM})`);
+  };
 
   // Freeze display while mouse is over the left-panel image (prevents section-row hover-leave from snapping back to activeSection).
   // lastRowHoverRef tracks the last explicitly hovered section row. prevActiveSectionRef resets it when the scroll-spy advances,
@@ -1386,6 +1409,18 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
   const accentGrad = family.isPremium
     ? "linear-gradient(135deg, #0233c3, #9f3df5)"
     : "linear-gradient(135deg, #0233c3, #0569ff)";
+  const swatchEls = colorOptions.map((color, i) => {
+      const isActive = i === activeColorIdx;
+      const name = getColorName(colorKey(color), lang, color.name);
+      return (
+        <button key={color.slug} onClick={() => setActiveColorIdx(i)}
+          title={name} aria-label={name}
+          className="size-[30px] rounded-full flex items-center justify-center transition-all shrink-0"
+          style={{ border: isActive ? `2px solid ${accent}` : "2px solid #e8ecf4", padding: "3px" }}>
+          <div className="size-full rounded-full" style={{ background: color.gradient }} />
+        </button>
+      );
+    });
 
   const handleScroll = useCallback(() => {
     if (!scrollRef.current) return;
@@ -1472,9 +1507,30 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
 
         {/* Image area */}
         <div
-          className="flex-1 md:flex-none md:h-[700px] w-full md:max-w-[1400px] md:mx-auto relative flex items-center justify-center overflow-hidden"
+          className={`${zoomOn ? "cb-zoom-on " : ""}flex-1 md:min-h-0 w-full md:max-w-[1400px] md:mx-auto relative flex items-center justify-center overflow-hidden`}
           onMouseEnter={() => setImageHovered(true)}
-          onMouseLeave={() => setImageHovered(false)}
+          onMouseLeave={() => { setImageHovered(false); setZoomOn(false); }}
+          onMouseMove={(e) => { if (zoomOn) panZoom(e.currentTarget, e.clientX, e.clientY); }}
+          onClick={(e) => {
+            if ((e.target as HTMLElement).closest("button")) return;
+            if (zoomOn) { setZoomOn(false); return; }
+            const imgs = Array.from(e.currentTarget.querySelectorAll<HTMLImageElement>("img.cb-img"));
+            const shown = imgs.find((im) => getComputedStyle(im).opacity === "1");
+            if (!shown) return;
+            const r = shown.getBoundingClientRect();
+            if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) return;
+            const k = Math.min(r.width / shown.naturalWidth, r.height / shown.naturalHeight);
+            zoomGeom.current = {
+              cx: r.left + r.width / 2,
+              cy: r.top + r.height / 2,
+              cw: shown.naturalWidth * k,
+              ch: shown.naturalHeight * k,
+              boxH: shown.offsetHeight,
+              frame: e.currentTarget.getBoundingClientRect(),
+            };
+            panZoom(e.currentTarget, e.clientX, e.clientY);
+            setZoomOn(true);
+          }}
         >
 
           {/* ── PRODUTO / CORES: unified color+variant slide ───────────────── */}
@@ -1482,7 +1538,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
             {family.scenes.length > 0 ? (
               family.scenes.map((scene, i) => (
                 <img key={i} src={scene.img} alt=""
-                  className={`absolute inset-x-0 top-1/2 -translate-y-1/2 max-h-full md:max-h-[500px] w-full object-contain transition-opacity duration-500 ${i === activeSceneIdx ? "opacity-100" : "opacity-0"}`}
+                  className={`cb-img ${family.slug === "neo-max" ? "" : "cb-prod "}absolute inset-x-0 inset-y-0 my-auto h-auto max-h-full md:max-h-[500px] w-full object-contain transition-opacity duration-500 ${i === activeSceneIdx ? "opacity-100" : "opacity-0"}`}
                 />
               ))
             ) : activeColorImages.length > 0 && showSlide ? (
@@ -1494,19 +1550,19 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                 colorImgs.map((img, i) => (
                   <img key={`${ci}-${i}`} src={img}
                     alt={`${activeVariant.name} – ${colorOptions[ci]?.name ?? ""} – ${i + 1}`}
-                    className={`absolute inset-x-0 top-1/2 -translate-y-1/2 max-h-full md:max-h-[500px] w-full object-contain transition-opacity duration-700 ease-in-out ${ci === activeColorIdx && i === slideIdx ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+                    className={`cb-img ${family.slug === "neo-max" ? "" : "cb-prod "}absolute inset-x-0 inset-y-0 my-auto h-auto max-h-full md:max-h-[500px] w-full object-contain transition-opacity duration-700 ease-in-out ${ci === activeColorIdx && i === slideIdx ? "opacity-100" : "opacity-0 pointer-events-none"}`}
                   />
                 ))
               )
             ) : activeColorImages.length > 0 ? (
               <img src={activeVariant.img}
                 alt={activeVariant.name}
-                className="absolute inset-x-0 top-1/2 -translate-y-1/2 max-h-full md:max-h-[500px] w-full object-contain"
+                className={`cb-img ${family.slug === "neo-max" ? "" : "cb-prod "}absolute inset-x-0 inset-y-0 my-auto h-auto max-h-full md:max-h-[500px] w-full object-contain`}
               />
             ) : (
               family.variants.map((v, i) => (
                 <img key={v.id} src={v.img} alt={v.name}
-                  className={`absolute inset-x-0 top-1/2 -translate-y-1/2 max-h-full md:max-h-[500px] w-full object-contain transition-opacity duration-500 ${i === activeVariantIdx ? "opacity-100" : "opacity-0"}`}
+                  className={`cb-img ${family.slug === "neo-max" ? "" : "cb-prod "}absolute inset-x-0 inset-y-0 my-auto h-auto max-h-full md:max-h-[500px] w-full object-contain transition-opacity duration-500 ${i === activeVariantIdx ? "opacity-100" : "opacity-0"}`}
                 />
               ))
             )}
@@ -1518,17 +1574,20 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
           {showSlide && family.scenes.length === 0 && (activeColorImages.length > 0 ? slideCount > 1 : family.variants.length > 1) && (
             <>
               <button aria-label={lb.imagemAnterior}
-                className={`absolute left-[12px] top-1/2 -translate-y-1/2 z-10 size-[38px] rounded-full bg-white/90 backdrop-blur-sm border border-[#e8ecf4] flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 ${(displaySection === "produto" || displaySection === "cores") ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+                className={`cb-arrow cb-arrow-prev absolute left-[12px] top-1/2 -translate-y-1/2 z-10 size-[38px] rounded-full bg-white/90 backdrop-blur-sm border border-[#e8ecf4] flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 ${(displaySection === "produto" || displaySection === "cores") ? "opacity-100" : "opacity-0 pointer-events-none"}`}
                 onClick={() => activeColorImages.length > 0 ? setSlideIdx(n => (n - 1 + slideCount) % slideCount) : setActiveVariantIdx(n => (n - 1 + family.variants.length) % family.variants.length)}
               >
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 11L5 7l4-4" stroke="#1f2e91" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </button>
               <button aria-label={lb.proximaImagem}
-                className={`absolute right-[12px] top-1/2 -translate-y-1/2 z-10 size-[38px] rounded-full bg-white/90 backdrop-blur-sm border border-[#e8ecf4] flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 ${(displaySection === "produto" || displaySection === "cores") ? "opacity-100" : "opacity-0 pointer-events-none"}`}
+                className={`cb-arrow cb-arrow-next absolute right-[12px] top-1/2 -translate-y-1/2 z-10 size-[38px] rounded-full bg-white/90 backdrop-blur-sm border border-[#e8ecf4] flex items-center justify-center shadow-sm hover:shadow-md transition-all duration-300 ${(displaySection === "produto" || displaySection === "cores") ? "opacity-100" : "opacity-0 pointer-events-none"}`}
                 onClick={() => activeColorImages.length > 0 ? setSlideIdx(n => (n + 1) % slideCount) : setActiveVariantIdx(n => (n + 1) % family.variants.length)}
               >
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 3l4 4-4 4" stroke="#1f2e91" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
               </button>
+              {!family.isPremium && (
+                <div className="cb-swatches-img absolute bottom-[16px] right-[16px] z-20 gap-[8px] items-center">{swatchEls}</div>
+              )}
               <div className={`absolute bottom-[16px] inset-x-0 z-10 flex gap-[8px] items-center justify-center transition-opacity duration-300 ${(displaySection === "produto" || displaySection === "cores") ? "opacity-100" : "opacity-0 pointer-events-none"}`}>
                 {Array.from({ length: activeColorImages.length > 0 ? slideCount : family.variants.length }, (_, i) => i).map((i) => {
                   const isActive = activeColorImages.length > 0 ? i === slideIdx : i === activeVariantIdx;
@@ -1952,15 +2011,15 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
       >
         {/* Left: fills the image panel area */}
         {/* On phones only the price and the button fit; name, specs and swatches are in the panel above. */}
-        <div className="hidden md:flex flex-1 items-center gap-[12px] md:gap-[28px] flex-wrap min-w-0 px-[24px] md:px-[48px] py-[20px]">
-          <div className="flex flex-col gap-[5px] min-w-0 justify-center">
+        <div className="hidden md:flex flex-1 items-center gap-[12px] md:gap-[28px] flex-nowrap min-w-0 px-[24px] md:px-[48px] py-[20px]">
+          <div className="flex flex-col gap-[5px] min-w-0 flex-1 justify-center">
             <span
-              className="font-['Avenir_LT_Pro:95_Black'] text-f22 leading-tight"
+              className="font-['Avenir_LT_Pro:95_Black'] text-f22 leading-tight truncate"
               style={{ background: accentGrad, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
             >
               {activeVariant.name}
             </span>
-            <span className="font-['Avenir_LT_Pro:55_Roman'] text-f11 text-[#6b7280] leading-snug [overflow-wrap:anywhere]">
+            <span className="font-['Avenir_LT_Pro:55_Roman'] text-f11 text-[#6b7280] leading-snug block truncate">
               {[
                 getColorName(colorKey(colorOptions[activeColorIdx]), lang, colorOptions[activeColorIdx]?.name ?? ""),
                 specs.filtragem.includes("UF") ? UF_LABEL[lang] : RO_LABEL[lang],
@@ -1971,19 +2030,8 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
             </span>
           </div>
           {!family.isPremium && (
-            <div className="flex gap-[8px] items-center shrink-0">
-              {colorOptions.map((color, i) => {
-                const isActive = i === activeColorIdx;
-                const name = getColorName(colorKey(color), lang, color.name);
-                return (
-                  <button key={color.slug} onClick={() => setActiveColorIdx(i)}
-                    title={name} aria-label={name}
-                    className="size-[30px] rounded-full flex items-center justify-center transition-all shrink-0"
-                    style={{ border: isActive ? `2px solid ${accent}` : "2px solid #e8ecf4", padding: "3px" }}>
-                    <div className="size-full rounded-full" style={{ background: color.gradient }} />
-                  </button>
-                );
-              })}
+            <div className="cb-swatches flex gap-[8px] items-center shrink-0">
+              {swatchEls}
             </div>
           )}
         </div>

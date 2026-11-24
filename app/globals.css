@@ -373,3 +373,126 @@ sup {
     text-align: left;
   }
 }
+
+/* ─── Sobre / Quem Somos: the divider between the Interfy logo and its text only exists while they sit side by side ─────
+   The row wraps (logo 240px min + gap 20px + text 280px min = 540px), so the line appears from 541px of row width.
+   ──────────────────────────────────────────────────────────────────────────── */
+.sq-row {
+  container-type: inline-size;
+}
+.sq-text {
+  text-align: center;
+}
+@container (min-width: 541px) {
+  .sq-text {
+    border-left: 1px solid #cbd0d4;
+    text-align: left;
+  }
+}
+
+/* ─── Expansão Global / Presença: the "Novos mercados" card sits beside the map card only while the map is still next to its
+   region list. Under 1010px of row width (map card < 620px: the map goes above the list) the card goes below, full width. ──
+   ──────────────────────────────────────────────────────────────────────────── */
+.eg-wrap {
+  container-type: inline-size;
+}
+@container (max-width: 1009px) {
+  .eg-wrap > .eg-left,
+  .eg-wrap > .eg-right {
+    flex: 0 0 100%;
+    max-width: none;
+  }
+  /* Full width: icon on the left, the text block (title + description, left aligned) in the middle, button on the right */
+  .eg-wrap > .eg-right {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px 24px;
+  }
+  .eg-right .eg-text {
+    flex: 1 1 200px;
+    align-items: flex-start;
+    min-width: 0;
+  }
+  .eg-right .eg-text > h3,
+  .eg-right .eg-text > p {
+    text-align: left;
+    min-height: 0;
+  }
+  .eg-right .eg-cta {
+    flex: 0 0 auto;
+    width: auto;
+  }
+}
+
+/* ─── Checkin colour swatches: in the bottom bar while the screen is wide; from 1199px down they leave the bar (so it never grows
+   taller) and sit in the bottom right corner of the product image area instead. ─────────────────────────────────────── */
+.cb-swatches-img {
+  display: none;
+}
+@media (max-width: 1199px) {
+  .cb-swatches {
+    display: none;
+  }
+}
+@media (min-width: 768px) and (max-width: 1199px) {
+  .cb-swatches-img {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+/* ─── Checkin product photo: a bit smaller between 768 and 1024px so it keeps clear of the arrows, the colour swatches and the dots ── */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .cb-prod {
+    left: 56px;
+    right: auto;
+    width: calc(100% - 112px);
+    /* every slide gets the same box (the proportions of the wide slide 2), so all positions show at the same height */
+    height: auto;
+    max-height: none;
+    aspect-ratio: 1.054 / 1;
+    object-fit: contain;
+  }
+}
+
+/* ─── Checkin slide arrows: between 768 and 1024px they sit together in the top right corner of the image area ─────────────── */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .cb-arrow {
+    top: 12px !important;
+    transform: none !important;
+  }
+  .cb-arrow-next {
+    right: 12px !important;
+    left: auto !important;
+  }
+  .cb-arrow-prev {
+    right: 58px !important;
+    left: auto !important;
+  }
+}
+
+/* ─── Checkin product photo on phones (under 768px): breathing room around it, clear of the side arrows and of the dots ─────── */
+@media (max-width: 767px) {
+  .cb-img {
+    left: 56px;
+    right: 56px;
+    width: calc(100% - 112px);
+    max-height: calc(100% - 64px);
+    top: 0;
+    bottom: 24px;
+  }
+}
+
+/* Checkin product photo: click zooms in place (like the Ecofy product page), the pointer pans, a click zooms out */
+.cb-img {
+  cursor: zoom-in;
+  transition-property: opacity, transform;
+  transition-duration: 700ms, 120ms;
+}
+.cb-zoom-on .cb-img {
+  /* the whole transform comes from the script (pan in pixels, then the 2.5x scale about the photo centre) */
+  transform: var(--zt, scale(2.5)) !important;
+  cursor: zoom-out;
+}

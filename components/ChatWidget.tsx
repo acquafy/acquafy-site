@@ -255,7 +255,7 @@ export function ChatProvider({ children }: { children: ReactNode }) {
       {children}
 
       {/* ── FAB — chat bubble ── */}
-      {!isOpen && (pastBanner || pathname.startsWith('/buy') || isWideScreen) && (() => {
+      {CHAT_AVAILABLE && !isOpen && (pastBanner || pathname.startsWith('/buy') || isWideScreen) && (() => {
         const isBuy = pathname.startsWith('/buy/');
         return (
           <button
