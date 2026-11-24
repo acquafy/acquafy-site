@@ -1,5 +1,6 @@
 ﻿"use client";
 import Img from "@/components/ui/Img";
+import { useEffect, useRef, useState } from "react";
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
@@ -361,7 +362,7 @@ function BadgeRow({ badges }: { badges: { title: string; sub: string }[] }) {
   return (
     <>
       {badges.map((b, i) => (
-        <div key={b.title} className="flex flex-[1_0_0] gap-[8px] items-center min-w-[160px]">
+        <div key={b.title} className="flex gap-[8px] items-center min-w-0">
           <div className="flex items-center justify-center shrink-0 size-[31px]">
             <FigmaIcon src={trustBadgeIcons[i].icon} size={31} aspectW={trustBadgeIcons[i].iconW} aspectH={trustBadgeIcons[i].iconH} />
           </div>
@@ -372,6 +373,36 @@ function BadgeRow({ badges }: { badges: { title: string; sub: string }[] }) {
         </div>
       ))}
     </>
+  );
+}
+
+/**
+ * The tablet + phone only fill the middle of the (16:9) mockup picture. The frame zooms the picture just enough for
+ * them to read larger without cropping them: with object-cover the visible share of the picture depends on the frame's
+ * proportion, and the devices occupy about 58% x 76% of the picture (with some margin).
+ */
+function MockupFrame({ className, src, alt }: { className: string; src: string; alt: string }) {
+  const box = useRef<HTMLDivElement>(null);
+  const [zoom, setZoom] = useState(1);
+  useEffect(() => {
+    const el = box.current;
+    if (!el) return;
+    const update = () => {
+      const ratio = el.clientWidth / el.clientHeight; // frame aspect
+      const picture = 16 / 9;
+      const visibleW = Math.min(1, ratio / picture); // share of the picture's width that object-cover shows
+      const visibleH = Math.min(1, picture / ratio); // share of the picture's height
+      setZoom(Math.max(1, Math.min(visibleW / 0.58, visibleH / 0.76)));
+    };
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    update();
+    return () => ro.disconnect();
+  }, []);
+  return (
+    <div ref={box} className={className}>
+      <Img src={src} alt={alt} className="w-full h-full object-cover" style={{ transform: `scale(${zoom})` }} />
+    </div>
   );
 }
 
@@ -436,7 +467,7 @@ export default function PlatformHero() {
           </p>
 
           {/* CTAs */}
-          <div className="order-5 1024:order-none flex flex-wrap gap-[10px] items-center justify-center xl:justify-start w-full">
+          <div className="order-5 1024:order-none flex flex-wrap gap-[10px] items-center justify-center 1024:justify-start w-full">
             <a
               href="/contact"
               className="flex gap-[10px] items-center justify-center min-h-[56px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer"
@@ -463,43 +494,36 @@ export default function PlatformHero() {
               </div>
             ))}
           </div>
-
-          {/* Trust badges — dentro da col esquerda apenas no win-1280+ (TELA TOTAL) */}
-          <div className="hidden win-1280:flex flex-wrap gap-[8px] items-center w-full 1024:order-none">
-            <BadgeRow badges={t.trustBadges} />
-          </div>
         </div>
 
         {/* ── Coluna direita — mockup image ─────────────────────────────── */}
         {/* win-1280+: invisible — ocupa espaço mas bg image contém o mockup */}
-        <div className="order-4 1024:order-none win-1280:invisible rounded-[16px] overflow-clip h-[320px] sm:h-[420px] 1024:h-[481px] min-w-[280px] w-full 1024:flex-[1_0_0] 1024:self-center">
-          <Img
-            src={imgMockup}
-            alt={t.mockupAlt}
-            className="w-full h-full object-cover"
-          />
-        </div>
+        <MockupFrame
+          className="order-4 1024:order-none win-1280:invisible rounded-[16px] overflow-clip h-[320px] sm:h-[420px] 1024:h-[481px] min-w-[280px] w-full 1024:flex-[1_0_0] 1024:self-center"
+          src={imgMockup}
+          alt={t.mockupAlt}
+        />
 
       </div>
 
-      {/* Abaixo de tudo (< win-1280): cards de recursos e selos de confiança */}
-      <div className="relative win-1280:hidden flex flex-col gap-[20px] max-w-[1400px] w-full mt-[20px]">
+      {/* Abaixo de tudo: selos de confiança em largura total (em todas as telas) e, abaixo de win-1280, os cards de recursos */}
+      <div className="relative flex flex-col gap-[20px] max-w-[1400px] w-full mt-[20px]">
       {/* Feature cards — abaixo de tudo (< win-1280) */}
-      <div className="flex flex-wrap 1024:flex-nowrap gap-[10px] items-stretch justify-center 1024:justify-start w-full">
+      <div className="win-1280:hidden card-row [--card-min:240px] gap-[10px] items-stretch w-full">
         {featureCards.map((f) => (
-          <div key={f.title} className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center min-h-[220px] min-w-[200px] 1024:min-w-px px-[10px] py-[20px] rounded-[16px]">
+          <div key={f.title} className="bg-white flex flex-row gap-[16px] items-center min-w-0 p-[16px] rounded-[16px]">
             <div className="flex items-center justify-center p-[12px] rounded-[12px] shrink-0 size-[60px]" style={{ backgroundColor: f.bg }}>
               <FigmaIcon src={f.icon} size={30} aspectW={f.iconW} aspectH={f.iconH} />
             </div>
-            <div className="flex items-center justify-center min-h-[44px] w-full">
-              <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91] text-center w-full">{f.title}</p>
+            <div className="flex flex-col gap-[6px] items-start min-w-0">
+              <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91] w-full">{f.title}</p>
+              <p className="font-avenir-roman text-[14px] leading-[16px] text-[#2a2a2b] w-full">{f.desc}</p>
             </div>
-            <p className="font-avenir-roman text-[14px] leading-[16px] text-[#2a2a2b] text-center w-full">{f.desc}</p>
           </div>
         ))}
       </div>
-    {/* ── Trust badges linha separada — default + 1024, oculta no win-1280+ ── */}
-    <div className="flex flex-wrap gap-[8px] items-center w-full">
+    {/* ── Trust badges em linha separada, largura total ── */}
+    <div className="card-row [--card-min:160px] gap-[8px] items-center w-full">
       <BadgeRow badges={t.trustBadges} />
     </div>
       </div>

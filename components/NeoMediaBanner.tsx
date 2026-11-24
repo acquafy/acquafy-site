@@ -534,7 +534,7 @@ export default function NeoMediaBanner() {
               {t.pDesktop}
             </p>
             {/* Botões — node 3258:5041 */}
-            <div className="flex flex-wrap gap-[20px] items-center justify-center xl:justify-start w-full">
+            <div className="flex flex-wrap gap-[20px] items-center justify-center lg:justify-start w-full">
               {bePartner && (
                 <BtnAzulBaseArrow className="min-h-[50px] px-[20px]" onClick={() => setModalOpen(true)}>
                   {t.btnPrimary}

@@ -1459,7 +1459,7 @@ export default function CompareProductos() {
             {selectedProducts.map(product => (
               <div
                 key={product.id}
-                className="bg-white flex flex-col min-[1024px]:flex-row flex-1 gap-[10px] min-[1024px]:h-[100px] items-center min-w-[140px] min-[1024px]:min-w-[200px] max-w-[280px] overflow-hidden p-[10px] pt-[30px] min-[1024px]:pt-[10px] relative rounded-[12px]"
+                className="bg-white flex flex-col min-[1024px]:flex-row flex-1 gap-[10px] min-[1024px]:h-[100px] items-center min-w-[140px] min-[1024px]:min-w-[200px] overflow-hidden p-[10px] pt-[30px] min-[1024px]:pt-[10px] relative rounded-[12px]"
               >
                 <div className="size-[80px] shrink-0 flex items-center justify-center">
                   <Img

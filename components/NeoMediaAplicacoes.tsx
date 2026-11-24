@@ -246,7 +246,7 @@ export default function NeoMediaAplicacoes() {
           {locations.map((loc) => (
             <div
               key={loc.title}
-              className="min-w-0 bg-white flex flex-col items-center max-w-[500px] min-h-[160px] overflow-hidden rounded-[16px]"
+              className="min-w-0 bg-white flex flex-col items-center min-h-[160px] overflow-hidden rounded-[16px]"
             >
               {/* Photo + floating icon badge */}
               <div className="relative flex flex-col items-center justify-center w-full shrink-0">

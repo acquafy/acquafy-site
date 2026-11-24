@@ -3,7 +3,7 @@ import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
 const imgParceiros  = "/figma-assets/icon-parceiros-b.svg";
-const imgQrCodes    = "/figma-assets/icon-qr-codes-b.svg";
+const imgQrCodes    = "/figma-assets/icon-qr-codes-d.svg";
 const imgMediaNet   = "/figma-assets/icon-medianet-c.svg";
 const imgVendas     = "/figma-assets/icon-vendas-c.svg";
 const imgComissoes  = "/figma-assets/icon-comissoes-c.svg";

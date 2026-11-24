@@ -12,6 +12,8 @@ const config: Config = {
         "mob": { max: "767px" },
         /* Phones only — screens ≤ 479px */
         "phone": { max: "479px" },
+        /* Below the lg breakpoint — screens ≤ 1023px (max-lg: is not available with these custom screens) */
+        "below-lg": { max: "1023px" },
         /* Breakpoints canônicos conforme setup do projeto:
            ≥ 1024px → Breakpoint 2
            ≥ 1280px → TELA TOTAL */

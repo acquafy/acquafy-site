@@ -325,13 +325,13 @@ export default function Parceria() {
         </p>
       </div>
 
-      <div className="card-row [--card-min:280px] gap-[10px] items-stretch justify-center max-w-[1400px] overflow-hidden w-full">
+      <div className="card-row card-row-content [--card-min:200px] gap-[10px] items-stretch justify-center max-w-[1400px] overflow-hidden w-full">
         {TIER_ICONS.map((tier, ti) => (
           <div
             key={tier.name}
             className="bg-[#f6f9fe] flex flex-wrap gap-y-[20px] items-start min-w-0 p-[20px] rounded-[16px]"
           >
-            <div className="flex flex-1 flex-col gap-[20px] items-start min-w-[280px]">
+            <div className="flex flex-1 flex-col gap-[20px] items-start min-w-0">
               <div className="flex flex-col gap-[20px] items-start w-full">
                 <div className="flex gap-[10px] items-center w-full">
                   <div className="flex flex-col items-center justify-center size-[46px] shrink-0">

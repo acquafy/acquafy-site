@@ -345,7 +345,7 @@ export default function SobreQuemSomos() {
       <div className="flex flex-col gap-[40px] items-start justify-center max-w-[1400px] w-full win-1024:flex-row win-1024:flex-wrap">
 
         {/* Left: Quem Somos */}
-        <div className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[20px] items-center max-w-[550px] min-w-[280px] px-[20px] py-[40px] rounded-[16px]">
+        <div className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[20px] items-center win-1024:max-w-[550px] min-w-[280px] px-[20px] py-[40px] rounded-[16px]">
           <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] w-full text-center lg:text-left">
             {t.quemSomosTitle}
           </h2>

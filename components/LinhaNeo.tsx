@@ -1059,7 +1059,7 @@ export default function LinhaNeo() {
         <div className="flex flex-wrap gap-[10px] items-stretch justify-center w-full overflow-hidden">
 
           {/* Card 1 – Painel LED Touch */}
-          <div className="bg-white flex flex-1 flex-col gap-[20px] items-start min-h-[310px] min-w-[280px] p-[20px] rounded-[16px]">
+          <div className="bg-white flex flex-1 below-lg:basis-full flex-col gap-[20px] items-start min-h-[310px] min-w-[280px] p-[20px] rounded-[16px]">
             <div className="flex flex-1 flex-col gap-[20px] items-center w-full win-1024:items-start">
               <p className="font-avenir-heavy text-[18px] leading-[22px] text-center win-1024:text-left w-full">
                 <span className="text-[#0569ff]">{t.panel.title1}</span>
@@ -1087,15 +1087,15 @@ export default function LinhaNeo() {
           </div>
 
           {/* Card 2 – Acquafy AI */}
-          <div className="bg-white flex flex-1 flex-col gap-[20px] items-start min-h-[310px] min-w-[280px] max-w-[320px] p-[20px] rounded-[16px]">
+          <div className="bg-white flex flex-1 flex-col gap-[20px] items-start min-h-[310px] min-w-[280px] p-[20px] rounded-[16px]">
             <div className="flex flex-1 flex-col gap-[20px] items-center w-full win-1024:items-start">
               <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#0569ff] text-center win-1024:text-left w-full">
                 {t.ai.title}
               </p>
-              <div className="flex flex-1 flex-col gap-[20px] items-center w-full">
+              <div className="flex flex-1 flex-wrap gap-[20px] items-center justify-center w-full">
                 <CardImage src={imgHomeMob} grow />
-                <div className="flex flex-col gap-[20px] items-center w-full win-1024:items-start">
-                  <p className="font-avenir-roman text-[16px] leading-[20px] text-[#1f2e91] text-center win-1024:text-left w-full">
+                <div className="flex flex-col gap-[20px] items-center sm:items-start flex-[1_1_240px] min-w-[220px]">
+                  <p className="font-avenir-roman text-[16px] leading-[20px] text-[#1f2e91] text-center sm:text-left w-full">
                     {t.ai.sub}
                   </p>
                   <div className="flex flex-col gap-[10px] items-start w-full shrink-0">
@@ -1114,14 +1114,14 @@ export default function LinhaNeo() {
           </div>
 
           {/* Card 3 – Controle pelo App */}
-          <div className="bg-white flex flex-1 flex-col gap-[20px] items-start min-h-[310px] min-w-[280px] max-w-[320px] p-[20px] rounded-[16px]">
+          <div className="bg-white flex flex-1 flex-col gap-[20px] items-start min-h-[310px] min-w-[280px] p-[20px] rounded-[16px]">
             <div className="flex flex-1 flex-col gap-[20px] items-center w-full win-1024:items-start">
               <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#0569ff] text-center win-1024:text-left w-full">
                 {t.ctrl.title}
               </p>
-              <div className="flex flex-1 flex-col gap-[20px] items-center w-full">
+              <div className="flex flex-1 flex-wrap gap-[20px] items-center justify-center w-full">
                 <CardImage src={imgAppView} grow />
-                <div className="flex flex-col gap-[20px] items-center w-full win-1024:items-start">
+                <div className="flex flex-col gap-[20px] items-center sm:items-start flex-[1_1_240px] min-w-[220px]">
                   <div className="flex gap-[10px] items-center w-full shrink-0">
                     <div className="bg-[#f6f9fe] border border-[#0233c3] flex flex-wrap gap-[5px] items-center justify-center px-[12px] py-[8px] rounded-full shrink-0">
                       <FigmaIcon src={imgFeatWifi} size={12} aspectW={13.5} aspectH={9.5} />

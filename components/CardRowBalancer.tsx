@@ -6,10 +6,13 @@ import { useEffect } from "react";
  * Balances every ".card-row" (see globals.css) so that, when the cards wrap, the rows differ by at most one card:
  * 7 cards -> 4 / 3, then 3 / 2 / 2, and so on. Only the minimum width (--card-min) decides how many fit on a
  * row; the blocks then always fill the full width, so a row with fewer blocks has wider ones and nothing is left
- * empty beside it (a card alone on its row stays card-sized and centred).
+ * empty beside it (a block alone on its row fills the whole row too).
  *
  * Before this runs (or without JS) .card-row is a plain auto-fit grid, so nothing breaks.
  * The container reads its minimum card width from --card-min and its gap from column-gap.
+ *
+ * ".card-row-content": the minimum card width is the natural width of the widest card (so lists never wrap), and --card-min
+ * only acts as a floor.
  *
  * ".card-row-fit" (items of different widths, e.g. a stats strip): while every item fits on a single row the row is a
  * plain flex row and each item takes the width of its content, sharing the spare space, so a long label is not squeezed
@@ -26,7 +29,16 @@ function layout(el: HTMLElement) {
 
   const cs = getComputedStyle(el);
   const gap = parseFloat(cs.columnGap) || 0;
-  const min = parseFloat(cs.getPropertyValue("--card-min")) || 200;
+  let min = parseFloat(cs.getPropertyValue("--card-min")) || 200;
+  if (el.classList.contains("card-row-content")) {
+    // Cards whose text must not wrap: the minimum width is the widest card at its natural (max-content) width.
+    for (const k of kids) {
+      const prev = k.style.width;
+      k.style.width = "max-content";
+      min = Math.max(min, k.offsetWidth);
+      k.style.width = prev;
+    }
+  }
   const inner = el.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
 
   const maxCols = Math.max(1, Math.floor((inner + gap) / (min + gap)));
@@ -52,25 +64,17 @@ function layout(el: HTMLElement) {
     kids.forEach((k) => (k.style.flex = ""));
   }
 
-  const first = getComputedStyle(kids[0]);
-  const plain =
-    first.backgroundColor === "rgba(0, 0, 0, 0)" && first.backgroundImage === "none" && parseFloat(first.borderTopWidth) === 0;
-
   const counts = Array.from({ length: rows }, (_, r) => (r < extra ? base + 1 : base));
 
-  // Every row fills the full width: the grid has lcm(row sizes) tracks and a block in a row of `count` spans
-  // tracks / count of them. A card alone on its row (never a plain text block) keeps the width of a normal card
-  // and is centred, so it does not turn into one giant card.
+  // Every row fills the full width, including a block that ends up alone on its row: the grid has lcm(row sizes)
+  // tracks and a block in a row of `count` spans tracks / count of them.
   const gcd = (x: number, y: number): number => (y ? gcd(y, x % y) : x);
-  const lone = (count: number) => !plain && count === 1 && cols > 1;
-  const sizes = counts.map((count) => (lone(count) ? cols : count));
-  const tracks = sizes.reduce((acc, c) => (acc * c) / gcd(acc, c), 1) * (sizes.some((_, r) => lone(counts[r])) ? 2 : 1);
+  const tracks = counts.reduce((acc, c) => (acc * c) / gcd(acc, c), 1);
   el.style.gridTemplateColumns = `repeat(${tracks}, minmax(0, 1fr))`;
   let i = 0;
   counts.forEach((count) => {
-    const span = tracks / (lone(count) ? cols : count);
-    const offset = lone(count) ? (tracks - span) / 2 : 0;
-    for (let j = 0; j < count; j++, i++) kids[i].style.gridColumn = `${offset + j * span + 1} / span ${span}`;
+    const span = tracks / count;
+    for (let j = 0; j < count; j++, i++) kids[i].style.gridColumn = `${j * span + 1} / span ${span}`;
   });
 }
 

@@ -214,7 +214,7 @@ export default function ParceriaBanner() {
           </p>
 
           {/* CTAs */}
-          <div className="order-5 lg:order-none flex flex-wrap gap-[20px] items-center justify-center xl:justify-start w-full">
+          <div className="order-5 lg:order-none flex flex-wrap gap-[20px] items-center justify-center lg:justify-start w-full">
             <Link href="/contact">
               <BtnAzulOutArrow className="min-h-[50px]">
                 {t.cta}

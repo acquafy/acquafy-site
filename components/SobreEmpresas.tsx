@@ -64,7 +64,7 @@ export default function SobreEmpresas() {
           {brands.map((brand) => (
             <div
               key={brand.alt}
-              className="min-w-0 bg-[#f6f9fe] flex flex-col items-center justify-center min-h-[130px] max-w-[340px] p-[40px] rounded-[16px]"
+              className="min-w-0 bg-[#f6f9fe] flex flex-col items-center justify-center min-h-[130px] p-[40px] rounded-[16px]"
             >
               {/* Container com aspect-ratio fixo do Figma — preenche a largura total do card */}
               <div
