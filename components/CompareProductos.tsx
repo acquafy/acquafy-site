@@ -16,11 +16,7 @@ const imgBannerProducts = "/figma-assets/compare-banner-products.webp";
 const imgBuyCursor      = "/figma-assets/cursor-buy.webp";
 const imgArrowWhite     = "/figma-assets/icon-arrow-white-hover.svg";
 const imgArrowBlue      = "/figma-assets/icon-arrow-blue-b.svg";
-const imgMobile         = "/figma-assets/icon-mobile-a.svg";
-const imgLanguage       = "/figma-assets/icon-language-a.svg";
 const imgPlanetWeb      = "/figma-assets/icon-planetweb-a.svg";
-const imgPlanetGlobal   = "/figma-assets/icon-planet-global.svg";
-const imgWaterVector    = "/figma-assets/icon-water-vector.svg";
 const imgNegativeX      = "/figma-assets/icon-negative-x.svg";
 const imgNegative       = "/figma-assets/icon-negative.svg";
 const imgCheckin        = "/figma-assets/icon-check-a.svg";
@@ -512,7 +508,6 @@ const T: Record<Lang, {
   h1Pre: string; h1Highlight: string;
   subtitle: string;
   ctaSpecialist: string;
-  pills: string[];
   selectorPre: string; selector44: string;
   viewComparison: string;
   selectedBarTitle: string; selectedBarSub: string;
@@ -537,7 +532,6 @@ const T: Record<Lang, {
     h1Pre: "Compare os produtos ", h1Highlight: "Acquafy Neo",
     subtitle: "Compare as linhas Neo Essentials & Neo Premium e encontre o modelo ideal para você.",
     ctaSpecialist: "Falar com um especialista",
-    pills: ["App + AI + IoT", "16 idiomas", "Operação global", "Plataforma Inteligente de Água"],
     selectorPre: "Selecione os modelos para comparar (", selector44: "/4)",
     viewComparison: "Ver comparação",
     selectedBarTitle: "Produtos selecionados", selectedBarSub: "Adicione ou remova produtos para comparar",
@@ -569,7 +563,6 @@ const T: Record<Lang, {
     h1Pre: "Compare os produtos ", h1Highlight: "Acquafy Neo",
     subtitle: "Compare as linhas Neo Essentials & Neo Premium e encontre o modelo ideal para si.",
     ctaSpecialist: "Falar com um especialista",
-    pills: ["App + AI + IoT", "16 idiomas", "Operação global", "Plataforma Inteligente de Água"],
     selectorPre: "Selecione os modelos para comparar (", selector44: "/4)",
     viewComparison: "Ver comparação",
     selectedBarTitle: "Produtos selecionados", selectedBarSub: "Adicione ou remova produtos para comparar",
@@ -601,7 +594,6 @@ const T: Record<Lang, {
     h1Pre: "Compare ", h1Highlight: "Acquafy Neo",
     subtitle: "Compare the Neo Essentials & Neo Premium lines and find the ideal model for you.",
     ctaSpecialist: "Talk to a Specialist",
-    pills: ["App + AI + IoT", "16 Languages", "Global Operation", "Smart Water Platform"],
     selectorPre: "Select models to compare (", selector44: "/4)",
     viewComparison: "View Comparison",
     selectedBarTitle: "Selected Products", selectedBarSub: "Add or remove products to compare",
@@ -633,7 +625,6 @@ const T: Record<Lang, {
     h1Pre: "Compare ", h1Highlight: "Acquafy Neo",
     subtitle: "Compare the Neo Essentials & Neo Premium lines and find the ideal model for you.",
     ctaSpecialist: "Talk to a Specialist",
-    pills: ["App + AI + IoT", "16 Languages", "Global Operation", "Smart Water Platform"],
     selectorPre: "Select models to compare (", selector44: "/4)",
     viewComparison: "View Comparison",
     selectedBarTitle: "Selected Products", selectedBarSub: "Add or remove products to compare",
@@ -665,7 +656,6 @@ const T: Record<Lang, {
     h1Pre: "Compara los ", h1Highlight: "Acquafy Neo",
     subtitle: "Compara las líneas Neo Essentials & Neo Premium y encuentra el modelo ideal para ti.",
     ctaSpecialist: "Hablar con un Especialista",
-    pills: ["App + AI + IoT", "16 Idiomas", "Operación Global", "Plataforma Inteligente de Agua"],
     selectorPre: "Selecciona modelos para comparar (", selector44: "/4)",
     viewComparison: "Ver Comparación",
     selectedBarTitle: "Productos Seleccionados", selectedBarSub: "Agrega o elimina productos para comparar",
@@ -697,7 +687,6 @@ const T: Record<Lang, {
     h1Pre: "Comparez les ", h1Highlight: "Acquafy Neo",
     subtitle: "Comparez les gammes Neo Essentials & Neo Premium et trouvez le modèle idéal pour vous.",
     ctaSpecialist: "Parler à un spécialiste",
-    pills: ["App + AI + IoT", "16 langues", "Opération mondiale", "Plateforme intelligente de l'eau"],
     selectorPre: "Sélectionnez les modèles à comparer (", selector44: "/4)",
     viewComparison: "Voir la comparaison",
     selectedBarTitle: "Produits sélectionnés", selectedBarSub: "Ajoutez ou supprimez des produits pour comparer",
@@ -729,7 +718,6 @@ const T: Record<Lang, {
     h1Pre: "Vergleichen Sie ", h1Highlight: "Acquafy Neo",
     subtitle: "Vergleichen Sie die Neo Essentials & Neo Premium Linien und finden Sie das ideale Modell für Sie.",
     ctaSpecialist: "Mit einem Spezialisten sprechen",
-    pills: ["App + AI + IoT", "16 Sprachen", "Globaler Betrieb", "Intelligente Wasserplattform"],
     selectorPre: "Modelle zum Vergleichen auswählen (", selector44: "/4)",
     viewComparison: "Vergleich anzeigen",
     selectedBarTitle: "Ausgewählte Produkte", selectedBarSub: "Produkte hinzufügen oder entfernen zum Vergleichen",
@@ -761,7 +749,6 @@ const T: Record<Lang, {
     h1Pre: "Confronta i ", h1Highlight: "Acquafy Neo",
     subtitle: "Confronta le linee Neo Essentials & Neo Premium e trova il modello ideale per te.",
     ctaSpecialist: "Parla con uno specialista",
-    pills: ["App + AI + IoT", "16 lingue", "Operazione globale", "Piattaforma intelligente dell'acqua"],
     selectorPre: "Seleziona i modelli da confrontare (", selector44: "/4)",
     viewComparison: "Vedi il confronto",
     selectedBarTitle: "Prodotti selezionati", selectedBarSub: "Aggiungi o rimuovi prodotti per confrontare",
@@ -793,7 +780,6 @@ const T: Record<Lang, {
     h1Pre: "比较 ", h1Highlight: "Acquafy Neo",
     subtitle: "比较 Neo Essentials 和 Neo Premium 系列，找到最适合您的型号。",
     ctaSpecialist: "咨询专家",
-    pills: ["App + AI + IoT", "16 种语言", "全球运营", "智能水平台"],
     selectorPre: "选择要比较的型号（", selector44: "/4）",
     viewComparison: "查看比较",
     selectedBarTitle: "已选产品", selectedBarSub: "添加或删除产品进行比较",
@@ -825,7 +811,6 @@ const T: Record<Lang, {
     h1Pre: "比較する ", h1Highlight: "Acquafy Neo",
     subtitle: "Neo Essentials と Neo Premium ラインを比較して、あなたに最適なモデルを見つけましょう。",
     ctaSpecialist: "専門家に相談",
-    pills: ["App + AI + IoT", "16 言語", "グローバル展開", "スマートウォータープラットフォーム"],
     selectorPre: "比較するモデルを選択（", selector44: "/4）",
     viewComparison: "比較を見る",
     selectedBarTitle: "選択済み製品", selectedBarSub: "製品を追加または削除して比較",
@@ -857,7 +842,6 @@ const T: Record<Lang, {
     h1Pre: "비교하기 ", h1Highlight: "Acquafy Neo",
     subtitle: "Neo Essentials & Neo Premium 라인을 비교하고 나에게 맞는 이상적인 모델을 찾아보세요.",
     ctaSpecialist: "전문가와 상담",
-    pills: ["App + AI + IoT", "16개 언어", "글로벌 운영", "스마트 워터 플랫폼"],
     selectorPre: "비교할 모델 선택 (", selector44: "/4)",
     viewComparison: "비교 보기",
     selectedBarTitle: "선택한 제품", selectedBarSub: "비교할 제품을 추가하거나 제거하세요",
@@ -889,7 +873,6 @@ const T: Record<Lang, {
     h1Pre: "Jämför ", h1Highlight: "Acquafy Neo",
     subtitle: "Jämför Neo Essentials och Neo Premium och hitta den ideala modellen för dig.",
     ctaSpecialist: "Prata med en specialist",
-    pills: ["App + AI + IoT", "16 språk", "Global drift", "Smart vattenplattform"],
     selectorPre: "Välj modeller att jämföra (", selector44: "/4)",
     viewComparison: "Se jämförelse",
     selectedBarTitle: "Valda produkter", selectedBarSub: "Lägg till eller ta bort produkter för att jämföra",
@@ -921,7 +904,6 @@ const T: Record<Lang, {
     h1Pre: "Vertaile ", h1Highlight: "Acquafy Neo",
     subtitle: "Vertaile Neo Essentials- ja Neo Premium -sarjoja ja löydä sinulle sopiva malli.",
     ctaSpecialist: "Puhu asiantuntijan kanssa",
-    pills: ["App + AI + IoT", "16 kieltä", "Globaali toiminta", "Äly vesialusta"],
     selectorPre: "Valitse vertailtavat mallit (", selector44: "/4)",
     viewComparison: "Näytä vertailu",
     selectedBarTitle: "Valitut tuotteet", selectedBarSub: "Lisää tai poista tuotteita vertailua varten",
@@ -953,7 +935,6 @@ const T: Record<Lang, {
     h1Pre: "Сравните ", h1Highlight: "Acquafy Neo",
     subtitle: "Сравните линейки Neo Essentials и Neo Premium и найдите идеальную модель для вас.",
     ctaSpecialist: "Поговорить со специалистом",
-    pills: ["App + AI + IoT", "16 языков", "Глобальная работа", "Умная водная платформа"],
     selectorPre: "Выберите модели для сравнения (", selector44: "/4)",
     viewComparison: "Посмотреть сравнение",
     selectedBarTitle: "Выбранные продукты", selectedBarSub: "Добавьте или удалите продукты для сравнения",
@@ -985,7 +966,6 @@ const T: Record<Lang, {
     h1Pre: "Compara ", h1Highlight: "Acquafy Neo",
     subtitle: "Compara liniile Neo Essentials si Neo Premium si gaseste modelul ideal pentru tine.",
     ctaSpecialist: "Vorbeste cu un specialist",
-    pills: ["App + AI + IoT", "16 limbi", "Operare globala", "Platforma inteligenta de apa"],
     selectorPre: "Selecteaza modelele de comparat (", selector44: "/4)",
     viewComparison: "Vezi comparatia",
     selectedBarTitle: "Produse selectate", selectedBarSub: "Adauga sau elimina produse pentru a compara",
@@ -1017,7 +997,6 @@ const T: Record<Lang, {
     h1Pre: "השוואת ", h1Highlight: "Acquafy Neo",
     subtitle: "השווו את סדרות Neo Essentials ו-Neo Premium ומצא את הדגם האידיאלי עבורך.",
     ctaSpecialist: "דבר עם מומחה",
-    pills: ["App + AI + IoT", "16 שפות", "פעילות גלובלית", "פלטפורמת מים חכמה"],
     selectorPre: "בחר דגמים להשוואה (", selector44: "/4)",
     viewComparison: "צפה בהשוואה",
     selectedBarTitle: "מוצרים שנבחרו", selectedBarSub: "הוסף או הסר מוצרים להשוואה",
@@ -1060,19 +1039,6 @@ function ProductName({ parts }: { parts: Product["nameParts"] }) {
         )
       )}
     </>
-  );
-}
-
-function FeaturePill({ icon, label, aspectW, aspectH }: { icon: string; label: string; aspectW?: number; aspectH?: number }) {
-  return (
-    <div className="flex gap-[20px] items-center min-w-0">
-      <div className="bg-white border-[0.5px] border-[#cbd0d4] flex items-center justify-center p-[16px] rounded-full shrink-0 size-[60px]">
-        <FigmaIcon src={icon} size={28} aspectW={aspectW} aspectH={aspectH} />
-      </div>
-      <p className="font-avenir-heavy text-f18 leading-l22 text-[#1f2e91] flex-1 min-w-0">
-        {label}
-      </p>
-    </div>
   );
 }
 
@@ -1238,9 +1204,9 @@ export default function CompareProductos() {
           className="hidden 1300:block absolute inset-0 w-full h-full object-cover pointer-events-none"
           src={imgBannerBg}
         />
-        <div className="relative flex flex-col gap-[40px] items-center justify-center max-w-[1400px] w-full">
+        <div className="relative flex flex-col gap-[40px] items-center justify-center max-w-[1400px] w-full 1300:h-full">
           {/* Hero content */}
-          <div className="flex flex-col 1024:flex-row gap-[40px] items-center w-full">
+          <div className="flex flex-col 1024:flex-row gap-[40px] items-center w-full 1300:my-auto">
             <div className="flex flex-col gap-[20px] items-center 1024:items-start justify-center flex-1 min-w-[280px] 1024:max-w-[470px] 1300:max-w-[600px]">
               {/* Label */}
               <div className="bg-white border border-[#0233c3] flex gap-[10px] items-center px-[12px] py-[8px] rounded-full">
@@ -1290,16 +1256,8 @@ export default function CompareProductos() {
             <div className="hidden 1300:block flex-1 min-w-[280px]" />
           </div>
 
-          {/* Feature pills — fora do hero row, todos os breakpoints ≥1024px */}
-          <div className="card-row [--card-min:220px] gap-[20px] items-center w-full">
-            <FeaturePill icon={imgMobile} label={t.pills[0]} aspectW={211} aspectH={295} />
-            <FeaturePill icon={imgLanguage} label={t.pills[1]} />
-            <FeaturePill icon={imgPlanetGlobal} label={t.pills[2]} />
-            <FeaturePill icon={imgWaterVector} label={t.pills[3]} aspectW={307} aspectH={295} />
-          </div>
-
           {/* Product selector card */}
-          <div className="bg-white flex flex-col gap-[20px] items-start max-w-[1400px] p-[20px] rounded-[16px] w-full shadow-sm">
+          <div className="bg-white flex flex-col gap-[20px] items-start max-w-[1400px] p-[20px] rounded-[16px] w-full shadow-sm 1300:mt-auto">
             {/* Selector header */}
             <div className="flex flex-col 1024:flex-row gap-[10px] items-center w-full">
               <div className="flex gap-[10px] items-center shrink-0 w-full justify-center 1024:w-auto 1024:justify-start">
@@ -1327,7 +1285,7 @@ export default function CompareProductos() {
             </div>
 
             {/* ── Mobile (<1300px): flex-wrap grid ── */}
-            <div className="flex flex-wrap gap-[10px] w-full 1024:hidden">
+            <div className="card-row [--card-min:120px] gap-[10px] w-full 1024:hidden">
               {filteredProducts.filter(p => selectedIds.length < 4 || selectedIds.includes(p.id)).map(product => {
                 const isSelected = selectedIds.includes(product.id);
                 const isFull = selectedIds.length >= 4 && !isSelected;
@@ -1335,7 +1293,7 @@ export default function CompareProductos() {
                   <button
                     key={product.id}
                     onClick={() => { if (!isFull) toggleProduct(product.id); }}
-                    className={`flex-[1_0_0] flex flex-col gap-[20px] items-center justify-center min-h-[175px] min-w-[120px] overflow-hidden p-[10px] rounded-[12px] transition-all border-2 ${
+                    className={`flex flex-col gap-[20px] items-center justify-center min-h-[175px] min-w-0 overflow-hidden p-[10px] rounded-[12px] transition-all border-2 ${
                       isSelected
                         ? "bg-[#e8f0ff] border-[#0233c3] cursor-pointer hover:bg-[#dce8ff]"
                         : isFull
@@ -1455,11 +1413,11 @@ export default function CompareProductos() {
           </div>
 
           {/* Selected product chips */}
-          <div className="flex flex-wrap gap-[10px] items-stretch flex-1 min-w-[240px]">
+          <div className="card-row [--card-min:140px] 1024:[--card-min:200px] gap-[10px] items-stretch flex-1 min-w-[240px]">
             {selectedProducts.map(product => (
               <div
                 key={product.id}
-                className="bg-white flex flex-col min-[1024px]:flex-row flex-1 gap-[10px] min-[1024px]:h-[100px] items-center min-w-[140px] min-[1024px]:min-w-[200px] overflow-hidden p-[10px] pt-[30px] min-[1024px]:pt-[10px] relative rounded-[12px]"
+                className="bg-white flex flex-col min-[1024px]:flex-row gap-[10px] min-[1024px]:h-[100px] items-center min-w-0 overflow-hidden p-[10px] pt-[30px] min-[1024px]:pt-[10px] relative rounded-[12px]"
               >
                 <div className="size-[80px] shrink-0 flex items-center justify-center">
                   <Img
@@ -1488,7 +1446,7 @@ export default function CompareProductos() {
               <button
                 key={`empty-${i}`}
                 onClick={() => setShowSelectorModal(true)}
-                className="flex flex-col min-[1024px]:flex-row flex-1 gap-[10px] min-[1024px]:h-[100px] items-center min-w-[140px] min-[1024px]:min-w-[200px] max-w-[280px] overflow-hidden p-[10px] py-[20px] min-[1024px]:py-[10px] rounded-[12px] border-2 border-dashed border-[#cbd0d4] cursor-pointer hover:border-[#0233c3] hover:bg-[#f0f5ff] transition-all group"
+                className="flex flex-col min-[1024px]:flex-row gap-[10px] min-[1024px]:h-[100px] items-center min-w-0 overflow-hidden p-[10px] py-[20px] min-[1024px]:py-[10px] rounded-[12px] border-2 border-dashed border-[#cbd0d4] cursor-pointer hover:border-[#0233c3] hover:bg-[#f0f5ff] transition-all group"
               >
                 <div className="size-[80px] shrink-0 flex items-center justify-center">
                   <span className="text-[#cbd0d4] text-f32 font-light group-hover:text-[#0233c3] transition-colors">+</span>
@@ -1514,21 +1472,21 @@ export default function CompareProductos() {
           <div
             ref={tableScrollRef}
             onMouseDown={onTableMouseDown}
-            className="bg-white border border-[#cbd0d4] max-w-[1400px] overflow-x-auto rounded-[16px] w-full [&::-webkit-scrollbar]:hidden cursor-grab active:cursor-grabbing select-none [&_img]:pointer-events-none"
+            className="bg-white border border-[#cbd0d4] max-w-[1400px] overflow-x-auto rounded-[16px] w-full [container-type:inline-size] [&::-webkit-scrollbar]:hidden cursor-grab active:cursor-grabbing select-none [&_img]:pointer-events-none"
             style={{ scrollbarWidth: "none" }}
           >
             {/* Inner wrapper ensures all rows have identical total width */}
-            <div style={{ minWidth: `${200 + selectedProducts.length * 260}px` }}>
+            <div className="min-w-[var(--tw)] mob:min-w-0 mob:w-max" style={{ "--tw": `${200 + selectedProducts.length * 260}px` } as React.CSSProperties}>
 
               {/* ── Header row ── */}
               <div className="flex border-b border-[#cbd0d4]">
-                <div className="sticky left-0 z-10 bg-white flex items-center w-[200px] shrink-0 px-[20px] py-[12px] border-r border-[#cbd0d4]">
+                <div className="sticky left-0 z-10 bg-white flex items-center w-[200px] mob:w-[120px] shrink-0 px-[20px] mob:px-[8px] py-[12px] border-r border-[#cbd0d4]">
                   <p className="font-avenir-heavy text-f14 leading-l17 text-[#2a2a2b]">
                     {t.tableFeatures}
                   </p>
                 </div>
                 {selectedProducts.map(product => (
-                  <div key={product.id} className="flex flex-row gap-[10px] items-center flex-1 min-w-[260px] px-[16px] py-[12px] border-r border-[#cbd0d4] last:border-r-0">
+                  <div key={product.id} className="flex flex-row gap-[10px] items-center flex-1 min-w-[260px] mob:flex-none mob:w-[clamp(120px,calc(100cqw-120px),280px)] mob:min-w-0 px-[16px] py-[12px] border-r border-[#cbd0d4] last:border-r-0">
                     <div className="size-[60px] shrink-0 flex items-center justify-center">
                       <Img alt={product.label} className="max-w-full max-h-full object-contain" src={productImages[product.id]} />
                     </div>
@@ -1547,7 +1505,7 @@ export default function CompareProductos() {
               {/* ── Spec rows ── */}
               {specRows.map(row => (
                 <div key={row.key} className="flex border-b border-[#cbd0d4] last:border-b-0">
-                  <div className="sticky left-0 z-10 bg-white flex items-center w-[200px] shrink-0 px-[20px] py-[12px] border-r border-[#cbd0d4]">
+                  <div className="sticky left-0 z-10 bg-white flex items-center w-[200px] mob:w-[120px] shrink-0 px-[20px] mob:px-[8px] py-[12px] border-r border-[#cbd0d4]">
                     <p className="font-avenir-heavy text-f13 leading-l16 text-[#2a2a2b]">
                       {row.label}
                     </p>
@@ -1555,7 +1513,7 @@ export default function CompareProductos() {
                   {selectedProducts.map(product => {
                     const val = product.specs[row.key];
                     return (
-                      <div key={product.id} className="flex items-center justify-center flex-1 min-w-[260px] px-[16px] py-[12px] border-r border-[#cbd0d4] last:border-r-0">
+                      <div key={product.id} className="flex items-center justify-center flex-1 min-w-[260px] mob:flex-none mob:w-[clamp(120px,calc(100cqw-120px),280px)] mob:min-w-0 px-[16px] py-[12px] border-r border-[#cbd0d4] last:border-r-0">
                         {row.type === "bool" ? (
                           <BoolCell value={val as boolean} altYes={t.altYes} altNo={t.altNo} />
                         ) : row.type === "price" ? (
@@ -1598,11 +1556,11 @@ export default function CompareProductos() {
               {/* ── Buy row ── */}
               <Feature name="buyNow">
               <div className="flex" style={{ background: "linear-gradient(90deg, #f0f4ff 0%, #f8f4ff 100%)" }}>
-                <div className="sticky left-0 z-10 flex items-center w-[200px] shrink-0 px-[20px] py-[16px] border-r border-[#cbd0d4]" style={{ background: "linear-gradient(90deg, #f0f4ff, #f0f4ff)" }}>
+                <div className="sticky left-0 z-10 flex items-center w-[200px] mob:w-[120px] shrink-0 px-[20px] mob:px-[8px] py-[16px] border-r border-[#cbd0d4]" style={{ background: "linear-gradient(90deg, #f0f4ff, #f0f4ff)" }}>
                   <p className="font-avenir-heavy text-f13 text-[#555]">{t.acquireLabel}</p>
                 </div>
                 {selectedProducts.map(product => (
-                  <div key={product.id} className="flex items-center justify-center flex-1 min-w-[260px] px-[16px] py-[16px] border-r border-[#cbd0d4] last:border-r-0">
+                  <div key={product.id} className="flex items-center justify-center flex-1 min-w-[260px] mob:flex-none mob:w-[clamp(120px,calc(100cqw-120px),280px)] mob:min-w-0 px-[16px] py-[16px] border-r border-[#cbd0d4] last:border-r-0">
                     <a
                       href={`/buy/checkin-${PRODUCT_TO_FAMILY[product.id] ?? product.id}?modelo=${product.id}`}
                       className="flex items-center gap-[8px] px-[22px] py-[10px] rounded-full font-avenir-heavy text-f13 text-white transition-opacity hover:opacity-85 whitespace-nowrap cursor-pointer"
@@ -1641,47 +1599,41 @@ export default function CompareProductos() {
 
       {/* ── 4. LINES OVERVIEW + PRICING ── */}
       <section className="bg-white flex flex-col gap-[40px] items-center justify-center px-[20px] py-[40px] w-full">
-        {/* Neo Essentials vs Premium cards */}
-        <div className="flex flex-wrap gap-[40px] items-center justify-center max-w-[1400px] w-full">
-          {/* Neo Essentials card */}
-          <div className="border border-[#cbd0d4] flex flex-wrap gap-[20px] items-center justify-center flex-1 min-w-[280px] p-[40px] relative rounded-[16px] overflow-hidden">
+        {/* Neo Essentials vs Premium cards (same aligned layout as the Linha Neo page) */}
+        <div className="card-row card-row-equal nvp-row [--card-min:280px] gap-[40px] max-w-[1400px] w-full">
+          <div className="nvp-card min-w-0 overflow-hidden relative rounded-[16px]">
             <Img alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none rounded-[16px]" src={imgEssentialsBg} />
-            <div className="flex flex-col gap-[20px] items-start flex-1 min-w-[min(280px,100%)] relative">
-              <p className="font-avenir-heavy text-f18 leading-l22 text-[#0569ff]">
-                Neo Essentials
-              </p>
-              <div className="flex flex-col gap-[10px] items-start w-full">
-                {t.essentialsChecklist.map(item => (
-                  <CheckListItem key={item} icon={imgCheckinBlue} text={item} />
-                ))}
-              </div>
+            <p className="nvp-title font-avenir-heavy text-f18 leading-l22 text-[#0569ff] relative">
+              Neo Essentials
+            </p>
+            <div className="nvp-list flex flex-col gap-[10px] items-start relative">
+              {t.essentialsChecklist.map(item => (
+                <CheckListItem key={item} icon={imgCheckinBlue} text={item} />
+              ))}
             </div>
-            <div className="flex items-center justify-center flex-1 max-w-[200px] min-w-[180px] relative">
+            <div className="nvp-img flex flex-col items-center justify-center relative">
               <Img
                 alt="Neo FIT"
-                className="w-full object-contain max-h-[200px]"
+                className="w-auto h-full max-h-full object-contain pointer-events-none"
                 src={productImages["neo-fit"]}
               />
             </div>
           </div>
 
-          {/* Neo Premium card */}
-          <div className="border border-[#cbd0d4] flex flex-wrap gap-[20px] items-center justify-center flex-1 min-w-[280px] p-[40px] relative rounded-[16px] overflow-hidden">
+          <div className="nvp-card min-w-0 overflow-hidden relative rounded-[16px]">
             <Img alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none rounded-[16px]" src={imgPremiumBg} />
-            <div className="flex flex-col gap-[20px] items-start flex-1 min-w-[min(280px,100%)] relative">
-              <p className="font-avenir-heavy text-f18 leading-l22 text-[#9f3df5]">
-                Neo Premium
-              </p>
-              <div className="flex flex-col gap-[10px] items-start w-full">
-                {t.premiumChecklist.map(item => (
-                  <CheckListItem key={item} icon={imgCheckinPurple} text={item} />
-                ))}
-              </div>
+            <p className="nvp-title font-avenir-heavy text-f18 leading-l22 text-[#9f3df5] relative">
+              Neo Premium
+            </p>
+            <div className="nvp-list flex flex-col gap-[10px] items-start relative">
+              {t.premiumChecklist.map(item => (
+                <CheckListItem key={item} icon={imgCheckinPurple} text={item} />
+              ))}
             </div>
-            <div className="flex items-center justify-center flex-1 max-w-[200px] min-w-[180px] relative">
+            <div className="nvp-img flex flex-col items-center justify-center relative">
               <Img
                 alt="Neo Infinity Spark H2"
-                className="w-full object-contain max-h-[200px]"
+                className="w-auto h-full max-h-full object-contain pointer-events-none"
                 src={productImages["neo-infinity-spark-h2"]}
               />
             </div>
@@ -1693,13 +1645,13 @@ export default function CompareProductos() {
           <h2 className="font-avenir-heavy text-f20 leading-l28 text-[#1f2e91] text-center">
             {t.priceRangesTitle}
           </h2>
-          <div className="flex flex-col gap-[40px] items-stretch justify-center w-full win-1024:flex-row win-1024:flex-wrap win-1024:items-start">
+          <div className="flex flex-wrap gap-[20px] items-stretch justify-center w-full">
             {/* Essentials price range */}
-            <div className="border border-[#cbd0d4] flex flex-col gap-[20px] items-center flex-1 min-w-[240px] p-[20px] rounded-[16px]">
+            <div className="border border-[#cbd0d4] flex flex-wrap gap-[16px] items-center justify-center flex-1 min-w-[300px] p-[20px] rounded-[16px]">
               <div className="bg-[#0569ff] flex items-center justify-center rounded-full shrink-0 size-[60px]">
                 <FigmaIcon src={imgMoney} size={30} />
               </div>
-              <div className="flex flex-col gap-[20px] items-center flex-1 min-w-[200px]">
+              <div className="flex flex-col gap-[10px] items-center flex-1 min-w-[200px]">
                 <div className="bg-[#0569ff] px-[10px] py-[6px] rounded-full">
                   <p className="font-avenir-heavy text-f14 leading-l17 text-white text-center">
                     Essentials
@@ -1725,11 +1677,11 @@ export default function CompareProductos() {
             </div>
 
             {/* Premium price range */}
-            <div className="border border-[#cbd0d4] flex flex-col gap-[20px] items-center flex-1 min-w-[240px] p-[20px] rounded-[16px]">
+            <div className="border border-[#cbd0d4] flex flex-wrap gap-[16px] items-center justify-center flex-1 min-w-[300px] p-[20px] rounded-[16px]">
               <div className="bg-[#9f3df5] flex items-center justify-center rounded-full shrink-0 size-[60px]">
                 <FigmaIcon src={imgMoney} size={30} />
               </div>
-              <div className="flex flex-col gap-[20px] items-center flex-1 min-w-[200px]">
+              <div className="flex flex-col gap-[10px] items-center flex-1 min-w-[200px]">
                 <div className="bg-[#9f3df5] px-[10px] py-[6px] rounded-full">
                   <p className="font-avenir-heavy text-f14 leading-l17 text-white text-center">
                     Premium
@@ -1833,7 +1785,7 @@ export default function CompareProductos() {
             </div>
 
             {/* ── Mobile (<1300px): flex-wrap grid ── */}
-            <div className="flex flex-wrap gap-[10px] 1024:hidden">
+            <div className="card-row [--card-min:100px] gap-[10px] w-full 1024:hidden">
               {filteredProducts.filter(p => selectedIds.length < 4 || selectedIds.includes(p.id)).map(product => {
                 const isSelected = selectedIds.includes(product.id);
                 const isFull = selectedIds.length >= 4 && !isSelected;
@@ -1841,7 +1793,7 @@ export default function CompareProductos() {
                   <button
                     key={product.id}
                     onClick={() => { if (isSelected || !isFull) toggleProductInModal(product.id); }}
-                    className={`flex-[1_0_0] flex flex-col gap-[16px] items-center justify-center min-h-[160px] min-w-[100px] overflow-hidden p-[10px] rounded-[12px] transition-all border-2 ${
+                    className={`flex flex-col gap-[16px] items-center justify-center min-h-[160px] min-w-0 overflow-hidden p-[10px] rounded-[12px] transition-all border-2 ${
                       isSelected
                         ? "bg-[#e8f0ff] border-[#0233c3] cursor-pointer hover:bg-[#dce8ff]"
                         : isFull
