@@ -561,12 +561,12 @@ export default function ColecaoAcessorios() {
         </div>
 
         {/* Categories row */}
-        <div className="bg-white flex flex-wrap items-center justify-center overflow-hidden p-[20px] rounded-[16px] w-full">
-          <div className="card-row [--card-min:180px] flex-1 min-w-[240px]">
+        <div className="bg-white mob:bg-transparent flex flex-wrap items-center justify-center overflow-hidden mob:overflow-visible p-[20px] mob:p-0 rounded-[16px] w-full">
+          <div className="card-row [--card-min:180px] mob:[--card-min:140px] mob:gap-[12px] flex-1 min-w-[240px] mob:min-w-0">
             {categories.map((cat, i) => (
               <div
                 key={i}
-                className="flex flex-col gap-[20px] items-center min-w-0 overflow-hidden p-[20px]"
+                className="flex flex-col gap-[20px] items-center min-w-0 overflow-hidden p-[20px] mob:bg-white mob:rounded-[16px] mob:px-[10px]"
               >
                 <div className="flex flex-col items-center justify-center p-[15px] rounded-full shrink-0 size-[60px]" style={{ backgroundColor: cat.iconBg }}>
                   <FigmaIcon src={cat.icon} size={30} aspectW={cat.iconW} aspectH={cat.iconH} />

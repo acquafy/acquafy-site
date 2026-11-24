@@ -329,12 +329,14 @@ const productImgs: Img[][] = [
   [{ src: imgCard,     aspectW: 2712, aspectH: 1626 }],
   [{ src: imgFolheto,  aspectW: 3359, aspectH: 4096 }],
   [{ src: imgBackdrop, aspectW: 2711, aspectH: 2273 }],
-  [{ src: imgUniforme, aspectW: 4096, aspectH: 4096 }],
+  [{ src: imgUniforme, aspectW: 4096, aspectH: 5043 }],
   [{ src: imgDemais,   aspectW: 3801, aspectH: 2806 }],
 ];
 
 function ProductCard({ product }: { product: Product }) {
   const hasOverlap = product.imgs.length > 1 && product.imgs[0].overlap;
+  // the uniform photo is cropped at the bottom: it sits on the bottom edge, with room at the top, and fills the slot height
+  const bottomFill = product.imgs[0].src === imgUniforme;
   return (
     <div className="bg-[#f6f9fe] flex gap-[20px] items-center min-h-[200px] min-w-0 overflow-hidden p-[5px] rounded-[16px]">
       {/* Image slot */}
@@ -349,8 +351,8 @@ function ProductCard({ product }: { product: Product }) {
             </div>
           </div>
         ) : (
-          <div className="flex items-center justify-center w-full h-full">
-            <div className="relative max-h-[160px] max-w-[140px] w-full" style={{ aspectRatio: `${product.imgs[0].aspectW}/${product.imgs[0].aspectH}` }}>
+          <div className={`flex ${bottomFill ? "items-end" : "items-center"} justify-center w-full h-full`}>
+            <div className={`relative ${bottomFill ? "h-[calc(100%-15px)] max-w-full" : "w-full max-h-[160px] max-w-[140px]"}`} style={{ aspectRatio: `${product.imgs[0].aspectW}/${product.imgs[0].aspectH}` }}>
               <Img alt="" className="absolute inset-0 w-full h-full object-contain" src={product.imgs[0].src} />
             </div>
           </div>

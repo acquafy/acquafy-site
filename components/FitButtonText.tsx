@@ -9,7 +9,7 @@ import { useEffect } from "react";
  * flex-wrap row moves the whole button to the next line instead. It goes back to its normal size as soon as there is
  * room again. Works for every language because it measures the real rendered text.
  */
-const SELECTOR = "a > span.flex-1.text-center, button > span.flex-1.text-center";
+const SELECTOR = "a > span.flex-1.text-center, button > span.flex-1.text-center, a > span.fit-label, button > span.fit-label";
 const MIN_PX = 12;
 
 function fit(el: HTMLElement) {

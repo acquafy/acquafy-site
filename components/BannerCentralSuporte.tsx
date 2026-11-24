@@ -980,7 +980,7 @@ export default function BannerCentralSuporte() {
               className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#0569ff] transition-colors
               flex gap-[10px] items-center justify-center
               min-h-[50px] min-w-max overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer shrink-0">
-              <span className="font-avenir-heavy text-f16 text-white flex-1 text-center leading-normal">
+              <span className="font-avenir-heavy text-f16 text-white fit-label text-center leading-normal min-w-0">
                 {t.btnChat}
               </span>
               <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
@@ -989,7 +989,7 @@ export default function BannerCentralSuporte() {
             <a href="/contact" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors
               flex gap-[10px] items-center justify-center
               min-h-[50px] min-w-max overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer shrink-0">
-              <span className="font-avenir-heavy text-f16 text-[#0233c3] group-hover:text-white transition-colors flex-1 text-center leading-normal">
+              <span className="font-avenir-heavy text-f16 text-[#0233c3] group-hover:text-white transition-colors fit-label text-center leading-normal min-w-0">
                 {t.btnSpecialist}
               </span>
               <div className="relative shrink-0" style={{ width: 18, height: 18 }}>

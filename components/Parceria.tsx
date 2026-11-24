@@ -357,7 +357,7 @@ export default function Parceria() {
               </div>
               {bePartner && (
                 <a href="/parceria" className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex items-center justify-center min-h-[30px] overflow-hidden px-[20px] py-[10px] rounded-[8px] w-full cursor-pointer">
-                  <span className="font-avenir-heavy text-f14 leading-l17 text-white text-center flex-1 min-w-0">
+                  <span className="font-avenir-heavy text-f14 leading-l17 text-white text-center fit-label min-w-0">
                     {t.cta}
                   </span>
                 </a>

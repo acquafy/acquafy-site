@@ -362,7 +362,7 @@ export default function HeroAppAiIot() {
               "flex flex-[1_0_0] win-1024:flex-none gap-[10px] items-center justify-center",
               "min-h-[50px] min-w-max overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer",
             ].join(" ")}>
-              <span className="font-avenir-heavy text-f16 text-white flex-1 text-center">
+              <span className="font-avenir-heavy text-f16 text-white fit-label text-center min-w-0">
                 {t.btnPrimary}
               </span>
               <FigmaIcon src={imgArrowW} size={18} aspectW={18} aspectH={18} />
@@ -374,7 +374,7 @@ export default function HeroAppAiIot() {
               "flex flex-[1_0_0] win-1024:flex-none gap-[10px] items-center justify-center",
               "min-h-[50px] min-w-max overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer",
             ].join(" ")}>
-              <span className="font-avenir-heavy text-f16 text-[#0233c3] group-hover:text-white transition-colors flex-1 text-center">
+              <span className="font-avenir-heavy text-f16 text-[#0233c3] group-hover:text-white transition-colors fit-label text-center min-w-0">
                 {t.btnSecondary}
               </span>
               <div className="relative shrink-0" style={{ width: 18, height: 18 }}>

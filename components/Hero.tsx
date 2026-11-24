@@ -492,11 +492,11 @@ export default function Hero() {
 
               <div className="order-6 lg:order-none flex flex-wrap gap-[20px] items-center justify-center lg:justify-start max-w-[720px] w-full">
                 <a href="/neo-line" className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] min-w-max overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
-                  <span className="font-avenir-heavy text-f16 text-white flex-1 text-center">{t.s1Cta1}</span>
+                  <span className="font-avenir-heavy text-f16 text-white fit-label text-center min-w-0">{t.s1Cta1}</span>
                   <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
                 </a>
                 <a href="/compare" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] min-w-max overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
-                  <span className="font-avenir-heavy text-f16 text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">{t.s1Cta2mob}</span>
+                  <span className="font-avenir-heavy text-f16 text-[#0233c3] group-hover:text-white group-active:text-white transition-colors fit-label text-center min-w-0">{t.s1Cta2mob}</span>
                   <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
                     <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0 group-active:opacity-0"><FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} /></div>
                     <div className="absolute inset-0 transition-opacity duration-150 opacity-0 group-hover:opacity-100 group-active:opacity-100"><FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} /></div>
@@ -658,11 +658,11 @@ export default function Hero() {
             {slide === 0 ? (
               <div className="flex flex-wrap gap-[20px] items-center justify-start w-full">
                 <a href="/neo-line" className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] min-w-max overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
-                  <span className="font-avenir-heavy text-f16 text-white flex-1 text-center">{t.s1Cta1}</span>
+                  <span className="font-avenir-heavy text-f16 text-white fit-label text-center min-w-0">{t.s1Cta1}</span>
                   <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
                 </a>
                 <a href="/platform" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] min-w-max overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
-                  <span className="font-avenir-heavy text-f16 text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">{t.s1Cta2desk}</span>
+                  <span className="font-avenir-heavy text-f16 text-[#0233c3] group-hover:text-white group-active:text-white transition-colors fit-label text-center min-w-0">{t.s1Cta2desk}</span>
                   <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
                     <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0 group-active:opacity-0"><FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} /></div>
                     <div className="absolute inset-0 transition-opacity duration-150 opacity-0 group-hover:opacity-100 group-active:opacity-100"><FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} /></div>

@@ -349,7 +349,7 @@ export default function CtaBK() {
               min-h-[54px] min-w-[200px] overflow-hidden px-[28px] py-[12px] rounded-[8px] cursor-pointer shrink-0
               shadow-[0_2px_12px_0_rgba(255,255,255,0.15)] no-underline"
           >
-            <span className="font-avenir-heavy text-f16 text-[#0233c3] flex-1 text-center leading-normal">
+            <span className="font-avenir-heavy text-f16 text-[#0233c3] fit-label text-center leading-normal min-w-0">
               {t.btnOpenTicket}
             </span>
             <FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} />
@@ -358,7 +358,7 @@ export default function CtaBK() {
           <a href="/contact" className="group border-2 border-white hover:bg-white active:bg-[#f0f4ff] transition-colors
             flex gap-[10px] items-center justify-center
             min-h-[54px] min-w-[200px] overflow-hidden px-[28px] py-[12px] rounded-[8px] cursor-pointer shrink-0">
-            <span className="font-avenir-heavy text-f16 text-white group-hover:text-[#0233c3] transition-colors flex-1 text-center leading-normal">
+            <span className="font-avenir-heavy text-f16 text-white group-hover:text-[#0233c3] transition-colors fit-label text-center leading-normal min-w-0">
               {t.btnTalkSpecialist}
             </span>
             <div className="relative shrink-0" style={{ width: 18, height: 18 }}>

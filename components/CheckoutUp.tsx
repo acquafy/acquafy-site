@@ -93,7 +93,7 @@ export default function CheckoutUp() {
             <Link href="/neo-line"
                   className="flex gap-[8px] items-center justify-center min-h-[56px] overflow-hidden px-[12px] py-[10px] rounded-[8px] w-full transition-opacity hover:opacity-90 active:opacity-80"
                   style={gdPurple}>
-              <span className="font-avenir-roman text-f15 leading-l19 text-white flex-1 text-center">
+              <span className="font-avenir-roman text-f15 leading-l19 text-white fit-label text-center min-w-0">
                 {t.moreA}<span className="font-avenir-heavy">{t.moreB}</span>{t.moreC}
               </span>
               <FigmaIcon src={imgArrow} size={16} />
@@ -175,7 +175,7 @@ export default function CheckoutUp() {
               <Link href="/neo-line"
                     className="flex gap-[8px] items-center justify-center min-h-[56px] overflow-hidden px-[12px] py-[10px] rounded-[8px] w-full transition-opacity hover:opacity-90 active:opacity-80"
                     style={gdPurple}>
-                <span className="font-avenir-roman text-f15 leading-l19 text-white flex-1 text-center">
+                <span className="font-avenir-roman text-f15 leading-l19 text-white fit-label text-center min-w-0">
                   {t.moreA}<span className="font-avenir-heavy">{t.moreB}</span>{t.moreC}
                 </span>
                 <FigmaIcon src={imgArrow} size={16} />
