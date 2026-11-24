@@ -10,11 +10,8 @@ import { useLang, type Lang } from "@/context/LanguageContext";
 // ── Assets ────────────────────────────────────────────────────────────────────
 const imgBg        = "/figma-assets/bg-d.webp";
 const imgMainImage = "/figma-assets/main-image.webp";
+const imgIconFone  = "/figma-assets/icon-fone-list.svg";
 
-const imgIconChat    = "/figma-assets/icon-chat-list.svg";
-const imgIconCheckin = "/figma-assets/icon-check-list.svg";
-const imgIconBook    = "/figma-assets/icon-book.svg";
-const imgIconFone    = "/figma-assets/icon-fone-list.svg";
 
 const imgArrowWhite  = "/figma-assets/icon-arrow-white-hover.svg";
 const imgArrowBlue   = "/figma-assets/icon-arrow-blue-b.svg";
@@ -951,12 +948,6 @@ const T: Record<Lang, {
 };
 
 // ── Static metadata ───────────────────────────────────────────────────────────
-const floatingCardsMeta = [
-  { icon: imgIconChat,    aspectW: 30, aspectH: 30   },
-  { icon: imgIconCheckin, aspectW: 30, aspectH: 30   },
-  { icon: imgIconBook,    aspectW: 30, aspectH: 22.3 },
-  { icon: imgIconFone,    aspectW: 30, aspectH: 30   },
-];
 
 const QUICK_LINKS_META = [
   { icon: "/figma-assets/icon-agua-pura.svg",   aspectW: 642.7, aspectH: 630.7, href: "/linha-neo"             },
@@ -982,6 +973,37 @@ export default function BannerCentralSuporte() {
   const bePartner = useFeature("bePartner");
   const t = T[lang];
 
+  const ctaButtons = (
+    <>
+            <button
+              onClick={openChat}
+              className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#0569ff] transition-colors
+              flex gap-[10px] items-center justify-center
+              min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer shrink-0">
+              <span className="font-avenir-heavy text-f16 text-white flex-1 text-center leading-normal">
+                {t.btnChat}
+              </span>
+              <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
+            </button>
+
+            <a href="/contact" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors
+              flex gap-[10px] items-center justify-center
+              min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer shrink-0">
+              <span className="font-avenir-heavy text-f16 text-[#0233c3] group-hover:text-white transition-colors flex-1 text-center leading-normal">
+                {t.btnSpecialist}
+              </span>
+              <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
+                <div className="absolute inset-0 transition-opacity opacity-100 group-hover:opacity-0">
+                  <FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} />
+                </div>
+                <div className="absolute inset-0 transition-opacity opacity-0 group-hover:opacity-100">
+                  <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
+                </div>
+              </div>
+            </a>
+    </>
+  );
+
   return (
     <section className="relative flex flex-col items-center justify-center px-[20px] py-[40px] w-full min-h-[calc(100vh-80px)]">
 
@@ -994,12 +1016,12 @@ export default function BannerCentralSuporte() {
 
       {/* ── Linha principal ─────────────────────────────────────── */}
       <div className="relative flex flex-col gap-[20px] items-center max-w-[1400px] w-full shrink-0
-        lg:gap-[40px] lg:flex-row lg:flex-wrap lg:items-end lg:justify-center">
+        lg:gap-[16px] lg:flex-row lg:flex-wrap lg:items-end lg:justify-between">
 
         {/* ── Coluna de texto ─────────────────────────────────── */}
         {/* Empilhado (< lg): "contents" — label > título > subtítulo > descrição > imagem > botões; lg+: coluna à esquerda */}
         <div className="contents
-          lg:flex lg:flex-col lg:gap-[20px] lg:w-full lg:flex-[1_0_0] lg:items-start lg:justify-center lg:self-center lg:max-w-[360px] min-[1190px]:max-w-[490px] lg:min-w-[280px] lg:pb-[40px] lg:pt-[20px]">
+          lg:flex lg:flex-col lg:gap-[20px] lg:w-full lg:flex-[1_0_0] lg:items-start lg:justify-center lg:self-center lg:max-w-[340px] win-1190:max-w-[490px] lg:min-w-[280px] lg:pb-[40px] lg:pt-[20px]">
 
           {/* Label */}
           <div className="order-1 lg:order-none bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center max-w-[290px] px-[12px] py-[8px] rounded-full shrink-0">
@@ -1029,35 +1051,9 @@ export default function BannerCentralSuporte() {
             {t.description}
           </p>
 
-          {/* Botões */}
-          {/* Empilhado (< lg): painel branco sob a imagem — a imagem da moça (cortada embaixo) apoia nele, sem folga */}
-          <div className="order-6 lg:order-none flex flex-wrap gap-[20px] items-center justify-center w-full lg:justify-start bg-white rounded-[16px] p-[20px] -mt-[20px] lg:bg-transparent lg:rounded-none lg:p-0 lg:mt-0">
-            <button
-              onClick={openChat}
-              className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#0569ff] transition-colors
-              flex gap-[10px] items-center justify-center
-              min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer shrink-0">
-              <span className="font-avenir-heavy text-f16 text-white flex-1 text-center leading-normal">
-                {t.btnChat}
-              </span>
-              <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
-            </button>
-
-            <a href="/contact" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors
-              flex gap-[10px] items-center justify-center
-              min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer shrink-0">
-              <span className="font-avenir-heavy text-f16 text-[#0233c3] group-hover:text-white transition-colors flex-1 text-center leading-normal">
-                {t.btnSpecialist}
-              </span>
-              <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
-                <div className="absolute inset-0 transition-opacity opacity-100 group-hover:opacity-0">
-                  <FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} />
-                </div>
-                <div className="absolute inset-0 transition-opacity opacity-0 group-hover:opacity-100">
-                  <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
-                </div>
-              </div>
-            </a>
+          {/* Botões — notebook/desktop (lg+): na coluna de texto; abaixo de lg ficam dentro do bloco "Como podemos ajudar?" */}
+          <div className="hidden lg:flex flex-wrap gap-[20px] items-center justify-start w-full">
+            {ctaButtons}
           </div>
         </div>
 
@@ -1066,60 +1062,19 @@ export default function BannerCentralSuporte() {
           <div className="order-5 lg:order-none contents min-[621px]:flex min-[621px]:flex-col min-[621px]:justify-end w-full shrink-0 min-w-[280px]
           min-[621px]:items-end min-[621px]:gap-0
           md:flex-row md:items-end md:justify-center md:gap-0
-          lg:flex-[1_0_0] lg:max-w-[880px] lg:min-w-[280px]">
+          lg:flex-[1_0_0] lg:max-w-none lg:min-w-[280px] lg:justify-end">
 
           {/* ── Imagem ─────────────────────────────────────────── */}
-          <div className="relative order-5 min-[621px]:order-2 w-full aspect-[4096/3477] shrink-0
-            min-[621px]:w-[460px] min-[621px]:h-[390px] min-[621px]:max-w-[460px] min-[621px]:shrink-0
-            md:order-1 md:w-[471px] md:h-[400px] md:max-w-[471px] md:shrink-0 md:mr-[-40px]
-            lg:order-1 lg:flex-[1_0_0] lg:min-w-px lg:w-auto lg:h-auto lg:max-w-none lg:mr-[-50px]">
+          {/* Empilhado (< lg): título > descrição > imagem (em pé sobre o bloco branco dos botões) > botões; lg+: à direita */}
+          <div className="relative order-5 w-full aspect-[4096/3477] shrink-0
+            md:w-[min(100%,560px)]
+            lg:order-1 lg:flex-[1_0_0] lg:min-w-px lg:w-auto lg:max-w-[720px]">
             <Img
               src={imgMainImage}
               alt={t.imgAlt}
               className="absolute inset-0 size-full max-w-none object-cover pointer-events-none select-none"
             />
           </div>
-
-          {/* ── Cards wrapper ───────────────────────────────────── */}
-          <div className="order-7 min-[621px]:order-1 w-full
-            md:order-2 md:relative md:z-[1] md:flex md:flex-[1_0_0] md:flex-row md:items-end md:self-stretch md:min-w-px
-            lg:z-10 lg:max-w-[270px]">
-
-            <div className="flex flex-col gap-[20px] w-full
-              min-[621px]:mb-[-240px]
-              md:flex-[1_0_0] md:flex-row md:flex-wrap md:content-center md:h-full md:items-center md:justify-end md:pb-[20px] md:mb-0 md:min-w-px
-              lg:flex-col lg:flex-nowrap lg:items-end lg:justify-center lg:max-w-[270px] lg:min-w-px lg:pb-[14px] lg:gap-[14px]">
-
-              {floatingCardsMeta.map((meta, i) => {
-                const card = t.floatingCards[i];
-                return (
-                  <div
-                    key={card.title}
-                    className="bg-gradient-to-r from-white to-[rgba(255,255,255,0.7)]
-                      flex flex-[1_0_0] flex-wrap gap-[20px] items-center justify-center
-                      p-[20px] rounded-[16px] shadow-[0px_4px_8px_0px_rgba(0,0,0,0.25)]
-                      w-full min-w-[150px]
-                      md:min-h-[90px] md:min-w-[280px] md:w-auto
-                      lg:w-full lg:min-w-[160px] lg:min-h-0 lg:p-[14px] lg:gap-[12px]">
-                    <div className="flex flex-col items-center justify-center shrink-0 size-[40px]">
-                      <FigmaIcon src={meta.icon} size={30} aspectW={meta.aspectW} aspectH={meta.aspectH} />
-                    </div>
-                    <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-px">
-                      <p className="font-avenir-heavy text-f16 leading-l20 text-[#1f2e91] w-full">
-                        {card.title}
-                      </p>
-                      {card.desc && (
-                        <p className="font-avenir-roman text-f14 leading-l16 text-[#1f2e91] w-full">
-                          {card.desc}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
         </div>
       </div>
 
@@ -1131,6 +1086,11 @@ export default function BannerCentralSuporte() {
           {t.unifiedHeading1}{" "}
           <span className="text-[#0569ff]">{t.unifiedHeading2}</span>
         </p>
+
+        {/* Abaixo de lg: os botões do banner moram aqui, logo abaixo do título do bloco branco em que a moça se apoia */}
+        <div className="lg:hidden flex flex-wrap gap-[20px] items-center justify-center w-full">
+          {ctaButtons}
+        </div>
 
         {/* Quick links */}
         <div className="flex flex-wrap gap-[20px] items-stretch justify-center w-full">

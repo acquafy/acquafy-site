@@ -192,7 +192,7 @@ export default function ComoFuncionaParceria() {
           <span className="text-[#0569ff]">{t.heading2}</span>
         </h2>
 
-        <div className="card-row [--card-min:280px] gap-[20px] items-start justify-center w-full">
+        <div className="card-row [--card-min:280px] gap-[20px] items-stretch justify-center w-full">
           {steps.map((s, i) => (
             <div
               key={s.num}

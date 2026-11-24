@@ -285,7 +285,7 @@ export default function TecnologiaFazDiferenca() {
         ">
 
           {/* Cards grid */}
-          <div className="content-start card-row [--card-min:150px] gap-[10px] items-start justify-center min-w-[180px] overflow-clip relative w-full md:flex-[1_0_0]">
+          <div className="content-start card-row [--card-min:150px] gap-[10px] items-stretch justify-center min-w-[180px] overflow-clip relative w-full md:flex-[1_0_0]">
             {features.map((f) => (
               <FeatureCard key={f.title} {...f} />
             ))}

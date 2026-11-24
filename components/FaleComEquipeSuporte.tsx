@@ -1,6 +1,5 @@
 ﻿"use client";
 import FigmaIcon from "./FigmaIcon";
-import { useChatWidget } from "./ChatWidget";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
 const imgChatIcon      = "/figma-assets/icon-chat-icon.svg";
@@ -22,7 +21,7 @@ const T: Record<Lang, {
   pt: {
     heading: "Fale com nossa equipe",
     subtitle: "Escolha o canal de atendimento ideal para você.",
-    chatBadge: "Disponível",
+    chatBadge: "Indisponível",
     chatDesc: "Fale agora com um especialista em tempo real.",
     chatButton: "Iniciar chat",
     emailDesc: "Envie sua dúvida ou solicitação que responderemos em breve.",
@@ -33,7 +32,7 @@ const T: Record<Lang, {
   en: {
     heading: "Talk to Our Team",
     subtitle: "Choose the ideal support channel for you.",
-    chatBadge: "Available",
+    chatBadge: "Unavailable",
     chatDesc: "Talk now with a specialist in real time.",
     chatButton: "Start Chat",
     emailDesc: "Send your question or request and we will reply shortly.",
@@ -44,7 +43,7 @@ const T: Record<Lang, {
   "en-gb": {
     heading: "Talk to Our Team",
     subtitle: "Choose the ideal support channel for you.",
-    chatBadge: "Available",
+    chatBadge: "Unavailable",
     chatDesc: "Talk now with a specialist in real time.",
     chatButton: "Start Chat",
     emailDesc: "Send your question or request and we will reply shortly.",
@@ -55,7 +54,7 @@ const T: Record<Lang, {
   es: {
     heading: "Habla con Nuestro Equipo",
     subtitle: "Elige el canal de atención ideal para ti.",
-    chatBadge: "Disponible",
+    chatBadge: "No disponible",
     chatDesc: "Habla ahora con un especialista en tiempo real.",
     chatButton: "Iniciar Chat",
     emailDesc: "Envía tu consulta o solicitud y responderemos pronto.",
@@ -66,7 +65,7 @@ const T: Record<Lang, {
   fr: {
     heading: "Parlez à Notre Équipe",
     subtitle: "Choisissez le canal d'assistance qui vous convient.",
-    chatBadge: "Disponible",
+    chatBadge: "Indisponible",
     chatDesc: "Parlez maintenant avec un spécialiste en temps réel.",
     chatButton: "Démarrer le chat",
     emailDesc: "Envoyez votre question ou demande et nous vous répondrons rapidement.",
@@ -77,7 +76,7 @@ const T: Record<Lang, {
   de: {
     heading: "Sprechen Sie mit Unserem Team",
     subtitle: "Wählen Sie den idealen Support-Kanal für Sie.",
-    chatBadge: "Verfügbar",
+    chatBadge: "Nicht verfügbar",
     chatDesc: "Sprechen Sie jetzt mit einem Spezialisten in Echtzeit.",
     chatButton: "Chat starten",
     emailDesc: "Senden Sie Ihre Frage oder Anfrage und wir antworten Ihnen bald.",
@@ -88,7 +87,7 @@ const T: Record<Lang, {
   it: {
     heading: "Parla con il Nostro Team",
     subtitle: "Scegli il canale di assistenza ideale per te.",
-    chatBadge: "Disponibile",
+    chatBadge: "Non disponibile",
     chatDesc: "Parla ora con uno specialista in tempo reale.",
     chatButton: "Avvia Chat",
     emailDesc: "Invia la tua domanda o richiesta e ti risponderemo presto.",
@@ -99,7 +98,7 @@ const T: Record<Lang, {
   zh: {
     heading: "联系我们的团队",
     subtitle: "选择最适合您的支持渠道。",
-    chatBadge: "在线",
+    chatBadge: "暂不可用",
     chatDesc: "立即与专家实时交流。",
     chatButton: "开始聊天",
     emailDesc: "发送您的问题或请求，我们将尽快回复。",
@@ -110,7 +109,7 @@ const T: Record<Lang, {
   ja: {
     heading: "チームにお問い合わせ",
     subtitle: "ご希望のサポートチャネルをお選びください。",
-    chatBadge: "対応中",
+    chatBadge: "現在利用不可",
     chatDesc: "今すぐ専門家とリアルタイムで話しましょう。",
     chatButton: "チャットを開始",
     emailDesc: "ご質問やリクエストをお送りください。すぐにご返答いたします。",
@@ -121,7 +120,7 @@ const T: Record<Lang, {
   ko: {
     heading: "우리 팀에 문의하기",
     subtitle: "가장 적합한 지원 채널을 선택하세요.",
-    chatBadge: "온라인",
+    chatBadge: "이용 불가",
     chatDesc: "지금 바로 전문가와 실시간으로 대화하세요.",
     chatButton: "채팅 시작",
     emailDesc: "질문이나 요청을 보내주시면 곧 답변드리겠습니다.",
@@ -132,7 +131,7 @@ const T: Record<Lang, {
   sv: {
     heading: "Prata med vårt team",
     subtitle: "Välj den ideala supportkanalen för dig.",
-    chatBadge: "Tillgänglig",
+    chatBadge: "Ej tillgänglig",
     chatDesc: "Prata nu med en specialist i realtid.",
     chatButton: "Starta chatt",
     emailDesc: "Skicka din fråga eller förfrågan så svarar vi snart.",
@@ -143,7 +142,7 @@ const T: Record<Lang, {
   fi: {
     heading: "Ota yhteyttä tiimiimme",
     subtitle: "Valitse sinulle sopiva tukikanava.",
-    chatBadge: "Saatavilla",
+    chatBadge: "Ei saatavilla",
     chatDesc: "Puhu nyt asiantuntijan kanssa reaaliajassa.",
     chatButton: "Aloita chat",
     emailDesc: "Lähetä kysymyksesi tai pyyntösi ja vastaamme pian.",
@@ -154,7 +153,7 @@ const T: Record<Lang, {
   ru: {
     heading: "Свяжитесь с нашей командой",
     subtitle: "Выберите удобный канал поддержки.",
-    chatBadge: "Доступен",
+    chatBadge: "Недоступен",
     chatDesc: "Поговорите с специалистом в режиме реального времени.",
     chatButton: "Начать чат",
     emailDesc: "Отправьте ваш вопрос или запрос, и мы ответим вам в ближайшее время.",
@@ -165,7 +164,7 @@ const T: Record<Lang, {
   ro: {
     heading: "Vorbiti cu echipa noastra",
     subtitle: "Alege canalul de asistenta ideal pentru tine.",
-    chatBadge: "Disponibil",
+    chatBadge: "Indisponibil",
     chatDesc: "Vorbeste acum cu un specialist in timp real.",
     chatButton: "Incepe chat",
     emailDesc: "Trimite intrebarea sau solicitarea ta si iti vom raspunde curand.",
@@ -176,7 +175,7 @@ const T: Record<Lang, {
   he: {
     heading: "daber im hatzevet shelanu",
     subtitle: "bechar et erets ha-tmicha hamutzemet bishvilcha.",
-    chatBadge: "zamin",
+    chatBadge: "lo zamin",
     chatDesc: "daber achshav im mutche be-zman amiti.",
     chatButton: "hitchel sichah",
     emailDesc: "shloach et hasheilah o habakashah shelcha venashiv bkarov.",
@@ -188,7 +187,7 @@ const T: Record<Lang, {
   "pt-pt": {
     heading: "Fale com a nossa equipa",
     subtitle: "Escolha o canal de atendimento ideal para si.",
-    chatBadge: "Disponível",
+    chatBadge: "Indisponível",
     chatDesc: "Fale agora com um especialista em tempo real.",
     chatButton: "Iniciar chat",
     emailDesc: "Envie a sua dúvida ou solicitação e responderemos brevemente.",
@@ -199,7 +198,6 @@ const T: Record<Lang, {
 };
 
 export default function FaleComEquipeSuporte() {
-  const { openChat } = useChatWidget();
   const { lang } = useLang();
   const t = T[lang];
   return (
@@ -220,36 +218,35 @@ export default function FaleComEquipeSuporte() {
         <div className="card-row [--card-min:240px] gap-[20px] items-stretch justify-center w-full">
 
           {/* Chat online */}
-          <div className="min-w-0 bg-white flex flex-col gap-[20px] items-center p-[20px] rounded-[16px] win-1024:items-start">
+          <div className="min-w-0 bg-white flex flex-col gap-[20px] items-start p-[20px] rounded-[16px]">
             <div className="flex gap-[20px] items-center w-full">
               <div className="bg-[#0569ff] flex flex-col items-center justify-center p-[20px] rounded-full shrink-0 size-[80px]">
                 <FigmaIcon src={imgChatIcon} size={30} />
               </div>
               <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-px">
-                <div className="flex gap-[10px] items-center w-full">
-                  <p className="font-avenir-heavy text-f16 leading-l20 text-[#1f2e91] flex-1">
-                    Chat online
-                  </p>
-                  <div className="bg-[#e1f3e7] flex flex-col items-center justify-center px-[10px] py-[6px] rounded-full shrink-0">
-                    <span className="font-avenir-heavy text-f12 leading-l13 text-[#36ae5c] whitespace-nowrap">
-                      {t.chatBadge}
-                    </span>
-                  </div>
+                <p className="font-avenir-heavy text-f16 leading-l20 text-[#1f2e91] w-full">
+                  Chat online
+                </p>
+                {/* Status label on its own line, so it does not take width from the title */}
+                <div className="bg-[#eef0f3] flex flex-col items-center justify-center px-[10px] py-[6px] rounded-full shrink-0">
+                  <span className="font-avenir-heavy text-f12 leading-l13 text-[#6b7280] whitespace-nowrap">
+                    {t.chatBadge}
+                  </span>
                 </div>
                 <p className="font-avenir-roman text-f14 leading-l16 text-[#333] w-full">
                   {t.chatDesc}
                 </p>
               </div>
             </div>
-            <button onClick={openChat} className="mt-auto bg-white border border-[#0233c3] hover:bg-[#0233c3] hover:text-white transition-colors flex items-center justify-center min-h-[30px] overflow-hidden px-[20px] py-[10px] rounded-[8px]">
+            <a href="/contact" className="mt-auto bg-white border border-[#0233c3] hover:bg-[#0233c3] hover:text-white transition-colors flex items-center justify-center min-h-[30px] overflow-hidden px-[20px] py-[10px] rounded-[8px]">
               <span className="font-avenir-heavy text-f14 leading-l17 text-[#0233c3] hover:text-white text-center">
                 {t.chatButton}
               </span>
-            </button>
+            </a>
           </div>
 
           {/* E-mail */}
-          <div className="min-w-0 bg-white flex flex-col gap-[20px] items-center p-[20px] rounded-[16px] win-1024:items-start">
+          <div className="min-w-0 bg-white flex flex-col gap-[20px] items-start p-[20px] rounded-[16px]">
             <div className="flex gap-[20px] items-center w-full">
               <div className="bg-[#0569ff] flex flex-col items-center justify-center p-[20px] rounded-full shrink-0 size-[80px]">
                 <FigmaIcon src={imgMailIcon} size={30} aspectW={30} aspectH={24} />
@@ -274,7 +271,7 @@ export default function FaleComEquipeSuporte() {
           </div>
 
           {/* WhatsApp */}
-          <div className="min-w-0 bg-white flex flex-col gap-[20px] items-center p-[20px] rounded-[16px] win-1024:items-start">
+          <div className="min-w-0 bg-white flex flex-col gap-[20px] items-start p-[20px] rounded-[16px]">
             <div className="flex gap-[20px] items-center w-full">
               <div className="bg-[#0569ff] flex flex-col items-center justify-center p-[20px] rounded-full shrink-0 size-[80px]">
                 <FigmaIcon src={imgWhatsappIcon} size={30} />
@@ -301,7 +298,7 @@ export default function FaleComEquipeSuporte() {
           </div>
 
           {/* Horário de atendimento */}
-          <div className="min-w-0 bg-white flex flex-col gap-[20px] items-center p-[20px] rounded-[16px] win-1024:items-start">
+          <div className="min-w-0 bg-white flex flex-col gap-[20px] items-start p-[20px] rounded-[16px]">
             <div className="flex gap-[20px] items-center w-full">
               <div className="bg-[#0569ff] flex flex-col items-center justify-center p-[20px] rounded-full shrink-0 size-[80px]">
                 <FigmaIcon src={imgTimeIcon} size={30} />

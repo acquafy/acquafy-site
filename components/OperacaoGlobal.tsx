@@ -223,7 +223,7 @@ export default function OperacaoGlobal() {
           <span className="text-[#0569ff]">{t.headingB}</span>
         </h2>
 
-        <div className="card-row [--card-min:200px] gap-[10px] items-start justify-center w-full">
+        <div className="card-row [--card-min:200px] gap-[10px] items-stretch justify-center w-full">
           {features.map((f, i) => (
             <div
               key={i}

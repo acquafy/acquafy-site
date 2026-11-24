@@ -60,7 +60,7 @@ export default function SobreEmpresas() {
           {t.heading}
         </h2>
 
-        <div className="card-row [--card-min:220px] gap-[20px] items-center justify-center w-full">
+        <div className="card-row [--card-min:220px] gap-[20px] items-stretch justify-center w-full">
           {brands.map((brand) => (
             <div
               key={brand.alt}
