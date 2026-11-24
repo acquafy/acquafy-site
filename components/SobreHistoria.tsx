@@ -199,11 +199,11 @@ export default function SobreHistoria() {
         <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] text-center w-full">
           {t.heading}
         </h2>
-        <div className="flex flex-wrap gap-[40px] items-start justify-center w-full">
+        <div className="card-row [--card-min:160px] gap-[40px] items-start justify-center w-full">
           {timeline.map((item) => (
             <div
               key={item.year}
-              className="flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-[160px] rounded-[12px]"
+              className="min-w-0 flex flex-col gap-[20px] items-start rounded-[12px]"
             >
               {/* Icon + connector */}
               <div className="flex gap-[10px] items-center justify-center relative w-full">

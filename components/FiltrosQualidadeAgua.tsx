@@ -408,9 +408,9 @@ export default function FiltrosQualidadeAgua() {
         </div>
 
         {/* Water benefits */}
-        <div className="flex flex-wrap gap-[20px] items-stretch justify-center w-full">
+        <div className="card-row [--card-min:160px] gap-[20px] items-stretch justify-center w-full">
           {BENEFIT_ICONS.map((ic, i) => (
-            <div key={ic.src} className="bg-white flex flex-col gap-[10px] items-center justify-center flex-1 min-w-[160px] px-[20px] py-[25px] rounded-[12px] text-center">
+            <div key={ic.src} className="bg-white flex flex-col gap-[10px] items-center justify-center min-w-0 px-[20px] py-[25px] rounded-[12px] text-center">
               <FigmaIcon src={ic.src} size={40} aspectW={ic.w} aspectH={ic.h} />
               <p className="font-avenir-heavy text-[20px] leading-[24px] text-[#1f2e91]">{t.benefits[i]}</p>
             </div>

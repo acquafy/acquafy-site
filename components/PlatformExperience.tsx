@@ -214,9 +214,9 @@ export default function PlatformExperience() {
           <span className="text-[#0569ff]">{t.heading2}</span>
         </h2>
 
-        <div className="flex flex-wrap gap-[10px] items-stretch justify-center w-full">
+        <div className="card-row [--card-min:240px] gap-[10px] items-stretch justify-center w-full">
           {cards.map((c) => (
-            <div key={c.title} className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-w-[240px] p-[20px] rounded-[16px]">
+            <div key={c.title} className="min-w-0 bg-white flex flex-col gap-[20px] items-center justify-center p-[20px] rounded-[16px]">
               <div className={`${c.bgIcon} flex items-center justify-center p-[20px] rounded-full shrink-0 size-[80px]`}>
                 <FigmaIcon src={c.icon} size={40} aspectW={c.iconW} aspectH={c.iconH} />
               </div>

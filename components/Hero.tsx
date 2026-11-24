@@ -700,11 +700,11 @@ export default function Hero() {
 
       {/* ══ STATS BAR ══ */}
       {slide === 0 ? (
-        <div className="relative shrink-0 bg-[#0233c3] flex flex-wrap items-center justify-center max-w-[1400px] min-h-[85px] overflow-hidden px-[20px] py-[22px] rounded-[16px] w-full">
+        <div className="relative shrink-0 bg-[#0233c3] card-row card-row-fit [--card-min:160px] items-center justify-center max-w-[1400px] min-h-[85px] overflow-hidden px-[20px] py-[22px] rounded-[16px] w-full">
           {STATS1_ICONS.map((stat, i) => {
             const text = t.stats1[i];
             return (
-              <div key={i} className="flex flex-[1_0_0] gap-[10px] items-center justify-center min-w-[160px] px-[10px]">
+              <div key={i} className="flex min-w-0 gap-[10px] items-center justify-start px-[10px]">
                 <FigmaIcon src={stat.icon} size={30} aspectW={stat.aspectW} aspectH={stat.aspectH} />
                 <div className="flex flex-col gap-[2px]">
                   {"lines" in text ? text.lines.map((l, li) => (

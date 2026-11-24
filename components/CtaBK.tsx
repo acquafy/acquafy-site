@@ -376,13 +376,11 @@ export default function CtaBK() {
         <div className="w-full border-t border-[rgba(255,255,255,0.15)]" />
 
         {/* Contact channels */}
-        <div className="flex flex-wrap gap-[20px] items-stretch justify-center w-full">
+        <div className="card-row [--card-min:240px] gap-[20px] items-stretch justify-center w-full">
           {canais.map((canal) => (
             <div
               key={canal.title}
-              className="bg-[rgba(255,255,255,0.08)] border border-[rgba(255,255,255,0.12)] hover:bg-[rgba(255,255,255,0.14)] transition-colors
-                flex flex-[1_0_0] gap-[20px] items-center justify-start
-                min-w-[240px] p-[20px] rounded-[16px]"
+              className="min-w-0 bg-[rgba(255,255,255,0.08)] border border-[rgba(255,255,255,0.12)] hover:bg-[rgba(255,255,255,0.14)] transition-colors flex gap-[20px] items-center justify-start p-[20px] rounded-[16px]"
             >
               {/* Icon */}
               <div className="bg-[#0569ff] flex flex-col items-center justify-center p-[18px] rounded-full shrink-0 size-[72px]">

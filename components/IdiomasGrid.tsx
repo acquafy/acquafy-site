@@ -89,14 +89,14 @@ export default function IdiomasGrid() {
         {t.titulo}
       </p>
 
-      <div className="flex flex-wrap gap-[10px] items-center justify-center w-full">
+      <div className="card-row [--card-min:150px] gap-[10px] items-center justify-center w-full">
         {LANG_ORDER.map((code) => {
           const isActive = code === lang;
           return (
             <button
               key={code}
               onClick={() => setLang(code)}
-              className={`flex flex-[1_0_0] gap-[10px] items-center min-h-[60px] min-w-[150px] p-[10px] rounded-[12px] text-left transition-colors cursor-pointer ${
+              className={`flex min-w-0 gap-[10px] items-center min-h-[60px] p-[10px] rounded-[12px] text-left transition-colors cursor-pointer ${
                 isActive
                   ? "bg-[#f0f4ff]"
                   : "bg-white hover:bg-[#f8faff]"

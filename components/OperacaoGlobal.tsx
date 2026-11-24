@@ -223,11 +223,11 @@ export default function OperacaoGlobal() {
           <span className="text-[#0569ff]">{t.headingB}</span>
         </h2>
 
-        <div className="flex flex-wrap gap-[10px] items-start justify-center w-full">
+        <div className="card-row [--card-min:200px] gap-[10px] items-start justify-center w-full">
           {features.map((f, i) => (
             <div
               key={i}
-              className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[10px] items-center min-h-[110px] min-w-[200px] p-[20px] rounded-[16px]"
+              className="min-w-0 bg-[#f6f9fe] flex flex-col gap-[10px] items-center min-h-[110px] p-[20px] rounded-[16px]"
             >
               <Img src={f.icon} alt="" className="size-[30px] object-contain shrink-0" />
               <div className="flex flex-col gap-[10px] items-start text-center w-full shrink-0">

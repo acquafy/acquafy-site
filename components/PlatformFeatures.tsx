@@ -304,9 +304,9 @@ export default function PlatformFeatures() {
           <span className="text-[#0569ff]">{t.heading2}</span>
         </h2>
 
-        <div className="flex flex-wrap gap-[10px] items-stretch justify-center w-full">
+        <div className="card-row [--card-min:240px] gap-[10px] items-stretch justify-center w-full">
           {features.map((f) => (
-            <div key={f.title} className="bg-[#f6f9fe] flex flex-[1_0_0] gap-[20px] items-center justify-center min-w-[240px] p-[20px] rounded-[16px]">
+            <div key={f.title} className="min-w-0 bg-[#f6f9fe] flex gap-[20px] items-center justify-center p-[20px] rounded-[16px]">
               <div className="flex items-center justify-center p-[15px] rounded-[12px] shrink-0 size-[60px]" style={{ backgroundColor: f.bg }}>
                 <FigmaIcon src={f.icon} size={30} aspectW={f.iconW} aspectH={f.iconH} />
               </div>

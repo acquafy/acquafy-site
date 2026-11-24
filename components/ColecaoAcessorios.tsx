@@ -496,7 +496,7 @@ const productImgs: { imgs: Product["imgs"] }[] = [
 function ProductCard({ product }: { product: Product }) {
   const hasOverlap = product.imgs.length > 1 && product.imgs[0].overlap;
   return (
-    <div className="bg-white flex flex-[1_0_0] gap-[20px] items-center min-h-[200px] min-w-[280px] overflow-hidden p-[5px] rounded-[16px]">
+    <div className="bg-white flex gap-[20px] items-center min-h-[200px] min-w-0 overflow-hidden p-[5px] rounded-[16px]">
       {/* Image slot */}
       <div className="flex flex-1 items-center justify-center self-stretch max-w-[160px] min-w-[100px] relative overflow-hidden rounded-[12px]">
         {hasOverlap ? (
@@ -562,11 +562,11 @@ export default function ColecaoAcessorios() {
 
         {/* Categories row */}
         <div className="bg-white flex flex-wrap items-center justify-center overflow-hidden p-[20px] rounded-[16px] w-full">
-          <div className="flex flex-1 flex-wrap min-w-[240px]">
+          <div className="card-row [--card-min:180px] flex-1 min-w-[240px]">
             {categories.map((cat, i) => (
               <div
                 key={i}
-                className="flex flex-1 flex-col gap-[20px] items-center min-w-[180px] overflow-hidden p-[20px]"
+                className="flex flex-col gap-[20px] items-center min-w-0 overflow-hidden p-[20px]"
               >
                 <div className="flex flex-col items-center justify-center p-[15px] rounded-full shrink-0 size-[60px]" style={{ backgroundColor: cat.iconBg }}>
                   <FigmaIcon src={cat.icon} size={30} aspectW={cat.iconW} aspectH={cat.iconH} />
@@ -580,7 +580,7 @@ export default function ColecaoAcessorios() {
         </div>
 
         {/* Product cards grid */}
-        <div className="flex flex-wrap gap-[20px] items-start w-full">
+        <div className="card-row [--card-min:280px] gap-[20px] items-start w-full">
           {products.map((p, i) => (
             <ProductCard key={i} product={p} />
           ))}

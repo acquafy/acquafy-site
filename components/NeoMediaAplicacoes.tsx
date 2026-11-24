@@ -242,11 +242,11 @@ export default function NeoMediaAplicacoes() {
           {t.heading1}
           <span className="text-[#0569ff]">{t.headingHighlight}</span>
         </h2>
-        <div className="flex flex-wrap gap-[20px] items-stretch justify-center overflow-hidden w-full">
+        <div className="card-row [--card-min:200px] gap-[20px] items-stretch justify-center overflow-hidden w-full">
           {locations.map((loc) => (
             <div
               key={loc.title}
-              className="bg-white flex flex-[1_0_0] flex-col items-center max-w-[500px] min-h-[160px] min-w-[200px] overflow-hidden rounded-[16px]"
+              className="min-w-0 bg-white flex flex-col items-center max-w-[500px] min-h-[160px] overflow-hidden rounded-[16px]"
             >
               {/* Photo + floating icon badge */}
               <div className="relative flex flex-col items-center justify-center w-full shrink-0">

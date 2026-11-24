@@ -227,11 +227,11 @@ export default function RecursosAppAiIot() {
         </h2>
 
         {/* 6 cards */}
-        <div className="flex flex-wrap gap-[20px] items-stretch justify-center w-full">
+        <div className="card-row [--card-min:200px] gap-[20px] items-stretch justify-center w-full">
           {items.map((item) => (
             <div
               key={item.title}
-              className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center justify-start min-w-[200px] p-[20px] rounded-[16px]"
+              className="min-w-0 bg-white flex flex-col gap-[20px] items-center justify-start p-[20px] rounded-[16px]"
             >
               {/* Ícone — círculo colorido */}
               <div

@@ -192,11 +192,11 @@ export default function ComoFuncionaParceria() {
           <span className="text-[#0569ff]">{t.heading2}</span>
         </h2>
 
-        <div className="flex flex-wrap gap-[20px] items-start justify-center w-full">
+        <div className="card-row [--card-min:280px] gap-[20px] items-start justify-center w-full">
           {steps.map((s, i) => (
             <div
               key={s.num}
-              className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[20px] items-center min-w-[280px] p-[20px] relative rounded-[16px]"
+              className="min-w-0 bg-[#f6f9fe] flex flex-col gap-[20px] items-center p-[20px] relative rounded-[16px]"
             >
               {/* ícone + número do passo */}
               <div className="flex gap-[20px] items-center justify-center relative shrink-0 w-full">

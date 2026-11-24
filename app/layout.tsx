@@ -3,6 +3,8 @@ import "./globals.css";
 import { cookies, headers } from "next/headers";
 import { preload } from "react-dom";
 import { ChatProvider } from "@/components/ChatWidget";
+import CardRowBalancer from "@/components/CardRowBalancer";
+import FitButtonText from "@/components/FitButtonText";
 import { FeatureFlagsProvider } from "@/components/FeatureFlags";
 import { getFeatures } from "@/lib/flags";
 import { LanguageProvider } from "@/context/LanguageContext";
@@ -69,6 +71,8 @@ export default async function RootLayout({
             <ChatProvider>{children}</ChatProvider>
           </LanguageProvider>
         </FeatureFlagsProvider>
+        <CardRowBalancer />
+        <FitButtonText />
       </body>
     </html>
   );

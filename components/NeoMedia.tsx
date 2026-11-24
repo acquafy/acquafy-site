@@ -411,9 +411,9 @@ export default function NeoMedia() {
 
           <div className="flex flex-col gap-[20px] items-start min-w-[240px] shrink-0 w-full">
 
-            <div className="bg-white border border-[#cbd0d4] flex flex-wrap gap-[20px_10px] items-start justify-center overflow-hidden p-[20px] rounded-[16px] shrink-0 w-full">
+            <div className="card-row [--card-min:150px] bg-white border border-[#cbd0d4] gap-[20px_10px] items-start justify-center overflow-hidden p-[20px] rounded-[16px] shrink-0 w-full">
               {BENEFIT_ICONS.map((b, i) => (
-                <div key={i} className="flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-[150px]">
+                <div key={i} className="min-w-0 flex flex-col gap-[20px] items-start">
                   <div className="flex flex-col gap-[20px] h-[65px] items-start justify-center w-full shrink-0">
                     <BenefitIcon icon={b.icon} aspectW={b.aspectW} aspectH={b.aspectH} />
                     <p className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3] min-h-[25px] w-full">
@@ -427,18 +427,17 @@ export default function NeoMedia() {
               ))}
             </div>
 
-            <div className="bg-white border border-[#cbd0d4] flex flex-wrap gap-[10px] items-center justify-center overflow-hidden p-[20px] rounded-[16px] shrink-0 w-full">
+            <div className="card-row [--card-min:120px] bg-white border border-[#cbd0d4] gap-[10px] items-center justify-center overflow-hidden p-[20px] rounded-[16px] shrink-0 w-full">
               {BOTTOM_ICONS.map((f, i) => (
-                <div key={i} className="flex flex-[1_0_0] gap-[10px] items-start min-w-[120px]">
+                // Icon centred on the title (which can take two lines); the description sits under the title.
+                <div key={i} className="min-w-0 grid grid-cols-[auto_minmax(0,1fr)] gap-[10px] items-center">
                   <BenefitIcon icon={f.icon} aspectW={f.aspectW} aspectH={f.aspectH} />
-                  <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-0">
-                    <p className="font-avenir-heavy text-[14px] leading-[15px] text-[#1f2e91] w-full">
-                      {t.bottomFeatures[i].title}
-                    </p>
-                    <p className="font-avenir-roman text-[12px] leading-[16px] text-[#2a2a2b] w-full">
-                      {t.bottomFeatures[i].desc}
-                    </p>
-                  </div>
+                  <p className="font-avenir-heavy text-[14px] leading-[15px] text-[#1f2e91] w-full">
+                    {t.bottomFeatures[i].title}
+                  </p>
+                  <p className="col-start-2 font-avenir-roman text-[12px] leading-[16px] text-[#2a2a2b] w-full">
+                    {t.bottomFeatures[i].desc}
+                  </p>
                 </div>
               ))}
             </div>

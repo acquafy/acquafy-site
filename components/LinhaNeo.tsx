@@ -1,6 +1,6 @@
 "use client";
 import Img from "@/components/ui/Img";
-import { useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { Feature } from "@/components/FeatureFlags";
 import FigmaIcon from "./FigmaIcon";
 import { SlideFullscreenButton, SlideLightbox } from "./ui/SlideFullscreen";
@@ -903,7 +903,7 @@ const BUY_NOW: Record<Lang, string> = {
 
 function CardImage({ src, maxW = "170px", grow = false }: { src: string; maxW?: string; grow?: boolean }) {
   return (
-    <div className={`flex items-center justify-center ${grow ? "h-[314px]" : "h-[220px]"} w-full min-w-[120px] overflow-hidden relative shrink-0`} style={{ maxWidth: maxW }}>
+    <div className={`flex items-center justify-center ${grow ? "h-[220px] lg:h-[314px]" : "h-[220px]"} w-full min-w-[120px] overflow-hidden relative shrink-0`} style={{ maxWidth: maxW }}>
       <Img alt="" className="max-h-full max-w-full object-contain pointer-events-none" src={src} />
     </div>
   );
@@ -914,7 +914,7 @@ function PanelSlideshowEssentials() {
   const [active, setActive] = useState(0);
   const count = panelEssentialsSrcs.length;
   return (
-    <div className="flex flex-col gap-[10px] items-center justify-center w-full h-[314px] shrink-0">
+    <div className="flex flex-col gap-[10px] items-center justify-center w-full h-auto lg:h-[314px] shrink-0">
       <div
         className="group relative w-full min-w-[120px] shrink-0 overflow-hidden bg-black box-border"
         style={{ maxWidth: "480px", aspectRatio: "4561/2543", padding: "0.877%", borderRadius: "9.29% / 16.66%" }}
@@ -946,7 +946,7 @@ function PanelSlideshowEssentials() {
 function ProductCard({ product }: { product: Product }) {
   const { lang } = useLang();
   return (
-    <div className="bg-white flex flex-[1_0_0] flex-col gap-[10px] items-center min-h-[335px] min-w-[180px] overflow-hidden p-[20px] rounded-[12px]">
+    <div className="bg-white flex flex-col gap-[10px] items-center min-h-[335px] min-w-0 overflow-hidden p-[20px] rounded-[12px]">
       <div className="w-full h-[220px] shrink-0">
         <Img
           alt=""
@@ -971,6 +971,17 @@ function ProductCard({ product }: { product: Product }) {
 }
 
 export default function LinhaNeo() {
+  // When only two cards fit per row (container narrower than 3 x 180px + gaps) the Essentials and ULTRA/MAX groups are
+  // shown as one continuous sequence; with room for three or more per row each group keeps its own rows.
+  const listRef = useRef<HTMLDivElement>(null);
+  const [oneSequence, setOneSequence] = useState(false);
+  useEffect(() => {
+    const el = listRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(([e]) => setOneSequence(e.contentRect.width < 3 * 180 + 2 * 15));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
   const { lang } = useLang();
   const t = T[lang];
 
@@ -1033,15 +1044,17 @@ export default function LinhaNeo() {
           </div>
         </div>
 
-        <div className="pb-[20px] w-full">
-          <div className="flex flex-wrap gap-[15px] items-stretch justify-center w-full">
-            {row1.map((p, i) => <ProductCard key={i} product={p} />)}
+        <div ref={listRef} className={oneSequence ? "w-full" : "pb-[20px] w-full"}>
+          <div className="card-row [--card-min:180px] gap-[15px] items-stretch justify-center w-full">
+            {(oneSequence ? [...row1, ...row2] : row1).map((p, i) => <ProductCard key={i} product={p} />)}
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-[15px] items-stretch justify-center w-full">
-          {row2.map((p, i) => <ProductCard key={i} product={p} />)}
-        </div>
+        {!oneSequence && (
+          <div className="card-row [--card-min:180px] gap-[15px] items-stretch justify-center w-full">
+            {row2.map((p, i) => <ProductCard key={i} product={p} />)}
+          </div>
+        )}
 
         <div className="flex flex-wrap gap-[10px] items-stretch justify-center w-full overflow-hidden">
 

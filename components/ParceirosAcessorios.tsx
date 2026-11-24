@@ -322,9 +322,9 @@ export default function ParceirosAcessorios() {
 
         <div className="flex flex-col gap-[20px] items-start w-full">
           {/* Tier cards */}
-          <div className="flex flex-wrap gap-[20px] items-center justify-center overflow-hidden w-full">
+          <div className="card-row [--card-min:280px] gap-[20px] items-center justify-center overflow-hidden w-full">
             {tiers.map((tier) => (
-              <div key={tier.name} className="bg-white flex flex-1 flex-col items-start min-w-[280px] p-[20px] rounded-[16px]">
+              <div key={tier.name} className="bg-white flex flex-col items-start min-w-0 p-[20px] rounded-[16px]">
                 <div className="flex gap-[20px] items-center justify-center w-full">
                   <div className="flex flex-col items-center justify-center shrink-0" style={{ width: 46, height: 50 }}>
                     <div className="relative w-full" style={{ aspectRatio: "1/1" }}>
@@ -341,9 +341,9 @@ export default function ParceirosAcessorios() {
           </div>
 
           {/* Benefits row */}
-          <div className="bg-white flex flex-wrap gap-[20px_10px] items-center justify-center p-[20px] rounded-[16px] w-full">
+          <div className="bg-white card-row [--card-min:200px] gap-[20px_10px] items-center justify-center p-[20px] rounded-[16px] w-full">
             {benefits.map((b) => (
-              <div key={b.title} className="flex flex-1 gap-[20px] items-center justify-center min-w-[200px]">
+              <div key={b.title} className="flex gap-[20px] items-center justify-center min-w-0">
                 <div className="flex items-center justify-center shrink-0 size-[30px]">
                   <FigmaIcon src={b.icon} size={30} aspectW={b.iconW} aspectH={b.iconH} />
                 </div>

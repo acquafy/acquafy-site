@@ -402,7 +402,7 @@ export default function ProdutosParceria() {
         </h2>
 
         {/* ── cards ── */}
-        <div className="flex flex-col xl:flex-row gap-[20px] items-stretch xl:items-start justify-center w-full">
+        <div className="flex flex-col md:flex-row gap-[20px] items-stretch md:items-start justify-center w-full">
 
           {/* coluna esquerda: 2 cards empilhados */}
           <div className="flex flex-[1_0_0] flex-col gap-[20px] items-center min-w-[280px]">
@@ -411,7 +411,7 @@ export default function ProdutosParceria() {
           </div>
 
           {/* card direito: Acquafy Media */}
-          <div className="bg-white flex flex-[1_0_0] flex-col gap-[20px] h-[630px] items-center xl:max-w-[310px] min-h-[566px] min-w-[240px] overflow-clip p-[20px] relative rounded-[16px]">
+          <div className="bg-white flex flex-[1_0_0] flex-col gap-[20px] h-[630px] items-center md:max-w-[310px] min-h-[566px] min-w-[240px] overflow-clip p-[20px] relative rounded-[16px]">
 
             {/* header centralizado */}
             <div className="flex flex-col gap-[10px] items-center text-center w-full shrink-0">

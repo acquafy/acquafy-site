@@ -39,7 +39,7 @@ function ProductCard({ variant, family }: { variant: CheckinVariant; family: Che
   const nameColor = family.isPremium ? "#6e0cc3" : "#0233c3";
 
   return (
-    <div className="bg-white flex flex-[1_0_0] flex-col gap-[10px] items-center min-h-[360px] min-w-[160px] overflow-hidden p-[20px] rounded-[12px]">
+    <div className="bg-white flex flex-col gap-[10px] items-center min-h-[360px] min-w-0 overflow-hidden p-[20px] rounded-[12px]">
       <div className="w-full h-[180px] shrink-0">
         <Img
           alt=""
@@ -71,7 +71,7 @@ function ProductCard({ variant, family }: { variant: CheckinVariant; family: Che
 function ProductRow({ families }: { families: CheckinFamily[] }) {
   const items = families.flatMap((f) => f.variants.map((v) => ({ variant: v, family: f })));
   return (
-    <div className="flex flex-wrap gap-[15px] items-stretch justify-center w-full">
+    <div className="card-row [--card-min:160px] gap-[15px] items-stretch justify-center w-full">
       {items.map(({ variant, family }) => (
         <ProductCard key={variant.id} variant={variant} family={family} />
       ))}

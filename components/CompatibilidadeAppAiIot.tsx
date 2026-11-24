@@ -174,11 +174,11 @@ export default function CompatibilidadeAppAiIot() {
         </h2>
 
         {/* Cards de produto */}
-        <div className="flex flex-wrap gap-[20px] items-start justify-center w-full">
+        <div className="card-row [--card-min:240px] gap-[20px] items-start justify-center w-full">
           {t.products.map((p, i) => (
             <div
               key={p.name}
-              className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center min-w-[240px] overflow-clip px-[20px] py-[40px] rounded-[16px]"
+              className="min-w-0 bg-white flex flex-col gap-[20px] items-center overflow-clip px-[20px] py-[40px] rounded-[16px]"
             >
               {/* Nome */}
               <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91] text-center w-full">

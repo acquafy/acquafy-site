@@ -234,11 +234,11 @@ export default function PorqueParceiro() {
         </h2>
 
         {/* Cards */}
-        <div className="flex flex-wrap gap-[20px] items-start justify-center w-full">
+        <div className="card-row [--card-min:180px] gap-[20px] items-start justify-center w-full">
           {cards.map((c) => (
             <div
               key={c.title}
-              className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[20px] items-center min-h-[250px] min-w-[180px] overflow-hidden px-[10px] py-[20px] rounded-[16px]"
+              className="min-w-0 bg-[#f6f9fe] flex flex-col gap-[20px] items-center min-h-[250px] overflow-hidden px-[10px] py-[20px] rounded-[16px]"
             >
               <div className="flex flex-col items-center justify-center size-[40px] shrink-0">
                 <FigmaIcon src={c.icon} size={30} aspectW={c.iW} aspectH={c.iH} />

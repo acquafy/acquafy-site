@@ -180,7 +180,8 @@ export function LanguageSelectorFull() {
 }
 
 // ── HEADER variant ─────────────────────────────────────────────────────────
-export function LanguageSelectorCompact() {
+/** compact: flag only (label and chevron hidden), used by the header when the row runs out of room. */
+export function LanguageSelectorCompact({ compact = false }: { compact?: boolean }) {
   const [open, setOpen] = useState(false);
   const { lang, setLang } = useLang();
   const ref = useClickOutside(() => setOpen(false));
@@ -189,15 +190,17 @@ export function LanguageSelectorCompact() {
     <div ref={ref} className="relative">
       <button
         onClick={() => setOpen((v) => !v)}
+        aria-label={FULL_INFO[lang].label}
+        title={FULL_INFO[lang].label}
         className={`border flex gap-[5px] items-center p-[10px] rounded-[6px] cursor-pointer transition-colors ${
           open ? "bg-[#f6f9fe] border-[0.5px] border-[#cbd0d4]" : "border-[#cbd0d4]"
         }`}
       >
         <FlagImg flag={FULL_INFO[lang].flag} aspectW={FULL_INFO[lang].aspectW} aspectH={FULL_INFO[lang].aspectH} />
-        <p className={`font-avenir-heavy text-[14px] leading-[17px] whitespace-nowrap shrink-0 ${open ? "text-[#0233c3]" : "text-[#333]"}`}>
+        <p className={`${compact ? "hidden" : ""} font-avenir-heavy text-[14px] leading-[17px] whitespace-nowrap shrink-0 ${open ? "text-[#0233c3]" : "text-[#333]"}`}>
           {COMPACT_LABEL[lang]}
         </p>
-        <div className="flex flex-col items-center justify-center size-[10px] shrink-0">
+        <div className={`${compact ? "hidden" : "flex"} flex-col items-center justify-center size-[10px] shrink-0`}>
           <div className="flex items-center justify-center shrink-0 w-full">
             <div className={`flex-none w-full transition-transform duration-200 ${open ? "" : "-scale-y-100"}`}>
               <div className="relative size-full" style={{ aspectRatio: "30/18" }}>

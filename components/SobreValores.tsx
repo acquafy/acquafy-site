@@ -229,11 +229,11 @@ export default function SobreValores() {
         <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] text-center w-full">
           {t.heading}
         </h2>
-        <div className="flex flex-wrap gap-[20px] items-start justify-center w-full">
+        <div className="card-row [--card-min:180px] gap-[20px] items-start justify-center w-full">
           {values.map((v) => (
             <div
               key={v.title}
-              className="bg-white flex flex-[1_0_0] flex-col gap-[25px] items-center min-h-[240px] min-w-[180px] px-[10px] py-[20px] rounded-[16px]"
+              className="min-w-0 bg-white flex flex-col gap-[25px] items-center min-h-[240px] px-[10px] py-[20px] rounded-[16px]"
             >
               <FigmaIcon src={v.icon} alt={v.alt} size={40} aspectW={v.aspectW} aspectH={v.aspectH} />
               <div className="flex flex-col gap-[20px] items-center text-center w-full">

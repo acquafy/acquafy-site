@@ -240,11 +240,11 @@ export default function PorqueNeo() {
           </h2>
 
           {/* Cards grid */}
-          <div className="bg-white flex flex-wrap gap-[20px] items-start justify-center overflow-hidden p-[20px] rounded-[12px] w-full">
+          <div className="card-row [--card-min:180px] bg-white gap-[20px] items-start justify-center overflow-hidden p-[20px] rounded-[12px] w-full">
             {items.map((item) => (
               <div
                 key={item.title}
-                className="flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-w-[180px] rounded-[14px]"
+                className="min-w-0 flex flex-col gap-[20px] items-center justify-center rounded-[14px]"
               >
                 {/* Circle icon */}
                 <div className="border border-[#cbd0d4] flex flex-col items-center justify-center p-[14px] rounded-full shrink-0 size-[60px]">

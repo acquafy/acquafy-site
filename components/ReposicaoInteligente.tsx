@@ -414,9 +414,9 @@ export default function ReposicaoInteligente() {
 
           {/* Feature icons */}
           <div className="flex flex-col gap-[20px] items-start w-full">
-            <div className="flex flex-wrap gap-[20px] items-start justify-center w-full">
+            <div className="card-row [--card-min:160px] gap-[20px] items-start justify-center w-full">
               {features.map((f) => (
-                <div key={f.title} className="flex flex-col gap-[10px] items-start flex-1 min-w-[160px]">
+                <div key={f.title} className="flex flex-col gap-[10px] items-start min-w-0">
                   <FigmaIcon src={f.icon} size={36} aspectW={f.aspectW} aspectH={f.aspectH} />
                   <div className="flex flex-col gap-[10px] items-start w-full">
                     <p className="font-avenir-heavy text-[17px] leading-[20px] text-[#1f2e91]">{f.title}</p>
@@ -427,9 +427,9 @@ export default function ReposicaoInteligente() {
             </div>
 
             {/* Stats cards */}
-            <div className="flex flex-wrap gap-[20px] items-stretch justify-center w-full">
+            <div className="card-row [--card-min:160px] gap-[20px] items-stretch justify-center w-full">
               {t.stats.map((s) => (
-                <div key={s.value} className="bg-white flex flex-col gap-[10px] items-start justify-center flex-1 min-w-[160px] px-[20px] py-[20px] rounded-[12px] text-center">
+                <div key={s.value} className="bg-white flex flex-col gap-[10px] items-start justify-center min-w-0 px-[20px] py-[20px] rounded-[12px] text-center">
                   <p className="font-avenir-heavy text-[20px] leading-[28px] text-[#0569ff] w-full">{s.value}</p>
                   <p className="font-avenir-roman text-[14px] leading-[17px] text-[#2a2a2b] w-full">{s.label}</p>
                 </div>

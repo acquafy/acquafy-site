@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─── Card rows ───────────────────────────────────────────────────────────────
+   Rows of cards that used to be "flex flex-wrap" with flex-[1_0_0] children let the last wrapped card stretch across
+   the whole row (one giant card under the others). .card-row keeps every card on the same track width: at least
+   --card-min (the old min-w) and share the free width equally, so a lone card on the last row is never wider than its siblings.
+   Usage: className="card-row [--card-min:240px] gap-[20px] ..." and no flex-[1_0_0]/min-w on the cards.
+   ──────────────────────────────────────────────────────────────────────────── */
+@layer components {
+  .card-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--card-min, 200px)), 1fr));
+  }
+}
+
 /* ─── Snipcart — suppress default cart UI ─────────────────────────────────
    Purchases go from the product page to the order page of the Acquafy Account (/app/pedido).
    Snipcart is loaded only so its price-verification crawler can read the

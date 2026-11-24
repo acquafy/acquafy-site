@@ -1004,11 +1004,11 @@ export default function ModelosParceria() {
           </h2>
 
           {/* Cards */}
-          <div className="flex flex-wrap gap-[20px] items-stretch justify-center w-full">
+          <div className="card-row [--card-min:280px] gap-[20px] items-stretch justify-center w-full">
             {tiers.map((tier) => (
               <div
                 key={tier.name}
-                className={`flex flex-[1_0_0] flex-col gap-[25px] items-center min-h-[320px] min-w-[280px] px-[20px] py-[25px] rounded-[16px] ${tier.outerCls}`}
+                className={`flex flex-col gap-[25px] items-center min-h-[320px] min-w-0 px-[20px] py-[25px] rounded-[16px] ${tier.outerCls}`}
                 style={tier.name === "PLATINUM" ? { backgroundImage: "linear-gradient(92.97deg, #0233c3 6.19%, #9f3df5 93.35%)" } : undefined}
               >
                 {/* Medal + tier name */}

@@ -232,7 +232,7 @@ function FeatureCard({ icon, aspectW, aspectH, title, description }: {
   icon: string; aspectW: number; aspectH: number; title: string; description: string;
 }) {
   return (
-    <div className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[20px] items-center min-h-[265px] min-w-[150px] px-[10px] py-[20px] rounded-[16px]">
+    <div className="bg-[#f6f9fe] flex flex-col gap-[20px] items-center min-h-[265px] min-w-0 px-[10px] py-[20px] rounded-[16px]">
       <FigmaIcon src={icon} size={40} aspectW={aspectW} aspectH={aspectH} />
       <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91] text-center w-full min-h-[36px] flex items-center justify-center">
         {title}
@@ -285,7 +285,7 @@ export default function TecnologiaFazDiferenca() {
         ">
 
           {/* Cards grid */}
-          <div className="content-start flex flex-wrap gap-[10px] items-start justify-center min-w-[180px] overflow-clip relative w-full md:flex-[1_0_0]">
+          <div className="content-start card-row [--card-min:150px] gap-[10px] items-start justify-center min-w-[180px] overflow-clip relative w-full md:flex-[1_0_0]">
             {features.map((f) => (
               <FeatureCard key={f.title} {...f} />
             ))}

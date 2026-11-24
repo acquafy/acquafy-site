@@ -1,7 +1,7 @@
 "use client";
 import Img from "@/components/ui/Img";
 
-import { useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import FigmaIcon from "./FigmaIcon";
 import { LanguageSelectorCompact } from "./ui/LanguageSelector";
@@ -593,12 +593,32 @@ export default function Header() {
   const { lang }   = useLang();
   const bePartner  = useFeature("bePartner");
 
+  // The right-hand buttons give up their labels, step by step, when the nav no longer fits next to them:
+  // 0 = full labels, 1 = "My account" and the language become icons, 2 = the partner button becomes an icon too.
+  const [level, setLevel] = useState(0);
+  const [tick,  setTick]  = useState(0);
+  const navRef = useRef<HTMLElement>(null);
+
   const buyNowOn   = useFeature("buyNow");
   // The Buy tab (/buy) only exists while the Buy Now flag is on.
   const navItems   = buildNavItems(NAV_TEXT[lang]).filter((n) => buyNowOn || n.href !== "/buy");
   const partnerBtn = PARTNER_BTN[lang];
   const ariaMenu   = ARIA_MENU[lang];
   const activeNav  = navItems.find((n) => n.label === openDropdown);
+
+  useLayoutEffect(() => {
+    const nav = navRef.current;
+    if (!nav || nav.offsetWidth === 0 || level >= 2) return; // below lg the nav is hidden (hamburger menu)
+    const row = nav.parentElement as HTMLElement; // logo + nav + buttons: it overflows when they do not fit
+    if (row.scrollWidth > row.clientWidth + 1) setLevel((l) => l + 1);
+  }, [level, tick, lang, navItems.length, bePartner]);
+
+  useEffect(() => {
+    const reset = () => { setLevel(0); setTick((t) => t + 1); };
+    window.addEventListener("resize", reset);
+    document.fonts?.ready.then(reset);
+    return () => window.removeEventListener("resize", reset);
+  }, []);
 
   function isActive(item: NavItem) {
     return pathname === item.href || pathname.startsWith(item.href + "/") || item.extra.includes(pathname);
@@ -616,7 +636,7 @@ export default function Header() {
           </div>
         </a>
 
-        <nav className="hidden lg:flex flex-1 gap-[2px] h-[80px] items-center justify-center">
+        <nav ref={navRef} className="hidden lg:flex flex-1 gap-[2px] h-[80px] items-center justify-center">
           {navItems.map((item) => (
             <NavTrigger
               key={item.href}
@@ -632,12 +652,31 @@ export default function Header() {
         </nav>
 
         <div className="flex gap-[10px] items-center justify-end shrink-0">
-          <a href="/app/pedidos" className="hidden lg:block font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3] hover:text-[#002ba8] active:text-[#005ae0] transition-colors whitespace-nowrap px-[6px]">{lang.startsWith("pt") ? "Minha conta" : "My Account"}</a>
-          <LanguageSelectorCompact />
+          <a
+            href="/app/pedidos"
+            aria-label={lang.startsWith("pt") ? "Minha conta" : "My Account"}
+            title={lang.startsWith("pt") ? "Minha conta" : "My Account"}
+            className={level >= 1
+              ? "hidden lg:flex items-center justify-center size-[40px] rounded-[6px] border border-[#cbd0d4] text-[#0233c3] hover:text-[#002ba8] hover:bg-[#f6f9fe] transition-colors"
+              : "hidden lg:block font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3] hover:text-[#002ba8] active:text-[#005ae0] transition-colors whitespace-nowrap px-[6px]"}
+          >
+            {level >= 1 ? (
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden>
+                <circle cx="10" cy="6.5" r="3.5" stroke="currentColor" strokeWidth="1.5" />
+                <path d="M3 17c0-3.3 3.1-5.5 7-5.5s7 2.2 7 5.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              </svg>
+            ) : lang.startsWith("pt") ? "Minha conta" : "My Account"}
+          </a>
+          <LanguageSelectorCompact compact={level >= 1} />
           {bePartner && (
-            <a href="/partnership" className="hidden lg:flex bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors gap-[10px] items-center justify-center h-[40px] overflow-hidden px-[20px] rounded-[8px] shrink-0 cursor-pointer">
+            <a
+              href="/partnership"
+              aria-label={partnerBtn}
+              title={partnerBtn}
+              className={`hidden lg:flex bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors gap-[10px] items-center justify-center h-[40px] overflow-hidden rounded-[8px] shrink-0 cursor-pointer ${level >= 2 ? "w-[40px]" : "px-[20px]"}`}
+            >
               <FigmaIcon src={imgPartner} size={16} aspectW={41} aspectH={40} />
-              <span className="font-avenir-heavy text-[14px] leading-[17px] text-white whitespace-nowrap">{partnerBtn}</span>
+              {level < 2 && <span className="font-avenir-heavy text-[14px] leading-[17px] text-white whitespace-nowrap">{partnerBtn}</span>}
             </a>
           )}
           <button

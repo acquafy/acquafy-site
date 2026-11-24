@@ -923,11 +923,11 @@ export default function FeaturesAppAiIot() {
         </h2>
 
         {/* Grid de cards */}
-        <div className="flex flex-wrap gap-[20px] items-start justify-center w-full">
+        <div className="card-row [--card-min:280px] gap-[20px] items-start justify-center w-full">
           {cards.map((card) => (
             <div
               key={card.title}
-              className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col items-center min-h-[540px] min-w-[280px] overflow-clip rounded-[16px]"
+              className="min-w-0 bg-[#f6f9fe] flex flex-col items-center min-h-[540px] overflow-clip rounded-[16px]"
             >
               {/* Conteúdo superior */}
               <div className="flex flex-col gap-[20px] items-start p-[20px] w-full">

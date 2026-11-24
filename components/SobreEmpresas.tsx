@@ -60,11 +60,11 @@ export default function SobreEmpresas() {
           {t.heading}
         </h2>
 
-        <div className="flex flex-wrap gap-[20px] items-center justify-center w-full">
+        <div className="card-row [--card-min:220px] gap-[20px] items-center justify-center w-full">
           {brands.map((brand) => (
             <div
               key={brand.alt}
-              className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col items-center justify-center min-h-[130px] min-w-[220px] max-w-[340px] p-[40px] rounded-[16px]"
+              className="min-w-0 bg-[#f6f9fe] flex flex-col items-center justify-center min-h-[130px] max-w-[340px] p-[40px] rounded-[16px]"
             >
               {/* Container com aspect-ratio fixo do Figma — preenche a largura total do card */}
               <div

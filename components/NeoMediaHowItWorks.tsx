@@ -199,9 +199,9 @@ export default function NeoMediaHowItWorks() {
           <span className="text-[#0569ff]">{t.heading1}</span>
           {t.heading2}
         </h2>
-        <div className="flex flex-wrap gap-[20px] items-start justify-center w-full">
+        <div className="card-row [--card-min:280px] gap-[20px] items-start justify-center w-full">
           {steps.map((s, i) => (
-            <div key={s.num} className="relative bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[20px] items-center min-w-[280px] p-[20px] rounded-[16px]">
+            <div key={s.num} className="min-w-0 relative bg-[#f6f9fe] flex flex-col gap-[20px] items-center p-[20px] rounded-[16px]">
               {/* Icon circle + step number */}
               <div className="relative flex gap-[20px] items-center justify-center w-full">
                 <div className="border border-[#cbd0d4] flex flex-col items-center justify-center p-[24px] rounded-full size-[100px] shrink-0">

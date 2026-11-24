@@ -465,7 +465,7 @@ function CanalCard({
   );
 
   return (
-    <div className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-w-[200px] p-[20px] rounded-[16px]">
+    <div className="bg-white flex flex-col gap-[20px] items-center justify-center min-w-0 p-[20px] rounded-[16px]">
       <FigmaIcon src={icon} size={40} aspectW={aspectW} aspectH={aspectH} />
       <div className="flex flex-col gap-[20px] items-start w-full">
         <div className="flex items-center justify-center w-full min-h-[30px]">
@@ -555,7 +555,7 @@ export default function OutrosCanais() {
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-[20px] items-start justify-center w-full">
+          <div className="card-row [--card-min:200px] gap-[20px] items-start justify-center w-full">
             {cards.map((card) => (
               <CanalCard key={card.title} {...card} />
             ))}

@@ -217,10 +217,10 @@ export default function FaleComEquipeSuporte() {
         </div>
 
         {/* Contact cards */}
-        <div className="flex flex-wrap gap-[20px] items-stretch justify-center w-full">
+        <div className="card-row [--card-min:240px] gap-[20px] items-stretch justify-center w-full">
 
           {/* Chat online */}
-          <div className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center min-w-[240px] p-[20px] rounded-[16px] win-1024:items-start">
+          <div className="min-w-0 bg-white flex flex-col gap-[20px] items-center p-[20px] rounded-[16px] win-1024:items-start">
             <div className="flex gap-[20px] items-center w-full">
               <div className="bg-[#0569ff] flex flex-col items-center justify-center p-[20px] rounded-full shrink-0 size-[80px]">
                 <FigmaIcon src={imgChatIcon} size={30} />
@@ -249,7 +249,7 @@ export default function FaleComEquipeSuporte() {
           </div>
 
           {/* E-mail */}
-          <div className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center min-w-[240px] p-[20px] rounded-[16px] win-1024:items-start">
+          <div className="min-w-0 bg-white flex flex-col gap-[20px] items-center p-[20px] rounded-[16px] win-1024:items-start">
             <div className="flex gap-[20px] items-center w-full">
               <div className="bg-[#0569ff] flex flex-col items-center justify-center p-[20px] rounded-full shrink-0 size-[80px]">
                 <FigmaIcon src={imgMailIcon} size={30} aspectW={30} aspectH={24} />
@@ -274,7 +274,7 @@ export default function FaleComEquipeSuporte() {
           </div>
 
           {/* WhatsApp */}
-          <div className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center min-w-[240px] p-[20px] rounded-[16px] win-1024:items-start">
+          <div className="min-w-0 bg-white flex flex-col gap-[20px] items-center p-[20px] rounded-[16px] win-1024:items-start">
             <div className="flex gap-[20px] items-center w-full">
               <div className="bg-[#0569ff] flex flex-col items-center justify-center p-[20px] rounded-full shrink-0 size-[80px]">
                 <FigmaIcon src={imgWhatsappIcon} size={30} />
@@ -301,7 +301,7 @@ export default function FaleComEquipeSuporte() {
           </div>
 
           {/* Horário de atendimento */}
-          <div className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center min-w-[240px] p-[20px] rounded-[16px] win-1024:items-start">
+          <div className="min-w-0 bg-white flex flex-col gap-[20px] items-center p-[20px] rounded-[16px] win-1024:items-start">
             <div className="flex gap-[20px] items-center w-full">
               <div className="bg-[#0569ff] flex flex-col items-center justify-center p-[20px] rounded-full shrink-0 size-[80px]">
                 <FigmaIcon src={imgTimeIcon} size={30} />

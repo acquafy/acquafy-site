@@ -461,19 +461,21 @@ const BUY_NOW: Record<Lang, string> = {
   "pt-pt": "Comprar Agora",
 };
 
-function ProductImage({ src }: { src: string }) {
+// The box follows the picture's own proportion (ratio = width / height) and never grows past 220px, so a wide product
+// does not leave empty space above and below it when the card gets narrow.
+function ProductImage({ src, ratio }: { src: string; ratio: string }) {
   return (
-    <div className="w-full h-[220px] shrink-0">
+    <div className="w-full max-h-[220px] shrink-0" style={{ aspectRatio: ratio }}>
       <Img alt="" className="w-full h-full object-contain pointer-events-none" src={src} />
     </div>
   );
 }
 
-function PremiumCard({ product, color = "#6e0cc3" }: { product: Product; color?: string }) {
+function PremiumCard({ product, ratio, color = "#6e0cc3" }: { product: Product; ratio: string; color?: string }) {
   const { lang } = useLang();
   return (
-    <div className="bg-white flex flex-[1_0_0] flex-col gap-[10px] items-center min-h-[290px] min-w-[180px] overflow-hidden p-[20px] rounded-[12px]">
-      <ProductImage src={product.img} />
+    <div className="bg-white flex flex-col gap-[10px] items-center min-h-[290px] min-w-0 overflow-hidden p-[20px] rounded-[12px]">
+      <ProductImage src={product.img} ratio={ratio} />
       <p className="font-avenir-heavy text-[18px] leading-[22px] text-center w-full min-h-[55px] flex flex-col items-center justify-center" style={{ color }}>
         {product.name}
       </p>
@@ -495,10 +497,10 @@ function PanelSlideshow() {
   const [open, setOpen] = useState(false);
   const count = panelSlideSrcs.length;
   return (
-    <div className="flex flex-col gap-[10px] items-center justify-center shrink-0 min-w-[240px] max-w-[300px] w-[300px]">
+    <div className="flex flex-col gap-[20px] xl:gap-[10px] items-center justify-center shrink-0 min-w-[200px] max-w-[232.6px] w-[232.6px] xl:min-w-[240px] xl:max-w-[300px] xl:w-[300px]">
       <div
         className="group relative w-full cursor-pointer overflow-hidden bg-black box-border"
-        style={{ aspectRatio: "3249/5308", padding: "1.231%", borderRadius: "5% / 3.06%" }}
+        style={{ aspectRatio: "3249/5308", padding: "1.231%", borderRadius: "16px" }}
         onClick={() => setActive((active + 1) % panelSlideSrcs.length)}
         role="button"
         tabIndex={0}
@@ -508,7 +510,7 @@ function PanelSlideshow() {
         <Img
           alt="Painel Premium"
           className="block w-full h-full object-cover pointer-events-none"
-          style={{ borderRadius: "3.864% / 2.342%" }}
+          style={{ borderRadius: "12.5px" }}
           src={panelSlideSrcs[active]}
         />
         <SlideFullscreenButton onOpen={() => setOpen(true)} />
@@ -604,41 +606,41 @@ export default function LinhaPremium() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-[20px] items-start justify-center w-full lg:flex-row lg:flex-wrap lg:items-stretch">
+        <div className="flex flex-col gap-[20px] items-start justify-center w-full xl:flex-row xl:flex-wrap xl:items-stretch">
 
-          <div className="flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-w-[240px] w-full lg:w-auto">
-            <div className="flex flex-wrap gap-[15px] items-stretch w-full">
-              {rowInfinity.map((p, i) => <PremiumCard key={i} product={p} />)}
+          <div className="flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-w-[240px] w-full xl:w-auto">
+            <div className="card-row [--card-min:180px] gap-[15px] items-stretch w-full">
+              {rowInfinity.map((p, i) => <PremiumCard key={i} product={p} ratio="2742 / 4038" />)}
             </div>
-            <div className="flex flex-wrap gap-[15px] items-stretch w-full">
-              {rowPrestige.map((p, i) => <PremiumCard key={i} product={p} />)}
+            <div className="card-row [--card-min:180px] gap-[15px] items-stretch w-full">
+              {rowPrestige.map((p, i) => <PremiumCard key={i} product={p} ratio="2763 / 2420" />)}
             </div>
-            <div className="flex flex-wrap gap-[15px] items-stretch w-full">
-              {rowPrime.map((p, i) => <PremiumCard key={i} product={p} />)}
+            <div className="card-row [--card-min:180px] gap-[15px] items-stretch w-full">
+              {rowPrime.map((p, i) => <PremiumCard key={i} product={p} ratio="3200 / 2752" />)}
             </div>
           </div>
 
-          <div className="flex flex-[1_0_0] flex-col gap-[20px] items-center justify-start min-w-[240px]">
+          {/* Below xl this column is full width: the IPS panel and the slideshow share one row (lg) so the space is filled. */}
+          <div className="flex flex-[1_0_0] flex-col lg:flex-row xl:flex-col gap-[20px] items-center justify-start min-w-[240px] w-full xl:w-auto">
 
-            <div className="bg-[#f6f9fe] flex flex-col gap-[20px] items-center justify-center min-w-[240px] pt-[20px] rounded-[16px] shrink-0 w-full">
+            <div className="bg-[#f6f9fe] flex flex-col gap-[20px] items-center justify-center min-w-[240px] xl:pt-[20px] rounded-[16px] shrink-0 w-full lg:w-auto xl:w-full">
 
-              <div className="flex flex-col gap-[10px] items-start w-full">
-                <p className="font-avenir-heavy text-[20px] leading-[28px] w-full">
-                  <span className="text-[#1f2e91]">{t.panelTitle[0]}</span>
-                  <span
-                    className="bg-clip-text text-transparent"
-                    style={{ backgroundImage: "linear-gradient(170.17deg, #0233c3 6.19%, #9f3df5 93.35%)" }}
-                  >
-                    {t.panelTitle[1]}
-                  </span>
-                </p>
-                <p className="font-avenir-roman text-[16px] leading-[20px] text-[#2a2a2b] w-full">
-                  {t.panelSub}
-                </p>
-              </div>
-
-              <div className="flex flex-wrap gap-[20px] items-center justify-center shrink-0 w-full">
-                <div className="self-stretch flex flex-[1_0_0] flex-col gap-[20px] items-start justify-center min-w-[240px]">
+              <div className="flex flex-wrap gap-[20px_40px] items-center justify-center shrink-0 w-full">
+                <div className="self-stretch flex flex-[1_0_0] lg:flex-none lg:w-[300px] xl:w-auto xl:flex-[1_0_0] flex-col gap-[20px] items-start justify-center min-w-[240px]">
+                  <div className="flex flex-col gap-[10px] items-start w-full">
+                    <p className="font-avenir-heavy text-[20px] leading-[28px] w-full">
+                      <span className="text-[#1f2e91]">{t.panelTitle[0]}</span>
+                      <span
+                        className="bg-clip-text text-transparent"
+                        style={{ backgroundImage: "linear-gradient(170.17deg, #0233c3 6.19%, #9f3df5 93.35%)" }}
+                      >
+                        {t.panelTitle[1]}
+                      </span>
+                    </p>
+                    <p className="font-avenir-roman text-[16px] leading-[20px] text-[#2a2a2b] w-full">
+                      {t.panelSub}
+                    </p>
+                  </div>
                   {panelFeatures.map((f, i) => (
                     <div key={i} className="flex gap-[20px] items-center w-full">
                       <FigmaIcon src={f.icon} size={36} />
@@ -658,7 +660,9 @@ export default function LinhaPremium() {
               </div>
             </div>
 
-            <PremiumSlideshow />
+            <div className="w-full lg:flex-1 lg:min-w-0 xl:flex-none">
+              <PremiumSlideshow />
+            </div>
 
           </div>
         </div>

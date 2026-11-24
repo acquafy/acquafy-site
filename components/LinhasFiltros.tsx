@@ -356,7 +356,7 @@ function FilterCard({ card }: { card: FilterCard }) {
   const isHighlightGrad = card.highlight && card.gradient;
 
   return (
-    <div className={`flex flex-[1_0_0] flex-col gap-[20px] items-start min-h-[210px] min-w-[200px] px-[20px] py-[25px] relative rounded-[16px] bg-[#f6f9fe]${isHighlightBlue ? " border-2 border-[#0233c3]" : ""}${isHighlightGrad ? " border-2 border-[#0233c3]" : ""}`}>
+    <div className={`flex flex-col gap-[20px] items-start min-h-[210px] min-w-0 px-[20px] py-[25px] relative rounded-[16px] bg-[#f6f9fe]${isHighlightBlue ? " border-2 border-[#0233c3]" : ""}${isHighlightGrad ? " border-2 border-[#0233c3]" : ""}`}>
       {/* Number + title */}
       <div className="flex flex-col gap-[10px] items-center w-full shrink-0">
         <div
@@ -399,7 +399,7 @@ export default function LinhasFiltros({ showPh = true }: { showPh?: boolean }) {
           <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#0569ff] text-center w-full">
             {t.essentialsHeading}
           </h2>
-          <div className="flex flex-wrap gap-[20px] items-stretch justify-center w-full">
+          <div className="card-row [--card-min:200px] gap-[20px] items-stretch justify-center w-full">
             {essentials.map((c, i) => <FilterCard key={i} card={c} />)}
           </div>
         </div>
@@ -412,7 +412,7 @@ export default function LinhasFiltros({ showPh = true }: { showPh?: boolean }) {
           >
             {t.premiumHeading}
           </h2>
-          <div className="flex flex-wrap gap-[20px] items-stretch justify-center w-full">
+          <div className="card-row [--card-min:200px] gap-[20px] items-stretch justify-center w-full">
             {premium.map((c, i) => <FilterCard key={i} card={c} />)}
           </div>
         </div>

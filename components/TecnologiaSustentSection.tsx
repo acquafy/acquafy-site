@@ -392,9 +392,9 @@ export default function TecnologiaSustentSection() {
         </div>
 
         {/* Stats bar */}
-        <div className="bg-white content-start flex flex-wrap gap-[30px_20px] items-start justify-center max-w-[1400px] w-full overflow-hidden px-[20px] py-[40px] relative rounded-[16px]">
+        <div className="card-row [--card-min:160px] bg-white content-start gap-[30px_20px] items-start justify-center max-w-[1400px] w-full overflow-hidden px-[20px] py-[40px] relative rounded-[16px]">
           {stats.map((s) => (
-            <div key={s.value} className="content-start flex flex-[1_0_0] flex-wrap gap-[20px] items-start min-w-[160px] relative">
+            <div key={s.value} className="min-w-0 content-start flex flex-wrap gap-[20px] items-start relative">
               <FigmaIcon src={s.icon} size={40} aspectW={s.aspectW} aspectH={s.aspectH} />
               <div className="[word-break:break-word] content-stretch flex flex-[1_0_0] flex-col gap-[15px] items-start leading-[0] min-w-px not-italic relative">
                 <div className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both] flex flex-col font-avenir-black justify-center relative shrink-0 text-[32px] text-[#0b8650] w-full">

@@ -266,11 +266,11 @@ export default function NeoMediaPlatform() {
           {t.heading}{" "}
           <span className="text-[#0569ff]">{t.headingHighlight}</span>
         </h2>
-        <div className="flex flex-wrap gap-[20px] items-stretch justify-center w-full">
+        <div className="card-row [--card-min:180px] gap-[20px] items-stretch justify-center w-full">
           {t.cards.map((c) => (
             <div
               key={c.title}
-              className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center min-h-[320px] min-w-[180px] win-1024:min-w-[300px] win-1280:min-w-[180px] p-[20px] rounded-[16px] overflow-hidden"
+              className="min-w-0 bg-white flex flex-col gap-[20px] items-center min-h-[320px] win-1024:min-w-[300px] win-1280:min-w-[180px] p-[20px] rounded-[16px] overflow-hidden"
             >
               <h3 className="font-avenir-heavy text-[18px] leading-[22px] text-[#333] text-center flex items-center justify-center min-h-[44px] w-full">
                 {c.title}

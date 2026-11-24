@@ -198,11 +198,11 @@ export default function ExpansaoGlobalPilares() {
           {t.heading}
         </h2>
 
-        <div className="flex flex-wrap gap-[20px] items-stretch justify-center w-full">
+        <div className="card-row [--card-min:180px] gap-[20px] items-stretch justify-center w-full">
           {pillars.map((p) => (
             <div
               key={p.title}
-              className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center min-h-[250px] min-w-[180px] overflow-hidden px-[10px] py-[20px] rounded-[16px]"
+              className="min-w-0 bg-white flex flex-col gap-[20px] items-center min-h-[250px] overflow-hidden px-[10px] py-[20px] rounded-[16px]"
             >
               <FigmaIcon src={p.icon} size={40} aspectW={p.iconW} aspectH={p.iconH} />
               <h3 className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91] text-center flex items-center justify-center min-h-[50px]">

@@ -234,9 +234,9 @@ export default function PlatformAppAiIot() {
           <span className="text-[#0569ff]">IoT</span>
         </h2>
 
-        <div className="flex flex-wrap gap-[20px] items-stretch justify-center w-full">
+        <div className="card-row [--card-min:140px] gap-[20px] items-stretch justify-center w-full">
           {items.map((item) => (
-            <div key={item.label} className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center min-h-[135px] min-w-[140px] p-[20px] rounded-[12px]">
+            <div key={item.label} className="min-w-0 bg-white flex flex-col gap-[20px] items-center min-h-[135px] p-[20px] rounded-[12px]">
               <div className="flex items-center justify-center shrink-0 size-[36px]">
                 <FigmaIcon src={item.icon} size={36} aspectW={item.iconW} aspectH={item.iconH} />
               </div>

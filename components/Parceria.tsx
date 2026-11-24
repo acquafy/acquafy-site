@@ -325,11 +325,11 @@ export default function Parceria() {
         </p>
       </div>
 
-      <div className="flex flex-wrap gap-[10px] items-stretch justify-center max-w-[1400px] overflow-hidden w-full">
+      <div className="card-row [--card-min:280px] gap-[10px] items-stretch justify-center max-w-[1400px] overflow-hidden w-full">
         {TIER_ICONS.map((tier, ti) => (
           <div
             key={tier.name}
-            className="bg-[#f6f9fe] flex flex-1 flex-wrap gap-y-[20px] items-start min-w-[280px] p-[20px] rounded-[16px]"
+            className="bg-[#f6f9fe] flex flex-wrap gap-y-[20px] items-start min-w-0 p-[20px] rounded-[16px]"
           >
             <div className="flex flex-1 flex-col gap-[20px] items-start min-w-[280px]">
               <div className="flex flex-col gap-[20px] items-start w-full">
@@ -366,7 +366,7 @@ export default function Parceria() {
           </div>
         ))}
 
-        <div className="bg-[#f6f9fe] flex flex-1 flex-col gap-[20px] items-center justify-between min-h-[206px] min-w-[280px] p-[20px] rounded-[16px]">
+        <div className="bg-[#f6f9fe] flex flex-col gap-[20px] items-center justify-between min-h-[206px] min-w-0 p-[20px] rounded-[16px]">
           {BENEFIT_ICONS.map((item, bi) => (
             <div key={bi} className="flex gap-[10px] items-center w-full">
               <FigmaIcon src={item.icon} size={24} aspectW={item.aspectW} aspectH={item.aspectH} />
