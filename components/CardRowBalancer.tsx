@@ -4,11 +4,11 @@ import { useEffect } from "react";
 
 /**
  * Balances every ".card-row" (see globals.css) so that, when the cards wrap, the rows differ by at most one card:
- * 7 cards -> 4 / 3, then 3 / 2 / 2, and so on. Cards keep the same width in every row and a shorter row is centred.
+ * 7 cards -> 4 / 3, then 3 / 2 / 2, and so on. Only the minimum width (--card-min) decides how many fit on a
+ * row; the blocks then always fill the full width, so a row with fewer blocks has wider ones and nothing is left
+ * empty beside it (a card alone on its row stays card-sized and centred).
  *
- * How: each card spans 2 tracks of a 2*cols grid, and the first card of a shorter row starts (cols - count) tracks in,
- * which centres it, except for plain blocks (no background and no border, e.g. icon + text columns inside a card): a
- * shorter row of those starts at the left edge instead, so the text stays aligned with the rows above. Before this runs (or without JS) .card-row is a plain auto-fit grid, so nothing breaks.
+ * Before this runs (or without JS) .card-row is a plain auto-fit grid, so nothing breaks.
  * The container reads its minimum card width from --card-min and its gap from column-gap.
  *
  * ".card-row-fit" (items of different widths, e.g. a stats strip): while every item fits on a single row the row is a
@@ -53,16 +53,25 @@ function layout(el: HTMLElement) {
   }
 
   const first = getComputedStyle(kids[0]);
-  const plain = first.backgroundColor === "rgba(0, 0, 0, 0)" && first.backgroundImage === "none" && parseFloat(first.borderTopWidth) === 0;
+  const plain =
+    first.backgroundColor === "rgba(0, 0, 0, 0)" && first.backgroundImage === "none" && parseFloat(first.borderTopWidth) === 0;
 
-  el.style.gridTemplateColumns = `repeat(${cols * 2}, minmax(0, 1fr))`;
+  const counts = Array.from({ length: rows }, (_, r) => (r < extra ? base + 1 : base));
+
+  // Every row fills the full width: the grid has lcm(row sizes) tracks and a block in a row of `count` spans
+  // tracks / count of them. A card alone on its row (never a plain text block) keeps the width of a normal card
+  // and is centred, so it does not turn into one giant card.
+  const gcd = (x: number, y: number): number => (y ? gcd(y, x % y) : x);
+  const lone = (count: number) => !plain && count === 1 && cols > 1;
+  const sizes = counts.map((count) => (lone(count) ? cols : count));
+  const tracks = sizes.reduce((acc, c) => (acc * c) / gcd(acc, c), 1) * (sizes.some((_, r) => lone(counts[r])) ? 2 : 1);
+  el.style.gridTemplateColumns = `repeat(${tracks}, minmax(0, 1fr))`;
   let i = 0;
-  for (let r = 0; r < rows; r++) {
-    const count = r < extra ? base + 1 : base;
-    for (let j = 0; j < count; j++, i++) {
-      kids[i].style.gridColumn = `${(plain ? 0 : cols - count) + 2 * j + 1} / span 2`;
-    }
-  }
+  counts.forEach((count) => {
+    const span = tracks / (lone(count) ? cols : count);
+    const offset = lone(count) ? (tracks - span) / 2 : 0;
+    for (let j = 0; j < count; j++, i++) kids[i].style.gridColumn = `${offset + j * span + 1} / span ${span}`;
+  });
 }
 
 export default function CardRowBalancer() {

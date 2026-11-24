@@ -10,6 +10,8 @@ const config: Config = {
       screens: {
         /* Breakpoint mobile — telas ≤ 767px (smartphones) */
         "mob": { max: "767px" },
+        /* Phones only — screens ≤ 479px */
+        "phone": { max: "479px" },
         /* Breakpoints canônicos conforme setup do projeto:
            ≥ 1024px → Breakpoint 2
            ≥ 1280px → TELA TOTAL */

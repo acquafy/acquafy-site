@@ -615,7 +615,7 @@ function MobileNavSection({
           <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#0569ff]">{col.title}</p>
         </div>
         <div className={`shrink-0 transition-transform duration-200${isOpen ? "" : " rotate-180"}`}>
-          <div className="relative h-[5px] w-[10px]">
+          <div className="relative size-[19.2px]">
             <Img alt="" className="absolute inset-0 max-w-none size-full" src={imgArrowDown} />
           </div>
         </div>
@@ -742,24 +742,24 @@ export default function Footer() {
 
       {/* Bottom bar */}
       <div className="flex flex-col items-center justify-center px-[20px] w-full">
-        <div className="flex flex-wrap gap-[14px_20px] items-center justify-between max-w-[1400px] w-full mob:flex-col mob:gap-[20px]">
-          <div className="flex gap-[20px] items-center min-w-[240px] shrink-0 w-[240px] mob:w-full mob:min-w-0 mob:shrink mob:justify-center">
+        <div className="flex flex-wrap gap-[14px_20px] items-center justify-between max-w-[1400px] w-full phone:flex-col phone:gap-[20px]">
+          <div className="flex gap-[20px] items-center min-w-[180px] flex-[0_1_200px] md:flex-[0_0_240px] phone:w-full phone:min-w-0 phone:basis-auto phone:justify-center">
             <div className="flex flex-col items-center justify-center shrink-0 size-[40px]">
               <FigmaIcon src={imgFlagUSA} alt="USA" size={40} />
             </div>
-            <p className="font-avenir-heavy text-[16px] leading-[20px] text-[#1f2e91] flex-[1_0_0] min-w-px mob:flex-none">
+            <p className="font-avenir-heavy text-[16px] leading-[20px] text-[#1f2e91] flex-[1_0_0] min-w-px phone:flex-none">
               {t.founded}
             </p>
           </div>
-          <div className="flex gap-[20px] items-center min-w-[240px] shrink-0 w-[240px] mob:w-full mob:min-w-0 mob:shrink mob:justify-center">
+          <div className="flex gap-[20px] items-center min-w-[180px] flex-[0_1_200px] md:flex-[0_0_240px] phone:w-full phone:min-w-0 phone:basis-auto phone:justify-center">
             <div className="flex flex-col items-center justify-center shrink-0 size-[40px]">
               <FigmaIcon src={imgGlobeSust} size={40} aspectW={492} aspectH={474.82} />
             </div>
-            <p className="font-avenir-heavy text-[16px] leading-[20px] text-[#1f2e91] flex-[1_0_0] min-w-px mob:flex-none">
+            <p className="font-avenir-heavy text-[16px] leading-[20px] text-[#1f2e91] flex-[1_0_0] min-w-px phone:flex-none">
               {t.globalPlatform}
             </p>
           </div>
-          <div className="flex flex-wrap gap-[18px] items-center justify-center min-w-[180px] shrink-0 mob:min-w-0 mob:w-full">
+          <div className="flex flex-wrap gap-[18px] items-center justify-center min-w-[180px] shrink-0 phone:min-w-0 phone:w-full">
             {socialLinks.map((s) => (
               <a key={s.href} href={s.href} target="_blank" rel="noreferrer" aria-label={s.label}
                 className="relative shrink-0 size-[50px] min-h-[50px] min-w-[50px] hover:opacity-80 transition-opacity">

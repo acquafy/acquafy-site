@@ -700,7 +700,7 @@ export default function Hero() {
 
       {/* ══ STATS BAR ══ */}
       {slide === 0 ? (
-        <div className="relative shrink-0 bg-[#0233c3] card-row card-row-fit [--card-min:160px] items-center justify-center max-w-[1400px] min-h-[85px] overflow-hidden px-[20px] py-[22px] rounded-[16px] w-full">
+        <div className="relative shrink-0 bg-[#0233c3] card-row card-row-fit [--card-min:160px] gap-[24px_20px] items-center justify-center max-w-[1400px] min-h-[85px] overflow-hidden px-[20px] py-[22px] rounded-[16px] w-full">
           {STATS1_ICONS.map((stat, i) => {
             const text = t.stats1[i];
             return (
