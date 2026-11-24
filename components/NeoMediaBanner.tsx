@@ -443,51 +443,59 @@ export default function NeoMediaBanner() {
 
   return (
     <section className="relative flex flex-col items-center gap-[20px] px-[20px] py-[40px] w-full overflow-hidden xl:h-[calc(100vh-80px)]">
-      {/* BG foto — apenas >= lg (1024px) */}
+      {/* BG foto — apenas >= xl (1280px); abaixo disso: texto + imagem em card, extras abaixo de tudo */}
       <Img
         alt=""
         src={imgBg}
-        className="hidden lg:block absolute inset-0 w-full h-full object-cover pointer-events-none"
+        className="hidden xl:block absolute inset-0 w-full h-full object-cover pointer-events-none"
       />
 
-      {/* ── MOBILE (< lg / < 1024px) ── */}
-      <div className="lg:hidden relative flex flex-col gap-[20px] items-center w-full">
-        <Label />
-        <h1
-          className="font-avenir-black text-hero-md bg-clip-text text-transparent w-fit text-center"
-          style={{ backgroundImage: titleGradient }}
-        >
-          Acquafy Media
-        </h1>
-        <h2 className="font-avenir-heavy text-[22px] leading-[26px] text-[#1f2e91] text-center">
-          {t.h2}
-        </h2>
-        <p className="font-avenir-roman text-[18px] leading-[26px] text-[#333] text-center">
-          {t.pMobile}
-        </p>
+      {/* ── EMPILHADO / NOTEBOOK (< xl / < 1280px) ──
+          < lg: título > descrição > imagem > botões > stats > cards.
+          lg a xl: texto e botões à esquerda, imagem à direita; stats e cards abaixo de tudo. */}
+      <div className="xl:hidden relative flex flex-col lg:flex-row lg:flex-wrap gap-[20px] lg:gap-[40px] items-center w-full">
+        <div className="contents lg:flex lg:flex-col lg:gap-[20px] lg:items-start lg:flex-[1_0_0] lg:min-w-[280px] lg:max-w-[600px]">
+          <div className="order-1 lg:order-none">
+            <Label />
+          </div>
+          <h1
+            className="order-2 lg:order-none font-avenir-black text-hero-md bg-clip-text text-transparent w-fit text-center lg:text-left"
+            style={{ backgroundImage: titleGradient }}
+          >
+            Acquafy Media
+          </h1>
+          <h2 className="order-3 lg:order-none font-avenir-heavy text-[22px] leading-[26px] text-[#1f2e91] text-center lg:text-left">
+            {t.h2}
+          </h2>
+          <p className="order-4 lg:order-none font-avenir-roman text-[18px] leading-[26px] text-[#333] text-center lg:text-left">
+            {t.pMobile}
+          </p>
+          <div className="order-6 lg:order-none flex flex-wrap gap-[16px] items-center justify-center lg:justify-start w-full">
+            {bePartner && (
+              <BtnAzulBaseArrow className="flex-[1_0_0] min-w-[190px] min-h-[50px] px-[20px]" onClick={() => setModalOpen(true)}>
+                {t.btnPrimary}
+              </BtnAzulBaseArrow>
+            )}
+            <Feature name="buyNow">
+            <Link href="/buy/checkin-acquafy-media" className="flex-[1_0_0] min-w-[190px]">
+              <BtnAzulOutArrow className="w-full min-h-[50px] px-[20px]">
+                {t.btnSecondary}
+              </BtnAzulOutArrow>
+            </Link>
+            </Feature>
+          </div>
+        </div>
+
         {/* Imagem do dispositivo — logo depois do texto (título > descrição > imagem > botões > resto) */}
-        <div className="aspect-[3104/2922] relative rounded-[16px] overflow-hidden w-full max-w-[520px]">
+        <div className="order-5 lg:order-none aspect-[3104/2922] relative rounded-[16px] overflow-hidden w-full max-w-[520px] lg:max-w-none lg:w-auto lg:flex-[1_0_0] lg:min-w-[280px]">
           <Img
             alt=""
             src={imgFrame}
             className="absolute inset-0 w-full h-full object-cover pointer-events-none"
           />
         </div>
-        <div className="flex flex-wrap gap-[16px] items-center justify-center w-full">
-          {bePartner && (
-            <BtnAzulBaseArrow className="flex-[1_0_0] min-w-[190px] min-h-[50px] px-[20px]" onClick={() => setModalOpen(true)}>
-              {t.btnPrimary}
-            </BtnAzulBaseArrow>
-          )}
-          <Feature name="buyNow">
-          <Link href="/buy/checkin-acquafy-media" className="flex-[1_0_0] min-w-[190px]">
-            <BtnAzulOutArrow className="w-full min-h-[50px] px-[20px]">
-              {t.btnSecondary}
-            </BtnAzulOutArrow>
-          </Link>
-          </Feature>
-        </div>
-        <div className="flex flex-wrap gap-[30px_0] items-center justify-start w-full py-[25px]">
+
+        <div className="order-7 lg:order-none lg:basis-full flex flex-wrap gap-[30px_0] items-center justify-start w-full py-[25px]">
           {stats.map((s) => (
             <div key={s.title} className="flex flex-[1_0_0] gap-[10px] items-center min-w-[140px]">
               <FigmaIcon src={s.icon} size={30} aspectW={s.aspectW} aspectH={s.aspectH} />
@@ -498,16 +506,17 @@ export default function NeoMediaBanner() {
             </div>
           ))}
         </div>
+
         {/* Cards — node 3411:6044 */}
-        <div className="flex flex-col gap-[20px] items-center justify-center w-full">
+        <div className="order-8 lg:order-none lg:basis-full grid grid-cols-1 lg:grid-cols-3 gap-[20px] w-full">
           {cards.map((c) => (
             <CardItem key={c.label} c={c} fullWidth />
           ))}
         </div>
       </div>
 
-      {/* ── TOTAL (>= lg / >= 1024px) — Figma node 3258:5155 ── */}
-      <div className="hidden lg:flex relative flex-col items-center justify-center w-full xl:flex-[1_0_0] xl:min-h-px">
+      {/* ── TOTAL (>= xl / >= 1280px) — Figma node 3258:5155 ── */}
+      <div className="hidden xl:flex relative flex-col items-center justify-center w-full xl:flex-[1_0_0] xl:min-h-px">
         <div className="flex flex-wrap gap-[40px] items-center justify-center max-w-[1400px] w-full xl:flex-[1_0_0]">
           {/* Coluna esquerda — node 3258:5037 */}
           <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start justify-center min-w-[280px]">

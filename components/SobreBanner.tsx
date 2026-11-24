@@ -436,33 +436,42 @@ export default function SobreBanner() {
   return (
     <section className="relative flex flex-col gap-[20px] items-center px-[20px] py-[40px] w-full overflow-hidden xl:h-[calc(100vh-80px)]">
 
-      {/* Background — apenas lg+ (≥1024px); hidden no mobile */}
+      {/* Background — apenas xl+ (≥1280px); abaixo disso: texto + imagem em card, extras abaixo de tudo */}
       <Img
         alt=""
-        className="hidden lg:block absolute inset-0 w-full h-full object-cover pointer-events-none"
+        className="hidden xl:block absolute inset-0 w-full h-full object-cover pointer-events-none"
         src={imgBg}
       />
 
-      {/* ══ MOBILE (<lg = <1024px) ══════════════════════════════════════════ */}
-      <div className="lg:hidden relative flex flex-col gap-[20px] items-center w-full">
+      {/* ══ EMPILHADO / NOTEBOOK (<xl) ═══════════════════════════════════════
+          < lg: título > descrição > imagem > botões > pills. lg a xl: texto à esquerda, imagem à direita, pills abaixo. */}
+      <div className="xl:hidden relative flex flex-col lg:flex-row lg:flex-wrap gap-[20px] lg:gap-[40px] items-center w-full">
 
-        <Badge />
+        <div className="contents lg:flex lg:flex-col lg:gap-[20px] lg:items-start lg:flex-[1_0_0] lg:min-w-[280px] lg:max-w-[560px]">
+          <div className="order-1 lg:order-none">
+            <Badge />
+          </div>
 
-        <h1 className="font-avenir-black text-hero text-[#2a2a2b] text-center w-full">
-          {t.headingPrefix}<span className="text-[#0569ff]">Acquafy</span>
-        </h1>
+          <h1 className="order-2 lg:order-none font-avenir-black text-hero text-[#2a2a2b] text-center lg:text-left w-full">
+            {t.headingPrefix}<span className="text-[#0569ff]">Acquafy</span>
+          </h1>
 
-        <div className="font-avenir-roman text-[18px] text-[#333] text-center">
-          <p className="leading-[26px] mb-[4px]">
-            {t.para1}
-          </p>
-          <p className="leading-[26px]">
-            {t.para2}
-          </p>
+          <div className="order-3 lg:order-none font-avenir-roman text-[18px] text-[#333] text-center lg:text-left">
+            <p className="leading-[26px] mb-[4px]">
+              {t.para1}
+            </p>
+            <p className="leading-[26px]">
+              {t.para2}
+            </p>
+          </div>
+
+          <div className="order-5 lg:order-none w-full max-w-[800px] lg:max-w-none">
+            <CTAButtons stretch btn2={t.btn2} />
+          </div>
         </div>
 
         {/* Card de imagem — logo depois do texto (título > descrição > imagem > botões > pills) */}
-        <div className="relative h-[380px] min-w-[280px] rounded-[16px] w-full overflow-hidden shrink-0">
+        <div className="order-4 lg:order-none relative h-[380px] min-w-[280px] rounded-[16px] w-full lg:w-auto lg:flex-[1_0_0] overflow-hidden shrink-0">
           <Img
             alt="Acquafy Global Smart Water"
             className="absolute inset-0 w-full h-full object-cover pointer-events-none"
@@ -470,16 +479,14 @@ export default function SobreBanner() {
           />
         </div>
 
-        <CTAButtons stretch btn2={t.btn2} />
-
-        {/* Pills horizontais */}
-        <div className="flex flex-wrap gap-[20px] items-start justify-center w-full">
+        {/* Pills horizontais — abaixo de tudo */}
+        <div className="order-6 lg:order-none lg:basis-full flex flex-wrap gap-[20px] items-start justify-center w-full">
           {pillItems.map((p) => <FeaturePill key={p.title} {...p} />)}
         </div>
       </div>
 
       {/* ══ DESKTOP (lg+ = ≥1024px) ═════════════════════════════════════════ */}
-      <div className="hidden lg:flex flex-1 items-center justify-center max-w-[1400px] w-full relative">
+      <div className="hidden xl:flex flex-1 items-center justify-center max-w-[1400px] w-full relative">
         <div className="flex flex-wrap items-center w-full">
 
           {/* Coluna esquerda */}

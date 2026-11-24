@@ -236,11 +236,12 @@ export default function NeoMediaFeatures() {
           {t.heading1}
           <span className="text-[#0569ff]">{t.headingHighlight}</span>
         </h2>
-        <div className="flex flex-wrap gap-[20px] items-start justify-center w-full">
+        {/* 6 cards em grade: 1 coluna (celular) · 2 · 3 (notebook) · 6 (≥1400px) — sem card órfão esticado na última linha */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 min-[1400px]:grid-cols-6 gap-[20px] w-full">
           {features.map((f) => (
             <div
               key={f.title}
-              className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[20px] items-center min-h-[250px] min-w-[180px] overflow-hidden px-[10px] py-[20px] rounded-[16px]"
+              className="bg-[#f6f9fe] flex flex-col gap-[20px] items-center min-h-[250px] min-w-0 overflow-hidden px-[16px] py-[20px] rounded-[16px]"
             >
               <div className="flex flex-col items-center justify-center size-[40px]">
                 <FigmaIcon src={f.icon} size={32} aspectW={f.aspectW} aspectH={f.aspectH} />

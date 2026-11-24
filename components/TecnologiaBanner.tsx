@@ -294,19 +294,19 @@ export default function TecnologiaBanner() {
   return (
     <section className="
       bg-[#f6f9fe] flex flex-col gap-[20px] items-center px-[20px] py-[40px] relative w-full
-      lg:bg-transparent lg:h-[calc(100vh-80px)] lg:overflow-hidden
+      xl:bg-transparent xl:h-[calc(100vh-80px)] xl:overflow-hidden
     ">
-      {/* Background photo — lg+ only */}
+      {/* Background photo — xl+ only (abaixo disso: texto + imagem em card, extras abaixo de tudo) */}
       <Img
         alt=""
-        className="hidden lg:block absolute inset-0 w-full h-full object-cover pointer-events-none"
+        className="hidden xl:block absolute inset-0 w-full h-full object-cover pointer-events-none"
         src={imgBg}
       />
 
       {/* ── Content area ── */}
       <div className="
         relative flex flex-col gap-[20px] items-center justify-center max-w-[1400px] shrink-0 w-full
-        lg:gap-[40px] lg:content-center lg:flex-[1_0_0] lg:flex-row lg:flex-wrap lg:min-h-px lg:justify-start
+        lg:gap-[40px] lg:content-center xl:flex-[1_0_0] lg:flex-row lg:flex-wrap xl:min-h-px lg:justify-start
       ">
 
         {/* Left column — empilhado (< lg): "contents" (título > subtítulo > descrição > imagem > mini stats) */}
@@ -340,7 +340,7 @@ export default function TecnologiaBanner() {
           </div>
 
           {/* Mini stats */}
-          <div className="order-6 lg:order-none flex flex-wrap gap-[20px] items-start justify-center shrink-0 w-full">
+          <div className="hidden xl:flex flex-wrap gap-[20px] items-start justify-center shrink-0 w-full">
             <HeroStat icon={imgAguaPura}  label={t.stat1} aspectW={643} aspectH={631} />
             <HeroStat icon={imgWifi}      label={t.stat2} aspectW={30}  aspectH={20}  />
             <HeroStat icon={imgGloboSust} label={t.stat3} aspectW={492} aspectH={475} />
@@ -349,7 +349,7 @@ export default function TecnologiaBanner() {
         </div>
 
         {/* Card image — < lg only */}
-        <div className="order-5 h-[300px] min-w-[280px] overflow-hidden relative rounded-[16px] shrink-0 w-full lg:hidden">
+        <div className="order-5 h-[300px] lg:h-[420px] min-w-[280px] overflow-hidden relative rounded-[16px] shrink-0 w-full lg:w-auto lg:flex-[1_0_0] xl:hidden">
           <Img
             alt=""
             className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[16px] size-full"
@@ -358,7 +358,15 @@ export default function TecnologiaBanner() {
         </div>
 
         {/* Right spacer — lg+ only */}
-        <div className="hidden lg:block flex-[1_0_0] max-w-[650px] min-w-[280px]" />
+        <div className="hidden xl:block flex-[1_0_0] max-w-[650px] min-w-[280px]" />
+      </div>
+
+      {/* Mini stats — abaixo de tudo (< xl) */}
+      <div className="relative xl:hidden flex flex-wrap gap-[20px] items-start justify-center shrink-0 w-full max-w-[1400px]">
+        <HeroStat icon={imgAguaPura}  label={t.stat1} aspectW={643} aspectH={631} />
+        <HeroStat icon={imgWifi}      label={t.stat2} aspectW={30}  aspectH={20}  />
+        <HeroStat icon={imgGloboSust} label={t.stat3} aspectW={492} aspectH={475} />
+        <HeroStat icon={imgPlanet}    label={t.stat4} aspectW={30}  aspectH={30}  />
       </div>
 
       {/* ── Trust bar ── */}

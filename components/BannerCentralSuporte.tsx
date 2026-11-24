@@ -1030,7 +1030,8 @@ export default function BannerCentralSuporte() {
           </p>
 
           {/* Botões */}
-          <div className="order-6 lg:order-none flex flex-wrap gap-[20px] items-center justify-center w-full lg:justify-start">
+          {/* Empilhado (< lg): painel branco sob a imagem — a imagem da moça (cortada embaixo) apoia nele, sem folga */}
+          <div className="order-6 lg:order-none flex flex-wrap gap-[20px] items-center justify-center w-full lg:justify-start bg-white rounded-[16px] p-[20px] -mt-[20px] lg:bg-transparent lg:rounded-none lg:p-0 lg:mt-0">
             <button
               onClick={openChat}
               className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#0569ff] transition-colors
