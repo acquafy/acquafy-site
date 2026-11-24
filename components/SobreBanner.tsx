@@ -461,20 +461,20 @@ export default function SobreBanner() {
           </p>
         </div>
 
-        {/* Pills horizontais */}
-        <div className="flex flex-wrap gap-[20px] items-start justify-center w-full">
-          {pillItems.map((p) => <FeaturePill key={p.title} {...p} />)}
-        </div>
-
-        <CTAButtons stretch btn2={t.btn2} />
-
-        {/* Card de imagem */}
+        {/* Card de imagem — logo depois do texto (título > descrição > imagem > botões > pills) */}
         <div className="relative h-[380px] min-w-[280px] rounded-[16px] w-full overflow-hidden shrink-0">
           <Img
             alt="Acquafy Global Smart Water"
             className="absolute inset-0 w-full h-full object-cover pointer-events-none"
             src={imgBannerCard}
           />
+        </div>
+
+        <CTAButtons stretch btn2={t.btn2} />
+
+        {/* Pills horizontais */}
+        <div className="flex flex-wrap gap-[20px] items-start justify-center w-full">
+          {pillItems.map((p) => <FeaturePill key={p.title} {...p} />)}
         </div>
       </div>
 

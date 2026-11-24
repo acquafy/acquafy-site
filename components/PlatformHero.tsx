@@ -405,20 +405,21 @@ export default function PlatformHero() {
         src={imgBg}
       />
 
-      <div className="relative flex flex-col 1024:flex-row flex-wrap flex-1 gap-[40px] 1024:gap-x-[20px] items-center 1024:items-start max-w-[1400px] w-full">
+      <div className="relative flex flex-col 1024:flex-row flex-wrap flex-1 gap-[20px] 1024:gap-[40px] 1024:gap-x-[20px] items-center 1024:items-start max-w-[1400px] w-full">
 
         {/* ── Coluna esquerda ──────────────────────────────────────────── */}
-        <div className="flex flex-col gap-[20px] items-center 1024:items-start w-full 1024:flex-[1_0_0] 1024:max-w-[670px] 1024:min-w-[280px] 1024:self-center">
+        {/* Empilhado (< 1024): "contents" — label > título > subtítulo > mockup > CTA > cards > selos; 1024+: coluna à esquerda */}
+        <div className="contents 1024:flex 1024:flex-col 1024:gap-[20px] 1024:items-start 1024:w-full 1024:flex-[1_0_0] 1024:max-w-[670px] 1024:min-w-[280px] 1024:self-center">
 
           {/* Label */}
-          <div className="bg-white border border-[#0233c3] flex gap-[10px] items-center justify-center max-w-[290px] px-[12px] py-[8px] rounded-full shrink-0">
+          <div className="order-1 1024:order-none bg-white border border-[#0233c3] flex gap-[10px] items-center justify-center max-w-[290px] px-[12px] py-[8px] rounded-full shrink-0">
             <span className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3] whitespace-nowrap">
               {t.badge}
             </span>
           </div>
 
           {/* H1 */}
-          <h1 className="font-avenir-black text-hero text-[#2a2a2b] w-full text-center 1024:text-left">
+          <h1 className="order-2 1024:order-none font-avenir-black text-hero text-[#2a2a2b] w-full text-center 1024:text-left">
             {t.h1part1}
             <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(113deg, #0233c3 6.19%, #9f3df5 93.35%)" }}>
               Web
@@ -430,12 +431,12 @@ export default function PlatformHero() {
           </h1>
 
           {/* Subtítulo */}
-          <p className="font-avenir-roman text-[18px] leading-[26px] text-[#333] w-full text-center 1024:text-left">
+          <p className="order-3 1024:order-none font-avenir-roman text-[18px] leading-[26px] text-[#333] w-full text-center 1024:text-left">
             {t.subtitle}
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-wrap gap-[10px] items-center justify-center xl:justify-start w-full">
+          <div className="order-5 1024:order-none flex flex-wrap gap-[10px] items-center justify-center xl:justify-start w-full">
             <a
               href="/contact"
               className="flex gap-[10px] items-center justify-center min-h-[56px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer"
@@ -449,7 +450,7 @@ export default function PlatformHero() {
           </div>
 
           {/* Feature cards */}
-          <div className="flex flex-wrap 1024:flex-nowrap gap-[10px] items-stretch justify-center 1024:justify-start w-full">
+          <div className="order-6 1024:order-none flex flex-wrap 1024:flex-nowrap gap-[10px] items-stretch justify-center 1024:justify-start w-full">
             {featureCards.map((f) => (
               <div key={f.title} className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center min-h-[220px] min-w-[200px] 1024:min-w-px px-[10px] py-[20px] rounded-[16px]">
                 <div className="flex items-center justify-center p-[12px] rounded-[12px] shrink-0 size-[60px]" style={{ backgroundColor: f.bg }}>
@@ -464,14 +465,14 @@ export default function PlatformHero() {
           </div>
 
           {/* Trust badges — dentro da col esquerda apenas no win-1280+ (TELA TOTAL) */}
-          <div className="hidden win-1280:flex flex-wrap gap-[8px] items-center w-full">
+          <div className="hidden win-1280:flex flex-wrap gap-[8px] items-center w-full 1024:order-none">
             <BadgeRow badges={t.trustBadges} />
           </div>
         </div>
 
         {/* ── Coluna direita — mockup image ─────────────────────────────── */}
         {/* win-1280+: invisible — ocupa espaço mas bg image contém o mockup */}
-        <div className="win-1280:invisible rounded-[16px] overflow-clip h-[481px] min-w-[280px] w-full 1024:flex-[1_0_0] 1024:self-center">
+        <div className="order-4 1024:order-none win-1280:invisible rounded-[16px] overflow-clip h-[320px] sm:h-[420px] 1024:h-[481px] min-w-[280px] w-full 1024:flex-[1_0_0] 1024:self-center">
           <Img
             src={imgMockup}
             alt={t.mockupAlt}
@@ -480,7 +481,7 @@ export default function PlatformHero() {
         </div>
 
         {/* ── Trust badges linha separada — default + 1024, oculta no win-1280+ ── */}
-        <div className="flex win-1280:hidden flex-wrap gap-[8px] items-center w-full 1024:flex-none">
+        <div className="order-7 1024:order-none flex win-1280:hidden flex-wrap gap-[8px] items-center w-full 1024:flex-none">
           <BadgeRow badges={t.trustBadges} />
         </div>
 

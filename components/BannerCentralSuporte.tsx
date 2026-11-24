@@ -993,22 +993,23 @@ export default function BannerCentralSuporte() {
       />
 
       {/* ── Linha principal ─────────────────────────────────────── */}
-      <div className="relative flex flex-col gap-[40px] items-center max-w-[1400px] w-full shrink-0
-        xl:flex-row xl:flex-wrap xl:items-end xl:justify-center">
+      <div className="relative flex flex-col gap-[20px] items-center max-w-[1400px] w-full shrink-0
+        lg:gap-[40px] lg:flex-row lg:flex-wrap lg:items-end lg:justify-center">
 
         {/* ── Coluna de texto ─────────────────────────────────── */}
-        <div className="flex flex-col gap-[20px] items-center w-full
-          xl:flex-[1_0_0] xl:items-start xl:justify-center xl:self-center xl:max-w-[490px] xl:min-w-[280px] xl:pb-[40px] xl:pt-[20px]">
+        {/* Empilhado (< lg): "contents" — label > título > subtítulo > descrição > imagem > botões; lg+: coluna à esquerda */}
+        <div className="contents
+          lg:flex lg:flex-col lg:gap-[20px] lg:w-full lg:flex-[1_0_0] lg:items-start lg:justify-center lg:self-center lg:max-w-[360px] min-[1190px]:max-w-[490px] lg:min-w-[280px] lg:pb-[40px] lg:pt-[20px]">
 
           {/* Label */}
-          <div className="bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center max-w-[290px] px-[12px] py-[8px] rounded-full shrink-0">
+          <div className="order-1 lg:order-none bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center max-w-[290px] px-[12px] py-[8px] rounded-full shrink-0">
             <span className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3] whitespace-nowrap">
               {t.label}
             </span>
           </div>
 
           {/* H1 */}
-          <h1 className="font-avenir-black text-hero text-[#2a2a2b] text-center w-full xl:text-left">
+          <h1 className="order-2 lg:order-none font-avenir-black text-hero text-[#2a2a2b] text-center w-full lg:text-left">
             {t.h1Line1}{" "}
             <span
               className="bg-clip-text text-transparent"
@@ -1019,17 +1020,17 @@ export default function BannerCentralSuporte() {
           </h1>
 
           {/* Subtítulo */}
-          <p className="font-avenir-heavy text-[20px] leading-[28px] text-[#0569ff] text-center w-full xl:text-left">
+          <p className="order-3 lg:order-none font-avenir-heavy text-[20px] leading-[28px] text-[#0569ff] text-center w-full lg:text-left">
             {t.subtitle}
           </p>
 
           {/* Descrição */}
-          <p className="font-avenir-roman text-[18px] leading-[26px] text-[#333] text-center w-full xl:text-left">
+          <p className="order-4 lg:order-none font-avenir-roman text-[18px] leading-[26px] text-[#333] text-center w-full lg:text-left">
             {t.description}
           </p>
 
           {/* Botões */}
-          <div className="flex flex-wrap gap-[20px] items-center justify-center w-full xl:justify-start">
+          <div className="order-6 lg:order-none flex flex-wrap gap-[20px] items-center justify-center w-full lg:justify-start">
             <button
               onClick={openChat}
               className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#0569ff] transition-colors
@@ -1060,16 +1061,17 @@ export default function BannerCentralSuporte() {
         </div>
 
         {/* ── Imagem + Cards ──────────────────────────────────── */}
-        <div className="flex flex-col gap-[20px] items-center justify-end w-full shrink-0 min-w-[280px]
+        {/* < 621px: "contents" (imagem > botões > cards); 621px+: grupo com os cards sobre a imagem */}
+          <div className="order-5 lg:order-none contents min-[621px]:flex min-[621px]:flex-col min-[621px]:justify-end w-full shrink-0 min-w-[280px]
           min-[621px]:items-end min-[621px]:gap-0
           md:flex-row md:items-end md:justify-center md:gap-0
-          xl:flex-[1_0_0] xl:max-w-[880px] xl:min-w-[280px]">
+          lg:flex-[1_0_0] lg:max-w-[880px] lg:min-w-[280px]">
 
           {/* ── Imagem ─────────────────────────────────────────── */}
-          <div className="relative order-2 w-full aspect-[4096/3477] shrink-0
+          <div className="relative order-5 min-[621px]:order-2 w-full aspect-[4096/3477] shrink-0
             min-[621px]:w-[460px] min-[621px]:h-[390px] min-[621px]:max-w-[460px] min-[621px]:shrink-0
             md:order-1 md:w-[471px] md:h-[400px] md:max-w-[471px] md:shrink-0 md:mr-[-40px]
-            xl:order-1 xl:flex-[1_0_0] xl:min-w-px xl:w-auto xl:h-auto xl:max-w-none xl:mr-[-50px]">
+            lg:order-1 lg:flex-[1_0_0] lg:min-w-px lg:w-auto lg:h-auto lg:max-w-none lg:mr-[-50px]">
             <Img
               src={imgMainImage}
               alt={t.imgAlt}
@@ -1078,14 +1080,14 @@ export default function BannerCentralSuporte() {
           </div>
 
           {/* ── Cards wrapper ───────────────────────────────────── */}
-          <div className="order-1 w-full
+          <div className="order-7 min-[621px]:order-1 w-full
             md:order-2 md:relative md:z-[1] md:flex md:flex-[1_0_0] md:flex-row md:items-end md:self-stretch md:min-w-px
-            xl:z-10 xl:max-w-[270px]">
+            lg:z-10 lg:max-w-[270px]">
 
             <div className="flex flex-col gap-[20px] w-full
               min-[621px]:mb-[-240px]
               md:flex-[1_0_0] md:flex-row md:flex-wrap md:content-center md:h-full md:items-center md:justify-end md:pb-[20px] md:mb-0 md:min-w-px
-              xl:flex-col xl:flex-nowrap xl:items-end xl:justify-center xl:max-w-[270px] xl:min-w-px xl:pb-[14px] xl:gap-[14px]">
+              lg:flex-col lg:flex-nowrap lg:items-end lg:justify-center lg:max-w-[270px] lg:min-w-px lg:pb-[14px] lg:gap-[14px]">
 
               {floatingCardsMeta.map((meta, i) => {
                 const card = t.floatingCards[i];
@@ -1097,7 +1099,7 @@ export default function BannerCentralSuporte() {
                       p-[20px] rounded-[16px] shadow-[0px_4px_8px_0px_rgba(0,0,0,0.25)]
                       w-full min-w-[150px]
                       md:min-h-[90px] md:min-w-[280px] md:w-auto
-                      xl:w-full xl:min-w-[160px] xl:min-h-0 xl:p-[14px] xl:gap-[12px]">
+                      lg:w-full lg:min-w-[160px] lg:min-h-0 lg:p-[14px] lg:gap-[12px]">
                     <div className="flex flex-col items-center justify-center shrink-0 size-[40px]">
                       <FigmaIcon src={meta.icon} size={30} aspectW={meta.aspectW} aspectH={meta.aspectH} />
                     </div>

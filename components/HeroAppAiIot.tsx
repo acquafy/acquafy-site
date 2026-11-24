@@ -262,7 +262,7 @@ export default function HeroAppAiIot() {
       */}
       <div className={[
         "relative max-w-[1400px] w-full",
-        "flex flex-col gap-[40px] items-start",
+        "flex flex-col gap-[20px] items-center",
         "win-1024:flex-row win-1024:flex-wrap win-1024:gap-y-[40px] win-1024:gap-x-[20px] win-1024:items-center",
         "win-1280:gap-x-[40px]",
       ].join(" ")}>
@@ -271,14 +271,15 @@ export default function HeroAppAiIot() {
             Base     : w-full, items-center (centrado)
             win-1024 : flex-[1_0_0] max-w-[660px] min-w-[280px], items-start (alinhado à esq.)
         */}
+        {/* Empilhado (< win-1024): "contents" — pill > título > descrição > mockup > botões > cards */}
         <div className={[
-          "flex flex-col gap-[20px] justify-center",
-          "items-center win-1024:items-start",
-          "w-full win-1024:flex-[1_0_0] win-1024:max-w-[660px] win-1024:min-w-[280px]",
+          "contents",
+          "win-1024:flex win-1024:flex-col win-1024:gap-[20px] win-1024:justify-center win-1024:items-start",
+          "win-1024:w-full win-1024:flex-[1_0_0] win-1024:max-w-[660px] win-1024:min-w-[280px]",
         ].join(" ")}>
 
           {/* Label pill */}
-          <div className="bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center max-w-[290px] px-[12px] py-[8px] rounded-full shrink-0 w-full">
+          <div className="order-1 win-1024:order-none bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center max-w-[290px] px-[12px] py-[8px] rounded-full shrink-0 w-full">
             <span className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3] whitespace-nowrap">
               {t.label}
             </span>
@@ -288,7 +289,7 @@ export default function HeroAppAiIot() {
               Base     : centrado
               win-1024 : alinhado à esquerda
           */}
-          <h1 className="font-avenir-black text-hero text-[#2a2a2b] w-full text-center win-1024:text-left">
+          <h1 className="order-2 win-1024:order-none font-avenir-black text-hero text-[#2a2a2b] w-full text-center win-1024:text-left">
             {"App + "}
             <span className="text-[#6e54ef]">AI</span>
             {" "}
@@ -301,7 +302,7 @@ export default function HeroAppAiIot() {
               Base     : centrada
               win-1024 : alinhada à esquerda
           */}
-          <p className="font-avenir-roman text-[18px] leading-[26px] text-[#333] w-full text-center win-1024:text-left">
+          <p className="order-3 win-1024:order-none font-avenir-roman text-[18px] leading-[26px] text-[#333] w-full text-center win-1024:text-left">
             {t.description}
           </p>
 
@@ -313,7 +314,7 @@ export default function HeroAppAiIot() {
               win-1280 : items-center (TELA TOTAL); cada card h-[217px]
           */}
           <div className={[
-            "flex flex-wrap gap-[10px] w-full",
+            "order-6 win-1024:order-none flex flex-wrap gap-[10px] w-full",
             "items-stretch",
             "justify-center",
             "win-1024:flex-nowrap",
@@ -352,7 +353,7 @@ export default function HeroAppAiIot() {
               Base     : flex-wrap justify-center, cada botão flex-[1_0_0]
               win-1024 : justify-start, cada botão shrink-0 (tamanho fixo)
           */}
-          <div className="flex flex-wrap gap-[20px] items-center justify-center win-1280:justify-start w-full">
+          <div className="order-5 win-1024:order-none flex flex-wrap gap-[20px] items-center justify-center win-1280:justify-start w-full">
 
             {/* Primário */}
             <button className={[
@@ -392,7 +393,7 @@ export default function HeroAppAiIot() {
             win-1024 : flex-[1_0_0] min-w-[280px] à direita (flex-row)
             win-1280 : oculto — a imagem de fundo já mostra o mockup
         */}
-        <div className="win-1280:hidden rounded-[16px] overflow-clip h-[481px] min-w-[280px] w-full win-1024:flex-[1_0_0]">
+        <div className="order-4 win-1024:order-none win-1280:hidden rounded-[16px] overflow-clip h-[320px] sm:h-[420px] win-1024:h-[481px] min-w-[280px] w-full win-1024:flex-[1_0_0]">
           <Img
             src={imgMockup}
             alt={t.mockupAlt}

@@ -465,6 +465,14 @@ export default function NeoMediaBanner() {
         <p className="font-avenir-roman text-[18px] leading-[26px] text-[#333] text-center">
           {t.pMobile}
         </p>
+        {/* Imagem do dispositivo — logo depois do texto (título > descrição > imagem > botões > resto) */}
+        <div className="aspect-[3104/2922] relative rounded-[16px] overflow-hidden w-full max-w-[520px]">
+          <Img
+            alt=""
+            src={imgFrame}
+            className="absolute inset-0 w-full h-full object-cover pointer-events-none"
+          />
+        </div>
         <div className="flex flex-wrap gap-[16px] items-center justify-center w-full">
           {bePartner && (
             <BtnAzulBaseArrow className="flex-[1_0_0] min-w-[190px] min-h-[50px] px-[20px]" onClick={() => setModalOpen(true)}>
@@ -490,20 +498,11 @@ export default function NeoMediaBanner() {
             </div>
           ))}
         </div>
-        {/* Cards + imagem do dispositivo — node 3411:6044 */}
-        <div className="flex flex-wrap gap-[20px] items-center justify-end w-full">
-          <div className="flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-w-[280px]">
-            {cards.map((c) => (
-              <CardItem key={c.label} c={c} fullWidth />
-            ))}
-          </div>
-          <div className="flex-[1_0_0] h-[482px] min-w-[280px] relative rounded-[16px] overflow-hidden">
-            <Img
-              alt=""
-              src={imgFrame}
-              className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-            />
-          </div>
+        {/* Cards — node 3411:6044 */}
+        <div className="flex flex-col gap-[20px] items-center justify-center w-full">
+          {cards.map((c) => (
+            <CardItem key={c.label} c={c} fullWidth />
+          ))}
         </div>
       </div>
 

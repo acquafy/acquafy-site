@@ -186,13 +186,14 @@ export default function ParceriaBanner() {
 
       {/* ── Content wrapper ────────────────────────────────────── */}
       {/* mobile: flex-col | 1024–1279px: flex-row flex-wrap | ≥1280px: flex-row + BG */}
-      <div className="relative flex flex-col lg:flex-row lg:flex-wrap gap-[40px] items-center justify-center max-w-[1400px] w-full xl:min-h-[795px]">
+      <div className="relative flex flex-col lg:flex-row lg:flex-wrap gap-[20px] lg:gap-[40px] items-center justify-center max-w-[1400px] w-full xl:min-h-[795px]">
 
         {/* ══ LEFT COLUMN ══════════════════════════════════════ */}
-        <div className="flex flex-col gap-[20px] lg:gap-[40px] items-center w-full lg:items-start lg:flex-[1_0_0] lg:max-w-[450px] lg:min-w-[280px]">
+        {/* Empilhado (< lg): "contents" — pill > título > subtítulo > imagem > CTA > selos; lg+: coluna à esquerda */}
+        <div className="contents lg:flex lg:flex-col lg:gap-[40px] lg:items-start lg:w-full lg:flex-[1_0_0] lg:max-w-[450px] lg:min-w-[280px]">
 
           {/* "Nova fase global" pill */}
-          <div className="bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center px-[12px] py-[8px] rounded-full shrink-0">
+          <div className="order-1 lg:order-none bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center px-[12px] py-[8px] rounded-full shrink-0">
             <FigmaIcon src={imgPlanet} size={16} />
             <span className="font-avenir-heavy text-[14px] text-[#0233c3]">
               {t.pill}
@@ -201,19 +202,19 @@ export default function ParceriaBanner() {
 
           {/* Title */}
           <h1
-            className="font-avenir-black text-hero bg-clip-text text-transparent w-full text-center lg:text-left"
+            className="order-2 lg:order-none font-avenir-black text-hero bg-clip-text text-transparent w-full text-center lg:text-left"
             style={{ backgroundImage: "linear-gradient(110.27deg, #0233c3 6.19%, #9f3df5 93.35%)" }}
           >
             {t.title}
           </h1>
 
           {/* Subtitle */}
-          <p className="font-avenir-roman text-[18px] leading-[24px] lg:text-[18px] lg:leading-[26px] text-[#333] text-center lg:text-left">
+          <p className="order-3 lg:order-none w-full font-avenir-roman text-[18px] leading-[24px] lg:text-[18px] lg:leading-[26px] text-[#333] text-center lg:text-left">
             {t.subtitle}
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-wrap gap-[20px] items-center justify-center xl:justify-start w-full">
+          <div className="order-5 lg:order-none flex flex-wrap gap-[20px] items-center justify-center xl:justify-start w-full">
             <Link href="/contact">
               <BtnAzulOutArrow className="min-h-[50px]">
                 {t.cta}
@@ -222,7 +223,7 @@ export default function ParceriaBanner() {
           </div>
 
           {/* Tier badges */}
-          <div className="flex flex-row gap-[20px] items-stretch justify-center xl:justify-start w-full">
+          <div className="order-6 lg:order-none flex flex-row gap-[20px] items-stretch justify-center xl:justify-start w-full">
             {tiers.map((tier) => (
               <div
                 key={tier.key}
@@ -239,7 +240,7 @@ export default function ParceriaBanner() {
 
         {/* ══ PRODUCT IMAGE ════════════════════════════════════ */}
         {/* mobile: abaixo do conteúdo (flex-col) | 1024–1279px: coluna direita | ≥1280px: oculto */}
-        <div className="xl:hidden relative aspect-[750/745] min-h-[278px] min-w-[280px] rounded-[16px] shrink-0 w-full lg:flex-[1_0_0] lg:w-auto overflow-hidden">
+        <div className="order-4 lg:order-none xl:hidden relative aspect-[750/745] min-h-[278px] min-w-[280px] rounded-[16px] shrink-0 w-full lg:flex-[1_0_0] lg:w-auto overflow-hidden">
           <Img
             src={imgFrame1024}
             alt={t.imgAlt}

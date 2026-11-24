@@ -235,21 +235,22 @@ export default function BannerContato() {
       />
 
       {/* Content */}
-      <div className="relative flex flex-col xl:flex-row gap-[40px] items-center max-w-[1400px] w-full">
+      <div className="relative flex flex-col lg:flex-row gap-[20px] lg:gap-[40px] items-center max-w-[1400px] w-full">
 
         {/* Left */}
-        <div className="flex flex-[1_0_0] flex-col gap-[40px] items-center xl:items-start min-w-[280px] max-w-[640px]">
-          <h1 className="font-avenir-black text-hero text-[#2a2a2b] text-center xl:text-left">
+        {/* Empilhado (< lg): "contents" — título > descrição > imagem > ícones; lg+: coluna à esquerda */}
+        <div className="contents lg:flex lg:flex-[1_0_0] lg:flex-col lg:gap-[40px] lg:items-start lg:min-w-[280px] lg:max-w-[640px]">
+          <h1 className="order-1 lg:order-none w-full lg:w-auto font-avenir-black text-hero text-[#2a2a2b] text-center lg:text-left">
             {t.heading1}
             <span className="text-[#0569ff]">{t.heading2}</span>
           </h1>
 
-          <p className="font-avenir-roman text-[18px] leading-[26px] text-[#333] text-center xl:text-left w-full">
+          <p className="order-2 lg:order-none font-avenir-roman text-[18px] leading-[26px] text-[#333] text-center lg:text-left w-full">
             {t.body}
           </p>
 
           {/* Features — 3 ícones diferentes, layout horizontal */}
-          <div className="flex flex-wrap gap-[20px] items-start w-full">
+          <div className="order-4 lg:order-none flex flex-wrap gap-[20px] items-start w-full">
             {t.features.map((f, i) => (
               <Feature
                 key={f.title}
@@ -262,7 +263,7 @@ export default function BannerContato() {
         </div>
 
         {/* Right — product image */}
-        <div className="flex flex-[1_0_0] items-end justify-end min-w-[280px]">
+        <div className="order-3 lg:order-none flex flex-[1_0_0] items-end justify-end min-w-[280px] w-full lg:w-auto">
           <Img
             alt={t.imgAlt}
             className="w-full max-w-[680px] h-auto object-contain"

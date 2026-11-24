@@ -305,18 +305,18 @@ export default function TecnologiaBanner() {
 
       {/* ── Content area ── */}
       <div className="
-        relative flex flex-col gap-[40px] items-center justify-center max-w-[1400px] shrink-0 w-full
-        lg:content-center lg:flex-[1_0_0] lg:flex-row lg:flex-wrap lg:min-h-px lg:justify-start
+        relative flex flex-col gap-[20px] items-center justify-center max-w-[1400px] shrink-0 w-full
+        lg:gap-[40px] lg:content-center lg:flex-[1_0_0] lg:flex-row lg:flex-wrap lg:min-h-px lg:justify-start
       ">
 
-        {/* Left column */}
+        {/* Left column — empilhado (< lg): "contents" (título > subtítulo > descrição > imagem > mini stats) */}
         <div className="
-          flex flex-col gap-[20px] items-center justify-center w-full
-          lg:flex-[1_0_0] lg:items-start lg:min-w-[280px] lg:max-w-[650px]
+          contents
+          lg:flex lg:flex-col lg:gap-[20px] lg:justify-center lg:w-full lg:flex-[1_0_0] lg:items-start lg:min-w-[280px] lg:max-w-[650px]
         ">
 
           {/* Badge */}
-          <div className="bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center max-w-[280px] px-[12px] py-[8px] rounded-full shrink-0">
+          <div className="order-1 lg:order-none bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center max-w-[280px] px-[12px] py-[8px] rounded-full shrink-0">
             <FigmaIcon src={imgGlobe} size={16} />
             <span className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3] whitespace-nowrap">
               {t.badge}
@@ -324,23 +324,23 @@ export default function TecnologiaBanner() {
           </div>
 
           {/* Title */}
-          <h1 className="[word-break:break-word] font-avenir-black leading-[0] min-w-full not-italic relative shrink-0 text-hero-xl text-[#2a2a2b] text-center lg:text-left">
+          <h1 className="order-2 lg:order-none [word-break:break-word] font-avenir-black leading-[0] min-w-full not-italic relative shrink-0 text-hero-xl text-[#2a2a2b] text-center lg:text-left">
             <span className="leading-[clamp(36px,12.5vw-92px,68px)]">{t.titleLine1}</span>
             <span className="leading-[clamp(36px,12.5vw-92px,68px)] text-[#0569ff]">{t.titleLine2}</span>
           </h1>
 
           {/* Subtitle */}
-          <div className="[word-break:break-word] flex flex-col font-avenir-heavy justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[20px] text-[#0569ff] text-center lg:text-left">
+          <div className="order-3 lg:order-none [word-break:break-word] flex flex-col font-avenir-heavy justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[20px] text-[#0569ff] text-center lg:text-left">
             <p className="leading-[28px]">{t.subtitle}</p>
           </div>
 
           {/* Description */}
-          <div className="[word-break:break-word] flex flex-col font-avenir-roman justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[18px] text-[#333] text-center lg:text-left">
+          <div className="order-4 lg:order-none [word-break:break-word] flex flex-col font-avenir-roman justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[18px] text-[#333] text-center lg:text-left">
             <p className="leading-[26px]">{t.description}</p>
           </div>
 
           {/* Mini stats */}
-          <div className="flex flex-wrap gap-[20px] items-start justify-center shrink-0 w-full">
+          <div className="order-6 lg:order-none flex flex-wrap gap-[20px] items-start justify-center shrink-0 w-full">
             <HeroStat icon={imgAguaPura}  label={t.stat1} aspectW={643} aspectH={631} />
             <HeroStat icon={imgWifi}      label={t.stat2} aspectW={30}  aspectH={20}  />
             <HeroStat icon={imgGloboSust} label={t.stat3} aspectW={492} aspectH={475} />
@@ -349,7 +349,7 @@ export default function TecnologiaBanner() {
         </div>
 
         {/* Card image — < lg only */}
-        <div className="h-[300px] min-w-[280px] overflow-hidden relative rounded-[16px] shrink-0 w-full lg:hidden">
+        <div className="order-5 h-[300px] min-w-[280px] overflow-hidden relative rounded-[16px] shrink-0 w-full lg:hidden">
           <Img
             alt=""
             className="absolute inset-0 max-w-none object-cover pointer-events-none rounded-[16px] size-full"

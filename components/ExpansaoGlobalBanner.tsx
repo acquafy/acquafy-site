@@ -305,11 +305,12 @@ export default function ExpansaoGlobalBanner() {
       />
 
       {/* Main content */}
-      <div className="relative flex flex-col lg:flex-row lg:flex-wrap gap-[40px] items-center justify-center max-w-[1400px] w-full">
+      <div className="relative flex flex-col lg:flex-row lg:flex-wrap gap-[20px] lg:gap-[40px] items-center justify-center max-w-[1400px] w-full">
         {/* Left column */}
-        <div className="flex flex-[1_0_0] flex-col gap-[20px] items-center lg:items-start justify-center min-w-[280px]">
+        {/* Empilhado (< lg): "contents" — título > subtítulo > descrição > imagem > botões; lg+: coluna à esquerda */}
+        <div className="contents lg:flex lg:flex-[1_0_0] lg:flex-col lg:gap-[20px] lg:items-start lg:justify-center lg:min-w-[280px]">
           {/* Badge */}
-          <div className="bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center px-[12px] py-[8px] rounded-full shrink-0 max-w-[280px]">
+          <div className="order-1 lg:order-none bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center px-[12px] py-[8px] rounded-full shrink-0 max-w-[280px]">
             <FigmaIcon src={imgPlanetWeb} size={16} />
             <span className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3] whitespace-nowrap">
               {t.badge}
@@ -317,18 +318,18 @@ export default function ExpansaoGlobalBanner() {
           </div>
 
           {/* Title */}
-          <h1 className="font-avenir-black text-hero-xl text-[#2a2a2b] text-center lg:text-left">
+          <h1 className="order-2 lg:order-none w-full font-avenir-black text-hero-xl text-[#2a2a2b] text-center lg:text-left">
             {t.title}{" "}
             <span className="text-[#0569ff]">{t.titleHighlight}</span>
           </h1>
 
           {/* Subtitle */}
-          <p className="font-avenir-heavy text-[20px] leading-[28px] text-[#0569ff] text-center lg:text-left">
+          <p className="order-3 lg:order-none w-full font-avenir-heavy text-[20px] leading-[28px] text-[#0569ff] text-center lg:text-left">
             {t.subtitle}
           </p>
 
           {/* Description */}
-          <div className="font-avenir-roman text-[18px] leading-[26px] text-[#333] text-center lg:text-left">
+          <div className="order-4 lg:order-none w-full font-avenir-roman text-[18px] leading-[26px] text-[#333] text-center lg:text-left">
             <p className="leading-[26px] mb-[4px]">
               {t.desc1}
             </p>
@@ -338,7 +339,7 @@ export default function ExpansaoGlobalBanner() {
           </div>
 
           {/* CTA Buttons */}
-          <div className="flex flex-wrap gap-[20px] items-center w-full">
+          <div className="order-6 lg:order-none flex flex-wrap gap-[20px] items-center w-full">
             {bePartner && (
               <Link href="/parceria" className="flex-[1_0_0] min-w-[190px]">
                 <BtnAzulBaseArrow className="w-full min-h-[50px]">
@@ -355,7 +356,7 @@ export default function ExpansaoGlobalBanner() {
         </div>
 
         {/* Right column — product image */}
-        <div className="flex w-full lg:flex-[1_0_0] flex-col lg:h-[585px] items-center lg:items-end justify-center">
+        <div className="order-5 lg:order-none flex w-full lg:flex-[1_0_0] flex-col lg:h-[585px] items-center lg:items-end justify-center">
           <div className="relative w-full shrink-0" style={{ aspectRatio: "2164/1093" }}>
             <Img
               alt="Expansão Global Acquafy"

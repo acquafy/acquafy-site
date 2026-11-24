@@ -465,47 +465,65 @@ export default function Hero() {
       {slide === 0 && <Img src={imgBg1} priority alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none" />}
       {slide === 1 && <Img src={imgBg2} alt="" className="hidden xl:block absolute inset-0 w-full h-full object-cover pointer-events-none" />}
 
-      {/* ══ MOBILE LAYOUT (<xl) ══ */}
-      <div className="xl:hidden relative flex-1 flex flex-col gap-[20px] items-center w-full">
+      {/* ══ MOBILE LAYOUT (<xl) ══
+          Empilhado (< lg): título > descrição > imagem > pontos > botões > resto (blocos com ícone).
+          Notebook (lg a xl): texto à esquerda e imagem à direita. A coluna de texto usa "contents" empilhada. */}
+      <div className="xl:hidden relative flex-1 flex flex-col lg:flex-row lg:flex-wrap gap-[20px] lg:gap-[40px] items-center lg:justify-center w-full">
 
         {/* === SLIDE 1 - mobile === */}
         {slide === 0 && (
           <>
-            <div className="bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center max-w-[280px] px-[12px] py-[8px] rounded-full shrink-0">
-              <FigmaIcon src={imgPlanetWeb} size={16} />
-              <span className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3]">{t.s1Label}</span>
-            </div>
+            <div className="contents lg:flex lg:flex-col lg:gap-[20px] lg:items-start lg:flex-[1_0_0] lg:min-w-[280px] lg:max-w-[600px]">
+              <div className="order-1 lg:order-none bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center max-w-[280px] px-[12px] py-[8px] rounded-full shrink-0">
+                <FigmaIcon src={imgPlanetWeb} size={16} />
+                <span className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3]">{t.s1Label}</span>
+              </div>
 
-            <h1 className="font-avenir-black text-hero text-[#333] w-full text-center">
-              {t.s1H1a}
-              <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(103.83deg, #0233c3 6.19%, #9f3df5 93.35%)" }}>
-                {t.s1H1b}
-              </span>
-            </h1>
+              <h1 className="order-2 lg:order-none font-avenir-black text-hero text-[#333] w-full text-center lg:text-left">
+                {t.s1H1a}
+                <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(103.83deg, #0233c3 6.19%, #9f3df5 93.35%)" }}>
+                  {t.s1H1b}
+                </span>
+              </h1>
 
-            <p className="font-avenir-roman text-[18px] leading-[26px] text-[#333] text-center w-full">
-              {t.s1Sub}
-            </p>
+              <p className="order-3 lg:order-none font-avenir-roman text-[18px] leading-[26px] text-[#333] text-center lg:text-left w-full">
+                {t.s1Sub}
+              </p>
 
-            <div className="flex flex-wrap gap-[20px] items-start justify-center w-full">
-              {S1_FEAT_ICONS.map((f, i) => (
-                <div key={i} className="flex flex-[1_0_0] flex-col gap-[10px] items-center min-w-[180px]">
-                  <div className="flex items-center justify-center size-[40px] rounded-[12px] p-[10px]" style={{ backgroundColor: f.bg }}>
-                    <FigmaIcon src={f.icon} size={20} aspectW={f.aspectW} aspectH={f.aspectH} />
+              <div className="order-6 lg:order-none flex flex-wrap gap-[20px] items-center justify-center lg:justify-start max-w-[720px] w-full">
+                <a href="/neo-line" className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
+                  <span className="font-avenir-heavy text-[16px] text-white flex-1 text-center">{t.s1Cta1}</span>
+                  <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
+                </a>
+                <a href="/compare" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
+                  <span className="font-avenir-heavy text-[16px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">{t.s1Cta2mob}</span>
+                  <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
+                    <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0 group-active:opacity-0"><FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} /></div>
+                    <div className="absolute inset-0 transition-opacity duration-150 opacity-0 group-hover:opacity-100 group-active:opacity-100"><FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} /></div>
                   </div>
-                  <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#07235c] text-center w-full">{t.s1Features[i].title}</p>
-                  <p className="font-avenir-roman text-[14px] leading-[16px] text-[#333] text-center w-full">{t.s1Features[i].desc}</p>
-                </div>
-              ))}
-            </div>
+                </a>
+              </div>
 
-            <div className="flex gap-[10px] items-center justify-center">
-              <DotAtivo />
-              <DotInativo onClick={() => setSlide(1)} aria-label="ir para slide 2" />
+              <div className="order-7 lg:order-none flex flex-wrap gap-[20px] items-start justify-center w-full">
+                {S1_FEAT_ICONS.map((f, i) => (
+                  <div key={i} className="flex flex-[1_0_0] flex-col gap-[10px] items-center min-w-[180px]">
+                    <div className="flex items-center justify-center size-[40px] rounded-[12px] p-[10px]" style={{ backgroundColor: f.bg }}>
+                      <FigmaIcon src={f.icon} size={20} aspectW={f.aspectW} aspectH={f.aspectH} />
+                    </div>
+                    <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#07235c] text-center w-full">{t.s1Features[i].title}</p>
+                    <p className="font-avenir-roman text-[14px] leading-[16px] text-[#333] text-center w-full">{t.s1Features[i].desc}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="order-5 lg:order-none flex gap-[10px] items-center justify-center">
+                <DotAtivo />
+                <DotInativo onClick={() => setSlide(1)} aria-label="ir para slide 2" />
+              </div>
             </div>
 
             <div
-              className="flex items-end justify-end w-full max-w-[800px] cursor-pointer"
+              className="order-4 lg:order-none flex items-end justify-end w-full max-w-[800px] lg:w-auto lg:flex-[1_0_0] lg:min-w-[280px] cursor-pointer"
               style={{ minHeight: "254px" }}
               onClick={() => setSlide(1)}
               aria-label="Proximo slide"
@@ -517,54 +535,43 @@ export default function Hero() {
                 <Img src={imgMockup} alt="Acquafy Platform Mockup" className="absolute inset-0 w-full h-full object-contain" />
               </div>
             </div>
-
-            <div className="flex flex-wrap gap-[20px] items-center justify-center max-w-[720px] w-full">
-              <a href="/neo-line" className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
-                <span className="font-avenir-heavy text-[16px] text-white flex-1 text-center">{t.s1Cta1}</span>
-                <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
-              </a>
-              <a href="/compare" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
-                <span className="font-avenir-heavy text-[16px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">{t.s1Cta2mob}</span>
-                <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
-                  <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0 group-active:opacity-0"><FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} /></div>
-                  <div className="absolute inset-0 transition-opacity duration-150 opacity-0 group-hover:opacity-100 group-active:opacity-100"><FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} /></div>
-                </div>
-              </a>
-            </div>
           </>
         )}
 
         {/* === SLIDE 2 - mobile === */}
         {slide === 1 && (
           <>
-            <div className="bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center max-w-full px-[12px] py-[8px] rounded-full shrink-0">
-              <FigmaIcon src={imgHeroDrop} size={16} />
-              <span className="font-avenir-heavy text-[14px] leading-[17px] bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(126deg, #0233c3 6.19%, #9f3df5 93.35%)" }}>
-                {s2.label}
-              </span>
-            </div>
+            <div className="contents lg:flex lg:flex-col lg:gap-[20px] lg:items-start lg:flex-[1_0_0] lg:min-w-[280px] lg:max-w-[600px]">
+              <div className="order-1 lg:order-none bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center max-w-full px-[12px] py-[8px] rounded-full shrink-0">
+                <FigmaIcon src={imgHeroDrop} size={16} />
+                <span className="font-avenir-heavy text-[14px] leading-[17px] bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(126deg, #0233c3 6.19%, #9f3df5 93.35%)" }}>
+                  {s2.label}
+                </span>
+              </div>
 
-            <h1 className="font-avenir-black text-hero text-[#333] w-full text-center">
-              {s2.h1a}{" "}
-              <span className="bg-clip-text text-transparent bg-gradient-to-b from-[#0233c3] to-[#9f3df5]">
-                {s2.h1b}
-              </span>
-            </h1>
+              <h1 className="order-2 lg:order-none font-avenir-black text-hero text-[#333] w-full text-center lg:text-left">
+                {s2.h1a}{" "}
+                <span className="bg-clip-text text-transparent bg-gradient-to-b from-[#0233c3] to-[#9f3df5]">
+                  {s2.h1b}
+                </span>
+              </h1>
 
-            <p className="font-avenir-roman text-[18px] leading-[26px] text-[#333] text-center w-full">{s2.sub}</p>
+              <p className="order-3 lg:order-none font-avenir-roman text-[18px] leading-[26px] text-[#333] text-center lg:text-left w-full">{s2.sub}</p>
 
-            <WaasBuyButtons s={s2} className="flex flex-wrap gap-[10px] items-center justify-center max-w-[720px] w-full" />
+              <WaasBuyButtons s={s2} className="order-6 lg:order-none flex flex-wrap gap-[10px] items-center justify-center lg:justify-start max-w-[720px] w-full" />
 
-            <S2Cards s={s2} />
+              <div className="order-7 lg:order-none w-full">
+                <S2Cards s={s2} />
+              </div>
 
-            <div className="flex gap-[10px] items-center justify-center">
-              <DotInativo onClick={() => setSlide(0)} aria-label="ir para slide 1" />
-              <DotAtivo />
+              <div className="order-5 lg:order-none flex gap-[10px] items-center justify-center">
+                <DotInativo onClick={() => setSlide(0)} aria-label="ir para slide 1" />
+                <DotAtivo />
+              </div>
             </div>
 
             <div
-              className="relative w-full overflow-hidden rounded-[16px] cursor-pointer"
-              style={{ height: 508 }}
+              className="order-4 lg:order-none relative w-full lg:w-auto lg:flex-[1_0_0] lg:min-w-[280px] overflow-hidden rounded-[16px] cursor-pointer h-[320px] sm:h-[420px] lg:h-[508px]"
               onClick={() => setSlide(0)}
               aria-label="Slide anterior"
               role="button"

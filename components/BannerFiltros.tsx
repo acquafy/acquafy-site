@@ -373,6 +373,25 @@ export default function BannerFiltros({ variant = "filtros" }: { variant?: "filt
             {desc}
           </p>
 
+          {/* Foto do produto inline — só empilhado (< lg): título > descrição > imagem > botões */}
+          <div className="lg:hidden relative rounded-[16px] overflow-hidden w-full">
+            {isAcc ? (
+              <Img
+                alt="Acessórios Acquafy"
+                className="block w-full aspect-[1.36/1] object-cover object-[93%_center]"
+                src={imgAccMobile}
+              />
+            ) : (
+              <Img
+                alt="Filtros Acquafy — linha completa"
+                width={3200}
+                height={2318}
+                className="block w-full h-auto"
+                src={imgFilters}
+              />
+            )}
+          </div>
+
           {/* Botões CTA — hero-size (50px, Articulat CF Bold 16px), mesmo padrão do Hero
               "1000" (mobile): centralizados | "120"+"Padrão" (lg+): à esquerda       */}
           <div className="flex flex-col md:flex-row flex-wrap gap-[20px] items-center w-full justify-center xl:justify-start">
@@ -403,7 +422,7 @@ export default function BannerFiltros({ variant = "filtros" }: { variant?: "filt
         {isAcc ? (
           <>
             <div
-              className="relative rounded-[16px] overflow-hidden xl:hidden
+              className="relative rounded-[16px] overflow-hidden hidden lg:block xl:hidden
                          w-full
                          lg:flex-[1_0_0] lg:min-w-[280px] lg:min-h-[192px] lg:[aspect-ratio:700/480]"
             >
@@ -418,7 +437,7 @@ export default function BannerFiltros({ variant = "filtros" }: { variant?: "filt
         ) : (
           <>
         <div
-          className="relative rounded-[16px] overflow-hidden xl:hidden
+          className="relative rounded-[16px] overflow-hidden hidden lg:block xl:hidden
                      w-full
                      lg:flex-[1_0_0] lg:min-w-[280px] lg:min-h-[192px] lg:[aspect-ratio:700/480]"
         >

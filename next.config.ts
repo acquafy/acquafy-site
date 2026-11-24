@@ -2,7 +2,9 @@ import type { NextConfig } from "next";
 
 // /public assets are not content-hashed, so they get a day of browser cache plus a week of stale-while-revalidate
 // (an asset replaced under the same name is picked up within a day). Fonts are versioned by hand: rename on change.
-const ASSET_CACHE = "public, max-age=86400, stale-while-revalidate=604800";
+// In development, disable caching so replaced files (images, figma-assets) are always served fresh.
+const isDev = process.env.NODE_ENV === "development";
+const ASSET_CACHE = isDev ? "no-store" : "public, max-age=86400, stale-while-revalidate=604800";
 const FONT_CACHE = "public, max-age=31536000, immutable";
 
 const nextConfig: NextConfig = {
