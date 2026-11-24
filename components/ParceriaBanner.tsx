@@ -175,7 +175,7 @@ export default function ParceriaBanner() {
   const { lang } = useLang();
   const t = T[lang];
   return (
-    <section className="relative bg-white w-full px-[20px] py-[40px] flex items-center justify-center overflow-hidden xl:bg-transparent xl:min-h-[875px]">
+    <section className="relative bg-white w-full px-[20px] py-[40px] flex flex-col items-center justify-center overflow-hidden xl:bg-transparent xl:min-h-[875px]">
 
       {/* ── BG image — tela total (≥1280px) ──────────────────── */}
       <Img
@@ -223,7 +223,7 @@ export default function ParceriaBanner() {
           </div>
 
           {/* Tier badges */}
-          <div className="order-6 lg:order-none flex flex-row gap-[20px] items-stretch justify-center xl:justify-start w-full">
+          <div className="hidden xl:flex flex-row gap-[20px] items-stretch justify-center xl:justify-start w-full">
             {tiers.map((tier) => (
               <div
                 key={tier.key}
@@ -252,6 +252,21 @@ export default function ParceriaBanner() {
         {/* BG image provê o visual; este div equilibra o flex row */}
         <div className="hidden xl:flex flex-[1_0_0] min-w-[280px] h-[795px]" />
 
+      </div>
+
+      {/* Selos de nível — abaixo de tudo (< xl) */}
+      <div className="relative flex xl:hidden max-w-[1400px] mt-[20px] flex-row gap-[20px] items-stretch justify-center xl:justify-start w-full">
+        {tiers.map((tier) => (
+          <div
+            key={tier.key}
+            className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center p-[10px] rounded-[16px]"
+          >
+            <Img src={tier.src} alt={tier.alt} className={tier.imgCls} />
+            <span className={`${tier.labelCls} text-center`} style={tier.labelStyle}>
+              {tier.label}
+            </span>
+          </div>
+        ))}
       </div>
     </section>
   );

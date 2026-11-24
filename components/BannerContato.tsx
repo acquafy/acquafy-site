@@ -249,8 +249,8 @@ export default function BannerContato() {
             {t.body}
           </p>
 
-          {/* Features — 3 ícones diferentes, layout horizontal */}
-          <div className="order-4 lg:order-none flex flex-wrap gap-[20px] items-start w-full">
+          {/* Features — só dentro da coluna em tela total (xl+); abaixo disso ficam depois da linha texto + imagem */}
+          <div className="hidden xl:flex flex-wrap gap-[20px] items-start w-full">
             {t.features.map((f, i) => (
               <Feature
                 key={f.title}
@@ -271,6 +271,18 @@ export default function BannerContato() {
           />
         </div>
 
+      </div>
+
+      {/* Features — abaixo de tudo (< xl) */}
+      <div className="relative xl:hidden flex flex-wrap gap-[20px] items-start max-w-[1400px] w-full mt-[20px]">
+        {t.features.map((f, i) => (
+          <Feature
+            key={f.title}
+            icon={featureIcons[i]}
+            title={f.title}
+            description={f.description}
+          />
+        ))}
       </div>
     </section>
   );

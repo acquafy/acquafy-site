@@ -314,7 +314,7 @@ export default function HeroAppAiIot() {
               win-1280 : items-center (TELA TOTAL); cada card h-[217px]
           */}
           <div className={[
-            "order-6 win-1024:order-none flex flex-wrap gap-[10px] w-full",
+            "hidden win-1280:flex flex-wrap gap-[10px] w-full",
             "items-stretch",
             "justify-center",
             "win-1024:flex-nowrap",
@@ -408,6 +408,49 @@ export default function HeroAppAiIot() {
         */}
         <div className="hidden win-1280:flex flex-[1_0_0]" />
 
+      </div>
+
+      {/* ── BADGE-CARDS (abaixo de tudo, < win-1280) ────────────────────────────────────────────────
+          Base     : flex-wrap, items-start, justify-center
+                     cada card: min-w-[280px] flex-[1_0_0]
+          win-1024 : flex-nowrap (linha única), items-start, justify-center
+                     cada card: min-w-px (pode diminuir)
+          win-1280 : items-center (TELA TOTAL); cada card h-[217px]
+      */}
+      <div className={[
+        "relative win-1280:hidden flex flex-wrap gap-[10px] w-full max-w-[1400px] mt-[20px]",
+        "items-stretch",
+        "justify-center",
+        "win-1024:flex-nowrap",
+      ].join(" ")}>
+        {badges.map((b) => (
+          <div
+            key={b.title}
+            className={[
+              "bg-white flex flex-[1_0_0] flex-col gap-[20px] items-start",
+              "p-[20px] rounded-[16px]",
+              "min-w-[280px] win-1024:min-w-px",
+            ].join(" ")}
+          >
+            {/* Ícone */}
+            <div
+              className="flex items-center justify-center size-[50px] rounded-[12px] shrink-0 p-[12px]"
+              style={{ backgroundColor: b.bg }}
+            >
+              <FigmaIcon src={b.icon} size={26} aspectW={b.aspectW} aspectH={b.aspectH} />
+            </div>
+
+            {/* Título do card */}
+            <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91] w-full">
+              {b.title}
+            </p>
+
+            {/* Descrição do card */}
+            <p className="font-avenir-roman text-[16px] leading-[20px] text-[#2a2a2b] w-full">
+              {b.desc}
+            </p>
+          </div>
+        ))}
       </div>
     </section>
   );

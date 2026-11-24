@@ -355,7 +355,7 @@ export default function BannerLinhaNeo() {
           </div>
 
           {/* Lista de features */}
-          <div className="flex flex-wrap gap-[20px] items-start justify-center rounded-[12px] w-full">
+          <div className="hidden win-1280:flex flex-wrap gap-[20px] items-start justify-center rounded-[12px] w-full">
             {features.map((f) => (
               <div key={f.title} className="flex flex-[1_0_0] gap-[20px] items-center justify-center min-w-[180px] win-1024:justify-start">
                 <FigmaIcon src={f.icon} size={30} aspectW={f.aW} aspectH={f.aH} />
@@ -384,6 +384,23 @@ export default function BannerLinhaNeo() {
         {/* Coluna direita: espaço vazio — win-1280+ (produtos estão na imagem de fundo) */}
         <div className="hidden win-1280:block flex-[1_0_0] min-h-[376px] min-w-[280px]" />
       </div>
+
+      {/* Lista de features — abaixo de tudo (< win-1280) */}
+    <div className="relative win-1280:hidden flex flex-wrap gap-[20px] items-start justify-center rounded-[12px] max-w-[1400px] w-full">
+      {features.map((f) => (
+        <div key={f.title} className="flex flex-[1_0_0] gap-[20px] items-center justify-center min-w-[180px] win-1024:justify-start">
+          <FigmaIcon src={f.icon} size={30} aspectW={f.aW} aspectH={f.aH} />
+          <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start justify-center min-w-0">
+            <p className="font-avenir-heavy text-[16px] leading-[20px] text-[#1f2e91] w-full">
+              {f.title}
+            </p>
+            <p className="font-avenir-roman text-[12px] leading-[14px] text-[#333] w-full">
+              {f.desc}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
 
       {/* Barra de stats */}
       <div

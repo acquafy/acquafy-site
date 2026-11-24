@@ -450,7 +450,7 @@ export default function PlatformHero() {
           </div>
 
           {/* Feature cards */}
-          <div className="order-6 1024:order-none flex flex-wrap 1024:flex-nowrap gap-[10px] items-stretch justify-center 1024:justify-start w-full">
+          <div className="hidden win-1280:flex flex-wrap 1024:flex-nowrap gap-[10px] items-stretch justify-center 1024:justify-start w-full">
             {featureCards.map((f) => (
               <div key={f.title} className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center min-h-[220px] min-w-[200px] 1024:min-w-px px-[10px] py-[20px] rounded-[16px]">
                 <div className="flex items-center justify-center p-[12px] rounded-[12px] shrink-0 size-[60px]" style={{ backgroundColor: f.bg }}>
@@ -480,11 +480,28 @@ export default function PlatformHero() {
           />
         </div>
 
-        {/* ── Trust badges linha separada — default + 1024, oculta no win-1280+ ── */}
-        <div className="order-7 1024:order-none flex win-1280:hidden flex-wrap gap-[8px] items-center w-full 1024:flex-none">
-          <BadgeRow badges={t.trustBadges} />
-        </div>
+      </div>
 
+      {/* Abaixo de tudo (< win-1280): cards de recursos e selos de confiança */}
+      <div className="relative win-1280:hidden flex flex-col gap-[20px] max-w-[1400px] w-full mt-[20px]">
+      {/* Feature cards — abaixo de tudo (< win-1280) */}
+      <div className="flex flex-wrap 1024:flex-nowrap gap-[10px] items-stretch justify-center 1024:justify-start w-full">
+        {featureCards.map((f) => (
+          <div key={f.title} className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center min-h-[220px] min-w-[200px] 1024:min-w-px px-[10px] py-[20px] rounded-[16px]">
+            <div className="flex items-center justify-center p-[12px] rounded-[12px] shrink-0 size-[60px]" style={{ backgroundColor: f.bg }}>
+              <FigmaIcon src={f.icon} size={30} aspectW={f.iconW} aspectH={f.iconH} />
+            </div>
+            <div className="flex items-center justify-center min-h-[44px] w-full">
+              <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91] text-center w-full">{f.title}</p>
+            </div>
+            <p className="font-avenir-roman text-[14px] leading-[16px] text-[#2a2a2b] text-center w-full">{f.desc}</p>
+          </div>
+        ))}
+      </div>
+    {/* ── Trust badges linha separada — default + 1024, oculta no win-1280+ ── */}
+    <div className="flex flex-wrap gap-[8px] items-center w-full">
+      <BadgeRow badges={t.trustBadges} />
+    </div>
       </div>
     </section>
   );

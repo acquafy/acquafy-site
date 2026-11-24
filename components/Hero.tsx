@@ -504,18 +504,6 @@ export default function Hero() {
                 </a>
               </div>
 
-              <div className="order-7 lg:order-none flex flex-wrap gap-[20px] items-start justify-center w-full">
-                {S1_FEAT_ICONS.map((f, i) => (
-                  <div key={i} className="flex flex-[1_0_0] flex-col gap-[10px] items-center min-w-[180px]">
-                    <div className="flex items-center justify-center size-[40px] rounded-[12px] p-[10px]" style={{ backgroundColor: f.bg }}>
-                      <FigmaIcon src={f.icon} size={20} aspectW={f.aspectW} aspectH={f.aspectH} />
-                    </div>
-                    <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#07235c] text-center w-full">{t.s1Features[i].title}</p>
-                    <p className="font-avenir-roman text-[14px] leading-[16px] text-[#333] text-center w-full">{t.s1Features[i].desc}</p>
-                  </div>
-                ))}
-              </div>
-
               <div className="order-5 lg:order-none flex gap-[10px] items-center justify-center">
                 <DotAtivo />
                 <DotInativo onClick={() => setSlide(1)} aria-label="ir para slide 2" />
@@ -534,6 +522,18 @@ export default function Hero() {
               <div className="relative w-full" style={{ aspectRatio: "3160/2300" }}>
                 <Img src={imgMockup} alt="Acquafy Platform Mockup" className="absolute inset-0 w-full h-full object-contain" />
               </div>
+            </div>
+
+            <div className="order-7 lg:order-none lg:basis-full flex flex-wrap gap-[20px] items-start justify-center w-full">
+              {S1_FEAT_ICONS.map((f, i) => (
+                <div key={i} className="flex flex-[1_0_0] flex-col gap-[10px] items-center min-w-[180px]">
+                  <div className="flex items-center justify-center size-[40px] rounded-[12px] p-[10px]" style={{ backgroundColor: f.bg }}>
+                    <FigmaIcon src={f.icon} size={20} aspectW={f.aspectW} aspectH={f.aspectH} />
+                  </div>
+                  <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#07235c] text-center w-full">{t.s1Features[i].title}</p>
+                  <p className="font-avenir-roman text-[14px] leading-[16px] text-[#333] text-center w-full">{t.s1Features[i].desc}</p>
+                </div>
+              ))}
             </div>
           </>
         )}
@@ -560,10 +560,6 @@ export default function Hero() {
 
               <WaasBuyButtons s={s2} className="order-6 lg:order-none flex flex-wrap gap-[10px] items-center justify-center lg:justify-start max-w-[720px] w-full" />
 
-              <div className="order-7 lg:order-none w-full">
-                <S2Cards s={s2} />
-              </div>
-
               <div className="order-5 lg:order-none flex gap-[10px] items-center justify-center">
                 <DotInativo onClick={() => setSlide(0)} aria-label="ir para slide 1" />
                 <DotAtivo />
@@ -579,6 +575,10 @@ export default function Hero() {
               onKeyDown={(e) => e.key === "Enter" && setSlide(0)}
             >
               <Img src={imgFrame36} alt="Acquafy Neo UP" className="absolute inset-0 w-full h-full object-cover" />
+            </div>
+
+            <div className="order-7 lg:order-none lg:basis-full w-full">
+              <S2Cards s={s2} />
             </div>
           </>
         )}
