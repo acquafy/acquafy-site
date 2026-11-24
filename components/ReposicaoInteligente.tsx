@@ -370,16 +370,23 @@ const PHONE_RATIO = 1947 / 4096;
 
 export default function ReposicaoInteligente() {
   const { lang } = useLang();
-  const contentRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLDivElement>(null);
+  const featRef = useRef<HTMLDivElement>(null);
   // the phone is as tall as the content next to it plus 5%, kept between 280 and 440px (md and up); below md it keeps a fixed size
   const [phoneH, setPhoneH] = useState<number | null>(null);
   useEffect(() => {
-    const el = contentRef.current;
-    if (!el) return;
-    const update = () => setPhoneH(window.matchMedia("(min-width: 768px)").matches ? Math.min(440, Math.max(280, Math.round(el.getBoundingClientRect().height * 1.05))) : null);
+    const title = titleRef.current;
+    const feat = featRef.current;
+    if (!title || !feat) return;
+    // md and up: the title and the features sit in the column next to the phone (20px gap between them)
+    const update = () => {
+      const h = title.getBoundingClientRect().height + 20 + feat.getBoundingClientRect().height;
+      setPhoneH(window.matchMedia("(min-width: 768px)").matches ? Math.min(440, Math.max(280, Math.round(h * 1.05))) : null);
+    };
     update();
     const ro = new ResizeObserver(update);
-    ro.observe(el);
+    ro.observe(title);
+    ro.observe(feat);
     window.addEventListener("resize", update);
     return () => { ro.disconnect(); window.removeEventListener("resize", update); };
   }, []);
@@ -391,20 +398,10 @@ export default function ReposicaoInteligente() {
     <section className="bg-white flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
       <div className="bg-[#f6f9fe] flex flex-col gap-[20px] max-w-[1400px] px-[20px] py-[40px] rounded-[16px] w-full">
 
-        {/* Phone beside the intro and the feature icons */}
-        <div className="flex flex-col md:flex-row flex-wrap gap-[20px] items-center justify-center w-full">
+        {/* Mobile: title, phone, then the features. md and up: the phone sits on the left, beside the title and the features */}
+        <div className="grid grid-cols-1 md:grid-cols-[auto_minmax(0,1fr)] gap-x-[20px] gap-y-[20px] items-center w-full">
 
-        {/* Phone mockup: as tall as the content next to it, plus 5% */}
-        <div
-          className="relative shrink-0 overflow-hidden"
-          style={phoneH ? { height: phoneH, width: Math.round(phoneH * PHONE_RATIO) } : { height: 320, width: 156 }}
-        >
-          <Img alt="Acquafy App" className="absolute inset-0 w-full h-full object-cover" src={imgPhone} />
-        </div>
-
-        {/* Content */}
-        <div ref={contentRef} className="flex flex-col gap-[20px] items-start flex-1 min-w-[240px]">
-          <div className="flex flex-col gap-[20px] items-center w-full">
+          <div ref={titleRef} className="flex flex-col gap-[20px] items-center w-full md:col-start-2 md:row-start-1">
             <h2 className="font-avenir-heavy text-f22 leading-l28 md:text-f26 md:leading-l34 w-full text-center lg:text-left">
               <span className="text-[#1f2e91]">{t.heading1}</span>
               {" "}
@@ -415,13 +412,21 @@ export default function ReposicaoInteligente() {
             </p>
           </div>
 
+          {/* Phone mockup: as tall as the title and features next to it, plus 5% */}
+          <div
+            className="relative shrink-0 overflow-hidden justify-self-center md:col-start-1 md:row-start-1 md:row-span-2"
+            style={phoneH ? { height: phoneH, width: Math.round(phoneH * PHONE_RATIO) } : { height: 320, width: 156 }}
+          >
+            <Img alt="Acquafy App" className="absolute inset-0 w-full h-full object-cover" src={imgPhone} />
+          </div>
+
           {/* Feature icons */}
-          <div className="flex flex-col gap-[20px] items-start w-full">
+          <div ref={featRef} className="flex flex-col gap-[20px] items-start w-full md:col-start-2 md:row-start-2">
             <div className="card-row [--card-min:160px] gap-[20px] items-start justify-center w-full">
               {features.map((f) => (
-                <div key={f.title} className="flex flex-col gap-[10px] items-start min-w-0">
+                <div key={f.title} className="flex flex-col gap-[10px] items-center lg:items-start text-center lg:text-left min-w-0">
                   <FigmaIcon src={f.icon} size={36} aspectW={f.aspectW} aspectH={f.aspectH} />
-                  <div className="flex flex-col gap-[10px] items-start w-full">
+                  <div className="flex flex-col gap-[10px] items-center lg:items-start w-full">
                     <p className="font-avenir-heavy text-f17 leading-l20 min-h-[2lh] text-[#1f2e91]">{f.title}</p>
                     <p className="font-avenir-roman text-f14 leading-l17 text-[#2a2a2b]">{f.desc}</p>
                   </div>
@@ -430,9 +435,8 @@ export default function ReposicaoInteligente() {
             </div>
           </div>
         </div>
-        </div>
 
-            {/* Stats cards */}
+        {/* Stats cards */}
             <div className="card-row [--card-min:160px] gap-[20px] items-stretch justify-center w-full">
               {t.stats.map((s) => (
                 <div key={s.value} className="bg-white flex flex-col gap-[10px] items-start justify-center min-w-0 px-[20px] py-[20px] rounded-[12px] text-center">

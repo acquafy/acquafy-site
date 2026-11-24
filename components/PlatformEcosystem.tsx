@@ -214,7 +214,7 @@ export default function PlatformEcosystem() {
 
         <div className="card-row [--card-min:200px] gap-[10px] items-stretch w-full">
           {steps.map((step) => (
-              <div key={step.label} className="bg-[#f6f9fe] flex flex-col gap-[20px] items-center min-h-[135px] min-w-0 p-[20px] rounded-[16px]">
+              <div key={step.label} className="bg-[#f6f9fe] flex flex-col gap-[20px] items-center min-w-0 p-[20px] rounded-[16px]">
                 <div className="bg-[#dae9ff] flex items-center justify-center p-[16px] rounded-full shrink-0 size-[64px]">
                   <FigmaIcon src={step.icon} size={32} aspectW={step.iconW} aspectH={step.iconH} />
                 </div>

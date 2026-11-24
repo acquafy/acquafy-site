@@ -227,7 +227,7 @@ export default function OperacaoGlobal() {
           {features.map((f, i) => (
             <div
               key={i}
-              className="min-w-0 bg-[#f6f9fe] flex flex-col gap-[10px] items-center min-h-[110px] p-[20px] rounded-[16px]"
+              className="min-w-0 bg-[#f6f9fe] flex flex-col gap-[10px] items-center p-[20px] rounded-[16px]"
             >
               <Img src={f.icon} alt="" className="size-[30px] object-contain shrink-0" />
               <div className="flex flex-col gap-[10px] items-start text-center w-full shrink-0">

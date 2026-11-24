@@ -202,7 +202,7 @@ export default function ExpansaoGlobalPilares() {
           {pillars.map((p) => (
             <div
               key={p.title}
-              className="min-w-0 bg-white flex flex-col gap-[20px] items-center min-h-[250px] overflow-hidden px-[10px] py-[20px] rounded-[16px]"
+              className="min-w-0 bg-white flex flex-col gap-[20px] items-center overflow-hidden px-[10px] py-[20px] rounded-[16px]"
             >
               <FigmaIcon src={p.icon} size={40} aspectW={p.iconW} aspectH={p.iconH} />
               <h3 className="font-avenir-heavy text-f18 leading-l22 text-[#1f2e91] text-center flex items-center justify-center min-h-[50px]">

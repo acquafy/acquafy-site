@@ -979,7 +979,7 @@ export default function BannerCentralSuporte() {
               onClick={openChat}
               className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#0569ff] transition-colors
               flex gap-[10px] items-center justify-center
-              min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer shrink-0">
+              min-h-[50px] min-w-max overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer shrink-0">
               <span className="font-avenir-heavy text-f16 text-white flex-1 text-center leading-normal">
                 {t.btnChat}
               </span>
@@ -988,7 +988,7 @@ export default function BannerCentralSuporte() {
 
             <a href="/contact" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors
               flex gap-[10px] items-center justify-center
-              min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer shrink-0">
+              min-h-[50px] min-w-max overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer shrink-0">
               <span className="font-avenir-heavy text-f16 text-[#0233c3] group-hover:text-white transition-colors flex-1 text-center leading-normal">
                 {t.btnSpecialist}
               </span>

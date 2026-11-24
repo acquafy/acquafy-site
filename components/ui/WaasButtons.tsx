@@ -11,7 +11,7 @@ const gdBase = { backgroundImage: "linear-gradient(104deg, #0233c3 6.19%, #9f3df
 export default function WaasBuyButtons({ s, className, children, compact = false }: { s: S2Text; className: string; children?: ReactNode; compact?: boolean }) {
   const base = compact
     ? "flex flex-[0_0_auto] gap-[8px] items-center justify-center min-h-[56px] overflow-hidden px-[12px] py-[10px] rounded-[8px] cursor-pointer"
-    : "flex flex-[1_0_auto] gap-[10px] items-center justify-center min-h-[56px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer";
+    : "flex flex-[1_0_auto] gap-[10px] items-center justify-center min-h-[56px] min-w-max overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer";
   const txt = compact ? "text-f15 leading-l19" : "text-f18 leading-l22";
   const icon = compact ? 20 : 24;
   return (

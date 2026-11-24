@@ -396,12 +396,12 @@ export default function BannerFiltros({ variant = "filtros" }: { variant?: "filt
               "1000" (mobile): centralizados | "120"+"Padrão" (lg+): à esquerda       */}
           <div className="flex flex-col md:flex-row flex-wrap gap-[20px] items-center w-full justify-center lg:justify-start">
             {/* BT AZUL BASE ARROW */}
-            <a href={isAcc ? "#acessorios-lista" : "#filtros-lista"} className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex w-full md:w-auto md:flex-[1_0_auto] gap-[10px] items-center justify-center min-h-[50px] md:min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
+            <a href={isAcc ? "#acessorios-lista" : "#filtros-lista"} className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex w-full md:w-auto md:flex-[1_0_auto] gap-[10px] items-center justify-center min-h-[50px] md:min-w-max overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
               <span className="font-avenir-heavy text-f16 text-white flex-1 text-center whitespace-nowrap">{btn1}</span>
               <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
             </a>
             {/* BT AZUL OUT ARROW */}
-            <a href="/contact" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex w-full md:w-auto md:flex-[1_0_auto] gap-[10px] items-center justify-center min-h-[50px] md:min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
+            <a href="/contact" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex w-full md:w-auto md:flex-[1_0_auto] gap-[10px] items-center justify-center min-h-[50px] md:min-w-max overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
               <span className="font-avenir-heavy text-f16 text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center whitespace-nowrap">{t.btn2}</span>
               <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
                 <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0 group-active:opacity-0">
@@ -459,7 +459,7 @@ export default function BannerFiltros({ variant = "filtros" }: { variant?: "filt
       </div>
 
       {/* ─── Stats bar — pinada ao rodapé (último elemento do flex-col da section) */}
-      {!isAcc && <div className="relative bg-white card-row [--card-min:200px] gap-y-[30px] items-center max-w-[1400px] min-h-[140px] overflow-hidden py-[25px] rounded-[16px] w-full">
+      {!isAcc && <div className="relative bg-white card-row card-row-fit [--card-min:290px] gap-y-[30px] items-center max-w-[1400px] min-h-[140px] overflow-hidden py-[25px] rounded-[16px] w-full">
         {stats.map((s, i) => (
           <div
             key={i}
@@ -468,7 +468,7 @@ export default function BannerFiltros({ variant = "filtros" }: { variant?: "filt
             <FigmaIcon src={s.icon} size={36} aspectW={s.iconW} aspectH={s.iconH} />
             <div className="flex flex-col gap-[5px] flex-1 min-w-[100px]">
               <p className="font-avenir-heavy text-f17 leading-l20 text-[#1f2e91]">{s.title}</p>
-              <p className="font-avenir-roman text-f14 leading-l17 text-[#2a2a2b]">{s.desc}</p>
+              <p className="font-avenir-roman text-f14 leading-l17 text-[#2a2a2b] w-0 min-w-full">{s.desc}</p>
             </div>
           </div>
         ))}

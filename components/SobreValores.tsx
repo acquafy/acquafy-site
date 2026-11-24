@@ -233,7 +233,7 @@ export default function SobreValores() {
           {values.map((v) => (
             <div
               key={v.title}
-              className="min-w-0 bg-white flex flex-col gap-[25px] items-center min-h-[240px] px-[10px] py-[20px] rounded-[16px]"
+              className="min-w-0 bg-white flex flex-col gap-[25px] items-center px-[10px] py-[20px] rounded-[16px]"
             >
               <FigmaIcon src={v.icon} alt={v.alt} size={40} aspectW={v.aspectW} aspectH={v.aspectH} />
               <div className="flex flex-col gap-[20px] items-center text-center w-full">

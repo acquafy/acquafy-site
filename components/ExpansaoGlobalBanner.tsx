@@ -341,13 +341,13 @@ export default function ExpansaoGlobalBanner() {
           {/* CTA Buttons */}
           <div className="order-6 lg:order-none flex flex-wrap gap-[20px] items-center w-full">
             {bePartner && (
-              <Link href="/parceria" className="flex-[1_0_0] min-w-[190px]">
+              <Link href="/parceria" className="flex-[1_0_0] min-w-max">
                 <BtnAzulBaseArrow className="w-full min-h-[50px]">
                   {t.btn1}
                 </BtnAzulBaseArrow>
               </Link>
             )}
-            <Link href="/contact" className="flex-[1_0_0] min-w-[190px]">
+            <Link href="/contact" className="flex-[1_0_0] min-w-max">
               <BtnAzulOutArrow className="w-full min-h-[50px]">
                 {t.btn2}
               </BtnAzulOutArrow>

@@ -16,6 +16,10 @@ import { useEffect } from "react";
  *
  * ".card-row-equal": when the blocks end up stacked one per row they get the same height as well (side by side the grid already stretches them). The spare height goes to the CSS variable --equal-extra, which a card adds to the bottom padding of its list row (min-height is ignored by subgrid cards).
  *
+ * ".card-row-hug": every block keeps the width of its own content. While they all fit on one row the row is a flex row with
+ * justify-content: space-between, so the free space becomes an equal gap between the blocks. When they no longer fit the
+ * row falls back to the balanced grid (minimum column width from --card-min).
+ *
  * ".card-row-fit" (items of different widths, e.g. a stats strip): while every item fits on a single row the row is a
  * plain flex row and each item takes the width of its content, sharing the spare space, so a long label is not squeezed
  * into the same width as a short one. When it no longer fits on one row it falls back to the balanced grid above.
@@ -36,7 +40,30 @@ function layout(el: HTMLElement) {
   const cs = getComputedStyle(el);
   const gap = parseFloat(cs.columnGap) || 0;
   let min = parseFloat(cs.getPropertyValue("--card-min")) || 200;
-  if (el.classList.contains("card-row-content")) {
+  if (el.classList.contains("card-row-hug")) {
+    const inner = el.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    // back to the grid defaults before measuring
+    el.style.display = "";
+    el.style.justifyContent = "";
+    kids.forEach((k) => { k.style.flex = ""; k.style.gridColumn = ""; });
+    const widths = kids.map((k) => {
+      const prev = k.style.width;
+      k.style.width = "max-content";
+      const w = k.offsetWidth;
+      k.style.width = prev;
+      return w;
+    });
+    const total = widths.reduce((a, b) => a + b, 0) + gap * (n - 1);
+    if (total <= inner) {
+      el.style.display = "flex";
+      el.style.flexWrap = "nowrap";
+      el.style.justifyContent = "space-between";
+      el.style.gridTemplateColumns = "";
+      kids.forEach((k) => (k.style.flex = "0 0 auto"));
+      return;
+    }
+    el.style.flexWrap = "";
+  } else if (el.classList.contains("card-row-content")) {
     // Cards whose text must not wrap: the minimum width is the widest card at its natural (max-content) width.
     for (const k of kids) {
       const prev = k.style.width;

@@ -9,7 +9,7 @@ import { PartnerModal, FORM_T } from "./ModelosParceria";
 import { useFeature, Feature } from "@/components/FeatureFlags";
 
 const imgBg     = "/figma-assets/bg-h.webp";
-const imgFrame  = "/figma-assets/frame-image.webp";
+const imgFrame  = "/figma-assets/frame-image-wide.webp";
 const imgPlanet = "/figma-assets/icon-planet-b.svg";
 
 const imgPeople = "/figma-assets/icon-people-b.svg";
@@ -405,7 +405,7 @@ type CardItemData = { icon: string; aspectW: number; aspectH: number; label: str
 function CardItem({ c, fullWidth }: { c: CardItemData; fullWidth?: boolean }) {
   return (
     <div
-      className={`flex gap-[20px] items-center h-[80px] p-[20px] rounded-[16px] shadow-[0px_4px_8px_0px_rgba(0,0,0,0.25)] shrink-0 ${fullWidth ? "w-full" : "w-[250px]"}`}
+      className={`flex items-center rounded-[16px] shadow-[0px_4px_8px_0px_rgba(0,0,0,0.25)] shrink-0 ${fullWidth ? "min-w-0 min-h-[80px] gap-[12px] px-[16px] py-[14px]" : "gap-[20px] h-[80px] p-[20px] w-[250px]"}`}
       style={{ background: "linear-gradient(to right, white, rgba(255,255,255,0.7))" }}
     >
       <div className="flex flex-col items-center justify-center size-[40px] shrink-0">
@@ -472,12 +472,12 @@ export default function NeoMediaBanner() {
           </p>
           <div className="order-6 lg:order-none flex flex-wrap gap-[16px] items-center justify-center lg:justify-start w-full">
             {bePartner && (
-              <BtnAzulBaseArrow className="flex-[1_0_0] min-w-[190px] min-h-[50px] px-[20px]" onClick={() => setModalOpen(true)}>
+              <BtnAzulBaseArrow className="flex-[1_0_0] min-w-max min-h-[50px] px-[20px]" onClick={() => setModalOpen(true)}>
                 {t.btnPrimary}
               </BtnAzulBaseArrow>
             )}
             <Feature name="buyNow">
-            <Link href="/buy/checkin-acquafy-media" className="flex-[1_0_0] min-w-[190px]">
+            <Link href="/buy/checkin-acquafy-media" className="flex-[1_0_0] min-w-max">
               <BtnAzulOutArrow className="w-full min-h-[50px] px-[20px]">
                 {t.btnSecondary}
               </BtnAzulOutArrow>
@@ -487,7 +487,7 @@ export default function NeoMediaBanner() {
         </div>
 
         {/* Imagem do dispositivo — logo depois do texto (título > descrição > imagem > botões > resto) */}
-        <div className="order-5 lg:order-none aspect-[3104/2922] relative rounded-[16px] overflow-hidden w-full max-w-[520px] lg:max-w-none lg:w-auto lg:flex-[1_0_0] lg:min-w-[280px]">
+        <div className="order-5 lg:order-none aspect-[3/2] sm:aspect-[11/5] lg:aspect-[3104/2922] relative rounded-[16px] overflow-hidden w-full lg:w-auto lg:flex-[1_0_0] lg:min-w-[280px]">
           <Img
             alt=""
             src={imgFrame}
@@ -495,11 +495,11 @@ export default function NeoMediaBanner() {
           />
         </div>
 
-        <div className="order-7 lg:order-none lg:basis-full card-row [--card-min:150px] gap-[30px_10px] items-center w-full py-[25px]">
+        <div className="order-7 lg:order-none lg:basis-full card-row card-row-hug [--card-min:150px] gap-[30px_20px] items-center w-full py-[25px]">
           {stats.map((s) => (
             <div key={s.title} className="flex gap-[10px] items-center min-w-0">
               <FigmaIcon src={s.icon} size={30} aspectW={s.aspectW} aspectH={s.aspectH} />
-              <div className="flex flex-col gap-[10px]">
+              <div className="flex flex-col gap-[2px]">
                 <p className="font-avenir-heavy text-f18 leading-l22 text-[#1f2e91]">{s.title}</p>
                 <p className="font-avenir-roman text-f16 leading-l20 text-[#2a2a2b]">{s.sub}</p>
               </div>
@@ -508,7 +508,7 @@ export default function NeoMediaBanner() {
         </div>
 
         {/* Cards — node 3411:6044 */}
-        <div className="order-8 lg:order-none lg:basis-full grid grid-cols-1 lg:grid-cols-3 gap-[20px] w-full">
+        <div className="order-8 lg:order-none lg:basis-full card-row [--card-min:170px] gap-[20px] items-stretch w-full">
           {cards.map((c) => (
             <CardItem key={c.label} c={c} fullWidth />
           ))}
@@ -549,13 +549,13 @@ export default function NeoMediaBanner() {
               </Feature>
             </div>
             {/* Stats — node 3410:13509 */}
-            <div className="flex flex-wrap gap-[30px_0] items-center justify-center py-[25px] rounded-[16px] w-full">
+            <div className="card-row card-row-hug [--card-min:150px] gap-[30px_20px] items-center py-[25px] rounded-[16px] w-full">
               {stats.map((s) => (
-                <div key={s.title} className="flex flex-[1_0_0] flex-wrap gap-[10px] items-center min-w-[200px]">
+                <div key={s.title} className="flex gap-[10px] items-center min-w-0">
                   <div className="flex flex-col items-center justify-center shrink-0 size-[30px]">
                     <FigmaIcon src={s.icon} size={30} aspectW={s.aspectW} aspectH={s.aspectH} />
                   </div>
-                  <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-[100px]">
+                  <div className="flex flex-col gap-[2px] items-start">
                     <p className="font-avenir-heavy text-f18 leading-l22 text-[#1f2e91]">{s.title}</p>
                     <p className="font-avenir-roman text-f16 leading-l20 text-[#2a2a2b]">{s.sub}</p>
                   </div>

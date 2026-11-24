@@ -203,7 +203,7 @@ export default function PlatformGlobal() {
           {/* Cards */}
           <div className="card-row [--card-min:160px] flex-[1_0_0] gap-[20px] items-stretch min-w-px">
             {stats.map((s) => (
-              <div key={s.desc} className="bg-white flex flex-col gap-[20px] items-center min-h-[170px] min-w-0 p-[20px] rounded-[16px]">
+              <div key={s.desc} className="bg-white flex flex-col gap-[20px] items-center min-w-0 p-[20px] rounded-[16px]">
                 <div className="flex items-center justify-center shrink-0 size-[40px]">
                   <FigmaIcon src={s.icon} size={40} aspectW={s.iconW} aspectH={s.iconH} />
                 </div>

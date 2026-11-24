@@ -4,13 +4,17 @@ import { useEffect } from "react";
 
 /**
  * Keeps button labels on a single line. A label (the "flex-1 text-center" span inside a link/button) shrinks its font
- * together with the button when the button gets narrower than the text, down to MIN_PX (14px, the site-wide minimum) and, if it still does not fit, wraps onto a second line; it goes back to its normal
- * size as soon as there is room again. Works for every language because it measures the real rendered text.
+ * together with the button when the button gets narrower than the text, down to MIN_PX (12px; button labels are the one place smaller than the 14px body minimum, so they never wrap).
+ * If it still does not fit at 14px the label never wraps: the button gets a minimum width equal to its label, so a
+ * flex-wrap row moves the whole button to the next line instead. It goes back to its normal size as soon as there is
+ * room again. Works for every language because it measures the real rendered text.
  */
 const SELECTOR = "a > span.flex-1.text-center, button > span.flex-1.text-center";
-const MIN_PX = 14;
+const MIN_PX = 12;
 
 function fit(el: HTMLElement) {
+  const btn = el.parentElement;
+  if (btn) btn.style.minWidth = "";
   el.style.whiteSpace = "nowrap";
   el.style.minWidth = "0";
   el.style.fontSize = "";
@@ -20,8 +24,10 @@ function fit(el: HTMLElement) {
   if (!room || !need || need <= room) return;
   const size = Math.floor(natural * (room / need) * 10) / 10;
   if (size < MIN_PX) {
+    // label at the minimum size; widen the button just enough for it (the rest of the button is padding and icon)
+    const sized = natural < MIN_PX ? natural : MIN_PX;
     el.style.fontSize = natural < MIN_PX ? "" : `${MIN_PX}px`;
-    el.style.whiteSpace = "normal";
+    if (btn) btn.style.minWidth = `${Math.ceil(btn.clientWidth - room + need * (sized / natural))}px`;
     return;
   }
   el.style.fontSize = `${size}px`;

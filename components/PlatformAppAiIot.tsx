@@ -236,11 +236,11 @@ export default function PlatformAppAiIot() {
 
         <div className="card-row [--card-min:140px] gap-[20px] items-stretch justify-center w-full">
           {items.map((item) => (
-            <div key={item.label} className="min-w-0 bg-white flex flex-col gap-[20px] items-center min-h-[135px] p-[20px] rounded-[12px]">
+            <div key={item.label} className="min-w-0 bg-white grid grid-rows-subgrid row-span-2 gap-y-[20px] justify-items-center p-[20px] rounded-[12px]">
               <div className="flex items-center justify-center shrink-0 size-[36px]">
                 <FigmaIcon src={item.icon} size={36} aspectW={item.iconW} aspectH={item.iconH} />
               </div>
-              <p className="font-avenir-heavy text-f17 leading-l20 text-[#1f2e91] text-center min-h-[45px] w-full flex items-center justify-center">
+              <p className="font-avenir-heavy text-f17 leading-l20 text-[#1f2e91] text-center w-full flex items-center justify-center">
                 {item.label}
               </p>
             </div>

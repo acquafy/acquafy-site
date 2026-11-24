@@ -236,17 +236,17 @@ export default function NeoMediaFeatures() {
           {t.heading1}
           <span className="text-[#0569ff]">{t.headingHighlight}</span>
         </h2>
-        {/* 6 cards em grade: 1 coluna (celular) · 2 · 3 (notebook) · 6 (≥1400px) — sem card órfão esticado na última linha */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 min-[1400px]:grid-cols-6 gap-[20px] w-full">
+        {/* Cada card ocupa 3 linhas (ícone, título, descrição) da grade, então título e descrição alinham entre cards da mesma linha, sem altura mínima fixa. 6 cards em grade: 1 coluna (celular) · 2 · 3 (notebook) · 6 (≥1400px) — sem card órfão esticado na última linha */}
+        <div className="card-row [--card-min:240px] gap-[20px] w-full">
           {features.map((f) => (
             <div
               key={f.title}
-              className="bg-[#f6f9fe] flex flex-col gap-[20px] items-center min-h-[250px] min-w-0 overflow-hidden px-[16px] py-[20px] rounded-[16px]"
+              className="bg-[#f6f9fe] grid grid-rows-subgrid row-span-3 gap-y-[20px] justify-items-center content-start min-w-0 overflow-hidden px-[16px] py-[20px] rounded-[16px]"
             >
               <div className="flex flex-col items-center justify-center size-[40px]">
                 <FigmaIcon src={f.icon} size={32} aspectW={f.aspectW} aspectH={f.aspectH} />
               </div>
-              <h3 className="font-avenir-heavy text-f18 leading-l22 text-[#1f2e91] text-center flex items-center justify-center min-h-[44px] w-full">
+              <h3 className="font-avenir-heavy text-f18 leading-l22 text-[#1f2e91] text-center w-full">
                 {f.title}
               </h3>
               <p className="font-avenir-roman text-f16 leading-l20 text-[#333] text-center w-full">

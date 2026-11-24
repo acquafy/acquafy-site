@@ -39,7 +39,7 @@ function ProductCard({ variant, family }: { variant: CheckinVariant; family: Che
   const nameColor = family.isPremium ? "#6e0cc3" : "#0233c3";
 
   return (
-    <div className="bg-white flex flex-col gap-[10px] items-center min-h-[360px] min-w-0 overflow-hidden p-[20px] rounded-[12px]">
+    <div className="bg-white flex flex-col gap-[10px] items-center min-w-0 overflow-hidden p-[20px] rounded-[12px]">
       <div className="w-full h-[180px] shrink-0">
         <Img
           alt=""

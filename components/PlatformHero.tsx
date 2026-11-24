@@ -453,7 +453,7 @@ export default function PlatformHero() {
           {/* Feature cards */}
           <div className="hidden win-1280:flex flex-wrap 1024:flex-nowrap gap-[10px] items-stretch justify-center 1024:justify-start w-full">
             {featureCards.map((f) => (
-              <div key={f.title} className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center min-h-[220px] min-w-[200px] 1024:min-w-px px-[10px] py-[20px] rounded-[16px]">
+              <div key={f.title} className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center min-w-[200px] 1024:min-w-px px-[10px] py-[20px] rounded-[16px]">
                 <div className="flex items-center justify-center p-[12px] rounded-[12px] shrink-0 size-[60px]" style={{ backgroundColor: f.bg }}>
                   <FigmaIcon src={f.icon} size={30} aspectW={f.iconW} aspectH={f.iconH} />
                 </div>

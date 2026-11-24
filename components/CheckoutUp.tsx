@@ -73,19 +73,19 @@ export default function CheckoutUp() {
           <div className="flex flex-col gap-[20px] w-full">
             <div className="flex flex-wrap gap-[20px] items-stretch">
               <a href="/buy/checkin-neo-up?modelo=neo-up&pagamento=compra"
-                 className="flex flex-[1_0_0] gap-[8px] items-center justify-center min-h-[42px] min-w-[160px] overflow-hidden px-[12px] py-[10px] rounded-[8px] transition-opacity hover:opacity-90 active:opacity-80"
+                 className="flex flex-[1_0_0] gap-[8px] items-center justify-center min-h-[42px] min-w-max overflow-hidden px-[12px] py-[10px] rounded-[8px] transition-opacity hover:opacity-90 active:opacity-80"
                  style={gdBlue}>
                 <FigmaIcon src={imgCart} size={20} />
-                <span className="font-avenir-roman text-f15 leading-l19 text-white min-w-0 text-center">
+                <span className="font-avenir-roman text-f15 leading-l19 text-white whitespace-nowrap">
                   {s2.buy} <span className="font-avenir-heavy">US$ {NEO_UP.sales}</span>
                 </span>
               </a>
               <a href="/buy/checkin-neo-up?modelo=neo-up&pagamento=locacao"
-                 className="group flex flex-[1_0_0] gap-[8px] items-center justify-center min-h-[42px] min-w-[160px] overflow-hidden px-[12px] py-[10px] rounded-[8px] border border-[#0233c3] bg-white transition-colors hover:bg-[#0233c3] active:bg-[#002ba8]">
+                 className="group flex flex-[1_0_0] gap-[8px] items-center justify-center min-h-[42px] min-w-max overflow-hidden px-[12px] py-[10px] rounded-[8px] border border-[#0233c3] bg-white transition-colors hover:bg-[#0233c3] active:bg-[#002ba8]">
                 <div className="transition-[filter] group-hover:[filter:brightness(0)_invert(1)]">
                   <FigmaIcon src={imgCalendar} size={20} />
                 </div>
-                <span className="font-avenir-roman text-f15 leading-l19 text-[#0233c3] group-hover:text-white transition-colors min-w-0 text-center">
+                <span className="font-avenir-roman text-f15 leading-l19 text-[#0233c3] group-hover:text-white transition-colors whitespace-nowrap">
                   {s2.lease} <span className="font-avenir-heavy">US$ {NEO_UP.lease}{s2.perMonth}</span>
                 </span>
               </a>
@@ -155,19 +155,19 @@ export default function CheckoutUp() {
             <div className="flex flex-col gap-[20px] w-full">
               <div className="flex flex-wrap gap-[20px] items-stretch">
                 <a href="/buy/checkin-neo-up?modelo=neo-up&pagamento=compra"
-                   className="flex flex-[1_0_0] gap-[8px] items-center justify-center min-h-[42px] min-w-[175px] overflow-hidden px-[12px] py-[10px] rounded-[8px] transition-opacity hover:opacity-90 active:opacity-80"
+                   className="flex flex-[1_0_0] gap-[8px] items-center justify-center min-h-[42px] min-w-max overflow-hidden px-[12px] py-[10px] rounded-[8px] transition-opacity hover:opacity-90 active:opacity-80"
                    style={gdBlue}>
                   <FigmaIcon src={imgCart} size={20} />
-                  <span className="font-avenir-roman text-f15 leading-l19 text-white min-w-0 text-center">
+                  <span className="font-avenir-roman text-f15 leading-l19 text-white whitespace-nowrap">
                     {s2.buy} <span className="font-avenir-heavy">US$ {NEO_UP.sales}</span>
                   </span>
                 </a>
                 <a href="/buy/checkin-neo-up?modelo=neo-up&pagamento=locacao"
-                   className="group flex flex-[1_0_0] gap-[8px] items-center justify-center min-h-[42px] min-w-[175px] overflow-hidden px-[12px] py-[10px] rounded-[8px] border border-[#0233c3] bg-white transition-colors hover:bg-[#0233c3] active:bg-[#002ba8]">
+                   className="group flex flex-[1_0_0] gap-[8px] items-center justify-center min-h-[42px] min-w-max overflow-hidden px-[12px] py-[10px] rounded-[8px] border border-[#0233c3] bg-white transition-colors hover:bg-[#0233c3] active:bg-[#002ba8]">
                   <div className="transition-[filter] group-hover:[filter:brightness(0)_invert(1)]">
                     <FigmaIcon src={imgCalendar} size={20} />
                   </div>
-                  <span className="font-avenir-roman text-f15 leading-l19 text-[#0233c3] group-hover:text-white transition-colors min-w-0 text-center">
+                  <span className="font-avenir-roman text-f15 leading-l19 text-[#0233c3] group-hover:text-white transition-colors whitespace-nowrap">
                     {s2.lease} <span className="font-avenir-heavy">US$ {NEO_UP.lease}{s2.perMonth}</span>
                   </span>
                 </a>
@@ -244,7 +244,7 @@ export default function CheckoutUp() {
                className="flex shrink-0 gap-[8px] items-center justify-center min-h-[56px] overflow-hidden px-[12px] py-[10px] rounded-[8px] transition-opacity hover:opacity-90 active:opacity-80"
                style={gdBlue}>
               <FigmaIcon src={imgCart} size={20} />
-              <span className="font-avenir-roman text-f15 leading-l19 text-white min-w-0 text-center">
+              <span className="font-avenir-roman text-f15 leading-l19 text-white whitespace-nowrap">
                 {s2.buy} <span className="font-avenir-heavy">US$ {NEO_UP.sales}</span>
               </span>
             </a>
@@ -253,7 +253,7 @@ export default function CheckoutUp() {
               <div className="transition-[filter] group-hover:[filter:brightness(0)_invert(1)]">
                 <FigmaIcon src={imgCalendar} size={20} />
               </div>
-              <span className="font-avenir-roman text-f15 leading-l19 text-[#0233c3] group-hover:text-white transition-colors min-w-0 text-center">
+              <span className="font-avenir-roman text-f15 leading-l19 text-[#0233c3] group-hover:text-white transition-colors whitespace-nowrap">
                 {s2.lease} <span className="font-avenir-heavy">US$ {NEO_UP.lease}{s2.perMonth}</span>
               </span>
             </a>

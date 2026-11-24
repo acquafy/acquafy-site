@@ -389,7 +389,7 @@ function CTAButtons({ stretch = false, btn2 }: { stretch?: boolean; btn2: string
   return (
     <div className={`flex flex-wrap gap-[20px] items-center ${stretch ? "justify-center max-w-[800px] w-full" : "justify-center lg:justify-start w-full"}`}>
       <AddressPopover stretch={stretch} />
-      <a href="/contact" className={`group flex gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors cursor-pointer no-underline ${stretch ? "flex-[1_0_0]" : "shrink-0"}`}>
+      <a href="/contact" className={`group flex gap-[10px] items-center justify-center min-h-[50px] min-w-max overflow-hidden px-[20px] py-[10px] rounded-[8px] bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors cursor-pointer no-underline ${stretch ? "flex-[1_0_0]" : "shrink-0"}`}>
         <span className="font-avenir-heavy text-f16 leading-normal text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">
           {btn2}
         </span>

@@ -354,7 +354,7 @@ export default function FiltrosQualidadeAgua() {
             title takes the height of the tallest one and the descriptions line up */}
         <div className="grid grid-cols-[repeat(auto-fit,minmax(160px,1fr))] gap-x-[20px] gap-y-[30px] w-full">
           {FEATURE_ICONS.map((ic, i) => (
-            <div key={ic.src} className="grid grid-rows-subgrid row-span-3 gap-y-[10px] items-start">
+            <div key={ic.src} className="grid grid-rows-subgrid row-span-3 gap-y-[10px] items-start justify-items-center text-center">
               <FigmaIcon src={ic.src} size={40} aspectW={ic.w} aspectH={ic.h} />
               <p className="font-avenir-heavy text-f20 leading-l24 text-[#1f2e91]">{t.features[i].title}</p>
               <p className="font-avenir-roman text-f16 leading-l20 text-[#2a2a2b]">{t.features[i].desc}</p>

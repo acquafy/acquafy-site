@@ -216,17 +216,17 @@ const T: Record<Lang, {
 function CardVisual({ visual }: { visual: string }) {
   if (visual === "app") {
     return (
-      <div className="flex items-end justify-center w-full h-[100px] relative">
+      <div className="flex items-end justify-center w-full h-[140px] relative">
         <div className="flex items-end justify-center w-full">
           <Img
             src={imgAppHome}
             alt="App Home"
-            className="flex-1 min-w-0 max-w-[100px] max-h-[100px] object-contain mr-[-18px]"
+            className="flex-1 min-w-0 max-w-[110px] max-h-[140px] object-contain mr-[-18px]"
           />
           <Img
             src={imgAppOp}
             alt="App Operador"
-            className="flex-1 min-w-0 max-w-[100px] max-h-[100px] object-contain"
+            className="flex-1 min-w-0 max-w-[110px] max-h-[140px] object-contain"
           />
         </div>
       </div>
@@ -266,16 +266,16 @@ export default function NeoMediaPlatform() {
           {t.heading}{" "}
           <span className="text-[#0569ff]">{t.headingHighlight}</span>
         </h2>
-        <div className="card-row [--card-min:180px] gap-[20px] items-stretch justify-center w-full">
+        <div className="card-row [--card-min:180px] win-1024:[--card-min:300px] gap-[20px] items-stretch justify-center w-full">
           {t.cards.map((c) => (
             <div
               key={c.title}
-              className="min-w-0 bg-white flex flex-col gap-[20px] items-center min-h-[320px] win-1024:min-w-[300px] win-1280:min-w-[180px] p-[20px] rounded-[16px] overflow-hidden"
+              className="min-w-0 bg-white grid grid-rows-subgrid row-span-3 gap-y-[20px] justify-items-center p-[20px] rounded-[16px] overflow-hidden"
             >
               <h3 className="font-avenir-heavy text-f18 leading-l22 text-[#333] text-center flex items-center justify-center min-h-[44px] w-full">
                 {c.title}
               </h3>
-              <div className="flex-1 flex items-center justify-center w-full overflow-hidden">
+              <div className="flex items-center justify-center w-full overflow-hidden">
                 <CardVisual visual={c.visual} />
               </div>
               <p className="font-avenir-roman text-f16 leading-l20 text-[#333] text-center w-full">
