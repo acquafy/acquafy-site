@@ -364,12 +364,12 @@ export default function BannerFiltros({ variant = "filtros" }: { variant?: "filt
           </h1>
 
           {/* Subtítulo azul */}
-          <p className="font-avenir-heavy text-[20px] leading-[24px] md:text-[24px] md:leading-[29px] text-[#0233c3] w-full text-center lg:text-left">
+          <p className="font-avenir-heavy text-f20 leading-l24 md:text-f24 md:leading-l29 text-[#0233c3] w-full text-center lg:text-left">
             {t.subtitle}
           </p>
 
           {/* Descrição */}
-          <p className="font-avenir-roman text-[18px] leading-[26px] text-[#333] w-full text-center lg:text-left">
+          <p className="font-avenir-roman text-f18 leading-l26 text-[#333] w-full text-center lg:text-left">
             {desc}
           </p>
 
@@ -397,12 +397,12 @@ export default function BannerFiltros({ variant = "filtros" }: { variant?: "filt
           <div className="flex flex-col md:flex-row flex-wrap gap-[20px] items-center w-full justify-center lg:justify-start">
             {/* BT AZUL BASE ARROW */}
             <a href={isAcc ? "#acessorios-lista" : "#filtros-lista"} className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex w-full md:w-auto md:flex-[1_0_auto] gap-[10px] items-center justify-center min-h-[50px] md:min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
-              <span className="font-avenir-heavy text-[16px] text-white flex-1 text-center whitespace-nowrap">{btn1}</span>
+              <span className="font-avenir-heavy text-f16 text-white flex-1 text-center whitespace-nowrap">{btn1}</span>
               <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
             </a>
             {/* BT AZUL OUT ARROW */}
             <a href="/contact" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex w-full md:w-auto md:flex-[1_0_auto] gap-[10px] items-center justify-center min-h-[50px] md:min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
-              <span className="font-avenir-heavy text-[16px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center whitespace-nowrap">{t.btn2}</span>
+              <span className="font-avenir-heavy text-f16 text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center whitespace-nowrap">{t.btn2}</span>
               <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
                 <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0 group-active:opacity-0">
                   <FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} />
@@ -467,8 +467,8 @@ export default function BannerFiltros({ variant = "filtros" }: { variant?: "filt
           >
             <FigmaIcon src={s.icon} size={36} aspectW={s.iconW} aspectH={s.iconH} />
             <div className="flex flex-col gap-[5px] flex-1 min-w-[100px]">
-              <p className="font-avenir-heavy text-[17px] leading-[20px] text-[#1f2e91]">{s.title}</p>
-              <p className="font-avenir-roman text-[14px] leading-[17px] text-[#2a2a2b]">{s.desc}</p>
+              <p className="font-avenir-heavy text-f17 leading-l20 text-[#1f2e91]">{s.title}</p>
+              <p className="font-avenir-roman text-f14 leading-l17 text-[#2a2a2b]">{s.desc}</p>
             </div>
           </div>
         ))}

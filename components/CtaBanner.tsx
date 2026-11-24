@@ -41,7 +41,7 @@ export default function CtaBanner() {
         />
 
         <div className="relative flex flex-1 flex-col items-center justify-center min-w-[240px]">
-          <h2 className="font-avenir-black text-[32px] leading-[39px] text-white w-full text-center lg:text-left">
+          <h2 className="font-avenir-black text-f32 leading-l39 text-white w-full text-center lg:text-left">
             {t.title}
           </h2>
         </div>
@@ -53,7 +53,7 @@ export default function CtaBanner() {
             href="/buy"
             className="flex gap-[10px] items-center justify-center min-h-[30px] overflow-hidden p-[20px] rounded-[8px] transition-colors cursor-pointer bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] flex-1 min-w-[200px] no-underline"
           >
-            <span className="font-avenir-heavy text-[14px] leading-[17px] text-center whitespace-nowrap shrink-0 text-white">
+            <span className="font-avenir-heavy text-f14 leading-l17 text-center whitespace-nowrap shrink-0 text-white">
               {t.btnBuy}
             </span>
             <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />

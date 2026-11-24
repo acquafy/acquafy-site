@@ -28,7 +28,7 @@ function Tile({ e, src, label }: { e: Entry; src: string; label: string }) {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <Img src={`${src}?v=${VERSION}`} alt={`${label} ${e.file}`} className="h-[44px] w-[44px] object-contain" />
       </div>
-      <span className="text-[11px] leading-[13px] text-[#6b7280]">{label}</span>
+      <span className="text-f11 leading-l13 text-[#6b7280]">{label}</span>
     </div>
   );
 }
@@ -36,20 +36,20 @@ function Tile({ e, src, label }: { e: Entry; src: string; label: string }) {
 export default function IconesPage() {
   return (
     <main className="mx-auto max-w-[1200px] px-[16px] py-[40px] font-['Helvetica_Neue',Arial,sans-serif] text-[#2a2a2b]">
-      <h1 className="text-[28px] font-bold leading-[34px] text-[#1f2e91]">Ícones substituídos</h1>
-      <p className="mt-[8px] max-w-[720px] text-[16px] leading-[22px]">
+      <h1 className="text-f28 font-bold leading-l34 text-[#1f2e91]">Ícones substituídos</h1>
+      <p className="mt-[8px] max-w-[720px] text-f16 leading-l22">
         {replaced.length} ícones do site foram substituídos por ícones de traço único (Hugeicons, mais três arquivos fornecidos e a estrutura de filtros), mantendo a cor original de cada um. A espessura segue a regra de 1,5px para 30px e 1,2px para 20px. {kept.length} permaneceram como estavam: marcas, conectores, elementos sem equivalente e ícones que já eram de traço e foram mantidos (gráfico de crescimento, nuvem com globo, tela com cifrão, escudo com gota, avaliação com estrelas e átomo). Fundo cinza só para destacar os ícones brancos.
       </p>
 
-      <h2 className="mt-[40px] text-[22px] font-bold leading-[28px]">Substituídos, agrupados pelo ícone novo</h2>
+      <h2 className="mt-[40px] text-f22 font-bold leading-l28">Substituídos, agrupados pelo ícone novo</h2>
       <IconReview groups={sortedGroups} version={VERSION} />
 
-      <h2 className="mt-[40px] text-[22px] font-bold leading-[28px]">Mantidos (sem equivalente)</h2>
+      <h2 className="mt-[40px] text-f22 font-bold leading-l28">Mantidos (sem equivalente)</h2>
       <div className="mt-[16px] grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-[14px]">
         {kept.map((e) => (
           <div key={e.file} className="flex flex-col items-center gap-[6px]">
             <Tile e={e} src={`/figma-assets/${e.file}`} label="mantido" />
-            <span className="break-all text-center text-[11px] leading-[13px]">{e.file}</span>
+            <span className="break-all text-center text-f11 leading-l13">{e.file}</span>
           </div>
         ))}
       </div>

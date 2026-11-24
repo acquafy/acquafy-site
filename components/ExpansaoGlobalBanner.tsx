@@ -312,7 +312,7 @@ export default function ExpansaoGlobalBanner() {
           {/* Badge */}
           <div className="order-1 lg:order-none bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center px-[12px] py-[8px] rounded-full shrink-0 max-w-[280px]">
             <FigmaIcon src={imgPlanetWeb} size={16} />
-            <span className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3] whitespace-nowrap">
+            <span className="font-avenir-heavy text-f14 leading-l17 text-[#0233c3] whitespace-nowrap">
               {t.badge}
             </span>
           </div>
@@ -324,16 +324,16 @@ export default function ExpansaoGlobalBanner() {
           </h1>
 
           {/* Subtitle */}
-          <p className="order-3 lg:order-none w-full font-avenir-heavy text-[20px] leading-[28px] text-[#0569ff] text-center lg:text-left">
+          <p className="order-3 lg:order-none w-full font-avenir-heavy text-f20 leading-l28 text-[#0569ff] text-center lg:text-left">
             {t.subtitle}
           </p>
 
           {/* Description */}
-          <div className="order-4 lg:order-none w-full font-avenir-roman text-[18px] leading-[26px] text-[#333] text-center lg:text-left">
-            <p className="leading-[26px] mb-[4px]">
+          <div className="order-4 lg:order-none w-full font-avenir-roman text-f18 leading-l26 text-[#333] text-center lg:text-left">
+            <p className="leading-l26 mb-[4px]">
               {t.desc1}
             </p>
-            <p className="leading-[26px]">
+            <p className="leading-l26">
               {t.desc2}
             </p>
           </div>
@@ -373,9 +373,9 @@ export default function ExpansaoGlobalBanner() {
           <div key={s.label} className="flex flex-[1_0_0] flex-wrap gap-[20px] items-start min-w-[160px]">
             <FigmaIcon src={s.icon} size={32} aspectW={s.iconW} aspectH={s.iconH} />
             <div className="flex flex-[1_0_0] flex-col gap-[15px] items-start leading-[0] min-w-[200px]">
-              <p className="[text-box-trim:trim-both] [text-box-edge:cap_alphabetic] font-avenir-black text-[32px] leading-[39px] text-white w-full">{s.number}</p>
-              <p className="[text-box-trim:trim-both] [text-box-edge:cap_alphabetic] font-avenir-heavy text-[20px] leading-[28px] text-white w-full">{s.label}</p>
-              <p className="[text-box-trim:trim-both] [text-box-edge:cap_alphabetic] font-avenir-roman text-[16px] leading-[20px] text-white w-full">{s.sub}</p>
+              <p className="[text-box-trim:trim-both] [text-box-edge:cap_alphabetic] font-avenir-black text-f32 leading-l39 text-white w-full">{s.number}</p>
+              <p className="[text-box-trim:trim-both] [text-box-edge:cap_alphabetic] font-avenir-heavy text-f20 leading-l28 text-white w-full">{s.label}</p>
+              <p className="[text-box-trim:trim-both] [text-box-edge:cap_alphabetic] font-avenir-roman text-f16 leading-l20 text-white w-full">{s.sub}</p>
             </div>
           </div>
         ))}

@@ -218,7 +218,7 @@ export default function OperacaoGlobal() {
     <section className="bg-white flex items-center justify-center px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
 
-        <h2 className="font-avenir-heavy not-italic text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-center min-w-[240px] w-full">
+        <h2 className="font-avenir-heavy not-italic text-f22 leading-l28 md:text-f26 md:leading-l34 text-center min-w-[240px] w-full">
           <span className="text-[#1f2e91]">{t.headingA}</span>
           <span className="text-[#0569ff]">{t.headingB}</span>
         </h2>
@@ -231,10 +231,10 @@ export default function OperacaoGlobal() {
             >
               <Img src={f.icon} alt="" className="size-[30px] object-contain shrink-0" />
               <div className="flex flex-col gap-[10px] items-start text-center w-full shrink-0">
-                <p className="font-avenir-heavy not-italic text-[16px] leading-[20px] text-[#1f2e91] min-h-[32px] shrink-0 w-full">
+                <p className="font-avenir-heavy not-italic text-f16 leading-l20 text-[#1f2e91] min-h-[32px] shrink-0 w-full">
                   {f.title}
                 </p>
-                <p className="font-avenir-roman not-italic text-[14px] leading-[16px] text-[#333] shrink-0 w-full">
+                <p className="font-avenir-roman not-italic text-f14 leading-l16 text-[#333] shrink-0 w-full">
                   {f.desc}
                 </p>
               </div>

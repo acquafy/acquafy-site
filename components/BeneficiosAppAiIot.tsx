@@ -378,18 +378,18 @@ function CardContent({ card }: { card: CardDef }) {
       {/* Título + subtítulo */}
       <div className="flex flex-col gap-[10px] w-full">
         <p
-          className="font-avenir-heavy text-[18px] leading-[22px] w-full"
+          className="font-avenir-heavy text-f18 leading-l22 w-full"
           style={{ color: card.titleColor }}
         >
           {card.title}
         </p>
-        <p className="font-avenir-heavy text-[16px] leading-[20px] text-[#1f2e91] w-full min-h-[40px] flex items-center">
+        <p className="font-avenir-heavy text-f16 leading-l20 text-[#1f2e91] w-full min-h-[40px] flex items-center">
           {card.subtitle}
         </p>
       </div>
 
       {/* Descrição */}
-      <p className="font-avenir-roman text-[14px] leading-[16px] text-[#2a2a2b] w-full">
+      <p className="font-avenir-roman text-f14 leading-l16 text-[#2a2a2b] w-full">
         {card.desc}
       </p>
     </>
@@ -438,28 +438,26 @@ export default function BeneficiosAppAiIot() {
       <div className="flex flex-col gap-[60px] items-start max-w-[1400px] w-full">
 
         {/* Título */}
-        <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] w-full text-center lg:text-left">
+        <h2 className="font-avenir-heavy text-f22 leading-l28 md:text-f26 md:leading-l34 text-[#1f2e91] w-full text-center lg:text-left">
           {t.heading}
         </h2>
 
-        {/* 3 cartões — flex-col abaixo de 1220px; flex-row a partir de 1220px
-            Breakpoint: 3×380 + 2×20(gaps) + 2×20(padding) = 1220px */}
-        <div className="flex flex-col gap-[20px] items-stretch w-full 1220:flex-row 1220:flex-wrap 1220:justify-center">
+        {/* 3 cartões — linhas balanceadas (card-row): 340px é o mínimo de cada cartão, então ficam os 3 numa linha a
+            partir de ~1100px e 2 + 1 abaixo disso, sempre preenchendo a largura */}
+        <div className="card-row [--card-min:340px] gap-[20px] items-stretch w-full">
           {cards.map((card) => {
             if (card.layout === "person") {
               return (
-                <div
-                  key={card.title}
-                  className="bg-white flex min-h-[260px] rounded-[16px] relative 1220:flex-[1_0_0] 1220:min-w-[380px]"
-                >
+                <div key={card.title} className="bene-wrap min-w-0 flex">
+                <div className="bene-card bg-white flex min-h-[260px] rounded-[16px] relative min-w-0 w-full">
                   {/* Conteúdo — pr-[180px] reserva espaço para a foto absoluta (160px + 20px gap) */}
-                  <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start pl-[20px] py-[20px] pr-[180px]">
+                  <div className="bene-body flex flex-[1_0_0] flex-col gap-[20px] items-start pl-[20px] py-[20px] pr-[180px]">
                     <CardContent card={card} />
                   </div>
 
                   {/* Foto — contida no bloco, pt-[10px], imagem alinhada ao rodapé com object-contain */}
                   <div
-                    className="absolute right-0 inset-y-0 overflow-hidden pt-[10px]"
+                    className="bene-photo absolute right-0 inset-y-0 overflow-hidden pt-[10px]"
                     style={{ width: 160 }}
                   >
                     <Img
@@ -469,6 +467,7 @@ export default function BeneficiosAppAiIot() {
                     />
                   </div>
                 </div>
+                </div>
               );
             }
 
@@ -476,7 +475,7 @@ export default function BeneficiosAppAiIot() {
             return (
               <div
                 key={card.title}
-                className="bg-white flex flex-[1_0_0] flex-wrap gap-y-0 items-start min-w-[280px] relative rounded-[16px] 1220:min-w-[380px]"
+                className="bg-white flex flex-wrap gap-y-0 items-start min-w-0 relative rounded-[16px]"
               >
                 {/* Conteúdo — mr-[-90px] faz o bloco do mapa iniciar 90px antes do fim do conteúdo */}
                 <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-[240px] pl-[20px] py-[20px] mr-[-90px] relative z-[1]">

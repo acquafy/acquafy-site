@@ -34,7 +34,7 @@ export default function CheckoutUp() {
   const Badge = ({ self: selfAlign = "self-start" }: { self?: string } = {}) => (
     <div className={`bg-white border border-[#0233c3] flex gap-[10px] items-center px-[12px] py-[8px] rounded-full shrink-0 ${selfAlign}`}>
       <FigmaIcon src={imgDrop} size={16} />
-      <span className="font-avenir-heavy text-[14px] leading-[17px] bg-clip-text text-transparent whitespace-nowrap"
+      <span className="font-avenir-heavy text-f14 leading-l17 bg-clip-text text-transparent whitespace-nowrap"
             style={gdLabel}>
         {s2.label}
       </span>
@@ -55,7 +55,7 @@ export default function CheckoutUp() {
           <h2 className="font-avenir-black text-[clamp(22px,2.6vw+12px,36px)] leading-[1.15] text-[#2a2a2b] w-full text-center">
             {t.h1a} {t.h1b}
           </h2>
-          <p className="font-avenir-roman text-[18px] leading-[26px] text-[#333] w-full text-center">{t.sub}</p>
+          <p className="font-avenir-roman text-f18 leading-l26 text-[#333] w-full text-center">{t.sub}</p>
         </div>
 
         {/* cards (2-col grid) */}
@@ -64,7 +64,7 @@ export default function CheckoutUp() {
             {CARD_ICONS.map((icon, i) => (
               <div key={i} className="bg-[rgba(255,255,255,0.7)] border border-white flex flex-col gap-[10px] items-center justify-center px-[10px] py-[16px] rounded-[12px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.1)]">
                 <FigmaIcon src={icon} size={36} />
-                <p className="font-avenir-heavy text-[14px] leading-[17px] text-[#333] text-center w-full">{t.cards[i]}</p>
+                <p className="font-avenir-heavy text-f14 leading-l17 text-[#333] text-center w-full">{t.cards[i]}</p>
               </div>
             ))}
           </div>
@@ -76,7 +76,7 @@ export default function CheckoutUp() {
                  className="flex flex-[1_0_0] gap-[8px] items-center justify-center min-h-[42px] min-w-[160px] overflow-hidden px-[12px] py-[10px] rounded-[8px] transition-opacity hover:opacity-90 active:opacity-80"
                  style={gdBlue}>
                 <FigmaIcon src={imgCart} size={20} />
-                <span className="font-avenir-roman text-[15px] leading-[19px] text-white whitespace-nowrap">
+                <span className="font-avenir-roman text-f15 leading-l19 text-white whitespace-nowrap">
                   {s2.buy} <span className="font-avenir-heavy">US$ {NEO_UP.sales}</span>
                 </span>
               </a>
@@ -85,7 +85,7 @@ export default function CheckoutUp() {
                 <div className="transition-[filter] group-hover:[filter:brightness(0)_invert(1)]">
                   <FigmaIcon src={imgCalendar} size={20} />
                 </div>
-                <span className="font-avenir-roman text-[15px] leading-[19px] text-[#0233c3] group-hover:text-white transition-colors whitespace-nowrap">
+                <span className="font-avenir-roman text-f15 leading-l19 text-[#0233c3] group-hover:text-white transition-colors whitespace-nowrap">
                   {s2.lease} <span className="font-avenir-heavy">US$ {NEO_UP.lease}{s2.perMonth}</span>
                 </span>
               </a>
@@ -93,7 +93,7 @@ export default function CheckoutUp() {
             <Link href="/neo-line"
                   className="flex gap-[8px] items-center justify-center min-h-[56px] overflow-hidden px-[12px] py-[10px] rounded-[8px] w-full transition-opacity hover:opacity-90 active:opacity-80"
                   style={gdPurple}>
-              <span className="font-avenir-roman text-[15px] leading-[19px] text-white flex-1 text-center">
+              <span className="font-avenir-roman text-f15 leading-l19 text-white flex-1 text-center">
                 {t.moreA}<span className="font-avenir-heavy">{t.moreB}</span>{t.moreC}
               </span>
               <FigmaIcon src={imgArrow} size={16} />
@@ -122,13 +122,13 @@ export default function CheckoutUp() {
             <Img alt="" src={imgWoman} className="w-[240px] h-auto block" />
           </div>
           <div className="relative z-[2] flex-[1_0_0] min-w-0 self-start flex flex-col gap-[20px] pt-[10px] pb-[20px] pl-[60px]">
-            <h2 className="font-avenir-black text-[42px] leading-[48px] text-[#2a2a2b] w-full">{t.h1a}<br />{t.h1b}</h2>
-            <p className="font-avenir-roman text-[16px] leading-[22px] text-[#333] w-full">{t.sub}</p>
+            <h2 className="font-avenir-black text-f42 leading-l48 text-[#2a2a2b] w-full">{t.h1a}<br />{t.h1b}</h2>
+            <p className="font-avenir-roman text-f16 leading-l22 text-[#333] w-full">{t.sub}</p>
             <div className="grid grid-cols-2 gap-[8px]">
               {s2.bar.map((item, i) => (
                 <div key={i} className="flex gap-[8px] items-center bg-white rounded-[8px] px-[12px] py-[10px]">
                   <div className="w-[6px] h-[6px] rounded-full shrink-0" style={gdBlue} />
-                  <span className="font-avenir-roman text-[14px] leading-[18px] text-[#555]">{item}</span>
+                  <span className="font-avenir-roman text-f14 leading-l18 text-[#555]">{item}</span>
                 </div>
               ))}
             </div>
@@ -148,7 +148,7 @@ export default function CheckoutUp() {
               {CARD_ICONS.map((icon, i) => (
                 <div key={i} className="bg-[rgba(255,255,255,0.7)] border border-white flex flex-col gap-[10px] items-center justify-start px-[10px] py-[16px] rounded-[12px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.1)]">
                   <FigmaIcon src={icon} size={36} />
-                  <p className="font-avenir-heavy text-[14px] leading-[17px] text-[#333] text-center w-full min-h-[34px]">{t.cards[i]}</p>
+                  <p className="font-avenir-heavy text-f14 leading-l17 text-[#333] text-center w-full min-h-[34px]">{t.cards[i]}</p>
                 </div>
               ))}
             </div>
@@ -158,7 +158,7 @@ export default function CheckoutUp() {
                    className="flex flex-[1_0_0] gap-[8px] items-center justify-center min-h-[42px] min-w-[175px] overflow-hidden px-[12px] py-[10px] rounded-[8px] transition-opacity hover:opacity-90 active:opacity-80"
                    style={gdBlue}>
                   <FigmaIcon src={imgCart} size={20} />
-                  <span className="font-avenir-roman text-[15px] leading-[19px] text-white whitespace-nowrap">
+                  <span className="font-avenir-roman text-f15 leading-l19 text-white whitespace-nowrap">
                     {s2.buy} <span className="font-avenir-heavy">US$ {NEO_UP.sales}</span>
                   </span>
                 </a>
@@ -167,7 +167,7 @@ export default function CheckoutUp() {
                   <div className="transition-[filter] group-hover:[filter:brightness(0)_invert(1)]">
                     <FigmaIcon src={imgCalendar} size={20} />
                   </div>
-                  <span className="font-avenir-roman text-[15px] leading-[19px] text-[#0233c3] group-hover:text-white transition-colors whitespace-nowrap">
+                  <span className="font-avenir-roman text-f15 leading-l19 text-[#0233c3] group-hover:text-white transition-colors whitespace-nowrap">
                     {s2.lease} <span className="font-avenir-heavy">US$ {NEO_UP.lease}{s2.perMonth}</span>
                   </span>
                 </a>
@@ -175,7 +175,7 @@ export default function CheckoutUp() {
               <Link href="/neo-line"
                     className="flex gap-[8px] items-center justify-center min-h-[56px] overflow-hidden px-[12px] py-[10px] rounded-[8px] w-full transition-opacity hover:opacity-90 active:opacity-80"
                     style={gdPurple}>
-                <span className="font-avenir-roman text-[15px] leading-[19px] text-white flex-1 text-center">
+                <span className="font-avenir-roman text-f15 leading-l19 text-white flex-1 text-center">
                   {t.moreA}<span className="font-avenir-heavy">{t.moreB}</span>{t.moreC}
                 </span>
                 <FigmaIcon src={imgArrow} size={16} />
@@ -218,10 +218,10 @@ export default function CheckoutUp() {
         {/* content — flex-1 keeps text narrow; cards/buttons overflow into spacer */}
         <div className="relative z-10 flex flex-[1_0_0] flex-col gap-[15px] items-start justify-start min-w-[276px] py-[30px]">
           <Badge />
-          <h2 className="font-avenir-black text-[42px] leading-[48px] text-[#2a2a2b] max-w-[460px]">
+          <h2 className="font-avenir-black text-f42 leading-l48 text-[#2a2a2b] max-w-[460px]">
             {t.h1a} {t.h1b}
           </h2>
-          <p className="font-avenir-roman text-[16px] leading-[22px] text-[#333] max-w-[460px]">{t.sub}</p>
+          <p className="font-avenir-roman text-f16 leading-l22 text-[#333] max-w-[460px]">{t.sub}</p>
 
           {/* cards: w-702 (1190–1279, flex-row) → w-500 (1280+, flex-col) */}
           <div className="flex gap-[10px] items-stretch w-[702px] win-1280:w-[500px]">
@@ -230,8 +230,8 @@ export default function CheckoutUp() {
                                       min-w-0 px-[10px] py-[16px] rounded-[12px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.1)]
                                       win-1280:flex-col win-1280:justify-center">
                 <FigmaIcon src={icon} size={36} />
-                <p className="font-avenir-heavy text-[14px] leading-[1.2] text-[#333] flex-[1_0_0] min-w-0
-                              win-1280:flex-none win-1280:leading-[17px] win-1280:text-center win-1280:w-full">
+                <p className="font-avenir-heavy text-f14 leading-[1.2] text-[#333] flex-[1_0_0] min-w-0
+                              win-1280:flex-none win-1280:leading-l17 win-1280:text-center win-1280:w-full">
                   {t.cards[i]}
                 </p>
               </div>
@@ -244,7 +244,7 @@ export default function CheckoutUp() {
                className="flex shrink-0 gap-[8px] items-center justify-center min-h-[56px] overflow-hidden px-[12px] py-[10px] rounded-[8px] transition-opacity hover:opacity-90 active:opacity-80"
                style={gdBlue}>
               <FigmaIcon src={imgCart} size={20} />
-              <span className="font-avenir-roman text-[15px] leading-[19px] text-white whitespace-nowrap">
+              <span className="font-avenir-roman text-f15 leading-l19 text-white whitespace-nowrap">
                 {s2.buy} <span className="font-avenir-heavy">US$ {NEO_UP.sales}</span>
               </span>
             </a>
@@ -253,14 +253,14 @@ export default function CheckoutUp() {
               <div className="transition-[filter] group-hover:[filter:brightness(0)_invert(1)]">
                 <FigmaIcon src={imgCalendar} size={20} />
               </div>
-              <span className="font-avenir-roman text-[15px] leading-[19px] text-[#0233c3] group-hover:text-white transition-colors whitespace-nowrap">
+              <span className="font-avenir-roman text-f15 leading-l19 text-[#0233c3] group-hover:text-white transition-colors whitespace-nowrap">
                 {s2.lease} <span className="font-avenir-heavy">US$ {NEO_UP.lease}{s2.perMonth}</span>
               </span>
             </a>
             <Link href="/neo-line"
                   className="flex flex-[1_0_0] win-1280:flex-none win-1280:shrink-0 gap-[8px] items-center justify-center min-h-[56px] min-w-0 overflow-hidden px-[12px] py-[10px] rounded-[8px] transition-opacity hover:opacity-90 active:opacity-80"
                   style={gdPurple}>
-              <span className="font-avenir-roman text-[15px] leading-[19px] text-white text-center whitespace-nowrap">
+              <span className="font-avenir-roman text-f15 leading-l19 text-white text-center whitespace-nowrap">
                 {t.moreA}<span className="font-avenir-heavy">{t.moreB}</span>{t.moreC}
               </span>
               <FigmaIcon src={imgArrow} size={16} />

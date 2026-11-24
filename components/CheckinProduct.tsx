@@ -1126,7 +1126,7 @@ function SpecRow({ label, value, isBool, isPremium }: { label: string; value: st
   return (
     <div className="grid grid-cols-subgrid col-span-2 items-stretch border-b border-[#e8ecf4] last:border-b-0">
       <div className="border-r border-[#e8ecf4] px-[14px] py-[12px] flex items-center">
-        <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#1f2e91]">{label}</span>
+        <span className="font-['Avenir_LT_Pro:85_Heavy'] text-f13 text-[#1f2e91]">{label}</span>
       </div>
       <div className="flex-1 px-[14px] py-[12px] flex items-center">
         {isBool ? (
@@ -1134,7 +1134,7 @@ function SpecRow({ label, value, isBool, isPremium }: { label: string; value: st
         ) : value === "—" ? (
           <BoolCell value={false} />
         ) : (
-          <span className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#374151] whitespace-pre-line">{value as string}</span>
+          <span className="font-['Avenir_LT_Pro:55_Roman'] text-f13 text-[#374151] whitespace-pre-line">{value as string}</span>
         )}
       </div>
     </div>
@@ -1149,7 +1149,7 @@ function Sep() {
 /* ── Section title ─────────────────────────────────────────────────────────── */
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] text-[#1f2e91] text-center w-full">
+    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-f18 text-[#1f2e91] text-center w-full">
       {children}
     </p>
   );
@@ -1571,7 +1571,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
 
             {/* ── Header ──────────────────────────────────────────────────── */}
             <div className="flex flex-col gap-[4px]">
-              <h1 className="font-['Avenir_LT_Pro:95_Black'] text-[26px] leading-[1.1]"
+              <h1 className="font-['Avenir_LT_Pro:95_Black'] text-f26 leading-[1.1]"
                 style={{ background: accentGrad, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
                 {activeVariant.name}
               </h1>
@@ -1584,7 +1584,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                 ["dinheiro", lb.payCash],
               ] as const).map(([tab, label]) => (
                 <button key={tab} onClick={() => setPayTab(tab)}
-                  className="flex-1 pb-[12px] pt-[4px] font-['Avenir_LT_Pro:85_Heavy'] text-[13px] transition-colors relative"
+                  className="flex-1 pb-[12px] pt-[4px] font-['Avenir_LT_Pro:85_Heavy'] text-f13 transition-colors relative"
                   style={{ color: payTab === tab ? accent : "#aab2bc" }}
                 >
                   {label}
@@ -1596,7 +1596,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
               ))}
               {/* FINANCIAR — standby */}
               <div className="flex-1 pb-[12px] pt-[4px] flex items-center justify-center">
-                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#d1d5db]">
+                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-f13 text-[#d1d5db]">
                   {lb.payFinance}
                 </span>
               </div>
@@ -1619,12 +1619,12 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                     }}
                   >
                     <div className="flex-1 min-w-0 flex flex-col gap-[2px]">
-                      <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px]"
+                      <span className="font-['Avenir_LT_Pro:85_Heavy'] text-f14"
                         style={{ color: isActive ? accent : "#1f2e91" }}>
                         {variant.name}
                       </span>
                     </div>
-                    <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] shrink-0 text-right"
+                    <span className="font-['Avenir_LT_Pro:85_Heavy'] text-f13 shrink-0 text-right"
                       style={{ color: isActive ? accent : "#9ca3af" }}>
                       {displayPrice}
                     </span>
@@ -1633,7 +1633,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
               })}
               {/* Financing note */}
               {payTab === "financiar" && (
-                <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af] px-[2px]">
+                <p className="font-['Avenir_LT_Pro:55_Roman'] text-f12 text-[#9ca3af] px-[2px]">
                   {lb.finNote}
                 </p>
               )}
@@ -1644,7 +1644,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
               {/* Header */}
               <div className="col-span-2 px-[14px] py-[12px] border-b border-[#e8ecf4]"
                 style={{ background: "linear-gradient(135deg, #f6f9fe, #eef2ff)" }}>
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] text-[#1f2e91] text-center uppercase tracking-[0.06em]">
+                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-f14 text-[#1f2e91] text-center uppercase tracking-[0.06em]">
                   {lb.fichaTecnica}
                 </p>
               </div>
@@ -1682,7 +1682,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
               {/* Toggle */}
               <button onClick={() => setFichaTecnicaOpen((v) => !v)}
                 className="col-span-2 w-full flex items-center justify-between px-[14px] py-[14px] border-t border-[#e8ecf4] bg-[#f6f9fe] hover:bg-[#eef2ff] transition-colors">
-                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px]" style={{ color: accent }}>
+                <span className="font-['Avenir_LT_Pro:85_Heavy'] text-f13" style={{ color: accent }}>
                   {fichaTecnicaOpen ? lb.ocultarFuncionalidades : lb.demaisFuncionalidades}
                 </span>
                 <svg width="14" height="8" viewBox="0 0 14 8" fill="none"
@@ -1701,8 +1701,8 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                   onMouseEnter={() => setHoverSection("cores")}
                   onMouseLeave={() => setHoverSection(null)}>
                   <div className="flex flex-col gap-[4px] items-center">
-                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af] uppercase tracking-[0.06em]">{lb.coresLabel}</p>
-                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[18px] text-[#1f2e91] text-center">
+                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-f12 text-[#9ca3af] uppercase tracking-[0.06em]">{lb.coresLabel}</p>
+                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-f18 text-[#1f2e91] text-center">
                       {getColorName(colorKey(colorOptions[activeColorIdx]), lang, colorOptions[activeColorIdx]?.name ?? "")}
                     </p>
                   </div>
@@ -1723,7 +1723,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                     })}
                   </div>
                   {!activeVariant.slides && (
-                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af] text-center">Em breve</p>
+                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-f12 text-[#9ca3af] text-center">Em breve</p>
                   )}
                 </div>
               </>
@@ -1740,12 +1740,12 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                   onMouseEnter={() => setHoverSection("filtros")}
                   onMouseLeave={() => setHoverSection(null)}>
                   <SectionTitle>{lb.filtrosAltaPerformance}</SectionTitle>
-                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#374151] leading-[20px] text-center">
+                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-f13 text-[#374151] leading-l20 text-center">
                     {fs.description}
                   </p>
                   <ul className="flex flex-col gap-[6px] pl-[4px]">
                     {fs.bullets.map((b, i) => (
-                      <li key={i} className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#6b7280] leading-[18px] flex gap-[6px]">
+                      <li key={i} className="font-['Avenir_LT_Pro:55_Roman'] text-f12 text-[#6b7280] leading-l18 flex gap-[6px]">
                         <span className="shrink-0 mt-[3px] size-[5px] rounded-full bg-[#9ca3af] inline-block" />
                         <span>
                           <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[#1f2e91]">{b.bold}</span>
@@ -1758,7 +1758,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                   <div className="border border-[#e8ecf4] rounded-[16px] overflow-hidden">
                     <button onClick={() => setFilterOpen((v) => !v)}
                       className="w-full flex items-center justify-between px-[14px] py-[14px] bg-[#f6f9fe] hover:bg-[#eef2ff] transition-colors">
-                      <span className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#1f2e91]">
+                      <span className="font-['Avenir_LT_Pro:85_Heavy'] text-f13 text-[#1f2e91]">
                         {lb.tabelaBeneficios}
                       </span>
                       <svg width="14" height="8" viewBox="0 0 14 8" fill="none"
@@ -1770,8 +1770,8 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                       <>
                         {fs.filters.map((f, i) => (
                           <div key={i} className="flex flex-col gap-[6px] px-[14px] py-[14px] border-t border-[#e8ecf4] bg-white">
-                            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#1f2e91]">{f.title}</p>
-                            <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#6b7280] leading-[18px]">{f.desc}</p>
+                            <p className="font-['Avenir_LT_Pro:85_Heavy'] text-f13 text-[#1f2e91]">{f.title}</p>
+                            <p className="font-['Avenir_LT_Pro:55_Roman'] text-f12 text-[#6b7280] leading-l18">{f.desc}</p>
                           </div>
                         ))}
                       </>
@@ -1799,10 +1799,10 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                     </svg>
                   </div>
                   <div className="flex flex-col gap-[4px]">
-                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#1f2e91]">
+                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-f13 text-[#1f2e91]">
                       {lb.garantiaTitulo}
                     </p>
-                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#6b7280] leading-[18px]">
+                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-f12 text-[#6b7280] leading-l18">
                       {lb.garantiaDesc}
                     </p>
                   </div>
@@ -1817,10 +1817,10 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                     </svg>
                   </div>
                   <div className="flex flex-col gap-[4px]">
-                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-[#1f2e91]">
+                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-f13 text-[#1f2e91]">
                       {lb.filtroVidaTitulo}
                     </p>
-                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#6b7280] leading-[18px]">
+                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-f12 text-[#6b7280] leading-l18">
                       {lb.filtroVidaDesc}
                     </p>
                   </div>
@@ -1844,12 +1844,12 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                     value={fv.cep}
                     onChange={(e) => handleCEPChange(e.target.value)}
                     onBlur={() => touchField("cep")}
-                    className={`flex-1 h-[44px] px-[14px] rounded-[10px] bg-[#f6f9fe] font-['Avenir_LT_Pro:55_Roman'] text-[14px] text-[#1f2e91] placeholder:text-[#aab2bc] outline-none border transition-colors ${fieldError("cep") ? "border-[#ef4444]" : "border-[#e8ecf4] focus:border-[#0233c3]"}`}
+                    className={`flex-1 h-[44px] px-[14px] rounded-[10px] bg-[#f6f9fe] font-['Avenir_LT_Pro:55_Roman'] text-f14 text-[#1f2e91] placeholder:text-[#aab2bc] outline-none border transition-colors ${fieldError("cep") ? "border-[#ef4444]" : "border-[#e8ecf4] focus:border-[#0233c3]"}`}
                   />
                   <button
                     onClick={handleCalcularFrete}
                     disabled={freteResult?.state === "loading"}
-                    className="h-[44px] px-[20px] rounded-[10px] font-['Avenir_LT_Pro:85_Heavy'] text-[13px] text-white shrink-0 transition-opacity hover:opacity-90 disabled:opacity-60 flex items-center gap-[6px]"
+                    className="h-[44px] px-[20px] rounded-[10px] font-['Avenir_LT_Pro:85_Heavy'] text-f13 text-white shrink-0 transition-opacity hover:opacity-90 disabled:opacity-60 flex items-center gap-[6px]"
                     style={{ background: accentGrad }}>
                     {freteResult?.state === "loading" && (
                       <span className="size-[13px] border-2 border-white border-t-transparent rounded-full animate-spin" />
@@ -1858,16 +1858,16 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                   </button>
                 </div>
                 {fieldError("cep") && (
-                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#ef4444] flex items-center gap-[4px]">
+                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-f12 text-[#ef4444] flex items-center gap-[4px]">
                     <span>⚠</span> {fieldError("cep")}
                   </p>
                 )}
                 {freteResult?.state === "ok" && (
                   <div className="flex flex-col gap-[4px] pt-[2px]">
-                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#6b7280]">
+                    <p className="font-['Avenir_LT_Pro:55_Roman'] text-f13 text-[#6b7280]">
                       {freteResult.city}, {freteResult.uf}
                     </p>
-                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[13px] flex items-center gap-[5px]" style={{ color: "#16a34a" }}>
+                    <p className="font-['Avenir_LT_Pro:85_Heavy'] text-f13 flex items-center gap-[5px]" style={{ color: "#16a34a" }}>
                       <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
                         <circle cx="7" cy="7" r="6.5" stroke="#16a34a" strokeWidth="1"/>
                         <path d="M4 7l2.5 2.5L10 4.5" stroke="#16a34a" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -1877,7 +1877,7 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                   </div>
                 )}
                 {freteResult?.state === "err" && (
-                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#ef4444] flex items-center gap-[4px]">
+                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-f12 text-[#ef4444] flex items-center gap-[4px]">
                     <span>⚠</span> {freteResult.message}
                   </p>
                 )}
@@ -1886,11 +1886,11 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
               {/* ── Pre-order pricing breakdown ───────────────────────────── */}
               <div ref={pricingCardRef} className="flex flex-col gap-[4px]">
                 {/* Availability header */}
-                <p className="font-['Avenir_LT_Pro:95_Black'] text-[20px] leading-snug text-[#1f2e91]">
+                <p className="font-['Avenir_LT_Pro:95_Black'] text-f20 leading-snug text-[#1f2e91]">
                   {lb.disponivelEm}
                 </p>
                 {freteResult?.state === "ok" && (
-                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[13px] text-[#6b7280]">
+                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-f13 text-[#6b7280]">
                     {lb.entregaPrefix} {freteResult.city}, {freteResult.uf}, {fv.cep}
                   </p>
                 )}
@@ -1899,10 +1899,10 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                   <div className="bg-white px-[16px] py-[16px] flex flex-col gap-[14px]">
                     <div className="flex items-start justify-between gap-[12px]">
                       <div className="flex flex-col gap-[3px]">
-                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91]">{payTab === "financiar" ? lb.parcelaTitle : lb.valorEstimadoTitle}</p>
-                        <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af]">{payTab === "financiar" ? lb.parcelaDesc : lb.valorEstimadoDesc}</p>
+                        <p className="font-['Avenir_LT_Pro:85_Heavy'] text-f15 text-[#1f2e91]">{payTab === "financiar" ? lb.parcelaTitle : lb.valorEstimadoTitle}</p>
+                        <p className="font-['Avenir_LT_Pro:55_Roman'] text-f12 text-[#9ca3af]">{payTab === "financiar" ? lb.parcelaDesc : lb.valorEstimadoDesc}</p>
                       </div>
-                      <span className="font-['Avenir_LT_Pro:95_Black'] text-[18px] text-[#1f2e91] shrink-0">
+                      <span className="font-['Avenir_LT_Pro:95_Black'] text-f18 text-[#1f2e91] shrink-0">
                         {tabPrice(activeVariant, true)}
                       </span>
                     </div>
@@ -1918,36 +1918,36 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
                 <button
                   type="button"
                   onClick={shareDesign}
-                  className="shrink-0 rounded-[10px] border border-[#e8ecf4] px-[12px] py-[6px] font-['Avenir_LT_Pro:85_Heavy'] text-[12px] text-[#0233c3] hover:border-[#0233c3] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#0233c3]"
+                  className="shrink-0 rounded-[10px] border border-[#e8ecf4] px-[12px] py-[6px] font-['Avenir_LT_Pro:85_Heavy'] text-f12 text-[#0233c3] hover:border-[#0233c3] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#0233c3]"
                 >
                   <span aria-live="polite">{copied ? orderLb.copied : orderLb.share}</span>
                 </button>
               </div>
               <div className="border border-[#e0e9ff] rounded-[12px] bg-white px-[16px] py-[16px] flex items-start justify-between gap-[12px]">
                 <div className="flex flex-col gap-[3px] min-w-0">
-                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[15px] text-[#1f2e91]">{activeVariant.name}</p>
-                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af]">
+                  <p className="font-['Avenir_LT_Pro:85_Heavy'] text-f15 text-[#1f2e91]">{activeVariant.name}</p>
+                  <p className="font-['Avenir_LT_Pro:55_Roman'] text-f12 text-[#9ca3af]">
                     {[orderColor ? getColorName(colorKey(orderColor), lang, orderColor.name) : null, payTab === "financiar" ? lb.payLease : lb.payCash].filter(Boolean).join(" · ")}
                   </p>
                 </div>
                 <div className="flex flex-col items-end gap-[3px] shrink-0">
-                  <span className="font-['Avenir_LT_Pro:95_Black'] text-[18px] text-[#1f2e91]">{tabPrice(activeVariant, true)}</span>
+                  <span className="font-['Avenir_LT_Pro:95_Black'] text-f18 text-[#1f2e91]">{tabPrice(activeVariant, true)}</span>
                   {payTab === "financiar" && (
-                    <span className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] text-[#9ca3af]">{lb.parcelaDesc}</span>
+                    <span className="font-['Avenir_LT_Pro:55_Roman'] text-f12 text-[#9ca3af]">{lb.parcelaDesc}</span>
                   )}
                 </div>
               </div>
               {availabilityText && (
-                <p className={`font-['Avenir_LT_Pro:85_Heavy'] text-[13px] ${stockRow ? "text-[#2a9a50]" : "text-[#6b7280]"}`}>{availabilityText}</p>
+                <p className={`font-['Avenir_LT_Pro:85_Heavy'] text-f13 ${stockRow ? "text-[#2a9a50]" : "text-[#6b7280]"}`}>{availabilityText}</p>
               )}
               <div className="rounded-[12px] bg-[#f0f4ff] px-[16px] py-[12px] flex items-center justify-between gap-[12px]">
-                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-[14px] text-[#1f2e91]">{orderLb.fee}</p>
-                <span className="font-['Avenir_LT_Pro:95_Black'] text-[16px] text-[#1f2e91] shrink-0">{formatPrice(ORDER_FEE_BRL, lang)}</span>
+                <p className="font-['Avenir_LT_Pro:85_Heavy'] text-f14 text-[#1f2e91]">{orderLb.fee}</p>
+                <span className="font-['Avenir_LT_Pro:95_Black'] text-f16 text-[#1f2e91] shrink-0">{formatPrice(ORDER_FEE_BRL, lang)}</span>
               </div>
-              <p className="font-['Avenir_LT_Pro:55_Roman'] text-[12px] leading-[18px] text-[#6b7280]">{payTab === "financiar" ? orderLb.lease : orderLb.purchase}</p>
+              <p className="font-['Avenir_LT_Pro:55_Roman'] text-f12 leading-l18 text-[#6b7280]">{payTab === "financiar" ? orderLb.lease : orderLb.purchase}</p>
               <a
                 href={orderHref}
-                className="h-[48px] rounded-[14px] flex items-center justify-center font-['Avenir_LT_Pro:85_Heavy'] text-[14px] text-white transition-opacity hover:opacity-90"
+                className="h-[48px] rounded-[14px] flex items-center justify-center font-['Avenir_LT_Pro:85_Heavy'] text-f14 text-white transition-opacity hover:opacity-90"
                 style={{ background: accentGrad }}
               >
                 {lb.encomendar}
@@ -1971,12 +1971,12 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
         <div className="hidden md:flex flex-1 items-center gap-[12px] md:gap-[28px] flex-wrap min-w-0 px-[24px] md:px-[48px] py-[20px]">
           <div className="flex flex-col gap-[5px] min-w-0 justify-center">
             <span
-              className="font-['Avenir_LT_Pro:95_Black'] text-[22px] leading-tight"
+              className="font-['Avenir_LT_Pro:95_Black'] text-f22 leading-tight"
               style={{ background: accentGrad, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
             >
               {activeVariant.name}
             </span>
-            <span className="font-['Avenir_LT_Pro:55_Roman'] text-[11px] text-[#6b7280] leading-snug [overflow-wrap:anywhere]">
+            <span className="font-['Avenir_LT_Pro:55_Roman'] text-f11 text-[#6b7280] leading-snug [overflow-wrap:anywhere]">
               {[
                 getColorName(colorKey(colorOptions[activeColorIdx]), lang, colorOptions[activeColorIdx]?.name ?? ""),
                 specs.filtragem.includes("UF") ? UF_LABEL[lang] : RO_LABEL[lang],
@@ -2007,20 +2007,20 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
         <div className="w-full md:w-[400px] xl:w-[440px] shrink-0 px-[24px] py-[16px] md:py-[20px] flex items-center gap-[16px]">
           <div className="flex-1 flex flex-col gap-[4px] min-w-0">
             <span
-              className="font-['Avenir_LT_Pro:95_Black'] text-[20px] leading-none"
+              className="font-['Avenir_LT_Pro:95_Black'] text-f20 leading-none"
               style={{ background: accentGrad, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
             >
               {tabPrice(activeVariant)}
             </span>
             {payTab === "financiar" && (
-              <span className="font-['Avenir_LT_Pro:55_Roman'] text-[11px] text-[#6b7280] leading-none">
+              <span className="font-['Avenir_LT_Pro:55_Roman'] text-f11 text-[#6b7280] leading-none">
                 {lb.parcelaDesc}
               </span>
             )}
           </div>
           <a
             href={orderHref}
-            className="h-[48px] px-[28px] rounded-[14px] font-['Avenir_LT_Pro:85_Heavy'] text-[14px] text-white shrink-0 transition-opacity hover:opacity-90 flex items-center gap-[8px]"
+            className="h-[48px] px-[28px] rounded-[14px] font-['Avenir_LT_Pro:85_Heavy'] text-f14 text-white shrink-0 transition-opacity hover:opacity-90 flex items-center gap-[8px]"
             style={{ background: accentGrad }}
           >
             {lb.encomendar}

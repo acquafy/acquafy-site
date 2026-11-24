@@ -260,7 +260,7 @@ export default function FluxoInteligenteAppAiIot() {
       <div className="flex flex-col gap-[40px] items-center justify-center max-w-[1400px] rounded-[16px] w-full">
 
         {/* Título */}
-        <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-center w-full">
+        <h2 className="font-avenir-heavy text-f22 leading-l28 md:text-f26 md:leading-l34 text-center w-full">
           <span className="text-[#0569ff]">{t.heading1}</span>
           <span className="text-[#1f2e91]">{t.heading2}</span>
         </h2>
@@ -289,7 +289,7 @@ export default function FluxoInteligenteAppAiIot() {
 
                 {/* Label */}
                 <p
-                  className="font-avenir-heavy text-[16px] leading-[18px] text-[#1f2e91] text-center w-full min-h-[36px] flex items-center justify-center"
+                  className="font-avenir-heavy text-f16 leading-l18 text-[#1f2e91] text-center w-full min-h-[36px] flex items-center justify-center"
                   style={{}}
                 >
                   {step.label}
@@ -310,7 +310,7 @@ export default function FluxoInteligenteAppAiIot() {
         </div>
 
         {/* Subtítulo */}
-        <p className="font-avenir-roman text-[18px] leading-[26px] text-[#2a2a2b] text-center w-full min-w-[240px]">
+        <p className="font-avenir-roman text-f18 leading-l26 text-[#2a2a2b] text-center w-full min-w-[240px]">
           {t.subtitle}
         </p>
       </div>

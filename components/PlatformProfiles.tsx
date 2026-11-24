@@ -197,7 +197,7 @@ export default function PlatformProfiles() {
     <section className="bg-white flex flex-col items-center justify-center overflow-hidden px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center justify-center max-w-[1400px] w-full">
 
-        <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] text-center w-full">
+        <h2 className="font-avenir-heavy text-f22 leading-l28 md:text-f26 md:leading-l34 text-[#1f2e91] text-center w-full">
           {t.heading}
         </h2>
 
@@ -212,8 +212,8 @@ export default function PlatformProfiles() {
                 )}
               </div>
               <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-px">
-                <p className="font-avenir-heavy text-[16px] leading-[20px] text-[#1f2e91] w-full">{p.title}</p>
-                <p className="font-avenir-roman text-[14px] leading-[16px] text-[#333] w-full">{p.desc}</p>
+                <p className="font-avenir-heavy text-f16 leading-l20 text-[#1f2e91] w-full">{p.title}</p>
+                <p className="font-avenir-roman text-f14 leading-l16 text-[#333] w-full">{p.desc}</p>
               </div>
             </div>
           ))}

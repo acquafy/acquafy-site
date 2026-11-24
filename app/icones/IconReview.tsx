@@ -36,7 +36,7 @@ function Tile({ e, src, text, version, marked, onToggle }: { e: Entry; src: stri
       ) : (
         <div className={box}>{img}</div>
       )}
-      <span className="text-[11px] leading-[13px]" style={{ color: marked ? "#7c3aed" : "#6b7280", fontWeight: marked ? 700 : 400 }}>
+      <span className="text-f11 leading-l13" style={{ color: marked ? "#7c3aed" : "#6b7280", fontWeight: marked ? 700 : 400 }}>
         {marked ? "mais parecido" : text}
       </span>
     </div>
@@ -45,7 +45,7 @@ function Tile({ e, src, text, version, marked, onToggle }: { e: Entry; src: stri
 
 function Check({ checked, onChange, text, tone }: { checked: boolean; onChange: (v: boolean) => void; text: string; tone: string }) {
   return (
-    <label className="flex cursor-pointer select-none items-center gap-[6px] text-[12px] font-bold leading-[16px]" style={{ color: checked ? tone : "#6b7280" }}>
+    <label className="flex cursor-pointer select-none items-center gap-[6px] text-f12 font-bold leading-l16" style={{ color: checked ? tone : "#6b7280" }}>
       <input type="checkbox" checked={checked} onChange={(e) => onChange(e.target.checked)} className="size-[16px] cursor-pointer" style={{ accentColor: tone }} />
       {text}
     </label>
@@ -152,7 +152,7 @@ export default function IconReview({ groups, version }: { groups: [string, Entry
       return (
         <section key={name} className="rounded-[14px] border p-[16px]" style={{ borderColor: border }}>
           <div className="flex flex-wrap items-center justify-between gap-[10px]">
-            <h3 className="text-[16px] font-bold leading-[20px]" title="Ícone global: trocar este ícone troca todos os usos listados">
+            <h3 className="text-f16 font-bold leading-l20" title="Ícone global: trocar este ícone troca todos os usos listados">
               {label(name)} <span className="font-normal text-[#6b7280]">· {list.length} {list.length === 1 ? "uso" : "usos"}</span>
             </h3>
             <div className="flex items-center gap-[16px]">
@@ -181,9 +181,9 @@ export default function IconReview({ groups, version }: { groups: [string, Entry
                     <Tile e={e} src={`/icon-audit/original/${e.file}`} text="antes" version={version} />
                     <Tile e={e} src={`/figma-assets/${e.alias ?? e.file}`} text="depois" version={version} marked={!!similar[e.file]} onToggle={() => toggleSimilar(e.file)} />
                   </div>
-                  <span className="break-all text-center text-[11px] leading-[13px]">{e.file}</span>
-                  <span className="text-[11px] leading-[13px] text-[#6b7280]">{e.color}</span>
-                      {e.alias && <span className="break-all text-center text-[10px] leading-[12px] text-[#0284c7]">= {e.alias}</span>}
+                  <span className="break-all text-center text-f11 leading-l13">{e.file}</span>
+                  <span className="text-f11 leading-l13 text-[#6b7280]">{e.color}</span>
+                      {e.alias && <span className="break-all text-center text-f10 leading-l12 text-[#0284c7]">= {e.alias}</span>}
                 </div>
               ))}
             </div>
@@ -194,7 +194,7 @@ export default function IconReview({ groups, version }: { groups: [string, Entry
 
   return (
     <>
-      <div className="mt-[12px] flex flex-wrap items-center gap-[12px] text-[13px] leading-[18px]">
+      <div className="mt-[12px] flex flex-wrap items-center gap-[12px] text-f13 leading-l18">
         <span className="font-bold text-[#16a34a]">OK: {okCount}</span>
         <span className="font-bold text-[#ea580c]">OTIMIZE: {optimizeNames.length}</span>
         <span className="font-bold text-[#0284c7]">Manter original: {keepNames.length}</span>
@@ -203,7 +203,7 @@ export default function IconReview({ groups, version }: { groups: [string, Entry
         <button
           type="button"
           onClick={() => setMarks((m) => Object.fromEntries(groups.map(([n]) => [n, { ...m[n], closed: !allClosed }])) as Record<string, Mark>)}
-          className="cursor-pointer rounded-[8px] border border-[#d1d5db] px-[10px] py-[4px] text-[12px] font-bold hover:bg-[#f3f4f6]"
+          className="cursor-pointer rounded-[8px] border border-[#d1d5db] px-[10px] py-[4px] text-f12 font-bold hover:bg-[#f3f4f6]"
         >
           {allClosed ? "Abrir todos" : "Fechar todos"}
         </button>
@@ -211,7 +211,7 @@ export default function IconReview({ groups, version }: { groups: [string, Entry
           type="button"
           onClick={copyOptimize}
           disabled={!optimizeNames.length && !similarFiles.length && !keepNames.length}
-          className="cursor-pointer rounded-[8px] border border-[#d1d5db] px-[10px] py-[4px] text-[12px] font-bold hover:bg-[#f3f4f6] disabled:cursor-default disabled:opacity-40"
+          className="cursor-pointer rounded-[8px] border border-[#d1d5db] px-[10px] py-[4px] text-f12 font-bold hover:bg-[#f3f4f6] disabled:cursor-default disabled:opacity-40"
         >
           {copied ? "Copiado" : "Copiar marcações"}
         </button>
@@ -222,21 +222,21 @@ export default function IconReview({ groups, version }: { groups: [string, Entry
       {done.length > 0 && (
         <>
           <div className="mt-[40px] flex flex-wrap items-center gap-[12px]">
-            <h2 className="text-[22px] font-bold leading-[28px]">
+            <h2 className="text-f22 font-bold leading-l28">
               Concluídos (OK ou OTIMIZE) <span className="font-normal text-[#6b7280]">· {done.length} {done.length === 1 ? "ícone global" : "ícones globais"}</span>
             </h2>
             <button
               type="button"
               aria-expanded={doneOpen}
               onClick={() => setDoneOpen((v) => !v)}
-              className="cursor-pointer rounded-[8px] border border-[#d1d5db] px-[10px] py-[4px] text-[12px] font-bold hover:bg-[#f3f4f6]"
+              className="cursor-pointer rounded-[8px] border border-[#d1d5db] px-[10px] py-[4px] text-f12 font-bold hover:bg-[#f3f4f6]"
             >
               {doneOpen ? "Minimizar seção" : "Expandir seção"}
             </button>
             <button
               type="button"
               onClick={() => setMarks((m) => Object.fromEntries(groups.map(([n]) => [n, { ...m[n], closed: !allClosed }])) as Record<string, Mark>)}
-              className="cursor-pointer rounded-[8px] border border-[#d1d5db] px-[10px] py-[4px] text-[12px] font-bold hover:bg-[#f3f4f6]"
+              className="cursor-pointer rounded-[8px] border border-[#d1d5db] px-[10px] py-[4px] text-f12 font-bold hover:bg-[#f3f4f6]"
             >
               {allClosed ? "Abrir todos" : "Fechar todos"}
             </button>
@@ -250,7 +250,7 @@ export default function IconReview({ groups, version }: { groups: [string, Entry
         onClick={() => setSyncOn((v) => !v)}
         aria-pressed={syncOn}
         title={syncOn ? "Sincronização ligada: as marcações são salvas no projeto a cada mudança. Clique para desligar." : "Clique para sincronizar as marcações com o projeto"}
-        className="z-50 flex cursor-pointer items-center gap-[8px] rounded-full border px-[16px] py-[10px] text-[13px] font-bold leading-[16px] shadow-lg transition-colors"
+        className="z-50 flex cursor-pointer items-center gap-[8px] rounded-full border px-[16px] py-[10px] text-f13 font-bold leading-l16 shadow-lg transition-colors"
         style={{
           position: "fixed",
           right: 20,

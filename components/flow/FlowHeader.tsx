@@ -23,7 +23,7 @@ export default function FlowHeader({
         <img src="/figma-assets/logo-b.svg" alt="Acquafy" width={169} height={28} className="h-[28px] w-auto" />
       </a>
 
-      <ol aria-label="Etapas da compra" className="mx-auto hidden md:flex items-center gap-[8px] text-[13px]">
+      <ol aria-label="Etapas da compra" className="mx-auto hidden md:flex items-center gap-[8px] text-f13">
         {STEPS.map((label, i) => {
           const n = i + 1;
           const state = n < step ? "done" : n === step ? "current" : "next";
@@ -35,7 +35,7 @@ export default function FlowHeader({
             >
               <span
                 aria-hidden="true"
-                className={`grid size-[24px] place-items-center rounded-full text-[12px] ${state === "current" ? "text-white" : state === "done" ? "bg-[#eef2ff] text-[#0233c3]" : "bg-[#f6f9fe] text-[#8a8f97]"}`}
+                className={`grid size-[24px] place-items-center rounded-full text-f12 ${state === "current" ? "text-white" : state === "done" ? "bg-[#eef2ff] text-[#0233c3]" : "bg-[#f6f9fe] text-[#8a8f97]"}`}
                 style={state === "current" ? { background: "linear-gradient(135deg, #0233c3, #0569ff)" } : undefined}
               >
                 {state === "done" ? "✓" : n}
@@ -59,11 +59,11 @@ export default function FlowHeader({
           );
         })}
       </ol>
-      <p className="mx-auto hidden sm:block md:hidden whitespace-nowrap font-avenir-heavy text-[13px] text-[#1f2e91]">
+      <p className="mx-auto hidden sm:block md:hidden whitespace-nowrap font-avenir-heavy text-f13 text-[#1f2e91]">
         Etapa {step} de 4 · {STEPS[step - 1]}
       </p>
 
-      <nav aria-label="Conta" className="ml-auto flex shrink-0 items-center gap-[4px] md:gap-[8px] text-[14px]">
+      <nav aria-label="Conta" className="ml-auto flex shrink-0 items-center gap-[4px] md:gap-[8px] text-f14">
         <a href="/buy" className="hidden sm:inline-block rounded-[8px] px-[12px] py-[8px] font-avenir-heavy text-[#4b5563] hover:text-[#0233c3] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#0233c3]">
           Escolher outro
         </a>

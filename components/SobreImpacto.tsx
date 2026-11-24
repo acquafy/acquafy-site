@@ -247,10 +247,10 @@ export default function SobreImpacto() {
 
         {/* Title column */}
         <div className="flex flex-col gap-[20px] items-center w-full relative lg:flex-[1_0_0] lg:items-start lg:max-w-[340px] lg:min-w-[280px]">
-          <p className="font-avenir-heavy text-[18px] leading-[22px] text-white text-center lg:text-left">
+          <p className="font-avenir-heavy text-f18 leading-l22 text-white text-center lg:text-left">
             {t.tagline}
           </p>
-          <p className="font-avenir-heavy text-[20px] leading-[28px] text-white text-center lg:text-left">
+          <p className="font-avenir-heavy text-f20 leading-l28 text-white text-center lg:text-left">
             {t.heading}{" "}
             <span className="text-[#0569ff]">{t.headingHighlight}</span>{" "}
             {t.headingEnd}
@@ -267,16 +267,16 @@ export default function SobreImpacto() {
               {/* Icon + label */}
               <div className="flex flex-wrap gap-[10px] items-center justify-center w-full">
                 <FigmaIcon src={s.icon} alt={s.label} size={30} />
-                <p className="font-avenir-heavy text-[14px] leading-[17px] text-white whitespace-nowrap">
+                <p className="font-avenir-heavy text-f14 leading-l17 text-white whitespace-nowrap">
                   {s.label}
                 </p>
               </div>
               {/* Count */}
-              <p className="font-avenir-black text-[32px] leading-[39px] text-white text-center w-full">
+              <p className="font-avenir-black text-f32 leading-l39 text-white text-center w-full">
                 {s.count}
               </p>
               {/* Description */}
-              <p className="font-avenir-roman text-[16px] leading-[20px] text-white text-center w-full">
+              <p className="font-avenir-roman text-f16 leading-l20 text-white text-center w-full">
                 {s.description}
               </p>
             </div>

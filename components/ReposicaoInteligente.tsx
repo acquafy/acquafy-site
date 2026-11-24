@@ -402,12 +402,12 @@ export default function ReposicaoInteligente() {
         {/* Content */}
         <div ref={contentRef} className="flex flex-col gap-[20px] items-start flex-1 min-w-[240px]">
           <div className="flex flex-col gap-[20px] items-center w-full">
-            <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] w-full text-center lg:text-left">
+            <h2 className="font-avenir-heavy text-f22 leading-l28 md:text-f26 md:leading-l34 w-full text-center lg:text-left">
               <span className="text-[#1f2e91]">{t.heading1}</span>
               {" "}
               <span className="text-[#0569ff]">{t.heading2}</span>
             </h2>
-            <p className="font-avenir-roman text-[18px] leading-[19px] text-[#333] w-full text-center lg:text-left">
+            <p className="font-avenir-roman text-f18 leading-l19 text-[#333] w-full text-center lg:text-left">
               {t.subtitle}
             </p>
           </div>
@@ -419,8 +419,8 @@ export default function ReposicaoInteligente() {
                 <div key={f.title} className="flex flex-col gap-[10px] items-start min-w-0">
                   <FigmaIcon src={f.icon} size={36} aspectW={f.aspectW} aspectH={f.aspectH} />
                   <div className="flex flex-col gap-[10px] items-start w-full">
-                    <p className="font-avenir-heavy text-[17px] leading-[20px] text-[#1f2e91]">{f.title}</p>
-                    <p className="font-avenir-roman text-[14px] leading-[17px] text-[#2a2a2b]">{f.desc}</p>
+                    <p className="font-avenir-heavy text-f17 leading-l20 text-[#1f2e91]">{f.title}</p>
+                    <p className="font-avenir-roman text-f14 leading-l17 text-[#2a2a2b]">{f.desc}</p>
                   </div>
                 </div>
               ))}
@@ -430,8 +430,8 @@ export default function ReposicaoInteligente() {
             <div className="card-row [--card-min:160px] gap-[20px] items-stretch justify-center w-full">
               {t.stats.map((s) => (
                 <div key={s.value} className="bg-white flex flex-col gap-[10px] items-start justify-center min-w-0 px-[20px] py-[20px] rounded-[12px] text-center">
-                  <p className="font-avenir-heavy text-[20px] leading-[28px] text-[#0569ff] w-full">{s.value}</p>
-                  <p className="font-avenir-roman text-[14px] leading-[17px] text-[#2a2a2b] w-full">{s.label}</p>
+                  <p className="font-avenir-heavy text-f20 leading-l28 text-[#0569ff] w-full">{s.value}</p>
+                  <p className="font-avenir-roman text-f14 leading-l17 text-[#2a2a2b] w-full">{s.label}</p>
                 </div>
               ))}
             </div>

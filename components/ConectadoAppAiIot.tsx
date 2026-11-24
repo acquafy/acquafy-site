@@ -221,7 +221,7 @@ export default function ConectadoAppAiIot() {
       <div className="flex flex-col gap-[40px] items-center justify-center max-w-[1400px] w-full">
 
         {/* Título */}
-        <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-center w-full">
+        <h2 className="font-avenir-heavy text-f22 leading-l28 md:text-f26 md:leading-l34 text-center w-full">
           <span className="text-[#1f2e91]">{t.heading1}</span>
           <span className="text-[#0569ff]">{t.heading2}</span>
         </h2>
@@ -243,10 +243,10 @@ export default function ConectadoAppAiIot() {
 
               {/* Texto */}
               <div className="flex flex-col gap-[20px] items-center text-center w-full">
-                <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91] min-h-[36px] w-full flex items-center justify-center">
+                <p className="font-avenir-heavy text-f18 leading-l22 text-[#1f2e91] min-h-[36px] w-full flex items-center justify-center">
                   {item.title}
                 </p>
-                <p className="font-avenir-roman text-[16px] leading-[20px] text-[#333] w-full">
+                <p className="font-avenir-roman text-f16 leading-l20 text-[#333] w-full">
                   {item.desc}
                 </p>
               </div>

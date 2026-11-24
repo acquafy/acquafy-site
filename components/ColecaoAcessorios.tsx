@@ -520,10 +520,10 @@ function ProductCard({ product }: { product: Product }) {
       {/* Info */}
       <div className="flex flex-1 flex-col h-full items-start justify-between min-w-0 pr-[10px] py-[10px]">
         <div className="flex flex-col gap-[10px] items-start w-full">
-          <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91] min-h-[40px] w-full">
+          <p className="font-avenir-heavy text-f18 leading-l22 text-[#1f2e91] min-h-[40px] w-full">
             {product.title}
           </p>
-          <p className="font-avenir-roman text-[16px] leading-[20px] text-[#333] w-full">
+          <p className="font-avenir-roman text-f16 leading-l20 text-[#333] w-full">
             {product.desc}
           </p>
         </div>
@@ -553,7 +553,7 @@ export default function ColecaoAcessorios() {
 
         {/* Header */}
         <div className="flex gap-[10px] items-center justify-between w-full flex-wrap">
-          <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] flex-1 min-w-[240px] text-center lg:text-left">
+          <h2 className="font-avenir-heavy text-f22 leading-l28 md:text-f26 md:leading-l34 flex-1 min-w-[240px] text-center lg:text-left">
             <span className="text-[#1f2e91]">{t.heading1}</span>
             {" "}
             <span className="text-[#0569ff]">{t.heading2}</span>
@@ -571,7 +571,7 @@ export default function ColecaoAcessorios() {
                 <div className="flex flex-col items-center justify-center p-[15px] rounded-full shrink-0 size-[60px]" style={{ backgroundColor: cat.iconBg }}>
                   <FigmaIcon src={cat.icon} size={30} aspectW={cat.iconW} aspectH={cat.iconH} />
                 </div>
-                <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91] text-center min-h-[50px] flex items-center w-full justify-center">
+                <p className="font-avenir-heavy text-f18 leading-l22 text-[#1f2e91] text-center min-h-[50px] flex items-center w-full justify-center">
                   {cat.label}
                 </p>
               </div>

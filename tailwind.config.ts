@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { fluidFontSize, fluidLineHeight } from "./lib/fluid-type";
 
 const config: Config = {
   content: [
@@ -50,13 +51,15 @@ const config: Config = {
         "avenir-black": ['"Avenir LT Pro:95 Black"', '"Avenir Black Fallback"', "Arial", "sans-serif"],
       },
       fontSize: {
+        ...fluidFontSize,
         /* Heading hero — 56px em 1280px, fluid até 32px em 1024px */
-        "hero": ["clamp(32px, 9.375vw - 64px, 56px)", { lineHeight: "clamp(36px, 9.375vw - 60px, 60px)" }],
+        "hero": ["calc(clamp(2rem, 9.375vw - 4rem, 3.5rem) * var(--fs-xl, 1))", { lineHeight: "calc(clamp(2.25rem, 9.375vw - 3.75rem, 3.75rem) * var(--fs-xl, 1))" }],
         /* Heading hero-md — 48px em 1280px, fluid até 32px em 1024px */
-        "hero-md": ["clamp(32px, 6.25vw - 32px, 48px)", { lineHeight: "clamp(36px, 6.25vw - 28px, 52px)" }],
+        "hero-md": ["calc(clamp(2rem, 6.25vw - 2rem, 3rem) * var(--fs-xl, 1))", { lineHeight: "calc(clamp(2.25rem, 6.25vw - 1.75rem, 3.25rem) * var(--fs-xl, 1))" }],
         /* Heading hero-xl — 64px em 1280px, fluid até 32px em 1024px */
-        "hero-xl": ["clamp(32px, 12.5vw - 96px, 64px)", { lineHeight: "clamp(36px, 12.5vw - 92px, 68px)" }],
+        "hero-xl": ["calc(clamp(2rem, 12.5vw - 6rem, 4rem) * var(--fs-xl, 1))", { lineHeight: "calc(clamp(2.25rem, 12.5vw - 5.75rem, 4.25rem) * var(--fs-xl, 1))" }],
       },
+      lineHeight: fluidLineHeight,
       maxWidth: {
         container: "1400px",
       },

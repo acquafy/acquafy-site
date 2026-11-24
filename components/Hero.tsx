@@ -404,9 +404,9 @@ function GiftCard({ earn, inText }: { earn: string; inText: string }) {
       <div className="bg-[rgba(255,255,255,0.4)] border border-white flex flex-col items-center justify-center p-[10px] rounded-full size-[41px] shrink-0 shadow-[0px_0px_4px_0px_rgba(0,0,0,0.1)]">
         <FigmaIcon src={imgGiftCTA} size={20} />
       </div>
-      <p className="font-avenir-roman text-[18px] leading-[19px] text-[#333] flex-1 min-w-[100px]">
+      <p className="font-avenir-roman text-f18 leading-l19 text-[#333] flex-1 min-w-[100px]">
         {earn}{" "}
-        <span className="font-avenir-heavy text-[18px] leading-[22px] bg-clip-text text-transparent bg-gradient-to-b from-[#0233c3] to-[#9f3df5]">$100,00</span>
+        <span className="font-avenir-heavy text-f18 leading-l22 bg-clip-text text-transparent bg-gradient-to-b from-[#0233c3] to-[#9f3df5]">$100,00</span>
         {" "}{inText}
       </p>
     </div>
@@ -419,7 +419,7 @@ function S2Cards({ s }: { s: S2Text }) {
       {S2_CARD_ICONS.map((icon, i) => (
         <div key={i} className="bg-[rgba(255,255,255,0.4)] border border-white flex flex-[1_0_0] flex-col gap-[10px] items-center justify-center min-w-[140px] px-[10px] py-[20px] rounded-[12px] shadow-[0px_0px_4px_0px_rgba(0,0,0,0.1)]">
           <FigmaIcon src={icon} size={40} />
-          <p className="font-avenir-heavy text-[16px] leading-[20px] text-[#333] text-center w-full min-h-[40px] flex items-center justify-center">{s.cards[i]}</p>
+          <p className="font-avenir-heavy text-f16 leading-l20 text-[#333] text-center w-full min-h-[40px] flex items-center justify-center">{s.cards[i]}</p>
         </div>
       ))}
     </div>
@@ -432,7 +432,7 @@ function S2Bar({ s }: { s: S2Text }) {
       {S2_BAR_ICONS.map((icon, i) => (
         <div key={i} className={`flex flex-[1_0_0] gap-[10px] items-center justify-center min-w-[200px] px-[20px] py-[5px] ${i > 0 ? "xl:border-l xl:border-[#d4d9e4]" : ""}`}>
           <FigmaIcon src={icon} size={24} />
-          <p className="font-avenir-heavy text-[16px] leading-[20px] text-[#333] flex-1 min-w-px">{s.bar[i]}</p>
+          <p className="font-avenir-heavy text-f16 leading-l20 text-[#333] flex-1 min-w-px">{s.bar[i]}</p>
         </div>
       ))}
     </div>
@@ -476,7 +476,7 @@ export default function Hero() {
             <div className="contents lg:flex lg:flex-col lg:gap-[20px] lg:items-start lg:flex-[1_0_0] lg:min-w-[280px] lg:max-w-[600px]">
               <div className="order-1 lg:order-none bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center max-w-[280px] px-[12px] py-[8px] rounded-full shrink-0">
                 <FigmaIcon src={imgPlanetWeb} size={16} />
-                <span className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3]">{t.s1Label}</span>
+                <span className="font-avenir-heavy text-f14 leading-l17 text-[#0233c3]">{t.s1Label}</span>
               </div>
 
               <h1 className="order-2 lg:order-none font-avenir-black text-hero text-[#333] w-full text-center lg:text-left">
@@ -486,17 +486,17 @@ export default function Hero() {
                 </span>
               </h1>
 
-              <p className="order-3 lg:order-none font-avenir-roman text-[18px] leading-[26px] text-[#333] text-center lg:text-left w-full">
+              <p className="order-3 lg:order-none font-avenir-roman text-f18 leading-l26 text-[#333] text-center lg:text-left w-full">
                 {t.s1Sub}
               </p>
 
               <div className="order-6 lg:order-none flex flex-wrap gap-[20px] items-center justify-center lg:justify-start max-w-[720px] w-full">
                 <a href="/neo-line" className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
-                  <span className="font-avenir-heavy text-[16px] text-white flex-1 text-center">{t.s1Cta1}</span>
+                  <span className="font-avenir-heavy text-f16 text-white flex-1 text-center">{t.s1Cta1}</span>
                   <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
                 </a>
                 <a href="/compare" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
-                  <span className="font-avenir-heavy text-[16px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">{t.s1Cta2mob}</span>
+                  <span className="font-avenir-heavy text-f16 text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">{t.s1Cta2mob}</span>
                   <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
                     <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0 group-active:opacity-0"><FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} /></div>
                     <div className="absolute inset-0 transition-opacity duration-150 opacity-0 group-hover:opacity-100 group-active:opacity-100"><FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} /></div>
@@ -530,8 +530,8 @@ export default function Hero() {
                   <div className="flex items-center justify-center size-[40px] rounded-[12px] p-[10px]" style={{ backgroundColor: f.bg }}>
                     <FigmaIcon src={f.icon} size={20} aspectW={f.aspectW} aspectH={f.aspectH} />
                   </div>
-                  <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#07235c] text-center w-full">{t.s1Features[i].title}</p>
-                  <p className="font-avenir-roman text-[14px] leading-[16px] text-[#333] text-center w-full">{t.s1Features[i].desc}</p>
+                  <p className="font-avenir-heavy text-f18 leading-l22 text-[#07235c] text-center w-full">{t.s1Features[i].title}</p>
+                  <p className="font-avenir-roman text-f14 leading-l16 text-[#333] text-center w-full">{t.s1Features[i].desc}</p>
                 </div>
               ))}
             </div>
@@ -544,7 +544,7 @@ export default function Hero() {
             <div className="contents lg:flex lg:flex-col lg:gap-[20px] lg:items-start lg:flex-[1_0_0] lg:min-w-[280px] lg:max-w-[600px]">
               <div className="order-1 lg:order-none bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center max-w-full px-[12px] py-[8px] rounded-full shrink-0">
                 <FigmaIcon src={imgHeroDrop} size={16} />
-                <span className="font-avenir-heavy text-[14px] leading-[17px] bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(126deg, #0233c3 6.19%, #9f3df5 93.35%)" }}>
+                <span className="font-avenir-heavy text-f14 leading-l17 bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(126deg, #0233c3 6.19%, #9f3df5 93.35%)" }}>
                   {s2.label}
                 </span>
               </div>
@@ -556,7 +556,7 @@ export default function Hero() {
                 </span>
               </h1>
 
-              <p className="order-3 lg:order-none font-avenir-roman text-[18px] leading-[26px] text-[#333] text-center lg:text-left w-full">{s2.sub}</p>
+              <p className="order-3 lg:order-none font-avenir-roman text-f18 leading-l26 text-[#333] text-center lg:text-left w-full">{s2.sub}</p>
 
               <WaasBuyButtons s={s2} className="order-6 lg:order-none flex flex-wrap gap-[10px] items-center justify-center lg:justify-start max-w-[720px] w-full" />
 
@@ -601,12 +601,12 @@ export default function Hero() {
             {slide === 0 ? (
               <div className="bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center max-w-[280px] px-[12px] py-[8px] rounded-full shrink-0">
                 <FigmaIcon src={imgPlanetWeb} size={16} />
-                <span className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3]">{t.s1Label}</span>
+                <span className="font-avenir-heavy text-f14 leading-l17 text-[#0233c3]">{t.s1Label}</span>
               </div>
             ) : (
               <div className="bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center max-w-full px-[12px] py-[8px] rounded-full shrink-0">
               <FigmaIcon src={imgHeroDrop} size={16} />
-              <span className="font-avenir-heavy text-[14px] leading-[17px] bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(126deg, #0233c3 6.19%, #9f3df5 93.35%)" }}>
+              <span className="font-avenir-heavy text-f14 leading-l17 bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(126deg, #0233c3 6.19%, #9f3df5 93.35%)" }}>
                 {s2.label}
               </span>
             </div>
@@ -619,7 +619,7 @@ export default function Hero() {
                 <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(103.83deg, #0233c3 6.19%, #9f3df5 93.35%)" }}>{t.s1H1b}</span>
               </h1>
             ) : (
-              <h1 className="font-avenir-black text-[46px] leading-[1.15] text-[#333] w-full">
+              <h1 className="font-avenir-black text-f46 leading-[1.15] text-[#333] w-full">
                 {s2.h1a}<br />
                 <span className="bg-clip-text text-transparent" style={{ backgroundImage: "linear-gradient(to bottom, #0233c3, #9f3df5)" }}>{s2.h1b}</span>
               </h1>
@@ -627,11 +627,11 @@ export default function Hero() {
 
             {/* Subtitle */}
             {slide === 0 ? (
-              <p className="font-avenir-roman text-[18px] leading-[26px] text-[#333] w-full">
+              <p className="font-avenir-roman text-f18 leading-l26 text-[#333] w-full">
                 {t.s1Sub}
               </p>
             ) : (
-              <p className="font-avenir-roman text-[18px] leading-[26px] text-[#333] w-full">{s2.sub}</p>
+              <p className="font-avenir-roman text-f18 leading-l26 text-[#333] w-full">{s2.sub}</p>
             )}
 
             {/* Feature items */}
@@ -642,8 +642,8 @@ export default function Hero() {
                     <div className="flex items-center justify-center size-[40px] rounded-[12px] p-[10px]" style={{ backgroundColor: f.bg }}>
                       <FigmaIcon src={f.icon} size={20} aspectW={f.aspectW} aspectH={f.aspectH} />
                     </div>
-                    <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#07235c] w-full">{t.s1Features[i].title}</p>
-                    <p className="font-avenir-roman text-[14px] leading-[16px] text-[#333] w-full">{t.s1Features[i].desc}</p>
+                    <p className="font-avenir-heavy text-f18 leading-l22 text-[#07235c] w-full">{t.s1Features[i].title}</p>
+                    <p className="font-avenir-roman text-f14 leading-l16 text-[#333] w-full">{t.s1Features[i].desc}</p>
                   </div>
                 ))}
               </div>
@@ -658,11 +658,11 @@ export default function Hero() {
             {slide === 0 ? (
               <div className="flex flex-wrap gap-[20px] items-center justify-start w-full">
                 <a href="/neo-line" className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
-                  <span className="font-avenir-heavy text-[16px] text-white flex-1 text-center">{t.s1Cta1}</span>
+                  <span className="font-avenir-heavy text-f16 text-white flex-1 text-center">{t.s1Cta1}</span>
                   <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
                 </a>
                 <a href="/platform" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
-                  <span className="font-avenir-heavy text-[16px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">{t.s1Cta2desk}</span>
+                  <span className="font-avenir-heavy text-f16 text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">{t.s1Cta2desk}</span>
                   <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
                     <div className="absolute inset-0 transition-opacity duration-150 opacity-100 group-hover:opacity-0 group-active:opacity-0"><FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} /></div>
                     <div className="absolute inset-0 transition-opacity duration-150 opacity-0 group-hover:opacity-100 group-active:opacity-100"><FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} /></div>
@@ -708,11 +708,11 @@ export default function Hero() {
                 <FigmaIcon src={stat.icon} size={30} aspectW={stat.aspectW} aspectH={stat.aspectH} />
                 <div className="flex flex-col gap-[2px]">
                   {"lines" in text ? text.lines.map((l, li) => (
-                    <span key={li} className="font-avenir-heavy text-[18px] leading-[22px] text-white">{l}</span>
+                    <span key={li} className="font-avenir-heavy text-f18 leading-l22 text-white">{l}</span>
                   )) : (
                     <>
-                      <span className="font-avenir-heavy text-[18px] leading-[22px] text-white">{text.top}</span>
-                      <span className="font-avenir-roman text-[16px] leading-[20px] text-white">{text.bottom}</span>
+                      <span className="font-avenir-heavy text-f18 leading-l22 text-white">{text.top}</span>
+                      <span className="font-avenir-roman text-f16 leading-l20 text-white">{text.bottom}</span>
                     </>
                   )}
                 </div>

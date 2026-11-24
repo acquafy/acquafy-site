@@ -262,7 +262,7 @@ export default function NeoMediaPlatform() {
   return (
     <section className="bg-[#f2f6fd] flex flex-col items-center justify-center overflow-hidden px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center justify-center max-w-[1400px] w-full">
-        <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] text-center w-full">
+        <h2 className="font-avenir-heavy text-f22 leading-l28 md:text-f26 md:leading-l34 text-[#1f2e91] text-center w-full">
           {t.heading}{" "}
           <span className="text-[#0569ff]">{t.headingHighlight}</span>
         </h2>
@@ -272,13 +272,13 @@ export default function NeoMediaPlatform() {
               key={c.title}
               className="min-w-0 bg-white flex flex-col gap-[20px] items-center min-h-[320px] win-1024:min-w-[300px] win-1280:min-w-[180px] p-[20px] rounded-[16px] overflow-hidden"
             >
-              <h3 className="font-avenir-heavy text-[18px] leading-[22px] text-[#333] text-center flex items-center justify-center min-h-[44px] w-full">
+              <h3 className="font-avenir-heavy text-f18 leading-l22 text-[#333] text-center flex items-center justify-center min-h-[44px] w-full">
                 {c.title}
               </h3>
               <div className="flex-1 flex items-center justify-center w-full overflow-hidden">
                 <CardVisual visual={c.visual} />
               </div>
-              <p className="font-avenir-roman text-[16px] leading-[20px] text-[#333] text-center w-full">
+              <p className="font-avenir-roman text-f16 leading-l20 text-[#333] text-center w-full">
                 {c.desc}
               </p>
             </div>

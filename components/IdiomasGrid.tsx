@@ -85,7 +85,7 @@ export default function IdiomasGrid() {
   return (
     <div className="bg-[#f6f9fe] flex flex-col gap-[20px] items-start p-[20px] rounded-[20px] w-full">
 
-      <p className="font-avenir-heavy text-[20px] leading-[22px] text-[#07235c]">
+      <p className="font-avenir-heavy text-f20 leading-l22 text-[#07235c]">
         {t.titulo}
       </p>
 
@@ -103,7 +103,7 @@ export default function IdiomasGrid() {
               }`}
             >
               <FlagImg code={code} />
-              <span className="font-avenir-heavy not-italic text-[14px] leading-[normal] text-[#333] flex-[1_0_0] min-w-px">
+              <span className="font-avenir-heavy not-italic text-f14 leading-[normal] text-[#333] flex-[1_0_0] min-w-px">
                 {NATIVE_LABELS[code]}
               </span>
             </button>

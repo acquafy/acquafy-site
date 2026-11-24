@@ -93,7 +93,7 @@ function ProductItem({ src, variant, name, sub2 }: ProductItemProps) {
 
       {/* nome do produto */}
       <p
-        className="font-avenir-heavy text-[18px] leading-[22px] text-center max-w-[140px] min-h-[44px] shrink-0 w-full"
+        className="font-avenir-heavy text-f18 leading-l22 text-center max-w-[140px] min-h-[44px] shrink-0 w-full"
         style={variant === "essentials" ? essGrad : premColor}
       >
         {sub2
@@ -353,12 +353,12 @@ function ProductLineCard({ variant }: { variant: "essentials" | "premium" }) {
       {/* header: título + descrição — centralizados */}
       <div className="flex flex-col gap-[10px] items-center text-center w-full shrink-0">
         <p
-          className="font-avenir-heavy not-italic text-[20px] leading-[28px] min-h-[36px] whitespace-nowrap shrink-0 w-full"
+          className="font-avenir-heavy not-italic text-f20 leading-l28 min-h-[36px] whitespace-nowrap shrink-0 w-full"
           style={titleStyle}
         >
           {isEssentials ? t.essentialsTitle : t.premiumTitle}
         </p>
-        <p className="font-avenir-roman not-italic text-[18px] leading-[19px] text-[#333] w-full shrink-0">
+        <p className="font-avenir-roman not-italic text-f18 leading-l19 text-[#333] w-full shrink-0">
           {isEssentials ? t.essentialsSub : t.premiumSub}
         </p>
       </div>
@@ -396,7 +396,7 @@ export default function ProdutosParceria() {
       <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
 
         {/* título da seção */}
-        <h2 className="font-avenir-heavy not-italic text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] text-center min-w-[240px] w-full">
+        <h2 className="font-avenir-heavy not-italic text-f22 leading-l28 md:text-f26 md:leading-l34 text-[#1f2e91] text-center min-w-[240px] w-full">
           {t.heading}
           <span className="text-[#0569ff]">{t.headingHL}</span>
         </h2>
@@ -415,10 +415,10 @@ export default function ProdutosParceria() {
 
             {/* header centralizado */}
             <div className="flex flex-col gap-[10px] items-center text-center w-full shrink-0">
-              <p className="font-avenir-heavy not-italic text-[20px] leading-[28px] text-[#0569ff] min-h-[36px] w-full">
+              <p className="font-avenir-heavy not-italic text-f20 leading-l28 text-[#0569ff] min-h-[36px] w-full">
                 {t.mediaTitle}
               </p>
-              <p className="font-avenir-roman not-italic text-[18px] leading-[19px] text-[#333] w-full">
+              <p className="font-avenir-roman not-italic text-f18 leading-l19 text-[#333] w-full">
                 {t.mediaSub}
               </p>
             </div>

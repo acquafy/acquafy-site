@@ -342,10 +342,10 @@ function SustCard({ icon, aspectW, aspectH, title, description }: {
   return (
     <div className="bg-white flex flex-[1_0_0] flex-col gap-[20px] items-center min-w-[160px] px-[10px] py-[20px] rounded-[16px] win-1024:min-h-[235px]">
       <FigmaIcon src={icon} size={40} aspectW={aspectW} aspectH={aspectH} />
-      <p className="font-avenir-heavy text-[18px] leading-[19px] text-[#0b8650] text-center w-full">
+      <p className="font-avenir-heavy text-f18 leading-l19 text-[#0b8650] text-center w-full">
         {title}
       </p>
-      <p className="font-avenir-roman text-[14px] leading-[16px] text-[#333] text-center w-full">
+      <p className="font-avenir-roman text-f14 leading-l16 text-[#333] text-center w-full">
         {description}
       </p>
     </div>
@@ -374,11 +374,11 @@ export default function TecnologiaSustentSection() {
         <div className="flex flex-col gap-[20px] items-start w-full">
           {/* Info card */}
           <div className="bg-white flex flex-col gap-[20px] items-start min-w-[280px] overflow-hidden p-[20px] rounded-[16px] w-full">
-            <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#0b8650] text-center lg:text-left">
+            <h2 className="font-avenir-heavy text-f22 leading-l28 md:text-f26 md:leading-l34 text-[#0b8650] text-center lg:text-left">
               {t.infoTitle}
             </h2>
             <div className="bg-[#36ae5c] h-[2px] w-[80px] shrink-0" />
-            <p className="font-avenir-roman text-[16px] leading-[21px] text-[#333] flex-1">
+            <p className="font-avenir-roman text-f16 leading-l21 text-[#333] flex-1">
               {t.infoParagraph}
             </p>
           </div>
@@ -397,11 +397,11 @@ export default function TecnologiaSustentSection() {
             <div key={s.value} className="min-w-0 content-start flex flex-wrap gap-[20px] items-start relative">
               <FigmaIcon src={s.icon} size={40} aspectW={s.aspectW} aspectH={s.aspectH} />
               <div className="[word-break:break-word] content-stretch flex flex-[1_0_0] flex-col gap-[15px] items-start leading-[0] min-w-px not-italic relative">
-                <div className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both] flex flex-col font-avenir-black justify-center relative shrink-0 text-[32px] text-[#0b8650] w-full">
-                  <p className="leading-[39px]">{s.value}</p>
+                <div className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both] flex flex-col font-avenir-black justify-center relative shrink-0 text-f32 text-[#0b8650] w-full">
+                  <p className="leading-l39">{s.value}</p>
                 </div>
-                <div className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both] flex flex-col font-avenir-roman justify-center relative shrink-0 text-[16px] text-[#2a2a2b] w-full">
-                  <p className="leading-[20px]">{s.label}</p>
+                <div className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both] flex flex-col font-avenir-roman justify-center relative shrink-0 text-f16 text-[#2a2a2b] w-full">
+                  <p className="leading-l20">{s.label}</p>
                 </div>
               </div>
             </div>
@@ -425,7 +425,7 @@ export default function TecnologiaSustentSection() {
 
           {/* Título */}
           <div className="relative flex flex-col items-center justify-center w-full lg:flex-[1_0_0] lg:min-w-[240px]">
-            <p className="font-avenir-black text-[32px] leading-[39px] text-white w-full text-center lg:text-left">
+            <p className="font-avenir-black text-f32 leading-l39 text-white w-full text-center lg:text-left">
               {t.ctaTitle}
             </p>
           </div>

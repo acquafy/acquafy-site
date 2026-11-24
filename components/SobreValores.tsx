@@ -226,7 +226,7 @@ export default function SobreValores() {
   return (
     <section className="flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
       <div className="bg-[#f6f9fe] flex flex-col gap-[20px] items-center justify-center max-w-[1400px] overflow-hidden px-[20px] py-[25px] rounded-[16px] w-full">
-        <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] text-center w-full">
+        <h2 className="font-avenir-heavy text-f22 leading-l28 md:text-f26 md:leading-l34 text-[#1f2e91] text-center w-full">
           {t.heading}
         </h2>
         <div className="card-row [--card-min:180px] gap-[20px] items-start justify-center w-full">
@@ -237,10 +237,10 @@ export default function SobreValores() {
             >
               <FigmaIcon src={v.icon} alt={v.alt} size={40} aspectW={v.aspectW} aspectH={v.aspectH} />
               <div className="flex flex-col gap-[20px] items-center text-center w-full">
-                <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91] w-full">
+                <p className="font-avenir-heavy text-f18 leading-l22 text-[#1f2e91] w-full">
                   {v.title}
                 </p>
-                <p className="font-avenir-roman text-[16px] leading-[20px] text-[#333] w-full">
+                <p className="font-avenir-roman text-f16 leading-l20 text-[#333] w-full">
                   {v.description}
                 </p>
               </div>

@@ -1,6 +1,6 @@
 ﻿"use client";
 import Img from "@/components/ui/Img";
-import { useEffect, useRef, useState } from "react";
+import MockupFrame from "@/components/ui/MockupFrame";
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
@@ -367,42 +367,12 @@ function BadgeRow({ badges }: { badges: { title: string; sub: string }[] }) {
             <FigmaIcon src={trustBadgeIcons[i].icon} size={31} aspectW={trustBadgeIcons[i].iconW} aspectH={trustBadgeIcons[i].iconH} />
           </div>
           <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-px">
-            <p className="font-avenir-heavy text-[17px] leading-[20px] text-[#1f2e91]">{b.title}</p>
-            <p className="font-avenir-roman text-[14px] leading-[17px] text-[#2a2a2b]">{b.sub}</p>
+            <p className="font-avenir-heavy text-f17 leading-l20 text-[#1f2e91]">{b.title}</p>
+            <p className="font-avenir-roman text-f14 leading-l17 text-[#2a2a2b]">{b.sub}</p>
           </div>
         </div>
       ))}
     </>
-  );
-}
-
-/**
- * The tablet + phone only fill the middle of the (16:9) mockup picture. The frame zooms the picture just enough for
- * them to read larger without cropping them: with object-cover the visible share of the picture depends on the frame's
- * proportion, and the devices occupy about 58% x 76% of the picture (with some margin).
- */
-function MockupFrame({ className, src, alt }: { className: string; src: string; alt: string }) {
-  const box = useRef<HTMLDivElement>(null);
-  const [zoom, setZoom] = useState(1);
-  useEffect(() => {
-    const el = box.current;
-    if (!el) return;
-    const update = () => {
-      const ratio = el.clientWidth / el.clientHeight; // frame aspect
-      const picture = 16 / 9;
-      const visibleW = Math.min(1, ratio / picture); // share of the picture's width that object-cover shows
-      const visibleH = Math.min(1, picture / ratio); // share of the picture's height
-      setZoom(Math.max(1, Math.min(visibleW / 0.58, visibleH / 0.76)));
-    };
-    const ro = new ResizeObserver(update);
-    ro.observe(el);
-    update();
-    return () => ro.disconnect();
-  }, []);
-  return (
-    <div ref={box} className={className}>
-      <Img src={src} alt={alt} className="w-full h-full object-cover" style={{ transform: `scale(${zoom})` }} />
-    </div>
   );
 }
 
@@ -444,7 +414,7 @@ export default function PlatformHero() {
 
           {/* Label */}
           <div className="order-1 1024:order-none bg-white border border-[#0233c3] flex gap-[10px] items-center justify-center max-w-[290px] px-[12px] py-[8px] rounded-full shrink-0">
-            <span className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3] whitespace-nowrap">
+            <span className="font-avenir-heavy text-f14 leading-l17 text-[#0233c3] whitespace-nowrap">
               {t.badge}
             </span>
           </div>
@@ -462,7 +432,7 @@ export default function PlatformHero() {
           </h1>
 
           {/* Subtítulo */}
-          <p className="order-3 1024:order-none font-avenir-roman text-[18px] leading-[26px] text-[#333] w-full text-center 1024:text-left">
+          <p className="order-3 1024:order-none font-avenir-roman text-f18 leading-l26 text-[#333] w-full text-center 1024:text-left">
             {t.subtitle}
           </p>
 
@@ -474,7 +444,7 @@ export default function PlatformHero() {
               style={{ backgroundImage: "linear-gradient(112deg, #0233c3 6.19%, #9f3df5 93.35%)" }}
             >
               <FigmaIcon src={imgChat} size={16} />
-              <span className="font-avenir-heavy text-[14px] leading-[17px] text-white text-center whitespace-nowrap">
+              <span className="font-avenir-heavy text-f14 leading-l17 text-white text-center whitespace-nowrap">
                 {t.cta}
               </span>
             </a>
@@ -488,9 +458,9 @@ export default function PlatformHero() {
                   <FigmaIcon src={f.icon} size={30} aspectW={f.iconW} aspectH={f.iconH} />
                 </div>
                 <div className="flex items-center justify-center min-h-[44px] w-full">
-                  <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91] text-center w-full">{f.title}</p>
+                  <p className="font-avenir-heavy text-f18 leading-l22 text-[#1f2e91] text-center w-full">{f.title}</p>
                 </div>
-                <p className="font-avenir-roman text-[14px] leading-[16px] text-[#2a2a2b] text-center w-full">{f.desc}</p>
+                <p className="font-avenir-roman text-f14 leading-l16 text-[#2a2a2b] text-center w-full">{f.desc}</p>
               </div>
             ))}
           </div>
@@ -516,8 +486,8 @@ export default function PlatformHero() {
               <FigmaIcon src={f.icon} size={30} aspectW={f.iconW} aspectH={f.iconH} />
             </div>
             <div className="flex flex-col gap-[6px] items-start min-w-0">
-              <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91] w-full">{f.title}</p>
-              <p className="font-avenir-roman text-[14px] leading-[16px] text-[#2a2a2b] w-full">{f.desc}</p>
+              <p className="font-avenir-heavy text-f18 leading-l22 text-[#1f2e91] w-full">{f.title}</p>
+              <p className="font-avenir-roman text-f14 leading-l16 text-[#2a2a2b] w-full">{f.desc}</p>
             </div>
           </div>
         ))}

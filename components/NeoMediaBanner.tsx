@@ -394,7 +394,7 @@ function Label() {
   return (
     <div className="bg-white border border-[#0233c3] flex gap-[10px] items-center px-[12px] py-[8px] rounded-full shrink-0">
       <FigmaIcon src={imgPlanet} size={16} />
-      <span className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3] whitespace-nowrap">
+      <span className="font-avenir-heavy text-f14 leading-l17 text-[#0233c3] whitespace-nowrap">
         LINHA NEO MEDIA
       </span>
     </div>
@@ -411,7 +411,7 @@ function CardItem({ c, fullWidth }: { c: CardItemData; fullWidth?: boolean }) {
       <div className="flex flex-col items-center justify-center size-[40px] shrink-0">
         <FigmaIcon src={c.icon} size={30} aspectW={c.aspectW} aspectH={c.aspectH} />
       </div>
-      <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91] flex-1">
+      <p className="font-avenir-heavy text-f18 leading-l22 text-[#1f2e91] flex-1">
         {c.label}
       </p>
     </div>
@@ -464,10 +464,10 @@ export default function NeoMediaBanner() {
           >
             Acquafy Media
           </h1>
-          <h2 className="order-3 lg:order-none font-avenir-heavy text-[22px] leading-[26px] text-[#1f2e91] text-center lg:text-left">
+          <h2 className="order-3 lg:order-none font-avenir-heavy text-f22 leading-l26 text-[#1f2e91] text-center lg:text-left">
             {t.h2}
           </h2>
-          <p className="order-4 lg:order-none font-avenir-roman text-[18px] leading-[26px] text-[#333] text-center lg:text-left">
+          <p className="order-4 lg:order-none font-avenir-roman text-f18 leading-l26 text-[#333] text-center lg:text-left">
             {t.pMobile}
           </p>
           <div className="order-6 lg:order-none flex flex-wrap gap-[16px] items-center justify-center lg:justify-start w-full">
@@ -500,8 +500,8 @@ export default function NeoMediaBanner() {
             <div key={s.title} className="flex flex-[1_0_0] gap-[10px] items-center min-w-[140px]">
               <FigmaIcon src={s.icon} size={30} aspectW={s.aspectW} aspectH={s.aspectH} />
               <div className="flex flex-col gap-[10px]">
-                <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91]">{s.title}</p>
-                <p className="font-avenir-roman text-[16px] leading-[20px] text-[#2a2a2b]">{s.sub}</p>
+                <p className="font-avenir-heavy text-f18 leading-l22 text-[#1f2e91]">{s.title}</p>
+                <p className="font-avenir-roman text-f16 leading-l20 text-[#2a2a2b]">{s.sub}</p>
               </div>
             </div>
           ))}
@@ -527,10 +527,10 @@ export default function NeoMediaBanner() {
             >
               Acquafy Media
             </h1>
-            <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91]">
+            <h2 className="font-avenir-heavy text-f22 leading-l28 md:text-f26 md:leading-l34 text-[#1f2e91]">
               {t.h2}
             </h2>
-            <p className="font-avenir-roman text-[18px] leading-[26px] text-[#333]">
+            <p className="font-avenir-roman text-f18 leading-l26 text-[#333]">
               {t.pDesktop}
             </p>
             {/* Botões — node 3258:5041 */}
@@ -556,8 +556,8 @@ export default function NeoMediaBanner() {
                     <FigmaIcon src={s.icon} size={30} aspectW={s.aspectW} aspectH={s.aspectH} />
                   </div>
                   <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-[100px]">
-                    <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91]">{s.title}</p>
-                    <p className="font-avenir-roman text-[16px] leading-[20px] text-[#2a2a2b]">{s.sub}</p>
+                    <p className="font-avenir-heavy text-f18 leading-l22 text-[#1f2e91]">{s.title}</p>
+                    <p className="font-avenir-roman text-f16 leading-l20 text-[#2a2a2b]">{s.sub}</p>
                   </div>
                 </div>
               ))}

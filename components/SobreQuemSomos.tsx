@@ -326,10 +326,10 @@ function StatItem({
     <div className="flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-w-[150px] px-[20px]">
       <FigmaIcon src={icon} alt={iconAlt} size={40} />
       <div className="flex flex-col gap-[15px] items-start text-center w-full">
-        <p className="font-avenir-heavy text-[16px] leading-[20px] text-[#1f2e91] w-full min-h-[36px]">
+        <p className="font-avenir-heavy text-f16 leading-l20 text-[#1f2e91] w-full min-h-[36px]">
           {title}
         </p>
-        <p className="font-avenir-roman text-[14px] leading-[16px] text-[#2a2a2b] w-full">
+        <p className="font-avenir-roman text-f14 leading-l16 text-[#2a2a2b] w-full">
           {description}
         </p>
       </div>
@@ -346,20 +346,20 @@ export default function SobreQuemSomos() {
 
         {/* Left: Quem Somos */}
         <div className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[20px] items-center win-1024:max-w-[550px] min-w-[280px] px-[20px] py-[40px] rounded-[16px]">
-          <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] w-full text-center lg:text-left">
+          <h2 className="font-avenir-heavy text-f22 leading-l28 md:text-f26 md:leading-l34 text-[#1f2e91] w-full text-center lg:text-left">
             {t.quemSomosTitle}
           </h2>
-          <div className="font-avenir-roman text-[18px] leading-[19px] text-[#333] w-full">
-            <p className="leading-[19px] mb-[10px]">{t.p1}</p>
-            <p className="leading-[19px] mb-[10px]">{t.p2}</p>
-            <p className="leading-[19px] mb-[10px]">{t.p3}</p>
-            <p className="leading-[19px]">{t.p4}</p>
+          <div className="font-avenir-roman text-f18 leading-l19 text-[#333] w-full">
+            <p className="leading-l19 mb-[10px]">{t.p1}</p>
+            <p className="leading-l19 mb-[10px]">{t.p2}</p>
+            <p className="leading-l19 mb-[10px]">{t.p3}</p>
+            <p className="leading-l19">{t.p4}</p>
           </div>
         </div>
 
         {/* Right: Interfy Corp */}
         <div className="bg-[#f6f9fe] flex flex-[1_0_0] flex-col gap-[20px] items-center min-w-[280px] px-[20px] py-[40px] rounded-[16px]">
-          <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] w-full text-center lg:text-left">
+          <h2 className="font-avenir-heavy text-f22 leading-l28 md:text-f26 md:leading-l34 text-[#1f2e91] w-full text-center lg:text-left">
             {t.interfyTitle}
           </h2>
 
@@ -382,7 +382,7 @@ export default function SobreQuemSomos() {
 
             {/* Description column — border-l serves as divider */}
             <div className="flex flex-[1_0_0] flex-col items-center justify-center min-w-[280px] p-[15px] win-1024:border-l win-1024:border-solid win-1024:border-[#cbd0d4]">
-              <p className="font-avenir-roman text-[18px] leading-[19px] text-[#333] w-full">
+              <p className="font-avenir-roman text-f18 leading-l19 text-[#333] w-full">
                 {t.interfyPrefix}{" "}
                 <span className="font-avenir-heavy text-[#0569ff]">Interfy Corp</span>
                 ,<br />

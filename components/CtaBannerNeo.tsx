@@ -87,10 +87,10 @@ export default function CtaBannerNeo() {
         />
 
         <div className="relative flex flex-1 flex-col items-center justify-center min-w-[240px]">
-          <h2 className="font-avenir-black text-[32px] leading-[39px] text-white w-full text-center lg:text-left">
+          <h2 className="font-avenir-black text-f32 leading-l39 text-white w-full text-center lg:text-left">
             {t.heading}
           </h2>
-          <p className="font-avenir-heavy text-[18px] leading-[22px] text-white w-full text-center lg:text-left">
+          <p className="font-avenir-heavy text-f18 leading-l22 text-white w-full text-center lg:text-left">
             {t.sub}
           </p>
         </div>

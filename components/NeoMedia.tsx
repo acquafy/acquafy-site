@@ -351,10 +351,10 @@ export default function NeoMedia() {
         // Icon centred on the title (which can take two lines); the description sits under the title.
         <div key={i} className="min-w-0 grid grid-cols-[auto_minmax(0,1fr)] gap-[10px] items-center">
           <BenefitIcon icon={f.icon} aspectW={f.aspectW} aspectH={f.aspectH} />
-          <p className="font-avenir-heavy text-[14px] leading-[15px] text-[#1f2e91] w-full">
+          <p className="font-avenir-heavy text-f14 leading-l15 text-[#1f2e91] w-full">
             {t.bottomFeatures[i].title}
           </p>
-          <p className="col-start-2 font-avenir-roman text-[12px] leading-[16px] text-[#2a2a2b] w-full">
+          <p className="col-start-2 font-avenir-roman text-f12 leading-l16 text-[#2a2a2b] w-full">
             {t.bottomFeatures[i].desc}
           </p>
         </div>
@@ -404,12 +404,12 @@ export default function NeoMedia() {
         <div ref={colRef} className="relative z-10 order-1 flex flex-col gap-[20px] items-start min-w-[240px] w-full md:flex-[1_0_0]">
 
           <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start justify-center min-w-[240px] pt-[20px]">
-            <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-white w-full text-center md:text-left">
+            <h2 className="font-avenir-heavy text-f22 leading-l28 md:text-f26 md:leading-l34 text-white w-full text-center md:text-left">
               Neo Media
             </h2>
             <div className="flex flex-wrap gap-y-[20px] items-center w-full">
               <div className="flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-w-[210px] md:items-start">
-                <p className="font-avenir-roman text-[16px] leading-[20px] text-white w-full text-center md:text-left">
+                <p className="font-avenir-roman text-f16 leading-l20 text-white w-full text-center md:text-left">
                   {t.descLine1}
                   <br />
                   {t.descLine2}
@@ -421,7 +421,7 @@ export default function NeoMedia() {
                       href="/app/cadastro-investidor"
                       className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex gap-[10px] items-center justify-center min-h-[30px] px-[20px] py-[10px] rounded-[8px] shrink-0 w-full md:w-fit cursor-pointer"
                     >
-                      <span className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors text-center">
+                      <span className="font-avenir-heavy text-f14 leading-l17 text-[#0233c3] group-hover:text-white group-active:text-white transition-colors text-center">
                         {t.btnInvest}
                       </span>
                       <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
@@ -439,7 +439,7 @@ export default function NeoMedia() {
                     href="/buy/checkin"
                     className="group bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex gap-[10px] items-center justify-center min-h-[30px] px-[20px] py-[10px] rounded-[8px] shrink-0 w-full md:w-fit cursor-pointer"
                   >
-                    <span className="font-avenir-heavy text-[14px] leading-[17px] text-white text-center">
+                    <span className="font-avenir-heavy text-f14 leading-l17 text-white text-center">
                       {t.btnBuy}
                     </span>
                     <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
@@ -459,11 +459,11 @@ export default function NeoMedia() {
                 <div key={i} className="min-w-0 flex flex-col gap-[10px] items-start">
                   <div className="flex flex-col gap-[10px] items-start justify-start w-full shrink-0">
                     <BenefitIcon icon={b.icon} aspectW={b.aspectW} aspectH={b.aspectH} />
-                    <p className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3] w-full">
+                    <p className="font-avenir-heavy text-f14 leading-l17 text-[#0233c3] w-full">
                       {t.benefits[i].title}
                     </p>
                   </div>
-                  <p className="font-avenir-roman text-[14px] leading-[16px] text-[#2a2a2b] w-full">
+                  <p className="font-avenir-roman text-f14 leading-l16 text-[#2a2a2b] w-full">
                     {t.benefits[i].desc}
                   </p>
                 </div>

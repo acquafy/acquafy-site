@@ -123,10 +123,10 @@ export default function CtaBannerParceria() {
         {/* texto esquerdo */}
         <div className="relative flex flex-[1_0_0] flex-col items-center justify-center min-w-[240px]">
           <div className="font-avenir-black text-[0px] text-white w-full text-center xl:text-left">
-            <p className="text-[32px] leading-[39px]">
+            <p className="text-f32 leading-l39">
               {t.heading}
             </p>
-            <p className="font-avenir-heavy text-[18px] leading-[22px]">
+            <p className="font-avenir-heavy text-f18 leading-l22">
               {t.sub}
             </p>
           </div>

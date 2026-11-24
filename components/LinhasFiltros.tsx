@@ -369,17 +369,17 @@ function FilterCard({ card }: { card: FilterCard }) {
               : { backgroundColor: "#1f2e91" }
           }
         >
-          <span className="font-avenir-heavy text-[18px] leading-[22px] text-white text-center">{card.num}</span>
+          <span className="font-avenir-heavy text-f18 leading-l22 text-white text-center">{card.num}</span>
         </div>
         <p
-          className={`font-avenir-heavy text-[20px] leading-[24px] flex-1 min-w-0 text-center${isHighlightBlue ? " bg-clip-text text-transparent" : isHighlightGrad ? " bg-clip-text text-transparent" : " text-[#1f2e91]"}`}
+          className={`font-avenir-heavy text-f20 leading-l24 flex-1 min-w-0 text-center${isHighlightBlue ? " bg-clip-text text-transparent" : isHighlightGrad ? " bg-clip-text text-transparent" : " text-[#1f2e91]"}`}
           style={isHighlightBlue ? { backgroundImage: "linear-gradient(to right, #0041ff, #3f8cff)" } : isHighlightGrad ? { backgroundImage: "linear-gradient(147deg, #0233c3 6.19%, #9f3df5 93.35%)" } : undefined}
         >
           {card.title}
         </p>
       </div>
       {/* Description */}
-      <p className="font-avenir-roman text-[16px] leading-[20px] text-[#2a2a2b] flex-1 w-full">{card.desc}</p>
+      <p className="font-avenir-roman text-f16 leading-l20 text-[#2a2a2b] flex-1 w-full">{card.desc}</p>
     </div>
   );
 }
@@ -396,7 +396,7 @@ export default function LinhasFiltros({ showPh = true }: { showPh?: boolean }) {
 
         {/* Linha Essentials */}
         <div className="flex flex-col gap-[40px] items-center w-full">
-          <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#0569ff] text-center w-full">
+          <h2 className="font-avenir-heavy text-f22 leading-l28 md:text-f26 md:leading-l34 text-[#0569ff] text-center w-full">
             {t.essentialsHeading}
           </h2>
           <div className="card-row [--card-min:200px] gap-[20px] items-stretch justify-center w-full">
@@ -407,7 +407,7 @@ export default function LinhasFiltros({ showPh = true }: { showPh?: boolean }) {
         {/* Linha Premium */}
         <div className="flex flex-col gap-[40px] items-center w-full">
           <h2
-            className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] bg-clip-text text-transparent text-center w-full"
+            className="font-avenir-heavy text-f22 leading-l28 md:text-f26 md:leading-l34 bg-clip-text text-transparent text-center w-full"
             style={{ backgroundImage: "linear-gradient(170deg, #0233c3 6.19%, #9f3df5 93.35%)" }}
           >
             {t.premiumHeading}
@@ -420,7 +420,7 @@ export default function LinhasFiltros({ showPh = true }: { showPh?: boolean }) {
         {/* Escala de pH */}
         {showPh && (
         <div className="flex flex-col gap-[40px] items-center w-full">
-          <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] text-center w-full">
+          <h2 className="font-avenir-heavy text-f22 leading-l28 md:text-f26 md:leading-l34 text-[#1f2e91] text-center w-full">
             {t.phHeading}
           </h2>
           <div className="flex flex-col gap-[20px] w-full">
@@ -428,7 +428,7 @@ export default function LinhasFiltros({ showPh = true }: { showPh?: boolean }) {
             <div className="grid overflow-hidden rounded-[8px] w-full" style={{ gridTemplateColumns: "repeat(10, minmax(0, 1fr))" }}>
               {phColors.map((color, i) => (
                 <div key={i} className="flex flex-col items-center justify-center px-[10px] py-[40px]" style={{ backgroundColor: color }}>
-                  <span className="font-avenir-black text-[32px] leading-[39px] text-white text-center">{i + 1}</span>
+                  <span className="font-avenir-black text-f32 leading-l39 text-white text-center">{i + 1}</span>
                 </div>
               ))}
             </div>

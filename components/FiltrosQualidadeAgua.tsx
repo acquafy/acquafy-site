@@ -379,9 +379,9 @@ function InfoCard({ title, desc }: { title: string; desc: string }) {
     <div className="bg-white flex flex-col justify-center gap-[20px] flex-[1_0_auto] px-[20px] py-[25px] rounded-[16px]">
       <div className="flex gap-[10px] items-center">
         <FigmaIcon src={imgPh} size={30} aspectW={36} aspectH={38} />
-        <p className="font-avenir-heavy text-[20px] leading-[24px] text-[#1f2e91]">{title}</p>
+        <p className="font-avenir-heavy text-f20 leading-l24 text-[#1f2e91]">{title}</p>
       </div>
-      <p className="font-avenir-roman text-[16px] leading-[20px] text-[#2a2a2b]">{desc}</p>
+      <p className="font-avenir-roman text-f16 leading-l20 text-[#2a2a2b]">{desc}</p>
     </div>
   );
 }
@@ -401,8 +401,8 @@ export default function FiltrosQualidadeAgua() {
           {FEATURE_ICONS.map((ic, i) => (
             <div key={ic.src} className="grid grid-rows-subgrid row-span-3 gap-y-[10px] items-start">
               <FigmaIcon src={ic.src} size={40} aspectW={ic.w} aspectH={ic.h} />
-              <p className="font-avenir-heavy text-[20px] leading-[24px] text-[#1f2e91]">{t.features[i].title}</p>
-              <p className="font-avenir-roman text-[16px] leading-[20px] text-[#2a2a2b]">{t.features[i].desc}</p>
+              <p className="font-avenir-heavy text-f20 leading-l24 text-[#1f2e91]">{t.features[i].title}</p>
+              <p className="font-avenir-roman text-f16 leading-l20 text-[#2a2a2b]">{t.features[i].desc}</p>
             </div>
           ))}
         </div>
@@ -412,7 +412,7 @@ export default function FiltrosQualidadeAgua() {
           {BENEFIT_ICONS.map((ic, i) => (
             <div key={ic.src} className="bg-white flex flex-col gap-[10px] items-center justify-center min-w-0 px-[20px] py-[25px] rounded-[12px] text-center">
               <FigmaIcon src={ic.src} size={40} aspectW={ic.w} aspectH={ic.h} />
-              <p className="font-avenir-heavy text-[20px] leading-[24px] text-[#1f2e91]">{t.benefits[i]}</p>
+              <p className="font-avenir-heavy text-f20 leading-l24 text-[#1f2e91]">{t.benefits[i]}</p>
             </div>
           ))}
         </div>
@@ -426,7 +426,7 @@ export default function FiltrosQualidadeAgua() {
           </div>
 
           <div className="bg-white flex flex-col gap-[20px] lg:basis-[calc(50%-10px)] lg:grow-0 lg:shrink-0 min-w-0 px-[20px] py-[25px] rounded-[16px]">
-            <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] text-center w-full">
+            <h2 className="font-avenir-heavy text-f22 leading-l28 md:text-f26 md:leading-l34 text-[#1f2e91] text-center w-full">
               {t.phHeading}
             </h2>
 
@@ -435,7 +435,7 @@ export default function FiltrosQualidadeAgua() {
               <div className="grid overflow-hidden rounded-[8px] w-full" style={{ gridTemplateColumns: "repeat(7, minmax(0, 1fr))" }}>
                 {PH_STEPS.map((s) => (
                   <div key={s.n} className="flex flex-col items-center justify-center px-[4px] py-[20px]" style={{ backgroundColor: s.color }}>
-                    <span className="font-avenir-black text-[24px] leading-[29px] sm:text-[32px] sm:leading-[39px] text-white text-center">{s.n}</span>
+                    <span className="font-avenir-black text-f24 leading-l29 sm:text-f32 sm:leading-l39 text-white text-center">{s.n}</span>
                   </div>
                 ))}
               </div>
@@ -446,10 +446,10 @@ export default function FiltrosQualidadeAgua() {
                       <Img alt="" className="block max-w-none size-full" src={imgLineAcido} />
                     </div>
                   </div>
-                  <span className="font-avenir-heavy text-[16px] leading-[20px] text-[#333] text-center">{t.acid}</span>
+                  <span className="font-avenir-heavy text-f16 leading-l20 text-[#333] text-center">{t.acid}</span>
                 </div>
                 <div className="flex flex-col items-center justify-center">
-                  <span className="font-avenir-heavy text-[16px] leading-[20px] text-[#333] text-center">{t.neutral}</span>
+                  <span className="font-avenir-heavy text-f16 leading-l20 text-[#333] text-center">{t.neutral}</span>
                 </div>
                 <div className="flex flex-col gap-[10px] items-center justify-center" style={{ gridColumn: "5 / span 3" }}>
                   <div className="h-0 relative shrink-0 w-full">
@@ -457,7 +457,7 @@ export default function FiltrosQualidadeAgua() {
                       <Img alt="" className="block max-w-none size-full" src={imgLineAlcalino} />
                     </div>
                   </div>
-                  <span className="font-avenir-heavy text-[16px] leading-[20px] text-[#333] text-center">{t.alkaline}</span>
+                  <span className="font-avenir-heavy text-f16 leading-l20 text-[#333] text-center">{t.alkaline}</span>
                 </div>
               </div>
             </div>
@@ -465,17 +465,17 @@ export default function FiltrosQualidadeAgua() {
             {/* Bottled water x Acquafy Neo UP */}
             <div className="flex flex-col sm:flex-row gap-[20px]">
               <div className="bg-[#f6f9fe] flex flex-col gap-[10px] items-center justify-center flex-1 px-[10px] py-[20px] rounded-[12px] text-center">
-                <p className="font-avenir-heavy text-[20px] leading-[24px] text-[#1f2e91]">{t.bottledTitle}</p>
-                <p className="font-avenir-roman text-[16px] leading-[20px] text-[#2a2a2b]">{t.bottledNote}</p>
-                <p className="font-avenir-black text-[32px] leading-[39px] text-[#dc2429]">{bottledPh}</p>
+                <p className="font-avenir-heavy text-f20 leading-l24 text-[#1f2e91]">{t.bottledTitle}</p>
+                <p className="font-avenir-roman text-f16 leading-l20 text-[#2a2a2b]">{t.bottledNote}</p>
+                <p className="font-avenir-black text-f32 leading-l39 text-[#dc2429]">{bottledPh}</p>
               </div>
               <div className="bg-[#f6f9fe] flex flex-col gap-[10px] items-center justify-center flex-1 px-[10px] py-[20px] rounded-[12px] text-center">
-                <p className="font-avenir-heavy text-[20px] leading-[24px] text-[#1f2e91]">
+                <p className="font-avenir-heavy text-f20 leading-l24 text-[#1f2e91]">
                   Acquafy <span className="text-[#0569ff]">Neo UP</span>
                 </p>
-                <p className="font-avenir-roman text-[16px] leading-[20px] text-[#2a2a2b]">{t.acquafySub}</p>
+                <p className="font-avenir-roman text-f16 leading-l20 text-[#2a2a2b]">{t.acquafySub}</p>
                 <p
-                  className="font-avenir-black text-[32px] leading-[39px] bg-clip-text text-transparent"
+                  className="font-avenir-black text-f32 leading-l39 bg-clip-text text-transparent"
                   style={{ backgroundImage: "linear-gradient(to right, #0041ff, #3f8cff)" }}
                 >
                   pH 9+

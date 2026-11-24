@@ -341,7 +341,7 @@ export default function BannerLinhaNeo() {
             Linha Neo
           </h1>
 
-          <p className="font-avenir-roman text-[18px] leading-[26px] text-[#333] text-center w-full win-1024:text-left">
+          <p className="font-avenir-roman text-f18 leading-l26 text-[#333] text-center w-full win-1024:text-left">
             {t.desc}
           </p>
 
@@ -360,10 +360,10 @@ export default function BannerLinhaNeo() {
               <div key={f.title} className="flex flex-[1_0_0] gap-[20px] items-center justify-center min-w-[180px] win-1024:justify-start">
                 <FigmaIcon src={f.icon} size={30} aspectW={f.aW} aspectH={f.aH} />
                 <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start justify-center min-w-0">
-                  <p className="font-avenir-heavy text-[16px] leading-[20px] text-[#1f2e91] w-full">
+                  <p className="font-avenir-heavy text-f16 leading-l20 text-[#1f2e91] w-full">
                     {f.title}
                   </p>
-                  <p className="font-avenir-roman text-[12px] leading-[14px] text-[#333] w-full">
+                  <p className="font-avenir-roman text-f12 leading-l14 text-[#333] w-full">
                     {f.desc}
                   </p>
                 </div>
@@ -391,10 +391,10 @@ export default function BannerLinhaNeo() {
         <div key={f.title} className="flex flex-[1_0_0] gap-[20px] items-center justify-center min-w-[180px] win-1024:justify-start">
           <FigmaIcon src={f.icon} size={30} aspectW={f.aW} aspectH={f.aH} />
           <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start justify-center min-w-0">
-            <p className="font-avenir-heavy text-[16px] leading-[20px] text-[#1f2e91] w-full">
+            <p className="font-avenir-heavy text-f16 leading-l20 text-[#1f2e91] w-full">
               {f.title}
             </p>
-            <p className="font-avenir-roman text-[12px] leading-[14px] text-[#333] w-full">
+            <p className="font-avenir-roman text-f12 leading-l14 text-[#333] w-full">
               {f.desc}
             </p>
           </div>
@@ -411,10 +411,10 @@ export default function BannerLinhaNeo() {
           <div key={s.title} className="flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-w-[160px] win-1280:flex-row win-1280:flex-wrap">
             <FigmaIcon src={s.icon} size={40} />
             <div className="flex flex-[1_0_0] flex-col gap-[15px] items-start min-w-[200px] text-center win-1280:text-left">
-              <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91] w-full">
+              <p className="font-avenir-heavy text-f18 leading-l22 text-[#1f2e91] w-full">
                 {s.title}
               </p>
-              <p className="font-avenir-roman text-[16px] leading-[21px] text-[#2a2a2b] w-full">
+              <p className="font-avenir-roman text-f16 leading-l21 text-[#2a2a2b] w-full">
                 {s.desc}
               </p>
             </div>

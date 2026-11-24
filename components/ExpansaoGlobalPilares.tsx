@@ -194,7 +194,7 @@ export default function ExpansaoGlobalPilares() {
   return (
     <section className="bg-[#f6f9fe] flex flex-col items-center justify-center overflow-hidden px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
-        <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] text-center w-full">
+        <h2 className="font-avenir-heavy text-f22 leading-l28 md:text-f26 md:leading-l34 text-[#1f2e91] text-center w-full">
           {t.heading}
         </h2>
 
@@ -205,10 +205,10 @@ export default function ExpansaoGlobalPilares() {
               className="min-w-0 bg-white flex flex-col gap-[20px] items-center min-h-[250px] overflow-hidden px-[10px] py-[20px] rounded-[16px]"
             >
               <FigmaIcon src={p.icon} size={40} aspectW={p.iconW} aspectH={p.iconH} />
-              <h3 className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91] text-center flex items-center justify-center min-h-[50px]">
+              <h3 className="font-avenir-heavy text-f18 leading-l22 text-[#1f2e91] text-center flex items-center justify-center min-h-[50px]">
                 {p.title}
               </h3>
-              <p className="font-avenir-roman text-[16px] leading-[20px] text-[#333] text-center">
+              <p className="font-avenir-roman text-f16 leading-l20 text-[#333] text-center">
                 {p.desc}
               </p>
             </div>

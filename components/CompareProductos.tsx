@@ -1069,7 +1069,7 @@ function FeaturePill({ icon, label, aspectW, aspectH }: { icon: string; label: s
       <div className="bg-white border-[0.5px] border-[#cbd0d4] flex items-center justify-center p-[16px] rounded-full shrink-0 size-[60px]">
         <FigmaIcon src={icon} size={28} aspectW={aspectW} aspectH={aspectH} />
       </div>
-      <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91] flex-1 min-w-0">
+      <p className="font-avenir-heavy text-f18 leading-l22 text-[#1f2e91] flex-1 min-w-0">
         {label}
       </p>
     </div>
@@ -1086,7 +1086,7 @@ function CheckListItem({ icon, text }: { icon: string; text: string }) {
   return (
     <div className="flex gap-[10px] items-center w-full">
       <FigmaIcon src={icon} size={16} />
-      <p className="font-avenir-heavy text-[14px] leading-[17px] text-[#2a2a2b] flex-1 min-w-0">
+      <p className="font-avenir-heavy text-f14 leading-l17 text-[#2a2a2b] flex-1 min-w-0">
         {text}
       </p>
     </div>
@@ -1245,7 +1245,7 @@ export default function CompareProductos() {
               {/* Label */}
               <div className="bg-white border border-[#0233c3] flex gap-[10px] items-center px-[12px] py-[8px] rounded-full">
                 <FigmaIcon src={imgPlanetWeb} size={16} />
-                <span className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3] whitespace-nowrap">
+                <span className="font-avenir-heavy text-f14 leading-l17 text-[#0233c3] whitespace-nowrap">
                   {t.badgeLabel}
                 </span>
               </div>
@@ -1266,14 +1266,14 @@ export default function CompareProductos() {
               </h1>
 
               {/* Subtitle */}
-              <p className="font-avenir-roman text-[18px] leading-[26px] text-[#333] text-center 1024:text-left">
+              <p className="font-avenir-roman text-f18 leading-l26 text-[#333] text-center 1024:text-left">
                 {t.subtitle}
               </p>
 
               {/* CTA buttons */}
               <div className="flex gap-[20px] items-center justify-center 1024:justify-start w-full">
                 <a href="/contact" className="bg-white flex gap-[10px] items-center justify-center min-h-[50px] px-[20px] py-[10px] rounded-[8px] cursor-pointer hover:bg-[#f0f4ff] transition-colors no-underline">
-                  <span className="font-avenir-heavy text-[16px] leading-normal text-[#0233c3]">
+                  <span className="font-avenir-heavy text-f16 leading-normal text-[#0233c3]">
                     {t.ctaSpecialist}
                   </span>
                   <FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} />
@@ -1303,7 +1303,7 @@ export default function CompareProductos() {
             {/* Selector header */}
             <div className="flex flex-col 1024:flex-row gap-[10px] items-center w-full">
               <div className="flex gap-[10px] items-center shrink-0 w-full justify-center 1024:w-auto 1024:justify-start">
-                <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91] whitespace-nowrap">
+                <p className="font-avenir-heavy text-f18 leading-l22 text-[#1f2e91] whitespace-nowrap">
                   {t.selectorPre}{selectedIds.length}{t.selector44}
                 </p>
                 <FigmaIcon src={imgBuyCursor} size={30} />
@@ -1314,7 +1314,7 @@ export default function CompareProductos() {
                   <button
                     key={filter}
                     onClick={() => setActiveFilter(activeFilter === filter ? "Todos" : filter)}
-                    className={`border flex items-center justify-center px-[10px] py-[8px] rounded-full transition-colors text-[14px] font-avenir-heavy whitespace-nowrap shrink-0 ${
+                    className={`border flex items-center justify-center px-[10px] py-[8px] rounded-full transition-colors text-f14 font-avenir-heavy whitespace-nowrap shrink-0 ${
                       activeFilter === filter
                         ? "bg-[#0233c3] border-[#0233c3] text-white"
                         : "bg-white border-[#f6f9fe] text-[#c8cfd8] hover:border-[#cbd0d4] hover:text-[#333]"
@@ -1346,7 +1346,7 @@ export default function CompareProductos() {
                     <div className="size-[80px] flex items-center justify-center shrink-0">
                       <Img alt={product.label} className="max-w-full max-h-full object-contain pointer-events-none" src={productImages[product.id]} />
                     </div>
-                    <p className="font-avenir-heavy text-[14px] leading-[17px] text-[#1f2e91] text-center break-words w-full min-h-[34px]">
+                    <p className="font-avenir-heavy text-f14 leading-l17 text-[#1f2e91] text-center break-words w-full min-h-[34px]">
                       <ProductName parts={product.nameParts} />
                     </p>
                   </button>
@@ -1358,7 +1358,7 @@ export default function CompareProductos() {
                     onClick={() => scrollTo(selectedBarRef)}
                     className="bg-[#0233c3] flex gap-[10px] items-center justify-center px-[20px] py-[10px] rounded-[8px] cursor-pointer hover:bg-[#002ba8] transition-colors"
                   >
-                    <span className="font-avenir-heavy text-[15px] leading-normal text-white whitespace-nowrap">{t.viewComparison}</span>
+                    <span className="font-avenir-heavy text-f15 leading-normal text-white whitespace-nowrap">{t.viewComparison}</span>
                     <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
                   </button>
                 </div>
@@ -1384,7 +1384,7 @@ export default function CompareProductos() {
                         <div className="size-[80px] flex items-center justify-center shrink-0">
                           <Img alt={product.label} className="max-w-full max-h-full object-contain pointer-events-none" src={productImages[product.id]} />
                         </div>
-                        <p className="font-avenir-heavy text-[14px] leading-[17px] text-[#1f2e91] text-center break-words w-full min-h-[34px]">
+                        <p className="font-avenir-heavy text-f14 leading-l17 text-[#1f2e91] text-center break-words w-full min-h-[34px]">
                           <ProductName parts={product.nameParts} />
                         </p>
                       </button>
@@ -1411,7 +1411,7 @@ export default function CompareProductos() {
                       onClick={() => scrollTo(selectedBarRef)}
                       className="bg-[#0233c3] flex gap-[10px] items-center justify-center px-[20px] py-[10px] rounded-[8px] cursor-pointer hover:bg-[#002ba8] transition-colors shrink-0"
                     >
-                      <span className="font-avenir-heavy text-[15px] leading-normal text-white whitespace-nowrap">
+                      <span className="font-avenir-heavy text-f15 leading-normal text-white whitespace-nowrap">
                         Ver comparação
                       </span>
                       <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
@@ -1429,7 +1429,7 @@ export default function CompareProductos() {
                         <div className="size-[80px] flex items-center justify-center shrink-0">
                           <Img alt={product.label} className="max-w-full max-h-full object-contain" src={productImages[product.id]} />
                         </div>
-                        <p className="font-avenir-heavy text-[14px] leading-[17px] text-[#1f2e91] text-center break-words w-full min-h-[34px]">
+                        <p className="font-avenir-heavy text-f14 leading-l17 text-[#1f2e91] text-center break-words w-full min-h-[34px]">
                           <ProductName parts={product.nameParts} />
                         </p>
                       </button>
@@ -1446,10 +1446,10 @@ export default function CompareProductos() {
         <div className="bg-[#f6f9fe] flex flex-wrap gap-[20px] items-center justify-center max-w-[1400px] overflow-hidden p-[20px] rounded-[16px] w-full">
           {/* Info */}
           <div className="flex flex-col gap-[10px] items-center min-[1024px]:items-start flex-1 min-w-[240px] max-w-[340px]">
-            <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91] text-center min-[1024px]:text-left">
+            <p className="font-avenir-heavy text-f18 leading-l22 text-[#1f2e91] text-center min-[1024px]:text-left">
               {t.selectedBarTitle} ({selectedProducts.length}/4)
             </p>
-            <p className="font-avenir-roman text-[16px] leading-[20px] text-[#333] text-center min-[1024px]:text-left">
+            <p className="font-avenir-roman text-f16 leading-l20 text-[#333] text-center min-[1024px]:text-left">
               {t.selectedBarSub}
             </p>
           </div>
@@ -1469,7 +1469,7 @@ export default function CompareProductos() {
                   />
                 </div>
                 <div className="flex flex-col gap-[10px] items-center min-[1024px]:items-start flex-1 min-w-0 pb-[10px] min-[1024px]:pb-0 min-[1024px]:pt-[20px]">
-                  <p className="font-avenir-heavy text-[14px] leading-[17px] text-[#1f2e91] text-center min-[1024px]:text-left min-h-[34px]">
+                  <p className="font-avenir-heavy text-f14 leading-l17 text-[#1f2e91] text-center min-[1024px]:text-left min-h-[34px]">
                     <ProductName parts={product.nameParts} />
                   </p>
                 </div>
@@ -1491,9 +1491,9 @@ export default function CompareProductos() {
                 className="flex flex-col min-[1024px]:flex-row flex-1 gap-[10px] min-[1024px]:h-[100px] items-center min-w-[140px] min-[1024px]:min-w-[200px] max-w-[280px] overflow-hidden p-[10px] py-[20px] min-[1024px]:py-[10px] rounded-[12px] border-2 border-dashed border-[#cbd0d4] cursor-pointer hover:border-[#0233c3] hover:bg-[#f0f5ff] transition-all group"
               >
                 <div className="size-[80px] shrink-0 flex items-center justify-center">
-                  <span className="text-[#cbd0d4] text-[32px] font-light group-hover:text-[#0233c3] transition-colors">+</span>
+                  <span className="text-[#cbd0d4] text-f32 font-light group-hover:text-[#0233c3] transition-colors">+</span>
                 </div>
-                <p className="font-avenir-roman text-[13px] leading-[15px] text-[#c8cfd8] group-hover:text-[#0233c3] transition-colors">
+                <p className="font-avenir-roman text-f13 leading-l15 text-[#c8cfd8] group-hover:text-[#0233c3] transition-colors">
                   {t.selectProduct}
                 </p>
               </button>
@@ -1506,7 +1506,7 @@ export default function CompareProductos() {
       <section className="bg-white flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
         {selectedProducts.length === 0 ? (
           <div className="max-w-[1400px] w-full text-center py-[60px]">
-            <p className="font-avenir-roman text-[18px] leading-[19px] text-[#8a8f97]">
+            <p className="font-avenir-roman text-f18 leading-l19 text-[#8a8f97]">
               {t.emptyTable}
             </p>
           </div>
@@ -1523,7 +1523,7 @@ export default function CompareProductos() {
               {/* ── Header row ── */}
               <div className="flex border-b border-[#cbd0d4]">
                 <div className="sticky left-0 z-10 bg-white flex items-center w-[200px] shrink-0 px-[20px] py-[12px] border-r border-[#cbd0d4]">
-                  <p className="font-avenir-heavy text-[14px] leading-[17px] text-[#2a2a2b]">
+                  <p className="font-avenir-heavy text-f14 leading-l17 text-[#2a2a2b]">
                     {t.tableFeatures}
                   </p>
                 </div>
@@ -1533,10 +1533,10 @@ export default function CompareProductos() {
                       <Img alt={product.label} className="max-w-full max-h-full object-contain" src={productImages[product.id]} />
                     </div>
                     <div className="flex flex-col gap-[6px] items-start flex-1 min-w-0">
-                      <p className="font-avenir-heavy text-[13px] leading-[16px] text-[#2a2a2b]">
+                      <p className="font-avenir-heavy text-f13 leading-l16 text-[#2a2a2b]">
                         <ProductName parts={product.nameParts} />
                       </p>
-                      <p className="font-avenir-roman text-[11px] leading-[13px] text-[#8a8f97]">
+                      <p className="font-avenir-roman text-f11 leading-l13 text-[#8a8f97]">
                         {t.linePrefix}{product.linha}
                       </p>
                     </div>
@@ -1548,7 +1548,7 @@ export default function CompareProductos() {
               {specRows.map(row => (
                 <div key={row.key} className="flex border-b border-[#cbd0d4] last:border-b-0">
                   <div className="sticky left-0 z-10 bg-white flex items-center w-[200px] shrink-0 px-[20px] py-[12px] border-r border-[#cbd0d4]">
-                    <p className="font-avenir-heavy text-[13px] leading-[16px] text-[#2a2a2b]">
+                    <p className="font-avenir-heavy text-f13 leading-l16 text-[#2a2a2b]">
                       {row.label}
                     </p>
                   </div>
@@ -1559,7 +1559,7 @@ export default function CompareProductos() {
                         {row.type === "bool" ? (
                           <BoolCell value={val as boolean} altYes={t.altYes} altNo={t.altNo} />
                         ) : row.type === "price" ? (
-                          <p className="font-avenir-black text-[16px] leading-[20px] text-[#0233c3] text-center">
+                          <p className="font-avenir-black text-f16 leading-l20 text-[#0233c3] text-center">
                             {PRODUCT_PRICES_BRL[product.id] > 0
                             ? formatPrice(PRODUCT_PRICES_BRL[product.id], lang)
                             : "—"}
@@ -1568,7 +1568,7 @@ export default function CompareProductos() {
                           val === null ? (
                             <BoolCell value={false} altYes={t.altYes} altNo={t.altNo} />
                           ) : (
-                            <p className="font-avenir-roman text-[12px] leading-[15px] text-[#2a2a2b] text-center whitespace-pre-line">
+                            <p className="font-avenir-roman text-f12 leading-l15 text-[#2a2a2b] text-center whitespace-pre-line">
                               {row.key === "dimAltura" && product.specs.dimAlturaBaseCopo !== null
                                 ? `${fmtCm(val as number, lang)}\n${ALTURA_BASE_COPO_LABEL[lang]}: ${fmtCm(product.specs.dimAlturaBaseCopo, lang)}`
                                 : fmtCm(val as number, lang)}
@@ -1578,14 +1578,14 @@ export default function CompareProductos() {
                           val === null ? (
                             <BoolCell value={false} altYes={t.altYes} altNo={t.altNo} />
                           ) : (
-                            <p className="font-avenir-roman text-[12px] leading-[15px] text-[#2a2a2b] text-center">
+                            <p className="font-avenir-roman text-f12 leading-l15 text-[#2a2a2b] text-center">
                               {fmtCm2(val as [number, number], lang)}
                             </p>
                           )
                         ) : val === "—" ? (
                           <BoolCell value={false} altYes={t.altYes} altNo={t.altNo} />
                         ) : (
-                          <p className="font-avenir-roman text-[12px] leading-[15px] text-[#2a2a2b] text-center">
+                          <p className="font-avenir-roman text-f12 leading-l15 text-[#2a2a2b] text-center">
                             {translateSpec(val as string, lang)}
                           </p>
                         )}
@@ -1599,13 +1599,13 @@ export default function CompareProductos() {
               <Feature name="buyNow">
               <div className="flex" style={{ background: "linear-gradient(90deg, #f0f4ff 0%, #f8f4ff 100%)" }}>
                 <div className="sticky left-0 z-10 flex items-center w-[200px] shrink-0 px-[20px] py-[16px] border-r border-[#cbd0d4]" style={{ background: "linear-gradient(90deg, #f0f4ff, #f0f4ff)" }}>
-                  <p className="font-avenir-heavy text-[13px] text-[#555]">{t.acquireLabel}</p>
+                  <p className="font-avenir-heavy text-f13 text-[#555]">{t.acquireLabel}</p>
                 </div>
                 {selectedProducts.map(product => (
                   <div key={product.id} className="flex items-center justify-center flex-1 min-w-[260px] px-[16px] py-[16px] border-r border-[#cbd0d4] last:border-r-0">
                     <a
                       href={`/buy/checkin-${PRODUCT_TO_FAMILY[product.id] ?? product.id}?modelo=${product.id}`}
-                      className="flex items-center gap-[8px] px-[22px] py-[10px] rounded-full font-avenir-heavy text-[13px] text-white transition-opacity hover:opacity-85 whitespace-nowrap cursor-pointer"
+                      className="flex items-center gap-[8px] px-[22px] py-[10px] rounded-full font-avenir-heavy text-f13 text-white transition-opacity hover:opacity-85 whitespace-nowrap cursor-pointer"
                       style={{ background: product.linha === "Premium" ? "linear-gradient(135deg, #9f3df5, #0233c3)" : "linear-gradient(135deg, #0233c3, #0569ff)" }}>
                       {t.buyNow}
                     </a>
@@ -1622,7 +1622,7 @@ export default function CompareProductos() {
       {selectedIds.includes("acquafy-media") && (
         <section className="bg-[#f8f4ff] flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
           <div className="flex flex-col gap-[24px] items-center max-w-[1400px] w-full">
-            <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91] text-center">
+            <p className="font-avenir-heavy text-f18 leading-l22 text-[#1f2e91] text-center">
               {t.mediaExtraTitle}
             </p>
             <div className="flex flex-wrap gap-[20px] items-stretch w-full">
@@ -1631,7 +1631,7 @@ export default function CompareProductos() {
                   <div className="flex items-center justify-center size-[40px] shrink-0">
                     <FigmaIcon src={imgCheckinPurple} size={30} />
                   </div>
-                  <p className="font-avenir-roman text-[14px] leading-[20px] text-[#1f2e91] flex-1">{item}</p>
+                  <p className="font-avenir-roman text-f14 leading-l20 text-[#1f2e91] flex-1">{item}</p>
                 </div>
               ))}
             </div>
@@ -1647,7 +1647,7 @@ export default function CompareProductos() {
           <div className="border border-[#cbd0d4] flex flex-wrap gap-[20px] items-center justify-center flex-1 min-w-[280px] p-[40px] relative rounded-[16px] overflow-hidden">
             <Img alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none rounded-[16px]" src={imgEssentialsBg} />
             <div className="flex flex-col gap-[20px] items-start flex-1 min-w-[280px] relative">
-              <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#0569ff]">
+              <p className="font-avenir-heavy text-f18 leading-l22 text-[#0569ff]">
                 Neo Essentials
               </p>
               <div className="flex flex-col gap-[10px] items-start w-full">
@@ -1669,7 +1669,7 @@ export default function CompareProductos() {
           <div className="border border-[#cbd0d4] flex flex-wrap gap-[20px] items-center justify-center flex-1 min-w-[280px] p-[40px] relative rounded-[16px] overflow-hidden">
             <Img alt="" className="absolute inset-0 w-full h-full object-cover pointer-events-none rounded-[16px]" src={imgPremiumBg} />
             <div className="flex flex-col gap-[20px] items-start flex-1 min-w-[280px] relative">
-              <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#9f3df5]">
+              <p className="font-avenir-heavy text-f18 leading-l22 text-[#9f3df5]">
                 Neo Premium
               </p>
               <div className="flex flex-col gap-[10px] items-start w-full">
@@ -1690,7 +1690,7 @@ export default function CompareProductos() {
 
         {/* Pricing ranges */}
         <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
-          <h2 className="font-avenir-heavy text-[20px] leading-[28px] text-[#1f2e91] text-center">
+          <h2 className="font-avenir-heavy text-f20 leading-l28 text-[#1f2e91] text-center">
             {t.priceRangesTitle}
           </h2>
           <div className="flex flex-col gap-[40px] items-stretch justify-center w-full win-1024:flex-row win-1024:flex-wrap win-1024:items-start">
@@ -1701,11 +1701,11 @@ export default function CompareProductos() {
               </div>
               <div className="flex flex-col gap-[20px] items-center flex-1 min-w-[200px]">
                 <div className="bg-[#0569ff] px-[10px] py-[6px] rounded-full">
-                  <p className="font-avenir-heavy text-[14px] leading-[17px] text-white text-center">
+                  <p className="font-avenir-heavy text-f14 leading-l17 text-white text-center">
                     Essentials
                   </p>
                 </div>
-                <p className="font-avenir-heavy text-[18px] leading-[22px] text-center">
+                <p className="font-avenir-heavy text-f18 leading-l22 text-center">
                   <span className="text-[#1f2e91]">{t.priceFrom}</span>
                   {lang === "pt" || lang === "pt-pt" ? (
                     <>
@@ -1731,11 +1731,11 @@ export default function CompareProductos() {
               </div>
               <div className="flex flex-col gap-[20px] items-center flex-1 min-w-[200px]">
                 <div className="bg-[#9f3df5] px-[10px] py-[6px] rounded-full">
-                  <p className="font-avenir-heavy text-[14px] leading-[17px] text-white text-center">
+                  <p className="font-avenir-heavy text-f14 leading-l17 text-white text-center">
                     Premium
                   </p>
                 </div>
-                <p className="font-avenir-heavy text-[18px] leading-[22px] text-center">
+                <p className="font-avenir-heavy text-f18 leading-l22 text-center">
                   <span className="text-[#1f2e91]">{t.priceFrom}</span>
                   {lang === "pt" || lang === "pt-pt" ? (
                     <>
@@ -1774,10 +1774,10 @@ export default function CompareProductos() {
                   <FigmaIcon src={TRUST_ICONS[i].icon} size={20} aspectW={TRUST_ICONS[i].aspectW} aspectH={TRUST_ICONS[i].aspectH} />
                 </div>
                 <div className="flex flex-col gap-[10px] items-start flex-1 min-w-0">
-                  <p className="font-avenir-heavy text-[16px] leading-[20px] text-[#1f2e91]">
+                  <p className="font-avenir-heavy text-f16 leading-l20 text-[#1f2e91]">
                     {item.title}
                   </p>
-                  <p className="font-avenir-roman text-[12px] leading-[14px] text-[#333]">
+                  <p className="font-avenir-roman text-f12 leading-l14 text-[#333]">
                     {item.desc}
                   </p>
                 </div>
@@ -1802,7 +1802,7 @@ export default function CompareProductos() {
             {/* Header */}
             <div className="flex items-center justify-between gap-[10px]">
               <div className="flex gap-[10px] items-center">
-                <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91] whitespace-nowrap">
+                <p className="font-avenir-heavy text-f18 leading-l22 text-[#1f2e91] whitespace-nowrap">
                   {t.selectorPre}{selectedIds.length}{t.selector44}
                 </p>
                 <FigmaIcon src={imgBuyCursor} size={28} />
@@ -1821,7 +1821,7 @@ export default function CompareProductos() {
                 <button
                   key={filter}
                   onClick={() => setActiveFilter(activeFilter === filter ? "Todos" : filter)}
-                  className={`border flex items-center justify-center px-[12px] py-[8px] rounded-full transition-colors text-[14px] font-avenir-heavy whitespace-nowrap ${
+                  className={`border flex items-center justify-center px-[12px] py-[8px] rounded-full transition-colors text-f14 font-avenir-heavy whitespace-nowrap ${
                     activeFilter === filter
                       ? "bg-[#0233c3] border-[#0233c3] text-white"
                       : "bg-white border-[#cbd0d4] text-[#333] hover:border-[#0233c3] hover:text-[#0233c3]"
@@ -1856,7 +1856,7 @@ export default function CompareProductos() {
                         src={productImages[product.id]}
                       />
                     </div>
-                    <p className="font-avenir-heavy text-[13px] leading-[16px] text-[#1f2e91] text-center break-words w-full min-h-[32px]">
+                    <p className="font-avenir-heavy text-f13 leading-l16 text-[#1f2e91] text-center break-words w-full min-h-[32px]">
                       <ProductName parts={product.nameParts} />
                     </p>
                   </button>
@@ -1888,7 +1888,7 @@ export default function CompareProductos() {
                         src={productImages[product.id]}
                       />
                     </div>
-                    <p className="font-avenir-heavy text-[13px] leading-[16px] text-[#1f2e91] text-center break-words w-full min-h-[32px]">
+                    <p className="font-avenir-heavy text-f13 leading-l16 text-[#1f2e91] text-center break-words w-full min-h-[32px]">
                       <ProductName parts={product.nameParts} />
                     </p>
                   </button>
@@ -1898,7 +1898,7 @@ export default function CompareProductos() {
 
             {/* ── Rodapé: contagem + botão confirmar ── */}
             <div className="flex items-center justify-between gap-[16px] pt-[4px] border-t border-[#cbd0d4]">
-              <p className="font-avenir-roman text-[14px] leading-[17px] text-[#8a8f97]">
+              <p className="font-avenir-roman text-f14 leading-l17 text-[#8a8f97]">
                 {selectedIds.length === 0
                   ? t.modalNone
                   : `${selectedIds.length}${t.modalSelected}${selectedIds.length > 1 ? "s" : ""} selecionado${selectedIds.length > 1 ? "s" : ""}`}
@@ -1907,7 +1907,7 @@ export default function CompareProductos() {
                 onClick={() => setShowSelectorModal(false)}
                 className="bg-[#0233c3] flex gap-[10px] items-center justify-center px-[24px] py-[10px] rounded-[8px] cursor-pointer hover:bg-[#002ba8] transition-colors shrink-0"
               >
-                <span className="font-avenir-heavy text-[15px] leading-normal text-white">
+                <span className="font-avenir-heavy text-f15 leading-normal text-white">
                   {selectedIds.length > 0 ? t.modalCompare : t.modalClose}
                 </span>
                 {selectedIds.length > 0 && (

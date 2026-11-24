@@ -168,7 +168,7 @@ export default function CompatibilidadeAppAiIot() {
       <div className="flex flex-col gap-[40px] items-start max-w-[1400px] w-full">
 
         {/* Título */}
-        <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-center w-full">
+        <h2 className="font-avenir-heavy text-f22 leading-l28 md:text-f26 md:leading-l34 text-center w-full">
           <span className="text-[#1f2e91]">{t.heading1}</span>
           <span className="text-[#0569ff]">{t.heading2}</span>
         </h2>
@@ -181,7 +181,7 @@ export default function CompatibilidadeAppAiIot() {
               className="min-w-0 bg-white flex flex-col gap-[20px] items-center overflow-clip px-[20px] py-[40px] rounded-[16px]"
             >
               {/* Nome */}
-              <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91] text-center w-full">
+              <p className="font-avenir-heavy text-f18 leading-l22 text-[#1f2e91] text-center w-full">
                 {p.name}
               </p>
 
@@ -195,7 +195,7 @@ export default function CompatibilidadeAppAiIot() {
               </div>
 
               {/* Descrição */}
-              <p className="font-avenir-roman text-[16px] leading-[20px] text-[#2a2a2b] text-center w-full">
+              <p className="font-avenir-roman text-f16 leading-l20 text-[#2a2a2b] text-center w-full">
                 {p.desc}
               </p>
             </div>

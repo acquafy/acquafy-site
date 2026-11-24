@@ -88,7 +88,7 @@ function IcoToggle({ defaultSrc, hoverSrc, aspectW = 1, aspectH = 1 }: {
 
 function Label({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
-    <span className={`font-avenir-heavy text-[14px] leading-[17px] text-center whitespace-nowrap shrink-0 ${className}`}>
+    <span className={`font-avenir-heavy text-f14 leading-l17 text-center whitespace-nowrap shrink-0 ${className}`}>
       {children}
     </span>
   );

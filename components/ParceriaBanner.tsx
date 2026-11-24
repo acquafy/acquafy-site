@@ -148,7 +148,7 @@ const tiers = [
     alt:       "Silver",
     label:     "Silver",
     imgCls:    "size-[40px] object-contain shrink-0",
-    labelCls:  "font-avenir-heavy text-[18px] leading-[22px] text-[#3e4650]",
+    labelCls:  "font-avenir-heavy text-f18 leading-l22 text-[#3e4650]",
     labelStyle: undefined as React.CSSProperties | undefined,
   },
   {
@@ -157,7 +157,7 @@ const tiers = [
     alt:       "Gold",
     label:     "Gold",
     imgCls:    "size-[40px] object-contain shrink-0",
-    labelCls:  "font-avenir-heavy text-[18px] leading-[22px] text-[#dfa727]",
+    labelCls:  "font-avenir-heavy text-f18 leading-l22 text-[#dfa727]",
     labelStyle: undefined as React.CSSProperties | undefined,
   },
   {
@@ -166,7 +166,7 @@ const tiers = [
     alt:       "Platinum",
     label:     "Platinum",
     imgCls:    "size-[40px] object-contain shrink-0",
-    labelCls:  "font-avenir-heavy text-[18px] leading-[22px] bg-clip-text text-transparent",
+    labelCls:  "font-avenir-heavy text-f18 leading-l22 bg-clip-text text-transparent",
     labelStyle: { backgroundImage: "linear-gradient(117.65deg, #0233c3 6.19%, #9f3df5 93.35%)" } as React.CSSProperties,
   },
 ];
@@ -195,7 +195,7 @@ export default function ParceriaBanner() {
           {/* "Nova fase global" pill */}
           <div className="order-1 lg:order-none bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center px-[12px] py-[8px] rounded-full shrink-0">
             <FigmaIcon src={imgPlanet} size={16} />
-            <span className="font-avenir-heavy text-[14px] text-[#0233c3]">
+            <span className="font-avenir-heavy text-f14 text-[#0233c3]">
               {t.pill}
             </span>
           </div>
@@ -209,7 +209,7 @@ export default function ParceriaBanner() {
           </h1>
 
           {/* Subtitle */}
-          <p className="order-3 lg:order-none w-full font-avenir-roman text-[18px] leading-[24px] lg:text-[18px] lg:leading-[26px] text-[#333] text-center lg:text-left">
+          <p className="order-3 lg:order-none w-full font-avenir-roman text-f18 leading-l24 lg:text-f18 lg:leading-l26 text-[#333] text-center lg:text-left">
             {t.subtitle}
           </p>
 

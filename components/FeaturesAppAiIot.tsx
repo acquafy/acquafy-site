@@ -917,39 +917,39 @@ export default function FeaturesAppAiIot() {
       <div className="flex flex-col gap-[40px] items-start max-w-[1400px] w-full">
 
         {/* Título */}
-        <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-center w-full">
+        <h2 className="font-avenir-heavy text-f22 leading-l28 md:text-f26 md:leading-l34 text-center w-full">
           <span className="text-[#1f2e91]">{t.heading1}</span>
           <span className="text-[#0569ff]">{t.heading2}</span>
         </h2>
 
         {/* Grid de cards */}
-        <div className="card-row [--card-min:280px] gap-[20px] items-start justify-center w-full">
+        <div className="card-row [--card-min:270px] gap-[20px] items-start justify-center w-full">
           {cards.map((card) => (
             <div
               key={card.title}
               className="min-w-0 bg-[#f6f9fe] flex flex-col items-center min-h-[540px] overflow-clip rounded-[16px]"
             >
               {/* Conteúdo superior */}
-              <div className="flex flex-col gap-[20px] items-start p-[20px] w-full">
+              <div className="flex flex-col gap-[20px] items-start p-[20px] phone:p-[14px] w-full">
 
                 {/* Header: ícone + título */}
                 <div className="flex gap-[20px] items-center w-full shrink-0">
                   <div className="flex items-center justify-center size-[60px] rounded-[12px] bg-[#0569ff] shrink-0">
                     <FigmaIcon src={card.icon} size={30} aspectW={card.aspectW} aspectH={card.aspectH} />
                   </div>
-                  <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91] flex-1 min-h-[44px] flex items-center">
+                  <p className="font-avenir-heavy text-f18 leading-l22 text-[#1f2e91] flex-1 min-h-[44px] flex items-center">
                     {card.title}
                   </p>
                 </div>
 
-                {/* Checklist */}
-                <div className="flex flex-col gap-[20px] items-start w-full">
+                {/* Checklist — splits into 2 columns when the card is wide enough (190px per column), reading down each column */}
+                <div className="columns-[190px] gap-x-[20px] w-full">
                   {card.items.map((text) => (
-                    <div key={text} className="flex gap-[10px] items-center w-full">
+                    <div key={text} className="flex gap-[10px] items-center w-full mb-[20px] break-inside-avoid last:mb-0">
                       <div className="size-[14px] shrink-0 flex items-center justify-center">
                         <Img src={imgCheckin} alt="" className="w-full h-full object-contain" />
                       </div>
-                      <span className="font-avenir-roman text-[14px] leading-[16px] text-[#2a2a2b] flex-1">
+                      <span className="font-avenir-roman text-f14 leading-l16 text-[#2a2a2b] flex-1">
                         {text}
                       </span>
                     </div>

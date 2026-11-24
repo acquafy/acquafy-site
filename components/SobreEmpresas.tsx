@@ -56,7 +56,7 @@ export default function SobreEmpresas() {
     <section className="flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
 
-        <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] text-center w-full">
+        <h2 className="font-avenir-heavy text-f22 leading-l28 md:text-f26 md:leading-l34 text-[#1f2e91] text-center w-full">
           {t.heading}
         </h2>
 

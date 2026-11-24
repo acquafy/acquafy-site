@@ -349,8 +349,8 @@ function FeaturePill({ icon, iconAlt, aspectW, aspectH, sub, title }: PillItem) 
         <FigmaIcon src={icon} alt={iconAlt} size={36} aspectW={aspectW} aspectH={aspectH} />
       </div>
       <div className="flex flex-[1_0_0] flex-col gap-[6px] items-start min-w-px">
-        <p className="font-avenir-roman text-[16px] leading-[21px] text-[#2a2a2b] w-full">{sub}</p>
-        <p className="font-avenir-heavy text-[18px] leading-[19px] text-[#2a2a2b] w-full">{title}</p>
+        <p className="font-avenir-roman text-f16 leading-l21 text-[#2a2a2b] w-full">{sub}</p>
+        <p className="font-avenir-heavy text-f18 leading-l19 text-[#2a2a2b] w-full">{title}</p>
       </div>
     </div>
   );
@@ -364,8 +364,8 @@ function FeaturePillDesktop({ icon, iconAlt, aspectW, aspectH, sub, title }: Pil
         <FigmaIcon src={icon} alt={iconAlt} size={36} aspectW={aspectW} aspectH={aspectH} />
       </div>
       <div className="flex flex-col gap-[6px] items-start justify-center text-center w-full">
-        <p className="font-avenir-roman text-[16px] leading-[21px] text-[#2a2a2b] w-full">{sub}</p>
-        <p className="font-avenir-heavy text-[18px] leading-[19px] text-[#2a2a2b] w-full">{title}</p>
+        <p className="font-avenir-roman text-f16 leading-l21 text-[#2a2a2b] w-full">{sub}</p>
+        <p className="font-avenir-heavy text-f18 leading-l19 text-[#2a2a2b] w-full">{title}</p>
       </div>
     </div>
   );
@@ -377,8 +377,8 @@ function BottomFeature({ icon, iconAlt, title, description }: BottomFeatureItem)
     <div className="flex flex-[1_0_0] flex-col gap-[20px] items-center justify-center min-w-[160px] win-1280:flex-row win-1280:flex-wrap">
       <FigmaIcon src={icon} alt={iconAlt} size={40} />
       <div className="flex flex-[1_0_0] flex-col gap-[15px] items-start min-w-[200px] text-center win-1280:text-left">
-        <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91] w-full">{title}</p>
-        <p className="font-avenir-roman text-[16px] leading-[21px] text-[#2a2a2b] w-full">{description}</p>
+        <p className="font-avenir-heavy text-f18 leading-l22 text-[#1f2e91] w-full">{title}</p>
+        <p className="font-avenir-roman text-f16 leading-l21 text-[#2a2a2b] w-full">{description}</p>
       </div>
     </div>
   );
@@ -390,7 +390,7 @@ function CTAButtons({ stretch = false, btn2 }: { stretch?: boolean; btn2: string
     <div className={`flex flex-wrap gap-[20px] items-center ${stretch ? "justify-center max-w-[800px] w-full" : "justify-center lg:justify-start w-full"}`}>
       <AddressPopover stretch={stretch} />
       <a href="/contact" className={`group flex gap-[10px] items-center justify-center min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors cursor-pointer no-underline ${stretch ? "flex-[1_0_0]" : "shrink-0"}`}>
-        <span className="font-avenir-heavy text-[16px] leading-normal text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">
+        <span className="font-avenir-heavy text-f16 leading-normal text-[#0233c3] group-hover:text-white group-active:text-white transition-colors flex-1 text-center">
           {btn2}
         </span>
         <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
@@ -411,7 +411,7 @@ function Badge() {
   return (
     <div className="bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center px-[12px] py-[8px] rounded-full shrink-0">
       <FigmaIcon src={imgGlobe} size={16} />
-      <p className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3] whitespace-nowrap">
+      <p className="font-avenir-heavy text-f14 leading-l17 text-[#0233c3] whitespace-nowrap">
         GLOBAL SMART WATER PLATFORM
       </p>
     </div>
@@ -456,11 +456,11 @@ export default function SobreBanner() {
             {t.headingPrefix}<span className="text-[#0569ff]">Acquafy</span>
           </h1>
 
-          <div className="order-3 lg:order-none font-avenir-roman text-[18px] text-[#333] text-center lg:text-left">
-            <p className="leading-[26px] mb-[4px]">
+          <div className="order-3 lg:order-none font-avenir-roman text-f18 text-[#333] text-center lg:text-left">
+            <p className="leading-l26 mb-[4px]">
               {t.para1}
             </p>
-            <p className="leading-[26px]">
+            <p className="leading-l26">
               {t.para2}
             </p>
           </div>
@@ -498,11 +498,11 @@ export default function SobreBanner() {
               {t.headingPrefix}<span className="text-[#0569ff]">Acquafy</span>
             </h1>
 
-            <div className="font-avenir-roman text-[18px] text-[#333]">
-              <p className="leading-[26px] mb-[4px]">
+            <div className="font-avenir-roman text-f18 text-[#333]">
+              <p className="leading-l26 mb-[4px]">
                 {t.para1}
               </p>
-              <p className="leading-[26px]">
+              <p className="leading-l26">
                 {t.para2}
               </p>
             </div>

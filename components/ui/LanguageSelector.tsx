@@ -113,11 +113,11 @@ function DropdownMenu({
             }`}
           >
             <FlagImg flag={item.flag} aspectW={item.aspectW} aspectH={item.aspectH} />
-            <p className={`${isActive ? "font-avenir-heavy" : "font-avenir-roman"} text-[16px] leading-[20px] text-[#2a2a2b] whitespace-nowrap shrink-0 flex-1 min-w-0`}>
+            <p className={`${isActive ? "font-avenir-heavy" : "font-avenir-roman"} text-f16 leading-l20 text-[#2a2a2b] whitespace-nowrap shrink-0 flex-1 min-w-0`}>
               {item.label}
             </p>
             {!isAvailable && (
-              <span className="text-[10px] font-avenir-roman text-[#aaa] whitespace-nowrap shrink-0">
+              <span className="text-f10 font-avenir-roman text-[#aaa] whitespace-nowrap shrink-0">
                 Em breve
               </span>
             )}
@@ -157,7 +157,7 @@ export function LanguageSelectorFull() {
         }`}
       >
         <FlagImg flag={info.flag} aspectW={info.aspectW} aspectH={info.aspectH} />
-        <p className={`font-avenir-heavy text-[14px] leading-[17px] flex-[1_0_0] min-w-px text-left ${open ? "text-[#0233c3]" : "text-[#333]"}`}>
+        <p className={`font-avenir-heavy text-f14 leading-l17 flex-[1_0_0] min-w-px text-left ${open ? "text-[#0233c3]" : "text-[#333]"}`}>
           {info.label}
         </p>
         <div className="flex items-center justify-center shrink-0">
@@ -197,7 +197,7 @@ export function LanguageSelectorCompact({ compact = false }: { compact?: boolean
         }`}
       >
         <FlagImg flag={FULL_INFO[lang].flag} aspectW={FULL_INFO[lang].aspectW} aspectH={FULL_INFO[lang].aspectH} />
-        <p className={`${compact ? "hidden" : ""} font-avenir-heavy text-[14px] leading-[17px] whitespace-nowrap shrink-0 ${open ? "text-[#0233c3]" : "text-[#333]"}`}>
+        <p className={`${compact ? "hidden" : ""} font-avenir-heavy text-f14 leading-l17 whitespace-nowrap shrink-0 ${open ? "text-[#0233c3]" : "text-[#333]"}`}>
           {COMPACT_LABEL[lang]}
         </p>
         <div className={`${compact ? "hidden" : "flex"} flex-col items-center justify-center size-[10px] shrink-0`}>

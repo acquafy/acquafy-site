@@ -476,13 +476,13 @@ function PremiumCard({ product, ratio, color = "#6e0cc3" }: { product: Product; 
   return (
     <div className="bg-white flex flex-col gap-[10px] items-center min-h-[290px] min-w-0 overflow-hidden p-[20px] rounded-[12px]">
       <ProductImage src={product.img} ratio={ratio} />
-      <p className="font-avenir-heavy text-[18px] leading-[22px] text-center w-full min-h-[55px] flex flex-col items-center justify-center" style={{ color }}>
+      <p className="font-avenir-heavy text-f18 leading-l22 text-center w-full min-h-[55px] flex flex-col items-center justify-center" style={{ color }}>
         {product.name}
       </p>
       <Feature name="buyNow">
       <a
         href="/buy"
-        className="flex items-center justify-center min-h-[40px] px-[10px] py-[8px] rounded-[8px] w-full shrink-0 font-avenir-heavy text-[14px] leading-[17px] text-white hover:opacity-90 active:opacity-80 transition-opacity no-underline"
+        className="flex items-center justify-center min-h-[40px] px-[10px] py-[8px] rounded-[8px] w-full shrink-0 font-avenir-heavy text-f14 leading-l17 text-white hover:opacity-90 active:opacity-80 transition-opacity no-underline"
         style={{ backgroundImage: "linear-gradient(90deg, #0233c3, #0569ff)" }}
       >
         {BUY_NOW[lang]}
@@ -571,19 +571,19 @@ export default function LinhaPremium() {
         <div className="flex flex-col gap-[20px] items-start w-full">
           <div className="flex flex-wrap gap-y-[20px] items-center justify-center w-full">
             <h2
-              className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] bg-clip-text text-transparent flex-1 min-w-[240px] text-center lg:text-left"
+              className="font-avenir-heavy text-f22 leading-l28 md:text-f26 md:leading-l34 bg-clip-text text-transparent flex-1 min-w-[240px] text-center lg:text-left"
               style={{ backgroundImage: "linear-gradient(170.17deg, #0233c3 6.19%, #9f3df5 93.35%)" }}
             >
               Neo Premium
             </h2>
           </div>
 
-          <p className="font-avenir-roman text-[18px] leading-[19px] text-[#333] w-full text-center lg:text-left">
+          <p className="font-avenir-roman text-f18 leading-l19 text-[#333] w-full text-center lg:text-left">
             {t.desc}
           </p>
 
           <div className="bg-white flex flex-col gap-[20px] items-center justify-center overflow-hidden p-[20px] rounded-[12px] w-full">
-            <p className="font-avenir-roman text-[18px] leading-[19px] text-[#1f2e91] w-full">
+            <p className="font-avenir-roman text-f18 leading-l19 text-[#1f2e91] w-full">
               {t.waterHeader[0]}
               <span className="font-avenir-heavy">{t.waterHeader[1]}</span>
               {t.waterHeader[2]}
@@ -593,10 +593,10 @@ export default function LinhaPremium() {
                 <div key={w.label} className="flex flex-[0_0_calc(50%-5px)] lg:flex-[0_0_calc(25%-8px)] gap-[10px] items-center">
                   <FigmaIcon src={imgCheckin} size={20} />
                   <div className="flex flex-1 flex-col gap-[5px] items-start min-w-0">
-                    <p className="font-avenir-heavy text-[16px] leading-[20px] text-[#1f2e91] w-full">
+                    <p className="font-avenir-heavy text-f16 leading-l20 text-[#1f2e91] w-full">
                       {w.label}
                     </p>
-                    <p className="font-avenir-roman text-[14px] leading-[17px] text-[#2a2a2b] w-full">
+                    <p className="font-avenir-roman text-f14 leading-l17 text-[#2a2a2b] w-full">
                       {w.sub}
                     </p>
                   </div>
@@ -628,7 +628,7 @@ export default function LinhaPremium() {
               <div className="flex flex-wrap gap-[20px_40px] items-center justify-center shrink-0 w-full">
                 <div className="self-stretch flex flex-[1_0_0] lg:flex-none lg:w-[300px] xl:w-auto xl:flex-[1_0_0] flex-col gap-[20px] items-start justify-center min-w-[240px]">
                   <div className="flex flex-col gap-[10px] items-start w-full">
-                    <p className="font-avenir-heavy text-[20px] leading-[28px] w-full">
+                    <p className="font-avenir-heavy text-f20 leading-l28 w-full">
                       <span className="text-[#1f2e91]">{t.panelTitle[0]}</span>
                       <span
                         className="bg-clip-text text-transparent"
@@ -637,7 +637,7 @@ export default function LinhaPremium() {
                         {t.panelTitle[1]}
                       </span>
                     </p>
-                    <p className="font-avenir-roman text-[16px] leading-[20px] text-[#2a2a2b] w-full">
+                    <p className="font-avenir-roman text-f16 leading-l20 text-[#2a2a2b] w-full">
                       {t.panelSub}
                     </p>
                   </div>
@@ -645,10 +645,10 @@ export default function LinhaPremium() {
                     <div key={i} className="flex gap-[20px] items-center w-full">
                       <FigmaIcon src={f.icon} size={36} />
                       <div className="flex flex-[1_0_0] flex-col gap-[5px] items-start min-w-px">
-                        <p className="font-avenir-heavy text-[17px] leading-[20px] text-[#6e0cc3] w-full whitespace-pre-line">
+                        <p className="font-avenir-heavy text-f17 leading-l20 text-[#6e0cc3] w-full whitespace-pre-line">
                           {f.title}
                         </p>
-                        <p className="font-avenir-roman text-[14px] leading-[17px] text-[#2a2a2b] w-full">
+                        <p className="font-avenir-roman text-f14 leading-l17 text-[#2a2a2b] w-full">
                           {f.desc}
                         </p>
                       </div>

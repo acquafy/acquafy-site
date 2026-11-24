@@ -1003,7 +1003,7 @@ export default function BannerCentralSuporte() {
 
           {/* Label */}
           <div className="order-1 lg:order-none bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center max-w-[290px] px-[12px] py-[8px] rounded-full shrink-0">
-            <span className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3] whitespace-nowrap">
+            <span className="font-avenir-heavy text-f14 leading-l17 text-[#0233c3] whitespace-nowrap">
               {t.label}
             </span>
           </div>
@@ -1020,12 +1020,12 @@ export default function BannerCentralSuporte() {
           </h1>
 
           {/* Subtítulo */}
-          <p className="order-3 lg:order-none font-avenir-heavy text-[20px] leading-[28px] text-[#0569ff] text-center w-full lg:text-left">
+          <p className="order-3 lg:order-none font-avenir-heavy text-f20 leading-l28 text-[#0569ff] text-center w-full lg:text-left">
             {t.subtitle}
           </p>
 
           {/* Descrição */}
-          <p className="order-4 lg:order-none font-avenir-roman text-[18px] leading-[26px] text-[#333] text-center w-full lg:text-left">
+          <p className="order-4 lg:order-none font-avenir-roman text-f18 leading-l26 text-[#333] text-center w-full lg:text-left">
             {t.description}
           </p>
 
@@ -1037,7 +1037,7 @@ export default function BannerCentralSuporte() {
               className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#0569ff] transition-colors
               flex gap-[10px] items-center justify-center
               min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer shrink-0">
-              <span className="font-avenir-heavy text-[16px] text-white flex-1 text-center leading-normal">
+              <span className="font-avenir-heavy text-f16 text-white flex-1 text-center leading-normal">
                 {t.btnChat}
               </span>
               <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
@@ -1046,7 +1046,7 @@ export default function BannerCentralSuporte() {
             <a href="/contact" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors
               flex gap-[10px] items-center justify-center
               min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer shrink-0">
-              <span className="font-avenir-heavy text-[16px] text-[#0233c3] group-hover:text-white transition-colors flex-1 text-center leading-normal">
+              <span className="font-avenir-heavy text-f16 text-[#0233c3] group-hover:text-white transition-colors flex-1 text-center leading-normal">
                 {t.btnSpecialist}
               </span>
               <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
@@ -1105,11 +1105,11 @@ export default function BannerCentralSuporte() {
                       <FigmaIcon src={meta.icon} size={30} aspectW={meta.aspectW} aspectH={meta.aspectH} />
                     </div>
                     <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-px">
-                      <p className="font-avenir-heavy text-[16px] leading-[20px] text-[#1f2e91] w-full">
+                      <p className="font-avenir-heavy text-f16 leading-l20 text-[#1f2e91] w-full">
                         {card.title}
                       </p>
                       {card.desc && (
-                        <p className="font-avenir-roman text-[14px] leading-[16px] text-[#1f2e91] w-full">
+                        <p className="font-avenir-roman text-f14 leading-l16 text-[#1f2e91] w-full">
                           {card.desc}
                         </p>
                       )}
@@ -1127,7 +1127,7 @@ export default function BannerCentralSuporte() {
       <div className="relative bg-white flex flex-col gap-[32px] items-center justify-center max-w-[1400px] p-[20px] rounded-[16px] w-full shrink-0">
 
         {/* Heading */}
-        <p className="font-avenir-heavy text-[20px] leading-[28px] text-[#1f2e91] text-center w-full">
+        <p className="font-avenir-heavy text-f20 leading-l28 text-[#1f2e91] text-center w-full">
           {t.unifiedHeading1}{" "}
           <span className="text-[#0569ff]">{t.unifiedHeading2}</span>
         </p>
@@ -1148,8 +1148,8 @@ export default function BannerCentralSuporte() {
                   <FigmaIcon src={meta.icon} size={30} aspectW={meta.aspectW} aspectH={meta.aspectH} />
                 </div>
                 <div className="flex flex-col gap-[10px] items-start text-center w-full flex-1">
-                  <p className="font-avenir-heavy text-[16px] leading-[20px] text-[#1f2e91] w-full">{link.title}</p>
-                  <p className="font-avenir-roman text-[14px] leading-[16px] text-[#333] w-full">{link.desc}</p>
+                  <p className="font-avenir-heavy text-f16 leading-l20 text-[#1f2e91] w-full">{link.title}</p>
+                  <p className="font-avenir-roman text-f14 leading-l16 text-[#333] w-full">{link.desc}</p>
                 </div>
                 <FigmaIcon src={imgArrowAccent} size={18} aspectW={18} aspectH={18} />
               </a>
@@ -1165,7 +1165,7 @@ export default function BannerCentralSuporte() {
                 onClick={() => setOpenFaq(openFaq === i ? null : i)}
                 className="flex items-center justify-between gap-[16px] w-full px-[20px] py-[16px] text-left cursor-pointer hover:bg-[#f6f9fe] transition-colors"
               >
-                <span className="font-avenir-heavy text-[16px] leading-[20px] text-[#1f2e91]">
+                <span className="font-avenir-heavy text-f16 leading-l20 text-[#1f2e91]">
                   {item.question}
                 </span>
                 <svg
@@ -1177,7 +1177,7 @@ export default function BannerCentralSuporte() {
               </button>
               {openFaq === i && (
                 <div className="px-[20px] pb-[20px] flex flex-col gap-[16px]">
-                  <p className="font-avenir-roman text-[15px] leading-[22px] text-[#333]">
+                  <p className="font-avenir-roman text-f15 leading-l22 text-[#333]">
                     {item.answer}
                   </p>
                   <a
@@ -1186,7 +1186,7 @@ export default function BannerCentralSuporte() {
                       flex gap-[8px] items-center justify-center
                       h-[36px] overflow-hidden px-[16px] rounded-[8px] no-underline"
                   >
-                    <span className="font-avenir-heavy text-[13px] text-white leading-normal">{item.cta}</span>
+                    <span className="font-avenir-heavy text-f13 text-white leading-normal">{item.cta}</span>
                     <FigmaIcon src={imgArrowWhite} size={18} aspectW={18} aspectH={18} />
                   </a>
                 </div>

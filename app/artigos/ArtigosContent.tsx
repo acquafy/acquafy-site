@@ -586,7 +586,7 @@ function ArticleCard({ artigo, cat, query, showCategory, readLabel = "Ler artigo
           >
             <FigmaIcon src={cat.icon} size={12} aspectW={cat.aspectW} aspectH={cat.aspectH} />
           </div>
-          <span className="font-avenir-heavy text-[11px] leading-[14px]" style={{ color: cat.cor }}>
+          <span className="font-avenir-heavy text-f11 leading-l14" style={{ color: cat.cor }}>
             {catLabel ?? cat.titulo}
           </span>
         </div>
@@ -596,7 +596,7 @@ function ArticleCard({ artigo, cat, query, showCategory, readLabel = "Ler artigo
         {artigo.tags.map((tag) => (
           <span
             key={tag}
-            className="font-avenir-heavy text-[10px] leading-[13px] px-[8px] py-[3px] rounded-full"
+            className="font-avenir-heavy text-f10 leading-l13 px-[8px] py-[3px] rounded-full"
             style={{ color: cat.cor, backgroundColor: cat.corBg }}
           >
             {tag}
@@ -604,20 +604,20 @@ function ArticleCard({ artigo, cat, query, showCategory, readLabel = "Ler artigo
         ))}
       </div>
 
-      <h3 className="font-avenir-heavy text-[15px] leading-[21px] text-[#1f2e91] group-hover:text-[#0233c3] transition-colors flex-1">
+      <h3 className="font-avenir-heavy text-f15 leading-l21 text-[#1f2e91] group-hover:text-[#0233c3] transition-colors flex-1">
         {query ? <Highlight text={artigo.titulo} query={query} /> : artigo.titulo}
       </h3>
 
-      <p className="font-avenir-roman text-[13px] leading-[18px] text-[#666]">
+      <p className="font-avenir-roman text-f13 leading-l18 text-[#666]">
         {query ? <Highlight text={artigo.resumo} query={query} /> : artigo.resumo}
       </p>
 
       <div className="flex gap-[6px] items-center justify-between pt-[8px] border-t border-[#f0f4fb]">
-        <span className="font-avenir-roman text-[12px] text-[#aaa]">
+        <span className="font-avenir-roman text-f12 text-[#aaa]">
           {artigo.tempoLeitura} {minReadLabel}
         </span>
         <div className="flex gap-[4px] items-center opacity-60 group-hover:opacity-100 transition-opacity">
-          <span className="font-avenir-heavy text-[12px] leading-[15px] text-[#0233c3]">{readLabel}</span>
+          <span className="font-avenir-heavy text-f12 leading-l15 text-[#0233c3]">{readLabel}</span>
           <FigmaIcon src={imgArrowBlue} size={18} aspectW={18} aspectH={18} />
         </div>
       </div>
@@ -653,7 +653,7 @@ export default function ArtigosContent() {
 
           {/* Eyebrow badge */}
           <div className="flex items-center gap-[8px] w-full">
-            <span className="font-avenir-heavy text-[11px] leading-[14px] tracking-[0.08em] uppercase text-[#0569ff]">
+            <span className="font-avenir-heavy text-f11 leading-l14 tracking-[0.08em] uppercase text-[#0569ff]">
               {t.breadcrumbArtigos}
             </span>
           </div>
@@ -665,7 +665,7 @@ export default function ArtigosContent() {
                 {t.h1highlight}
               </span>
             </h1>
-            <p className="font-avenir-roman text-[17px] leading-[26px] text-white/70 w-full max-w-[620px]">
+            <p className="font-avenir-roman text-f17 leading-l26 text-white/70 w-full max-w-[620px]">
               {t.subtitle}
             </p>
           </div>
@@ -684,13 +684,13 @@ export default function ArtigosContent() {
                 placeholder={t.searchPlaceholder}
                 autoComplete="off"
                 spellCheck={false}
-                className="flex-1 font-avenir-roman text-[15px] leading-[20px] text-[#1f2e91] placeholder:text-[#c0c8d4] outline-none bg-transparent min-w-0"
+                className="flex-1 font-avenir-roman text-f15 leading-l20 text-[#1f2e91] placeholder:text-[#c0c8d4] outline-none bg-transparent min-w-0"
               />
               {query && (
                 <button
                   onClick={() => setQuery("")}
                   aria-label={t.clearSearch}
-                  className="shrink-0 size-[22px] flex items-center justify-center rounded-full bg-[#e8edf5] hover:bg-[#d0d7e2] transition-colors text-[#666] text-[15px] leading-none"
+                  className="shrink-0 size-[22px] flex items-center justify-center rounded-full bg-[#e8edf5] hover:bg-[#d0d7e2] transition-colors text-[#666] text-f15 leading-none"
                 >
                   ×
                 </button>
@@ -705,7 +705,7 @@ export default function ArtigosContent() {
                 <a
                   key={cat.slug}
                   href={`#${cat.slug}`}
-                  className="font-avenir-heavy text-[12px] leading-[15px] px-[14px] py-[8px] rounded-full border border-white/20 text-white/60 hover:text-white hover:border-white/50 hover:bg-white/10 transition-all no-underline whitespace-nowrap"
+                  className="font-avenir-heavy text-f12 leading-l15 px-[14px] py-[8px] rounded-full border border-white/20 text-white/60 hover:text-white hover:border-white/50 hover:bg-white/10 transition-all no-underline whitespace-nowrap"
                 >
                   {t.catTitles[cat.slug] ?? cat.titulo}
                 </a>
@@ -722,14 +722,14 @@ export default function ArtigosContent() {
           <div className="flex flex-col gap-[28px] max-w-[1400px] w-full">
 
             <div className="flex flex-wrap gap-[12px] items-center">
-              <p className="font-avenir-roman text-[15px] text-[#555]">
+              <p className="font-avenir-roman text-f15 text-[#555]">
                 <span className="font-avenir-heavy text-[#1f2e91]">{hits.length}</span>
                 {" "}{hits.length === 1 ? t.resultSg : t.resultPl} {t.forWord}{" "}
                 <span className="font-avenir-heavy text-[#0233c3]">&ldquo;{query}&rdquo;</span>
               </p>
               <button
                 onClick={() => setQuery("")}
-                className="font-avenir-roman text-[13px] text-[#aaa] hover:text-[#0233c3] transition-colors underline"
+                className="font-avenir-roman text-f13 text-[#aaa] hover:text-[#0233c3] transition-colors underline"
               >
                 {t.clearSearch}
               </button>
@@ -744,15 +744,15 @@ export default function ArtigosContent() {
                     <path d="M9 12h6M12 9v6" stroke="#d0d7e0" strokeWidth="1.5" strokeLinecap="round" />
                   </svg>
                 </div>
-                <p className="font-avenir-heavy text-[18px] text-[#888]">
+                <p className="font-avenir-heavy text-f18 text-[#888]">
                   {t.noResultsTitle}
                 </p>
-                <p className="font-avenir-roman text-[14px] text-[#aaa] max-w-[300px]">
+                <p className="font-avenir-roman text-f14 text-[#aaa] max-w-[300px]">
                   {t.noResultsSub}
                 </p>
                 <button
                   onClick={() => setQuery("")}
-                  className="mt-[8px] bg-[#0233c3] hover:bg-[#002ba8] transition-colors font-avenir-heavy text-[14px] text-white px-[22px] py-[10px] rounded-[8px]"
+                  className="mt-[8px] bg-[#0233c3] hover:bg-[#002ba8] transition-colors font-avenir-heavy text-f14 text-white px-[22px] py-[10px] rounded-[8px]"
                 >
                   {t.seeAll}
                 </button>
@@ -792,16 +792,16 @@ export default function ArtigosContent() {
                       <FigmaIcon src={cat.icon} size={27} aspectW={cat.aspectW} aspectH={cat.aspectH} className="brightness-0 invert" />
                     </div>
                     <div className="flex flex-col gap-[4px]">
-                      <h2 className="font-avenir-heavy text-[22px] leading-[28px]" style={{ color: cat.cor }}>
+                      <h2 className="font-avenir-heavy text-f22 leading-l28" style={{ color: cat.cor }}>
                         {t.catTitles[cat.slug] ?? cat.titulo}
                       </h2>
-                      <p className="font-avenir-roman text-[14px] leading-[18px] text-[#777]">
+                      <p className="font-avenir-roman text-f14 leading-l18 text-[#777]">
                         {t.catDescs[cat.slug] ?? cat.descricao}
                       </p>
                     </div>
                   </div>
                   <span
-                    className="font-avenir-roman text-[12px] px-[10px] py-[4px] rounded-full border"
+                    className="font-avenir-roman text-f12 px-[10px] py-[4px] rounded-full border"
                     style={{ color: cat.cor, borderColor: cat.cor + "30", backgroundColor: cat.corBg }}
                   >
                     {cat.artigos.length} {t.articleCount}

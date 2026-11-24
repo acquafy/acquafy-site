@@ -196,7 +196,7 @@ export default function SobreHistoria() {
   return (
     <section className="flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center justify-center max-w-[1400px] w-full">
-        <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] text-center w-full">
+        <h2 className="font-avenir-heavy text-f22 leading-l28 md:text-f26 md:leading-l34 text-[#1f2e91] text-center w-full">
           {t.heading}
         </h2>
         <div className="card-row [--card-min:160px] gap-[40px] items-start justify-center w-full">
@@ -224,14 +224,14 @@ export default function SobreHistoria() {
               {/* Text */}
               <div className="flex flex-col gap-[20px] items-start w-full">
                 <div className="flex flex-col gap-[10px] items-start w-full">
-                  <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#0233c3]">
+                  <p className="font-avenir-heavy text-f18 leading-l22 text-[#0233c3]">
                     {item.year}
                   </p>
-                  <p className="font-avenir-heavy text-[16px] leading-[20px] text-[#0569ff]">
+                  <p className="font-avenir-heavy text-f16 leading-l20 text-[#0569ff]">
                     {item.phase}
                   </p>
                 </div>
-                <p className="font-avenir-roman text-[14px] leading-[16px] text-[#2a2a2b]">
+                <p className="font-avenir-roman text-f14 leading-l16 text-[#2a2a2b]">
                   {item.description}
                 </p>
               </div>

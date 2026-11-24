@@ -282,7 +282,7 @@ function CheckItem({ label, iconSrc }: { label: string; iconSrc: string }) {
   return (
     <div className="flex gap-[10px] items-center min-w-[170px] w-full">
       <FigmaIcon src={iconSrc} size={16} />
-      <p className="font-avenir-heavy text-[14px] leading-[17px] text-[#2a2a2b] flex-1 min-w-0">
+      <p className="font-avenir-heavy text-f14 leading-l17 text-[#2a2a2b] flex-1 min-w-0">
         {label}
       </p>
     </div>
@@ -298,7 +298,7 @@ export default function NeoVsPremium() {
       <div className="flex flex-col gap-[40px] items-center justify-center max-w-[1400px] w-full">
 
         {/* Title */}
-        <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-center w-full">
+        <h2 className="font-avenir-heavy text-f22 leading-l28 md:text-f26 md:leading-l34 text-center w-full">
           <span className="text-[#0569ff]">Neo Essentials</span>
           {" vs "}
           <span
@@ -320,7 +320,7 @@ export default function NeoVsPremium() {
               src={imgBgEssentials}
             />
             <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-[200px] relative">
-              <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#0569ff] w-full">
+              <p className="font-avenir-heavy text-f18 leading-l22 text-[#0569ff] w-full">
                 Neo Essentials
               </p>
               <div className="flex flex-col gap-[10px] items-start w-full">
@@ -346,7 +346,7 @@ export default function NeoVsPremium() {
               src={imgBgPremium}
             />
             <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-[200px] relative">
-              <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#9f3df5] w-full">
+              <p className="font-avenir-heavy text-f18 leading-l22 text-[#9f3df5] w-full">
                 Neo Premium
               </p>
               <div className="flex flex-col gap-[10px] items-start w-full">

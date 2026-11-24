@@ -75,7 +75,7 @@ export default function AddressPopover({ stretch = false }: { stretch?: boolean 
   }
 
   const action =
-    "flex items-center gap-[6px] rounded-[8px] bg-[#f6f9fe] px-[12px] py-[8px] font-avenir-heavy text-[14px] leading-[16px] text-[#1f2e91] hover:bg-[#e6eefc] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#0569ff]";
+    "flex items-center gap-[6px] rounded-[8px] bg-[#f6f9fe] px-[12px] py-[8px] font-avenir-heavy text-f14 leading-l16 text-[#1f2e91] hover:bg-[#e6eefc] focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#0569ff]";
 
   return (
     <div ref={rootRef} className={`relative z-20 flex min-h-[50px] min-w-[190px] flex-col ${stretch ? "flex-[1_0_0]" : "shrink-0"}`}>
@@ -84,7 +84,7 @@ export default function AddressPopover({ stretch = false }: { stretch?: boolean 
         aria-expanded={open}
         aria-controls={panelId}
         onClick={() => setOpen((v) => !v)}
-        className="flex min-h-[50px] w-full cursor-pointer items-center justify-center gap-[10px] overflow-hidden rounded-[8px] bg-[#0233c3] px-[20px] py-[10px] text-center font-avenir-heavy text-[16px] leading-normal text-white transition-colors hover:bg-[#002ba8] active:bg-[#005ae0] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0569ff]">
+        className="flex min-h-[50px] w-full cursor-pointer items-center justify-center gap-[10px] overflow-hidden rounded-[8px] bg-[#0233c3] px-[20px] py-[10px] text-center font-avenir-heavy text-f16 leading-normal text-white transition-colors hover:bg-[#002ba8] active:bg-[#005ae0] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0569ff]">
         <svg {...ICON} width={20} height={20} viewBox="0 0 24 24" className="shrink-0 text-white">
           <path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z" />
           <circle cx="12" cy="10" r="3" />
@@ -103,8 +103,8 @@ export default function AddressPopover({ stretch = false }: { stretch?: boolean 
         className="absolute left-1/2 top-full z-20 mt-[12px] flex w-[min(320px,calc(100vw-40px))] -translate-x-1/2 flex-col gap-[12px] rounded-[16px] border border-solid border-[#cbd0d4] bg-white p-[16px] text-left shadow-lg lg:left-0 lg:translate-x-0"
       >
         <address className="flex flex-col gap-[4px] not-italic">
-          <strong className="font-avenir-heavy text-[14px] leading-[18px] text-[#1f2e91]">{companyAddress.legalName}</strong>
-          <span className="font-avenir-roman text-[14px] leading-[20px] text-[#333]">{companyAddress.line}</span>
+          <strong className="font-avenir-heavy text-f14 leading-l18 text-[#1f2e91]">{companyAddress.legalName}</strong>
+          <span className="font-avenir-roman text-f14 leading-l20 text-[#333]">{companyAddress.line}</span>
         </address>
         <div className="flex flex-wrap gap-[8px]">
           <button type="button" onClick={copyAddress} className={action}>

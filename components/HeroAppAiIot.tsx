@@ -1,5 +1,6 @@
 ﻿"use client";
 import Img from "@/components/ui/Img";
+import MockupFrame from "@/components/ui/MockupFrame";
 import FigmaIcon from "./FigmaIcon";
 import { useLang, type Lang } from "@/context/LanguageContext";
 
@@ -280,7 +281,7 @@ export default function HeroAppAiIot() {
 
           {/* Label pill */}
           <div className="order-1 win-1024:order-none bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center max-w-[290px] px-[12px] py-[8px] rounded-full shrink-0 w-full">
-            <span className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3] whitespace-nowrap">
+            <span className="font-avenir-heavy text-f14 leading-l17 text-[#0233c3] whitespace-nowrap">
               {t.label}
             </span>
           </div>
@@ -302,7 +303,7 @@ export default function HeroAppAiIot() {
               Base     : centrada
               win-1024 : alinhada à esquerda
           */}
-          <p className="order-3 win-1024:order-none font-avenir-roman text-[18px] leading-[26px] text-[#333] w-full text-center win-1024:text-left">
+          <p className="order-3 win-1024:order-none font-avenir-roman text-f18 leading-l26 text-[#333] w-full text-center win-1024:text-left">
             {t.description}
           </p>
 
@@ -337,12 +338,12 @@ export default function HeroAppAiIot() {
                 </div>
 
                 {/* Título do card */}
-                <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91] w-full">
+                <p className="font-avenir-heavy text-f18 leading-l22 text-[#1f2e91] w-full">
                   {b.title}
                 </p>
 
                 {/* Descrição do card */}
-                <p className="font-avenir-roman text-[16px] leading-[20px] text-[#2a2a2b] w-full">
+                <p className="font-avenir-roman text-f16 leading-l20 text-[#2a2a2b] w-full">
                   {b.desc}
                 </p>
               </div>
@@ -353,7 +354,7 @@ export default function HeroAppAiIot() {
               Base     : flex-wrap justify-center, cada botão flex-[1_0_0]
               win-1024 : justify-start, cada botão shrink-0 (tamanho fixo)
           */}
-          <div className="order-5 win-1024:order-none flex flex-wrap gap-[20px] items-center justify-center win-1280:justify-start w-full">
+          <div className="order-5 win-1024:order-none flex flex-wrap gap-[20px] items-center justify-center win-1024:justify-start w-full">
 
             {/* Primário */}
             <button className={[
@@ -361,7 +362,7 @@ export default function HeroAppAiIot() {
               "flex flex-[1_0_0] win-1024:flex-none gap-[10px] items-center justify-center",
               "min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer",
             ].join(" ")}>
-              <span className="font-avenir-heavy text-[16px] text-white flex-1 text-center">
+              <span className="font-avenir-heavy text-f16 text-white flex-1 text-center">
                 {t.btnPrimary}
               </span>
               <FigmaIcon src={imgArrowW} size={18} aspectW={18} aspectH={18} />
@@ -373,7 +374,7 @@ export default function HeroAppAiIot() {
               "flex flex-[1_0_0] win-1024:flex-none gap-[10px] items-center justify-center",
               "min-h-[50px] min-w-[190px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer",
             ].join(" ")}>
-              <span className="font-avenir-heavy text-[16px] text-[#0233c3] group-hover:text-white transition-colors flex-1 text-center">
+              <span className="font-avenir-heavy text-f16 text-[#0233c3] group-hover:text-white transition-colors flex-1 text-center">
                 {t.btnSecondary}
               </span>
               <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
@@ -393,13 +394,11 @@ export default function HeroAppAiIot() {
             win-1024 : flex-[1_0_0] min-w-[280px] à direita (flex-row)
             win-1280 : oculto — a imagem de fundo já mostra o mockup
         */}
-        <div className="order-4 win-1024:order-none win-1280:hidden rounded-[16px] overflow-clip h-[320px] sm:h-[420px] win-1024:h-[481px] min-w-[280px] w-full win-1024:flex-[1_0_0]">
-          <Img
-            src={imgMockup}
-            alt={t.mockupAlt}
-            className="w-full h-full object-cover"
-          />
-        </div>
+        <MockupFrame
+          className="order-4 win-1024:order-none win-1280:hidden rounded-[16px] overflow-clip h-[320px] sm:h-[420px] win-1024:h-[481px] min-w-[280px] w-full win-1024:flex-[1_0_0]"
+          src={imgMockup}
+          alt={t.mockupAlt}
+        />
 
         {/* ── ESPAÇADOR TELA TOTAL ────────────────────────────────────────────
             Visível apenas em win-1280+. Ocupa o lado direito para que o
@@ -441,12 +440,12 @@ export default function HeroAppAiIot() {
             </div>
 
             {/* Título do card */}
-            <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91] w-full">
+            <p className="font-avenir-heavy text-f18 leading-l22 text-[#1f2e91] w-full">
               {b.title}
             </p>
 
             {/* Descrição do card */}
-            <p className="font-avenir-roman text-[16px] leading-[20px] text-[#2a2a2b] w-full">
+            <p className="font-avenir-roman text-f16 leading-l20 text-[#2a2a2b] w-full">
               {b.desc}
             </p>
           </div>

@@ -493,10 +493,10 @@ function DropdownItemRow({ item }: { item: DropdownItem }) {
         <FigmaIcon src={item.icon} size={22} aspectW={item.iconAspectW} aspectH={item.iconAspectH} className="brightness-0 invert" />
       </div>
       <div className="flex flex-col gap-[5px] flex-1 min-w-0">
-        <p className="font-avenir-heavy text-[14px] leading-[17px] text-[#07235c] group-hover:text-[#0233c3] transition-colors">
+        <p className="font-avenir-heavy text-f14 leading-l17 text-[#07235c] group-hover:text-[#0233c3] transition-colors">
           {item.label}
         </p>
-        <p className="font-avenir-roman text-[12px] leading-[15px] text-[#8a8f97]">
+        <p className="font-avenir-roman text-f12 leading-l15 text-[#8a8f97]">
           {item.desc}
         </p>
       </div>
@@ -519,7 +519,7 @@ function NavTrigger({ label, href, active, hasDropdown, open, onMouseEnter, drop
   `;
   const inner = (
     <>
-      <p className={`font-avenir-heavy text-[14px] leading-[17px] text-center whitespace-nowrap transition-colors duration-150 shrink-0 ${highlighted ? "text-[#0233c3]" : "text-[#333] group-hover:text-[#0233c3]"}`}>
+      <p className={`font-avenir-heavy text-f14 leading-l17 text-center whitespace-nowrap transition-colors duration-150 shrink-0 ${highlighted ? "text-[#0233c3]" : "text-[#333] group-hover:text-[#0233c3]"}`}>
         {label}
       </p>
       {hasDropdown && <Chevron open={open} color={textColor} />}
@@ -556,12 +556,12 @@ function MobileNavLink({ label, href, active, dropdown, onClose }: {
           onClick={() => setExpanded((v) => !v)}
           aria-expanded={expanded}
         >
-          <span className={`font-avenir-heavy text-[16px] leading-[20px] transition-colors ${active ? "text-[#0233c3]" : "text-[#333]"}`}>{label}</span>
+          <span className={`font-avenir-heavy text-f16 leading-l20 transition-colors ${active ? "text-[#0233c3]" : "text-[#333]"}`}>{label}</span>
           <Chevron open={expanded} color={active ? "#0233c3" : "#333"} />
         </button>
       ) : (
         <a href={href} onClick={onClose} className={`flex items-center min-h-[52px] px-[10px] rounded-[8px] transition-colors ${active ? "bg-[#f6f9fe]" : "hover:bg-[#f6f9fe]"}`}>
-          <span className={`font-avenir-heavy text-[16px] leading-[20px] transition-colors ${active ? "text-[#0233c3]" : "text-[#333]"}`}>{label}</span>
+          <span className={`font-avenir-heavy text-f16 leading-l20 transition-colors ${active ? "text-[#0233c3]" : "text-[#333]"}`}>{label}</span>
         </a>
       )}
       {hasDropdown && expanded && (
@@ -574,7 +574,7 @@ function MobileNavLink({ label, href, active, dropdown, onClose }: {
               >
                 <FigmaIcon src={item.icon} size={18} aspectW={item.iconAspectW} aspectH={item.iconAspectH} className="brightness-0 invert" />
               </div>
-              <span className="font-avenir-heavy text-[14px] leading-[17px] text-[#07235c] group-hover:text-[#0233c3] transition-colors">
+              <span className="font-avenir-heavy text-f14 leading-l17 text-[#07235c] group-hover:text-[#0233c3] transition-colors">
                 {item.label}
               </span>
             </a>
@@ -658,7 +658,7 @@ export default function Header() {
             title={lang.startsWith("pt") ? "Minha conta" : "My Account"}
             className={level >= 1
               ? "hidden lg:flex items-center justify-center size-[40px] rounded-[6px] border border-[#cbd0d4] text-[#0233c3] hover:text-[#002ba8] hover:bg-[#f6f9fe] transition-colors"
-              : "hidden lg:block font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3] hover:text-[#002ba8] active:text-[#005ae0] transition-colors whitespace-nowrap px-[6px]"}
+              : "hidden lg:block font-avenir-heavy text-f14 leading-l17 text-[#0233c3] hover:text-[#002ba8] active:text-[#005ae0] transition-colors whitespace-nowrap px-[6px]"}
           >
             {level >= 1 ? (
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden>
@@ -676,7 +676,7 @@ export default function Header() {
               className={`hidden lg:flex bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors gap-[10px] items-center justify-center h-[40px] overflow-hidden rounded-[8px] shrink-0 cursor-pointer ${level >= 2 ? "w-[40px]" : "px-[20px]"}`}
             >
               <FigmaIcon src={imgPartner} size={16} aspectW={41} aspectH={40} />
-              {level < 2 && <span className="font-avenir-heavy text-[14px] leading-[17px] text-white whitespace-nowrap">{partnerBtn}</span>}
+              {level < 2 && <span className="font-avenir-heavy text-f14 leading-l17 text-white whitespace-nowrap">{partnerBtn}</span>}
             </a>
           )}
           <button
@@ -704,12 +704,12 @@ export default function Header() {
             ))}
             <div className="flex flex-col gap-[10px] pt-[16px] pb-[10px]">
               <a href="/app/pedidos" className="border border-[#0233c3] hover:bg-[#f6f9fe] transition-colors flex items-center justify-center h-[48px] px-[20px] rounded-[8px] w-full cursor-pointer">
-                <span className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3] whitespace-nowrap">{lang.startsWith("pt") ? "Minha conta" : "My Account"}</span>
+                <span className="font-avenir-heavy text-f14 leading-l17 text-[#0233c3] whitespace-nowrap">{lang.startsWith("pt") ? "Minha conta" : "My Account"}</span>
               </a>
               {bePartner && (
                 <a href="/partnership" className="bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors flex gap-[10px] items-center justify-center h-[48px] overflow-hidden px-[20px] rounded-[8px] w-full cursor-pointer">
                   <FigmaIcon src={imgPartner} size={16} aspectW={41} aspectH={40} />
-                  <span className="font-avenir-heavy text-[14px] leading-[17px] text-white whitespace-nowrap">{partnerBtn}</span>
+                  <span className="font-avenir-heavy text-f14 leading-l17 text-white whitespace-nowrap">{partnerBtn}</span>
                 </a>
               )}
             </div>

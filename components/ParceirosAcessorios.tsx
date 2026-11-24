@@ -312,10 +312,10 @@ export default function ParceirosAcessorios() {
 
         {/* Header */}
         <div className="flex flex-col gap-[20px] items-center text-center w-full">
-          <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-[#1f2e91] min-w-[240px] w-full">
+          <h2 className="font-avenir-heavy text-f22 leading-l28 md:text-f26 md:leading-l34 text-[#1f2e91] min-w-[240px] w-full">
             {t.heading}
           </h2>
-          <p className="font-avenir-roman text-[18px] leading-[19px] text-[#333] w-full">
+          <p className="font-avenir-roman text-f18 leading-l19 text-[#333] w-full">
             {t.subtitle}
           </p>
         </div>
@@ -332,8 +332,8 @@ export default function ParceirosAcessorios() {
                     </div>
                   </div>
                   <div className="flex flex-col gap-[10px] items-start flex-1 min-w-0">
-                    <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#0569ff]">{tier.name}</p>
-                    <p className="font-avenir-roman text-[14px] leading-[16px] text-[#2a2a2b]">{tier.desc}</p>
+                    <p className="font-avenir-heavy text-f18 leading-l22 text-[#0569ff]">{tier.name}</p>
+                    <p className="font-avenir-roman text-f14 leading-l16 text-[#2a2a2b]">{tier.desc}</p>
                   </div>
                 </div>
               </div>
@@ -348,8 +348,8 @@ export default function ParceirosAcessorios() {
                   <FigmaIcon src={b.icon} size={30} aspectW={b.iconW} aspectH={b.iconH} />
                 </div>
                 <div className="flex flex-col gap-[10px] items-start flex-1 min-w-0">
-                  <p className="font-avenir-heavy text-[16px] leading-[20px] text-[#1f2e91] w-full">{b.title}</p>
-                  <p className="font-avenir-roman text-[14px] leading-[16px] text-[#333] w-full">{b.desc}</p>
+                  <p className="font-avenir-heavy text-f16 leading-l20 text-[#1f2e91] w-full">{b.title}</p>
+                  <p className="font-avenir-roman text-f14 leading-l16 text-[#333] w-full">{b.desc}</p>
                 </div>
               </div>
             ))}

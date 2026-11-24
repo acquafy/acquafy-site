@@ -187,7 +187,7 @@ export default function ComoFuncionaParceria() {
     <section className="bg-white flex items-center justify-center px-[20px] py-[40px] w-full">
       <div className="flex flex-col gap-[40px] items-center max-w-[1400px] w-full">
 
-        <h2 className="font-avenir-heavy not-italic text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] text-center min-w-[240px] w-full">
+        <h2 className="font-avenir-heavy not-italic text-f22 leading-l28 md:text-f26 md:leading-l34 text-center min-w-[240px] w-full">
           <span className="text-[#1f2e91]">{t.heading1}</span>
           <span className="text-[#0569ff]">{t.heading2}</span>
         </h2>
@@ -203,18 +203,18 @@ export default function ComoFuncionaParceria() {
                 <div className="border border-[#cbd0d4] flex flex-col items-center justify-center p-[24px] rounded-full shrink-0 size-[100px]">
                   <Img src={s.icon} alt="" className="size-[30px] object-contain shrink-0" />
                 </div>
-                <p className="-translate-y-1/2 absolute font-avenir-heavy leading-[50px] not-italic right-[48px] text-[40px] text-[#0569ff] top-[25px] translate-x-full whitespace-nowrap">
+                <p className="-translate-y-1/2 absolute font-avenir-heavy leading-l50 not-italic right-[48px] text-f40 text-[#0569ff] top-[25px] translate-x-full whitespace-nowrap">
                   {s.num}
                 </p>
               </div>
 
               {/* título */}
-              <p className="font-avenir-heavy not-italic text-[18px] leading-[22px] text-[#1f2e91] text-center shrink-0 w-full">
+              <p className="font-avenir-heavy not-italic text-f18 leading-l22 text-[#1f2e91] text-center shrink-0 w-full">
                 {s.title}
               </p>
 
               {/* descrição */}
-              <p className="font-avenir-roman not-italic text-[16px] leading-[20px] text-[#333] text-center shrink-0 w-full">
+              <p className="font-avenir-roman not-italic text-f16 leading-l20 text-[#333] text-center shrink-0 w-full">
                 {s.desc}
               </p>
 

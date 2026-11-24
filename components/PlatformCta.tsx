@@ -106,14 +106,14 @@ export default function PlatformCta() {
         />
 
         <div className="relative flex flex-[1_0_0] flex-col items-center justify-center min-w-[240px] pb-[40px]">
-          <h2 className="font-avenir-black text-[32px] leading-[39px] text-white w-full text-center lg:text-left">
+          <h2 className="font-avenir-black text-f32 leading-l39 text-white w-full text-center lg:text-left">
             {t.heading}
           </h2>
         </div>
 
         <div className="relative flex flex-[1_0_0] flex-wrap gap-[10px] items-center justify-center xl:justify-end min-w-[240px] pb-[20px]">
           <a href="/contact" className="group bg-white border border-[#0233c3] hover:bg-[#0233c3] active:bg-[#002ba8] transition-colors flex flex-[1_0_0] gap-[10px] items-center justify-center min-h-[56px] min-w-[200px] overflow-hidden px-[20px] py-[10px] rounded-[8px] cursor-pointer">
-            <span className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3] group-hover:text-white group-active:text-white transition-colors text-center whitespace-nowrap">
+            <span className="font-avenir-heavy text-f14 leading-l17 text-[#0233c3] group-hover:text-white group-active:text-white transition-colors text-center whitespace-nowrap">
               {t.btnDemo}
             </span>
             <div className="relative shrink-0" style={{ width: 18, height: 18 }}>
@@ -127,7 +127,7 @@ export default function PlatformCta() {
             style={{ backgroundImage: "linear-gradient(112deg, #0233c3 6.19%, #9f3df5 93.35%)" }}
           >
             <FigmaIcon src={imgChat} size={16} />
-            <span className="font-avenir-heavy text-[14px] leading-[17px] text-white text-center whitespace-nowrap">
+            <span className="font-avenir-heavy text-f14 leading-l17 text-white text-center whitespace-nowrap">
               {t.btnSpecialist}
             </span>
           </a>

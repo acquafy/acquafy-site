@@ -209,12 +209,12 @@ function Feature({
       {/* linha: ícone + título */}
       <div className="flex gap-[20px] items-center w-full">
         <FigmaIcon src={icon} size={40} aspectW={42} aspectH={42} />
-        <p className="font-avenir-heavy text-[16px] leading-[20px] text-[#1f2e91] flex-1 min-w-0">
+        <p className="font-avenir-heavy text-f16 leading-l20 text-[#1f2e91] flex-1 min-w-0">
           {title}
         </p>
       </div>
       {/* descrição */}
-      <p className="font-avenir-roman text-[14px] leading-[16px] text-[#333] w-full">
+      <p className="font-avenir-roman text-f14 leading-l16 text-[#333] w-full">
         {description}
       </p>
     </div>
@@ -245,7 +245,7 @@ export default function BannerContato() {
             <span className="text-[#0569ff]">{t.heading2}</span>
           </h1>
 
-          <p className="order-2 lg:order-none font-avenir-roman text-[18px] leading-[26px] text-[#333] text-center lg:text-left w-full">
+          <p className="order-2 lg:order-none font-avenir-roman text-f18 leading-l26 text-[#333] text-center lg:text-left w-full">
             {t.body}
           </p>
 

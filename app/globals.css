@@ -167,3 +167,42 @@ p, h1, h2, h3, h4, h5, h6, span, a, li, label, button {
 .gradient-premium {
   background: linear-gradient(172.84deg, #0233c3 0%, #9f3df5 36.37%);
 }
+
+/* ─── Type scale steps (see lib/fluid-type.ts) ────────────────────────────────
+   Text in rem is multiplied by these on smaller screens. Headings (24px and up) shrink more than 18-22px text;
+   text under 18px is never scaled down.
+   ──────────────────────────────────────────────────────────────────────────── */
+:root {
+  --fs-lg: 1;
+  --fs-xl: 1;
+}
+@media (max-width: 767px) {
+  :root { --fs-xl: 0.9; }
+}
+@media (max-width: 479px) {
+  :root { --fs-lg: 0.95; --fs-xl: 0.8; }
+}
+
+/* ─── Benefícios (App + AI + IoT): person cards flow vertically when the card itself is narrow ──────────────────────
+   The photo normally sits absolutely on the right and the text reserves 180px for it. When the card (not the window) is
+   under 440px wide that squeezes the text, so the photo drops below the text instead.
+   ──────────────────────────────────────────────────────────────────────────── */
+.bene-wrap {
+  container-type: inline-size;
+}
+@container (max-width: 439px) {
+  .bene-card {
+    flex-direction: column;
+  }
+  .bene-card .bene-body {
+    padding-right: 20px;
+  }
+  .bene-card .bene-photo {
+    position: relative;
+    inset: auto;
+    width: 100% !important;
+    height: 240px;
+    flex-shrink: 0;
+    padding-top: 0;
+  }
+}

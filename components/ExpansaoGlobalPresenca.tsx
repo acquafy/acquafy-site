@@ -287,11 +287,11 @@ export default function ExpansaoGlobalPresenca() {
 
         {/* Section header */}
         <div className="flex flex-col gap-[10px] items-start text-center w-full">
-          <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] w-full">
+          <h2 className="font-avenir-heavy text-f22 leading-l28 md:text-f26 md:leading-l34 w-full">
             <span className="text-[#0569ff]">{t.heading1}</span>
             <span className="text-[#1f2e91]">{t.heading2}</span>
           </h2>
-          <p className="font-avenir-roman text-[18px] leading-[19px] text-[#333] w-full">
+          <p className="font-avenir-roman text-f18 leading-l19 text-[#333] w-full">
             {t.subtitle}
           </p>
         </div>
@@ -314,7 +314,7 @@ export default function ExpansaoGlobalPresenca() {
 
               {/* Regions list */}
               <div className="flex flex-[1_0_0] flex-col gap-[40px] items-start max-w-[360px] min-w-[280px]">
-                <h3 className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91] w-full">
+                <h3 className="font-avenir-heavy text-f18 leading-l22 text-[#1f2e91] w-full">
                   {t.regionsTitle}
                 </h3>
                 <div className="flex flex-col gap-[20px] items-start w-full">
@@ -322,10 +322,10 @@ export default function ExpansaoGlobalPresenca() {
                     <div key={r.name} className="flex gap-[10px] items-start w-full">
                       <div className="bg-[#8bbaf2] rounded-full shrink-0 size-[14px] mt-[1px]" />
                       <div className="flex flex-[1_0_0] flex-col gap-[10px] items-start min-w-0">
-                        <p className="font-avenir-heavy text-[17px] leading-[20px] text-[#1f2e91] w-full">
+                        <p className="font-avenir-heavy text-f17 leading-l20 text-[#1f2e91] w-full">
                           {r.name}
                         </p>
-                        <p className="font-avenir-roman text-[12px] leading-[14px] text-[#333] w-full">
+                        <p className="font-avenir-roman text-f12 leading-l14 text-[#333] w-full">
                           {r.countries}
                         </p>
                       </div>
@@ -343,11 +343,11 @@ export default function ExpansaoGlobalPresenca() {
               <FigmaIcon src={imgPlanetWeb} size={40} />
             </div>
 
-            <h3 className="font-avenir-heavy text-[20px] leading-[28px] text-[#1f2e91] text-center min-h-[50px]">
+            <h3 className="font-avenir-heavy text-f20 leading-l28 text-[#1f2e91] text-center min-h-[50px]">
               {t.cardTitle}
             </h3>
 
-            <p className="font-avenir-roman text-[18px] leading-[19px] text-[#333] text-center">
+            <p className="font-avenir-roman text-f18 leading-l19 text-[#333] text-center">
               {t.cardDesc}
             </p>
 

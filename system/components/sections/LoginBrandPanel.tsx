@@ -28,8 +28,8 @@ function WaterScene() {
           style={{ animationDelay: `${delay}s` }}
         />
       ))}
-      {/* Back wave */}
-      <svg viewBox="0 0 2880 120" preserveAspectRatio="none" className={cn("absolute bottom-0 left-0 hidden h-[22%] w-[200%] lg:block", styles.waveBack)}>
+      {/* Back wave — Gaussian blur so the crest fades like real water; it sits 6px below the edge so the blur does not show a seam. */}
+      <svg viewBox="0 0 2880 120" preserveAspectRatio="none" className={cn("absolute -bottom-1.5 left-0 hidden h-[22%] w-[200%] blur-[6px] lg:block", styles.waveBack)}>
         <path d={WAVE_BACK} fill="rgba(120,200,255,0.42)" />
       </svg>
       {BUBBLES.map((b) => (
@@ -45,7 +45,7 @@ function WaterScene() {
 
 function FrontWave() {
   return (
-    <svg aria-hidden="true" viewBox="0 0 2880 120" preserveAspectRatio="none" className={cn("pointer-events-none absolute bottom-0 left-0 z-20 hidden h-[16%] w-[200%] lg:block", styles.waveFront)}>
+    <svg aria-hidden="true" viewBox="0 0 2880 120" preserveAspectRatio="none" className={cn("pointer-events-none absolute -bottom-1.5 left-0 z-20 hidden h-[16%] w-[200%] blur-[4px] lg:block", styles.waveFront)}>
       <defs>
         <linearGradient id="login-wave-front" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stopColor="rgba(200,234,255,0.7)" />
@@ -70,7 +70,7 @@ export function LoginBrandPanel() {
       <div aria-hidden="true" className="absolute inset-x-0 bottom-0 -z-10 hidden h-40 bg-[linear-gradient(to_top,rgba(70,150,255,0.2),transparent)] lg:block" />
 
       {/* Phone: the waves span the whole panel instead of the narrow art box. */}
-      <svg aria-hidden="true" viewBox="0 0 2880 120" preserveAspectRatio="none" className={cn("pointer-events-none absolute bottom-0 left-0 z-20 h-12 w-[400%] lg:hidden", styles.waveBack)}>
+      <svg aria-hidden="true" viewBox="0 0 2880 120" preserveAspectRatio="none" className={cn("pointer-events-none absolute -bottom-1 left-0 z-20 h-12 w-[400%] blur-[3px] lg:hidden", styles.waveBack)}>
         <path d={WAVE_FRONT} fill="rgba(160,215,255,0.45)" />
       </svg>
 

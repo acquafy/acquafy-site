@@ -954,13 +954,13 @@ function ProductCard({ product }: { product: Product }) {
           src={product.img}
         />
       </div>
-      <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#0233c3] text-center w-full min-h-[55px] flex flex-col items-center justify-center">
+      <p className="font-avenir-heavy text-f18 leading-l22 text-[#0233c3] text-center w-full min-h-[55px] flex flex-col items-center justify-center">
         {product.name}
       </p>
       <Feature name="buyNow">
       <a
         href={`/buy/checkin-${product.slug}?modelo=${product.id}`}
-        className="flex items-center justify-center min-h-[40px] px-[10px] py-[8px] rounded-[8px] w-full shrink-0 font-avenir-heavy text-[14px] leading-[17px] text-white hover:opacity-90 active:opacity-80 transition-opacity no-underline"
+        className="flex items-center justify-center min-h-[40px] px-[10px] py-[8px] rounded-[8px] w-full shrink-0 font-avenir-heavy text-f14 leading-l17 text-white hover:opacity-90 active:opacity-80 transition-opacity no-underline"
         style={{ backgroundImage: "linear-gradient(90deg, #0233c3, #0569ff)" }}
       >
         {BUY_NOW[lang]}
@@ -1010,18 +1010,18 @@ export default function LinhaNeo() {
         <div className="flex flex-col gap-[20px] items-start w-full">
           <div className="flex flex-wrap gap-y-[20px] items-center justify-center w-full">
             <h2
-              className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] flex-1 min-w-[240px] bg-clip-text text-transparent text-center lg:text-left"
+              className="font-avenir-heavy text-f22 leading-l28 md:text-f26 md:leading-l34 flex-1 min-w-[240px] bg-clip-text text-transparent text-center lg:text-left"
               style={{ backgroundImage: "linear-gradient(to right, #0233c3, #0569ff)" }}
             >
               Neo Essentials
             </h2>
           </div>
-          <p className="font-avenir-roman text-[18px] leading-[19px] text-[#333] w-full text-center lg:text-left">
+          <p className="font-avenir-roman text-f18 leading-l19 text-[#333] w-full text-center lg:text-left">
             {t.desc}
           </p>
 
           <div className="bg-white flex flex-col gap-[20px] items-center justify-center overflow-hidden p-[20px] rounded-[12px] w-full">
-            <p className="font-avenir-roman text-[18px] leading-[19px] text-[#1f2e91] w-full">
+            <p className="font-avenir-roman text-f18 leading-l19 text-[#1f2e91] w-full">
               {t.waterHeader[0]}
               <span className="font-avenir-heavy">{t.waterHeader[1]}</span>
               {t.waterHeader[2]}
@@ -1031,10 +1031,10 @@ export default function LinhaNeo() {
                 <div key={w.label} className="flex flex-[0_0_calc(50%-5px)] lg:flex-[0_0_calc(25%-8px)] gap-[10px] items-center">
                   <FigmaIcon src={imgCheckin} size={20} />
                   <div className="flex flex-[1_0_0] flex-col gap-[5px] items-start min-w-0">
-                    <p className="font-avenir-heavy text-[16px] leading-[20px] text-[#1f2e91] w-full">
+                    <p className="font-avenir-heavy text-f16 leading-l20 text-[#1f2e91] w-full">
                       {w.label}
                     </p>
-                    <p className="font-avenir-roman text-[14px] leading-[17px] text-[#2a2a2b] w-full">
+                    <p className="font-avenir-roman text-f14 leading-l17 text-[#2a2a2b] w-full">
                       {w.sub}
                     </p>
                   </div>
@@ -1061,21 +1061,21 @@ export default function LinhaNeo() {
           {/* Card 1 – Painel LED Touch */}
           <div className="bg-white flex flex-1 below-lg:basis-full flex-col gap-[20px] items-start min-h-[310px] min-w-[280px] p-[20px] rounded-[16px]">
             <div className="flex flex-1 flex-col gap-[20px] items-center w-full win-1024:items-start">
-              <p className="font-avenir-heavy text-[18px] leading-[22px] text-center win-1024:text-left w-full">
+              <p className="font-avenir-heavy text-f18 leading-l22 text-center win-1024:text-left w-full">
                 <span className="text-[#0569ff]">{t.panel.title1}</span>
                 <span className="text-[#1f2e91]">{t.panel.title2}</span>
               </p>
               <div className="flex flex-1 flex-col gap-[20px] items-center w-full">
                 <PanelSlideshowEssentials />
                 <div className="flex flex-col gap-[20px] items-center w-full win-1024:items-start">
-                  <p className="font-avenir-roman text-[16px] leading-[20px] text-[#1f2e91] text-center win-1024:text-left w-full">
+                  <p className="font-avenir-roman text-f16 leading-l20 text-[#1f2e91] text-center win-1024:text-left w-full">
                     {t.panel.sub}
                   </p>
                   <div className="flex flex-col gap-[10px] items-start w-full shrink-0">
                     {t.panel.checks.map((check, i) => (
                       <div key={i} className="flex gap-[10px] items-center w-full">
                         <FigmaIcon src={imgFeatCheck} size={17} />
-                        <p className="font-avenir-heavy text-[14px] leading-[17px] text-[#2a2a2b] flex-1 min-w-0">
+                        <p className="font-avenir-heavy text-f14 leading-l17 text-[#2a2a2b] flex-1 min-w-0">
                           {check}
                         </p>
                       </div>
@@ -1089,20 +1089,20 @@ export default function LinhaNeo() {
           {/* Card 2 – Acquafy AI */}
           <div className="bg-white flex flex-1 flex-col gap-[20px] items-start min-h-[310px] min-w-[280px] p-[20px] rounded-[16px]">
             <div className="flex flex-1 flex-col gap-[20px] items-center w-full win-1024:items-start">
-              <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#0569ff] text-center win-1024:text-left w-full">
+              <p className="font-avenir-heavy text-f18 leading-l22 text-[#0569ff] text-center win-1024:text-left w-full">
                 {t.ai.title}
               </p>
               <div className="flex flex-1 flex-wrap gap-[20px] items-center justify-center w-full">
                 <CardImage src={imgHomeMob} grow />
                 <div className="flex flex-col gap-[20px] items-center sm:items-start flex-[1_1_240px] min-w-[220px]">
-                  <p className="font-avenir-roman text-[16px] leading-[20px] text-[#1f2e91] text-center sm:text-left w-full">
+                  <p className="font-avenir-roman text-f16 leading-l20 text-[#1f2e91] text-center sm:text-left w-full">
                     {t.ai.sub}
                   </p>
                   <div className="flex flex-col gap-[10px] items-start w-full shrink-0">
                     {t.ai.checks.map((check, i) => (
                       <div key={i} className="flex gap-[10px] items-center w-full">
                         <FigmaIcon src={imgFeatCheck} size={17} />
-                        <p className="font-avenir-heavy text-[14px] leading-[17px] text-[#2a2a2b] flex-1 min-w-0">
+                        <p className="font-avenir-heavy text-f14 leading-l17 text-[#2a2a2b] flex-1 min-w-0">
                           {check}
                         </p>
                       </div>
@@ -1116,7 +1116,7 @@ export default function LinhaNeo() {
           {/* Card 3 – Controle pelo App */}
           <div className="bg-white flex flex-1 flex-col gap-[20px] items-start min-h-[310px] min-w-[280px] p-[20px] rounded-[16px]">
             <div className="flex flex-1 flex-col gap-[20px] items-center w-full win-1024:items-start">
-              <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#0569ff] text-center win-1024:text-left w-full">
+              <p className="font-avenir-heavy text-f18 leading-l22 text-[#0569ff] text-center win-1024:text-left w-full">
                 {t.ctrl.title}
               </p>
               <div className="flex flex-1 flex-wrap gap-[20px] items-center justify-center w-full">
@@ -1125,13 +1125,13 @@ export default function LinhaNeo() {
                   <div className="flex gap-[10px] items-center w-full shrink-0">
                     <div className="bg-[#f6f9fe] border border-[#0233c3] flex flex-wrap gap-[5px] items-center justify-center px-[12px] py-[8px] rounded-full shrink-0">
                       <FigmaIcon src={imgFeatWifi} size={12} aspectW={13.5} aspectH={9.5} />
-                      <span className="font-avenir-heavy text-[9px] leading-[11px] text-[#0233c3] whitespace-nowrap">
+                      <span className="font-avenir-heavy text-f9 leading-l11 text-[#0233c3] whitespace-nowrap">
                         WiFi 5
                       </span>
                     </div>
                     <div className="bg-[#f6f9fe] border border-[#0233c3] flex flex-wrap gap-[5px] items-center justify-center px-[12px] py-[8px] rounded-full shrink-0">
                       <FigmaIcon src={imgBluetooth} size={12} aspectW={10} aspectH={15} />
-                      <span className="font-avenir-heavy text-[9px] leading-[11px] text-[#0233c3] whitespace-nowrap">
+                      <span className="font-avenir-heavy text-f9 leading-l11 text-[#0233c3] whitespace-nowrap">
                         Bluetooth 5.3
                       </span>
                     </div>
@@ -1140,7 +1140,7 @@ export default function LinhaNeo() {
                     {t.ctrl.checks.map((check, i) => (
                       <div key={i} className="flex gap-[10px] items-center w-full">
                         <FigmaIcon src={imgFeatCheck} size={17} />
-                        <p className="font-avenir-heavy text-[14px] leading-[17px] text-[#2a2a2b] flex-1 min-w-0">
+                        <p className="font-avenir-heavy text-f14 leading-l17 text-[#2a2a2b] flex-1 min-w-0">
                           {check}
                         </p>
                       </div>

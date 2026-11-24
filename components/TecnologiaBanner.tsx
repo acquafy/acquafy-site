@@ -265,8 +265,8 @@ function HeroStat({ icon, label, aspectW = 30, aspectH = 30 }: {
   return (
     <div className="flex flex-[1_0_0] flex-col gap-[20px] items-center min-w-[100px]">
       <FigmaIcon src={icon} size={40} aspectW={aspectW} aspectH={aspectH} />
-      <div className="[word-break:break-word] flex flex-col font-avenir-heavy justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[16px] text-[#1f2e91] text-center">
-        <p className="leading-[20px]">{label}</p>
+      <div className="[word-break:break-word] flex flex-col font-avenir-heavy justify-center leading-[0] min-w-full not-italic relative shrink-0 text-f16 text-[#1f2e91] text-center">
+        <p className="leading-l20">{label}</p>
       </div>
     </div>
   );
@@ -278,8 +278,8 @@ function TrustItem({ icon, label, aspectW = 30, aspectH = 30 }: {
   return (
     <div className="content-center flex flex-[1_0_0] flex-wrap gap-[10px] items-center justify-center min-w-[280px] lg:justify-start lg:min-w-[160px]">
       <FigmaIcon src={icon} size={30} aspectW={aspectW} aspectH={aspectH} />
-      <div className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both] [word-break:break-word] flex flex-[1_0_0] flex-col font-avenir-heavy justify-center leading-[0] min-w-px not-italic relative text-[18px] text-white">
-        <p className="leading-[22px]">{label}</p>
+      <div className="[text-box-edge:cap_alphabetic] [text-box-trim:trim-both] [word-break:break-word] flex flex-[1_0_0] flex-col font-avenir-heavy justify-center leading-[0] min-w-px not-italic relative text-f18 text-white">
+        <p className="leading-l22">{label}</p>
       </div>
     </div>
   );
@@ -318,7 +318,7 @@ export default function TecnologiaBanner() {
           {/* Badge */}
           <div className="order-1 lg:order-none bg-white border border-[#0233c3] flex flex-wrap gap-[10px] items-center justify-center max-w-[280px] px-[12px] py-[8px] rounded-full shrink-0">
             <FigmaIcon src={imgGlobe} size={16} />
-            <span className="font-avenir-heavy text-[14px] leading-[17px] text-[#0233c3] whitespace-nowrap">
+            <span className="font-avenir-heavy text-f14 leading-l17 text-[#0233c3] whitespace-nowrap">
               {t.badge}
             </span>
           </div>
@@ -330,13 +330,13 @@ export default function TecnologiaBanner() {
           </h1>
 
           {/* Subtitle */}
-          <div className="order-3 lg:order-none [word-break:break-word] flex flex-col font-avenir-heavy justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[20px] text-[#0569ff] text-center lg:text-left">
-            <p className="leading-[28px]">{t.subtitle}</p>
+          <div className="order-3 lg:order-none [word-break:break-word] flex flex-col font-avenir-heavy justify-center leading-[0] min-w-full not-italic relative shrink-0 text-f20 text-[#0569ff] text-center lg:text-left">
+            <p className="leading-l28">{t.subtitle}</p>
           </div>
 
           {/* Description */}
-          <div className="order-4 lg:order-none [word-break:break-word] flex flex-col font-avenir-roman justify-center leading-[0] min-w-full not-italic relative shrink-0 text-[18px] text-[#333] text-center lg:text-left">
-            <p className="leading-[26px]">{t.description}</p>
+          <div className="order-4 lg:order-none [word-break:break-word] flex flex-col font-avenir-roman justify-center leading-[0] min-w-full not-italic relative shrink-0 text-f18 text-[#333] text-center lg:text-left">
+            <p className="leading-l26">{t.description}</p>
           </div>
 
           {/* Mini stats */}

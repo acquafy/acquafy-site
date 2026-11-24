@@ -359,10 +359,10 @@ function ProductCard({ product }: { product: Product }) {
 
       {/* Info */}
       <div className="flex flex-1 flex-col gap-[10px] items-start min-w-0 pr-[10px] py-[10px]">
-        <p className="font-avenir-heavy text-[18px] leading-[22px] text-[#1f2e91] min-h-[40px] w-full">
+        <p className="font-avenir-heavy text-f18 leading-l22 text-[#1f2e91] min-h-[40px] w-full">
           {product.title}
         </p>
-        <p className="font-avenir-roman text-[16px] leading-[20px] text-[#333] w-full">
+        <p className="font-avenir-roman text-f16 leading-l20 text-[#333] w-full">
           {product.desc}
         </p>
       </div>
@@ -385,7 +385,7 @@ export default function ColecaoMediaNetwork() {
 
         {/* Header */}
         <div className="flex gap-[10px] items-center justify-between w-full flex-wrap">
-          <h2 className="font-avenir-heavy text-[22px] leading-[28px] md:text-[26px] md:leading-[34px] flex-1 min-w-[240px] text-center lg:text-left">
+          <h2 className="font-avenir-heavy text-f22 leading-l28 md:text-f26 md:leading-l34 flex-1 min-w-[240px] text-center lg:text-left">
             <span className="text-[#1f2e91]">{t.heading}</span>
             {" "}
             <span className="text-[#0569ff]">Media Network</span>
@@ -404,7 +404,7 @@ export default function ColecaoMediaNetwork() {
           <div className="flex justify-center w-full">
             <a href="/parceria" className="flex bg-[#0233c3] hover:bg-[#002ba8] active:bg-[#005ae0] transition-colors gap-[10px] items-center justify-center h-[40px] overflow-hidden px-[20px] rounded-[8px] shrink-0 cursor-pointer">
               <FigmaIcon src={imgPartner} size={16} aspectW={41} aspectH={40} />
-              <span className="font-avenir-heavy text-[14px] leading-[17px] text-white whitespace-nowrap">
+              <span className="font-avenir-heavy text-f14 leading-l17 text-white whitespace-nowrap">
                 {t.cta}
               </span>
             </a>
