@@ -1237,21 +1237,78 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
   const ZOOM = family.slug === "neo-max" ? 4 : 2.5;
   const [zoomOn, setZoomOn] = useState(false);
   const zoomGeom = useRef<{ cx: number; cy: number; cw: number; ch: number; boxH: number; frame: DOMRect } | null>(null);
+  const PAD = 32; // breathing room: the zoomed product never touches the header or the bottom bar
+  const panPx = useRef({ x: 0, y: 0 });
+  const zoomLevel = useRef(ZOOM); // current scale: ZOOM on a tap, changed by the pinch
+  const applyPan = (el: HTMLElement, x: number, y: number) => {
+    panPx.current = { x, y };
+    // full transform in pixels: the pan (not scaled), then the scale about the photo centre
+    el.style.setProperty("--zt", `translate(${x}px, ${y}px) scale(${zoomLevel.current})`);
+  };
+  // the pan values that put the zoomed content edge to edge with the (padded) frame: [start edge, end edge]
+  const panRange = (start: number, size: number, center: number, content: number): [number, number] => {
+    const big = content * zoomLevel.current;
+    if (big <= size) return [0, 0]; // fits: stays centered
+    const at = (f: number) => start + f * (size - big) - (center - big / 2);
+    return [at(0), at(1)];
+  };
+  // mouse: the position of the pointer in the frame picks the part of the photo that is shown
   const panZoom = (el: HTMLElement, clientX: number, clientY: number) => {
     const g = zoomGeom.current;
     if (!g) return;
-    const axis = (pointer: number, start: number, size: number, center: number, content: number) => {
-      const big = content * ZOOM;
-      if (big <= size) return 0; // fits: stays centered
-      const f = Math.min(1, Math.max(0, (pointer - start) / size));
-      const left = start + f * (size - big); // zoomed content edge to edge with the frame
-      return left - (center - big / 2);
+    const fx = Math.min(1, Math.max(0, (clientX - g.frame.left - PAD) / (g.frame.width - 2 * PAD)));
+    const fy = Math.min(1, Math.max(0, (clientY - g.frame.top - PAD) / (g.frame.height - 2 * PAD)));
+    const [x0, x1] = panRange(g.frame.left + PAD, g.frame.width - 2 * PAD, g.cx, g.cw);
+    const [y0, y1] = panRange(g.frame.top + PAD, g.frame.height - 2 * PAD, g.cy, g.ch);
+    applyPan(el, x0 + fx * (x1 - x0), y0 + fy * (y1 - y0));
+  };
+  // finger: dragging moves the photo with the finger, kept inside the same limits
+  const touchDrag = useRef<{ x: number; y: number; px: number; py: number; moved: boolean } | null>(null);
+  const suppressClick = useRef(false);
+  const lastPointerType = useRef("mouse");
+  // pinch: two fingers change the scale (1x to twice the tap zoom); the pan stays inside the frame limits
+  const pointers = useRef(new Map<number, { x: number; y: number }>());
+  const pinch = useRef<{ d0: number; level0: number } | null>(null);
+  const clampPan = (el: HTMLElement) => {
+    const g = zoomGeom.current;
+    if (!g) return;
+    const [x0, x1] = panRange(g.frame.left + PAD, g.frame.width - 2 * PAD, g.cx, g.cw);
+    const [y0, y1] = panRange(g.frame.top + PAD, g.frame.height - 2 * PAD, g.cy, g.ch);
+    const x = Math.min(Math.max(x0, x1), Math.max(Math.min(x0, x1), panPx.current.x));
+    const y = Math.min(Math.max(y0, y1), Math.max(Math.min(y0, y1), panPx.current.y));
+    applyPan(el, x, y);
+  };
+  const startZoom = (area: HTMLElement, clientX: number, clientY: number, level: number) => {
+    const imgs = Array.from(area.querySelectorAll<HTMLImageElement>("img.cb-img"));
+    const shown = imgs.find((im) => getComputedStyle(im).opacity === "1");
+    if (!shown) return false;
+    const r = shown.getBoundingClientRect();
+    if (clientX < r.left || clientX > r.right || clientY < r.top || clientY > r.bottom) return false;
+    const k = Math.min(r.width / shown.naturalWidth, r.height / shown.naturalHeight);
+    zoomGeom.current = {
+      cx: r.left + r.width / 2,
+      cy: r.top + r.height / 2,
+      cw: shown.naturalWidth * k,
+      ch: shown.naturalHeight * k,
+      boxH: shown.offsetHeight,
+      frame: area.getBoundingClientRect(),
     };
-    const PAD = 32; // breathing room: the zoomed product never touches the header or the bottom bar
-    const tx = axis(clientX, g.frame.left + PAD, g.frame.width - 2 * PAD, g.cx, g.cw);
-    const ty = axis(clientY, g.frame.top + PAD, g.frame.height - 2 * PAD, g.cy, g.ch);
-    // full transform in pixels: the pan (not scaled), then the scale about the photo centre
-    el.style.setProperty("--zt", `translate(${tx}px, ${ty}px) scale(${ZOOM})`);
+    zoomLevel.current = level;
+    panPx.current = { x: 0, y: 0 };
+    panZoom(area, clientX, clientY);
+    setZoomOn(true);
+    return true;
+  };
+  const dragZoom = (el: HTMLElement, clientX: number, clientY: number) => {
+    const g = zoomGeom.current;
+    const d = touchDrag.current;
+    if (!g || !d) return;
+    if (Math.abs(clientX - d.x) + Math.abs(clientY - d.y) > 6) d.moved = true;
+    const [x0, x1] = panRange(g.frame.left + PAD, g.frame.width - 2 * PAD, g.cx, g.cw);
+    const [y0, y1] = panRange(g.frame.top + PAD, g.frame.height - 2 * PAD, g.cy, g.ch);
+    const x = Math.min(Math.max(x0, x1), Math.max(Math.min(x0, x1), d.px + (clientX - d.x)));
+    const y = Math.min(Math.max(y0, y1), Math.max(Math.min(y0, y1), d.py + (clientY - d.y)));
+    applyPan(el, x, y);
   };
 
   // Freeze display while mouse is over the left-panel image (prevents section-row hover-leave from snapping back to activeSection).
@@ -1509,27 +1566,53 @@ export default function CheckinProduct({ family, showSlide = true }: Props) {
         <div
           className={`${zoomOn ? "cb-zoom-on " : ""}flex-1 md:min-h-0 w-full md:max-w-[1400px] md:mx-auto relative flex items-center justify-center overflow-hidden`}
           onMouseEnter={() => setImageHovered(true)}
-          onMouseLeave={() => { setImageHovered(false); setZoomOn(false); }}
-          onMouseMove={(e) => { if (zoomOn) panZoom(e.currentTarget, e.clientX, e.clientY); }}
+          onMouseLeave={() => { setImageHovered(false); if (lastPointerType.current !== "touch") setZoomOn(false); }}
+          style={{ touchAction: zoomOn ? "none" : "pan-y" }}
+          onPointerDown={(e) => {
+            lastPointerType.current = e.pointerType;
+            if (e.pointerType !== "touch") return;
+            pointers.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
+            if (pointers.current.size === 2) {
+              const [a, b] = Array.from(pointers.current.values());
+              pinch.current = { d0: Math.hypot(a.x - b.x, a.y - b.y) || 1, level0: zoomOn ? zoomLevel.current : 1 };
+              touchDrag.current = null;
+              suppressClick.current = true;
+            } else if (zoomOn) {
+              touchDrag.current = { x: e.clientX, y: e.clientY, px: panPx.current.x, py: panPx.current.y, moved: false };
+              suppressClick.current = false;
+            }
+          }}
+          onPointerMove={(e) => {
+            if (e.pointerType === "touch") {
+              if (pointers.current.has(e.pointerId)) pointers.current.set(e.pointerId, { x: e.clientX, y: e.clientY });
+              if (pointers.current.size >= 2 && pinch.current) {
+                const [a, b] = Array.from(pointers.current.values());
+                const level = Math.min(ZOOM * 2, Math.max(1, (pinch.current.level0 * Math.hypot(a.x - b.x, a.y - b.y)) / pinch.current.d0));
+                const el = e.currentTarget;
+                if (!zoomOn) {
+                  if (level > 1.1) startZoom(el, (a.x + b.x) / 2, (a.y + b.y) / 2, level);
+                  return;
+                }
+                if (level < 1.1) { setZoomOn(false); return; }
+                zoomLevel.current = level;
+                clampPan(el);
+                return;
+              }
+              if (zoomOn) dragZoom(e.currentTarget, e.clientX, e.clientY);
+            } else if (zoomOn) panZoom(e.currentTarget, e.clientX, e.clientY);
+          }}
+          onPointerUp={(e) => {
+            if (touchDrag.current?.moved) suppressClick.current = true; // a drag is not a tap: it must not zoom out
+            touchDrag.current = null;
+            pointers.current.delete(e.pointerId);
+            if (pointers.current.size < 2) pinch.current = null;
+          }}
+          onPointerCancel={(e) => { touchDrag.current = null; pointers.current.delete(e.pointerId); pinch.current = null; }}
           onClick={(e) => {
             if ((e.target as HTMLElement).closest("button")) return;
+            if (suppressClick.current) { suppressClick.current = false; return; }
             if (zoomOn) { setZoomOn(false); return; }
-            const imgs = Array.from(e.currentTarget.querySelectorAll<HTMLImageElement>("img.cb-img"));
-            const shown = imgs.find((im) => getComputedStyle(im).opacity === "1");
-            if (!shown) return;
-            const r = shown.getBoundingClientRect();
-            if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) return;
-            const k = Math.min(r.width / shown.naturalWidth, r.height / shown.naturalHeight);
-            zoomGeom.current = {
-              cx: r.left + r.width / 2,
-              cy: r.top + r.height / 2,
-              cw: shown.naturalWidth * k,
-              ch: shown.naturalHeight * k,
-              boxH: shown.offsetHeight,
-              frame: e.currentTarget.getBoundingClientRect(),
-            };
-            panZoom(e.currentTarget, e.clientX, e.clientY);
-            setZoomOn(true);
+            startZoom(e.currentTarget, e.clientX, e.clientY, ZOOM);
           }}
         >
 
