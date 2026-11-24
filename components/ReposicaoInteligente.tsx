@@ -371,12 +371,12 @@ const PHONE_RATIO = 1947 / 4096;
 export default function ReposicaoInteligente() {
   const { lang } = useLang();
   const contentRef = useRef<HTMLDivElement>(null);
-  // the phone is as tall as the content next to it plus 5% (md and up); below md it keeps a fixed size
+  // the phone is as tall as the content next to it plus 5%, kept between 280 and 440px (md and up); below md it keeps a fixed size
   const [phoneH, setPhoneH] = useState<number | null>(null);
   useEffect(() => {
     const el = contentRef.current;
     if (!el) return;
-    const update = () => setPhoneH(window.matchMedia("(min-width: 768px)").matches ? Math.round(el.getBoundingClientRect().height * 1.05) : null);
+    const update = () => setPhoneH(window.matchMedia("(min-width: 768px)").matches ? Math.min(440, Math.max(280, Math.round(el.getBoundingClientRect().height * 1.05))) : null);
     update();
     const ro = new ResizeObserver(update);
     ro.observe(el);
@@ -389,7 +389,10 @@ export default function ReposicaoInteligente() {
 
   return (
     <section className="bg-white flex flex-col items-center justify-center px-[20px] py-[40px] w-full">
-      <div className="bg-[#f6f9fe] flex flex-col md:flex-row flex-wrap gap-[20px] items-center justify-center max-w-[1400px] px-[20px] py-[40px] rounded-[16px] w-full">
+      <div className="bg-[#f6f9fe] flex flex-col gap-[20px] max-w-[1400px] px-[20px] py-[40px] rounded-[16px] w-full">
+
+        {/* Phone beside the intro and the feature icons */}
+        <div className="flex flex-col md:flex-row flex-wrap gap-[20px] items-center justify-center w-full">
 
         {/* Phone mockup: as tall as the content next to it, plus 5% */}
         <div
@@ -419,12 +422,15 @@ export default function ReposicaoInteligente() {
                 <div key={f.title} className="flex flex-col gap-[10px] items-start min-w-0">
                   <FigmaIcon src={f.icon} size={36} aspectW={f.aspectW} aspectH={f.aspectH} />
                   <div className="flex flex-col gap-[10px] items-start w-full">
-                    <p className="font-avenir-heavy text-f17 leading-l20 text-[#1f2e91]">{f.title}</p>
+                    <p className="font-avenir-heavy text-f17 leading-l20 min-h-[2lh] text-[#1f2e91]">{f.title}</p>
                     <p className="font-avenir-roman text-f14 leading-l17 text-[#2a2a2b]">{f.desc}</p>
                   </div>
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+        </div>
 
             {/* Stats cards */}
             <div className="card-row [--card-min:160px] gap-[20px] items-stretch justify-center w-full">
@@ -435,8 +441,6 @@ export default function ReposicaoInteligente() {
                 </div>
               ))}
             </div>
-          </div>
-        </div>
 
       </div>
     </section>

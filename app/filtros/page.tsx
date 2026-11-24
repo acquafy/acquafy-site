@@ -18,7 +18,7 @@ export default function FiltrosPage() {
       <Header />
       <main>
         <BannerFiltros variant="filtros" />
-        <LinhasFiltros />
+        <LinhasFiltros showPh={false} />
         <FiltrosQualidadeAgua />
         <ReposicaoInteligente />
         <CtaBanner />

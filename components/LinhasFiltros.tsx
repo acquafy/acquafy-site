@@ -3,8 +3,6 @@ import Img from "@/components/ui/Img";
 
 import { useLang, type Lang } from "@/context/LanguageContext";
 
-const imgLineAcido    = "/figma-assets/icon-line-acido.svg";
-const imgLineAlcalino = "/figma-assets/icon-line-alcalino.svg";
 
 type FilterCard = {
   num: string;
@@ -384,6 +382,67 @@ function FilterCard({ card }: { card: FilterCard }) {
   );
 }
 
+/** Range marker: a 1px gradient line with a straight vertical tick at each end (dimension-line style, not arrows). The line
+ *  stretches with its container; the ticks keep their height. */
+function RangeMarker({ from, to }: { from: string; to: string }) {
+  return (
+    <div aria-hidden="true" className="flex items-center w-full shrink-0 h-[15px]">
+      <div className="w-px h-full shrink-0" style={{ backgroundColor: from }} />
+      <div className="flex-1 h-px" style={{ background: `linear-gradient(to right, ${from}, ${to})` }} />
+      <div className="w-px h-full shrink-0" style={{ backgroundColor: to }} />
+    </div>
+  );
+}
+
+/** Short arrow pointing up from the "Neutro" label to the pH 7 block. */
+function UpArrow({ color }: { color: string }) {
+  return (
+    <svg aria-hidden="true" width="11" height="15" viewBox="0 0 11 15" fill="none" className="block shrink-0">
+      <path d="M5.5 14.5 V1.5 M1.5 5.5 L5.5 1.5 L9.5 5.5" stroke={color} strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function PhScale() {
+  const { lang } = useLang();
+  const t = T[lang];
+  return (
+    <div className="flex flex-col gap-[40px] items-center w-full">
+      <h2 className="font-avenir-heavy text-f22 leading-l28 md:text-f26 md:leading-l34 text-[#1f2e91] text-center w-full">
+        {t.phHeading}
+      </h2>
+      <div className="flex flex-col gap-[20px] w-full">
+        {/* Color bar */}
+        <div className="grid overflow-hidden rounded-[8px] w-full" style={{ gridTemplateColumns: "repeat(10, minmax(0, 1fr))" }}>
+          {phColors.map((color, i) => (
+            <div key={i} className="flex flex-col items-center justify-center px-[10px] py-[20px]" style={{ backgroundColor: color }}>
+              <span className="font-avenir-black text-f32 leading-l39 text-white text-center">{i + 1}</span>
+            </div>
+          ))}
+        </div>
+        {/* Labels */}
+        <div className="grid w-full" style={{ gridTemplateColumns: "repeat(10, minmax(0, 1fr))" }}>
+          {/* Ácido — cols 1-6: seta dupla colorida (warm) */}
+          <div className="flex flex-col gap-[10px] items-center justify-center" style={{ gridColumn: "1 / span 6" }}>
+            <RangeMarker from="#DC2429" to="#FECB15" />
+            <span className="font-avenir-heavy text-[clamp(14px,1.8vw,20px)] leading-[clamp(14px,2.1vw,22px)] text-[#333] text-center">{t.labelAcido}</span>
+          </div>
+          {/* Neutro — col 7 */}
+          <div className="flex flex-col gap-[10px] items-center justify-center">
+            <UpArrow color={phColors[6]} />
+            <span className="font-avenir-heavy text-[clamp(14px,1.8vw,20px)] leading-[clamp(14px,2.1vw,22px)] text-[#333] text-center whitespace-nowrap">{t.labelNeutro}</span>
+          </div>
+          {/* Alcalino — cols 8-10: seta dupla colorida (cool) */}
+          <div className="flex flex-col gap-[10px] items-center justify-center" style={{ gridColumn: "8 / span 3" }}>
+            <RangeMarker from="#7A459C" to="#006EAF" />
+            <span className="font-avenir-heavy text-[clamp(14px,1.8vw,20px)] leading-[clamp(14px,2.1vw,22px)] text-[#333] text-center">{t.labelAlcalino}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function LinhasFiltros({ showPh = true }: { showPh?: boolean }) {
   const { lang } = useLang();
   const t = T[lang];
@@ -418,48 +477,7 @@ export default function LinhasFiltros({ showPh = true }: { showPh?: boolean }) {
         </div>
 
         {/* Escala de pH */}
-        {showPh && (
-        <div className="flex flex-col gap-[40px] items-center w-full">
-          <h2 className="font-avenir-heavy text-f22 leading-l28 md:text-f26 md:leading-l34 text-[#1f2e91] text-center w-full">
-            {t.phHeading}
-          </h2>
-          <div className="flex flex-col gap-[20px] w-full">
-            {/* Color bar */}
-            <div className="grid overflow-hidden rounded-[8px] w-full" style={{ gridTemplateColumns: "repeat(10, minmax(0, 1fr))" }}>
-              {phColors.map((color, i) => (
-                <div key={i} className="flex flex-col items-center justify-center px-[10px] py-[40px]" style={{ backgroundColor: color }}>
-                  <span className="font-avenir-black text-f32 leading-l39 text-white text-center">{i + 1}</span>
-                </div>
-              ))}
-            </div>
-            {/* Labels */}
-            <div className="grid w-full" style={{ gridTemplateColumns: "repeat(10, minmax(0, 1fr))" }}>
-              {/* Ácido — cols 1-6: seta dupla colorida (warm) */}
-              <div className="flex flex-col gap-[10px] items-center justify-center" style={{ gridColumn: "1 / span 6" }}>
-                <div className="h-0 relative shrink-0 w-full">
-                  <div className="absolute" style={{ inset: "-7.36px -0.12%" }}>
-                    <Img alt="" className="block max-w-none size-full" src={imgLineAcido} />
-                  </div>
-                </div>
-                <span className="font-avenir-heavy text-[clamp(14px,1.8vw,20px)] leading-[clamp(14px,2.1vw,22px)] text-[#333] text-center">{t.labelAcido}</span>
-              </div>
-              {/* Neutro — col 7 */}
-              <div className="flex flex-col items-center justify-center">
-                <span className="font-avenir-heavy text-[clamp(14px,1.8vw,20px)] leading-[clamp(14px,2.1vw,22px)] text-[#333] text-center">{t.labelNeutro}</span>
-              </div>
-              {/* Alcalino — cols 8-10: seta dupla colorida (cool) */}
-              <div className="flex flex-col gap-[10px] items-center justify-center" style={{ gridColumn: "8 / span 3" }}>
-                <div className="h-0 relative shrink-0 w-full">
-                  <div className="absolute" style={{ inset: "-7.36px -0.24%" }}>
-                    <Img alt="" className="block max-w-none size-full" src={imgLineAlcalino} />
-                  </div>
-                </div>
-                <span className="font-avenir-heavy text-[clamp(14px,1.8vw,20px)] leading-[clamp(14px,2.1vw,22px)] text-[#333] text-center">{t.labelAlcalino}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        )}
+        {showPh && <PhScale />}
 
       </div>
     </section>
