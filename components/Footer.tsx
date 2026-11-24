@@ -716,7 +716,8 @@ export default function Footer() {
 
       {/* Stats card */}
       <div className="flex items-center justify-center px-[20px] w-full">
-        <div className="bg-white flex flex-[1_0_0] flex-wrap gap-x-[20px] gap-y-[10px] items-center justify-center max-w-[1400px] min-w-px overflow-hidden py-[10px] rounded-[20px]">
+        {/* Balanced rows (card-row); on phones each stat is its own white block instead of one strip. */}
+        <div className="card-row [--card-min:215px] bg-white mob:bg-transparent flex-[1_0_0] gap-x-[20px] mob:gap-[10px] gap-y-[10px] items-stretch max-w-[1400px] min-w-px overflow-hidden mob:overflow-visible py-[10px] mob:py-0 rounded-[20px]">
           {t.stats.map((s, i) => {
             const icons = [
               { src: imgGlobe,    aspectW: 30,    aspectH: 30    },
@@ -726,7 +727,7 @@ export default function Footer() {
             ];
             const ic = icons[i];
             return (
-              <div key={i} className="flex flex-[1_0_0] gap-[20px] items-center min-w-[240px] px-[20px] py-[10px]">
+              <div key={i} className="flex gap-[20px] mob:gap-[14px] items-center min-w-0 px-[20px] mob:px-[16px] py-[10px] mob:bg-white mob:rounded-[16px] mob:py-[16px]">
                 <div className="flex flex-col items-center justify-center shrink-0 size-[40px]">
                   <FigmaIcon src={ic.src} size={40} aspectW={ic.aspectW} aspectH={ic.aspectH} />
                 </div>

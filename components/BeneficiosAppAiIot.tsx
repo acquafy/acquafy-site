@@ -473,17 +473,15 @@ export default function BeneficiosAppAiIot() {
 
             // layout === "map" — Operação Global (mantém layout original)
             return (
-              <div
-                key={card.title}
-                className="bg-white flex flex-wrap gap-y-0 items-start min-w-0 relative rounded-[16px]"
-              >
+              <div key={card.title} className="bene-wrap min-w-0 flex">
+              <div className="bene-card bene-card-map bg-white flex flex-wrap gap-y-0 items-start min-w-0 relative rounded-[16px] w-full">
                 {/* Conteúdo — mr-[-90px] faz o bloco do mapa iniciar 90px antes do fim do conteúdo */}
-                <div className="flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-[240px] pl-[20px] py-[20px] mr-[-90px] relative z-[1]">
+                <div className="bene-mapbody flex flex-[1_0_0] flex-col gap-[20px] items-start min-w-[240px] pl-[20px] py-[20px] mr-[-90px] relative z-[1]">
                   <CardContent card={card} />
                 </div>
 
                 {/* Mapa — self-stretch iguala a altura do card; justify-center centraliza verticalmente */}
-                <div className="flex flex-[1_0_0] flex-col self-stretch items-end justify-center min-w-px py-[20px] relative">
+                <div className="bene-map flex flex-[1_0_0] flex-col self-stretch items-end justify-center min-w-px py-[20px] relative">
                   <div
                     className="aspect-[4096/2591] max-h-[220px] mix-blend-multiply relative shrink-0 w-full"
                     style={{ maxWidth: 348, opacity: 0.49 }}
@@ -495,6 +493,7 @@ export default function BeneficiosAppAiIot() {
                     />
                   </div>
                 </div>
+              </div>
               </div>
             );
           })}

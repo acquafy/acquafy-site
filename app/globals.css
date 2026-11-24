@@ -206,3 +206,22 @@ p, h1, h2, h3, h4, h5, h6, span, a, li, label, button {
     padding-top: 0;
   }
 }
+@container (max-width: 439px) {
+  /* Operação Global: text on top, the map below it (instead of sitting behind the text). */
+  .bene-card-map {
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+  .bene-card-map .bene-mapbody {
+    margin-right: 0;
+    padding-right: 20px;
+    min-width: 0;
+    flex: none;
+  }
+  .bene-card-map .bene-map {
+    flex: none;
+    align-self: stretch;
+    align-items: center;
+    padding: 0 20px 20px;
+  }
+}
